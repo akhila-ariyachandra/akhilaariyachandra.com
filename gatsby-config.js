@@ -4,8 +4,37 @@ require(`dotenv`).config({
 
 module.exports = {
   siteMetadata: {
+    // Used for the title template on pages other than the index site
     siteTitle: `Akhila Ariyachandra`,
+    // Default title of the page
     siteTitleAlt: `Akhila Ariyachandra`,
+    // Can be used for e.g. JSONLD
+    siteHeadline: `Akhila Ariyachandra's Blog`,
+    // Will be used to generate absolute URLs for og:image etc.
+    siteUrl: `https://akhilaariyachandra.com`,
+    // Used for SEO
+    siteDescription: `A Blog by Akhila Ariyachandra talking about React, JavaScript & Programming`,
+    // Will be set on the <html /> tag
+    siteLanguage: `en`,
+    // Used for og:image and must be placed inside the `static` folder
+    siteImage: `/banner.jpg`,
+    // Twitter Handle
+    author: `@heshan_1010`,
+    // Links displayed in the header on the right side
+    externalLinks: [
+      {
+        name: `GitHub`,
+        url: `https://github.com/akhila-ariyachandra`
+      },
+      {
+        name: `DEV`,
+        url: `https://dev.to/akhilaariyachandra`
+      },
+      {
+        name: `LinkedIn`,
+        url: `https://www.linkedin.com/in/akhila-ariyachandra/`
+      }
+    ],
     navigation: [
       {
         title: `Blog`,
@@ -56,6 +85,12 @@ module.exports = {
         ]
       }
     },
-    `gatsby-plugin-offline`
+    `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-google-adsense`,
+      options: {
+        publisherId: process.env.GOOGLE_PUBLISHER_ID
+      }
+    }
   ]
 };
