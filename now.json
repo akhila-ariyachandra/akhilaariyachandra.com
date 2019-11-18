@@ -21,8 +21,7 @@
   "build": {
     "env": {
       "GOOGLE_ANALYTICS_ID": "@personal-site-google-analytics-id",
-      "GOOGLE_OPTIMIZE_ID": "@personal-site-google-optimize-id",
-      "GATSBY_DISQUS_NAME": "@gatsby-disqus-name"
+      "GOOGLE_OPTIMIZE_ID": "@personal-site-google-optimize-id"
     }
   }
 }
