@@ -32,20 +32,27 @@ Then we will create a file with the database configuration and instance as datab
 
 First let import the dependency;
 
-```javascript
+```javascript:title=database.js
 const mongoose = require("mongoose");
 ```
 
 Then let’s store the path of the database in a variable. The path should look like the following, with `<dbuser>` and `<dbpassword>` being replaced with a user you have created for the database.
 
-```javascript
+```javascript:title=database.js {3-4}
+const mongoose = require("mongoose");
+
 const dbPath =
   "mongodb://<dbuser>:<dbpassword>@ds250607.mlab.com:38485/test-db";
 ```
 
 After that we’ll connect to the database.
 
-```javascript
+```javascript:title=database.js {6-8}
+const mongoose = require("mongoose");
+
+const dbPath =
+  "mongodb://<dbuser>:<dbpassword>@ds250607.mlab.com:38485/test-db";
+
 mongoose.connect(dbPath, {
   useNewUrlParser: true
 });
@@ -53,49 +60,53 @@ mongoose.connect(dbPath, {
 
 We’ll need to export this instance of the database to be used later.
 
-```javascript
+```javascript:title=database.js {10}
+const mongoose = require("mongoose");
+
+const dbPath =
+  "mongodb://<dbuser>:<dbpassword>@ds250607.mlab.com:38485/test-db";
+
+mongoose.connect(dbPath, {
+  useNewUrlParser: true
+});
+
 module.exports = mongoose;
 ```
 
 Once the application is started, it would be better if there was an indicator showing whether the application successfully connected to the database or not. So let’s add some more code to fix that.
 
-```javascript
-const db = mongoose.connection;
-db.on("error", () => {
-  console.log("> error occurred from the database");
-});
-db.once("open", () => {
-  console.log("> successfully opened the database");
-});
-```
-
-In the end the database.js should look like this.
-
-```javascript
-// database.js
+```javascript:title=database.js {12-20}
 const mongoose = require("mongoose");
+
 const dbPath =
   "mongodb://<dbuser>:<dbpassword>@ds250607.mlab.com:38485/test-db";
+
 mongoose.connect(dbPath, {
   useNewUrlParser: true
 });
+
+module.exports = mongoose;
+
 const db = mongoose.connection;
+
 db.on("error", () => {
   console.log("> error occurred from the database");
 });
+
 db.once("open", () => {
   console.log("> successfully opened the database");
 });
-module.exports = mongoose;
 ```
+
+That's all that's need to setup the database connection.
 
 ## Setting up models/schema
 
 After setting up the database connection, let’s setup an entity model to save and retrieve. For this example in going with an **User** entity. It will have three fields, name, email and password. We’ll store all the models in the models folder.
 
-```javascript
-// models/userModel.js
+```javascript:title=models/userModel.js
 const mongoose = require("../database");
+
 const schema = {
   name: { type: mongoose.SchemaTypes.String, required: true },
   email: { type: mongoose.SchemaTypes.String, required: true },
@@ -105,9 +116,11 @@ const schema = {
     select: false
   }
 };
+
 const collectionName = "user"; // Name of the collection of documents
 const userSchema = mongoose.Schema(schema);
 const User = mongoose.model(collectionName, userSchema);
+
 module.exports = User;
 ```
 
