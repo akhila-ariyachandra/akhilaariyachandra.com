@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "name": "akhilaariyachandra.com",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build",
+      "config": { "distDir": "public" }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/post/(.*)",
+      "status": 301,
+      "headers": { "Location": "/$1" }
+    },
+    { "src": "/(.*)", "dest": "/$1" },
+    { "handle": "filesystem" },
+    { "src": "/.*", "status": 404, "dest": "/404" }
+  ],
+  "build": {
+    "env": {
+      "GOOGLE_ANALYTICS_ID": "@personal-site-google-analytics-id",
+      "GOOGLE_OPTIMIZE_ID": "@personal-site-google-optimize-id",
+      "GATSBY_DISQUS_NAME": "@gatsby-disqus-name"
+    }
+  }
+}
