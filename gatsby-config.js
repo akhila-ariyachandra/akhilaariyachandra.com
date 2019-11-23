@@ -85,12 +85,13 @@ module.exports = {
         ]
       }
     },
-    `gatsby-plugin-offline`
+    `gatsby-plugin-offline`,
     /* {
       resolve: `gatsby-plugin-google-adsense`,
       options: {
         publisherId: process.env.GOOGLE_PUBLISHER_ID
       }
     } */
+    `gatsby-plugin-robots-txt`
   ]
 };

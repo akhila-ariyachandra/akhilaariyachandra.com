@@ -22,6 +22,7 @@
     "gatsby-plugin-google-analytics": "^2.1.4",
     "gatsby-plugin-manifest": "^2.2.3",
     "gatsby-plugin-offline": "^2.2.4",
+    "gatsby-plugin-robots-txt": "^1.5.0",
     "gatsby-plugin-sitemap": "^2.2.19",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
