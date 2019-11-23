@@ -106,7 +106,7 @@ const collectionName: string = "note";
 const noteSchema: mongoose.Schema = new mongoose.Schema(schema);
 ```
 
-Since we're building a serverless API, we can't depend on a persistant connection to database. When creating a Model we need to create it using the database connection.
+Since we're building a serverless API, we can't depend on a persistent connection to database. When creating a Model we need to create it using the database connection.
 
 To compensate for using serverless we'll generate the Model at runtime using a function. After declaring the functions, make it the default export.
 
@@ -136,7 +136,7 @@ export default Note;
 
 After creating the Note Model, let's look into the database connection.
 
-Since we're using serverless, we can't have a persistant connection to database for every invocation of the serverless function as this would create issues with scaling.
+Since we're using serverless, we can't have a persistent connection to database for every invocation of the serverless function as this would create issues with scaling.
 
 First create the **.env** file to store the MongoDB URI as _DB_PATH_.
 
@@ -221,7 +221,7 @@ import typeDefs from "../src/graphql/schema";
 import resolvers from "../src/graphql/resolvers";
 ```
 
-Then initializa the apollo server and export it.
+Then initialize the apollo server and export it.
 
 ```typescript:title=api/graphql.ts {7-12}
 import { ApolloServer } from "apollo-server-micro";
@@ -240,7 +240,7 @@ export default apolloServer.createHandler({ path: "/api/graphql" });
 
 When creating a new _ApolloServer_, we can define the **context** option. The **context** option is an object which can be accessed by any of the resolvers.
 
-This will be a good place to initializa the database connection and automatically pass it down to the resolvers.
+This will be a good place to initialize the database connection and automatically pass it down to the resolvers.
 
 ```typescript:title=api/graphql.ts {10-14}
 import { ApolloServer } from "apollo-server-micro";
@@ -288,7 +288,7 @@ export default apolloServer.createHandler({ path: "/api/graphql" });
 
 ## Setup the GraphQL Schema
 
-In the _src_ folder create the _grpahql_ folder and in that create the _schema_ folder.
+In the _src_ folder create the _graphql_ folder and in that create the _schema_ folder.
 
 GraphQL doesn't have a type for date and time so we'll need a schema for those types.
 
@@ -733,4 +733,4 @@ The GraphQL Playground should be visible in the _/api/graphql_ route of the URL 
 
 I made a sample deployment which you can check out [here](https://serverless-graphql-api-example-five-gamma.now.sh/api/graphql). The source code is available on [GitHub](https://github.com/akhila-ariyachandra/serverless-graphql-api-example).
 
-If you want a more detailed explaination into GraphQL and making a server for it, you can follow the excellent guide that I learned from [here](https://www.robinwieruch.de/graphql-apollo-server-tutorial).
+If you want a more detailed explanation into GraphQL and making a server for it, you can check out the excellent guide that I learned from [here](https://www.robinwieruch.de/graphql-apollo-server-tutorial).
