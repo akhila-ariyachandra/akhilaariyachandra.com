@@ -192,7 +192,7 @@ export const getConnection = async (): Promise<mongoose.Connection> => {
 };
 ```
 
-## Create the GraphQL API
+## Setup the GraphQL API
 
 First let's install the dependencies.
 
@@ -501,7 +501,7 @@ export default {
 
 In the function we should create the Note model using the database connection from the context and retrieve all the Notes using it.
 
-```typescript:title=src/graphql/resolvers/note.ts {12-25}
+```typescript:title=src/graphql/resolvers/note.ts {13-25}
 import mongoose from "mongoose";
 import dayjs from "dayjs";
 import NoteModel, { INote } from "../../database/models/note";
