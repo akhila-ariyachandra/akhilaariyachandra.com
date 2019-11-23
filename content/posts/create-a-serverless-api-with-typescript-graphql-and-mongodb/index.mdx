@@ -11,9 +11,9 @@ tags:
 banner: ./banner.png
 ---
 
-In this post we'll create a GraphQL API that we can deploy to [Zeit](https://zeit.co/) using [Apollo Server](https://www.apollographql.com/docs/apollo-server/), TypeScript and MongoDB.
+In this post we'll create a GraphQL API to create, view and delete notes that we can deploy to [Zeit](https://zeit.co/) using [Apollo Server](https://www.apollographql.com/docs/apollo-server/), TypeScript and MongoDB.
 
-We're going to create an API to create, view and delete notes.
+We're going to create an API .
 
 ## Initial Setup
 
@@ -286,8 +286,451 @@ const apolloServer = new ApolloServer({
 export default apolloServer.createHandler({ path: "/api/graphql" });
 ```
 
+## Setup the GraphQL Schema
+
+In the _src_ folder create the _grpahql_ folder and in that create the _schema_ folder.
+
+GraphQL doesn't have a type for date and time so we'll need a schema for those types.
+
+```typescript:title=src/graphql/schema/custom.ts
+import { gql } from "apollo-server-micro";
+
+export default gql`
+  scalar Date
+  scalar Time
+  scalar DateTime
+`;
+```
+
+Next we'll setup the schema for Note.
+
+First create the Note schema file.
+
+```typescript:title=src/graphql/schema/note.ts
+import { gql } from "apollo-server-micro";
+
+export default gql``;
+```
+
+Then add the Note type.
+
+```typescript:title=src/graphql/schema/note.ts {4-9}
+import { gql } from "apollo-server-micro";
+
+export default gql`
+  type Note {
+    _id: ID!
+    title: String!
+    content: String!
+    date: DateTime!
+  }
+`;
+```
+
+After that add two Queries, one to get all Notes and one to get a specific Note.
+
+```typescript:title=src/graphql/schema/note.ts {4-7}
+import { gql } from "apollo-server-micro";
+
+export default gql`
+  extend type Query {
+    getAllNotes: [Note!]
+    getNote(_id: ID!): Note
+  }
+
+  type Note {
+    _id: ID!
+    title: String!
+    content: String!
+    date: DateTime!
+  }
+`;
+```
+
+Next add two Mutations to create new Notes and delete existing ones.
+
+```typescript:title=src/graphql/schema/note.ts {9-12}
+import { gql } from "apollo-server-micro";
+
+export default gql`
+  extend type Query {
+    getAllNotes: [Note!]
+    getNote(_id: ID!): Note
+  }
+
+  extend type Mutation {
+    saveNote(title: String!, content: String!): Note!
+    deleteNote(_id: ID!): Note
+  }
+
+  type Note {
+    _id: ID!
+    title: String!
+    content: String!
+    date: DateTime!
+  }
+`;
+```
+
+> Note that we add the keyword **extend** to the Query and Mutation type in the two schemas. This is because we'll be joining all the schemas into one later.
+
+Finally we'll need a schema a join all the others schemas together. First declare and export the Link Schema in an array.
+
+```typescript:title=src/graphql/schema/index.ts
+import { gql } from "apollo-server-micro";
+
+const linkSchema = gql`
+  type Query {
+    _: Boolean
+  }
+
+  type Mutation {
+    _: Boolean
+  }
+
+  type Subscription {
+    _: Boolean
+  }
+`;
+
+export default [linkSchema];
+```
+
+Then import the other Schemas and add them to the array.
+
+```typescript:title=src/graphql/schema/index.ts {3-4,20}
+import { gql } from "apollo-server-micro";
+
+import noteSchema from "./note";
+import customSchema from "./custom";
+
+const linkSchema = gql`
+  type Query {
+    _: Boolean
+  }
+
+  type Mutation {
+    _: Boolean
+  }
+
+  type Subscription {
+    _: Boolean
+  }
+`;
+
+export default [linkSchema, noteSchema, customSchema];
+```
+
+## Setup the resolvers
+
+Since we added a custom type for dates and times in our schema, the first resolver we'll add is for those types.
+
+```typescript:title=src/graphql/resolvers/custom.ts
+import { GraphQLDate, GraphQLTime, GraphQLDateTime } from "graphql-iso-date";
+
+export default {
+  Date: GraphQLDate,
+  Time: GraphQLTime,
+  DateTime: GraphQLDateTime
+};
+```
+
+Next we'll start working on the resolver for Notes.
+
+Start by importing the required dependencies and exporting an empty object which is going to be our resolver.
+
+```typescript:title=src/graphql/resolvers/note.ts
+import mongoose from "mongoose";
+import dayjs from "dayjs";
+import NoteModel, { INote } from "../../database/models/note";
+import { ApolloError } from "apollo-server-micro";
+
+export default {};
+```
+
+Then define an object for the Queries.
+
+```typescript:title=src/graphql/resolvers/note.ts {7}
+import mongoose from "mongoose";
+import dayjs from "dayjs";
+import NoteModel, { INote } from "../../database/models/note";
+import { ApolloError } from "apollo-server-micro";
+
+export default {
+  Query: {}
+};
+```
+
+When defining the function for each of the queries (or mutations or fields) there are three important parameters.
+
+- **parent** - If you a resolving a field of an object this parameter will contain it. We won't be needing it in this post.
+- **args** - The arguments passed to the query or mutation.
+- **context** - The context object created when setting up the API. In our case it'll contain the database connection.
+
+First let's write the resolver for **getAllNotes**. Start be declaring the function.
+
+```typescript:title=src/graphql/resolvers/note.ts {7-11}
+import mongoose from "mongoose";
+import dayjs from "dayjs";
+import NoteModel, { INote } from "../../database/models/note";
+import { ApolloError } from "apollo-server-micro";
+
+export default {
+  Query: {getAllNotes: async (
+      parent,
+      args,
+      context
+    ): Promise<INote[]> => {}
+};
+```
+
+Let's destructure the _context_ object.
+
+```typescript:title=src/graphql/resolvers/note.ts {10}
+import mongoose from "mongoose";
+import dayjs from "dayjs";
+import NoteModel, { INote } from "../../database/models/note";
+import { ApolloError } from "apollo-server-micro";
+
+export default {
+  Query: {getAllNotes: async (
+      parent,
+      args,
+      { dbConn }: { dbConn: mongoose.Connection }
+    ): Promise<INote[]> => {}
+};
+```
+
+In the function we should create the Note model using the database connection from the context and retrieve all the Notes using it.
+
+```typescript:title=src/graphql/resolvers/note.ts {12-25}
+import mongoose from "mongoose";
+import dayjs from "dayjs";
+import NoteModel, { INote } from "../../database/models/note";
+import { ApolloError } from "apollo-server-micro";
+
+export default {
+  Query: {
+    getAllNotes: async (
+      parent,
+      args,
+      { dbConn }: { dbConn: mongoose.Connection }
+    ): Promise<INote[]> => {
+      const Note: mongoose.Model<INote> = NoteModel(dbConn);
+
+      let list: INote[];
+
+      try {
+        list = await Note.find().exec();
+      } catch (error) {
+        console.error("> getAllNotes error: ", error);
+
+        throw new ApolloError("Error retrieving all notes");
+      }
+
+      return list;
+    }
+  }
+};
+```
+
+After that let's add the resolver for **getNote**.
+
+```typescript:title=src/graphql/resolvers/note.ts {28-44}
+import mongoose from "mongoose";
+import dayjs from "dayjs";
+import NoteModel, { INote } from "../../database/models/note";
+import { ApolloError } from "apollo-server-micro";
+
+export default {
+  Query: {
+    getAllNotes: async (
+      parent,
+      args,
+      { dbConn }: { dbConn: mongoose.Connection }
+    ): Promise<INote[]> => {
+      const Note: mongoose.Model<INote> = NoteModel(dbConn);
+
+      let list: INote[];
+
+      try {
+        list = await Note.find().exec();
+      } catch (error) {
+        console.error("> getAllNotes error: ", error);
+
+        throw new ApolloError("Error retrieving all notes");
+      }
+
+      return list;
+    },
+
+    getNote: async (
+      parent,
+      { _id }: { _id: INote["_id"] },
+      { dbConn }: { dbConn: mongoose.Connection }
+    ): Promise<INote> => {
+      const Note: mongoose.Model<INote> = NoteModel(dbConn);
+
+      try {
+        const note = await Note.findById(_id).exec();
+
+        return note;
+      } catch (error) {
+        console.error("> getNote error: ", error);
+
+        throw new ApolloError("Error retrieving all notes");
+      }
+    }
+  }
+};
+```
+
+We can retrieve the _id_ argument from the second parameter.
+
+Let's finish of the Note resolvers by adding the resolvers for the mutations.
+
+```typescript:title=src/graphql/resolvers/note.ts {47-87}
+import mongoose from "mongoose";
+import dayjs from "dayjs";
+import NoteModel, { INote } from "../../database/models/note";
+import { ApolloError } from "apollo-server-micro";
+
+export default {
+  Query: {
+    getAllNotes: async (
+      parent,
+      args,
+      { dbConn }: { dbConn: mongoose.Connection }
+    ): Promise<INote[]> => {
+      const Note: mongoose.Model<INote> = NoteModel(dbConn);
+
+      let list: INote[];
+
+      try {
+        list = await Note.find().exec();
+      } catch (error) {
+        console.error("> getAllNotes error: ", error);
+
+        throw new ApolloError("Error retrieving all notes");
+      }
+
+      return list;
+    },
+
+    getNote: async (
+      parent,
+      { _id }: { _id: INote["_id"] },
+      { dbConn }: { dbConn: mongoose.Connection }
+    ): Promise<INote> => {
+      const Note: mongoose.Model<INote> = NoteModel(dbConn);
+
+      try {
+        const note = await Note.findById(_id).exec();
+
+        return note;
+      } catch (error) {
+        console.error("> getNote error: ", error);
+
+        throw new ApolloError("Error retrieving all notes");
+      }
+    }
+  },
+
+  Mutation: {
+    saveNote: async (
+      parent,
+      { title, content }: { title: INote["title"]; content: INote["content"] },
+      { dbConn }: { dbConn: mongoose.Connection }
+    ): Promise<INote> => {
+      const Note: mongoose.Model<INote> = NoteModel(dbConn);
+
+      try {
+        const note = await Note.create({
+          title,
+          content,
+          date: dayjs().toDate()
+        });
+
+        return note;
+      } catch (error) {
+        console.error("> saveNote error: ", error);
+
+        throw new ApolloError("Error creating note");
+      }
+    },
+
+    deleteNote: async (
+      parent,
+      { _id }: { _id: INote["_id"] },
+      { dbConn }: { dbConn: mongoose.Connection }
+    ): Promise<INote> => {
+      const Note: mongoose.Model<INote> = NoteModel(dbConn);
+
+      try {
+        const note = await Note.findByIdAndDelete(_id).exec();
+
+        return note;
+      } catch (error) {
+        console.error("> getNote error: ", error);
+
+        throw new ApolloError("Error retrieving all notes");
+      }
+    }
+  }
+};
+```
+
+Now we have to connect all the resolvers together.
+
+```typescript:title=src/graphql/resolvers/index.ts
+import noteResolver from "./note";
+import customResolver from "./custom";
+
+export default [noteResolver, customResolver];
+```
+
+## Running the API locally
+
+Just run _now_ locally.
+
+```shell noLineNumbers
+now dev
+```
+
+If you visit **http://localhost:3000/api/graphql** you can see the GraphQL Playground.
+
+## Deploying to Now
+
+First we need to upload the database path as a secret. We upload it as **serverless-graphql-api-example-dp-path**.
+
+```shell noLineNumbers
+now secrets add serverless-graphql-api-example-dp-path "DB_PATH=mongodb://user:password@ds654321.mlab.com:12345/example-db"
+```
+
+Then create the [now configuration file](https://zeit.co/docs/configuration/).
+
+```json:title=now.json
+{
+  "version": 2,
+  "name": "serverless-graphql-api-example",
+  "env": {
+    "DB_PATH": "@serverless-graphql-api-example-dp-path"
+  }
+}
+```
+
+In the configuration file, we specifying to expose the secret _serverless-graphql-api-example-dp-path_ as environment variable _DB_PATH_.
+
+All that's let to do is deploying to now.
+
+```shell noLineNumbers
+now
+```
+
+The GraphQL Playground should be visible in the _/api/graphql_ route of the URL returned.
+
 ## Wrapping Up
 
-I made a sample deployment which you can check out [here](https://serverless-graphql-api-example-five-gamma.now.sh/api/graphql).
+I made a sample deployment which you can check out [here](https://serverless-graphql-api-example-five-gamma.now.sh/api/graphql). The source code is available on [GitHub](https://github.com/akhila-ariyachandra/serverless-graphql-api-example).
 
-If you want to check out the source code, its available on [GitHub](https://github.com/akhila-ariyachandra/serverless-graphql-api-example).
+If you want a more detailed explaination into GraphQL and making a server for it, you can follow the excellent guide that I learned from [here](https://www.robinwieruch.de/graphql-apollo-server-tutorial).
