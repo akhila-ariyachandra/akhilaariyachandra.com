@@ -466,7 +466,7 @@ When defining the function for each of the queries (or mutations or fields) ther
 - **args** - The arguments passed to the query or mutation.
 - **context** - The context object created when setting up the API. In our case it'll contain the database connection.
 
-First let's write the resolver for **getAllNotes**. Start be declaring the function.
+First let's write the resolver for **getAllNotes**. Start by declaring the function.
 
 ```typescript:title=src/graphql/resolvers/note.ts {7-11}
 import mongoose from "mongoose";
