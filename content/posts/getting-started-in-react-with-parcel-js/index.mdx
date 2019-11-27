@@ -9,6 +9,8 @@ tags:
 banner: ./banner.png
 ---
 
+> Updated on **27.11.2019** with routing added.
+
 **tl;dr** - Clone and run the [source code](https://github.com/akhila-ariyachandra/react-parcel-starter "React Parcel Starter").
 
 Usually when starting to work on a React project, developers go with **create-react-app**. While this is a great option for many cases, I find it to be a bit too bloated, especially after **ejecting** it. I also find that it takes a little of work to manually setup and maintain a **webpack** config. [Parcel](https://parceljs.org/) is great for use with React as there is nothing to configure while setting up. It also helps that building the app in Parcel is also really fast.
@@ -40,8 +42,8 @@ Once the dependencies are done installing create the `.babelrc` file in the proj
 }
 ```
 
-This is all the setup we'll need to for Parcel to work with React. Now let's setup React.
-First we'll need to the React dependencies.
+This is all the setup we will need to for Parcel to work with React. Now let's setup React.
+First we will need to the React dependencies.
 
 ```shell noLineNumbers
 yarn add react react-dom
@@ -50,11 +52,11 @@ yarn add react react-dom
 If you want to use **_async/await_** in your code, an additional dependency is needed.
 
 ```shell noLineNumbers
-yarn add @babel/polyfill
+yarn add regenerator-runtime -D
 ```
 
-Next we'll need an entry point for out app. The nice thing about Parcel is that the entry file doesn't have to be a JavaScript file. In our case its going to be a HTML file.
-Create a folder with the name `src`. This folder is going to contain all the source code. In the `src` folder create the `index.html` file which is going to be the entry point of the app and add the follwing code.
+Next we will need an entry point for out app. The nice thing about Parcel is that the entry file doesn't have to be a JavaScript file. In our case its going to be a HTML file.
+Create a folder with the name `src`. This folder is going to contain all the source code. In the `src` folder create the `index.html` file which is going to be the entry point of the app and add the following code.
 
 ```html:title=src/index.html
 <!DOCTYPE html>
@@ -76,36 +78,119 @@ Create a folder with the name `src`. This folder is going to contain all the sou
 </html>
 ```
 
-After that we'll create the `index.js` file (also in `src`) which will connect the root React component to the `index.html` file.
+After that we will create the `index.js` file (also in `src`) which will connect the root React component to the `index.html` file.
 
 ```jsx:title=src/index.js
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App.js";
-import "@babel/polyfill";
+import "regenerator-runtime/runtime";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 ```
 
-Next let's create the root component in the `App.js` file.
+Next let's create the root component in the `App.js` file. The root component is going to contain the routing configuration.
 
 ```jsx:title=src/App.js
 import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+// Import pages
+import Home from "./pages/home";
+import About from "./pages/about";
 
 const App = () => {
   return (
-    <div>
-      <h1>React Parcel Starter</h1>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/about">
+          <About />
+        </Route>
+
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
   );
 };
 
 export default App;
 ```
 
+Next let's create a layout for out pages. Create the folder `components` in `src` and in it create `Layout.js`. The layout component is also going to contain the navigation links within the app.
+
+```jsx:title=src/components/Layout.js
+import React from "react";
+import { Link } from "react-router-dom";
+
+const Layout = ({ children }) => {
+  return (
+    <div>
+      <nav>
+        <Link to="/">
+          <button>Home</button>
+        </Link>
+
+        <Link to="/about">
+          <button>About</button>
+        </Link>
+      </nav>
+
+      <main>{children}</main>
+    </div>
+  );
+};
+
+export default Layout;
+```
+
+Then let's create the pages. In `src` create a folder called `pages`. The first page we are going to create is the home page.
+
+```jsx:title=src/pages/home.js
+import React from "react";
+import Layout from "../components/Layout";
+
+const Home = () => {
+  return (
+    <Layout>
+      <h1>React Parcel Starter</h1>
+    </Layout>
+  );
+};
+
+export default Home;
+```
+
+After that we will create the "About" page.
+
+```jsx:title=src/pages/about.js
+import React from "react";
+import Layout from "../components/Layout";
+
+const Index = () => {
+  return (
+    <Layout>
+      <h1>About</h1>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed
+        varius ante. Nam venenatis posuere neque ac ultricies. Pellentesque
+        pulvinar, enim consequat sagittis semper, neque lorem hendrerit velit,
+        at luctus dui ipsum in nunc. Donec vel venenatis augue. Nunc elementum
+        blandit elit. Ut a lacinia lorem. Duis non consequat ipsum. Aenean et
+        libero ipsum. Duis sollicitudin vitae diam vitae tempor.
+      </p>
+    </Layout>
+  );
+};
+
+export default Index;
+```
+
 Finally all that's left to do is to add the scripts to run the app. Add the following in the `package.json` file.
 
-```json:package.json {9-12}
+```json:title=package.json {9-12}
 {
   "name": "react-parcel-starter",
   "version": "1.0.0",
@@ -142,6 +227,10 @@ yarn dev
 
 When you visit `localhost:1234` in your browser you should be seeing
 
-![Final Result](./result.png)
+![Home Page](./result_home.png)
+
+When you navigate to "About" you should see
+
+![About Page](./result_about.png)
 
 Now you can continue creating your React app as usual from here. The source code for everything done here is available in [GitHub](https://github.com/akhila-ariyachandra/react-parcel-starter "React Parcel Starter").
