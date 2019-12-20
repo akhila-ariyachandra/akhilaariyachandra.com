@@ -17,13 +17,13 @@
   },
   "dependencies": {
     "@lekoarts/gatsby-theme-minimal-blog": "^1.1.4",
-    "gatsby": "^2.18.6",
+    "gatsby": "^2.18.15",
     "gatsby-plugin-google-adsense": "^1.1.3",
-    "gatsby-plugin-google-analytics": "^2.1.29",
-    "gatsby-plugin-manifest": "^2.2.31",
-    "gatsby-plugin-offline": "^3.0.26",
+    "gatsby-plugin-google-analytics": "^2.1.31",
+    "gatsby-plugin-manifest": "^2.2.33",
+    "gatsby-plugin-offline": "^3.0.29",
     "gatsby-plugin-robots-txt": "^1.5.0",
-    "gatsby-plugin-sitemap": "^2.2.22",
+    "gatsby-plugin-sitemap": "^2.2.24",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   },
