@@ -4,7 +4,6 @@ date: 2019-12-29
 description: How to connect to a MongoDB database when you cannot use a persistent connection to the database
 tags:
   - Serverless
-  - AWS Lambda
   - MongoDB
   - Mongoose
   - TypeScript
@@ -13,4 +12,41 @@ banner: ./banner.png
 
 If you have been developing an API in Node setting up a connection to a MongoDB database is relatively straight forward. Check out my previous [post](https://akhilaariyachandra.com/setup-mongo-db-in-node-js-with-mongoose) if you need a refresher on that.
 
-When considering serverless we can't think about a server running constantly which has a persistent connection to the database.
+When considering serverless we can't think about a server running constantly which has a persistent connection to the database. Serverless apps run as functions which are destroyed at the end of the invocation. So we'll have to create a new connection (or reuse an old one) everytime the serverless function is called.
+
+## Setting up the Database connection
+
+Since we cannot use a persistent database connection, we'll have to create a function to create the connection when needed.
+
+Start by installing **mongoose**.
+
+```shell
+npm install mongoose
+npm install @types/mongoose -D
+```
+
+Then let's start defining a function to create the database connection. First import the mongoose dependencies.
+
+```typescript:title=src/database/index.ts
+import { Connection, createConnection } from "mongoose";
+```
+
+After that let's create a variable to cache the connection so that we can try to cut down on the number of connection we make to the database.
+
+```typescript:title=src/database/index.ts {3}
+import { Connection, createConnection } from "mongoose";
+
+let conn: Connection = null;
+```
+
+Next get the MongoDB connection URI.
+
+```typescript:title=src/database/index.ts {5}
+import { Connection, createConnection } from "mongoose";
+
+let conn: Connection = null;
+
+const uri: string = process.env.DB_PATH;
+```
+
+You can use packages like [dotenv](https://www.npmjs.com/package/dotenv) and [dotenv-webpack](https://www.npmjs.com/package/dotenv-webpack) to load environment variables from a **.env** file into `process.env`. If you use the [Now CLI](https://zeit.co/download) this is done automatically. **Remember to not commit the _.env_ file!**
