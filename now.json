@@ -1,13 +1,6 @@
 {
   "version": 2,
   "name": "akhilaariyachandra.com",
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@now/static-build",
-      "config": { "distDir": "public" }
-    }
-  ],
   "routes": [
     {
       "src": "/post/(.*)",
