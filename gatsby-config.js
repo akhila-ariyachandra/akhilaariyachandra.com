@@ -19,37 +19,38 @@ module.exports = {
     // Used for og:image and must be placed inside the `static` folder
     siteImage: `/banner.jpg`,
     // Twitter Handle
-    author: `@heshan_1010`,
-    // Links displayed in the header on the right side
-    externalLinks: [
-      {
-        name: `GitHub`,
-        url: `https://github.com/akhila-ariyachandra`
-      },
-      {
-        name: `DEV`,
-        url: `https://dev.to/akhilaariyachandra`
-      },
-      {
-        name: `LinkedIn`,
-        url: `https://www.linkedin.com/in/akhila-ariyachandra/`
-      }
-    ],
-    navigation: [
-      {
-        title: `Blog`,
-        slug: `/blog`
-      },
-      {
-        title: `About`,
-        slug: `/about`
-      }
-    ]
+    author: `@heshan_1010`
   },
   plugins: [
     {
       resolve: `@lekoarts/gatsby-theme-minimal-blog`,
-      options: {}
+      options: {
+        // Links displayed in the header on the right side
+        externalLinks: [
+          {
+            name: `GitHub`,
+            url: `https://github.com/akhila-ariyachandra`
+          },
+          {
+            name: `DEV`,
+            url: `https://dev.to/akhilaariyachandra`
+          },
+          {
+            name: `LinkedIn`,
+            url: `https://www.linkedin.com/in/akhila-ariyachandra/`
+          }
+        ],
+        navigation: [
+          {
+            title: `Blog`,
+            slug: `/blog`
+          },
+          {
+            title: `About`,
+            slug: `/about`
+          }
+        ]
+      }
     },
     {
       resolve: `gatsby-plugin-google-analytics`,
