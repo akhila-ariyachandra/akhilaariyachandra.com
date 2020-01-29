@@ -56,9 +56,7 @@ module.exports = {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: process.env.GOOGLE_ANALYTICS_ID,
-        head: true,
-        cookieDomain: `akhilaariyachandra.com`,
-        optimizeId: process.env.GOOGLE_OPTIMIZE_ID
+        head: true
       }
     },
     `gatsby-plugin-sitemap`,
@@ -90,7 +88,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-adsense`,
       options: {
-        publisherId: process.env.GOOGLE_PUBLISHER_ID
+        publisherId: process.env.GOOGLE_PUBLISHER_ID,
+        head: true
       }
     },
     `gatsby-plugin-robots-txt`
