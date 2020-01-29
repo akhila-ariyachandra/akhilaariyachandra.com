@@ -14,7 +14,6 @@
   "build": {
     "env": {
       "GOOGLE_ANALYTICS_ID": "@personal-site-google-analytics-id",
-      "GOOGLE_OPTIMIZE_ID": "@personal-site-google-optimize-id",
       "GOOGLE_PUBLISHER_ID": "@personal-site-google-publisher-id"
     }
   }
