@@ -7,6 +7,7 @@ module.exports = {
     title: `Akhila Ariyachandra`,
     description: `A Blog by Akhila Ariyachandra talking about React, JavaScript & Programming`,
     author: `@heshan_1010`,
+    siteUrl: "https://akhilaariyachandra.com",
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
