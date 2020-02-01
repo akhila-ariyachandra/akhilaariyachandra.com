@@ -57,5 +57,11 @@ module.exports = {
         publisherId: process.env.GOOGLE_PUBLISHER_ID,
       },
     },
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography`,
+      },
+    },
   ],
 }

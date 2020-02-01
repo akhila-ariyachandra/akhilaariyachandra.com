@@ -23,41 +23,39 @@ const Layout = ({ children, location }) => {
   `)
 
   return (
-    <>
+    <div
+      style={{
+        margin: `0 auto`,
+        maxWidth: 960,
+        padding: `0 1.0875rem 1.45rem`,
+      }}
+    >
       <Header siteTitle={data.site.siteMetadata.title} location={location} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a
-            href="https://www.gatsbyjs.org"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Gatsby
-          </a>
-          {`, `}
-          <a
-            href="https://www.contentful.com/"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Contentful
-          </a>
-          {`, & `}
-          <a href="https://zeit.co/" rel="noopener noreferrer" target="_blank">
-            ZEIT
-          </a>
-        </footer>
-      </div>
-    </>
+      <main>{children}</main>
+      <footer>
+        © {new Date().getFullYear()}, Built with
+        {` `}
+        <a
+          href="https://www.gatsbyjs.org"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Gatsby
+        </a>
+        {`, `}
+        <a
+          href="https://www.contentful.com/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Contentful
+        </a>
+        {`, & `}
+        <a href="https://zeit.co/" rel="noopener noreferrer" target="_blank">
+          ZEIT
+        </a>
+      </footer>
+    </div>
   )
 }
 

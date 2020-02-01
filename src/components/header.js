@@ -1,6 +1,7 @@
-import { Link, useStaticQuery, graphql } from "gatsby"
-import PropTypes from "prop-types"
 import React from "react"
+import PropTypes from "prop-types"
+import { Link, useStaticQuery, graphql } from "gatsby"
+import { rhythm } from "../utils/typography"
 
 const Header = ({ siteTitle, location }) => {
   const data = useStaticQuery(graphql`
@@ -17,51 +18,44 @@ const Header = ({ siteTitle, location }) => {
   return (
     <header
       style={{
-        background: `rebeccapurple`,
         marginBottom: `1.45rem`,
+        marginTop: `1.45rem`,
       }}
     >
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `1.45rem 1.0875rem`,
-        }}
-      >
-        <h1 style={{ margin: 0 }}>
-          <Link
-            to="/"
-            style={{
-              color: `white`,
-              textDecoration: `none`,
-            }}
-          >
-            {siteTitle}
-          </Link>
-        </h1>
+      <Link to="/" style={{ textDecoration: `none` }}>
+        <h1>{siteTitle}</h1>
+      </Link>
 
-        <h2 style={{ margin: 0 }}>
+      <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", flex: 1 }}>
           <Link to="/blog" style={{ textDecoration: `none` }}>
-            {`Blog`}
+            <h2 style={{ marginRight: rhythm(0.5) }}>{`Blog`}</h2>
           </Link>
-        </h2>
 
-        <h2 style={{ margin: 0 }}>
           <Link to="/about" style={{ textDecoration: `none` }}>
-            {`About`}
+            <h2>{`About`}</h2>
           </Link>
-        </h2>
+        </div>
 
-        {data.allContentfulSocialLink.nodes.map(socialLink => (
-          <a
-            href={socialLink.link}
-            rel="noopener noreferrer"
-            target="_blank"
-            style={{ textDecoration: `none` }}
-          >
-            <h2>{socialLink.name}</h2>
-          </a>
-        ))}
+        <div style={{ display: "flex" }}>
+          {data.allContentfulSocialLink.nodes.map((socialLink, index) => (
+            <a
+              href={socialLink.link}
+              rel="noopener noreferrer"
+              target="_blank"
+              style={{
+                textDecoration: `none`,
+                marginRight:
+                  index !== data.allContentfulSocialLink.nodes.length - 1
+                    ? rhythm(0.5)
+                    : 0,
+              }}
+              key={socialLink.link}
+            >
+              <h2>{socialLink.name}</h2>
+            </a>
+          ))}
+        </div>
       </div>
     </header>
   )

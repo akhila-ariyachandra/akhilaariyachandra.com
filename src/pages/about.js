@@ -1,16 +1,15 @@
 import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import { rhythm } from "../utils/typography"
 
 const About = ({ location }) => {
   return (
     <Layout location={location} title="About">
       <SEO title="About" />
 
-      <div>
+      <div style={{ padding: `${rhythm(2)} 0` }}>
         <h1>Hi.</h1>
-
-        <p>Hi!</p>
 
         <p>
           My name is Akhila Ariyachandra and I'm a web developer from Sri Lanka.

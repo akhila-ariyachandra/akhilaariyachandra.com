@@ -4,6 +4,7 @@ import SEO from "../components/seo"
 import ReactMarkdown from "react-markdown"
 import readingTime from "reading-time"
 import Image from "gatsby-image"
+import CodeBlock from "../components/CodeBlock"
 import { Link, graphql } from "gatsby"
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
@@ -23,7 +24,10 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 
         <Image fluid={post.banner.fluid} alt="banner" />
 
-        <ReactMarkdown source={post.content.content} />
+        <ReactMarkdown
+          source={post.content.content}
+          renderers={{ code: CodeBlock }}
+        />
 
         <footer>footer</footer>
       </article>
