@@ -3,6 +3,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import ReactMarkdown from "react-markdown"
 import readingTime from "reading-time"
+import Image from "gatsby-image"
 import { Link, graphql } from "gatsby"
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
@@ -19,6 +20,8 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           <p>{post.date}</p>
           <p>{readingTime(post.content.content).text}</p>
         </header>
+
+        <Image fluid={post.banner.fluid} alt="banner" />
 
         <ReactMarkdown source={post.content.content} />
 
@@ -68,6 +71,11 @@ export const pageQuery = graphql`
       id
       title
       description
+      banner {
+        fluid(maxWidth: 960, maxHeight: 480) {
+          ...GatsbyContentfulFluid
+        }
+      }
       content {
         content
       }
