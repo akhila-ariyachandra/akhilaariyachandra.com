@@ -16,8 +16,10 @@ const PostList = ({ posts }) => {
                   {title}
                 </Link>
               </h3>
-              <small>{post.date}</small>
-              <small>{readingTime(post.content.content).text}</small>
+              <small>
+                {`${post.date} `}&#8226;
+                {` ${readingTime(post.content.content).text}`}
+              </small>
             </header>
             <section>
               <p>{post.description}</p>
