@@ -1,8 +1,19 @@
-import { Link } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 
 const Header = ({ siteTitle, location }) => {
+  const data = useStaticQuery(graphql`
+    query {
+      allContentfulSocialLink(sort: { order: ASC, fields: createdAt }) {
+        nodes {
+          name
+          link
+        }
+      }
+    }
+  `)
+
   return (
     <header
       style={{
@@ -40,6 +51,17 @@ const Header = ({ siteTitle, location }) => {
             {`About`}
           </Link>
         </h2>
+
+        {data.allContentfulSocialLink.nodes.map(socialLink => (
+          <a
+            href={socialLink.link}
+            rel="noopener noreferrer"
+            target="_blank"
+            style={{ textDecoration: `none` }}
+          >
+            <h2>{socialLink.name}</h2>
+          </a>
+        ))}
       </div>
     </header>
   )
