@@ -8,13 +8,41 @@ import PostList from "../components/PostList"
 const IndexPage = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allContentfulBlogPost.nodes
+  const projects = data.allContentfulProject.nodes
 
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title={siteTitle} />
 
-      <Link to="/blog">Read all posts</Link>
-      <PostList posts={posts} />
+      <div>
+        <h1>Hi.</h1>
+
+        <p>
+          I'm Akhila - a Web Developer trying to share his love and knowledge of
+          React, JavaScript, and Programming.
+        </p>
+      </div>
+
+      <div>
+        <h2>Latest Posts</h2>
+
+        <Link to="/blog">Read all posts</Link>
+
+        <hr />
+
+        <PostList posts={posts} />
+      </div>
+
+      <div>
+        <h2>Projects</h2>
+
+        <hr />
+        {projects.map(project => (
+          <a href={project.link} rel="noopener noreferrer" target="_blank">
+            <h3>{project.name}</h3>
+          </a>
+        ))}
+      </div>
     </Layout>
   )
 }
@@ -37,6 +65,12 @@ export const pageQuery = graphql`
         content {
           content
         }
+      }
+    }
+    allContentfulProject {
+      nodes {
+        name
+        link
       }
     }
   }
