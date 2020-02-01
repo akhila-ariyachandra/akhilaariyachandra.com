@@ -2,6 +2,7 @@ import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import ReactMarkdown from "react-markdown"
+import readingTime from "reading-time"
 import { Link, graphql } from "gatsby"
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
@@ -16,6 +17,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         <header>
           <h1>{post.title}</h1>
           <p>{post.date}</p>
+          <p>{readingTime(post.content.content).text}</p>
         </header>
 
         <ReactMarkdown source={post.content.content} />

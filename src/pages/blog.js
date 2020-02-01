@@ -1,34 +1,27 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import PostList from "../components/PostList"
 
-const IndexPage = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata.title
+const Blog = ({ data, location }) => {
   const posts = data.allContentfulBlogPost.nodes
 
   return (
-    <Layout location={location} title={siteTitle}>
-      <SEO title={siteTitle} />
+    <Layout location={location} title="Blog">
+      <SEO title="Blog" />
 
-      <Link to="/blog">Read all posts</Link>
       <PostList posts={posts} />
     </Layout>
   )
 }
 
-export default IndexPage
+export default Blog
 
 export const pageQuery = graphql`
   query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    allContentfulBlogPost(sort: { order: DESC, fields: date }, limit: 3) {
+    allContentfulBlogPost(sort: { order: DESC, fields: date }) {
       nodes {
         slug
         title

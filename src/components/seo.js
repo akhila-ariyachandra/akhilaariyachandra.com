@@ -26,7 +26,7 @@ function SEO({ description, lang, meta, title }) {
   )
 
   const titleTemplate =
-    title == "Akhila Ariyachandra" ? `%s` : `%s | ${site.siteMetadata.title}`
+    title === "Akhila Ariyachandra" ? `%s` : `%s | ${site.siteMetadata.title}`
   const metaDescription = description || site.siteMetadata.description
 
   return (
