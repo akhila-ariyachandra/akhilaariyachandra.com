@@ -1,21 +1,56 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+const IndexPage = ({ data, location }) => {
+  const siteTitle = data.site.siteMetadata.title
+  const posts = data.allContentfulBlogPost.nodes
+
+  return (
+    <Layout location={location} title={siteTitle}>
+      <SEO title={siteTitle} />
+
+      {posts.map(post => {
+        const title = post.title || post.slug
+        return (
+          <article key={post.slug}>
+            <header>
+              <h3>
+                <Link style={{ boxShadow: `none` }} to={post.slug}>
+                  {title}
+                </Link>
+              </h3>
+              <small>{post.date}</small>
+            </header>
+            <section>
+              <p>{post.description}</p>
+            </section>
+          </article>
+        )
+      })}
+    </Layout>
+  )
+}
 
 export default IndexPage
+
+export const pageQuery = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+    allContentfulBlogPost(sort: { order: DESC, fields: date }, limit: 3) {
+      nodes {
+        slug
+        title
+        description
+        date
+      }
+    }
+  }
+`
