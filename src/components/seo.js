@@ -22,7 +22,7 @@ function SEO({ description, lang, meta, title, image }) {
           }
         }
         contentfulAsset(title: { eq: "Profile Picture" }) {
-          fixed(height: 1200, width: 630) {
+          fixed(width: 1200, height: 630) {
             ...GatsbyContentfulFixed
           }
         }
