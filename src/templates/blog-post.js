@@ -7,6 +7,7 @@ import Image from "gatsby-image"
 import CodeBlock from "../components/CodeBlock"
 import { Link, graphql } from "gatsby"
 import { rhythm } from "../utils/typography"
+import { formatTags } from "../utils/helpers"
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.contentfulBlogPost
@@ -40,11 +41,20 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
       <article>
         <header>
           <h1>{post.title}</h1>
-          <p>{post.date}</p>
-          <p>{readingTime(post.content.content).text}</p>
+
+          <div style={{ display: "flex" }}>
+            <p style={{ flex: 1 }}>{post.date}</p>
+            <p>{readingTime(post.content.content).text}</p>
+          </div>
+
+          <p>{formatTags(post.tags)}</p>
         </header>
 
-        <Image fluid={post.banner.fluid} alt="banner" />
+        <Image
+          fluid={post.banner.fluid}
+          alt="banner"
+          style={{ marginBottom: rhythm(1) }}
+        />
 
         <ReactMarkdown
           source={post.content.content}

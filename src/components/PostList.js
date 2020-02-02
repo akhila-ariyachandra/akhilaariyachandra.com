@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import readingTime from "reading-time"
 import { Link } from "gatsby"
 import { rhythm } from "../utils/typography"
+import { formatTags } from "../utils/helpers"
 
 const PostList = ({ posts }) => {
   return (
@@ -11,16 +12,20 @@ const PostList = ({ posts }) => {
         const title = post.title || post.slug
         return (
           <article key={post.slug} style={{ margin: `${rhythm(2)} 0` }}>
-            <header>
+            <header style={{ marginBottom: rhythm(0.75) }}>
               <Link to={`/${post.slug}`}>
                 <h3>{title}</h3>
               </Link>
 
-              <small>
-                {`${post.date} `}&#8226;
-                {` ${readingTime(post.content.content).text}`}
-              </small>
+              <div style={{ display: "flex" }}>
+                <small style={{ flex: 1 }}>{post.date}</small>
+
+                <small>{readingTime(post.content.content).text}</small>
+              </div>
+
+              <small>{formatTags(post.tags)}</small>
             </header>
+
             <section>
               <p>{post.description}</p>
             </section>
