@@ -14,7 +14,9 @@
   "build": {
     "env": {
       "GOOGLE_ANALYTICS_ID": "@personal-site-google-analytics-id",
-      "GOOGLE_PUBLISHER_ID": "@personal-site-google-publisher-id"
+      "GOOGLE_PUBLISHER_ID": "@personal-site-google-publisher-id",
+      "CONTENTFUL_SPACE_ID": "@personal-site-contentful-space-id",
+      "CONTENTFUL_ACCESS_TOKEN": "@personal-site-contentful-access-token"
     }
   }
 }
