@@ -29,6 +29,10 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             property: `date`,
             content: post.unformattedDate,
           },
+          {
+            property: `keywords`,
+            content: post.tags.toString(),
+          },
         ]}
       />
 
@@ -97,6 +101,7 @@ export const pageQuery = graphql`
       }
       date(formatString: "MMMM DD, YYYY")
       unformattedDate: date
+      tags
     }
   }
 `
