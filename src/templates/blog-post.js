@@ -13,7 +13,24 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 
   return (
     <Layout location={location} title={post.title}>
-      <SEO title={post.title} description={post.description} />
+      <SEO
+        title={post.title}
+        description={post.description}
+        meta={[
+          {
+            property: `og:image`,
+            content: `${location.origin}${post.banner.fluid.src}`,
+          },
+          {
+            property: `author`,
+            content: "Akhila Ariyachandra",
+          },
+          {
+            property: `date`,
+            content: post.unformattedDate,
+          },
+        ]}
+      />
 
       <article>
         <header>
@@ -66,11 +83,6 @@ export default BlogPostTemplate
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     contentfulBlogPost(slug: { eq: $slug }) {
       id
       title
@@ -84,6 +96,7 @@ export const pageQuery = graphql`
         content
       }
       date(formatString: "MMMM DD, YYYY")
+      unformattedDate: date
     }
   }
 `

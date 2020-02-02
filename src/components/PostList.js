@@ -11,11 +11,10 @@ const PostList = ({ posts }) => {
         return (
           <article key={post.slug}>
             <header>
-              <h3>
-                <Link style={{ boxShadow: `none` }} to={post.slug}>
-                  {title}
-                </Link>
-              </h3>
+              <Link to={`/${post.slug}`}>
+                <h3>{title}</h3>
+              </Link>
+
               <small>
                 {`${post.date} `}&#8226;
                 {` ${readingTime(post.content.content).text}`}

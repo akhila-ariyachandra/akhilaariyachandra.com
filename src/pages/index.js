@@ -42,7 +42,12 @@ const IndexPage = ({ data, location }) => {
 
         <hr style={{ marginTop: rhythm(1) }} />
         {projects.map(project => (
-          <a href={project.link} rel="noopener noreferrer" target="_blank">
+          <a
+            href={project.link}
+            rel="noopener noreferrer"
+            target="_blank"
+            key={project.link}
+          >
             <h3>{project.name}</h3>
           </a>
         ))}
@@ -65,7 +70,7 @@ export const pageQuery = graphql`
         slug
         title
         description
-        date
+        date(formatString: "MMMM D, YYYY")
         content {
           content
         }

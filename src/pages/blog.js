@@ -26,7 +26,7 @@ export const pageQuery = graphql`
         slug
         title
         description
-        date
+        date(formatString: "MMMM D, YYYY")
         content {
           content
         }
