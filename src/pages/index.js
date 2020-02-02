@@ -23,7 +23,7 @@ const IndexPage = ({ data, location }) => {
         </p>
       </div>
 
-      <div>
+      <div style={{ margin: `${rhythm(3)} 0` }}>
         <div style={{ display: "flex" }}>
           <h2 style={{ flex: 1, margin: 0 }}>Latest Posts</h2>
 
@@ -37,7 +37,7 @@ const IndexPage = ({ data, location }) => {
         <PostList posts={posts} />
       </div>
 
-      <div style={{ margin: `${rhythm(2)} 0` }}>
+      <div style={{ margin: `${rhythm(5)} 0` }}>
         <h2 style={{ margin: 0 }}>Projects</h2>
 
         <hr style={{ marginTop: rhythm(1) }} />
@@ -74,6 +74,7 @@ export const pageQuery = graphql`
         content {
           content
         }
+        tags
       }
     }
     allContentfulProject {

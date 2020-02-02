@@ -1,6 +1,6 @@
 import React from "react"
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter"
-import atomDark from "react-syntax-highlighter/dist/cjs/styles/prism/atom-dark"
+import vsDark from "react-syntax-highlighter/dist/cjs/styles/prism/vs-dark"
 import shell from "react-syntax-highlighter/dist/cjs/languages/prism/bash"
 import json from "react-syntax-highlighter/dist/cjs/languages/prism/json"
 import javascript from "react-syntax-highlighter/dist/cjs/languages/prism/javascript"
@@ -18,7 +18,7 @@ SyntaxHighlighter.registerLanguage("typescript", typescript)
 
 const CodeBlock = ({ value, language }) => {
   return (
-    <SyntaxHighlighter language={language} style={atomDark}>
+    <SyntaxHighlighter language={language} style={vsDark}>
       {value}
     </SyntaxHighlighter>
   )

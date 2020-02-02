@@ -60,6 +60,8 @@ const Header = ({ siteTitle, location }) => {
           ))}
         </div>
       </div>
+
+      <hr />
     </header>
   )
 }

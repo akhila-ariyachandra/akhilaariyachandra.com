@@ -30,6 +30,7 @@ export const pageQuery = graphql`
         content {
           content
         }
+        tags
       }
     }
   }
