@@ -19,7 +19,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         meta={[
           {
             property: `og:image`,
-            content: `${location.origin}${post.banner.fluid.src}`,
+            content: post.banner.fluid.src,
           },
           {
             property: `author`,
