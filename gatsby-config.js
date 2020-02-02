@@ -64,5 +64,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-catch-links`,
+    `gatsby-plugin-webpack-bundle-analyser-v2`,
   ],
 }

@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "akhilaariyachandra.com",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "A Blog by Akhila Ariyachandra talking about React, JavaScript & Programming",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Akhila Ariyachandra <akhila_ariyachandra@live.com>",
   "dependencies": {
     "dotenv": "^8.2.0",
     "gatsby": "^2.19.7",
@@ -33,6 +33,7 @@
     "typography-theme-fairy-gates": "^0.16.19"
   },
   "devDependencies": {
+    "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.8",
     "prettier": "^1.19.1"
   },
   "keywords": [
@@ -50,7 +51,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/akhila-ariyachandra/akhilaariyachandra.com"
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
