@@ -20,10 +20,6 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         description={post.description}
         meta={[
           {
-            property: `og:image`,
-            content: post.banner.fluid.src,
-          },
-          {
             property: `author`,
             content: "Akhila Ariyachandra",
           },
@@ -36,6 +32,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             content: post.tags.toString(),
           },
         ]}
+        image={post.banner.fluid.src}
       />
 
       <article>

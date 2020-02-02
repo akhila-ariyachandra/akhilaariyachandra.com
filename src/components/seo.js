@@ -10,8 +10,8 @@ import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-function SEO({ description, lang, meta, title }) {
-  const { site } = useStaticQuery(
+function SEO({ description, lang, meta, title, image }) {
+  const { site, contentfulAsset } = useStaticQuery(
     graphql`
       query {
         site {
@@ -21,6 +21,11 @@ function SEO({ description, lang, meta, title }) {
             author
           }
         }
+        contentfulAsset(title: { eq: "Profile Picture" }) {
+          fixed(height: 1200, width: 630) {
+            ...GatsbyContentfulFixed
+          }
+        }
       }
     `
   )
@@ -28,6 +33,7 @@ function SEO({ description, lang, meta, title }) {
   const titleTemplate =
     title === "Akhila Ariyachandra" ? `%s` : `%s | ${site.siteMetadata.title}`
   const metaDescription = description || site.siteMetadata.description
+  const metaImage = image ? image : contentfulAsset.fixed.src
 
   return (
     <Helmet
@@ -52,6 +58,10 @@ function SEO({ description, lang, meta, title }) {
         {
           property: `og:type`,
           content: `website`,
+        },
+        {
+          property: `og:image`,
+          content: metaImage,
         },
         {
           name: `twitter:card`,
@@ -85,6 +95,7 @@ SEO.propTypes = {
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
+  image: PropTypes.string,
 }
 
 export default SEO
