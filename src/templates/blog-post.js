@@ -6,6 +6,7 @@ import readingTime from "reading-time"
 import Image from "gatsby-image"
 import CodeBlock from "../components/CodeBlock"
 import { Link, graphql } from "gatsby"
+import { rhythm } from "../utils/typography"
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.contentfulBlogPost
@@ -50,10 +51,25 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           renderers={{ code: CodeBlock }}
         />
 
-        <footer>footer</footer>
+        <hr />
+
+        <footer style={{ margin: `${rhythm(1.5)} 0` }}>
+          <h4 style={{ margin: 0 }}>
+            {"Enjoyed this post or found it helpful? "}
+            <a
+              href="https://ko-fi.com/V7V5ZOMO"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Support Me on Ko-fi
+            </a>
+          </h4>
+        </footer>
+
+        <hr />
       </article>
 
-      <nav>
+      <nav style={{ margin: `${rhythm(1.5)} 0` }}>
         <ul
           style={{
             display: `flex`,

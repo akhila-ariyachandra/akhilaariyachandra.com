@@ -2,6 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import readingTime from "reading-time"
 import { Link } from "gatsby"
+import { rhythm } from "../utils/typography"
 
 const PostList = ({ posts }) => {
   return (
@@ -9,7 +10,7 @@ const PostList = ({ posts }) => {
       {posts.map(post => {
         const title = post.title || post.slug
         return (
-          <article key={post.slug}>
+          <article key={post.slug} style={{ margin: `${rhythm(2)} 0` }}>
             <header>
               <Link to={`/${post.slug}`}>
                 <h3>{title}</h3>
