@@ -7,6 +7,7 @@ import javascript from "react-syntax-highlighter/dist/cjs/languages/prism/javasc
 import jsx from "react-syntax-highlighter/dist/cjs/languages/prism/jsx"
 import scss from "react-syntax-highlighter/dist/cjs/languages/prism/scss"
 import typescript from "react-syntax-highlighter/dist/cjs/languages/prism/typescript"
+import markdown from "react-syntax-highlighter/dist/cjs/languages/prism/markdown"
 import PropTypes from "prop-types"
 
 SyntaxHighlighter.registerLanguage("shell", shell)
@@ -15,6 +16,7 @@ SyntaxHighlighter.registerLanguage("javascript", javascript)
 SyntaxHighlighter.registerLanguage("jsx", jsx)
 SyntaxHighlighter.registerLanguage("scss", scss)
 SyntaxHighlighter.registerLanguage("typescript", typescript)
+SyntaxHighlighter.registerLanguage("markdown", markdown)
 
 const CodeBlock = ({ value, language }) => {
   return (
