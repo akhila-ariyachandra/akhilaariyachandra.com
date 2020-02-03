@@ -3,6 +3,9 @@ import PropTypes from "prop-types"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import { rhythm, scale } from "../utils/typography"
 
+const LINK_SCALE = 0.2
+const LINK_MARGIN = 0.15
+
 const Header = ({ siteTitle, location }) => {
   const data = useStaticQuery(graphql`
     query {
@@ -28,11 +31,13 @@ const Header = ({ siteTitle, location }) => {
 
       <div style={{ display: "flex" }}>
         <div style={{ display: "flex", flex: 1 }}>
-          <h2 style={{ marginRight: rhythm(0.5), ...scale(0.5) }}>
+          <h2
+            style={{ marginRight: rhythm(LINK_MARGIN), ...scale(LINK_SCALE) }}
+          >
             <Link to="/blog">{`Blog`}</Link>
           </h2>
 
-          <h2 style={{ ...scale(0.5) }}>
+          <h2 style={{ ...scale(LINK_SCALE) }}>
             <Link to="/about" style={{ textDecoration: `none` }}>
               {`About`}
             </Link>
@@ -41,7 +46,7 @@ const Header = ({ siteTitle, location }) => {
 
         <div style={{ display: "flex" }}>
           {data.allContentfulSocialLink.nodes.map((socialLink, index) => (
-            <h2 style={{ ...scale(0.5) }} key={socialLink.link}>
+            <h2 style={{ ...scale(LINK_SCALE) }} key={socialLink.link}>
               <a
                 href={socialLink.link}
                 rel="noopener noreferrer"
@@ -50,7 +55,7 @@ const Header = ({ siteTitle, location }) => {
                   textDecoration: `none`,
                   marginRight:
                     index !== data.allContentfulSocialLink.nodes.length - 1
-                      ? rhythm(0.5)
+                      ? rhythm(LINK_MARGIN)
                       : 0,
                 }}
               >
