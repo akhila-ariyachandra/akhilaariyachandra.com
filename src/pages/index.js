@@ -72,7 +72,10 @@ export const pageQuery = graphql`
         description
         date(formatString: "MMMM D, YYYY")
         content {
-          content
+          childMarkdownRemark {
+            timeToRead
+            html
+          }
         }
         tags
       }

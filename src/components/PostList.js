@@ -1,6 +1,5 @@
 import React from "react"
 import PropTypes from "prop-types"
-import readingTime from "reading-time"
 import { Link } from "gatsby"
 import { rhythm } from "../utils/typography"
 import { formatTags } from "../utils/helpers"
@@ -20,7 +19,7 @@ const PostList = ({ posts }) => {
               <div style={{ display: "flex" }}>
                 <small style={{ flex: 1 }}>{post.date}</small>
 
-                <small>{readingTime(post.content.content).text}</small>
+                <small>{`${post.content.childMarkdownRemark.timeToRead} min read`}</small>
               </div>
 
               <small>{formatTags(post.tags)}</small>
