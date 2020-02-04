@@ -1,10 +1,7 @@
 import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import ReactMarkdown from "react-markdown"
-import readingTime from "reading-time"
 import Image from "gatsby-image"
-import CodeBlock from "../components/CodeBlock"
 import { Link, graphql } from "gatsby"
 import { rhythm } from "../utils/typography"
 import { formatTags } from "../utils/helpers"
@@ -41,7 +38,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 
           <div style={{ display: "flex" }}>
             <p style={{ flex: 1 }}>{post.date}</p>
-            <p>{readingTime(post.content.content).text}</p>
+            <p>{`${post.content.childMarkdownRemark.timeToRead} min read`}</p>
           </div>
 
           <p>{formatTags(post.tags)}</p>
@@ -53,9 +50,10 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           style={{ marginBottom: rhythm(1) }}
         />
 
-        <ReactMarkdown
-          source={post.content.content}
-          renderers={{ code: CodeBlock }}
+        <section
+          dangerouslySetInnerHTML={{
+            __html: post.content.childMarkdownRemark.html,
+          }}
         />
 
         <hr />
@@ -120,7 +118,10 @@ export const pageQuery = graphql`
         }
       }
       content {
-        content
+        childMarkdownRemark {
+          timeToRead
+          html
+        }
       }
       date(formatString: "MMMM DD, YYYY")
       unformattedDate: date

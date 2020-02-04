@@ -65,5 +65,25 @@ module.exports = {
     },
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-webpack-bundle-analyser-v2`,
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-images-contentful`,
+            options: {
+              // It's important to specify the maxWidth (in pixels) of
+              // the content container as this plugin uses this as the
+              // base for generating different widths of each image.
+              maxWidth: 960,
+            },
+          },
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {},
+          },
+        ],
+      },
+    },
   ],
 }

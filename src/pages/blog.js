@@ -1,9 +1,8 @@
 import React from "react"
-import { graphql } from "gatsby"
-
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import PostList from "../components/PostList"
+import { graphql } from "gatsby"
 
 const Blog = ({ data, location }) => {
   const posts = data.allContentfulBlogPost.nodes
@@ -28,7 +27,10 @@ export const pageQuery = graphql`
         description
         date(formatString: "MMMM D, YYYY")
         content {
-          content
+          childMarkdownRemark {
+            timeToRead
+            html
+          }
         }
         tags
       }
