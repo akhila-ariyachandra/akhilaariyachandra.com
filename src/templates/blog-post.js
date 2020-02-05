@@ -5,10 +5,18 @@ import Image from "gatsby-image"
 import { Link, graphql } from "gatsby"
 import { rhythm } from "../utils/typography"
 import { formatTags } from "../utils/helpers"
+import { DiscussionEmbed } from "disqus-react"
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.contentfulBlogPost
   const { previous, next } = pageContext
+  const disqusConfig = {
+    shortname: process.env.GATSBY_DISQUS_NAME,
+    config: {
+      identifier: post.slug,
+      title: post.title,
+    },
+  }
 
   return (
     <Layout location={location} title={post.title}>
@@ -72,6 +80,10 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         </footer>
 
         <hr />
+
+        <DiscussionEmbed {...disqusConfig} />
+
+        <hr />
       </article>
 
       <nav style={{ margin: `${rhythm(1.5)} 0` }}>
@@ -110,6 +122,7 @@ export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
     contentfulBlogPost(slug: { eq: $slug }) {
       id
+      slug
       title
       description
       banner {
