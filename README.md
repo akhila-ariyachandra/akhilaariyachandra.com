@@ -1,3 +1,20 @@
+# [akhilaariyachandra.com](https://akhilaariyachandra.com)
+
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
+|       ENV Variable        | Description                                            |   [Zeit Now](https://zeit.co/) Secret   |
+| :-----------------------: | ------------------------------------------------------ | :-------------------------------------: |
+|    GOOGLE_ANALYTICS_ID    | [Google Analytics](https://analytics.google.com) ID    |    personal-site-google-analytics-id    |
+|    GOOGLE_PUBLISHER_ID    | [Google Adsense](https://ads.google.com/) Publisher ID |    personal-site-google-publisher-id    |
+|    CONTENTFUL_SPACE_ID    | [Contentful](https://www.contentful.com/) Space ID     |    personal-site-contentful-space-id    |
+|  CONTENTFUL_ACCESS_TOKEN  | [Contentful](https://www.contentful.com/) Access Token |  personal-site-contentful-access-token  |
+|   GATSBY_ALGOLIA_APP_ID   | [Algolia](https://www.algolia.com/) App ID             |   personal-site-gatsby-algolia-app-id   |
+| GATSBY_ALGOLIA_SEARCH_KEY | [Algolia](https://www.algolia.com/) Search Key         | personal-site-gatsby-algolia-search-key |
+|     ALGOLIA_ADMIN_KEY     | [Algolia](https://www.algolia.com/) Admin Key          |     personal-site-algolia-admin-key     |
+|    GATSBY_DISQUS_NAME     | [Disqus](https://disqus.com/) Shortname                |        personal-site-disqus-name        |
+
+## Environment Variables
+
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.org">
