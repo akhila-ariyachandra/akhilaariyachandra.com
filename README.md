@@ -2,6 +2,8 @@
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
+## Environment Variables
+
 |       ENV Variable        | Description                                            |   [Zeit Now](https://zeit.co/) Secret   |
 | :-----------------------: | ------------------------------------------------------ | :-------------------------------------: |
 |    GOOGLE_ANALYTICS_ID    | [Google Analytics](https://analytics.google.com) ID    |    personal-site-google-analytics-id    |
@@ -12,8 +14,6 @@
 | GATSBY_ALGOLIA_SEARCH_KEY | [Algolia](https://www.algolia.com/) Search Key         | personal-site-gatsby-algolia-search-key |
 |     ALGOLIA_ADMIN_KEY     | [Algolia](https://www.algolia.com/) Admin Key          |     personal-site-algolia-admin-key     |
 |    GATSBY_DISQUS_NAME     | [Disqus](https://disqus.com/) Shortname                |        personal-site-disqus-name        |
-
-## Environment Variables
 
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
