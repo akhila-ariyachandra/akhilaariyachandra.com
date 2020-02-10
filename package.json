@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "author": "Akhila Ariyachandra <akhila_ariyachandra@live.com>",
   "dependencies": {
-    "algoliasearch": "^4.0.1",
+    "algoliasearch": "^4.0.2",
     "disqus-react": "^1.0.7",
     "dotenv": "^8.2.0",
     "gatsby": "^2.19.12",
@@ -28,7 +28,7 @@
     "gatsby-source-filesystem": "^2.1.48",
     "gatsby-transformer-remark": "^2.6.50",
     "gatsby-transformer-sharp": "^2.3.14",
-    "preact": "^10.3.0",
+    "preact": "^10.3.1",
     "prismjs": "^1.19.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
