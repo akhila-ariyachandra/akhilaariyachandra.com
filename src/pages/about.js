@@ -4,16 +4,17 @@ import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
 
 const About = ({ location }) => {
+  const description =
+    "My name is Akhila Ariyachandra and I'm a web developer from Sri Lanka."
+
   return (
     <Layout location={location} title="About">
-      <SEO title="About" />
+      <SEO title="About" description />
 
       <div style={{ padding: `${rhythm(2)} 0` }}>
         <h1>Hi.</h1>
 
-        <p>
-          My name is Akhila Ariyachandra and I'm a web developer from Sri Lanka.
-        </p>
+        <p>{description}</p>
 
         <p>
           I discovered my love for JavaScript related development when I had to

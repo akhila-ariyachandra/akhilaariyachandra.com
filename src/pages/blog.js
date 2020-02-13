@@ -9,7 +9,10 @@ const Blog = ({ data, location }) => {
 
   return (
     <Layout location={location} title="Blog">
-      <SEO title="Blog" />
+      <SEO
+        title="Blog"
+        description="A Blog by Akhila Ariyachandra talking about React, JavaScript & Programming"
+      />
 
       <PostList posts={posts} />
     </Layout>

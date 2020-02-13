@@ -3,10 +3,12 @@ require(`dotenv`).config({
   path: `.env`,
 })
 
+const description = `Web Developer with a passion for JavaScript and React`
+
 module.exports = {
   siteMetadata: {
     title: `Akhila Ariyachandra`,
-    description: `A Blog by Akhila Ariyachandra talking about React, JavaScript & Programming`,
+    description,
     author: `@heshan_1010`,
     siteUrl: "https://akhilaariyachandra.com",
   },
@@ -26,7 +28,7 @@ module.exports = {
       options: {
         name: `Akhila Ariyachandra's Blog`,
         short_name: `Akhila's Blog`,
-        description: `A Blog by Akhila Ariyachandra talking about React, JavaScript & Programming`,
+        description,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
