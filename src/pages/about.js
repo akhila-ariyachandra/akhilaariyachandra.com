@@ -9,7 +9,7 @@ const About = ({ location }) => {
 
   return (
     <Layout location={location} title="About">
-      <SEO title="About" description />
+      <SEO title="About" description={description} />
 
       <div style={{ padding: `${rhythm(2)} 0` }}>
         <h1>Hi.</h1>
