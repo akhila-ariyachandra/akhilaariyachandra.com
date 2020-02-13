@@ -63,28 +63,28 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             __html: post.content.childMarkdownRemark.html,
           }}
         />
-
-        <hr />
-
-        <footer style={{ margin: `${rhythm(1.5)} 0` }}>
-          <h4 style={{ margin: 0 }}>
-            {"Enjoyed this post or found it helpful? "}
-            <a
-              href="https://ko-fi.com/V7V5ZOMO"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Support Me on Ko-fi
-            </a>
-          </h4>
-        </footer>
-
-        <hr />
-
-        <DiscussionEmbed {...disqusConfig} />
-
-        <hr />
       </article>
+
+      <hr />
+
+      <footer style={{ margin: `${rhythm(1.5)} 0` }}>
+        <h4 style={{ margin: 0 }}>
+          {"Enjoyed this post or found it helpful? "}
+          <a
+            href="https://ko-fi.com/V7V5ZOMO"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Support Me on Ko-fi
+          </a>
+        </h4>
+      </footer>
+
+      <hr />
+
+      <DiscussionEmbed {...disqusConfig} />
+
+      <hr />
 
       <nav style={{ margin: `${rhythm(1.5)} 0` }}>
         <ul
