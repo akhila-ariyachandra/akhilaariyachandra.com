@@ -15,6 +15,8 @@
 |     ALGOLIA_ADMIN_KEY     | [Algolia](https://www.algolia.com/) Admin Key          |     personal-site-algolia-admin-key     |
 |    GATSBY_DISQUS_NAME     | [Disqus](https://disqus.com/) Shortname                |        personal-site-disqus-name        |
 
+---
+
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.org">
