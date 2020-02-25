@@ -12,7 +12,6 @@
 |  CONTENTFUL_ACCESS_TOKEN  | [Contentful](https://www.contentful.com/) Access Token |  personal-site-contentful-access-token  |
 |   GATSBY_ALGOLIA_APP_ID   | [Algolia](https://www.algolia.com/) App ID             |   personal-site-gatsby-algolia-app-id   |
 | GATSBY_ALGOLIA_SEARCH_KEY | [Algolia](https://www.algolia.com/) Search Key         | personal-site-gatsby-algolia-search-key |
-|     ALGOLIA_ADMIN_KEY     | [Algolia](https://www.algolia.com/) Admin Key          |     personal-site-algolia-admin-key     |
 |    GATSBY_DISQUS_NAME     | [Disqus](https://disqus.com/) Shortname                |        personal-site-disqus-name        |
 
 ---
