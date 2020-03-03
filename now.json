@@ -17,8 +17,6 @@
       "GOOGLE_PUBLISHER_ID": "@personal-site-google-publisher-id",
       "CONTENTFUL_SPACE_ID": "@personal-site-contentful-space-id",
       "CONTENTFUL_ACCESS_TOKEN": "@personal-site-contentful-access-token",
-      "GATSBY_ALGOLIA_APP_ID": "@personal-site-gatsby-algolia-app-id",
-      "GATSBY_ALGOLIA_SEARCH_KEY": "@personal-site-gatsby-algolia-search-key",
       "GATSBY_DISQUS_NAME": "@personal-site-disqus-name"
     }
   }
