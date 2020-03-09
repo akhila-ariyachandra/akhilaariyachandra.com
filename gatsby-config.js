@@ -88,6 +88,6 @@ module.exports = {
         ],
       },
     },
-    `gatsby-plugin-preact`,
+    /* `gatsby-plugin-preact`, */
   ],
 }
