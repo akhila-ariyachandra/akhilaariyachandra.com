@@ -1,5 +1,6 @@
 import Layout from "../components/Layout";
 import PostLink from "../components/PostLink";
+import SEO from "../components/SEO";
 import { NextPage, GetStaticProps } from "next";
 import { client } from "../util/cms";
 import { BlogPost } from "../util/types";
@@ -11,6 +12,8 @@ type Props = {
 const Blog: NextPage<Props> = ({ blogPosts }) => {
   return (
     <Layout>
+      <SEO title="Blog" />
+
       <h1>Blog</h1>
 
       {blogPosts.map(blogPost => (

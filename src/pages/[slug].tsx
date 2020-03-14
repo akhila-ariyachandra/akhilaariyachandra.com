@@ -3,6 +3,7 @@ import ReactMarkdown from "react-markdown";
 import readingTime from "reading-time";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
+import SEO from "../components/SEO";
 import { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import { client } from "../util/cms";
 import { BlogPost } from "../util/types";
@@ -18,6 +19,8 @@ type Props = {
 const Post: NextPage<Props> = ({ blogPost }) => {
   return (
     <Layout>
+      <SEO title={blogPost.title} />
+
       <article>
         <header>
           <h1>{blogPost.title}</h1>

@@ -1,6 +1,7 @@
 import Layout from "../components/Layout";
 import PostLink from "../components/PostLink";
 import Link from "next/link";
+import SEO from "../components/SEO";
 import { NextPage, GetStaticProps } from "next";
 import { client } from "../util/cms";
 import { BlogPost } from "../util/types";
@@ -12,6 +13,8 @@ type Props = {
 const Index: NextPage<Props> = ({ blogPosts }) => {
   return (
     <Layout>
+      <SEO />
+
       <div>
         <h1>Hi.</h1>
 

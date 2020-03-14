@@ -1,9 +1,12 @@
 import Layout from "../components/Layout";
+import SEO from "../components/SEO";
 import { NextPage } from "next";
 
 const Index: NextPage = () => {
   return (
     <Layout>
+      <SEO title="About" />
+
       <h1>About</h1>
 
       <h1>Hi.</h1>
