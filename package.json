@@ -24,9 +24,6 @@
     "prettier": "^1.19.1",
     "typescript": "^3.8.3"
   },
-  "keywords": [
-    "gatsby"
-  ],
   "license": "MIT",
   "scripts": {
     "dev": "next",

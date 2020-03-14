@@ -3,7 +3,7 @@ const fs = require("fs");
 const { createClient } = require("contentful");
 
 // Generate sitemap.xml
-(async function() {
+(async () => {
   const getUrlEntry = (slug = "") => {
     return `<url><loc>https://akhilaariyachandra.com/${slug}</loc><changefreq>daily</changefreq><priority>0.7</priority></url>`;
   };
