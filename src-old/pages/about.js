@@ -1,11 +1,11 @@
-import React from "react"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import { rhythm } from "../utils/typography"
+import React from "react";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+import { rhythm } from "../utils/typography";
 
 const About = ({ location }) => {
   const description =
-    "My name is Akhila Ariyachandra and I'm a web developer from Sri Lanka."
+    "My name is Akhila Ariyachandra and I'm a web developer from Sri Lanka.";
 
   return (
     <Layout location={location} title="About">
@@ -33,7 +33,7 @@ const About = ({ location }) => {
         </p>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default About
+export default About;

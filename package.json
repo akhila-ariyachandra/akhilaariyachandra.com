@@ -1,16 +1,14 @@
 {
   "name": "akhilaariyachandra.com",
-  "private": true,
+  "private": false,
   "description": "A Blog by Akhila Ariyachandra talking about React, JavaScript & Programming",
   "version": "0.1.0",
   "author": "Akhila Ariyachandra <akhila_ariyachandra@live.com>",
   "dependencies": {
-    "axios": "^0.19.2",
     "contentful": "^7.14.0",
     "dayjs": "^1.8.22",
     "disqus-react": "^1.0.7",
     "next": "^9.3.0",
-    "next-absolute-url": "^1.2.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-markdown": "^4.3.1",
@@ -21,6 +19,7 @@
     "@types/node": "^13.9.0",
     "@types/react": "^16.9.23",
     "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
     "dotenv-webpack": "^1.7.0",
     "prettier": "^1.19.1",
     "typescript": "^3.8.3"
@@ -31,10 +30,11 @@
   "license": "MIT",
   "scripts": {
     "dev": "next",
+    "prebuild": "node prebuild-script.js",
     "build": "next build",
     "analyze": "cross-env ANALYZE=true next build",
     "start": "next start",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\""
+    "format": "prettier --write \"**/*.{js,jsx,json,md,ts,tsx}\""
   },
   "repository": {
     "type": "git",

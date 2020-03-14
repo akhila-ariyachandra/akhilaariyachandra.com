@@ -1,14 +1,14 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { Link } from "gatsby"
-import { rhythm } from "../utils/typography"
-import { formatTags } from "../utils/helpers"
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "gatsby";
+import { rhythm } from "../utils/typography";
+import { formatTags } from "../utils/helpers";
 
 const PostList = ({ posts }) => {
   return (
     <div>
       {posts.map(post => {
-        const title = post.title || post.slug
+        const title = post.title || post.slug;
         return (
           <article key={post.slug} style={{ margin: `${rhythm(2)} 0` }}>
             <header style={{ marginBottom: rhythm(0.75) }}>
@@ -29,14 +29,14 @@ const PostList = ({ posts }) => {
               <p>{post.description}</p>
             </section>
           </article>
-        )
+        );
       })}
     </div>
-  )
-}
+  );
+};
 
 PostList.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.object).isRequired,
-}
+};
 
-export default PostList
+export default PostList;

@@ -1,7 +1,7 @@
-const Dotenv = require("dotenv-webpack")
+const Dotenv = require("dotenv-webpack");
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
-})
+});
 
 module.exports = withBundleAnalyzer({
   target: "serverless",
@@ -10,11 +10,11 @@ module.exports = withBundleAnalyzer({
     // Perform customizations to webpack config
     // Important: return the modified config
 
-    config.plugins.push(new Dotenv({ silent: true }))
+    config.plugins.push(new Dotenv({ silent: true }));
 
-    return config
+    return config;
   },
   env: {
     siteUrl: "https://akhilaariyachandra.com",
   },
-})
+});

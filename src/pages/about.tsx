@@ -1,5 +1,5 @@
-import Layout from "../components/Layout"
-import { NextPage } from "next"
+import Layout from "../components/Layout";
+import { NextPage } from "next";
 
 const Index: NextPage = () => {
   return (
@@ -28,7 +28,7 @@ const Index: NextPage = () => {
         Gatsby.js and GraphQL, and share what I've learned.
       </p>
     </Layout>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;

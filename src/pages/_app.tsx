@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 const MyApp = ({ Component, pageProps }) => {
   return (
@@ -11,8 +11,8 @@ const MyApp = ({ Component, pageProps }) => {
 
       <Component {...pageProps} />
     </React.Fragment>
-  )
-}
+  );
+};
 
 // Only uncomment this method if you have blocking data requirements for
 // every single page in your application. This disables the ability to
@@ -26,4 +26,4 @@ const MyApp = ({ Component, pageProps }) => {
 //   return { ...appProps }
 // }
 
-export default MyApp
+export default MyApp;

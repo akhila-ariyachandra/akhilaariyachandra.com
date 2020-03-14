@@ -1,14 +1,14 @@
-import React from "react"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import PostList from "../components/PostList"
-import { rhythm } from "../utils/typography"
-import { Link, graphql } from "gatsby"
+import React from "react";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+import PostList from "../components/PostList";
+import { rhythm } from "../utils/typography";
+import { Link, graphql } from "gatsby";
 
 const IndexPage = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata.title
-  const posts = data.allContentfulBlogPost.nodes
-  const projects = data.allContentfulProject.nodes
+  const siteTitle = data.site.siteMetadata.title;
+  const posts = data.allContentfulBlogPost.nodes;
+  const projects = data.allContentfulProject.nodes;
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -53,10 +53,10 @@ const IndexPage = ({ data, location }) => {
         ))}
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;
 
 export const pageQuery = graphql`
   query {
@@ -87,4 +87,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

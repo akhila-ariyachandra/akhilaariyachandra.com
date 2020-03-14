@@ -1,9 +1,9 @@
-import React from "react"
-import Link from "next/link"
+import React from "react";
+import Link from "next/link";
 
 type Props = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
 const Layout: React.FunctionComponent<Props> = ({ children }) => {
   return (
@@ -48,7 +48,7 @@ const Layout: React.FunctionComponent<Props> = ({ children }) => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

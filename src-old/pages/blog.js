@@ -1,11 +1,11 @@
-import React from "react"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import PostList from "../components/PostList"
-import { graphql } from "gatsby"
+import React from "react";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+import PostList from "../components/PostList";
+import { graphql } from "gatsby";
 
 const Blog = ({ data, location }) => {
-  const posts = data.allContentfulBlogPost.nodes
+  const posts = data.allContentfulBlogPost.nodes;
 
   return (
     <Layout location={location} title="Blog">
@@ -16,10 +16,10 @@ const Blog = ({ data, location }) => {
 
       <PostList posts={posts} />
     </Layout>
-  )
-}
+  );
+};
 
-export default Blog
+export default Blog;
 
 export const pageQuery = graphql`
   query {
@@ -39,4 +39,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

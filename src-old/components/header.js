@@ -1,10 +1,10 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { Link, useStaticQuery, graphql } from "gatsby"
-import { rhythm, scale } from "../utils/typography"
+import React from "react";
+import PropTypes from "prop-types";
+import { Link, useStaticQuery, graphql } from "gatsby";
+import { rhythm, scale } from "../utils/typography";
 
-const LINK_SCALE = 0.2
-const LINK_MARGIN = 0.15
+const LINK_SCALE = 0.2;
+const LINK_MARGIN = 0.15;
 
 const Header = ({ siteTitle, location }) => {
   const data = useStaticQuery(graphql`
@@ -16,7 +16,7 @@ const Header = ({ siteTitle, location }) => {
         }
       }
     }
-  `)
+  `);
 
   return (
     <header
@@ -68,16 +68,16 @@ const Header = ({ siteTitle, location }) => {
 
       <hr />
     </header>
-  )
-}
+  );
+};
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
   location: PropTypes.object.isRequired,
-}
+};
 
 Header.defaultProps = {
   siteTitle: ``,
-}
+};
 
-export default Header
+export default Header;

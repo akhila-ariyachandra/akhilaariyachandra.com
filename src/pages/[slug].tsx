@@ -1,19 +1,19 @@
-import Layout from "../components/Layout"
-import ReactMarkdown from "react-markdown"
-import readingTime from "reading-time"
-import dayjs from "dayjs"
-import advancedFormat from "dayjs/plugin/advancedFormat"
-import { NextPage, GetStaticProps, GetStaticPaths } from "next"
-import { client } from "../util/cms"
-import { BlogPost } from "../util/types"
-import { DiscussionEmbed } from "disqus-react"
-import { formatTags } from "../util/helpers"
+import Layout from "../components/Layout";
+import ReactMarkdown from "react-markdown";
+import readingTime from "reading-time";
+import dayjs from "dayjs";
+import advancedFormat from "dayjs/plugin/advancedFormat";
+import { NextPage, GetStaticProps, GetStaticPaths } from "next";
+import { client } from "../util/cms";
+import { BlogPost } from "../util/types";
+import { DiscussionEmbed } from "disqus-react";
+import { formatTags } from "../util/helpers";
 
-dayjs.extend(advancedFormat)
+dayjs.extend(advancedFormat);
 
 type Props = {
-  blogPost: BlogPost
-}
+  blogPost: BlogPost;
+};
 
 const Post: NextPage<Props> = ({ blogPost }) => {
   return (
@@ -50,47 +50,47 @@ const Post: NextPage<Props> = ({ blogPost }) => {
 
       <hr />
     </Layout>
-  )
-}
+  );
+};
 
-export default Post
+export default Post;
 
 export const getStaticProps: GetStaticProps = async context => {
   const results = await client.getEntries({
     content_type: "blogPost",
     "fields.slug": context.params.slug,
-  })
+  });
 
   const blogPosts = results.items.map(item => {
-    const blogPost: any = item.fields
+    const blogPost: any = item.fields;
 
-    blogPost.banner = blogPost.banner.fields
+    blogPost.banner = blogPost.banner.fields;
 
-    return blogPost
-  })
+    return blogPost;
+  });
 
   return {
     props: { blogPost: blogPosts[0] },
-  }
-}
+  };
+};
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const results = await client.getEntries({
     content_type: "blogPost",
-  })
+  });
 
   const paths = results.items.map(item => {
-    const blogPost: any = item.fields
+    const blogPost: any = item.fields;
 
     return {
       params: {
         slug: blogPost.slug,
       },
-    }
-  })
+    };
+  });
 
   return {
     paths,
     fallback: false,
-  }
-}
+  };
+};

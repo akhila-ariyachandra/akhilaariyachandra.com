@@ -7,7 +7,7 @@
 // You can delete this file if you're not using it
 
 // custom typefaces
-import "typeface-work-sans"
-import "typeface-quattrocento-sans"
+import "typeface-work-sans";
+import "typeface-quattrocento-sans";
 
-import "prismjs/themes/prism-okaidia.css"
+import "prismjs/themes/prism-okaidia.css";

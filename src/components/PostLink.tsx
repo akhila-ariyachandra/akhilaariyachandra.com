@@ -1,16 +1,16 @@
-import React from "react"
-import Link from "next/link"
-import readingTime from "reading-time"
-import dayjs from "dayjs"
-import advancedFormat from "dayjs/plugin/advancedFormat"
-import { BlogPost } from "../util/types"
-import { formatTags } from "../util/helpers"
+import React from "react";
+import Link from "next/link";
+import readingTime from "reading-time";
+import dayjs from "dayjs";
+import advancedFormat from "dayjs/plugin/advancedFormat";
+import { BlogPost } from "../util/types";
+import { formatTags } from "../util/helpers";
 
 type Props = {
-  blogPost: BlogPost
-}
+  blogPost: BlogPost;
+};
 
-dayjs.extend(advancedFormat)
+dayjs.extend(advancedFormat);
 
 const PostLink: React.FunctionComponent<Props> = ({ blogPost }) => {
   return (
@@ -36,7 +36,7 @@ const PostLink: React.FunctionComponent<Props> = ({ blogPost }) => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default PostLink
+export default PostLink;
