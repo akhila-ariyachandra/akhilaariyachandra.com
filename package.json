@@ -5,10 +5,16 @@
   "version": "0.1.0",
   "author": "Akhila Ariyachandra <akhila_ariyachandra@live.com>",
   "dependencies": {
+    "axios": "^0.19.2",
     "contentful": "^7.14.0",
+    "dayjs": "^1.8.22",
+    "disqus-react": "^1.0.7",
     "next": "^9.3.0",
+    "next-absolute-url": "^1.2.2",
     "react": "^16.13.0",
-    "react-dom": "^16.13.0"
+    "react-dom": "^16.13.0",
+    "react-markdown": "^4.3.1",
+    "reading-time": "^1.2.0"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^9.3.0",

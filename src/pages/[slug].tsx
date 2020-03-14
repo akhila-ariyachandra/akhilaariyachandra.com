@@ -1,7 +1,15 @@
 import Layout from "../components/Layout"
+import ReactMarkdown from "react-markdown"
+import readingTime from "reading-time"
+import dayjs from "dayjs"
+import advancedFormat from "dayjs/plugin/advancedFormat"
 import { NextPage, GetStaticProps, GetStaticPaths } from "next"
 import { client } from "../util/cms"
 import { BlogPost } from "../util/types"
+import { DiscussionEmbed } from "disqus-react"
+import { formatTags } from "../util/helpers"
+
+dayjs.extend(advancedFormat)
 
 type Props = {
   blogPost: BlogPost
@@ -10,7 +18,37 @@ type Props = {
 const Post: NextPage<Props> = ({ blogPost }) => {
   return (
     <Layout>
-      <h1>{blogPost.title}</h1>
+      <article>
+        <header>
+          <h1>{blogPost.title}</h1>
+
+          <div style={{ display: "flex" }}>
+            <p style={{ flex: 1 }}>
+              {dayjs(blogPost.date).format("Do MMMM YYYY")}
+            </p>
+            <p>{readingTime(blogPost.content).text}</p>
+          </div>
+
+          <p>{formatTags(blogPost.tags)}</p>
+        </header>
+
+        <section>
+          <ReactMarkdown source={blogPost.content} />
+        </section>
+      </article>
+
+      <hr />
+
+      <DiscussionEmbed
+        shortname={process.env.GATSBY_DISQUS_NAME}
+        config={{
+          url: `${process.env.siteUrl}/${blogPost.slug}`,
+          identifier: blogPost.slug,
+          title: blogPost.title,
+        }}
+      />
+
+      <hr />
     </Layout>
   )
 }

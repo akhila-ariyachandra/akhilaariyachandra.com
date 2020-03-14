@@ -14,4 +14,7 @@ module.exports = withBundleAnalyzer({
 
     return config
   },
+  env: {
+    siteUrl: "https://akhilaariyachandra.com",
+  },
 })
