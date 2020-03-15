@@ -1,8 +1,5 @@
 import Layout from "../components/Layout";
-import dynamic from "next/dynamic";
-const MarkdownContainer = dynamic(() =>
-  import("../components/MarkdownContainer")
-);
+import MarkdownContainer from "../components/MarkdownContainer";
 import readingTime from "reading-time";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
