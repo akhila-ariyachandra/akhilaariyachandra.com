@@ -6,6 +6,7 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <link rel="icon" type="image/png" href="/icon.png" />
+          <link rel="manifest" href="/manifest.json" />
         </Head>
 
         <body>

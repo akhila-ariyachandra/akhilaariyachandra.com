@@ -1,0 +1,10 @@
+{
+  "name": "Akhila Ariyachandra's Blog",
+  "short_name": "Akhila's Blog",
+  "description": "Web Developer with a passion for JavaScript and React",
+  "start_url": "/",
+  "background_color": "#00C853",
+  "theme_color": "#00C853",
+  "display": "minimal-ui",
+  "icon": "/icon.png"
+}
