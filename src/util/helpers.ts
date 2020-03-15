@@ -1,4 +1,4 @@
-export const formatTags = tagsArray => {
+export const formatTags = (tagsArray): string => {
   let tags = null;
 
   for (let i = 0; i < tagsArray.length; i++) {

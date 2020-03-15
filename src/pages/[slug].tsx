@@ -19,7 +19,25 @@ type Props = {
 const Post: NextPage<Props> = ({ blogPost }) => {
   return (
     <Layout>
-      <SEO title={blogPost.title} />
+      <SEO
+        title={blogPost.title}
+        description={blogPost.description}
+        meta={[
+          {
+            property: "author",
+            content: "Akhila Ariyachandra",
+          },
+          {
+            property: `date`,
+            content: blogPost.date.toString(),
+          },
+          {
+            property: `keywords`,
+            content: formatTags(blogPost.tags),
+          },
+        ]}
+        image={blogPost.banner.file.url}
+      />
 
       <article>
         <header>
@@ -33,6 +51,15 @@ const Post: NextPage<Props> = ({ blogPost }) => {
           </div>
 
           <p>{formatTags(blogPost.tags)}</p>
+
+          <img
+            src={`${blogPost.banner.file.url}?fm=jpg&fl=progressive`}
+            alt={blogPost.banner.title}
+            loading="lazy"
+            width="1200"
+            height="600"
+            id="banner"
+          />
         </header>
 
         <section>
@@ -52,6 +79,13 @@ const Post: NextPage<Props> = ({ blogPost }) => {
       />
 
       <hr />
+
+      <style jsx>{`
+        #banner {
+          height: auto;
+          max-width: 100%;
+        }
+      `}</style>
     </Layout>
   );
 };

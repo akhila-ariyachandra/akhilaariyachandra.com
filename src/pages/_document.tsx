@@ -9,6 +9,7 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css?family=Inter&display=swap"
             rel="stylesheet"
           />
+          <link rel="icon" type="image/png" href="/icon.png" />
         </Head>
 
         <body>

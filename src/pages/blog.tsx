@@ -12,7 +12,10 @@ type Props = {
 const Blog: NextPage<Props> = ({ blogPosts }) => {
   return (
     <Layout>
-      <SEO title="Blog" />
+      <SEO
+        title="Blog"
+        description="A Blog by Akhila Ariyachandra talking about React, JavaScript & Programming"
+      />
 
       <h1>Blog</h1>
 
