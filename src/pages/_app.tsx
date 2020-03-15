@@ -1,6 +1,12 @@
 import React from "react";
+import { Fonts } from "../util/fonts";
 
 const MyApp = ({ Component, pageProps }) => {
+  React.useEffect(() => {
+    // Load fonts
+    Fonts();
+  }, []);
+
   return (
     <React.Fragment>
       <style jsx global>{`
