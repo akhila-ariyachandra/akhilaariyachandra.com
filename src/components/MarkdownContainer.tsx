@@ -1,6 +1,7 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import Image from "./Image";
+import CodeBlock from "./CodeBlock";
 
 type Props = {
   source: string;
@@ -11,7 +12,8 @@ const MarkdownContainer: React.FunctionComponent<Props> = ({ source }) => {
     <ReactMarkdown
       source={source}
       renderers={{
-        image: ({ src, alt }) => <Image src={src} alt={alt} />,
+        image: Image,
+        code: CodeBlock,
       }}
     />
   );

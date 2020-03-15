@@ -15,6 +15,7 @@
     "react-helmet": "^5.2.1",
     "react-image": "^2.4.0",
     "react-markdown": "^4.3.1",
+    "react-syntax-highlighter": "^12.2.1",
     "reading-time": "^1.2.0"
   },
   "devDependencies": {
