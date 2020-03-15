@@ -16,7 +16,7 @@ const PostLink: React.FunctionComponent<Props> = ({ blogPost }) => {
   return (
     <div>
       <Link href="/[slug]" as={`/${blogPost.slug}`}>
-        <h2 id="post-link">{blogPost.title}</h2>
+        <h2>{blogPost.title}</h2>
       </Link>
 
       <div style={{ display: "flex" }}>
@@ -31,7 +31,7 @@ const PostLink: React.FunctionComponent<Props> = ({ blogPost }) => {
       <p>{blogPost.description}</p>
 
       <style jsx>{`
-        #post-link {
+        h2 {
           cursor: pointer;
         }
       `}</style>

@@ -20,12 +20,16 @@ const SEO: React.FunctionComponent<Props> = ({
   description,
   image,
   meta,
+  lang,
 }) => {
   const titleTemplate =
     title == process.env.title ? "%s" : `%s | ${process.env.title}`;
 
   return (
     <Helmet
+      htmlAttributes={{
+        lang,
+      }}
       title={title}
       titleTemplate={titleTemplate}
       meta={[
