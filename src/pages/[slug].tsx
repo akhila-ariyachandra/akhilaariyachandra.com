@@ -1,10 +1,13 @@
 import Layout from "../components/Layout";
 import dynamic from "next/dynamic";
-const ReactMarkdown = dynamic(() => import("react-markdown"));
+const MarkdownContainer = dynamic(() =>
+  import("../components/MarkdownContainer")
+);
 import readingTime from "reading-time";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import SEO from "../components/SEO";
+import Image from "../components/Image";
 import { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import { client } from "../util/cms";
 import { BlogPost } from "../util/types";
@@ -53,18 +56,11 @@ const Post: NextPage<Props> = ({ blogPost }) => {
 
           <p>{formatTags(blogPost.tags)}</p>
 
-          <img
-            src={`${blogPost.banner.file.url}?fm=jpg&fl=progressive`}
-            alt={blogPost.banner.title}
-            loading="lazy"
-            width="1200"
-            height="600"
-            id="banner"
-          />
+          <Image src={blogPost.banner.file.url} alt={blogPost.banner.title} />
         </header>
 
         <section>
-          <ReactMarkdown source={blogPost.content} />
+          <MarkdownContainer source={blogPost.content} />
         </section>
       </article>
 
@@ -80,13 +76,6 @@ const Post: NextPage<Props> = ({ blogPost }) => {
       />
 
       <hr />
-
-      <style jsx>{`
-        #banner {
-          height: auto;
-          max-width: 100%;
-        }
-      `}</style>
     </Layout>
   );
 };
