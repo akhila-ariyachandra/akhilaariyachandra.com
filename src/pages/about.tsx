@@ -10,8 +10,6 @@ const Index: NextPage = () => {
         description="My name is Akhila Ariyachandra and I'm a web developer from Sri Lanka."
       />
 
-      <h1>About</h1>
-
       <h1>Hi.</h1>
 
       <p>

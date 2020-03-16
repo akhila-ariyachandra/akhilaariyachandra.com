@@ -17,8 +17,6 @@ const Blog: NextPage<Props> = ({ blogPosts }) => {
         description="A Blog by Akhila Ariyachandra talking about React, JavaScript & Programming"
       />
 
-      <h1>Blog</h1>
-
       {blogPosts.map(blogPost => (
         <PostLink blogPost={blogPost} key={blogPost.slug} />
       ))}
