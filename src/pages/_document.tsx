@@ -7,6 +7,11 @@ class MyDocument extends Document {
         <Head>
           <link rel="icon" type="image/png" href="/icon.png" />
           <link
+            rel="apple-touch-icon"
+            sizes="192x192"
+            href="/images/icons/icon-192x192.png"
+          />
+          <link
             rel="icon"
             type="image/png"
             sizes="72x72"
