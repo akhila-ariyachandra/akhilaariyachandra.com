@@ -6,6 +6,54 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <link rel="icon" type="image/png" href="/icon.png" />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="72x72"
+            href="/images/icons/icon-72x72.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="96x96"
+            href="/images/icons/icon-96x96.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="128x128"
+            href="/images/icons/icon-128x128.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="144x144"
+            href="/images/icons/icon-144x144.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="72x72"
+            href="/images/icons/icon-152x152.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="72x72"
+            href="/images/icons/icon-192x192.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="72x72"
+            href="/images/icons/icon-384x384.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="72x72"
+            href="/images/icons/icon-512x512.png"
+          />
           <link rel="manifest" href="/manifest.json" />
 
           <meta name="theme-color" content="#00C853" />
