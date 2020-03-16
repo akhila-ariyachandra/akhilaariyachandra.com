@@ -36,6 +36,8 @@
     "build": "next build",
     "analyze": "cross-env ANALYZE=true next build",
     "start": "next start",
+    "preexport": "npm run build",
+    "export": "next export",
     "format": "prettier --write \"**/*.{js,jsx,json,md,ts,tsx}\""
   },
   "repository": {
