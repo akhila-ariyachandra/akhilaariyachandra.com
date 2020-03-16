@@ -8,7 +8,6 @@ import { Link, graphql } from "gatsby"
 const IndexPage = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allContentfulBlogPost.nodes
-  const projects = data.allContentfulProject.nodes
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -36,22 +35,6 @@ const IndexPage = ({ data, location }) => {
 
         <PostList posts={posts} />
       </div>
-
-      <div style={{ margin: `${rhythm(5)} 0` }}>
-        <h2 style={{ margin: 0 }}>Projects</h2>
-
-        <hr style={{ marginTop: rhythm(1) }} />
-        {projects.map(project => (
-          <a
-            href={project.link}
-            rel="noopener noreferrer"
-            target="_blank"
-            key={project.link}
-          >
-            <h3>{project.name}</h3>
-          </a>
-        ))}
-      </div>
     </Layout>
   )
 }
@@ -78,12 +61,6 @@ export const pageQuery = graphql`
           }
         }
         tags
-      }
-    }
-    allContentfulProject {
-      nodes {
-        name
-        link
       }
     }
   }
