@@ -22,5 +22,8 @@ module.exports = withPWA(
       author: "@heshan_1010",
       siteUrl: "https://akhilaariyachandra.com",
     },
+    pwa: {
+      dest: "public",
+    },
   })
 );
