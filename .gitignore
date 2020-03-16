@@ -72,5 +72,5 @@ out
 public/sitemap.xml
 
 # Auto generated PWA files
-public/sw.js
-public/workbox-eb42688b.js
+public/sw*
+public/workbox*
