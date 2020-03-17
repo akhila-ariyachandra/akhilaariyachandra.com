@@ -15,6 +15,7 @@ const MarkdownContainer: React.FunctionComponent<Props> = ({ source }) => {
         image: Image,
         code: CodeBlock,
       }}
+      escapeHtml={false}
     />
   );
 };
