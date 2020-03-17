@@ -1,5 +1,9 @@
 import React from "react";
+import Router from "next/router";
+import * as gtag from "../util/gtag";
 import { Fonts } from "../util/fonts";
+
+Router.events.on("routeChangeComplete", url => gtag.pageview(url));
 
 const MyApp = ({ Component, pageProps }) => {
   React.useEffect(() => {
