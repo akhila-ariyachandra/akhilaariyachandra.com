@@ -14,7 +14,7 @@
   "build": {
     "env": {
       "GOOGLE_ANALYTICS_ID": "@personal-site-google-analytics-id",
-      "GOOGLE_PUBLISHER_ID": "@personal-site-google-publisher-id",
+      "GOOGLE_AD_CLIENT": "@personal-site-google-ad-client",
       "CONTENTFUL_SPACE_ID": "@personal-site-contentful-space-id",
       "CONTENTFUL_ACCESS_TOKEN": "@personal-site-contentful-access-token",
       "GATSBY_DISQUS_NAME": "@personal-site-disqus-name"
