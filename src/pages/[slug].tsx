@@ -4,7 +4,7 @@ import readingTime from "reading-time";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import SEO from "../components/SEO";
-import Image from "../components/Image";
+import BannerImage from "../components/BannerImage";
 import { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import { client } from "../util/cms";
 import { BlogPost } from "../util/types";
@@ -53,7 +53,10 @@ const Post: NextPage<Props> = ({ blogPost }) => {
 
           <p>{formatTags(blogPost.tags)}</p>
 
-          <Image src={blogPost.banner.file.url} alt={blogPost.banner.title} />
+          <BannerImage
+            src={blogPost.banner.file.url}
+            alt={blogPost.banner.title}
+          />
         </header>
 
         <section>
