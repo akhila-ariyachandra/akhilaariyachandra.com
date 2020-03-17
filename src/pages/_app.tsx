@@ -10,6 +10,10 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <React.Fragment>
       <style jsx global>{`
+        html {
+          margin-left: calc(100vw - 100%);
+        }
+
         body {
           font-family: "Inter", sans-serif;
         }
