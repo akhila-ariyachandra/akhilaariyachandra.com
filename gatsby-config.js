@@ -1,8 +1,8 @@
 require(`dotenv`).config({
   path: `.env`,
-})
+});
 
-const description = `Web Developer with a passion for JavaScript and React`
+const description = `Web Developer with a passion for JavaScript and React`;
 
 module.exports = {
   siteMetadata: {
@@ -89,4 +89,4 @@ module.exports = {
       },
     },
   ],
-}
+};

@@ -1,9 +1,9 @@
-import React from "react"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import PostList from "../components/PostList"
-import { rhythm } from "../utils/typography"
-import { Link, graphql } from "gatsby"
+import React from "react";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+import PostList from "../components/PostList";
+import { rhythm } from "../utils/typography";
+import { Link, graphql } from "gatsby";
 
 const IndexPage = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
@@ -36,10 +36,10 @@ const IndexPage = ({ data, location }) => {
         <PostList posts={posts} />
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;
 
 export const pageQuery = graphql`
   query {
@@ -64,4 +64,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

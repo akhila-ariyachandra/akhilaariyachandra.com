@@ -1,20 +1,21 @@
-import React from "react"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import { rhythm } from "../utils/typography"
+import Layout from "../components/Layout";
+import SEO from "../components/SEO";
+import { NextPage } from "next";
 
-const About = ({ location }) => {
-  const description =
-    "My name is Akhila Ariyachandra and I'm a web developer from Sri Lanka."
-
+const Index: NextPage = () => {
   return (
-    <Layout location={location} title="About">
-      <SEO title="About" description={description} />
+    <Layout>
+      <SEO
+        title="About"
+        description="My name is Akhila Ariyachandra and I'm a web developer from Sri Lanka."
+      />
 
-      <div style={{ padding: `${rhythm(2)} 0` }}>
+      <div id="banner">
         <h1>Hi.</h1>
 
-        <p>{description}</p>
+        <p>
+          My name is Akhila Ariyachandra and I'm a web developer from Sri Lanka.
+        </p>
 
         <p>
           I discovered my love for JavaScript related development when I had to
@@ -32,8 +33,15 @@ const About = ({ location }) => {
           Gatsby.js and GraphQL, and share what I've learned.
         </p>
       </div>
-    </Layout>
-  )
-}
 
-export default About
+      <style jsx>{`
+        #banner {
+          padding-top: 10rem;
+          padding-bottom: 10rem;
+        }
+      `}</style>
+    </Layout>
+  );
+};
+
+export default Index;
