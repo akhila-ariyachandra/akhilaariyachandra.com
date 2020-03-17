@@ -1,5 +1,9 @@
 import React from "react";
+import Router from "next/router";
+import * as gtag from "../util/gtag";
 import { Fonts } from "../util/fonts";
+
+Router.events.on("routeChangeComplete", url => gtag.pageview(url));
 
 const MyApp = ({ Component, pageProps }) => {
   React.useEffect(() => {
@@ -22,6 +26,10 @@ const MyApp = ({ Component, pageProps }) => {
           border: 0;
           height: 1px;
           background: #000;
+        }
+
+        .link:hover {
+          color: #00c853;
         }
       `}</style>
 
