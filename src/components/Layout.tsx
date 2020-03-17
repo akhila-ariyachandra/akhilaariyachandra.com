@@ -1,6 +1,25 @@
 import React from "react";
 import Link from "next/link";
 
+const SOCIAL_LINKS = [
+  {
+    title: "GitHub",
+    url: "https://github.com/akhila-ariyachandra",
+  },
+  {
+    title: "DEV",
+    url: "https://dev.to/akhilaariyachandra",
+  },
+  {
+    title: "LinkedIn",
+    url: "https://www.linkedin.com/in/akhila-ariyachandra/",
+  },
+];
+
+const openSocialLink = url => {
+  window.open(url, "_blank", "noopener=yes,noreferrer=yes");
+};
+
 type Props = {
   children: React.ReactNode;
 };
@@ -24,32 +43,15 @@ const Layout: React.FunctionComponent<Props> = ({ children }) => {
             </Link>
           </div>
 
-          <div>
-            <a
-              href="https://github.com/akhila-ariyachandra"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              GitHub
-            </a>
-
-            <a
-              href="https://dev.to/akhilaariyachandra"
-              rel="noopener noreferrer"
-              target="_blank"
-              className="shift-right"
-            >
-              DEV
-            </a>
-
-            <a
-              href="https://www.linkedin.com/in/akhila-ariyachandra/"
-              rel="noopener noreferrer"
-              target="_blank"
-              className="shift-right"
-            >
-              LinkedIn
-            </a>
+          <div id="social-links">
+            {SOCIAL_LINKS.map(link => (
+              <h1
+                onClick={() => openSocialLink(link.url)}
+                className="shift-right navigation"
+              >
+                {link.title}
+              </h1>
+            ))}
           </div>
         </nav>
       </header>
@@ -86,7 +88,8 @@ const Layout: React.FunctionComponent<Props> = ({ children }) => {
         }
 
         #navigation-bar,
-        #site-navigation {
+        #site-navigation,
+        #social-links {
           display: flex;
         }
 
@@ -104,6 +107,10 @@ const Layout: React.FunctionComponent<Props> = ({ children }) => {
 
         .navigation {
           cursor: pointer;
+        }
+
+        footer {
+          margin-top: 5rem;
         }
       `}</style>
     </div>

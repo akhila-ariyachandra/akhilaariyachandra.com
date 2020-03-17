@@ -25,11 +25,11 @@ const Index: NextPage<Props> = ({ blogPosts }) => {
       </div>
 
       <div>
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
           <h2 style={{ flex: 1, margin: 0 }}>Latest Posts</h2>
 
           <Link href="/blog">
-            <a>Read all posts</a>
+            <h4 id="all-posts-link">Read all posts</h4>
           </Link>
         </div>
 
@@ -44,6 +44,10 @@ const Index: NextPage<Props> = ({ blogPosts }) => {
         #banner {
           padding-top: 10rem;
           padding-bottom: 10rem;
+        }
+
+        #all-posts-link {
+          cursor: pointer;
         }
       `}</style>
     </Layout>

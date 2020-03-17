@@ -14,7 +14,7 @@ dayjs.extend(advancedFormat);
 
 const PostLink: React.FunctionComponent<Props> = ({ blogPost }) => {
   return (
-    <div>
+    <div className="post-link">
       <Link href="/[slug]" as={`/${blogPost.slug}`}>
         <h2>{blogPost.title}</h2>
       </Link>
@@ -33,6 +33,11 @@ const PostLink: React.FunctionComponent<Props> = ({ blogPost }) => {
       <style jsx>{`
         h2 {
           cursor: pointer;
+        }
+
+        .post-link {
+          margin-top: 2rem;
+          margin-bottom: 2rem;
         }
       `}</style>
     </div>
