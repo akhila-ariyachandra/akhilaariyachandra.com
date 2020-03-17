@@ -17,6 +17,12 @@ const MyApp = ({ Component, pageProps }) => {
         body {
           font-family: "Inter", sans-serif;
         }
+
+        hr {
+          border: 0;
+          height: 1px;
+          background: #000;
+        }
       `}</style>
 
       <Component {...pageProps} />
