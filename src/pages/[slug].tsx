@@ -66,7 +66,7 @@ const Post: NextPage<Props> = ({ blogPost }) => {
       <DiscussionEmbed
         shortname={process.env.GATSBY_DISQUS_NAME}
         config={{
-          url: `${process.env.siteUrl}/${blogPost.slug}`,
+          url: process.env.siteUrl,
           identifier: blogPost.slug,
           title: blogPost.title,
         }}
