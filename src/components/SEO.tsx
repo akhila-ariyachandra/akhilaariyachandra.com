@@ -82,7 +82,7 @@ const SEO: React.FunctionComponent<Props> = ({
 SEO.defaultProps = {
   title: process.env.title,
   description: process.env.description,
-  image: "/profile.jpg",
+  image: `${process.env.siteUrl}/profile.jpg`,
   meta: [],
   lang: "en",
 };
