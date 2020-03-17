@@ -27,6 +27,10 @@ const MyApp = ({ Component, pageProps }) => {
           height: 1px;
           background: #000;
         }
+
+        .link:hover {
+          color: #00c853;
+        }
       `}</style>
 
       <Component {...pageProps} />

@@ -16,7 +16,7 @@ const PostLink: React.FunctionComponent<Props> = ({ blogPost }) => {
   return (
     <div className="post-link">
       <Link href="/[slug]" as={`/${blogPost.slug}`}>
-        <h2>{blogPost.title}</h2>
+        <h2 className="link">{blogPost.title}</h2>
       </Link>
 
       <div style={{ display: "flex" }}>

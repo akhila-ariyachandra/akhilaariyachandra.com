@@ -29,7 +29,9 @@ const Index: NextPage<Props> = ({ blogPosts }) => {
           <h2 style={{ flex: 1, margin: 0 }}>Latest Posts</h2>
 
           <Link href="/blog">
-            <h4 id="all-posts-link">Read all posts</h4>
+            <h4 id="all-posts-link" className="link">
+              Read all posts
+            </h4>
           </Link>
         </div>
 

@@ -16,7 +16,7 @@ const SOCIAL_LINKS = [
   },
 ];
 
-const openSocialLink = url => {
+const openNewTabLink = url => {
   window.open(url, "_blank", "noopener=yes,noreferrer=yes");
 };
 
@@ -29,25 +29,25 @@ const Layout: React.FunctionComponent<Props> = ({ children }) => {
     <div id="layout">
       <header>
         <Link href="/">
-          <h1 className="navigation">Akhila Ariyachandra</h1>
+          <h1 className="navigation link">Akhila Ariyachandra</h1>
         </Link>
 
         <nav id="navigation-bar">
           <div id="site-navigation">
             <Link href="/blog">
-              <h1 className="navigation">Blog</h1>
+              <h1 className="navigation link">Blog</h1>
             </Link>
 
             <Link href="/about">
-              <h1 className="navigation shift-right">About</h1>
+              <h1 className="navigation shift-right link">About</h1>
             </Link>
           </div>
 
           <div id="social-links">
             {SOCIAL_LINKS.map(link => (
               <h1
-                onClick={() => openSocialLink(link.url)}
-                className="shift-right navigation"
+                onClick={() => openNewTabLink(link.url)}
+                className="shift-right navigation link"
               >
                 {link.title}
               </h1>
@@ -63,21 +63,26 @@ const Layout: React.FunctionComponent<Props> = ({ children }) => {
       <footer>
         © {new Date().getFullYear()}, Built with
         {` `}
-        <a href="https://nextjs.org/" rel="noopener noreferrer" target="_blank">
+        <span
+          onClick={() => openNewTabLink("https://nextjs.org/")}
+          className="navigation link"
+        >
           Next.js
-        </a>
+        </span>
         {`, `}
-        <a
-          href="https://www.contentful.com/"
-          rel="noopener noreferrer"
-          target="_blank"
+        <span
+          onClick={() => openNewTabLink("https://www.contentful.com/")}
+          className="navigation link"
         >
           Contentful
-        </a>
+        </span>
         {`, & `}
-        <a href="https://zeit.co/" rel="noopener noreferrer" target="_blank">
+        <span
+          onClick={() => openNewTabLink("https://zeit.co/")}
+          className="navigation link"
+        >
           ZEIT
-        </a>
+        </span>
       </footer>
 
       <style jsx>{`
