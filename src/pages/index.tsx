@@ -15,7 +15,7 @@ const Index: NextPage<Props> = ({ blogPosts }) => {
     <Layout>
       <SEO />
 
-      <div>
+      <div id="banner">
         <h1>Hi.</h1>
 
         <p>
@@ -39,6 +39,13 @@ const Index: NextPage<Props> = ({ blogPosts }) => {
           <PostLink blogPost={blogPost} key={blogPost.slug} />
         ))}
       </div>
+
+      <style jsx>{`
+        #banner {
+          padding-top: 10rem;
+          padding-bottom: 10rem;
+        }
+      `}</style>
     </Layout>
   );
 };
