@@ -31,10 +31,6 @@ const PostLink: React.FunctionComponent<Props> = ({ blogPost }) => {
       <p>{blogPost.description}</p>
 
       <style jsx>{`
-        h2 {
-          cursor: pointer;
-        }
-
         .post-link {
           margin-top: 2rem;
           margin-bottom: 2rem;

@@ -96,16 +96,13 @@ const Post: NextPage<Props> = ({ blogPost, next, previous }) => {
       <nav>
         {previous ? (
           <Link href="/[slug]" as={`/${previous.slug}`}>
-            <h2 className="navigation link">{`← ${previous.title}`}</h2>
+            <h2 className="link">{`← ${previous.title}`}</h2>
           </Link>
         ) : null}
 
         {next ? (
           <Link href="/[slug]" as={`/${next.slug}`}>
-            <h2
-              className="navigation link"
-              id="next-post"
-            >{`${next.title} →`}</h2>
+            <h2 className="link" id="next-post">{`${next.title} →`}</h2>
           </Link>
         ) : null}
       </nav>
@@ -116,10 +113,6 @@ const Post: NextPage<Props> = ({ blogPost, next, previous }) => {
         nav {
           margin-top: 3rem;
           margin-bottom: 3rem;
-        }
-
-        .navigation {
-          cursor: pointer;
         }
 
         #next-post {
