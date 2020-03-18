@@ -107,6 +107,11 @@ const Post: NextPage<Props> = ({ blogPost, next, previous }) => {
       <hr />
 
       <style jsx>{`
+        hr {
+          margin-top: 0.5rem;
+          margin-bottom: 0.5rem;
+        }
+
         nav {
           margin-top: 3rem;
           margin-bottom: 3rem;
