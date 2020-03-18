@@ -44,10 +44,12 @@ const Layout: React.FunctionComponent<Props> = ({ children }) => {
           </div>
 
           <div id="social-links">
-            {SOCIAL_LINKS.map(link => (
+            {SOCIAL_LINKS.map((link, index) => (
               <h1
                 onClick={() => openNewTabLink(link.url)}
-                className="shift-right navigation link"
+                className={
+                  index == 0 ? "navigation link" : "shift-right navigation link"
+                }
               >
                 {link.title}
               </h1>
