@@ -5,6 +5,8 @@
   "version": "0.1.0",
   "author": "Akhila Ariyachandra <akhila_ariyachandra@live.com>",
   "dependencies": {
+    "@material-ui/core": "^4.9.5",
+    "@material-ui/lab": "^4.0.0-alpha.45",
     "contentful": "^7.14.0",
     "dayjs": "^1.8.23",
     "disqus-react": "^1.0.7",

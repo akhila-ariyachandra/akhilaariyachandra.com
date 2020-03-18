@@ -1,5 +1,10 @@
 import Layout from "../components/Layout";
-import MarkdownContainer from "../components/MarkdownContainer";
+import Skeleton from "@material-ui/lab/Skeleton";
+import dynamic from "next/dynamic";
+const MarkdownContainer = dynamic(
+  () => import("../components/MarkdownContainer"),
+  { loading: () => <Skeleton variant="rect" width="100%" height="20rem" /> }
+);
 import readingTime from "reading-time";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
