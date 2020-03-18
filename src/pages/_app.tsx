@@ -28,6 +28,10 @@ const MyApp = ({ Component, pageProps }) => {
           background: #000;
         }
 
+        .link {
+          cursor: pointer;
+        }
+
         .link:hover {
           color: #00c853;
         }

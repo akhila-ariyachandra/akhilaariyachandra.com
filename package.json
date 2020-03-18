@@ -5,13 +5,13 @@
   "version": "0.1.0",
   "author": "Akhila Ariyachandra <akhila_ariyachandra@live.com>",
   "dependencies": {
-    "@material-ui/core": "^4.9.5",
-    "@material-ui/lab": "^4.0.0-alpha.45",
+    "@material-ui/core": "^4.9.7",
+    "@material-ui/lab": "^4.0.0-alpha.46",
     "contentful": "^7.14.0",
     "dayjs": "^1.8.23",
     "disqus-react": "^1.0.7",
     "fontfaceobserver": "^2.1.0",
-    "next": "^9.3.0",
+    "next": "^9.3.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-helmet": "^5.2.1",
@@ -21,7 +21,7 @@
     "reading-time": "^1.2.0"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^9.3.0",
+    "@next/bundle-analyzer": "^9.3.1",
     "@types/node": "^13.9.1",
     "@types/react": "^16.9.23",
     "cross-env": "^7.0.2",

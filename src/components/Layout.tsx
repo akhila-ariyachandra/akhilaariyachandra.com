@@ -29,25 +29,25 @@ const Layout: React.FunctionComponent<Props> = ({ children }) => {
     <div id="layout">
       <header>
         <Link href="/">
-          <h1 className="navigation link">Akhila Ariyachandra</h1>
+          <h1 className="link">Akhila Ariyachandra</h1>
         </Link>
 
         <nav id="navigation-bar">
           <div id="site-navigation">
             <Link href="/blog">
-              <h1 className="navigation link">Blog</h1>
+              <h1 className="link">Blog</h1>
             </Link>
 
             <Link href="/about">
-              <h1 className="navigation shift-right link">About</h1>
+              <h1 className="shift-right link">About</h1>
             </Link>
           </div>
 
           <div id="social-links">
-            {SOCIAL_LINKS.map(link => (
+            {SOCIAL_LINKS.map((link, index) => (
               <h1
                 onClick={() => openNewTabLink(link.url)}
-                className="shift-right navigation link"
+                className={index == 0 ? "link" : "shift-right link"}
               >
                 {link.title}
               </h1>
@@ -65,21 +65,21 @@ const Layout: React.FunctionComponent<Props> = ({ children }) => {
         {` `}
         <span
           onClick={() => openNewTabLink("https://nextjs.org/")}
-          className="navigation link"
+          className="link"
         >
           Next.js
         </span>
         {`, `}
         <span
           onClick={() => openNewTabLink("https://www.contentful.com/")}
-          className="navigation link"
+          className="link"
         >
           Contentful
         </span>
         {`, & `}
         <span
           onClick={() => openNewTabLink("https://zeit.co/")}
-          className="navigation link"
+          className="link"
         >
           ZEIT
         </span>
@@ -108,10 +108,6 @@ const Layout: React.FunctionComponent<Props> = ({ children }) => {
 
         .shift-right {
           margin-left: 0.5rem;
-        }
-
-        .navigation {
-          cursor: pointer;
         }
 
         footer {

@@ -10,6 +10,7 @@ import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import SEO from "../components/SEO";
 import BannerImage from "../components/BannerImage";
+import Link from "next/link";
 import { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import { client } from "../util/cms";
 import { BlogPost } from "../util/types";
@@ -18,11 +19,18 @@ import { formatTags } from "../util/helpers";
 
 dayjs.extend(advancedFormat);
 
-type Props = {
-  blogPost: BlogPost;
+type OtherPost = {
+  title: string;
+  slug: string;
 };
 
-const Post: NextPage<Props> = ({ blogPost }) => {
+type Props = {
+  blogPost: BlogPost;
+  next: OtherPost;
+  previous: OtherPost;
+};
+
+const Post: NextPage<Props> = ({ blogPost, next, previous }) => {
   return (
     <Layout>
       <SEO
@@ -81,6 +89,33 @@ const Post: NextPage<Props> = ({ blogPost }) => {
       />
 
       <hr />
+
+      <nav>
+        {previous ? (
+          <Link href="/[slug]" as={`/${previous.slug}`}>
+            <h2 className="link">{`← ${previous.title}`}</h2>
+          </Link>
+        ) : null}
+
+        {next ? (
+          <Link href="/[slug]" as={`/${next.slug}`}>
+            <h2 className="link" id="next-post">{`${next.title} →`}</h2>
+          </Link>
+        ) : null}
+      </nav>
+
+      <hr />
+
+      <style jsx>{`
+        nav {
+          margin-top: 3rem;
+          margin-bottom: 3rem;
+        }
+
+        #next-post {
+          text-align: right;
+        }
+      `}</style>
     </Layout>
   );
 };
@@ -101,8 +136,44 @@ export const getStaticProps: GetStaticProps = async context => {
     return blogPost;
   });
 
+  const allPosts = await client.getEntries({
+    content_type: "blogPost",
+    order: "-fields.date",
+  });
+
+  let next: OtherPost;
+  let previous: OtherPost;
+
+  allPosts.items.map((item, index) => {
+    const blogPost: any = item.fields;
+
+    if (context.params.slug == blogPost.slug) {
+      if (index == 0) {
+        previous = null;
+      } else {
+        const previousPost: any = allPosts.items[index - 1].fields;
+
+        previous = {
+          title: previousPost.title,
+          slug: previousPost.slug,
+        };
+      }
+
+      if (index == allPosts.items.length - 1) {
+        next = null;
+      } else {
+        const nextPost: any = allPosts.items[index + 1].fields;
+
+        next = {
+          title: nextPost.title,
+          slug: nextPost.slug,
+        };
+      }
+    }
+  });
+
   return {
-    props: { blogPost: blogPosts[0] },
+    props: { blogPost: blogPosts[0], next, previous },
   };
 };
 
