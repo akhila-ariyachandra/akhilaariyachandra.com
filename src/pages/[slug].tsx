@@ -31,9 +31,6 @@ type Props = {
 };
 
 const Post: NextPage<Props> = ({ blogPost, next, previous }) => {
-  console.log("> next: ", next);
-  console.log("> previous: ", previous);
-
   return (
     <Layout>
       <SEO
