@@ -1,12 +1,11 @@
 export type BlogPost = {
   slug: string;
   title: string;
-  date: string;
+  date: Date;
   description: string;
   tags: [string];
   banner: Banner;
   content: string;
-  readingTime?: string;
 };
 
 type Banner = {
