@@ -1,13 +1,7 @@
+import React from "react";
 import Layout from "../components/Layout";
-import Skeleton from "@material-ui/lab/Skeleton";
-import dynamic from "next/dynamic";
-const MarkdownContainer = dynamic(
-  () => import("../components/MarkdownContainer"),
-  { loading: () => <Skeleton variant="rect" width="100%" height="20rem" /> }
-);
+import prism from "prismjs";
 import readingTime from "reading-time";
-import dayjs from "dayjs";
-import advancedFormat from "dayjs/plugin/advancedFormat";
 import SEO from "../components/SEO";
 import BannerImage from "../components/BannerImage";
 import Link from "next/link";
@@ -16,8 +10,6 @@ import { client } from "../util/cms";
 import { BlogPost } from "../util/types";
 import { DiscussionEmbed } from "disqus-react";
 import { formatTags } from "../util/helpers";
-
-dayjs.extend(advancedFormat);
 
 type OtherPost = {
   title: string;
@@ -31,6 +23,10 @@ type Props = {
 };
 
 const Post: NextPage<Props> = ({ blogPost, next, previous }) => {
+  React.useEffect(() => {
+    prism.highlightAll();
+  });
+
   return (
     <Layout>
       <SEO
@@ -58,10 +54,8 @@ const Post: NextPage<Props> = ({ blogPost, next, previous }) => {
           <h1>{blogPost.title}</h1>
 
           <div style={{ display: "flex" }}>
-            <p style={{ flex: 1 }}>
-              {dayjs(blogPost.date).format("Do MMMM YYYY")}
-            </p>
-            <p>{readingTime(blogPost.content).text}</p>
+            <p style={{ flex: 1 }}>{blogPost.date}</p>
+            <p>{blogPost.readingTime}</p>
           </div>
 
           <p>{formatTags(blogPost.tags)}</p>
@@ -72,9 +66,7 @@ const Post: NextPage<Props> = ({ blogPost, next, previous }) => {
           />
         </header>
 
-        <section>
-          <MarkdownContainer source={blogPost.content} />
-        </section>
+        <section dangerouslySetInnerHTML={{ __html: blogPost.content }} />
       </article>
 
       <hr />
@@ -128,6 +120,12 @@ const Post: NextPage<Props> = ({ blogPost, next, previous }) => {
 export default Post;
 
 export const getStaticProps: GetStaticProps = async context => {
+  const dayjs = require("dayjs");
+  const advancedFormat = require("dayjs/plugin/advancedFormat");
+  dayjs.extend(advancedFormat);
+  const showdown = require("showdown");
+  const converter = new showdown.Converter();
+
   const results = await client.getEntries({
     content_type: "blogPost",
     "fields.slug": context.params.slug,
@@ -136,7 +134,10 @@ export const getStaticProps: GetStaticProps = async context => {
   const blogPosts = results.items.map(item => {
     const blogPost: any = item.fields;
 
+    blogPost.date = dayjs(blogPost.date).format("Do MMMM YYYY");
     blogPost.banner = blogPost.banner.fields;
+    blogPost.content = converter.makeHtml(blogPost.content);
+    blogPost.readingTime = readingTime(blogPost.content).text;
 
     return blogPost;
   });

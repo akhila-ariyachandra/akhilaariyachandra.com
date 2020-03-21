@@ -3,6 +3,8 @@ import Router from "next/router";
 import * as gtag from "../util/gtag";
 import { Fonts } from "../util/fonts";
 
+import "prismjs/themes/prism-okaidia.css";
+
 Router.events.on("routeChangeComplete", url => gtag.pageview(url));
 
 const MyApp = ({ Component, pageProps }) => {
@@ -34,6 +36,14 @@ const MyApp = ({ Component, pageProps }) => {
 
         .link:hover {
           color: #00c853;
+        }
+
+        img {
+          height: auto;
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 100%;
         }
       `}</style>
 
