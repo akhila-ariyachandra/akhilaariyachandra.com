@@ -8,6 +8,7 @@ const Index: NextPage = () => {
       <SEO
         title="About"
         description="My name is Akhila Ariyachandra and I'm a web developer from Sri Lanka."
+        slug="about"
       />
 
       <div id="banner">

@@ -15,6 +15,7 @@ const Blog: NextPage<Props> = ({ blogPosts }) => {
       <SEO
         title="Blog"
         description="A Blog by Akhila Ariyachandra talking about React, JavaScript & Programming"
+        slug="blog"
       />
 
       {blogPosts.map(blogPost => (
