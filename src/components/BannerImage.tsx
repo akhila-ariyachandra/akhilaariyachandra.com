@@ -27,6 +27,7 @@ const BannerImage: React.FunctionComponent<Props> = ({ src, alt }) => {
           position: relative;
           height: 0;
           padding-top: calc(600 / 1200 * 100%);
+          margin-bottom: 2rem;
         }
       `}</style>
     </div>
