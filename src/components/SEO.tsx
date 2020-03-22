@@ -5,11 +5,19 @@ type Props = {
   title?: string;
   description?: string;
   image?: string;
+  slug?: string;
 };
 
-const SEO: React.FunctionComponent<Props> = ({ title, description, image }) => {
+const SEO: React.FunctionComponent<Props> = ({
+  title,
+  description,
+  image,
+  slug,
+}) => {
   const titleTemplate =
     title == process.env.title ? "%s" : `%s | ${process.env.title}`;
+
+  const url = slug ? `${process.env.siteUrl}/${slug}` : process.env.siteUrl;
 
   return (
     <NextSeo
@@ -21,6 +29,7 @@ const SEO: React.FunctionComponent<Props> = ({ title, description, image }) => {
         description,
         images: [{ url: image }],
         type: "website",
+        url,
       }}
       twitter={{
         handle: process.env.handle,

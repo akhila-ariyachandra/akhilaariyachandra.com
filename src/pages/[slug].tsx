@@ -37,6 +37,7 @@ const Post: NextPage<Props> = ({ blogPost, next, previous }) => {
         title={blogPost.title}
         description={blogPost.description}
         image={blogPost.banner.file.url}
+        slug={blogPost.slug}
       />
 
       <article>
