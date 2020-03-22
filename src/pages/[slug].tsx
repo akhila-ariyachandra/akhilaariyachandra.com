@@ -36,20 +36,6 @@ const Post: NextPage<Props> = ({ blogPost, next, previous }) => {
       <SEO
         title={blogPost.title}
         description={blogPost.description}
-        meta={[
-          {
-            property: "author",
-            content: "Akhila Ariyachandra",
-          },
-          {
-            property: `date`,
-            content: blogPost.date.toString(),
-          },
-          {
-            property: `keywords`,
-            content: formatTags(blogPost.tags),
-          },
-        ]}
         image={blogPost.banner.file.url}
       />
 

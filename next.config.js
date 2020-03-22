@@ -19,7 +19,7 @@ module.exports = withPWA(
     env: {
       title: "Akhila Ariyachandra",
       description: "Web Developer with a passion for JavaScript and React",
-      author: "@heshan_1010",
+      handle: "@heshan_1010",
       siteUrl: "https://akhilaariyachandra.com",
     },
     pwa: {
