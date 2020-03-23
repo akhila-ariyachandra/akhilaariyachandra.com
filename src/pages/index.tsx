@@ -37,7 +37,7 @@ const Index: NextPage<Props> = ({ blogPosts }) => {
 
         <hr />
 
-        {blogPosts.map(blogPost => (
+        {blogPosts.map((blogPost) => (
           <PostLink blogPost={blogPost} key={blogPost.slug} />
         ))}
       </div>
@@ -65,7 +65,7 @@ export const getStaticProps: GetStaticProps = async () => {
     limit: 3,
   });
 
-  const blogPosts = results.items.map(item => {
+  const blogPosts = results.items.map((item) => {
     const blogPost: any = item.fields;
 
     blogPost.banner = blogPost.banner.fields;

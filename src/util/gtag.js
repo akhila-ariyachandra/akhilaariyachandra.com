@@ -1,5 +1,5 @@
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
-export const pageview = url => {
+export const pageview = (url) => {
   window.gtag("config", process.env.GOOGLE_ANALYTICS_IDs, {
     page_path: url,
   });

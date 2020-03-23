@@ -16,7 +16,7 @@ const SOCIAL_LINKS = [
   },
 ];
 
-const openNewTabLink = url => {
+const openNewTabLink = (url) => {
   window.open(url, "_blank", "noopener=yes,noreferrer=yes");
 };
 

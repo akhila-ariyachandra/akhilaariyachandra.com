@@ -18,7 +18,7 @@ const Blog: NextPage<Props> = ({ blogPosts }) => {
         slug="blog"
       />
 
-      {blogPosts.map(blogPost => (
+      {blogPosts.map((blogPost) => (
         <PostLink blogPost={blogPost} key={blogPost.slug} />
       ))}
     </Layout>
@@ -33,7 +33,7 @@ export const getStaticProps: GetStaticProps = async () => {
     order: "-fields.date",
   });
 
-  const blogPosts = results.items.map(item => {
+  const blogPosts = results.items.map((item) => {
     const blogPost: any = item.fields;
 
     blogPost.banner = blogPost.banner.fields;
