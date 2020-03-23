@@ -22,13 +22,13 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^9.3.1",
-    "@types/node": "^13.9.2",
+    "@types/node": "^13.9.3",
     "@types/react": "^16.9.25",
     "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
     "dotenv-webpack": "^1.7.0",
     "next-pwa": "^2.3.1",
-    "prettier": "^1.19.1",
+    "prettier": "^2.0.1",
     "typescript": "^3.8.3"
   },
   "license": "MIT",
