@@ -1,5 +1,10 @@
-.cache
 package.json
 package-lock.json
+
+# Next.js
 .next
 out
+
+# Auto generated PWA files
+public/sw*
+public/workbox*
