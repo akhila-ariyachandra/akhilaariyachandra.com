@@ -114,13 +114,13 @@ const Post: NextPage<Props> = ({ blogPost, next, previous }) => {
 
 export default Post;
 
-export const getStaticProps: GetStaticProps = async context => {
+export const getStaticProps: GetStaticProps = async (context) => {
   const results = await client.getEntries({
     content_type: "blogPost",
     "fields.slug": context.params.slug,
   });
 
-  const blogPosts = results.items.map(item => {
+  const blogPosts = results.items.map((item) => {
     const blogPost: any = item.fields;
 
     blogPost.banner = blogPost.banner.fields;
@@ -174,7 +174,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     content_type: "blogPost",
   });
 
-  const paths = results.items.map(item => {
+  const paths = results.items.map((item) => {
     const blogPost: any = item.fields;
 
     return {
