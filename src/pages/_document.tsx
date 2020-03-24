@@ -63,28 +63,11 @@ class MyDocument extends Document {
 
           <meta name="theme-color" content="#00C853" />
 
-          <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS_ID}`}
-          />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${process.env.GOOGLE_ANALYTICS_ID}', {
-                  page_path: window.location.pathname,
-                });
-              `,
-            }}
-          />
-
-          <script
+          {/* <script
             data-ad-client={process.env.GOOGLE_AD_CLIENT}
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-          />
+          /> */}
         </Head>
 
         <body>
