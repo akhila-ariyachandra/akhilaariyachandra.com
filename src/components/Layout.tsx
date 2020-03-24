@@ -36,7 +36,6 @@ const Layout: React.FunctionComponent<Props> = ({ children }) => {
   const router = useRouter();
 
   React.useEffect(() => {
-    console.log(process.env.GOOGLE_ANALYTICS_ID);
     ReactGA.pageview(router.asPath);
   }, []);
 
