@@ -1,5 +1,7 @@
 import React from "react";
 import Link from "next/link";
+import ReactGA from "../util/react-ga";
+import { useRouter } from "next/router";
 
 const SOCIAL_LINKS = [
   {
@@ -25,6 +27,12 @@ type Props = {
 };
 
 const Layout: React.FunctionComponent<Props> = ({ children }) => {
+  const router = useRouter();
+
+  React.useEffect(() => {
+    ReactGA.pageview(router.asPath);
+  }, []);
+
   return (
     <div id="layout">
       <header>
