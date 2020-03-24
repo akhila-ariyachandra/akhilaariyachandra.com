@@ -11,6 +11,13 @@
     { "handle": "filesystem" },
     { "src": "/.*", "status": 404, "dest": "/404" }
   ],
+  "env": {
+    "GOOGLE_ANALYTICS_ID": "@personal-site-google-analytics-id",
+    "GOOGLE_AD_CLIENT": "@personal-site-google-ad-client",
+    "CONTENTFUL_SPACE_ID": "@personal-site-contentful-space-id",
+    "CONTENTFUL_ACCESS_TOKEN": "@personal-site-contentful-access-token",
+    "GATSBY_DISQUS_NAME": "@personal-site-disqus-name"
+  },
   "build": {
     "env": {
       "GOOGLE_ANALYTICS_ID": "@personal-site-google-analytics-id",
