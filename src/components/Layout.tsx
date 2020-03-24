@@ -19,6 +19,10 @@ const SOCIAL_LINKS = [
 ];
 
 const openNewTabLink = (url) => {
+  ReactGA.event({
+    category: "Social",
+    action: "Opened a social link",
+  });
   window.open(url, "_blank", "noopener=yes,noreferrer=yes");
 };
 
