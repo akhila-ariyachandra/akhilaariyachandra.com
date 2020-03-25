@@ -1,9 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import ReactGA from "react-ga";
-import { useRouter } from "next/router";
-
-ReactGA.initialize(process.env.GOOGLE_ANALYTICS_ID);
 
 const SOCIAL_LINKS = [
   {
@@ -21,10 +17,6 @@ const SOCIAL_LINKS = [
 ];
 
 const openNewTabLink = (url) => {
-  ReactGA.event({
-    category: "Social",
-    action: "Opened a social link",
-  });
   window.open(url, "_blank", "noopener=yes,noreferrer=yes");
 };
 
@@ -33,12 +25,6 @@ type Props = {
 };
 
 const Layout: React.FunctionComponent<Props> = ({ children }) => {
-  const router = useRouter();
-
-  React.useEffect(() => {
-    ReactGA.pageview(router.asPath);
-  }, []);
-
   return (
     <div id="layout">
       <header>
