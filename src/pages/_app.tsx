@@ -1,4 +1,6 @@
 import React from "react";
+import Router from "next/router";
+import withGA from "next-ga";
 import { Fonts } from "../util/fonts";
 
 const MyApp = ({ Component, pageProps }) => {
@@ -50,4 +52,4 @@ const MyApp = ({ Component, pageProps }) => {
 //   return { ...appProps }
 // }
 
-export default MyApp;
+export default withGA(process.env.GOOGLE_ANALYTICS_ID, Router)(MyApp);
