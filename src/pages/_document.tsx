@@ -62,12 +62,6 @@ class MyDocument extends Document {
           <link rel="manifest" href="/manifest.json" />
 
           <meta name="theme-color" content="#00C853" />
-
-          {/* <script
-            data-ad-client={process.env.GOOGLE_AD_CLIENT}
-            async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-          /> */}
         </Head>
 
         <body>

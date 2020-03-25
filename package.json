@@ -15,7 +15,6 @@
     "next-seo": "^4.4.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-ga": "^2.7.0",
     "react-image": "^2.4.0",
     "react-markdown": "^4.3.1",
     "react-syntax-highlighter": "^12.2.1",
