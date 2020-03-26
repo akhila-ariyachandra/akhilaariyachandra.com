@@ -3,7 +3,7 @@ import Link from "next/link";
 import readingTime from "reading-time";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
-import { BlogPost } from "../util/types";
+import { BlogPost } from "../lib/types";
 import { formatTags } from "../util/helpers";
 
 type Props = {

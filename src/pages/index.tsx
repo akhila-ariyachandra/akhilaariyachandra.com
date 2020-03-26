@@ -4,7 +4,7 @@ import Link from "next/link";
 import SEO from "../components/SEO";
 import { NextPage, GetStaticProps } from "next";
 import { client } from "../util/cms";
-import { BlogPost } from "../util/types";
+import { BlogPost } from "../lib/types";
 
 type Props = {
   blogPosts: [BlogPost];
