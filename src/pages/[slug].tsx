@@ -13,7 +13,7 @@ import BannerImage from "../components/BannerImage";
 import Link from "next/link";
 import { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import { client } from "../util/cms";
-import { BlogPost } from "../util/types";
+import { BlogPost } from "../lib/types";
 import { DiscussionEmbed } from "disqus-react";
 import { formatTags } from "../util/helpers";
 
