@@ -84,7 +84,7 @@ class MyDocument extends Document {
 
           {/* Google AdSense*/}
           <script
-            data-ad-client={process.env.GOOGLE_PUBLISHER_ID}
+            data-ad-client={process.env.GOOGLE_AD_CLIENT}
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
           />
