@@ -24,6 +24,7 @@ module.exports = withPWA(
     },
     pwa: {
       dest: "public",
+      publicExcludes: ["!sitemap.xml"],
     },
   })
 );
