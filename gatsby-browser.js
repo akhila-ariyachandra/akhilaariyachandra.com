@@ -1,5 +1,5 @@
 // custom typefaces
-import "typeface-montserrat"
-import "typeface-merriweather"
+import "typeface-exo";
+import "typeface-yrsa";
 
-import "prismjs/themes/prism.css"
+import "prismjs/themes/prism-okaidia.css";

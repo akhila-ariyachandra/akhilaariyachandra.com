@@ -1,62 +1,54 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
+import React from "react";
+import Layout from "../components/Layout";
+import SEO from "../components/SEO";
+import PostLink from "../components/PostLink";
+import { Link, graphql } from "gatsby";
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import { rhythm } from "../utils/typography"
-
-const BlogIndex = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata.title
-  const posts = data.allMarkdownRemark.edges
+const BlogIndex = ({ data }) => {
+  const posts = data.allMarkdownRemark.edges;
 
   return (
-    <Layout location={location} title={siteTitle}>
-      <SEO title="All posts" />
-      <Bio />
-      {posts.map(({ node }) => {
-        const title = node.frontmatter.title || node.fields.slug
-        return (
-          <article key={node.fields.slug}>
-            <header>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-            </header>
-            <section>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: node.frontmatter.description || node.excerpt,
-                }}
-              />
-            </section>
-          </article>
-        )
-      })}
-    </Layout>
-  )
-}
+    <Layout>
+      <SEO />
 
-export default BlogIndex
+      <div>
+        <h1>Hi.</h1>
+
+        <p>
+          I'm Akhila - a Web Developer trying to share his love and knowledge of
+          React, JavaScript, and Programming.
+        </p>
+      </div>
+
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <h3 style={{ flex: 1 }}>Latest Posts</h3>
+
+        <h4>
+          <Link style={{ boxShadow: `none` }} to="/blog/">
+            Read all posts
+          </Link>
+        </h4>
+      </div>
+
+      <hr />
+
+      {posts.map(({ node }) => (
+        <PostLink node={node} />
+      ))}
+    </Layout>
+  );
+};
+
+export default BlogIndex;
 
 export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+  query IndexPageQuery {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: 3
+    ) {
       edges {
         node {
-          excerpt
           fields {
             slug
           }
@@ -65,8 +57,9 @@ export const pageQuery = graphql`
             title
             description
           }
+          timeToRead
         }
       }
     }
   }
-`
+`;
