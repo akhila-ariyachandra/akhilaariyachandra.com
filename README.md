@@ -1,3 +1,17 @@
+# [akhilaariyachandra.com](https://akhilaariyachandra.com)
+
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
+## Environment Variables
+
+|    ENV Variable     | Description                                            | [Zeit Now](https://zeit.co/) Secret |
+| :-----------------: | ------------------------------------------------------ | :---------------------------------: |
+| GOOGLE_ANALYTICS_ID | [Google Analytics](https://analytics.google.com) ID    |  personal-site-google-analytics-id  |
+|  GOOGLE_AD_CLIENT   | [Google Adsense](https://ads.google.com/) Publisher ID |   personal-site-google-ad-client    |
+| GATSBY_DISQUS_NAME  | [Disqus](https://disqus.com/) Shortname                |      personal-site-disqus-name      |
+
+---
+
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.org">
