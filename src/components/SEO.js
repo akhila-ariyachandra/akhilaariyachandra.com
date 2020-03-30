@@ -10,10 +10,17 @@ import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 
-const SEO = ({ description, lang, meta, title }) => {
+const SEO = ({ description, lang, meta, title, location }) => {
   const { site } = useStaticQuery(
     graphql`
       query {
+        seoPic: file(absolutePath: { regex: "/cover-pic.jpg/" }) {
+          childImageSharp {
+            fixed(width: 1200, height: 630) {
+              src
+            }
+          }
+        }
         site {
           siteMetadata {
             title
@@ -28,6 +35,10 @@ const SEO = ({ description, lang, meta, title }) => {
   );
 
   const metaDescription = description || site.siteMetadata.description;
+  const titleTemplate =
+    title === site.siteMetadata.title
+      ? "%s"
+      : `%s | ${site.siteMetadata.title}`;
 
   return (
     <Helmet
@@ -35,7 +46,7 @@ const SEO = ({ description, lang, meta, title }) => {
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={titleTemplate}
       meta={[
         {
           name: `description`,

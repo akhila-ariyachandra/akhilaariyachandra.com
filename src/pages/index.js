@@ -3,15 +3,24 @@ import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import PostLink from "../components/PostLink";
 import { Link, graphql } from "gatsby";
+import { rhythm } from "../utils/typography";
 
-const BlogIndex = ({ data }) => {
+const BlogIndex = ({ data, location }) => {
   const posts = data.allMarkdownRemark.edges;
 
   return (
     <Layout>
-      <SEO />
+      <SEO
+        title="Akhila Ariyachandra"
+        meta={[
+          {
+            property: "og:image",
+            content: `${location.origin}${data.seoPic.childImageSharp.fixed.src}`,
+          },
+        ]}
+      />
 
-      <div>
+      <div style={{ marginTop: rhythm(5), marginBottom: rhythm(5) }}>
         <h1>Hi.</h1>
 
         <p>
@@ -43,6 +52,13 @@ export default BlogIndex;
 
 export const pageQuery = graphql`
   query IndexPageQuery {
+    seoPic: file(absolutePath: { regex: "/cover-pic.jpg/" }) {
+      childImageSharp {
+        fixed(width: 1200, height: 630) {
+          src
+        }
+      }
+    }
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
       limit: 3

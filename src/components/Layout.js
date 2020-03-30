@@ -30,7 +30,7 @@ const Layout = ({ children }) => {
           </Link>
         </h1>
 
-        <nav style={{ display: "flex" }}>
+        <nav style={{ display: "flex", flexWrap: "wrap" }}>
           <div style={{ flex: 1, display: "flex" }}>
             <h2>
               <Link style={{ boxShadow: `none` }} to="/blog/">
@@ -45,6 +45,39 @@ const Layout = ({ children }) => {
               >
                 About
               </Link>
+            </h2>
+          </div>
+
+          <div style={{ display: "flex" }}>
+            <h2>
+              <a
+                href="https://github.com/akhila-ariyachandra"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ boxShadow: `none` }}
+              >
+                GitHub
+              </a>
+            </h2>
+
+            <h2 style={{ boxShadow: `none`, marginLeft: rhythm(0.25) }}>
+              <a
+                href="https://dev.to/akhilaariyachandra"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                DEV
+              </a>
+            </h2>
+
+            <h2 style={{ boxShadow: `none`, marginLeft: rhythm(0.25) }}>
+              <a
+                href="https://www.linkedin.com/in/akhila-ariyachandra/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
+              </a>
             </h2>
           </div>
         </nav>
