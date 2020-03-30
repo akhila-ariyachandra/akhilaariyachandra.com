@@ -5,10 +5,17 @@ import SEO from "../components/SEO";
 import Img from "gatsby-image";
 import { Link, graphql } from "gatsby";
 import { rhythm, scale } from "../utils/typography";
+import { Disqus } from "gatsby-plugin-disqus";
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.markdownRemark;
   const { previous, next } = pageContext;
+
+  let disqusConfig = {
+    url: `${data.site.siteMetadata.siteUrl + location.pathname}`,
+    identifier: post.id,
+    title: post.frontmatter.title,
+  };
 
   return (
     <Layout>
@@ -68,6 +75,15 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             marginBottom: rhythm(1),
           }}
         />
+
+        <Disqus config={disqusConfig} />
+
+        <hr
+          style={{
+            marginBottom: rhythm(1),
+          }}
+        />
+
         <footer>
           <Bio />
         </footer>
@@ -107,6 +123,11 @@ export default BlogPostTemplate;
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       html

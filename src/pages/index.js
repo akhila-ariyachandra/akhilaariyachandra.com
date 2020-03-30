@@ -42,7 +42,7 @@ const BlogIndex = ({ data, location }) => {
       <hr />
 
       {posts.map(({ node }) => (
-        <PostLink node={node} />
+        <PostLink node={node} key={node.id} />
       ))}
     </Layout>
   );
@@ -65,6 +65,7 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
+          id
           fields {
             slug
           }

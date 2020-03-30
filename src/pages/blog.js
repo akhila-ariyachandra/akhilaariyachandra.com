@@ -20,7 +20,7 @@ const Blog = ({ data, location }) => {
       />
 
       {posts.map(({ node }) => (
-        <PostLink node={node} />
+        <PostLink node={node} key={node.id} />
       ))}
     </Layout>
   );
@@ -40,6 +40,7 @@ export const pageQuery = graphql`
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
+          id
           fields {
             slug
           }

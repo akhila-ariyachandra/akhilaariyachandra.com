@@ -7,7 +7,7 @@ module.exports = {
     title: `Akhila Ariyachandra`,
     author: {
       name: `Akhila Ariyachandra`,
-      summary: `Web Developer with a passion for JavaScript and React`,
+      summary: `, Web Developer with a passion for JavaScript and React`,
     },
     description: `Web Developer with a passion for JavaScript and React`,
     siteUrl: `https://akhilaariyachandra.com/`,
@@ -89,6 +89,12 @@ module.exports = {
       resolve: `@isamrish/gatsby-plugin-google-adsense`,
       options: {
         googleAdClientId: process.env.GOOGLE_AD_CLIENT,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-disqus`,
+      options: {
+        shortname: process.env.GATSBY_DISQUS_NAME,
       },
     },
   ],
