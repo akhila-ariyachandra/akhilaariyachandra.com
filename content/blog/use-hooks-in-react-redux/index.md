@@ -51,13 +51,13 @@ import { useSelector, useDispatch } from "react-redux";
 To get the redux state, we need to use `useSelector`. `useSelector` needs a function as an argument where the redux state is the parameter and the return object is the state we need, similar to `mapStateToProps`. So use `useSelector` to declare the user inside the component.
 
 ```javascript
-const user = useSelector(state => ({ user: state.user }));
+const user = useSelector((state) => ({ user: state.user }));
 ```
 
 The above line of code can be shortened to the following.
 
 ```javascript
-const user = useSelector(state => state.user);
+const user = useSelector((state) => state.user);
 ```
 
 To call the redux actions, we need to declare the dispatch function in the component using the `useDispatch` hook. After that we can call out redux actions inside the dispatch function like we did in the `getUser` action.
@@ -80,7 +80,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setUserId } from "../redux/user/actions";
 
 const Controls = () => {
-  const user = useSelector(state => state.user);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   return (
@@ -119,7 +119,7 @@ import { useSelector, useDispatch } from "react-redux";
 - Declare the user state using `useSelector`.
 
 ```javascript
-const user = useSelector(state => state.user);
+const user = useSelector((state) => state.user);
 ```
 
 - Declare the dispatch function using `useDispatch`.
@@ -142,7 +142,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "../redux/user/actions";
 
 const Display = () => {
-  const user = useSelector(state => state.user);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   React.useEffect(() => {

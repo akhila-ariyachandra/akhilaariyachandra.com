@@ -28,7 +28,7 @@ class App extends React.Component {
   componentDidMount = async () => {
     const response = await fetch(
       "https://jsonplaceholder.typicode.com/posts"
-    ).then(response => response.json());
+    ).then((response) => response.json());
 
     this.setState({ posts: response });
   };
@@ -36,7 +36,7 @@ class App extends React.Component {
   render = () => {
     return (
       <div>
-        {this.state.posts.map(post => (
+        {this.state.posts.map((post) => (
           <div key={post.id}>
             <h1>{post.title}</h1>
 
@@ -64,14 +64,14 @@ const App = () => {
   React.useEffect(async () => {
     const response = await fetch(
       "https://jsonplaceholder.typicode.com/posts"
-    ).then(response => response.json());
+    ).then((response) => response.json());
 
     setPosts(response);
   }, []);
 
   return (
     <div>
-      {posts.map(post => (
+      {posts.map((post) => (
         <div key={post.id}>
           <h1>{post.title}</h1>
 
@@ -97,7 +97,7 @@ While the above effect will run as is, React will show a warning saying that "An
 const fetchData = async () => {
   const response = await fetch(
     "https://jsonplaceholder.typicode.com/posts"
-  ).then(response => response.json());
+  ).then((response) => response.json());
 
   setPosts(response);
 };
@@ -118,7 +118,7 @@ const App = () => {
   const fetchData = async () => {
     const response = await fetch(
       "https://jsonplaceholder.typicode.com/posts"
-    ).then(response => response.json());
+    ).then((response) => response.json());
 
     setPosts(response);
   };
@@ -129,7 +129,7 @@ const App = () => {
 
   return (
     <div>
-      {posts.map(post => (
+      {posts.map((post) => (
         <div key={post.id}>
           <h1>{post.title}</h1>
 
@@ -270,15 +270,15 @@ export default class App extends React.Component {
     post: {},
   };
 
-  getPost = async id => {
+  getPost = async (id) => {
     const response = await fetch(
       `https://jsonplaceholder.typicode.com/posts/${id}`
-    ).then(response => response.json());
+    ).then((response) => response.json());
 
     this.setState({ post: response });
   };
 
-  setId = id => this.setState({ id });
+  setId = (id) => this.setState({ id });
 
   componentDidMount = () => {
     this.getPost(this.state.id);
@@ -352,10 +352,10 @@ const App = () => {
 Then let's declare a function to retrieve a post.
 
 ```javascript
-const getPost = async id => {
+const getPost = async (id) => {
   const response = await fetch(
     `https://jsonplaceholder.typicode.com/posts/${id}`
-  ).then(response => response.json());
+  ).then((response) => response.json());
 
   setPost(response);
 };
@@ -386,10 +386,10 @@ const App = () => {
   const [id, setId] = React.useState(1);
   const [post, setPost] = React.useState({});
 
-  const getPost = async id => {
+  const getPost = async (id) => {
     const response = await fetch(
       `https://jsonplaceholder.typicode.com/posts/${id}`
-    ).then(response => response.json());
+    ).then((response) => response.json());
 
     setPost(response);
   };

@@ -36,7 +36,7 @@ If we access `this` inside a function (cannot be a method), it'll be the global 
 const user = {
   firstName: "Akhila",
   lastName: "Ariyachandra",
-  fullName: function() {
+  fullName: function () {
     return this.firstName + " " + this.lastName;
   },
 };
@@ -52,10 +52,10 @@ When `this` is accessed in a method, it refers to the owner of the method, which
 const user = {
   firstName: "Akhila",
   lastName: "Ariyachandra",
-  fullName: function() {
+  fullName: function () {
     return this.firstName + " " + this.lastName;
   },
-  innerFunction: function() {
+  innerFunction: function () {
     function testFunction() {
       return this.firstName + " " + this.lastName;
     }
@@ -81,7 +81,7 @@ This means that the `this` of `testFunction()` is not aware of the `user` object
 const user = {
   firstName: "Akhila",
   lastName: "Ariyachandra",
-  innerFunction: function() {
+  innerFunction: function () {
     const that = this;
     function testFunction() {
       return that.firstName + " " + that.lastName;
@@ -102,7 +102,7 @@ Before _ES5_ there was no proper way to pass `this` to inner functions. The exam
 const user = {
   firstName: "Akhila",
   lastName: "Ariyachandra",
-  innerFunction: function() {
+  innerFunction: function () {
     function testFunction() {
       return this.firstName + " " + this.lastName;
     }
@@ -124,7 +124,7 @@ _ES5_ introduced the `bind` method, which allows us to set the `this` of the fun
 const user = {
   firstName: "Akhila",
   lastName: "Ariyachandra",
-  innerFunction: function() {
+  innerFunction: function () {
     const testFunction = () => {
       return this.firstName + " " + this.lastName;
     };

@@ -113,7 +113,7 @@ const reducer = (state, action) => {
       notesList = [...notesList, action.payload];
       break;
     case "remove":
-      notesList = notesList.filter(note => note._id !== action.payload._id);
+      notesList = notesList.filter((note) => note._id !== action.payload._id);
       break;
   }
 
@@ -163,7 +163,7 @@ Now that we're loading the notes we need to display them. In `return`, add the f
 <main>
   <h1>Notes App</h1>
 
-  {state.notesList.map(note => (
+  {state.notesList.map((note) => (
     <div key={note._id} className="note">
       <div className="container">
         <h2>{note.title}</h2>
@@ -188,7 +188,7 @@ Then let's add the UI and logic to create new note. Add this just after the `<ma
 <footer>
   <Formik
     initialValues={{ title: "", content: "" }}
-    validate={values => {
+    validate={(values) => {
       let errors = {};
 
       if (!values.title) {
@@ -277,7 +277,7 @@ Also we'll need some separation from `main` and `footer` so add this between the
 Finally we need to be able to delete created notes, so we'll add a delete button to each note. First we need to add the delete function before the `return`.
 
 ```jsx
-const removeNote = async id => {
+const removeNote = async (id) => {
   try {
     const response = await api.request({
       url: `/note/${id}`,
@@ -405,7 +405,7 @@ const reducer = (state, action) => {
       notesList = [...notesList, action.payload];
       break;
     case "remove":
-      notesList = notesList.filter(note => note._id !== action.payload._id);
+      notesList = notesList.filter((note) => note._id !== action.payload._id);
       break;
   }
 
@@ -425,7 +425,7 @@ const App = () => {
     }
   };
 
-  const removeNote = async id => {
+  const removeNote = async (id) => {
     try {
       const response = await api.request({
         url: `/note/${id}`,
@@ -447,7 +447,7 @@ const App = () => {
       <main>
         <h1>Notes App</h1>
 
-        {state.notesList.map(note => (
+        {state.notesList.map((note) => (
           <div key={note._id} className="note">
             <div className="container">
               <h2>{note.title}</h2>
@@ -466,7 +466,7 @@ const App = () => {
       <footer>
         <Formik
           initialValues={{ title: "", content: "" }}
-          validate={values => {
+          validate={(values) => {
             let errors = {};
 
             if (!values.title) {

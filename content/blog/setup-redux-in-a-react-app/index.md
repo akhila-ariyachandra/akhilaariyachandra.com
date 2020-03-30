@@ -79,23 +79,23 @@ import constants from "./constants";
 
 const { IS_FETCHING_USER, SET_USER, SET_USER_ID } = constants;
 
-const setIsFetchingUser = isFetching => ({
+const setIsFetchingUser = (isFetching) => ({
   type: IS_FETCHING_USER,
   payload: isFetching,
 });
 
-export const setUserId = userId => ({
+export const setUserId = (userId) => ({
   type: SET_USER_ID,
   payload: userId,
 });
 
-const setUser = user => ({
+const setUser = (user) => ({
   type: SET_USER,
   payload: user,
 });
 
-export const getUser = userId => {
-  return async dispatch => {
+export const getUser = (userId) => {
+  return async (dispatch) => {
     dispatch(setIsFetchingUser(true));
 
     const response = await fetch(
@@ -269,7 +269,7 @@ Now we can connect redux to it. We'll need the user state and the `getUser` acti
 For _mapStateToProps_ we need to declare a function with the redux state as the argument. It should return the state we want to send through the props.
 
 ```javascript
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.user,
 });
 ```
@@ -286,7 +286,7 @@ import { getUser } from "../redux/user/actions";
 _getUser_ is the redux action to get the user and _bindActionCreators_ is used so that the actions can be called directly instead of inside `store.dispatch` all the time and also group them. We'll put _getUer_ inside the _actions_ prop.
 
 ```javascript
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({ getUser }, dispatch),
 });
 ```
@@ -391,11 +391,11 @@ const Display = ({ user, actions }) => {
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.user,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({ getUser }, dispatch),
 });
 
@@ -442,11 +442,11 @@ const Controls = ({ user, actions }) => {
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.user,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({ setUserId }, dispatch),
 });
 
