@@ -80,6 +80,10 @@ const SEO = ({ description, lang, meta, title, location }) => {
           name: `twitter:description`,
           content: metaDescription,
         },
+        {
+          property: `og:image:alt`,
+          content: title,
+        },
       ].concat(meta)}
     />
   );

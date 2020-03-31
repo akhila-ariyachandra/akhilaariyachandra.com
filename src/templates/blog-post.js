@@ -29,7 +29,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           },
           { property: "og:image:width", content: 1200 },
           { property: "og:image:height", content: 630 },
-          { content: "og:url", property: location.href },
+          { property: "og:url", content: location.href },
         ]}
       />
       <article>
