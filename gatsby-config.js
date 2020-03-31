@@ -97,5 +97,6 @@ module.exports = {
         shortname: process.env.GATSBY_DISQUS_NAME,
       },
     },
+    `gatsby-plugin-webpack-bundle-analyser-v2`,
   ],
 };
