@@ -9,6 +9,7 @@ const About = ({ data, location }) => {
     <Layout>
       <SEO
         title="About"
+        description="A little bit about myself"
         meta={[
           {
             property: "og:image",

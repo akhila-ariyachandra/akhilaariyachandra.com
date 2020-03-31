@@ -11,6 +11,7 @@ const Blog = ({ data, location }) => {
     <Layout>
       <SEO
         title="Blog"
+        description="A blog by Akhila Ariyachandra talking about JavaScript, React & Web Development"
         meta={[
           {
             property: "og:image",
