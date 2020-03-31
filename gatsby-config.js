@@ -85,12 +85,12 @@ module.exports = {
     `gatsby-plugin-offline`,
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-robots-txt`,
-    {
+    /* {
       resolve: `@isamrish/gatsby-plugin-google-adsense`,
       options: {
         googleAdClientId: process.env.GOOGLE_AD_CLIENT,
       },
-    },
+    },  */
     {
       resolve: `gatsby-plugin-disqus`,
       options: {
