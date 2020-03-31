@@ -13,7 +13,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 
   let disqusConfig = {
     url: `${data.site.siteMetadata.siteUrl + location.pathname}`,
-    identifier: post.id,
+    identifier: post.fields.slug,
     title: post.frontmatter.title,
   };
 
@@ -129,8 +129,10 @@ export const pageQuery = graphql`
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
-      id
       html
+      fields {
+        slug
+      }
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")

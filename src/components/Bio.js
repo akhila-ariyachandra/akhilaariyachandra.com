@@ -27,20 +27,18 @@ const Bio = () => {
             name
             summary
           }
-          social {
-            twitter
-          }
         }
       }
     }
   `);
 
-  const { author, social } = data.site.siteMetadata;
+  const { author } = data.site.siteMetadata;
   return (
     <div
       style={{
         display: `flex`,
         marginBottom: rhythm(2.5),
+        alignItems: "center",
       }}
     >
       <Image
@@ -56,7 +54,7 @@ const Bio = () => {
           borderRadius: `50%`,
         }}
       />
-      <p>
+      <p style={{ marginBottom: 0 }}>
         Written by <strong>{author.name}</strong> {author.summary}
       </p>
     </div>
