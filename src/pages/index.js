@@ -17,6 +17,8 @@ const BlogIndex = ({ data, location }) => {
             property: "og:image",
             content: `${location.origin}${data.seoPic.childImageSharp.fixed.src}`,
           },
+          { property: "og:image:width", content: 1200 },
+          { property: "og:image:height", content: 630 },
         ]}
       />
 
