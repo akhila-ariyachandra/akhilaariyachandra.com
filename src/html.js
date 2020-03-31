@@ -13,7 +13,7 @@ export default function HTML(props) {
         />
         {props.headComponents}
         <script
-          data-ad-client={process.env.GOOGLE_AD_CLIENT}
+          data-ad-client="ca-pub-9764216594022086"
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
         />
