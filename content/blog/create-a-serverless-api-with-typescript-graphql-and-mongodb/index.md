@@ -734,7 +734,7 @@ Then create the [now configuration file](https://zeit.co/docs/configuration/), _
 }
 ```
 
-In the configuration file, we specifying to expose the secret _serverless-graphql-api-example-dp-path_ as environment variable _DB_PATH_.
+In the configuration file, we specifying to expose the secret _serverless-graphql-api-example-dp-path_ as environment variable **DB_PATH**.
 
 All that's let to do is deploying to now.
 
