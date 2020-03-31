@@ -27,6 +27,9 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             property: "og:image",
             content: `${location.origin}${post.frontmatter.banner.childImageSharp.fixed.src}`,
           },
+          { property: "og:image:width", content: 1200 },
+          { property: "og:image:height", content: 630 },
+          { content: "og:url", property: location.href },
         ]}
       />
       <article>
@@ -142,7 +145,7 @@ export const pageQuery = graphql`
             fluid(maxWidth: 1200, maxHeight: 600) {
               ...GatsbyImageSharpFluid
             }
-            fixed(width: 1200, height: 600) {
+            fixed(width: 1200, height: 630) {
               ...GatsbyImageSharpFixed
             }
           }
