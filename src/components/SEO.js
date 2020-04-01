@@ -10,11 +10,11 @@ import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 
-const SEO = ({ description, lang, meta, title, location }) => {
-  const { site } = useStaticQuery(
+const SEO = ({ description, lang, meta, title, image }) => {
+  const { site, picture } = useStaticQuery(
     graphql`
       query {
-        seoPic: file(absolutePath: { regex: "/cover-pic.jpg/" }) {
+        picture: file(absolutePath: { regex: "/cover-pic.jpg/" }) {
           childImageSharp {
             fixed(width: 1200, height: 630) {
               src
@@ -28,6 +28,7 @@ const SEO = ({ description, lang, meta, title, location }) => {
             social {
               twitter
             }
+            siteUrl
           }
         }
       }
@@ -81,9 +82,17 @@ const SEO = ({ description, lang, meta, title, location }) => {
           content: metaDescription,
         },
         {
+          property: "og:image",
+          content: `${site.siteMetadata.siteUrl}${
+            image ? image : picture.childImageSharp.fixed.src
+          }`,
+        },
+        {
           property: `og:image:alt`,
           content: title,
         },
+        { property: "og:image:width", content: 1200 },
+        { property: "og:image:height", content: 630 },
       ].concat(meta)}
       defer={false}
     />
@@ -101,6 +110,7 @@ SEO.propTypes = {
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
+  image: PropTypes.string,
 };
 
 export default SEO;
