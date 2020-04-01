@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import { rhythm } from "../utils/typography";
+import { FaGithub, FaDev, FaLinkedin } from "react-icons/fa";
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -56,7 +57,7 @@ const Layout = ({ children }) => {
                 rel="noopener noreferrer"
                 style={{ boxShadow: `none` }}
               >
-                GitHub
+                <FaGithub />
               </a>
             </h2>
 
@@ -66,7 +67,7 @@ const Layout = ({ children }) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                DEV
+                <FaDev />
               </a>
             </h2>
 
@@ -76,7 +77,7 @@ const Layout = ({ children }) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                LinkedIn
+                <FaLinkedin />
               </a>
             </h2>
           </div>
