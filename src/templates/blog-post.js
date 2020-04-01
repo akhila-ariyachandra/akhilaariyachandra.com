@@ -22,15 +22,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
       <SEO
         title={post.frontmatter.title}
         description={post.frontmatter.description}
-        meta={[
-          {
-            property: "og:image",
-            content: `${location.origin}${post.frontmatter.banner.childImageSharp.fixed.src}`,
-          },
-          { property: "og:image:width", content: 1200 },
-          { property: "og:image:height", content: 630 },
-          { property: "og:url", content: location.href },
-        ]}
+        image={post.frontmatter.banner.childImageSharp.fixed.src}
       />
       <article>
         <header>

@@ -2,25 +2,37 @@ import React from "react";
 import Layout from "../components/Layout";
 import PostLink from "../components/PostLink";
 import SEO from "../components/SEO";
-import { graphql } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 
-const Blog = ({ data, location }) => {
-  const posts = data.allMarkdownRemark.edges;
+const Blog = () => {
+  const { allMarkdownRemark } = useStaticQuery(graphql`
+    query BlogPageQuery {
+      allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+        edges {
+          node {
+            id
+            fields {
+              slug
+            }
+            frontmatter {
+              date(formatString: "MMMM DD, YYYY")
+              title
+              description
+            }
+            timeToRead
+          }
+        }
+      }
+    }
+  `);
+
+  const posts = allMarkdownRemark.edges;
 
   return (
     <Layout>
       <SEO
         title="Blog"
         description="A blog by Akhila Ariyachandra talking about JavaScript, React & Web Development"
-        meta={[
-          {
-            property: "og:image",
-            content: `${location.origin}${data.seoPic.childImageSharp.fixed.src}`,
-          },
-          { property: "og:image:width", content: 1200 },
-          { property: "og:image:height", content: 630 },
-          { property: "og:url", content: location.href },
-        ]}
       />
 
       {posts.map(({ node }) => (
@@ -31,31 +43,3 @@ const Blog = ({ data, location }) => {
 };
 
 export default Blog;
-
-export const pageQuery = graphql`
-  query BlogPageQuery {
-    seoPic: file(absolutePath: { regex: "/cover-pic.jpg/" }) {
-      childImageSharp {
-        fixed(width: 1200, height: 630) {
-          src
-        }
-      }
-    }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      edges {
-        node {
-          id
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-            description
-          }
-          timeToRead
-        }
-      }
-    }
-  }
-`;
