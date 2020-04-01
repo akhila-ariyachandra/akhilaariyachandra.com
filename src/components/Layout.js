@@ -57,6 +57,7 @@ const Layout = ({ children }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ boxShadow: `none` }}
+                aria-label="GitHub"
               >
                 <FaGithub />
               </OutboundLink>
@@ -67,6 +68,7 @@ const Layout = ({ children }) => {
                 href="https://dev.to/akhilaariyachandra"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="DEV"
               >
                 <FaDev />
               </OutboundLink>
@@ -77,6 +79,7 @@ const Layout = ({ children }) => {
                 href="https://www.linkedin.com/in/akhila-ariyachandra/"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="LinkedIn"
               >
                 <FaLinkedin />
               </OutboundLink>
