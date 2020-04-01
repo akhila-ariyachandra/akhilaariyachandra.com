@@ -62,7 +62,14 @@ const BlogIndex = ({ location }) => {
         <Img
           fluid={picture.childImageSharp.fluid}
           alt="Akhila Ariyachandra"
-          style={{ marginBottom: rhythm(1) }}
+          style={{
+            marginBottom: rhythm(1),
+            borderRadius: rhythm(0.25),
+            maxWidth: rhythm(20),
+            display: "block",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
         />
 
         <h1>Hi.</h1>
