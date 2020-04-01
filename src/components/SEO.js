@@ -85,6 +85,7 @@ const SEO = ({ description, lang, meta, title, location }) => {
           content: title,
         },
       ].concat(meta)}
+      defer={false}
     />
   );
 };

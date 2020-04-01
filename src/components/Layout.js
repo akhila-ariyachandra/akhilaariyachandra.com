@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import { rhythm } from "../utils/typography";
+import { FaGithub, FaDev, FaLinkedin } from "react-icons/fa";
+import { OutboundLink } from "gatsby-plugin-google-analytics";
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -50,34 +52,34 @@ const Layout = ({ children }) => {
 
           <div style={{ display: "flex" }}>
             <h2>
-              <a
+              <OutboundLink
                 href="https://github.com/akhila-ariyachandra"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ boxShadow: `none` }}
               >
-                GitHub
-              </a>
+                <FaGithub />
+              </OutboundLink>
             </h2>
 
             <h2 style={{ boxShadow: `none`, marginLeft: rhythm(0.25) }}>
-              <a
+              <OutboundLink
                 href="https://dev.to/akhilaariyachandra"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                DEV
-              </a>
+                <FaDev />
+              </OutboundLink>
             </h2>
 
             <h2 style={{ boxShadow: `none`, marginLeft: rhythm(0.25) }}>
-              <a
+              <OutboundLink
                 href="https://www.linkedin.com/in/akhila-ariyachandra/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                LinkedIn
-              </a>
+                <FaLinkedin />
+              </OutboundLink>
             </h2>
           </div>
         </nav>
