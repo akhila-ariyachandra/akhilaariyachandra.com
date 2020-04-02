@@ -1,5 +1,5 @@
 // custom typefaces
-import "typeface-exo";
-import "typeface-yrsa";
+import "typeface-work-sans";
+import "typeface-quattrocento-sans";
 
 import "prismjs/themes/prism-okaidia.css";
