@@ -35,7 +35,13 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             {post.frontmatter.title}
           </h1>
 
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginTop: rhythm(0.5),
+            }}
+          >
             <p
               style={{
                 ...scale(-1 / 5),

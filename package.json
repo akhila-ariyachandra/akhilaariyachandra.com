@@ -11,6 +11,7 @@
     "@isamrish/gatsby-plugin-google-adsense": "^1.0.2",
     "gatsby": "^2.20.9",
     "gatsby-image": "^2.3.1",
+    "gatsby-plugin-catch-links": "^2.2.1",
     "gatsby-plugin-disqus": "^1.1.4",
     "gatsby-plugin-feed": "^2.4.1",
     "gatsby-plugin-google-analytics": "^2.2.2",
@@ -41,10 +42,10 @@
     "react-helmet": "^5.2.1",
     "react-icons": "^3.9.0",
     "react-typography": "^0.16.19",
-    "typeface-exo": "0.0.61",
-    "typeface-yrsa": "0.0.72",
+    "typeface-quattrocento-sans": "0.0.72",
+    "typeface-work-sans": "0.0.72",
     "typography": "^0.16.19",
-    "typography-theme-irving": "^0.16.19"
+    "typography-theme-fairy-gates": "^0.16.19"
   },
   "devDependencies": {
     "prettier": "^2.0.2"
