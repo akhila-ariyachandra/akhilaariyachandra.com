@@ -1,7 +1,7 @@
 import Typography from "typography";
-import FairyGates from "typography-theme-fairy-gates";
+import Irving from "typography-theme-irving";
 
-FairyGates.overrideThemeStyles = () => {
+Irving.overrideThemeStyles = () => {
   return {
     "a.gatsby-resp-image-link": {
       boxShadow: `none`,
@@ -9,9 +9,9 @@ FairyGates.overrideThemeStyles = () => {
   };
 };
 
-delete FairyGates.googleFonts;
+delete Irving.googleFonts;
 
-const typography = new Typography(FairyGates);
+const typography = new Typography(Irving);
 
 // Hot reload typography in development.
 if (process.env.NODE_ENV !== `production`) {
