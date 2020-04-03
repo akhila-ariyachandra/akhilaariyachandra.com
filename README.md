@@ -4,7 +4,7 @@
 
 ## Environment Variables
 
-|    ENV Variable     | Description                                            | [Zeit Now](https://zeit.co/) Secret |
+|    ENV Variable     | Description                                            | [ZEIT NOW](https://zeit.co/) Secret |
 | :-----------------: | ------------------------------------------------------ | :---------------------------------: |
 | GOOGLE_ANALYTICS_ID | [Google Analytics](https://analytics.google.com) ID    |  personal-site-google-analytics-id  |
 |  GOOGLE_AD_CLIENT   | [Google Adsense](https://ads.google.com/) Publisher ID |   personal-site-google-ad-client    |
