@@ -100,5 +100,6 @@ module.exports = {
     `gatsby-plugin-webpack-bundle-analyser-v2`,
     `gatsby-plugin-preact`,
     `gatsby-plugin-catch-links`,
+    `gatsby-plugin-zeit-now`,
   ],
 };
