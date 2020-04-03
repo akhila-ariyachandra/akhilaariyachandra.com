@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import { rhythm } from "../utils/typography";
-import { FaGithub, FaDev, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaDev, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
 import { OutboundLink } from "gatsby-plugin-google-analytics";
 
 const Layout = ({ children }) => {
@@ -82,6 +82,17 @@ const Layout = ({ children }) => {
                 aria-label="LinkedIn"
               >
                 <FaLinkedin />
+              </OutboundLink>
+            </h2>
+
+            <h2 style={{ boxShadow: `none`, marginLeft: rhythm(0.25) }}>
+              <OutboundLink
+                href="https://twitter.com/heshan_1010"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+              >
+                <FaTwitterSquare />
               </OutboundLink>
             </h2>
           </div>
