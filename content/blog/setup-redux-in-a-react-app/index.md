@@ -39,7 +39,7 @@ The **store** is the first part of redux we are going to setup. The store is wha
 In the _redux_ folder create another folder called _user_ and in it create a file called _initialState.js_. This is where we'll define the initial state that redux is going to load with. We'll need one state to store the **user id**, one to store the **user** and one to indicate whether is app is in the middle of retrieving a user.
 
 ```javascript
-// src/redux/user/store.js
+// src/redux/user/initialState.js
 
 const initialState = {
   isFetchingUser: false,
@@ -242,7 +242,7 @@ We could user redux as is, but we could make it easier to work with using the li
 
 To demonstrate how we can use redux to share state between multiple components we going to build the following app.
 
-![app preview](//images.ctfassets.net/53twf8scmzpj/3TayY9AvD3moitl5syw6me/07750535baa66f77e8245641dced56fb/app_preview.png)
+![App Preview](./app_preview.png)
 
 We can spilt the app into two components
 
