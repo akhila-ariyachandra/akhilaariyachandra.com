@@ -242,7 +242,7 @@ We could user redux as is, but we could make it easier to work with using the li
 
 To demonstrate how we can use redux to share state between multiple components we going to build the following app.
 
-![app preview](//images.ctfassets.net/53twf8scmzpj/3TayY9AvD3moitl5syw6me/07750535baa66f77e8245641dced56fb/app_preview.png)
+![App Preview](./app_preview.png)
 
 We can spilt the app into two components
 
