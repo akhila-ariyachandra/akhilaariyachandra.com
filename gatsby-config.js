@@ -14,6 +14,18 @@ module.exports = {
     social: {
       twitter: `heshan_1010`,
     },
+    projects: [
+      {
+        title: "Sri Lanka COVID-19 Tracker",
+        url: "https://sri-lanka-covid-19.now.sh/",
+        description: "COVID-19 Tracker for Sri Lanka",
+      },
+      {
+        title: "Blogger (WIP)",
+        url: "https://github.com/akhila-ariyachandra/blogger",
+        description: "A simple blogging site",
+      },
+    ],
   },
   plugins: [
     {
@@ -101,5 +113,11 @@ module.exports = {
     `gatsby-plugin-preact`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-zeit-now`,
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {
+        // Add any options here
+      },
+    },
   ],
 };
