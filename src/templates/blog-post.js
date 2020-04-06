@@ -87,8 +87,12 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 
         <StyledDonationLink>
           Enjoyed the post or found it useful?{" "}
-          <OutboundLink href="https://ko-fi.com/V7V5ZOMO" target="_blank">
-            Consider buying me a coffee
+          <OutboundLink
+            href={data.site.siteMetadata.donationLink}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Please consider buying me a coffee.
           </OutboundLink>
         </StyledDonationLink>
 
@@ -140,6 +144,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         siteUrl
+        donationLink
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
