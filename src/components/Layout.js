@@ -61,7 +61,6 @@ const Layout = ({ children }) => {
                 href="https://github.com/akhila-ariyachandra"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ boxShadow: `none` }}
                 aria-label="GitHub"
               >
                 <FaGithub />
