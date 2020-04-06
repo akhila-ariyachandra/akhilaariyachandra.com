@@ -1,9 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import { rhythm } from "../utils/typography";
 import { FaGithub, FaDev, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
 import { OutboundLink } from "gatsby-plugin-google-analytics";
+
+const StyledFooter = styled.footer`
+  margin-top: ${rhythm(3)};
+`;
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -103,7 +108,7 @@ const Layout = ({ children }) => {
 
       <main>{children}</main>
 
-      <footer>
+      <StyledFooter>
         © {new Date().getFullYear()}, Built with
         {` `}
         <OutboundLink
@@ -113,7 +118,7 @@ const Layout = ({ children }) => {
         >
           Gatsby
         </OutboundLink>
-      </footer>
+      </StyledFooter>
     </div>
   );
 };

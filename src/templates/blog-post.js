@@ -3,9 +3,19 @@ import Bio from "../components/Bio";
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import Img from "gatsby-image";
+import styled from "styled-components";
 import { Link, graphql } from "gatsby";
 import { rhythm, scale } from "../utils/typography";
 import { Disqus } from "gatsby-plugin-disqus";
+import { OutboundLink } from "gatsby-plugin-google-analytics";
+
+const StyledDonationLink = styled.h6`
+  margin: ${rhythm(1)} 0;
+`;
+
+const StyledHR = styled.hr`
+  margin-bottom: ${rhythm(1)};
+`;
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.markdownRemark;
@@ -70,20 +80,23 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             style={{ marginBottom: rhythm(1) }}
           />
         </header>
+
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
-        <hr
-          style={{
-            marginBottom: rhythm(1),
-          }}
-        />
+
+        <StyledHR />
+
+        <StyledDonationLink>
+          Enjoyed the post or found it useful?{" "}
+          <OutboundLink href="https://ko-fi.com/V7V5ZOMO" target="_blank">
+            Consider buying me a coffee
+          </OutboundLink>
+        </StyledDonationLink>
+
+        <StyledHR />
 
         <Disqus config={disqusConfig} />
 
-        <hr
-          style={{
-            marginBottom: rhythm(1),
-          }}
-        />
+        <StyledHR />
 
         <footer>
           <Bio />

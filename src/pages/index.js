@@ -3,11 +3,12 @@ import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import PostLink from "../components/PostLink";
 import Img from "gatsby-image";
+import ProjectLink from "../components/ProjectLink";
 import { Link, graphql, useStaticQuery } from "gatsby";
 import { rhythm } from "../utils/typography";
 
 const BlogIndex = () => {
-  const { picture, allMarkdownRemark } = useStaticQuery(graphql`
+  const { picture, allMarkdownRemark, site } = useStaticQuery(graphql`
     query IndexPageQuery {
       picture: file(absolutePath: { regex: "/cover-pic.jpg/" }) {
         childImageSharp {
@@ -35,10 +36,20 @@ const BlogIndex = () => {
           }
         }
       }
+      site {
+        siteMetadata {
+          projects {
+            title
+            url
+            description
+          }
+        }
+      }
     }
   `);
 
   const posts = allMarkdownRemark.edges;
+  const projects = site.siteMetadata.projects;
 
   return (
     <Layout>
@@ -80,6 +91,14 @@ const BlogIndex = () => {
 
       {posts.map(({ node }) => (
         <PostLink node={node} key={node.id} />
+      ))}
+
+      <h3 style={{ marginTop: rhythm(3) }}>Projects</h3>
+
+      <hr />
+
+      {projects.map((project) => (
+        <ProjectLink project={project} key={project.url} />
       ))}
     </Layout>
   );
