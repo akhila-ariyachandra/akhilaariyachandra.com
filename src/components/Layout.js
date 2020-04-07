@@ -49,7 +49,7 @@ const Layout = ({ children }) => {
         </h1>
 
         <nav style={{ display: "flex", flexWrap: "wrap" }}>
-          <div style={{ flex: 1, display: "flex" }}>
+          <div style={{ display: "flex" }}>
             <StyledH2>
               <Link style={{ boxShadow: `none` }} to="/blog/">
                 Blog
@@ -63,7 +63,7 @@ const Layout = ({ children }) => {
             </StyledH2>
           </div>
 
-          <div style={{ display: "flex" }}>
+          <div style={{ flex: 1, display: "flex", justifyContent: "flex-end" }}>
             <StyledH2 marginLeft>
               <StyledOutboundLink
                 href="https://github.com/akhila-ariyachandra"
