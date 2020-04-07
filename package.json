@@ -10,7 +10,7 @@
   "dependencies": {
     "@isamrish/gatsby-plugin-google-adsense": "^1.0.2",
     "babel-plugin-styled-components": "^1.10.7",
-    "gatsby": "^2.20.12",
+    "gatsby": "^2.20.13",
     "gatsby-image": "^2.3.1",
     "gatsby-plugin-catch-links": "^2.2.1",
     "gatsby-plugin-disqus": "^1.1.4",
@@ -45,7 +45,7 @@
     "react-helmet": "^5.2.1",
     "react-icons": "^3.9.0",
     "react-typography": "^0.16.19",
-    "styled-components": "^5.0.1",
+    "styled-components": "^5.1.0",
     "typeface-exo": "0.0.61",
     "typeface-yrsa": "0.0.72",
     "typography": "^0.16.19",
