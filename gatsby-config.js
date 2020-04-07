@@ -73,7 +73,69 @@ module.exports = {
         trackingId: process.env.GOOGLE_ANALYTICS_ID,
       },
     },
-    `gatsby-plugin-feed`,
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.edges.map((edge) => {
+                return Object.assign({}, edge.node.frontmatter, {
+                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  custom_elements: [
+                    {
+                      image_link:
+                        site.siteMetadata.siteUrl +
+                        edge.node.frontmatter.banner.childImageSharp.fixed.src,
+                    },
+                  ],
+                });
+              });
+            },
+            query: `
+              {
+                allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC}) {
+                  edges {
+                    node {
+                      fields {
+                        slug
+                      }
+                      frontmatter {
+                        date(formatString: "MMMM DD, YYYY")
+                        title
+                        description
+                        banner {
+                          childImageSharp {
+                            fixed(width: 1200, height: 630) {
+                              src
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: `/rss.xml`,
+            title: `Akhila Ariyachandra's Blog RSS`,
+          },
+        ],
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

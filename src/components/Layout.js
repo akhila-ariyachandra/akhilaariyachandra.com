@@ -1,13 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import StyledOutboundLink from "./StyledOutboundLink";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import { rhythm } from "../utils/typography";
-import { FaGithub, FaDev, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
+import {
+  FaGithub,
+  FaDev,
+  FaLinkedin,
+  FaTwitterSquare,
+  FaRssSquare,
+} from "react-icons/fa";
 import { OutboundLink } from "gatsby-plugin-google-analytics";
 
 const StyledFooter = styled.footer`
   margin-top: ${rhythm(3)};
+`;
+
+const StyledH2 = styled.h2`
+  ${({ marginLeft }) => (marginLeft ? `margin-left: ${rhythm(0.25)};` : "")}
 `;
 
 const Layout = ({ children }) => {
@@ -39,66 +50,74 @@ const Layout = ({ children }) => {
 
         <nav style={{ display: "flex", flexWrap: "wrap" }}>
           <div style={{ flex: 1, display: "flex" }}>
-            <h2>
+            <StyledH2>
               <Link style={{ boxShadow: `none` }} to="/blog/">
                 Blog
               </Link>
-            </h2>
+            </StyledH2>
 
-            <h2>
-              <Link
-                style={{ boxShadow: `none`, marginLeft: rhythm(0.25) }}
-                to="/about/"
-              >
+            <StyledH2 marginLeft>
+              <Link style={{ boxShadow: `none` }} to="/about/">
                 About
               </Link>
-            </h2>
+            </StyledH2>
           </div>
 
           <div style={{ display: "flex" }}>
-            <h2>
-              <OutboundLink
+            <StyledH2 marginLeft>
+              <StyledOutboundLink
                 href="https://github.com/akhila-ariyachandra"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
               >
                 <FaGithub />
-              </OutboundLink>
-            </h2>
+              </StyledOutboundLink>
+            </StyledH2>
 
-            <h2 style={{ boxShadow: `none`, marginLeft: rhythm(0.25) }}>
-              <OutboundLink
+            <StyledH2 marginLeft>
+              <StyledOutboundLink
                 href="https://dev.to/akhilaariyachandra"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="DEV"
               >
                 <FaDev />
-              </OutboundLink>
-            </h2>
+              </StyledOutboundLink>
+            </StyledH2>
 
-            <h2 style={{ boxShadow: `none`, marginLeft: rhythm(0.25) }}>
-              <OutboundLink
+            <StyledH2 marginLeft>
+              <StyledOutboundLink
                 href="https://www.linkedin.com/in/akhila-ariyachandra/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
               >
                 <FaLinkedin />
-              </OutboundLink>
-            </h2>
+              </StyledOutboundLink>
+            </StyledH2>
 
-            <h2 style={{ boxShadow: `none`, marginLeft: rhythm(0.25) }}>
-              <OutboundLink
+            <StyledH2 marginLeft>
+              <StyledOutboundLink
                 href="https://twitter.com/heshan_1010"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
               >
                 <FaTwitterSquare />
-              </OutboundLink>
-            </h2>
+              </StyledOutboundLink>
+            </StyledH2>
+
+            <StyledH2 marginLeft>
+              <StyledOutboundLink
+                href="/rss.xml"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="RSS Feed"
+              >
+                <FaRssSquare />
+              </StyledOutboundLink>
+            </StyledH2>
           </div>
         </nav>
       </header>
