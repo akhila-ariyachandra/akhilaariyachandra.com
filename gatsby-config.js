@@ -16,14 +16,14 @@ module.exports = {
     },
     projects: [
       {
-        title: "Sri Lanka COVID-19 Tracker",
-        url: "https://sri-lanka-covid-19.now.sh/",
-        description: "COVID-19 Tracker for Sri Lanka",
+        title: `Sri Lanka COVID-19 Tracker`,
+        url: `https://sri-lanka-covid-19.now.sh/`,
+        description: `COVID-19 Tracker for Sri Lanka`,
       },
       {
-        title: "Blogger (WIP)",
-        url: "https://github.com/akhila-ariyachandra/blogger",
-        description: "A simple blogging site",
+        title: `Blogger (WIP)`,
+        url: `https://github.com/akhila-ariyachandra/blogger`,
+        description: `A simple blogging site`,
       },
     ],
     donationLink: `https://ko-fi.com/V7V5ZOMO`,
@@ -114,7 +114,7 @@ module.exports = {
                         slug
                       }
                       frontmatter {
-                        date(formatString: "MMMM DD, YYYY")
+                        date
                         title
                         description
                         banner {
@@ -155,9 +155,6 @@ module.exports = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    `gatsby-plugin-offline`,
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-robots-txt`,
     /* {
@@ -182,5 +179,8 @@ module.exports = {
         // Add any options here
       },
     },
+    // this (optional) plugin enables Progressive Web App + Offline functionality
+    // To learn more, visit: https://gatsby.dev/offline
+    `gatsby-plugin-offline`,
   ],
 };
