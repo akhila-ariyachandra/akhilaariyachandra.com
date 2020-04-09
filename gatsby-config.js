@@ -27,6 +27,104 @@ module.exports = {
       },
     ],
     donationLink: `https://ko-fi.com/V7V5ZOMO`,
+    technologies: [
+      {
+        name: `JavaScript`,
+        background: `#f7df1e`,
+        text: `#000000`,
+        link: `https://www.javascript.com/`,
+      },
+      {
+        name: `React`,
+        background: `#292929`,
+        text: `#00d8ff`,
+        link: `https://reactjs.org/`,
+      },
+      {
+        name: `GraphQL`,
+        background: `#e10098`,
+        text: `#ffffff`,
+        link: `https://graphql.org/`,
+      },
+      {
+        name: `TypeScript`,
+        background: `#294E80`,
+        text: `#e7e7e7`,
+        link: `https://www.typescriptlang.org/`,
+      },
+      {
+        name: `Next.js`,
+        background: `#000000`,
+        text: `#ffffff`,
+        link: `https://nextjs.org/`,
+      },
+      {
+        name: `Gatsby`,
+        background: `#663399`,
+        text: `#ffffff`,
+        link: `https://www.gatsbyjs.org/`,
+      },
+      {
+        name: `Node.js`,
+        background: `#026e00`,
+        text: `#ffffff`,
+        link: `https://nodejs.org/en/`,
+      },
+      {
+        name: `MongoDB`,
+        background: `#589636`,
+        text: `#ffffff`,
+        link: `https://www.mongodb.com/`,
+      },
+      {
+        name: `JAMStack`,
+        background: `#00c7b7`,
+        text: `#ffffff`,
+        link: `https://jamstack.org/`,
+      },
+      {
+        name: `Apollo`,
+        background: `#3f20ba`,
+        text: `#ffffff`,
+        link: `https://www.apollographql.com/`,
+      },
+      {
+        name: `TailwindCSS`,
+        background: `#0694a2`,
+        text: `#ffffff`,
+        link: `https://tailwindcss.com/`,
+      },
+      {
+        name: `React Native`,
+        background: `#292929`,
+        text: `#00d8ff`,
+        link: `https://reactnative.dev/`,
+      },
+      {
+        name: `Firebase`,
+        background: `#fbc02d`,
+        text: `#424242`,
+        link: `https://firebase.google.com/`,
+      },
+      {
+        name: `ZEIT`,
+        background: `#000000`,
+        text: `#ffffff`,
+        link: `https://zeit.co/home`,
+      },
+      {
+        name: `Netlify`,
+        background: `#00ad9f`,
+        text: `#ffffff`,
+        link: `https://www.netlify.com/`,
+      },
+      {
+        name: `Contentful`,
+        background: `#2478cc`,
+        text: `#ffffff`,
+        link: `https://www.contentful.com/`,
+      },
+    ],
   },
   plugins: [
     {
@@ -149,12 +247,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-plugin-typography`,
-      options: {
-        pathToConfigModule: `src/utils/typography`,
-      },
-    },
+    `gatsby-plugin-postcss`,
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-robots-txt`,
     /* {

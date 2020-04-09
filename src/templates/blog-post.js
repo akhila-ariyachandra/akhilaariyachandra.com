@@ -5,17 +5,12 @@ import SEO from "../components/SEO";
 import Img from "gatsby-image";
 import styled from "styled-components";
 import { Link, graphql } from "gatsby";
-import { rhythm, scale } from "../utils/typography";
 import { Disqus } from "gatsby-plugin-disqus";
 import { OutboundLink } from "gatsby-plugin-google-analytics";
 
-const StyledDonationLink = styled.h6`
-  margin: ${rhythm(1)} 0;
-`;
+const StyledDonationLink = styled.h6``;
 
-const StyledHR = styled.hr`
-  margin-bottom: ${rhythm(1)};
-`;
+const StyledHR = styled.hr``;
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.markdownRemark;
@@ -38,7 +33,6 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         <header>
           <h1
             style={{
-              marginTop: rhythm(1),
               marginBottom: 0,
             }}
           >
@@ -49,14 +43,11 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             style={{
               display: "flex",
               alignItems: "center",
-              marginTop: rhythm(0.5),
             }}
           >
             <p
               style={{
-                ...scale(-1 / 5),
                 display: `block`,
-                marginBottom: rhythm(1),
                 flex: 1,
               }}
             >
@@ -65,9 +56,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 
             <p
               style={{
-                ...scale(-1 / 5),
                 display: `block`,
-                marginBottom: rhythm(1),
               }}
             >
               {`${post.timeToRead} min read`}
@@ -77,7 +66,6 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           <Img
             fluid={post.frontmatter.banner.childImageSharp.fluid}
             alt={`${post.frontmatter.title} Banner`}
-            style={{ marginBottom: rhythm(1) }}
           />
         </header>
 

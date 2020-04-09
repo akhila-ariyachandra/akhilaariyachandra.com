@@ -1,5 +1,3 @@
-// custom typefaces
-import "typeface-exo";
-import "typeface-yrsa";
+import "./src/styles/site.css";
 
 import "prismjs/themes/prism-okaidia.css";

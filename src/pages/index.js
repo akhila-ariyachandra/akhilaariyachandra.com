@@ -4,8 +4,8 @@ import SEO from "../components/SEO";
 import PostLink from "../components/PostLink";
 import Img from "gatsby-image";
 import ProjectLink from "../components/ProjectLink";
+import TechnologyBlock from "../components/TechnologyBlock";
 import { Link, graphql, useStaticQuery } from "gatsby";
-import { rhythm } from "../utils/typography";
 
 const BlogIndex = () => {
   const { picture, allMarkdownRemark, site } = useStaticQuery(graphql`
@@ -43,6 +43,12 @@ const BlogIndex = () => {
             url
             description
           }
+          technologies {
+            name
+            background
+            text
+            link
+          }
         }
       }
     }
@@ -50,56 +56,67 @@ const BlogIndex = () => {
 
   const posts = allMarkdownRemark.edges;
   const projects = site.siteMetadata.projects;
+  const technologies = site.siteMetadata.technologies;
 
   return (
     <Layout>
       <SEO title="Akhila Ariyachandra" />
 
-      <div style={{ marginTop: rhythm(3), marginBottom: rhythm(3) }}>
+      <div className="my-20">
         <Img
           fluid={picture.childImageSharp.fluid}
           alt="Akhila Ariyachandra"
-          style={{
-            marginBottom: rhythm(1),
-            borderRadius: rhythm(0.25),
-            maxWidth: rhythm(20),
-            display: "block",
-            marginLeft: "auto",
-            marginRight: "auto",
-          }}
+          className="block mx-auto rounded-lg mb-2"
+          style={{ maxWidth: 600 }}
         />
 
-        <h1>Hi.</h1>
+        <h1 className="text-4xl font-semibold">Hi.</h1>
 
-        <p>
+        <p className="text-lg font-normal">
           I'm Akhila - a Web Developer trying to share his love and knowledge of
           React, JavaScript, and Programming.
         </p>
       </div>
 
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <h3 style={{ flex: 1 }}>Latest Posts</h3>
+      <div className="my-16">
+        <h3 className="text-3xl font-semibold">Technologies I work with</h3>
 
-        <h4>
-          <Link style={{ boxShadow: `none` }} to="/blog/">
-            Read all posts
-          </Link>
-        </h4>
+        <hr className="my-3" />
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+          {technologies.map((technology) => (
+            <TechnologyBlock technology={technology} key={technology.name} />
+          ))}
+        </div>
       </div>
 
-      <hr />
+      <div className="my-16">
+        <div className="flex items-center">
+          <h3 className="text-3xl font-semibold flex-1">Latest Posts</h3>
 
-      {posts.map(({ node }) => (
-        <PostLink node={node} key={node.id} />
-      ))}
+          <h4 className="text-xl font-medium">
+            <Link className="shadow-none" to="/blog/">
+              Read all posts
+            </Link>
+          </h4>
+        </div>
 
-      <h3 style={{ marginTop: rhythm(3) }}>Projects</h3>
+        <hr className="my-3" />
 
-      <hr />
+        {posts.map(({ node }) => (
+          <PostLink node={node} key={node.id} />
+        ))}
+      </div>
 
-      {projects.map((project) => (
-        <ProjectLink project={project} key={project.url} />
-      ))}
+      <div className="my-16">
+        <h3 className="text-3xl font-semibold">Projects</h3>
+
+        <hr className="my-3" />
+
+        {projects.map((project) => (
+          <ProjectLink project={project} key={project.url} />
+        ))}
+      </div>
     </Layout>
   );
 };

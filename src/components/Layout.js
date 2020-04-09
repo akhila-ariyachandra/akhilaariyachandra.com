@@ -1,9 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
-import StyledOutboundLink from "./StyledOutboundLink";
 import { Link, useStaticQuery, graphql } from "gatsby";
-import { rhythm } from "../utils/typography";
 import {
   FaGithub,
   FaDev,
@@ -12,14 +9,6 @@ import {
   FaRssSquare,
 } from "react-icons/fa";
 import { OutboundLink } from "gatsby-plugin-google-analytics";
-
-const StyledFooter = styled.footer`
-  margin-top: ${rhythm(3)};
-`;
-
-const StyledH2 = styled.h2`
-  ${({ marginLeft }) => (marginLeft ? `margin-left: ${rhythm(0.25)};` : "")}
-`;
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -33,110 +22,109 @@ const Layout = ({ children }) => {
   `);
 
   return (
-    <div
-      style={{
-        marginLeft: `auto`,
-        marginRight: `auto`,
-        maxWidth: rhythm(30),
-        padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
-      }}
-    >
+    <div className="container p-8">
       <header>
-        <h1>
-          <Link style={{ boxShadow: `none` }} to="/">
+        <h1 className="text-4xl font-bold">
+          <Link className="shadow-none" to="/">
             {data.site.siteMetadata.title}
           </Link>
         </h1>
 
-        <nav style={{ display: "flex", flexWrap: "wrap" }}>
-          <div style={{ display: "flex" }}>
-            <StyledH2>
-              <Link style={{ boxShadow: `none` }} to="/blog/">
+        <nav className="flex flex-wrap">
+          <div className="flex">
+            <h2 className="text-2xl font-medium">
+              <Link className="shadow-none" to="/blog/">
                 Blog
               </Link>
-            </StyledH2>
+            </h2>
 
-            <StyledH2 marginLeft>
-              <Link style={{ boxShadow: `none` }} to="/about/">
+            <h2 className="text-2xl font-medium ml-2">
+              <Link className="shadow-none" to="/about/">
                 About
               </Link>
-            </StyledH2>
+            </h2>
           </div>
 
-          <div style={{ flex: 1, display: "flex", justifyContent: "flex-end" }}>
-            <StyledH2 marginLeft>
-              <StyledOutboundLink
+          <div className="flex-1 flex justify-end">
+            <h2 className="text-2xl font-medium ml-2">
+              <OutboundLink
+                className="shadow-none"
                 href="https://github.com/akhila-ariyachandra"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
               >
                 <FaGithub />
-              </StyledOutboundLink>
-            </StyledH2>
+              </OutboundLink>
+            </h2>
 
-            <StyledH2 marginLeft>
-              <StyledOutboundLink
+            <h2 className="text-2xl font-medium ml-2">
+              <OutboundLink
+                className="shadow-none"
                 href="https://dev.to/akhilaariyachandra"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="DEV"
               >
                 <FaDev />
-              </StyledOutboundLink>
-            </StyledH2>
+              </OutboundLink>
+            </h2>
 
-            <StyledH2 marginLeft>
-              <StyledOutboundLink
+            <h2 className="text-2xl font-medium ml-2">
+              <OutboundLink
+                className="shadow-none"
                 href="https://www.linkedin.com/in/akhila-ariyachandra/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
               >
                 <FaLinkedin />
-              </StyledOutboundLink>
-            </StyledH2>
+              </OutboundLink>
+            </h2>
 
-            <StyledH2 marginLeft>
-              <StyledOutboundLink
+            <h2 className="text-2xl font-medium ml-2">
+              <OutboundLink
+                className="shadow-none"
                 href="https://twitter.com/heshan_1010"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
               >
                 <FaTwitterSquare />
-              </StyledOutboundLink>
-            </StyledH2>
+              </OutboundLink>
+            </h2>
 
-            <StyledH2 marginLeft>
-              <StyledOutboundLink
+            <h2 className="text-2xl font-medium ml-2">
+              <OutboundLink
+                className="shadow-none"
                 href="/rss.xml"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="RSS Feed"
               >
                 <FaRssSquare />
-              </StyledOutboundLink>
-            </StyledH2>
+              </OutboundLink>
+            </h2>
           </div>
         </nav>
       </header>
 
-      <hr />
+      <hr className="my-3" />
 
       <main>{children}</main>
 
-      <StyledFooter>
+      <footer className="mt-4 text-lg font-normal">
         © {new Date().getFullYear()}, Built with
         {` `}
         <OutboundLink
+          className="underline"
           href="https://www.gatsbyjs.org"
           target="_blank"
           rel="noopener noreferrer"
         >
           Gatsby
         </OutboundLink>
-      </StyledFooter>
+      </footer>
     </div>
   );
 };

@@ -2,11 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import StyledOutboundLink from "./StyledOutboundLink";
 import styled from "styled-components";
-import { rhythm } from "../utils/typography";
 
-const StyledArticle = styled.article`
-  margin: ${rhythm(1)} 0;
-`;
+const StyledArticle = styled.article``;
 
 const ProjectLink = ({ project }) => {
   return (
