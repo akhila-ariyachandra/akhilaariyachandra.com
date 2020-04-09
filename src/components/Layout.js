@@ -22,7 +22,7 @@ const Layout = ({ children }) => {
   `);
 
   return (
-    <div className="container p-8">
+    <div className="container p-8 max-w-screen-lg">
       <header>
         <h1 className="text-4xl font-bold">
           <Link className="shadow-none" to="/">
@@ -30,7 +30,7 @@ const Layout = ({ children }) => {
           </Link>
         </h1>
 
-        <nav className="flex flex-wrap">
+        <nav className="flex flex-wrap mt-2">
           <div className="flex">
             <h2 className="text-2xl font-medium">
               <Link className="shadow-none" to="/blog/">

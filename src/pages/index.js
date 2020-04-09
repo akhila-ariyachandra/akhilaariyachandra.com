@@ -62,12 +62,13 @@ const BlogIndex = () => {
     <Layout>
       <SEO title="Akhila Ariyachandra" />
 
-      <div className="my-20">
+      <div className="container my-20 max-w-3xl">
         <Img
           fluid={picture.childImageSharp.fluid}
           alt="Akhila Ariyachandra"
           className="block mx-auto rounded-lg mb-2"
           style={{ maxWidth: 600 }}
+          imgStyle={{ maxWidth: 600 }}
         />
 
         <h1 className="text-4xl font-semibold">Hi.</h1>
@@ -83,7 +84,7 @@ const BlogIndex = () => {
 
         <hr className="my-3" />
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {technologies.map((technology) => (
             <TechnologyBlock technology={technology} key={technology.name} />
           ))}
@@ -103,9 +104,11 @@ const BlogIndex = () => {
 
         <hr className="my-3" />
 
-        {posts.map(({ node }) => (
-          <PostLink node={node} key={node.id} />
-        ))}
+        <div class="grid grid-cols-1 gap-3">
+          {posts.map(({ node }) => (
+            <PostLink node={node} key={node.id} />
+          ))}
+        </div>
       </div>
 
       <div className="my-16">
@@ -113,9 +116,11 @@ const BlogIndex = () => {
 
         <hr className="my-3" />
 
-        {projects.map((project) => (
-          <ProjectLink project={project} key={project.url} />
-        ))}
+        <div class="grid grid-cols-1 gap-3">
+          {projects.map((project) => (
+            <ProjectLink project={project} key={project.url} />
+          ))}
+        </div>
       </div>
     </Layout>
   );

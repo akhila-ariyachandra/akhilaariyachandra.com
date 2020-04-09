@@ -3,14 +3,9 @@ import Bio from "../components/Bio";
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import Img from "gatsby-image";
-import styled from "styled-components";
 import { Link, graphql } from "gatsby";
 import { Disqus } from "gatsby-plugin-disqus";
 import { OutboundLink } from "gatsby-plugin-google-analytics";
-
-const StyledDonationLink = styled.h6``;
-
-const StyledHR = styled.hr``;
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.markdownRemark;
@@ -29,66 +24,47 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         description={post.frontmatter.description}
         image={post.frontmatter.banner.childImageSharp.fixed.src}
       />
+
       <article>
-        <header>
-          <h1
-            style={{
-              marginBottom: 0,
-            }}
-          >
-            {post.frontmatter.title}
-          </h1>
+        <header className="my-5">
+          <h1 className="text-4xl font-bold">{post.frontmatter.title}</h1>
 
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <p
-              style={{
-                display: `block`,
-                flex: 1,
-              }}
-            >
-              {post.frontmatter.date}
-            </p>
+          <div className="flex items-center ">
+            <p className="flex-1 text-lg">{post.frontmatter.date}</p>
 
-            <p
-              style={{
-                display: `block`,
-              }}
-            >
-              {`${post.timeToRead} min read`}
-            </p>
+            <p className="text-lg">{`${post.timeToRead} min read`}</p>
           </div>
 
           <Img
             fluid={post.frontmatter.banner.childImageSharp.fluid}
             alt={`${post.frontmatter.title} Banner`}
+            className="block mx-auto my-3 rounded-lg"
+            style={{ maxWidth: 1200 }}
+            imgStyle={{ maxWidth: 1200 }}
           />
         </header>
 
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
 
-        <StyledHR />
+        <hr className="my-3" />
 
-        <StyledDonationLink>
+        <h6 className="text-xl font-medium">
           Enjoyed the post or found it useful?{" "}
           <OutboundLink
             href={data.site.siteMetadata.donationLink}
             target="_blank"
             rel="noopener noreferrer"
+            className="underline"
           >
             Please consider buying me a coffee.
           </OutboundLink>
-        </StyledDonationLink>
+        </h6>
 
-        <StyledHR />
+        <hr className="my-3" />
 
         <Disqus config={disqusConfig} />
 
-        <StyledHR />
+        <hr className="my-3" />
 
         <footer>
           <Bio />

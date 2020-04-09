@@ -1,25 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
-import StyledOutboundLink from "./StyledOutboundLink";
-import styled from "styled-components";
-
-const StyledArticle = styled.article``;
+import { OutboundLink } from "gatsby-plugin-google-analytics";
 
 const ProjectLink = ({ project }) => {
   return (
-    <StyledArticle>
-      <h3>
-        <StyledOutboundLink
+    <article className="p-3 rounded-md shadow-md">
+      <h3 className="text-2xl font-semibold">
+        <OutboundLink
           href={project.url}
           target="_blank"
           rel="noopener noreferrer"
         >
           {project.title}
-        </StyledOutboundLink>
+        </OutboundLink>
       </h3>
 
-      <p>{project.description}</p>
-    </StyledArticle>
+      <p className="text-base">{project.description}</p>
+    </article>
   );
 };
 
