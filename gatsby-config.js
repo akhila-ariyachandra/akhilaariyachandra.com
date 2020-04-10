@@ -178,7 +178,6 @@ module.exports = {
                 "heading[depth=6]": "text-lg font-medium antialiased my-3",
                 paragraph: "text-lg font-normal antialiased my-3",
                 link: "italic underline text-green-800 antialiased my-3",
-                image: "object-center",
                 blockquote:
                   "border-l-4 border-green-600 bg-green-100 rounded-md antialiased italic font-medium pl-4 py-1 my-3",
                 "list[ordered=false]": "list-disc antialiased my-3",
