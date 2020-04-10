@@ -30,7 +30,7 @@ const Layout = ({ children }) => {
           </Link>
         </h1>
 
-        <nav className="flex flex-wrap mt-2">
+        <nav className="flex flex-wrap mt-2 items-center">
           <div className="flex">
             <h2 className="text-2xl font-medium">
               <Link className="shadow-none" to="/blog/">
