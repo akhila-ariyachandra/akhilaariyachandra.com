@@ -27,7 +27,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 
       <article>
         <header className="my-5">
-          <h1 className="text-4xl font-bold">{post.frontmatter.title}</h1>
+          <h1 className="text-5xl font-bold">{post.frontmatter.title}</h1>
 
           <div className="flex items-center">
             <p className="flex-1 text-lg">{post.frontmatter.date}</p>
@@ -55,7 +55,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
               href={data.site.siteMetadata.donationLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="underline"
+              className="underline text-green-800"
             >
               Please consider buying me a coffee.
             </OutboundLink>

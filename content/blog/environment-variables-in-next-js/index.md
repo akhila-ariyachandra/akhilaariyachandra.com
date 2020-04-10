@@ -70,7 +70,7 @@ AUTH_SECRET=verysecret
 
 You can use the variable like this, `process.env.AUTH_SECRET`.
 
-**Never commit the _.env_ file. Add it to the _.gitignore_ file.**
+> Never commit the _.env_ file. Add it to the _.gitignore_ file.
 
 ## Deploying to [Zeit NOW](https://zeit.co/home)
 
