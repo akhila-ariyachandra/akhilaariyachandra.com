@@ -83,6 +83,12 @@ module.exports = {
         link: `https://jamstack.org/`,
       },
       {
+        name: `Serverless`,
+        background: `#fd5750`,
+        text: `#ffffff`,
+        link: `https://serverless.com/`,
+      },
+      {
         name: `Apollo`,
         background: `#3f20ba`,
         text: `#ffffff`,
