@@ -3,19 +3,9 @@ import Bio from "../components/Bio";
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import Img from "gatsby-image";
-import styled from "styled-components";
 import { Link, graphql } from "gatsby";
-import { rhythm, scale } from "../utils/typography";
 import { Disqus } from "gatsby-plugin-disqus";
 import { OutboundLink } from "gatsby-plugin-google-analytics";
-
-const StyledDonationLink = styled.h6`
-  margin: ${rhythm(1)} 0;
-`;
-
-const StyledHR = styled.hr`
-  margin-bottom: ${rhythm(1)};
-`;
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.markdownRemark;
@@ -28,103 +18,72 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
   };
 
   return (
-    <Layout>
+    <Layout location={location}>
       <SEO
         title={post.frontmatter.title}
         description={post.frontmatter.description}
         image={post.frontmatter.banner.childImageSharp.fixed.src}
       />
+
       <article>
-        <header>
-          <h1
-            style={{
-              marginTop: rhythm(1),
-              marginBottom: 0,
-            }}
-          >
-            {post.frontmatter.title}
-          </h1>
+        <header className="my-5">
+          <h1 className="text-5xl font-bold">{post.frontmatter.title}</h1>
 
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginTop: rhythm(0.5),
-            }}
-          >
-            <p
-              style={{
-                ...scale(-1 / 5),
-                display: `block`,
-                marginBottom: rhythm(1),
-                flex: 1,
-              }}
-            >
-              {post.frontmatter.date}
-            </p>
+          <div className="flex items-center">
+            <p className="flex-1 text-lg">{post.frontmatter.date}</p>
 
-            <p
-              style={{
-                ...scale(-1 / 5),
-                display: `block`,
-                marginBottom: rhythm(1),
-              }}
-            >
-              {`${post.timeToRead} min read`}
-            </p>
+            <p className="text-lg">{`${post.timeToRead} min read`}</p>
           </div>
 
           <Img
             fluid={post.frontmatter.banner.childImageSharp.fluid}
             alt={`${post.frontmatter.title} Banner`}
-            style={{ marginBottom: rhythm(1) }}
+            className="block mx-auto my-3 rounded-lg"
+            style={{ maxWidth: 1200 }}
+            imgStyle={{ maxWidth: 1200 }}
           />
         </header>
 
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
 
-        <StyledHR />
-
-        <StyledDonationLink>
-          Enjoyed the post or found it useful?{" "}
-          <OutboundLink
-            href={data.site.siteMetadata.donationLink}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Please consider buying me a coffee.
-          </OutboundLink>
-        </StyledDonationLink>
-
-        <StyledHR />
-
-        <Disqus config={disqusConfig} />
-
-        <StyledHR />
-
         <footer>
+          <hr className="my-3" />
+
+          <h6 className="text-xl font-medium">
+            Enjoyed the post or found it useful?{" "}
+            <OutboundLink
+              href={data.site.siteMetadata.donationLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline text-green-800"
+            >
+              Please consider buying me a coffee.
+            </OutboundLink>
+          </h6>
+
+          <hr className="my-3" />
+
           <Bio />
+
+          <hr className="my-3" />
+
+          <Disqus config={disqusConfig} />
+
+          <hr className="my-3" />
         </footer>
       </article>
 
-      <nav>
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
+      <nav className="my-8">
+        <ul className="flex flex-wrap justify-between list-none p-0">
+          <li className="text-2xl font-medium">
             {previous && (
               <Link to={previous.fields.slug} rel="prev">
                 ← {previous.frontmatter.title}
               </Link>
             )}
           </li>
-          <li>
+
+          <li className="text-2xl font-medium">
             {next && (
               <Link to={next.fields.slug} rel="next">
                 {next.frontmatter.title} →

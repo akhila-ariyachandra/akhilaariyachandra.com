@@ -119,7 +119,7 @@ Let's go through the actions.
 
 **setIsFetchingUser**, **setUserId** and **setUser** are similar to each other in that they all return a JavaScript object with _type_ and _payload_. _type_ specifies the type of state change that has to occur and _payload_ contains the new value of the state.
 
-> Note that actions to not directly change the state. They just signal to change the state.
+> Note that actions do not directly change the state. They just signal to change the state.
 
 **getUser** is different by being an asynchronous action generator. By default redux only allow for synchronous action generators, but with **redux-thunk** we can generate functions too. To create a a function generator all we need to do is return a function which has the `dispatch` argument. The `dispatch` argument is a function that is used call other redux actions inside the current function such as us calling `dispatch(setIsFetchingUser(true))` at the beginning to set `isFetchingUser` to `true`.
 

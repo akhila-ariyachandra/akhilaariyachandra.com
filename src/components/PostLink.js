@@ -1,34 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
-import { rhythm } from "../utils/typography";
 
 const PostLink = ({ node }) => {
-  const title = node.frontmatter.title || node.fields.slug;
+  const title = node.frontmatter.title;
+
   return (
-    <article key={node.fields.slug}>
+    <article className="p-3 rounded-md shadow-md">
       <header>
-        <h3
-          style={{
-            marginBottom: rhythm(1 / 4),
-          }}
-        >
-          <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-            {title}
-          </Link>
+        <h3 className="text-2xl font-semibold">
+          <Link to={node.fields.slug}>{title}</Link>
         </h3>
 
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <small style={{ flex: 1 }}>{node.frontmatter.date}</small>
-          <small>{`${node.timeToRead} min read`}</small>
+        <div className="flex items-center">
+          <small className="flex-1 text-base">{node.frontmatter.date}</small>
+
+          <small className="text-base">{`${node.timeToRead} min read`}</small>
         </div>
       </header>
+
       <section>
-        <p
-          dangerouslySetInnerHTML={{
-            __html: node.frontmatter.description || node.excerpt,
-          }}
-        />
+        <p className="text-lg font-medium">{node.frontmatter.description}</p>
       </section>
     </article>
   );

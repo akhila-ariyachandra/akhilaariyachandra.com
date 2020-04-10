@@ -27,6 +27,110 @@ module.exports = {
       },
     ],
     donationLink: `https://ko-fi.com/V7V5ZOMO`,
+    technologies: [
+      {
+        name: `JavaScript`,
+        background: `#f7df1e`,
+        text: `#000000`,
+        link: `https://www.javascript.com/`,
+      },
+      {
+        name: `React`,
+        background: `#292929`,
+        text: `#00d8ff`,
+        link: `https://reactjs.org/`,
+      },
+      {
+        name: `GraphQL`,
+        background: `#e10098`,
+        text: `#ffffff`,
+        link: `https://graphql.org/`,
+      },
+      {
+        name: `TypeScript`,
+        background: `#294E80`,
+        text: `#e7e7e7`,
+        link: `https://www.typescriptlang.org/`,
+      },
+      {
+        name: `Next.js`,
+        background: `#000000`,
+        text: `#ffffff`,
+        link: `https://nextjs.org/`,
+      },
+      {
+        name: `Gatsby`,
+        background: `#663399`,
+        text: `#ffffff`,
+        link: `https://www.gatsbyjs.org/`,
+      },
+      {
+        name: `Node.js`,
+        background: `#026e00`,
+        text: `#ffffff`,
+        link: `https://nodejs.org/en/`,
+      },
+      {
+        name: `MongoDB`,
+        background: `#589636`,
+        text: `#ffffff`,
+        link: `https://www.mongodb.com/`,
+      },
+      {
+        name: `JAMStack`,
+        background: `#00c7b7`,
+        text: `#ffffff`,
+        link: `https://jamstack.org/`,
+      },
+      {
+        name: `Serverless`,
+        background: `#fd5750`,
+        text: `#ffffff`,
+        link: `https://serverless.com/`,
+      },
+      {
+        name: `Apollo`,
+        background: `#3f20ba`,
+        text: `#ffffff`,
+        link: `https://www.apollographql.com/`,
+      },
+      {
+        name: `TailwindCSS`,
+        background: `#0694a2`,
+        text: `#ffffff`,
+        link: `https://tailwindcss.com/`,
+      },
+      {
+        name: `React Native`,
+        background: `#292929`,
+        text: `#00d8ff`,
+        link: `https://reactnative.dev/`,
+      },
+      {
+        name: `Firebase`,
+        background: `#fbc02d`,
+        text: `#424242`,
+        link: `https://firebase.google.com/`,
+      },
+      {
+        name: `ZEIT`,
+        background: `#000000`,
+        text: `#ffffff`,
+        link: `https://zeit.co/home`,
+      },
+      {
+        name: `Netlify`,
+        background: `#00ad9f`,
+        text: `#ffffff`,
+        link: `https://www.netlify.com/`,
+      },
+      {
+        name: `Contentful`,
+        background: `#2478cc`,
+        text: `#ffffff`,
+        link: `https://www.contentful.com/`,
+      },
+    ],
   },
   plugins: [
     {
@@ -62,6 +166,29 @@ module.exports = {
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
+          {
+            resolve: `gatsby-remark-classes`,
+            options: {
+              classMap: {
+                "heading[depth=1]": "text-5xl font-bold antialiased my-3",
+                "heading[depth=2]": "text-4xl font-bold antialiased my-3",
+                "heading[depth=3]": "text-3xl font-semibold antialiased my-3",
+                "heading[depth=4]": "text-2xl font-semibold antialiased my-3",
+                "heading[depth=5]": "text-xl font-medium antialiased my-3",
+                "heading[depth=6]": "text-lg font-medium antialiased my-3",
+                paragraph: "text-lg font-normal antialiased my-3",
+                link: "italic underline text-green-800 antialiased my-3",
+                blockquote:
+                  "border-l-4 border-green-600 bg-green-100 rounded-md antialiased italic font-medium pl-4 py-1 my-3 mx-0",
+                "list[ordered=false]": "list-disc antialiased my-3 list-inside",
+                "list[ordered=true]":
+                  "list-decimal antialiased my-3 list-inside pl-0",
+                table: "table-auto border-4 border-collapse antialiased my-3",
+                tableCell: "border antialiased p-2",
+                break: "antialiased my-3",
+              },
+            },
+          },
         ],
       },
     },
@@ -149,10 +276,41 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-postcss`,
     {
-      resolve: `gatsby-plugin-typography`,
+      resolve: `gatsby-plugin-purgecss`,
       options: {
-        pathToConfigModule: `src/utils/typography`,
+        printRejected: true, // Print removed selectors and processed file names
+        develop: true,
+        tailwind: true, // Enable tailwindcss support
+        whitelist: [
+          // Common classes
+          "my-3",
+          "antialiased",
+          // Block Quote classes
+          "border-l-4",
+          "border-green-600",
+          "bg-green-100",
+          "rounded-md",
+          "italic",
+          "font-medium",
+          "pl-4",
+          "py-1",
+          "mx-0",
+          // List classes
+          "list-disc",
+          "list-decimal",
+          "list-inside",
+          "pl-0",
+          // Table classes
+          "table-auto",
+          "border-4",
+          "border-collapse",
+          "border",
+          // Table Cell classes
+          "p-2",
+        ],
+        ignore: [`prismjs/themes/prism-okaidia.css`],
       },
     },
     `gatsby-plugin-sitemap`,
@@ -173,12 +331,6 @@ module.exports = {
     `gatsby-plugin-preact`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-zeit-now`,
-    {
-      resolve: `gatsby-plugin-styled-components`,
-      options: {
-        // Add any options here
-      },
-    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,

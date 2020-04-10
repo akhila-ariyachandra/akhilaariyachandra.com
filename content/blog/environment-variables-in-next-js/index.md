@@ -70,7 +70,7 @@ AUTH_SECRET=verysecret
 
 You can use the variable like this, `process.env.AUTH_SECRET`.
 
-**Never commit the _.env_ file. Add it to the _.gitignore_ file.**
+> Never commit the _.env_ file. Add it to the _.gitignore_ file.
 
 ## Deploying to [Zeit NOW](https://zeit.co/home)
 
@@ -94,7 +94,7 @@ In our example, we can add the _AUTH_SECRET_ like this.
 now secrets add now-auth-secret verysecret
 ```
 
-Next we need to tell Now to map the _now-auth-secret_ to the _AUTH_SECRET_ environment variable. This done through the Now config file, _now.json_. To be make sure the secret is ued properly in both build time and runtime, set both the _env_ and _build_ properties in the _now.json_ file.
+Next we need to tell Now to map the _now-auth-secret_ to the **AUTH_SECRET** environment variable. This done through the Now config file, _now.json_. To be make sure the secret is ued properly in both build time and runtime, set both the _env_ and _build_ properties in the _now.json_ file.
 
 ```json
 {
