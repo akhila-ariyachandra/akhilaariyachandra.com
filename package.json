@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@isamrish/gatsby-plugin-google-adsense": "^1.0.2",
-    "gatsby": "^2.20.14",
+    "gatsby": "^2.20.16",
     "gatsby-image": "^2.3.2",
     "gatsby-plugin-catch-links": "^2.2.1",
     "gatsby-plugin-disqus": "^1.1.4",
@@ -41,7 +41,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-helmet": "^5.2.1",
+    "react-helmet": "^6.0.0",
     "react-icons": "^3.9.0"
   },
   "devDependencies": {
