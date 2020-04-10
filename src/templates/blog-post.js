@@ -29,7 +29,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         <header className="my-5">
           <h1 className="text-4xl font-bold">{post.frontmatter.title}</h1>
 
-          <div className="flex items-center ">
+          <div className="flex items-center">
             <p className="flex-1 text-lg">{post.frontmatter.date}</p>
 
             <p className="text-lg">{`${post.timeToRead} min read`}</p>
@@ -46,49 +46,44 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
 
-        <hr className="my-3" />
-
-        <h6 className="text-xl font-medium">
-          Enjoyed the post or found it useful?{" "}
-          <OutboundLink
-            href={data.site.siteMetadata.donationLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline"
-          >
-            Please consider buying me a coffee.
-          </OutboundLink>
-        </h6>
-
-        <hr className="my-3" />
-
-        <Disqus config={disqusConfig} />
-
-        <hr className="my-3" />
-
         <footer>
+          <hr className="my-3" />
+
+          <h6 className="text-xl font-medium">
+            Enjoyed the post or found it useful?{" "}
+            <OutboundLink
+              href={data.site.siteMetadata.donationLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+            >
+              Please consider buying me a coffee.
+            </OutboundLink>
+          </h6>
+
+          <hr className="my-3" />
+
           <Bio />
+
+          <hr className="my-3" />
+
+          <Disqus config={disqusConfig} />
+
+          <hr className="my-3" />
         </footer>
       </article>
 
-      <nav>
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
+      <nav className="my-8">
+        <ul className="flex flex-wrap justify-between list-none p-0">
+          <li className="text-2xl font-medium">
             {previous && (
               <Link to={previous.fields.slug} rel="prev">
                 ← {previous.frontmatter.title}
               </Link>
             )}
           </li>
-          <li>
+
+          <li className="text-2xl font-medium">
             {next && (
               <Link to={next.fields.slug} rel="next">
                 {next.frontmatter.title} →

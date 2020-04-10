@@ -32,26 +32,17 @@ const Bio = () => {
 
   const { author } = data.site.siteMetadata;
   return (
-    <div
-      style={{
-        display: `flex`,
-        alignItems: "center",
-      }}
-    >
+    <div className="flex items-center my-5">
       <Image
         fluid={data.avatar.childImageSharp.fluid}
         alt={author.name}
-        style={{
-          marginBottom: 0,
-          minWidth: 50,
-          borderRadius: `100%`,
-        }}
-        imgStyle={{
-          borderRadius: `50%`,
-        }}
+        className="mb-0"
+        style={{ minWidth: 50, borderRadius: `100%` }}
+        imgStyle={{ borderRadius: `50%` }}
       />
-      <p style={{ marginBottom: 0 }}>
-        Written by <strong>{author.name}</strong> {author.summary}
+      <p className="mb-0 ml-5 text-lg font-normal">
+        Written by <strong>{author.name}</strong>
+        {author.summary}
       </p>
     </div>
   );
