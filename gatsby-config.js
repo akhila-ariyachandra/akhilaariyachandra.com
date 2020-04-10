@@ -180,8 +180,9 @@ module.exports = {
                 link: "italic underline text-green-800 antialiased my-3",
                 blockquote:
                   "border-l-4 border-green-600 bg-green-100 rounded-md antialiased italic font-medium pl-4 py-1 my-3 mx-0",
-                "list[ordered=false]": "list-disc antialiased my-3",
-                "list[ordered=true]": "list-decimal antialiased my-3",
+                "list[ordered=false]": "list-disc antialiased my-3 list-inside",
+                "list[ordered=true]":
+                  "list-decimal antialiased my-3 list-inside pl-0",
                 table: "table-auto border-4 border-collapse antialiased my-3",
                 tableCell: "border antialiased p-2",
                 break: "antialiased my-3",
@@ -276,38 +277,42 @@ module.exports = {
     },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-postcss`,
-    /* {
+    {
       resolve: `gatsby-plugin-purgecss`,
       options: {
         printRejected: true, // Print removed selectors and processed file names
+        develop: true,
         tailwind: true, // Enable tailwindcss support
         whitelist: [
           // Common classes
-          `my-3`,
-          `antialiased`,
+          "my-3",
+          "antialiased",
           // Block Quote classes
-          `border-l-4`,
-          `border-green-600`,
-          `bg-green-100`,
-          `rounded-md`,
-          `italic`,
-          `font-medium`,
-          `pl-4`,
-          `py-1`,
-          `mx-0`,
+          "border-l-4",
+          "border-green-600",
+          "bg-green-100",
+          "rounded-md",
+          "italic",
+          "font-medium",
+          "pl-4",
+          "py-1",
+          "mx-0",
           // List classes
-          `list-disc`,
-          `list-decimal`,
+          "list-disc",
+          "list-decimal",
+          "list-inside",
+          "pl-0",
           // Table classes
-          `table-auto`,
-          `border-4`,
-          `border-collapse`,
+          "table-auto",
+          "border-4",
+          "border-collapse",
+          "border",
           // Table Cell classes
-          `p-2`,
+          "p-2",
         ],
         ignore: [`prismjs/themes/prism-okaidia.css`],
       },
-    }, */
+    },
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-robots-txt`,
     /* {
