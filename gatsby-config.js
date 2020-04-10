@@ -179,7 +179,7 @@ module.exports = {
                 paragraph: "text-lg font-normal antialiased my-3",
                 link: "italic underline text-green-800 antialiased my-3",
                 blockquote:
-                  "border-l-4 border-green-600 bg-green-100 rounded-md antialiased italic font-medium pl-4 py-1 my-3",
+                  "border-l-4 border-green-600 bg-green-100 rounded-md antialiased italic font-medium pl-4 py-1 my-3 mx-0",
                 "list[ordered=false]": "list-disc antialiased my-3",
                 "list[ordered=true]": "list-decimal antialiased my-3",
                 table: "table-auto border-4 border-collapse antialiased my-3",
@@ -276,14 +276,38 @@ module.exports = {
     },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-postcss`,
-    {
+    /* {
       resolve: `gatsby-plugin-purgecss`,
       options: {
         printRejected: true, // Print removed selectors and processed file names
         tailwind: true, // Enable tailwindcss support
+        whitelist: [
+          // Common classes
+          `my-3`,
+          `antialiased`,
+          // Block Quote classes
+          `border-l-4`,
+          `border-green-600`,
+          `bg-green-100`,
+          `rounded-md`,
+          `italic`,
+          `font-medium`,
+          `pl-4`,
+          `py-1`,
+          `mx-0`,
+          // List classes
+          `list-disc`,
+          `list-decimal`,
+          // Table classes
+          `table-auto`,
+          `border-4`,
+          `border-collapse`,
+          // Table Cell classes
+          `p-2`,
+        ],
         ignore: [`prismjs/themes/prism-okaidia.css`],
       },
-    },
+    }, */
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-robots-txt`,
     /* {

@@ -2,9 +2,9 @@ import React from "react";
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 
-const About = () => {
+const About = ({ location }) => {
   return (
-    <Layout>
+    <Layout location={location}>
       <SEO title="About" description="A little bit about myself" />
 
       <div className="my-32">

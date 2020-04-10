@@ -7,7 +7,7 @@ import ProjectLink from "../components/ProjectLink";
 import TechnologyBlock from "../components/TechnologyBlock";
 import { Link, graphql, useStaticQuery } from "gatsby";
 
-const BlogIndex = () => {
+const BlogIndex = ({ location }) => {
   const { picture, allMarkdownRemark, site } = useStaticQuery(graphql`
     query IndexPageQuery {
       picture: file(absolutePath: { regex: "/cover-pic.jpg/" }) {
@@ -59,7 +59,7 @@ const BlogIndex = () => {
   const technologies = site.siteMetadata.technologies;
 
   return (
-    <Layout>
+    <Layout location={location}>
       <SEO title="Akhila Ariyachandra" />
 
       <div className="container my-20 max-w-3xl">
@@ -84,7 +84,7 @@ const BlogIndex = () => {
 
         <hr className="my-3" />
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {technologies.map((technology) => (
             <TechnologyBlock technology={technology} key={technology.name} />
           ))}
@@ -104,7 +104,7 @@ const BlogIndex = () => {
 
         <hr className="my-3" />
 
-        <div class="grid grid-cols-1 gap-3">
+        <div className="grid grid-cols-1 gap-3">
           {posts.map(({ node }) => (
             <PostLink node={node} key={node.id} />
           ))}
@@ -116,7 +116,7 @@ const BlogIndex = () => {
 
         <hr className="my-3" />
 
-        <div class="grid grid-cols-1 gap-3">
+        <div className="grid grid-cols-1 gap-3">
           {projects.map((project) => (
             <ProjectLink project={project} key={project.url} />
           ))}

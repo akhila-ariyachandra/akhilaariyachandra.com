@@ -10,7 +10,9 @@ import {
 } from "react-icons/fa";
 import { OutboundLink } from "gatsby-plugin-google-analytics";
 
-const Layout = ({ children }) => {
+const ACTIVE_PAGE_COLOR = "text-green-600";
+
+const Layout = ({ children, location }) => {
   const data = useStaticQuery(graphql`
     query LayoutQuery {
       site {
@@ -24,7 +26,11 @@ const Layout = ({ children }) => {
   return (
     <div className="container p-8 max-w-screen-lg">
       <header>
-        <h1 className="text-4xl font-bold">
+        <h1
+          className={`text-4xl font-bold ${
+            location.pathname === "/" ? ACTIVE_PAGE_COLOR : ""
+          }`}
+        >
           <Link className="shadow-none" to="/">
             {data.site.siteMetadata.title}
           </Link>
@@ -32,13 +38,21 @@ const Layout = ({ children }) => {
 
         <nav className="flex flex-wrap mt-2 items-center">
           <div className="flex">
-            <h2 className="text-2xl font-medium">
+            <h2
+              className={`text-2xl font-medium ${
+                location.pathname === "/blog/" ? ACTIVE_PAGE_COLOR : ""
+              }`}
+            >
               <Link className="shadow-none" to="/blog/">
                 Blog
               </Link>
             </h2>
 
-            <h2 className="text-2xl font-medium ml-2">
+            <h2
+              className={`text-2xl font-medium ml-2 ${
+                location.pathname === "/about/" ? ACTIVE_PAGE_COLOR : ""
+              }`}
+            >
               <Link className="shadow-none" to="/about/">
                 About
               </Link>
@@ -131,6 +145,7 @@ const Layout = ({ children }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  location: PropTypes.object.isRequired,
 };
 
 export default Layout;

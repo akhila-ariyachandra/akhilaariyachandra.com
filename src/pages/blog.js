@@ -4,7 +4,7 @@ import PostLink from "../components/PostLink";
 import SEO from "../components/SEO";
 import { graphql, useStaticQuery } from "gatsby";
 
-const Blog = () => {
+const Blog = ({ location }) => {
   const { allMarkdownRemark } = useStaticQuery(graphql`
     query BlogPageQuery {
       allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
@@ -29,7 +29,7 @@ const Blog = () => {
   const posts = allMarkdownRemark.edges;
 
   return (
-    <Layout>
+    <Layout location={location}>
       <SEO
         title="Blog"
         description="A blog by Akhila Ariyachandra talking about JavaScript, React & Web Development"
