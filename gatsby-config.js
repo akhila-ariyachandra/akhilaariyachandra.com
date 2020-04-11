@@ -306,7 +306,13 @@ module.exports = {
       options: {
         printRejected: true, // Print removed selectors and processed file names
         tailwind: true, // Enable tailwindcss support
-        whitelist: getClasses(gatsbyRemarkClasses),
+        whitelist: [
+          ...getClasses(gatsbyRemarkClasses),
+          // Career Company colors
+          `hover:bg-purple-700`,
+          `hover:bg-green-700`,
+          `hover:bg-blue-700`,
+        ],
         ignore: [`prismjs/themes/prism-okaidia.css`],
       },
     },
