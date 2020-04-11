@@ -102,7 +102,7 @@ const BlogIndex = ({ location }) => {
         <div className="flex items-center">
           <h3 className="text-3xl font-semibold flex-1">Latest Posts</h3>
 
-          <h4 className="text-xl font-medium">
+          <h4 className="text-xl font-medium transition duration-200 transform hover:text-green-600">
             <Link className="shadow-none" to="/blog/">
               Read all posts
             </Link>

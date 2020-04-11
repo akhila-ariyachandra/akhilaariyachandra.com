@@ -141,7 +141,7 @@ const Layout = ({ children, location }) => {
         © {new Date().getFullYear()}, Built with
         {` `}
         <OutboundLink
-          className="underline"
+          className="underline transition duration-200 transform hover:text-green-600"
           href="https://www.gatsbyjs.org"
           target="_blank"
           rel="noopener noreferrer"
