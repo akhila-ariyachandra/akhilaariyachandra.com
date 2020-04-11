@@ -50,6 +50,16 @@ const Layout = ({ children, location }) => {
 
             <h2
               className={`text-2xl font-medium ml-2 ${
+                location.pathname === "/career/" ? ACTIVE_PAGE_COLOR : ""
+              }`}
+            >
+              <Link className="shadow-none" to="/career/">
+                Career
+              </Link>
+            </h2>
+
+            <h2
+              className={`text-2xl font-medium ml-2 ${
                 location.pathname === "/about/" ? ACTIVE_PAGE_COLOR : ""
               }`}
             >

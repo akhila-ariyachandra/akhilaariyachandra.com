@@ -176,6 +176,13 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/career`,
+        name: `assets`,
+      },
+    },
+    {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
@@ -201,6 +208,12 @@ module.exports = {
             },
           },
         ],
+      },
+    },
+    {
+      resolve: `gatsby-transformer-yaml`,
+      options: {
+        typeName: `Yaml`,
       },
     },
     `gatsby-transformer-sharp`,
@@ -292,7 +305,6 @@ module.exports = {
       resolve: `gatsby-plugin-purgecss`,
       options: {
         printRejected: true, // Print removed selectors and processed file names
-        develop: true,
         tailwind: true, // Enable tailwindcss support
         whitelist: getClasses(gatsbyRemarkClasses),
         ignore: [`prismjs/themes/prism-okaidia.css`],

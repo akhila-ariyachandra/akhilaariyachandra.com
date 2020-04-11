@@ -1,0 +1,8 @@
+company: SriLankan Airlines
+image: srilankan.png
+background-color: bg-green-700
+link: https://www.ifs.com/lk/
+positions:
+  - title: "Software Engineer Intern"
+    start-date: 2016-06-05
+    end-date: 2016-12-05
