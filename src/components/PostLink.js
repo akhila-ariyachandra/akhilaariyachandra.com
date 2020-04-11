@@ -6,7 +6,7 @@ const PostLink = ({ node }) => {
   const title = node.frontmatter.title;
 
   return (
-    <article className="p-3 rounded-md shadow-md">
+    <article className="p-3 rounded-md shadow-md transition duration-500 transform hover:text-white hover:antialiased hover:scale-105 hover:shadow-xl hover:bg-green-700">
       <header>
         <h3 className="text-2xl font-semibold">
           <Link to={node.fields.slug}>{title}</Link>

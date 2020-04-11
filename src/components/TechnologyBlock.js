@@ -9,7 +9,7 @@ const TechnologyBlock = ({ technology }) => {
       rel="noopener noreferrer"
     >
       <div
-        className="p-2 rounded-md shadow-xl"
+        className="p-2 rounded-md shadow-xl transition duration-500 transform hover:text-white hover:antialiased hover:scale-110 hover:shadow-2xl"
         style={{ backgroundColor: technology.background }}
       >
         <h3 className="text-xl font-medium" style={{ color: technology.text }}>
