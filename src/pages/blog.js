@@ -42,7 +42,7 @@ const Blog = ({ location }) => {
         description="A blog by Akhila Ariyachandra talking about JavaScript, React & Web Development"
       />
 
-      <div className="my-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
         {posts.map(({ node }) => (
           <PostLink node={node} key={node.id} />
         ))}

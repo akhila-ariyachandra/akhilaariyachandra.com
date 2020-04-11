@@ -69,7 +69,7 @@ const BlogIndex = ({ location }) => {
     <Layout location={location}>
       <SEO title="Akhila Ariyachandra" />
 
-      <div className="container my-20 max-w-3xl">
+      <div className="container my-20 w-full max-w-3xl ">
         <Img
           fluid={picture.childImageSharp.fluid}
           alt="Akhila Ariyachandra"
@@ -86,7 +86,7 @@ const BlogIndex = ({ location }) => {
         </p>
       </div>
 
-      <div className="my-16">
+      <div className="my-16 w-full">
         <h3 className="text-3xl font-semibold">Technologies I work with</h3>
 
         <hr className="my-3" />
@@ -98,7 +98,7 @@ const BlogIndex = ({ location }) => {
         </div>
       </div>
 
-      <div className="my-16">
+      <div className="my-16 w-full">
         <div className="flex items-center">
           <h3 className="text-3xl font-semibold flex-1">Latest Posts</h3>
 
@@ -118,7 +118,7 @@ const BlogIndex = ({ location }) => {
         </div>
       </div>
 
-      <div className="my-16">
+      <div className="my-16 w-full">
         <h3 className="text-3xl font-semibold">Projects</h3>
 
         <hr className="my-3" />

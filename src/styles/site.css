@@ -5,6 +5,6 @@
 @tailwind utilities;
 
 /* Fix for Jumping Scrollbar Issue - https://css-tricks.com/elegant-fix-jumping-scrollbar-issue/ */
-html {
+/* html {
   margin-left: calc(100vw - 100%);
-}
+} */

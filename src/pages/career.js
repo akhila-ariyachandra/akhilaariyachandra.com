@@ -36,7 +36,7 @@ const Career = ({ location }) => {
     <Layout location={location}>
       <SEO title="Career" description="My work experience" />
 
-      <div className="my-8 grid grid-cols-1 gap-3">
+      <div className="grid grid-cols-1 gap-3 w-full">
         {companies.map((company) => (
           <CareerBlock company={company} key={company.company} />
         ))}

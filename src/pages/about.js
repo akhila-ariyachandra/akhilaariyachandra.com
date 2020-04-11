@@ -7,7 +7,7 @@ const About = ({ location }) => {
     <Layout location={location}>
       <SEO title="About" description="A little bit about myself" />
 
-      <div className="my-32">
+      <div className="w-full">
         <h1 className="text-4xl font-semibold">Hi.</h1>
 
         <p className="text-lg font-normal my-3">
