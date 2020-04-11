@@ -3,21 +3,21 @@ require("dotenv").config({
 });
 
 const gatsbyRemarkClasses = {
-  "heading[depth=1]": "text-5xl font-bold antialiased my-3",
-  "heading[depth=2]": "text-4xl font-bold antialiased my-3",
-  "heading[depth=3]": "text-3xl font-semibold antialiased my-3",
-  "heading[depth=4]": "text-2xl font-semibold antialiased my-3",
-  "heading[depth=5]": "text-xl font-medium antialiased my-3",
-  "heading[depth=6]": "text-lg font-medium antialiased my-3",
-  paragraph: "text-lg font-normal antialiased my-3",
-  link: "italic underline text-green-800 antialiased my-3",
+  "heading[depth=1]": "text-5xl font-bold my-3",
+  "heading[depth=2]": "text-4xl font-bold my-3",
+  "heading[depth=3]": "text-3xl font-semibold my-3",
+  "heading[depth=4]": "text-2xl font-semibold my-3",
+  "heading[depth=5]": "text-xl font-medium my-3",
+  "heading[depth=6]": "text-lg font-medium my-3",
+  paragraph: "text-lg font-normal my-3",
+  link: "italic underline text-green-800 my-3",
   blockquote:
-    "border-l-4 border-green-600 bg-green-100 rounded-md antialiased italic font-medium pl-4 py-1 my-3 mx-0",
-  "list[ordered=false]": "list-disc antialiased my-3 list-inside",
-  "list[ordered=true]": "list-decimal antialiased my-3 list-inside pl-0",
-  table: "table-auto border-4 border-collapse antialiased my-3",
-  tableCell: "border antialiased p-2",
-  break: "antialiased my-3",
+    "border-l-4 border-green-600 bg-green-100 rounded-md italic font-medium pl-4 py-1 my-3 mx-0",
+  "list[ordered=false]": "list-disc my-3 list-inside",
+  "list[ordered=true]": "list-decimal my-3 list-inside pl-0",
+  table: "table-auto border-4 border-collapse my-3",
+  tableCell: "border p-2",
+  break: "my-3",
 };
 
 const getClasses = (object) => {
