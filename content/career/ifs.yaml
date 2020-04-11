@@ -1,0 +1,7 @@
+company: IFS Sri Lanka
+image: ifs.png
+background-color: bg-purple-700
+link: https://www.ifs.com/lk/
+positions:
+  - title: "Software Engineer"
+    start-date: 2019-03-18

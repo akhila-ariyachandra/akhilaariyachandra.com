@@ -19,7 +19,7 @@ const BlogIndex = ({ location }) => {
       }
       allMarkdownRemark(
         sort: { fields: [frontmatter___date], order: DESC }
-        limit: 3
+        limit: 4
       ) {
         edges {
           node {
@@ -31,6 +31,13 @@ const BlogIndex = ({ location }) => {
               date(formatString: "MMMM Do, YYYY")
               title
               description
+              banner {
+                childImageSharp {
+                  fluid(maxWidth: 600, maxHeight: 300) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
             }
             timeToRead
           }
@@ -62,7 +69,7 @@ const BlogIndex = ({ location }) => {
     <Layout location={location}>
       <SEO title="Akhila Ariyachandra" />
 
-      <div className="container my-20 max-w-3xl">
+      <div className="container my-20 w-full max-w-3xl ">
         <Img
           fluid={picture.childImageSharp.fluid}
           alt="Akhila Ariyachandra"
@@ -79,7 +86,7 @@ const BlogIndex = ({ location }) => {
         </p>
       </div>
 
-      <div className="my-16">
+      <div className="my-16 w-full">
         <h3 className="text-3xl font-semibold">Technologies I work with</h3>
 
         <hr className="my-3" />
@@ -91,11 +98,11 @@ const BlogIndex = ({ location }) => {
         </div>
       </div>
 
-      <div className="my-16">
+      <div className="my-16 w-full">
         <div className="flex items-center">
           <h3 className="text-3xl font-semibold flex-1">Latest Posts</h3>
 
-          <h4 className="text-xl font-medium">
+          <h4 className="text-xl font-medium transition duration-200 transform hover:text-green-600">
             <Link className="shadow-none" to="/blog/">
               Read all posts
             </Link>
@@ -104,19 +111,19 @@ const BlogIndex = ({ location }) => {
 
         <hr className="my-3" />
 
-        <div className="grid grid-cols-1 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {posts.map(({ node }) => (
             <PostLink node={node} key={node.id} />
           ))}
         </div>
       </div>
 
-      <div className="my-16">
+      <div className="my-16 w-full">
         <h3 className="text-3xl font-semibold">Projects</h3>
 
         <hr className="my-3" />
 
-        <div className="grid grid-cols-1 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {projects.map((project) => (
             <ProjectLink project={project} key={project.url} />
           ))}
