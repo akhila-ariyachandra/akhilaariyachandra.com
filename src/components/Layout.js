@@ -38,8 +38,8 @@ const Layout = ({ children, location }) => {
   `);
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="flex py-2 px-3 items-center shadow-md">
+    <div className="min-h-screen flex flex-col bg-gray-100">
+      <header className="flex py-2 px-3 items-center shadow-md bg-white">
         <Link className="shadow-none" to="/">
           <Img
             fluid={data.logo.childImageSharp.fluid}
