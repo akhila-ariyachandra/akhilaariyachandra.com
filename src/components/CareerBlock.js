@@ -10,7 +10,7 @@ const CareerBlock = ({ company }) => {
 
   return (
     <article
-      className={`p-3 rounded-md shadow-md flex flex-wrap transition duration-500 transform ${
+      className={`p-3 rounded-md shadow-md grid grid-cols-1 sm:grid-cols-3 gap-4 transition duration-500 transform ${
         "hover:" + company.background_color
       } hover:text-white hover:antialiased hover:scale-105 hover:shadow-xl`}
     >
@@ -19,7 +19,7 @@ const CareerBlock = ({ company }) => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <header className="w-64">
+        <header className="container">
           <Img
             fluid={company.image.childImageSharp.fluid}
             alt={company.company}
@@ -43,7 +43,7 @@ const CareerBlock = ({ company }) => {
         </header>
       </OutboundLink>
 
-      <section className="flex-1 self-center grid grid-cols-1 gap-3">
+      <section className="self-center grid grid-cols-1 gap-3 text-center sm:text-left col-span-1 sm:col-span-2">
         {sortedPositions.map((position) => (
           <div key={position.title}>
             <h4 className="text-xl font-medium">{position.title}</h4>
