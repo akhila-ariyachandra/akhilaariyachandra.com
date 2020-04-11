@@ -2,7 +2,6 @@ import React from "react";
 import Layout from "../components/Layout";
 import PostLink from "../components/PostLink";
 import SEO from "../components/SEO";
-import Img from "gatsby-image";
 import { graphql, useStaticQuery } from "gatsby";
 
 const Blog = ({ location }) => {
