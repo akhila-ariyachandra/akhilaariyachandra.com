@@ -88,7 +88,7 @@ Once you have downloaded, installed and logged into the [Now CLI](https://zeit.c
 now secrets add <secret-name> <secret-value>
 ```
 
-In our example, we can add the _AUTH_SECRET_ like this.
+In our example, we can add the **AUTH_SECRET** like this.
 
 ```shell
 now secrets add now-auth-secret verysecret
