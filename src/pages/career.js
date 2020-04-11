@@ -34,7 +34,7 @@ const Career = ({ location }) => {
 
   return (
     <Layout location={location}>
-      <SEO title="Career" />
+      <SEO title="Career" description="My work experience" />
 
       <div className="my-8 grid grid-cols-1 gap-3">
         {companies.map((company) => (
