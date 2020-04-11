@@ -70,7 +70,7 @@ const Layout = ({ children, location }) => {
           </div>
 
           <div className="flex-1 flex justify-end">
-            <h2 className="text-2xl font-medium ml-2">
+            <h2 className="text-2xl font-medium ml-2 transition duration-200 transform hover:text-green-600">
               <OutboundLink
                 className="shadow-none"
                 href="https://github.com/akhila-ariyachandra"
@@ -82,7 +82,7 @@ const Layout = ({ children, location }) => {
               </OutboundLink>
             </h2>
 
-            <h2 className="text-2xl font-medium ml-2">
+            <h2 className="text-2xl font-medium ml-2 transition duration-200 transform hover:text-green-600">
               <OutboundLink
                 className="shadow-none"
                 href="https://dev.to/akhilaariyachandra"
@@ -94,7 +94,7 @@ const Layout = ({ children, location }) => {
               </OutboundLink>
             </h2>
 
-            <h2 className="text-2xl font-medium ml-2">
+            <h2 className="text-2xl font-medium ml-2 transition duration-200 transform hover:text-green-600">
               <OutboundLink
                 className="shadow-none"
                 href="https://www.linkedin.com/in/akhila-ariyachandra/"
@@ -106,7 +106,7 @@ const Layout = ({ children, location }) => {
               </OutboundLink>
             </h2>
 
-            <h2 className="text-2xl font-medium ml-2">
+            <h2 className="text-2xl font-medium ml-2 transition duration-200 transform hover:text-green-600">
               <OutboundLink
                 className="shadow-none"
                 href="https://twitter.com/heshan_1010"
@@ -118,7 +118,7 @@ const Layout = ({ children, location }) => {
               </OutboundLink>
             </h2>
 
-            <h2 className="text-2xl font-medium ml-2">
+            <h2 className="text-2xl font-medium ml-2 transition duration-200 transform hover:text-green-600">
               <OutboundLink
                 className="shadow-none"
                 href="/rss.xml"
