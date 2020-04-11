@@ -8,7 +8,7 @@ const PostLink = ({ node }) => {
   const banner = node.frontmatter.banner;
 
   return (
-    <article className="rounded-md shadow-md transition duration-500 transform hover:text-white hover:antialiased hover:scale-105 hover:shadow-xl hover:bg-gray-700 overflow-hidden">
+    <article className="rounded-md shadow-md bg-white transition duration-500 transform hover:text-white hover:antialiased hover:scale-105 hover:shadow-xl hover:bg-gray-700 overflow-hidden">
       <header>
         <Img
           fluid={banner.childImageSharp.fluid}
