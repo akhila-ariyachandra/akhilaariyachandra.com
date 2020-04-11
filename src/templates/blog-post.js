@@ -26,7 +26,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
       />
 
       <article>
-        <header className="my-5">
+        <header>
           <h1 className="text-5xl font-bold">{post.frontmatter.title}</h1>
 
           <div className="flex items-center">
