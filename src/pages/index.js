@@ -123,7 +123,7 @@ const BlogIndex = ({ location }) => {
 
         <hr className="my-3" />
 
-        <div className="grid grid-cols-1 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {projects.map((project) => (
             <ProjectLink project={project} key={project.url} />
           ))}
