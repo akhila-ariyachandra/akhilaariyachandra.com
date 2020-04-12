@@ -25,7 +25,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         image={post.frontmatter.banner.childImageSharp.fixed.src}
       />
 
-      <article>
+      <article className="max-w-full">
         <header>
           <h1 className="text-5xl font-bold">{post.frontmatter.title}</h1>
 
@@ -73,7 +73,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         </footer>
       </article>
 
-      <nav className="my-8">
+      <nav className="my-8 max-w-full">
         <ul className="flex flex-wrap justify-between list-none p-0">
           <li className="text-2xl font-medium">
             {previous && (
