@@ -9,11 +9,7 @@ const CareerBlock = ({ company }) => {
   const sortedPositions = getSortedPositions(company);
 
   return (
-    <article
-      className={`p-3 rounded-md shadow-md bg-white grid grid-cols-1 sm:grid-cols-3 gap-4 transition duration-500 transform ${
-        "hover:" + company.background_color
-      } hover:text-white hover:antialiased hover:scale-105 hover:shadow-xl`}
-    >
+    <article className="p-3 rounded-md shadow-md bg-white grid grid-cols-1 sm:grid-cols-3 gap-4">
       <OutboundLink
         href={company.link}
         target="_blank"
