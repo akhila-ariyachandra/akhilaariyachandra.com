@@ -23,7 +23,6 @@ const Career = ({ location }) => {
               }
             }
           }
-          background_color
           link
         }
       }

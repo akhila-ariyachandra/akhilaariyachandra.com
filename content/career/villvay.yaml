@@ -1,6 +1,5 @@
 company: Villvay
 image: villvay.png
-background-color: bg-blue-700
 link: https://villvay.com/
 positions:
   - title: "Associate Software Engineer"
