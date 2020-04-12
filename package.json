@@ -24,6 +24,7 @@
     "gatsby-plugin-robots-txt": "^1.5.0",
     "gatsby-plugin-sharp": "^2.5.4",
     "gatsby-plugin-sitemap": "^2.3.1",
+    "gatsby-plugin-typescript": "^2.3.1",
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.8",
     "gatsby-plugin-zeit-now": "^0.3.0",
     "gatsby-remark-classes": "^1.0.0",
@@ -48,6 +49,9 @@
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.1.2",
+    "@types/node": "^13.11.1",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
     "autoprefixer": "^9.7.6",
     "gatsby-plugin-postcss": "^2.2.1",
     "prettier": "^2.0.4",
