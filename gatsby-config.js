@@ -123,7 +123,7 @@ module.exports = {
         link: `https://www.apollographql.com/`,
       },
       {
-        name: `TailwindCSS`,
+        name: `Tailwind CSS`,
         background: `#0694a2`,
         text: `#ffffff`,
         link: `https://tailwindcss.com/`,
@@ -161,6 +161,7 @@ module.exports = {
     ],
   },
   plugins: [
+    `gatsby-plugin-typescript`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -198,6 +199,7 @@ module.exports = {
               wrapperStyle: `margin-bottom: 1.0725rem`,
             },
           },
+          `gatsby-remark-autolink-headers`,
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
@@ -328,6 +330,13 @@ module.exports = {
     `gatsby-plugin-preact`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-zeit-now`,
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `https://akhilaariyachandra.com`,
+        stripQueryString: true,
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,

@@ -87,6 +87,25 @@ const Layout = ({ children, location }) => {
         >
           Gatsby
         </OutboundLink>
+        {`, `}
+        <OutboundLink
+          className="underline transition duration-200 transform hover:text-green-600"
+          href="https://tailwindcss.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Tailwind CSS
+        </OutboundLink>
+        {`, & `}
+        <OutboundLink
+          className="underline transition duration-200 transform hover:text-green-600"
+          href="https://zeit.co/home"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ZEIT
+        </OutboundLink>
+        {`.`}
       </footer>
     </div>
   );
