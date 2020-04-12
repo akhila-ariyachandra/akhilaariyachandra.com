@@ -123,7 +123,7 @@ module.exports = {
         link: `https://www.apollographql.com/`,
       },
       {
-        name: `TailwindCSS`,
+        name: `Tailwind CSS`,
         background: `#0694a2`,
         text: `#ffffff`,
         link: `https://tailwindcss.com/`,
