@@ -4,11 +4,11 @@
 
 ## Environment Variables
 
-|    ENV Variable     | Description                                            | [ZEIT NOW](https://zeit.co/) Secret |
-| :-----------------: | ------------------------------------------------------ | :---------------------------------: |
-| GOOGLE_ANALYTICS_ID | [Google Analytics](https://analytics.google.com) ID    |  personal-site-google-analytics-id  |
-|  GOOGLE_AD_CLIENT   | [Google Adsense](https://ads.google.com/) Publisher ID |   personal-site-google-ad-client    |
-| GATSBY_DISQUS_NAME  | [Disqus](https://disqus.com/) Shortname                |      personal-site-disqus-name      |
+|    ENV Variable     | Description                                            |
+| :-----------------: | ------------------------------------------------------ |
+| GOOGLE_ANALYTICS_ID | [Google Analytics](https://analytics.google.com) ID    |
+|  GOOGLE_AD_CLIENT   | [Google Adsense](https://ads.google.com/) Publisher ID |
+| GATSBY_DISQUS_NAME  | [Disqus](https://disqus.com/) Shortname                |
 
 ---
 
