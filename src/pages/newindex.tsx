@@ -36,8 +36,10 @@ const LeftSection: React.FunctionComponent = ({ children }) => {
 
 const RightSection: React.FunctionComponent = ({ children }) => {
   return (
-    <div className="flex-1 p-10 bg-black text-white antialiased">
+    <div className="flex-1 p-10 bg-black text-white antialiased flex flex-col">
+      <div className="flex-1" />
       {children}
+      <div className="flex-1" />
     </div>
   );
 };
@@ -82,7 +84,7 @@ const Index: React.FunctionComponent = () => {
             JavaScript, and Programming
           </p>
 
-          <div className="flex my-3 flex-row-reverse lg:flex-row">
+          <div className="flex mt-3 flex-row-reverse lg:flex-row">
             <div className="flex-1" />
 
             <FaArrowDown className="text-4xl lg:text-5xl" />
@@ -93,7 +95,7 @@ const Index: React.FunctionComponent = () => {
           <Img
             fluid={picture.childImageSharp.fluid}
             alt="Akhila Ariyachandra"
-            className="mx-auto rounded-lg"
+            className="mx-auto rounded-lg w-full"
             style={{ maxWidth: 600 }}
             imgStyle={{ maxWidth: 600 }}
           />
