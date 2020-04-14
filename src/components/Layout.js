@@ -9,14 +9,6 @@ const NAV_LINKS = [
     name: "Blog",
     slug: "/blog/",
   },
-  {
-    name: "Career",
-    slug: "/career/",
-  },
-  {
-    name: "About",
-    slug: "/about/",
-  },
 ];
 
 const Layout = ({ children, location }) => {

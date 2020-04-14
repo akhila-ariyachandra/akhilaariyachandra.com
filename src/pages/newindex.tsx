@@ -2,8 +2,10 @@ import React from "react";
 import BackgroundImage from "gatsby-background-image";
 import Img from "gatsby-image";
 import SEO from "../components/SEO";
+import CareerBlock from "../components/CareerBlock";
 import { useStaticQuery, graphql } from "gatsby";
 import { FaArrowDown } from "react-icons/fa";
+import { getSortedCompanies } from "../util/helpers";
 
 type StyledSectionProps = {
   reverse?: boolean;
@@ -15,9 +17,9 @@ const StyledSection: React.FunctionComponent<StyledSectionProps> = ({
 }) => {
   return (
     <section
-      className={`h-screen flex ${
+      className={`min-h-screen flex ${
         reverse ? "flex-col-reverse" : "flex-col"
-      } lg:flex-row`}
+      } lg:flex-row text-white antialiased`}
     >
       {children}
     </section>
@@ -26,7 +28,7 @@ const StyledSection: React.FunctionComponent<StyledSectionProps> = ({
 
 const LeftSection: React.FunctionComponent = ({ children }) => {
   return (
-    <div className="flex-1 p-10 text-white antialiased flex flex-col">
+    <div className="flex-1 p-10 flex flex-col">
       <div className="flex-1" />
       {children}
       <div className="flex-1" />
@@ -36,7 +38,7 @@ const LeftSection: React.FunctionComponent = ({ children }) => {
 
 const RightSection: React.FunctionComponent = ({ children }) => {
   return (
-    <div className="flex-1 p-10 bg-black text-white antialiased flex flex-col">
+    <div className="flex-1 p-10 bg-black flex flex-col">
       <div className="flex-1" />
       {children}
       <div className="flex-1" />
@@ -45,7 +47,7 @@ const RightSection: React.FunctionComponent = ({ children }) => {
 };
 
 const Index: React.FunctionComponent = () => {
-  const { background, picture } = useStaticQuery(graphql`
+  const { background, picture, allYaml } = useStaticQuery(graphql`
     query NewQuery {
       background: file(relativePath: { eq: "background.png" }) {
         childImageSharp {
@@ -61,10 +63,29 @@ const Index: React.FunctionComponent = () => {
           }
         }
       }
+      allYaml {
+        nodes {
+          company
+          positions {
+            start_date
+            end_date
+            title
+          }
+          image {
+            childImageSharp {
+              fluid(maxWidth: 200, maxHeight: 200) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+          link
+        }
+      }
     }
   `);
 
   const imageData = background.childImageSharp.fluid;
+  const companies = getSortedCompanies(allYaml.nodes);
 
   return (
     <BackgroundImage
@@ -75,11 +96,11 @@ const Index: React.FunctionComponent = () => {
 
       <StyledSection reverse>
         <LeftSection>
-          <h1 className="text-4xl font-bold text-white antialiased lg:text-5xl lg:text-right">
+          <h1 className="text-4xl font-bold lg:text-5xl lg:text-right">
             Akhila Ariyachandra
           </h1>
 
-          <p className="text-lg font-light lg:text-xl lg:text-right">
+          <p className="text-lg font-light lg:text-xl lg:text-right lg:pl-40">
             Web Developer trying to share his love and knowledge of React,
             JavaScript, and Programming
           </p>
@@ -104,7 +125,7 @@ const Index: React.FunctionComponent = () => {
 
       <StyledSection>
         <LeftSection>
-          <h2 className="text-2xl font-semibold text-white antialiased lg:text-3xl lg:text-right">
+          <h2 className="text-2xl font-semibold lg:text-3xl lg:text-right">
             About me
           </h2>
         </LeftSection>
@@ -139,14 +160,20 @@ const Index: React.FunctionComponent = () => {
       <StyledSection>
         <LeftSection>
           <h2
-            className="text-2xl font-semibold text-white antialiased lg:text-3xl lg:text-right"
+            className="text-2xl font-semibold lg:text-3xl lg:text-right"
             id="career"
           >
             Career
           </h2>
         </LeftSection>
 
-        <RightSection></RightSection>
+        <RightSection>
+          <div className="grid grid-cols-1 gap-3 w-full">
+            {companies.map((company) => (
+              <CareerBlock company={company} key={company.company} />
+            ))}
+          </div>
+        </RightSection>
       </StyledSection>
     </BackgroundImage>
   );
