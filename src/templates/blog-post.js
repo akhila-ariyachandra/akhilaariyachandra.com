@@ -25,7 +25,10 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         image={post.frontmatter.banner.childImageSharp.fixed.src}
       />
 
-      <article className="max-w-full">
+      <article
+        className="max-w-full p-3 rounded-md"
+        style={{ backgroundColor: "rgba(255, 255, 255, 0.05)" }}
+      >
         <header>
           <h1 className="text-5xl font-bold">{post.frontmatter.title}</h1>
 
@@ -55,7 +58,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
               href={data.site.siteMetadata.donationLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="underline text-green-800"
+              className="underline text-gray-400"
             >
               Please consider buying me a coffee.
             </OutboundLink>
@@ -67,15 +70,17 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 
           <hr className="my-3" />
 
-          <Disqus config={disqusConfig} />
+          <div className="bg-white rounded-md p-2">
+            <Disqus config={disqusConfig} />
+          </div>
 
           <hr className="my-3" />
         </footer>
       </article>
 
-      <nav className="my-8 max-w-full">
+      <nav className="my-8 w-full">
         <ul className="flex flex-wrap justify-between list-none p-0">
-          <li className="text-2xl font-medium">
+          <li className="text-2xl font-medium flex-1 text-left">
             {previous && (
               <Link to={previous.fields.slug} rel="prev">
                 ← {previous.frontmatter.title}
@@ -83,7 +88,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             )}
           </li>
 
-          <li className="text-2xl font-medium">
+          <li className="text-2xl font-medium flex-1 text-right">
             {next && (
               <Link to={next.fields.slug} rel="next">
                 {next.frontmatter.title} →

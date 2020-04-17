@@ -3,6 +3,7 @@ import BackgroundImage from "gatsby-background-image";
 import Img from "gatsby-image";
 import SEO from "../components/SEO";
 import CareerBlock from "../components/CareerBlock";
+import Layout from "../components/Layout";
 import { useStaticQuery, graphql } from "gatsby";
 import { FaArrowDown } from "react-icons/fa";
 import { getSortedCompanies } from "../util/helpers";
@@ -19,7 +20,7 @@ const StyledSection: React.FunctionComponent<StyledSectionProps> = ({
     <section
       className={`min-h-screen flex ${
         reverse ? "flex-col-reverse" : "flex-col"
-      } lg:flex-row text-white antialiased`}
+      } lg:flex-row`}
     >
       {children}
     </section>
@@ -46,7 +47,11 @@ const RightSection: React.FunctionComponent = ({ children }) => {
   );
 };
 
-const Index: React.FunctionComponent = () => {
+type Props = {
+  location: object;
+};
+
+const Index: React.FunctionComponent<Props> = ({ location }) => {
   const { background, picture, allYaml } = useStaticQuery(graphql`
     query NewQuery {
       background: file(relativePath: { eq: "background.png" }) {
@@ -88,10 +93,7 @@ const Index: React.FunctionComponent = () => {
   const companies = getSortedCompanies(allYaml.nodes);
 
   return (
-    <BackgroundImage
-      className="min-h-screen flex flex-col bg-fixed"
-      fluid={imageData}
-    >
+    <Layout maxWidth>
       <SEO title="Akhila Ariyachandra" />
 
       <StyledSection reverse>
@@ -175,7 +177,7 @@ const Index: React.FunctionComponent = () => {
           </div>
         </RightSection>
       </StyledSection>
-    </BackgroundImage>
+    </Layout>
   );
 };
 
