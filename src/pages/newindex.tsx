@@ -4,6 +4,7 @@ import Img from "gatsby-image";
 import SEO from "../components/SEO";
 import CareerBlock from "../components/CareerBlock";
 import Layout from "../components/Layout";
+import TechnologyBlock from "../components/TechnologyBlock";
 import { useStaticQuery, graphql } from "gatsby";
 import { FaArrowDown } from "react-icons/fa";
 import { getSortedCompanies } from "../util/helpers";
@@ -52,7 +53,7 @@ type Props = {
 };
 
 const Index: React.FunctionComponent<Props> = ({ location }) => {
-  const { background, picture, allYaml } = useStaticQuery(graphql`
+  const { background, picture, allYaml, site } = useStaticQuery(graphql`
     query NewQuery {
       background: file(relativePath: { eq: "background.png" }) {
         childImageSharp {
@@ -65,6 +66,16 @@ const Index: React.FunctionComponent<Props> = ({ location }) => {
         childImageSharp {
           fluid(maxWidth: 1200, maxHeight: 600) {
             ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      site {
+        siteMetadata {
+          technologies {
+            name
+            background
+            text
+            link
           }
         }
       }
@@ -91,6 +102,7 @@ const Index: React.FunctionComponent<Props> = ({ location }) => {
 
   const imageData = background.childImageSharp.fluid;
   const companies = getSortedCompanies(allYaml.nodes);
+  const technologies = site.siteMetadata.technologies;
 
   return (
     <Layout maxWidth>
@@ -156,6 +168,22 @@ const Index: React.FunctionComponent<Props> = ({ location }) => {
             JavaScript, React and Web Development through things like Next.js,
             Gatsby.js and GraphQL, and share what I've learned.
           </p>
+        </RightSection>
+      </StyledSection>
+
+      <StyledSection>
+        <LeftSection>
+          <h2 className="text-2xl font-semibold lg:text-3xl lg:text-right">
+            Technologies I work with
+          </h2>
+        </LeftSection>
+
+        <RightSection>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {technologies.map((technology) => (
+            <TechnologyBlock technology={technology} key={technology.name} />
+          ))}
+        </div>
         </RightSection>
       </StyledSection>
 
