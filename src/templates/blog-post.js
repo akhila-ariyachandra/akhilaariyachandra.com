@@ -78,6 +78,21 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         </footer>
       </article>
 
+      {/*-- Blog Ads --*/}
+      <ins
+        class="adsbygoogle"
+        style={{ display: "block" }}
+        data-ad-client="ca-pub-9764216594022086"
+        data-ad-slot="2810783403"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `(adsbygoogle = window.adsbygoogle || []).push({});`,
+        }}
+      />
+
       <nav className="my-8 w-full">
         <ul className="flex flex-wrap justify-between list-none p-0">
           <li className="text-2xl font-medium flex-1 text-left">
