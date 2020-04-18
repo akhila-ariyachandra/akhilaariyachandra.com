@@ -2,14 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
 
-const PostLink = ({ node }) => {
+const PostLink = ({ node, dark }) => {
   const title = node.frontmatter.title;
 
   return (
     <Link to={node.fields.slug}>
       <article
         className="rounded-md transition duration-500 transform hover:scale-105 p-3 grid grid-cols-1 gap-1"
-        style={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+        style={{
+          backgroundColor: dark
+            ? "rgba(0, 0, 0, 0.25)"
+            : "rgba(255, 255, 255, 0.1)",
+        }}
       >
         <h3 className="text-2xl font-semibold">{title}</h3>
 
@@ -27,6 +31,7 @@ const PostLink = ({ node }) => {
 
 PostLink.propTypes = {
   node: PropTypes.object.isRequired,
+  dark: PropTypes.bool.isRequired,
 };
 
 export default PostLink;

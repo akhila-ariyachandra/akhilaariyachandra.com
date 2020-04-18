@@ -1,11 +1,12 @@
 import React from "react";
-import BackgroundImage from "gatsby-background-image";
 import Img from "gatsby-image";
 import SEO from "../components/SEO";
 import CareerBlock from "../components/CareerBlock";
 import Layout from "../components/Layout";
 import TechnologyBlock from "../components/TechnologyBlock";
-import { useStaticQuery, graphql } from "gatsby";
+import PostLink from "../components/PostLink";
+import ProjectLink from "../components/ProjectLink";
+import { useStaticQuery, graphql, Link } from "gatsby";
 import { FaArrowDown } from "react-icons/fa";
 import { getSortedCompanies } from "../util/helpers";
 
@@ -48,13 +49,15 @@ const RightSection: React.FunctionComponent = ({ children }) => {
   );
 };
 
-type Props = {
-  location: object;
-};
-
-const Index: React.FunctionComponent<Props> = ({ location }) => {
-  const { background, picture, allYaml, site } = useStaticQuery(graphql`
-    query NewQuery {
+const Index: React.FunctionComponent = () => {
+  const {
+    background,
+    picture,
+    allYaml,
+    site,
+    allMarkdownRemark,
+  } = useStaticQuery(graphql`
+    query IndexPageQuery {
       background: file(relativePath: { eq: "background.png" }) {
         childImageSharp {
           fluid(quality: 90, maxWidth: 1920) {
@@ -69,6 +72,25 @@ const Index: React.FunctionComponent<Props> = ({ location }) => {
           }
         }
       }
+      allMarkdownRemark(
+        sort: { fields: [frontmatter___date], order: DESC }
+        limit: 3
+      ) {
+        edges {
+          node {
+            id
+            fields {
+              slug
+            }
+            frontmatter {
+              date(formatString: "MMMM Do, YYYY")
+              title
+              description
+            }
+            timeToRead
+          }
+        }
+      }
       site {
         siteMetadata {
           technologies {
@@ -77,8 +99,14 @@ const Index: React.FunctionComponent<Props> = ({ location }) => {
             text
             link
           }
+          projects {
+            title
+            url
+            description
+          }
         }
       }
+
       allYaml {
         nodes {
           company
@@ -100,9 +128,10 @@ const Index: React.FunctionComponent<Props> = ({ location }) => {
     }
   `);
 
-  const imageData = background.childImageSharp.fluid;
+  const posts = allMarkdownRemark.edges;
   const companies = getSortedCompanies(allYaml.nodes);
   const technologies = site.siteMetadata.technologies;
+  const projects = site.siteMetadata.projects;
 
   return (
     <Layout maxWidth>
@@ -122,7 +151,7 @@ const Index: React.FunctionComponent<Props> = ({ location }) => {
           <div className="flex mt-3 flex-row-reverse lg:flex-row">
             <div className="flex-1" />
 
-            <FaArrowDown className="text-4xl lg:text-5xl" />
+            <FaArrowDown className="text-4xl lg:text-5xl transform scale-125" />
           </div>
         </LeftSection>
 
@@ -179,20 +208,37 @@ const Index: React.FunctionComponent<Props> = ({ location }) => {
         </LeftSection>
 
         <RightSection>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {technologies.map((technology) => (
-            <TechnologyBlock technology={technology} key={technology.name} />
-          ))}
-        </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {technologies.map((technology) => (
+              <TechnologyBlock technology={technology} key={technology.name} />
+            ))}
+          </div>
         </RightSection>
       </StyledSection>
 
       <StyledSection>
         <LeftSection>
-          <h2
-            className="text-2xl font-semibold lg:text-3xl lg:text-right"
-            id="career"
-          >
+          <h2 className="text-2xl font-semibold lg:text-3xl lg:text-right">
+            Latest posts
+          </h2>
+
+          <h3 className="text-lg font-semibold lg:text-xl lg:text-right underline">
+            <Link to="/blog/">Read all posts</Link>
+          </h3>
+        </LeftSection>
+
+        <RightSection>
+          <div className="grid grid-cols-1 gap-4">
+            {posts.map(({ node }) => (
+              <PostLink node={node} key={node.id} dark={false} />
+            ))}
+          </div>
+        </RightSection>
+      </StyledSection>
+
+      <StyledSection>
+        <LeftSection>
+          <h2 className="text-2xl font-semibold lg:text-3xl lg:text-right">
             Career
           </h2>
         </LeftSection>
@@ -201,6 +247,22 @@ const Index: React.FunctionComponent<Props> = ({ location }) => {
           <div className="grid grid-cols-1 gap-3 w-full">
             {companies.map((company) => (
               <CareerBlock company={company} key={company.company} />
+            ))}
+          </div>
+        </RightSection>
+      </StyledSection>
+
+      <StyledSection>
+        <LeftSection>
+          <h2 className="text-2xl font-semibold lg:text-3xl lg:text-right">
+            Projects
+          </h2>
+        </LeftSection>
+
+        <RightSection>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {projects.map((project) => (
+              <ProjectLink project={project} key={project.url} />
             ))}
           </div>
         </RightSection>

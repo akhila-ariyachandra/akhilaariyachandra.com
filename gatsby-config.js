@@ -10,7 +10,7 @@ const gatsbyRemarkClasses = {
   "heading[depth=5]": "text-xl font-medium my-3",
   "heading[depth=6]": "text-lg font-medium my-3",
   paragraph: "text-lg font-normal my-3",
-  link: "italic underline text-gray-400 my-3",
+  link: "italic underline text-green-500 my-3",
   blockquote:
     "border-l-4 border-green-600 bg-green-100 rounded-md italic font-medium pl-4 py-1 my-3 mx-0",
   "list[ordered=false]": "list-disc my-3 list-inside",

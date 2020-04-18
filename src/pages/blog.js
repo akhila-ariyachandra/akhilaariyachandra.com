@@ -35,9 +35,11 @@ const Blog = ({ location }) => {
         description="A blog by Akhila Ariyachandra talking about JavaScript, React & Web Development"
       />
 
+      <h1 className="text-5xl font-bold text-left mb-5 w-full">Blog</h1>
+
       <div className="grid grid-cols-1 gap-4 w-full">
         {posts.map(({ node }) => (
-          <PostLink node={node} key={node.id} />
+          <PostLink node={node} key={node.id} dark={true} />
         ))}
       </div>
     </Layout>

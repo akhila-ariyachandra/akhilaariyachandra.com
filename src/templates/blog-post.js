@@ -27,7 +27,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 
       <article
         className="max-w-full p-3 rounded-md"
-        style={{ backgroundColor: "rgba(255, 255, 255, 0.05)" }}
+        style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
       >
         <header>
           <h1 className="text-5xl font-bold">{post.frontmatter.title}</h1>
@@ -58,7 +58,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
               href={data.site.siteMetadata.donationLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="underline text-gray-400"
+              className="underline text-green-500"
             >
               Please consider buying me a coffee.
             </OutboundLink>
