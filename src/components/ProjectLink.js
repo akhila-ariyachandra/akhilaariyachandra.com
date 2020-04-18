@@ -4,7 +4,10 @@ import { OutboundLink } from "gatsby-plugin-google-analytics";
 
 const ProjectLink = ({ project }) => {
   return (
-    <article className="p-3 rounded-md shadow-md bg-white transition duration-500 transform hover:scale-105 hover:shadow-xl">
+    <article
+      className="rounded-md transition duration-500 transform hover:scale-105 p-3 grid grid-cols-1 gap-1"
+      style={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+    >
       <OutboundLink
         href={project.url}
         target="_blank"

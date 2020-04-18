@@ -18,13 +18,6 @@ const Blog = ({ location }) => {
               date(formatString: "MMMM Do, YYYY")
               title
               description
-              banner {
-                childImageSharp {
-                  fluid(maxWidth: 600, maxHeight: 300) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
             }
             timeToRead
           }
@@ -42,9 +35,11 @@ const Blog = ({ location }) => {
         description="A blog by Akhila Ariyachandra talking about JavaScript, React & Web Development"
       />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+      <h1 className="text-5xl font-bold text-left mb-5 w-full">Blog</h1>
+
+      <div className="grid grid-cols-1 gap-4 w-full">
         {posts.map(({ node }) => (
-          <PostLink node={node} key={node.id} />
+          <PostLink node={node} key={node.id} dark={true} />
         ))}
       </div>
     </Layout>

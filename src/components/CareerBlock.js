@@ -9,7 +9,7 @@ const CareerBlock = ({ company }) => {
   const sortedPositions = getSortedPositions(company);
 
   return (
-    <article className="p-3 rounded-md shadow-md bg-white grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <article className="p-3 grid grid-cols-1 sm:grid-cols-3 gap-4">
       <OutboundLink
         href={company.link}
         target="_blank"
