@@ -65,7 +65,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
       />
 
       <article
-        className="max-w-full p-3 rounded-md mt-8"
+        className="max-w-full p-3 rounded-md mt-10"
         style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
       >
         <header>

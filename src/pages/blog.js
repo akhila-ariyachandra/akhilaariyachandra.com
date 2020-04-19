@@ -35,7 +35,7 @@ const Blog = ({ location }) => {
         description="A blog by Akhila Ariyachandra talking about JavaScript, React & Web Development"
       />
 
-      <h1 className="text-5xl font-bold text-left mb-5 w-full mt-8">Blog</h1>
+      <h1 className="text-5xl font-bold text-left mb-5 w-full mt-10">Blog</h1>
 
       <div className="grid grid-cols-1 gap-4 w-full">
         {posts.map(({ node }) => (

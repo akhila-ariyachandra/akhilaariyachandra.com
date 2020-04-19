@@ -240,7 +240,7 @@ const Layout: React.FunctionComponent<Props> = ({ children, maxWidth }) => {
       {maxWidth ? (
         <main>{children}</main>
       ) : (
-        <main className="container p-8 max-w-screen-lg flex-1 flex flex-col items-center justify-center">
+        <main className="container p-5 max-w-screen-lg flex-1 flex flex-col items-center justify-center">
           {children}
         </main>
       )}
