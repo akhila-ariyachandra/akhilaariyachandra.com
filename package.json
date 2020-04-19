@@ -10,7 +10,7 @@
   "dependencies": {
     "@isamrish/gatsby-plugin-google-adsense": "^1.0.2",
     "dayjs": "^1.8.24",
-    "gatsby": "^2.20.24",
+    "gatsby": "^2.20.25",
     "gatsby-background-image": "^1.1.1",
     "gatsby-image": "^2.3.4",
     "gatsby-plugin-canonical-urls": "^2.2.3",
@@ -54,7 +54,7 @@
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.1.2",
-    "@types/node": "^13.11.1",
+    "@types/node": "^13.13.0",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.6",
     "autoprefixer": "^9.7.6",
