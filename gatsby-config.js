@@ -3,12 +3,12 @@ require("dotenv").config({
 });
 
 const gatsbyRemarkClasses = {
-  "heading[depth=1]": "text-5xl font-bold my-3",
-  "heading[depth=2]": "text-4xl font-bold my-3",
-  "heading[depth=3]": "text-3xl font-semibold my-3",
-  "heading[depth=4]": "text-2xl font-semibold my-3",
-  "heading[depth=5]": "text-xl font-medium my-3",
-  "heading[depth=6]": "text-lg font-medium my-3",
+  "heading[depth=1]": "text-4xl sm:text-5xl font-bold my-3",
+  "heading[depth=2]": "text-3xl sm:text-4xl font-bold my-3",
+  "heading[depth=3]": "text-2xl sm:text-3xl font-semibold my-3",
+  "heading[depth=4]": "text-xl sm:text-2xl font-semibold my-3",
+  "heading[depth=5]": "text-lg sm:text-xl font-medium my-3",
+  "heading[depth=6]": "text-base sm:text-lg font-medium my-3",
   paragraph: "text-lg font-normal my-3",
   link: "italic underline text-green-500 my-3",
   blockquote:
