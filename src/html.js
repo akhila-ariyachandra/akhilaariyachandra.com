@@ -14,7 +14,7 @@ export default function HTML(props) {
         {props.headComponents}
 
         <script
-          data-ad-client={process.env.GOOGLE_AD_CLIENT}
+          data-ad-client={"ca-pub-9764216594022086"}
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
         />
@@ -22,7 +22,7 @@ export default function HTML(props) {
           dangerouslySetInnerHTML={{
             __html: `
             (adsbygoogle = window.adsbygoogle || []).push({
-                google_ad_client: ${process.env.GOOGLE_AD_CLIENT},
+                google_ad_client: "ca-pub-9764216594022086",
                 enable_page_level_ads: true
             });
           `,
