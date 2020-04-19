@@ -101,13 +101,14 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
 
+        <hr className="my-3" />
+
         <AdSense.Google
           client={process.env.GOOGLE_AD_CLIENT}
           slot={process.env.GOOGLE_AD_SLOT}
           style={{ display: "block" }}
           format="auto"
           responsive="true"
-          className="my-3"
         />
 
         <footer>
