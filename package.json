@@ -49,7 +49,8 @@
     "react-adsense": "^0.1.0",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
-    "react-icons": "^3.9.0"
+    "react-icons": "^3.9.0",
+    "react-share": "^4.1.0"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.1.2",
