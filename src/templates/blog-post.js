@@ -65,7 +65,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
       />
 
       <article
-        className="max-w-full p-3 rounded-md mt-8"
+        className="max-w-full p-3 rounded-md mt-10"
         style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
       >
         <header>
@@ -173,6 +173,12 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           </li>
         </ul>
       </nav>
+
+      {/* Script for react-adsense*/}
+      <script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+      />
     </Layout>
   );
 };
