@@ -173,6 +173,12 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           </li>
         </ul>
       </nav>
+
+      {/* Script for react-adsense*/}
+      <script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+      />
     </Layout>
   );
 };
