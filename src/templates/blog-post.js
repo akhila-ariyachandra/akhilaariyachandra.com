@@ -90,7 +90,25 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           />
         </header>
 
+        <AdSense.Google
+          client={process.env.GOOGLE_AD_CLIENT}
+          slot={process.env.GOOGLE_AD_SLOT}
+          style={{ display: "block" }}
+          format="auto"
+          responsive="true"
+          className="my-3"
+        />
+
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
+
+        <AdSense.Google
+          client={process.env.GOOGLE_AD_CLIENT}
+          slot={process.env.GOOGLE_AD_SLOT}
+          style={{ display: "block" }}
+          format="auto"
+          responsive="true"
+          className="my-3"
+        />
 
         <footer>
           <hr className="my-3" />
@@ -124,8 +142,8 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           <hr className="my-3" />
 
           <AdSense.Google
-            client="ca-pub-9764216594022086"
-            slot="2810783403"
+            client={process.env.GOOGLE_AD_CLIENT}
+            slot={process.env.GOOGLE_AD_SLOT}
             style={{ display: "block" }}
             format="auto"
             responsive="true"
