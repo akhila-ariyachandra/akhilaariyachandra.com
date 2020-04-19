@@ -319,7 +319,7 @@ module.exports = {
       options: {
         googleAdClientId: process.env.GOOGLE_AD_CLIENT,
       },
-    },  */
+    }, */
     {
       resolve: `gatsby-plugin-disqus`,
       options: {
