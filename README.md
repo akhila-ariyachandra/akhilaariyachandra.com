@@ -4,11 +4,12 @@
 
 ## Environment Variables
 
-|    ENV Variable     | Description                                            |
-| :-----------------: | ------------------------------------------------------ |
-| GOOGLE_ANALYTICS_ID | [Google Analytics](https://analytics.google.com) ID    |
-|  GOOGLE_AD_CLIENT   | [Google Adsense](https://ads.google.com/) Publisher ID |
-| GATSBY_DISQUS_NAME  | [Disqus](https://disqus.com/) Shortname                |
+|    ENV Variable     | Description                                         |
+| :-----------------: | --------------------------------------------------- |
+| GOOGLE_ANALYTICS_ID | [Google Analytics](https://analytics.google.com) ID |
+|  GOOGLE_AD_CLIENT   | [Google Adsense](https://ads.google.com/) Client ID |
+|   GOOGLE_AD_SLOT    | [Google Adsense](https://ads.google.com/) Slot      |
+| GATSBY_DISQUS_NAME  | [Disqus](https://disqus.com/) Shortname             |
 
 ---
 
