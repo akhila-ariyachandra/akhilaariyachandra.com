@@ -89,8 +89,9 @@ const Layout: React.FunctionComponent<Props> = ({ children, maxWidth }) => {
       fluid={imageData}
     >
       <button
-        className="inline-flex items-center p-1 text-4xl m-3 fixed top-0 left-0 z-10"
+        className="inline-flex items-center p-1 text-4xl m-3 fixed top-0 left-0 z-10 bg-black rounded"
         onClick={() => dispatch({ type: "open" })}
+        aria-label="Open Side Menu"
       >
         <MdMenu />
       </button>
@@ -108,6 +109,7 @@ const Layout: React.FunctionComponent<Props> = ({ children, maxWidth }) => {
           className="inline-flex items-center p-1 text-4xl m-3 absolute top-0 right-0 transition duration-75"
           style={{ opacity: state.opacity }}
           onClick={() => dispatch({ type: "close" })}
+          aria-label="Close Side Menu"
         >
           <MdClose />
         </button>
