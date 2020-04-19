@@ -3,6 +3,7 @@ import Bio from "../components/Bio";
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import Img from "gatsby-image";
+import AdSense from "react-adsense";
 import { Link, graphql } from "gatsby";
 import { Disqus } from "gatsby-plugin-disqus";
 import { OutboundLink } from "gatsby-plugin-google-analytics";
@@ -75,27 +76,16 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           </div>
 
           <hr className="my-3" />
+
+          <AdSense.Google
+            client="ca-pub-9764216594022086"
+            slot="2810783403"
+            style={{ display: "block" }}
+            format="auto"
+            responsive="true"
+          />
         </footer>
       </article>
-
-      <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-      />
-      {/*-- Blog Ads --*/}
-      <ins
-        class="adsbygoogle"
-        style={{ display: "block" }}
-        data-ad-client="ca-pub-9764216594022086"
-        data-ad-slot="2810783403"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      />
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `(adsbygoogle = window.adsbygoogle || []).push({});`,
-        }}
-      />
 
       <nav className="my-8 w-full">
         <ul className="flex flex-wrap justify-between list-none p-0">
