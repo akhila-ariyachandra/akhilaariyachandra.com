@@ -3,9 +3,48 @@ import Bio from "../components/Bio";
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import Img from "gatsby-image";
+import AdSense from "react-adsense";
 import { Link, graphql } from "gatsby";
 import { Disqus } from "gatsby-plugin-disqus";
 import { OutboundLink } from "gatsby-plugin-google-analytics";
+import {
+  FacebookShareButton,
+  LinkedinShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+  WorkplaceShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  LinkedinIcon,
+  WhatsappIcon,
+  WorkplaceIcon,
+} from "react-share";
+
+const ShareContainer = ({ url }) => {
+  return (
+    <div className="my-2">
+      <FacebookShareButton url={url}>
+        <FacebookIcon className="h-8 w-8 sm:h-10 sm:w-10 rounded" />
+      </FacebookShareButton>
+
+      <TwitterShareButton url={url}>
+        <TwitterIcon className="h-8 w-8 sm:h-10 sm:w-10 rounded ml-2" />
+      </TwitterShareButton>
+
+      <LinkedinShareButton url={url}>
+        <LinkedinIcon className="h-8 w-8 sm:h-10 sm:w-10 rounded ml-2" />
+      </LinkedinShareButton>
+
+      <WorkplaceShareButton url={url}>
+        <WorkplaceIcon className="h-8 w-8 sm:h-10 sm:w-10 rounded ml-2" />
+      </WorkplaceShareButton>
+
+      <WhatsappShareButton url={url}>
+        <WhatsappIcon className="h-8 w-8 sm:h-10 sm:w-10 rounded ml-2" />
+      </WhatsappShareButton>
+    </div>
+  );
+};
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.markdownRemark;
@@ -30,13 +69,17 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
       >
         <header>
-          <h1 className="text-5xl font-bold">{post.frontmatter.title}</h1>
+          <h1 className="text-2xl sm:text-5xl font-bold">
+            {post.frontmatter.title}
+          </h1>
 
           <div className="flex items-center">
-            <p className="flex-1 text-lg">{post.frontmatter.date}</p>
+            <p className="flex-1 text-lg">{`${post.frontmatter.date}`}</p>
 
             <p className="text-lg">{`${post.timeToRead} min read`}</p>
           </div>
+
+          <ShareContainer url={location.href} />
 
           <Img
             fluid={post.frontmatter.banner.childImageSharp.fluid}
@@ -50,6 +93,10 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
 
         <footer>
+          <hr className="my-3" />
+
+          <ShareContainer url={location.href} />
+
           <hr className="my-3" />
 
           <h6 className="text-xl font-medium">
@@ -75,27 +122,18 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           </div>
 
           <hr className="my-3" />
+
+          <AdSense.Google
+            client="ca-pub-9764216594022086"
+            slot="2810783403"
+            style={{ display: "block" }}
+            format="auto"
+            responsive="true"
+          />
+
+          <hr className="my-3" />
         </footer>
       </article>
-
-      <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-      />
-      {/*-- Blog Ads --*/}
-      <ins
-        class="adsbygoogle"
-        style={{ display: "block" }}
-        data-ad-client="ca-pub-9764216594022086"
-        data-ad-slot="2810783403"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      />
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `(adsbygoogle = window.adsbygoogle || []).push({});`,
-        }}
-      />
 
       <nav className="my-8 w-full">
         <ul className="flex flex-wrap justify-between list-none p-0">
