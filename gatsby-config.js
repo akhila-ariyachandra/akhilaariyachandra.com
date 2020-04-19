@@ -12,7 +12,7 @@ const gatsbyRemarkClasses = {
   paragraph: "text-lg font-normal my-3",
   link: "italic underline text-green-500 my-3",
   blockquote:
-    "border-l-4 border-green-600 bg-green-100 rounded-md italic font-medium pl-4 py-1 my-3 mx-0",
+    "border-l-4 border-green-600 bg-green-100 rounded-md text-black italic font-medium pl-4 py-1 my-3 mx-0",
   "list[ordered=false]": "list-disc my-3 list-inside",
   "list[ordered=true]": "list-decimal my-3 list-inside pl-0",
   table: "table-auto border-4 border-collapse my-3",
