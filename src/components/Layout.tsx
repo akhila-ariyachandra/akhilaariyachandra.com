@@ -141,7 +141,7 @@ const Layout: React.FunctionComponent<Props> = ({ children, maxWidth }) => {
         </div>
 
         {/* Socials */}
-        <nav className="absolute inset-x-0 bottom-0 grid grid-cols-5 p-3">
+        <nav className="my-5 grid grid-cols-5 p-3">
           <div className="flex">
             <div className="flex-1" />
             <OutboundLink
