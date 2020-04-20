@@ -19,6 +19,7 @@ import {
   WhatsappIcon,
   WorkplaceIcon,
 } from "react-share";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const ShareContainer = ({ url }) => {
   return (
@@ -159,7 +160,10 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           <li className="text-2xl font-medium flex-1 text-left">
             {previous && (
               <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
+                <span className="flex flex-no-wrap items-center">
+                  <FaArrowLeft className="mr-2" />
+                  {previous.frontmatter.title}
+                </span>
               </Link>
             )}
           </li>
@@ -167,7 +171,10 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           <li className="text-2xl font-medium flex-1 text-right">
             {next && (
               <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
+                <span className="flex flex-no-wrap items-center justify-end">
+                  {next.frontmatter.title}
+                  <FaArrowRight className="ml-2" />
+                </span>
               </Link>
             )}
           </li>
