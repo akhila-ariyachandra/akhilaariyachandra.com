@@ -1,3 +1,3 @@
 import "./src/styles/site.css";
 
-import "prismjs/themes/prism-okaidia.css";
+import "prism-themes/themes/prism-atom-dark.css";
