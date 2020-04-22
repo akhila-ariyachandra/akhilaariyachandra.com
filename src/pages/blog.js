@@ -5,9 +5,9 @@ import SEO from "../components/SEO";
 import { graphql, useStaticQuery } from "gatsby";
 
 const Blog = ({ location }) => {
-  const { allMarkdownRemark } = useStaticQuery(graphql`
+  const { allMdx } = useStaticQuery(graphql`
     query BlogPageQuery {
-      allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+      allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
         edges {
           node {
             id
@@ -26,7 +26,7 @@ const Blog = ({ location }) => {
     }
   `);
 
-  const posts = allMarkdownRemark.edges;
+  const posts = allMdx.edges;
 
   return (
     <Layout location={location}>

@@ -55,7 +55,7 @@ const Index: React.FunctionComponent = () => {
     picture,
     allYaml,
     site,
-    allMarkdownRemark,
+    allMdx,
   } = useStaticQuery(graphql`
     query IndexPageQuery {
       background: file(relativePath: { eq: "background.png" }) {
@@ -72,7 +72,7 @@ const Index: React.FunctionComponent = () => {
           }
         }
       }
-      allMarkdownRemark(
+      allMdx(
         sort: { fields: [frontmatter___date], order: DESC }
         limit: 3
       ) {
@@ -128,7 +128,7 @@ const Index: React.FunctionComponent = () => {
     }
   `);
 
-  const posts = allMarkdownRemark.edges;
+  const posts = allMdx.edges;
   const companies = getSortedCompanies(allYaml.nodes);
   const technologies = site.siteMetadata.technologies;
   const projects = site.siteMetadata.projects;
@@ -208,7 +208,7 @@ const Index: React.FunctionComponent = () => {
         </LeftSection>
 
         <RightSection>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
             {technologies.map((technology) => (
               <TechnologyBlock technology={technology} key={technology.name} />
             ))}
