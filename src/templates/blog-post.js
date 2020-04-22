@@ -20,6 +20,7 @@ import {
   WorkplaceIcon,
 } from "react-share";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { MDXRenderer } from "gatsby-plugin-mdx";
 
 const ShareContainer = ({ url }) => {
   return (
@@ -48,7 +49,7 @@ const ShareContainer = ({ url }) => {
 };
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
-  const post = data.markdownRemark;
+  const post = data.mdx;
   const { previous, next } = pageContext;
 
   let disqusConfig = {
@@ -93,7 +94,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 
         <BlogAd className="my-3" />
 
-        <section dangerouslySetInnerHTML={{ __html: post.html }} />
+        <MDXRenderer>{post.body}</MDXRenderer>
 
         <hr className="my-3" />
 
@@ -181,8 +182,8 @@ export const pageQuery = graphql`
         donationLink
       }
     }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
+    mdx(fields: { slug: { eq: $slug } }) {
+      body
       fields {
         slug
       }

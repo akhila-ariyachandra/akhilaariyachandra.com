@@ -55,7 +55,7 @@ const Index: React.FunctionComponent = () => {
     picture,
     allYaml,
     site,
-    allMarkdownRemark,
+    allMdx,
   } = useStaticQuery(graphql`
     query IndexPageQuery {
       background: file(relativePath: { eq: "background.png" }) {
@@ -72,7 +72,7 @@ const Index: React.FunctionComponent = () => {
           }
         }
       }
-      allMarkdownRemark(
+      allMdx(
         sort: { fields: [frontmatter___date], order: DESC }
         limit: 3
       ) {
@@ -128,7 +128,7 @@ const Index: React.FunctionComponent = () => {
     }
   `);
 
-  const posts = allMarkdownRemark.edges;
+  const posts = allMdx.edges;
   const companies = getSortedCompanies(allYaml.nodes);
   const technologies = site.siteMetadata.technologies;
   const projects = site.siteMetadata.projects;
