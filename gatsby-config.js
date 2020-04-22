@@ -141,10 +141,10 @@ module.exports = {
         link: `https://firebase.google.com/`,
       },
       {
-        name: `ZEIT`,
+        name: `Vercel`,
         background: `#000000`,
         text: `#ffffff`,
-        link: `https://zeit.co/home`,
+        link: `https://vercel.com/home`,
       },
       {
         name: `Netlify`,
