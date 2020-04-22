@@ -3,7 +3,7 @@ import Bio from "../components/Bio";
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import Img from "gatsby-image";
-import AdSense from "react-adsense";
+import BlogAd from "../components/ads/BlogAd";
 import { Link, graphql } from "gatsby";
 import { Disqus } from "gatsby-plugin-disqus";
 import { OutboundLink } from "gatsby-plugin-google-analytics";
@@ -91,26 +91,13 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           />
         </header>
 
-        <AdSense.Google
-          client={process.env.GOOGLE_AD_CLIENT}
-          slot={process.env.GOOGLE_AD_SLOT}
-          style={{ display: "block" }}
-          format="auto"
-          responsive="true"
-          className="my-3"
-        />
+        <BlogAd className="my-3" />
 
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
 
         <hr className="my-3" />
 
-        <AdSense.Google
-          client={process.env.GOOGLE_AD_CLIENT}
-          slot={process.env.GOOGLE_AD_SLOT}
-          style={{ display: "block" }}
-          format="auto"
-          responsive="true"
-        />
+        <BlogAd />
 
         <footer>
           <hr className="my-3" />
@@ -143,13 +130,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 
           <hr className="my-3" />
 
-          <AdSense.Google
-            client={process.env.GOOGLE_AD_CLIENT}
-            slot={process.env.GOOGLE_AD_SLOT}
-            style={{ display: "block" }}
-            format="auto"
-            responsive="true"
-          />
+          <BlogAd />
 
           <hr className="my-3" />
         </footer>
