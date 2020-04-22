@@ -1,13 +1,15 @@
 ---
 title: "Data Structures: Stack"
 date: "2020-04-22"
-description: "An explaination of the Stack Data Structure and how to implement it in TypeScript"
+description: "An explaination of the Stack Data Structure and how to implement it"
 banner: "./banner.png"
 ---
 
 **Stack** is a linear data structure where the elements follow a _First In Last Out_ (FILO) order. It can also be thought as _Last In First Out_.
 
 ![Stack Diagram](./diagram.png)
+
+Stacks can be used for things like tracking which functions are currently running and the navigation state in a web app.
 
 ## Implementing a Stack data structure
 
@@ -135,4 +137,31 @@ class Stack<T> {
     return this._data.pop() as T;
   }
 }
+```
+
+Below is an example on how to use the **Stack** class we just created. The stack can be created to hold any type of data.
+
+```typescript
+const numberStack: Stack<number> = new Stack<number>();
+
+console.log(numberStack.isEmpty()); // true
+console.log(numberStack.size); // 0
+
+numberStack.push(1);
+// 1
+numberStack.push(2);
+// 1, 2
+numberStack.push(3);
+// 1, 2, 3
+
+console.log(numberStack.isEmpty()); // false
+console.log(numberStack.size); // 3
+
+console.log(numberStack.peek()); // 3
+console.log(numberStack.pop()); // 3
+console.log(numberStack.pop()); // 2
+console.log(numberStack.pop()); // 1
+
+console.log(numberStack.isEmpty()); // true
+console.log(numberStack.size); // 0
 ```
