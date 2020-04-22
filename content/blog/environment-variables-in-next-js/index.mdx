@@ -5,6 +5,8 @@ description: "A guide to working with Environment Variables in Next.js"
 banner: "./banner.png"
 ---
 
+import BlogAd from "../../../src/components/ads/BlogAd.tsx";
+
 Often we need to use certain variables like the database path or authentication secrets without committing them to the repo.
 
 Since [Next.js](https://nextjs.org/ "Next.js") uses [Webpack](https://webpack.js.org/ "Webpack") we can use the [dotenv-webpack](https://www.npmjs.com/package/dotenv-webpack) dependency to load variable from a _.env_ file to our Next.js application.
@@ -71,6 +73,8 @@ AUTH_SECRET=verysecret
 You can use the variable like this, `process.env.AUTH_SECRET`.
 
 > Never commit the _.env_ file. Add it to the _.gitignore_ file.
+
+<BlogAd className="my-3" />
 
 ## Deploying to [Zeit NOW](https://zeit.co/home)
 

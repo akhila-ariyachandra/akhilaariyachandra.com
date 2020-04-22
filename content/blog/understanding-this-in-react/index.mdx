@@ -5,6 +5,8 @@ description: 'Let''s try to make "this" a little less confusing'
 banner: "./banner.png"
 ---
 
+import BlogAd from "../../../src/components/ads/BlogAd.tsx";
+
 `this` in JavaScript can confusing as it can change based on where it is called from. In this post I'll try to clear it up.
 
 > The JavaScript "this" keyword refers to the object it belongs to. [^1]
@@ -137,6 +139,8 @@ console.log(user.innerFunction()); // Akhila Ariyachandra
 ```
 
 _ES6_ brought us **arrow functions**, which automatically binds `this` to the function, which leads to less and cleaner code.
+
+<BlogAd className="my-3" />
 
 ## So what about React?
 
