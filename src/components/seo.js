@@ -5,15 +5,22 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from "react"
-import PropTypes from "prop-types"
-import Helmet from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import React from "react";
+import PropTypes from "prop-types";
+import { Helmet } from "react-helmet";
+import { useStaticQuery, graphql } from "gatsby";
 
-const SEO = ({ description, lang, meta, title }) => {
-  const { site } = useStaticQuery(
+const SEO = ({ description, lang, meta, title, image }) => {
+  const { site, picture } = useStaticQuery(
     graphql`
       query {
+        picture: file(absolutePath: { regex: "/cover-pic.jpg/" }) {
+          childImageSharp {
+            fixed(width: 1200, height: 630) {
+              src
+            }
+          }
+        }
         site {
           siteMetadata {
             title
@@ -21,13 +28,18 @@ const SEO = ({ description, lang, meta, title }) => {
             social {
               twitter
             }
+            siteUrl
           }
         }
       }
     `
-  )
+  );
 
-  const metaDescription = description || site.siteMetadata.description
+  const metaDescription = description || site.siteMetadata.description;
+  const titleTemplate =
+    title === site.siteMetadata.title
+      ? "%s"
+      : `%s | ${site.siteMetadata.title}`;
 
   return (
     <Helmet
@@ -35,7 +47,7 @@ const SEO = ({ description, lang, meta, title }) => {
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={titleTemplate}
       meta={[
         {
           name: `description`,
@@ -69,22 +81,35 @@ const SEO = ({ description, lang, meta, title }) => {
           name: `twitter:description`,
           content: metaDescription,
         },
+        {
+          property: "og:image",
+          content: `${site.siteMetadata.siteUrl}${
+            image ? image : picture.childImageSharp.fixed.src
+          }`,
+        },
+        {
+          property: `og:image:alt`,
+          content: title,
+        },
+        { property: "og:image:width", content: 1200 },
+        { property: "og:image:height", content: 630 },
       ].concat(meta)}
+      defer={false}
     />
-  )
-}
+  );
+};
 
 SEO.defaultProps = {
   lang: `en`,
   meta: [],
-  description: ``,
-}
+};
 
 SEO.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
-}
+  image: PropTypes.string,
+};
 
-export default SEO
+export default SEO;

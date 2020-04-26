@@ -1,5 +1,7 @@
 // custom typefaces
-import "typeface-montserrat"
-import "typeface-merriweather"
+import "typeface-inter";
+import "typeface-roboto";
 
-import "prismjs/themes/prism.css"
+import "./src/styles/site.css";
+
+import "prismjs/themes/prism.css";
