@@ -2,8 +2,8 @@ import React from "react";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import styled from "@emotion/styled";
-import BlogPost from "../components/BlogPost";
 import tw from "twin.macro";
+import PostsContainer from "../components/PostsContainer";
 import { Link, graphql } from "gatsby";
 import {
   FaGithub,
@@ -17,54 +17,36 @@ import { OutboundLink } from "gatsby-plugin-google-analytics";
 const LINKS = [{ to: "/blog/", title: "Blog" }];
 
 const StyledTitleContainer = styled.div`
-  margin: 10rem 0;
+  ${tw`my-20 sm:my-48 grid grid-cols-1 gap-2`}
 
   h1 {
-    font-family: "Inter", sans-serif;
-    font-weight: 600;
-    font-size: 2rem;
-
-    @media (min-width: 640px) {
-      font-size: 4rem;
-    }
+    ${tw`text-4xl sm:text-6xl font-semibold my-1 py-0 leading-tight`}
   }
 
   p {
-    font-family: "Roboto", sans-serif;
-    font-size: 1.1rem;
-
-    @media (min-width: 640px) {
-      font-size: 1.5rem;
-    }
+    ${tw`text-lg sm:text-2xl font-normal my-1 py-0`}
   }
 
   #site-nav {
     h3 {
-      font-size: 1.65rem;
-      font-family: "Inter", sans-serif;
-
-      @media (min-width: 640px) {
-        font-size: 2.5em;
-      }
+      ${tw`text-2xl sm:text-4xl font-medium my-1 py-0`}
     }
 
     h3:not(:first-child) {
-      margin-left: 0.3em;
+      ${tw`ml-2`}
     }
   }
 
   #social {
-    ${tw`grid grid-cols-5 gap-1`}
+    ${tw`flex flex-row my-1 py-0`}
 
     .socialLink {
-      ${tw`text-xl sm:text-4xl`}
+      ${tw`text-2xl sm:text-4xl`}
     }
-  }
-`;
 
-const PostContainer = styled.div`
-  h2 {
-    font-family: "Inter", sans-serif;
+    .socialLink:not(:first-child) {
+      ${tw`ml-2`}
+    }
   }
 `;
 
@@ -142,13 +124,7 @@ const Index = ({ data, location }) => {
         </div>
       </StyledTitleContainer>
 
-      <PostContainer>
-        <h2>Latest Posts</h2>
-
-        {posts.map(({ node }) => (
-          <BlogPost key={node.id} node={node} />
-        ))}
-      </PostContainer>
+      <PostsContainer posts={posts} title="Latest Posts" />
     </Layout>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import tw from "twin.macro";
 import { Global, css } from "@emotion/core";
 import { Link } from "gatsby";
 
@@ -20,8 +21,7 @@ const Layout = ({ location, title, children }) => {
       <Global
         styles={css`
           a {
-            color: #0074d9;
-            text-decoration: none;
+            ${tw`text-green-700 no-underline`}
           }
         `}
       />
@@ -47,7 +47,7 @@ const Layout = ({ location, title, children }) => {
         </header>
       ) : null}
 
-      <main>{children}</main>
+      <main className="grid grid-cols-1 gap-4">{children}</main>
 
       <StyledFooter>
         © {new Date().getFullYear()}, Built with
