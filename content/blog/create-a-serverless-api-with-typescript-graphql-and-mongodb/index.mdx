@@ -45,16 +45,16 @@ After let's create the model for the notes. Create a folder called _src_. After 
 Start by importing _mongoose_.
 
 ```typescript
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 ```
 
 Next create an interface for the model which extends from `mongoose.Document`. We'll need to export this interface for use later as well.
 
 ```typescript
 export interface INote extends mongoose.Document {
-  title: string
-  content: string
-  date: Date
+  title: string;
+  content: string;
+  date: Date;
 }
 ```
 
@@ -65,14 +65,14 @@ const schema: mongoose.SchemaDefinition = {
   title: { type: mongoose.SchemaTypes.String, required: true },
   content: { type: mongoose.SchemaTypes.String, required: true },
   date: { type: mongoose.SchemaTypes.Date, required: true },
-}
+};
 ```
 
 Then define the name of the collection and the schema using schema definition.
 
 ```typescript
-const collectionName: string = "note"
-const noteSchema: mongoose.Schema = new mongoose.Schema(schema)
+const collectionName: string = "note";
+const noteSchema: mongoose.Schema = new mongoose.Schema(schema);
 ```
 
 Since we're building a serverless API, we can't depend on a persistent connection to database. When creating a Model we need to create it using the database connection.
@@ -81,36 +81,36 @@ To compensate for using serverless we'll generate the Model at runtime using a f
 
 ```typescript
 const Note = (conn: mongoose.Connection): mongoose.Model<INote> =>
-  conn.model(collectionName, noteSchema)
+  conn.model(collectionName, noteSchema);
 
-export default Note
+export default Note;
 ```
 
 Finally the Note model file should look like this.
 
 ```typescript
 // src/database/models/note.ts
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
 export interface INote extends mongoose.Document {
-  title: string
-  content: string
-  date: Date
+  title: string;
+  content: string;
+  date: Date;
 }
 
 const schema: mongoose.SchemaDefinition = {
   title: { type: mongoose.SchemaTypes.String, required: true },
   content: { type: mongoose.SchemaTypes.String, required: true },
   date: { type: mongoose.SchemaTypes.Date, required: true },
-}
+};
 
-const collectionName: string = "note"
-const noteSchema: mongoose.Schema = new mongoose.Schema(schema)
+const collectionName: string = "note";
+const noteSchema: mongoose.Schema = new mongoose.Schema(schema);
 
 const Note = (conn: mongoose.Connection): mongoose.Model<INote> =>
-  conn.model(collectionName, noteSchema)
+  conn.model(collectionName, noteSchema);
 
-export default Note
+export default Note;
 ```
 
 After creating the Note Model, let's look into the database connection.
@@ -128,19 +128,19 @@ DB_PATH=mongodb://user:password@ds654321.mlab.com:12345/example-db
 Next create the the **index.js** file in _src/database_ and import _mongoose_.
 
 ```typescript
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 ```
 
 Then get the MongoDB URI that we included in the **.env** file. It can be accessed as a key in `process.env`.
 
 ```typescript
-const uri: string = process.env.DB_PATH
+const uri: string = process.env.DB_PATH;
 ```
 
 After that declare a variable that will be used to cache the database connection between function invocations to prevent overloading the database.
 
 ```typescript
-let conn: mongoose.Connection = null
+let conn: mongoose.Connection = null;
 ```
 
 Finally we need to create a function that will return a database connection. The function will first check if there is a cached connection. If there is one it will return it or else it will create a new connection and cache and return it. Be sure to export the function.
@@ -154,22 +154,22 @@ export const getConnection = async (): Promise<mongoose.Connection> => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
-    })
+    });
   }
 
-  return conn
-}
+  return conn;
+};
 ```
 
 Finally the file should look like this.
 
 ```typescript
 // src/database/index.ts
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
-const uri: string = process.env.DB_PATH
+const uri: string = process.env.DB_PATH;
 
-let conn: mongoose.Connection = null
+let conn: mongoose.Connection = null;
 
 export const getConnection = async (): Promise<mongoose.Connection> => {
   if (conn == null) {
@@ -179,11 +179,11 @@ export const getConnection = async (): Promise<mongoose.Connection> => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
-    })
+    });
   }
 
-  return conn
-}
+  return conn;
+};
 ```
 
 ## Setup the GraphQL API
@@ -199,15 +199,15 @@ Next create the folder _api_ and in it create the file **graphql.ts**. **Now** w
 Then import _ApolloServer_ from _apollo-server-micro_ and the function to create the database connection.
 
 ```typescript
-import { ApolloServer } from "apollo-server-micro"
-import { getConnection } from "../src/database"
+import { ApolloServer } from "apollo-server-micro";
+import { getConnection } from "../src/database";
 ```
 
 After that import the GraphQL Schemas and Resolvers. We'll create these later.
 
 ```typescript
-import typeDefs from "../src/graphql/schema"
-import resolvers from "../src/graphql/resolvers"
+import typeDefs from "../src/graphql/schema";
+import resolvers from "../src/graphql/resolvers";
 ```
 
 Then initialize the apollo server and export it.
@@ -216,9 +216,9 @@ Then initialize the apollo server and export it.
 const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
-})
+});
 
-export default apolloServer.createHandler({ path: "/api/graphql" })
+export default apolloServer.createHandler({ path: "/api/graphql" });
 ```
 
 When creating a new _ApolloServer_, we can define the **context** option. The **context** option is an object which can be accessed by any of the resolvers.
@@ -230,11 +230,11 @@ const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
   context: async () => {
-    const dbConn = await getConnection()
+    const dbConn = await getConnection();
 
-    return { dbConn }
+    return { dbConn };
   },
-})
+});
 ```
 
 To finish the function code we'll set the _introspection_ and _playground_ options.
@@ -244,38 +244,38 @@ const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
   context: async () => {
-    const dbConn = await getConnection()
+    const dbConn = await getConnection();
 
-    return { dbConn }
+    return { dbConn };
   },
   playground: true,
   introspection: true,
-})
+});
 ```
 
 Finally the file should look like this.
 
 ```typescript
 // api/graphql.ts
-import { ApolloServer } from "apollo-server-micro"
-import { getConnection } from "../src/database"
+import { ApolloServer } from "apollo-server-micro";
+import { getConnection } from "../src/database";
 
-import typeDefs from "../src/graphql/schema"
-import resolvers from "../src/graphql/resolvers"
+import typeDefs from "../src/graphql/schema";
+import resolvers from "../src/graphql/resolvers";
 
 const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
   context: async () => {
-    const dbConn = await getConnection()
+    const dbConn = await getConnection();
 
-    return { dbConn }
+    return { dbConn };
   },
   playground: true,
   introspection: true,
-})
+});
 
-export default apolloServer.createHandler({ path: "/api/graphql" })
+export default apolloServer.createHandler({ path: "/api/graphql" });
 ```
 
 ## Setup the GraphQL Schema
@@ -286,13 +286,13 @@ GraphQL doesn't have a type for date and time so we'll need a schema for those t
 
 ```typescript
 // src/graphql/schema/custom.ts
-import { gql } from "apollo-server-micro"
+import { gql } from "apollo-server-micro";
 
 export default gql`
   scalar Date
   scalar Time
   scalar DateTime
-`
+`;
 ```
 
 Next we'll setup the schema for Note.
@@ -300,9 +300,9 @@ Next we'll setup the schema for Note.
 First create the Note schema file, _note.ts_ in the _schema_ folder.
 
 ```typescript
-import { gql } from "apollo-server-micro"
+import { gql } from "apollo-server-micro";
 
-export default gql``
+export default gql``;
 ```
 
 Then add the Note type.
@@ -315,7 +315,7 @@ export default gql`
     content: String!
     date: DateTime!
   }
-`
+`;
 ```
 
 After that add two Queries, one to get all Notes and one to get a specific Note.
@@ -333,7 +333,7 @@ export default gql`
     content: String!
     date: DateTime!
   }
-`
+`;
 ```
 
 Next add two Mutations to create new Notes and delete existing ones.
@@ -356,7 +356,7 @@ export default gql`
     content: String!
     date: DateTime!
   }
-`
+`;
 ```
 
 > Note that we add the keyword **extend** to the Query and Mutation type in the two schemas. This is because we'll be joining all the schemas into one later.
@@ -364,7 +364,7 @@ export default gql`
 Finally we'll need a schema a join all the others schemas together. Create _index.ts_ in the _schema_ folder and declare and export the Link Schema in an array.
 
 ```typescript
-import { gql } from "apollo-server-micro"
+import { gql } from "apollo-server-micro";
 
 const linkSchema = gql`
   type Query {
@@ -378,19 +378,19 @@ const linkSchema = gql`
   type Subscription {
     _: Boolean
   }
-`
+`;
 
-export default [linkSchema]
+export default [linkSchema];
 ```
 
 Then import the other Schemas and add them to the array.
 
 ```typescript
 // src/graphql/schema/index.ts
-import { gql } from "apollo-server-micro"
+import { gql } from "apollo-server-micro";
 
-import noteSchema from "./note"
-import customSchema from "./custom"
+import noteSchema from "./note";
+import customSchema from "./custom";
 
 const linkSchema = gql`
   type Query {
@@ -404,9 +404,9 @@ const linkSchema = gql`
   type Subscription {
     _: Boolean
   }
-`
+`;
 
-export default [linkSchema, noteSchema, customSchema]
+export default [linkSchema, noteSchema, customSchema];
 ```
 
 ## Setup the resolvers
@@ -415,13 +415,13 @@ Since we added a custom type for dates and times in our schema, the first resolv
 
 ```typescript
 // src/graphql/resolvers/custom.ts
-import { GraphQLDate, GraphQLTime, GraphQLDateTime } from "graphql-iso-date"
+import { GraphQLDate, GraphQLTime, GraphQLDateTime } from "graphql-iso-date";
 
 export default {
   Date: GraphQLDate,
   Time: GraphQLTime,
   DateTime: GraphQLDateTime,
-}
+};
 ```
 
 Next we'll start working on the resolver for Notes.
@@ -429,12 +429,12 @@ Next we'll start working on the resolver for Notes.
 Start by importing the required dependencies and exporting an empty object which is going to be our resolver.
 
 ```typescript
-import mongoose from "mongoose"
-import dayjs from "dayjs"
-import NoteModel, { INote } from "../../database/models/note"
-import { ApolloError } from "apollo-server-micro"
+import mongoose from "mongoose";
+import dayjs from "dayjs";
+import NoteModel, { INote } from "../../database/models/note";
+import { ApolloError } from "apollo-server-micro";
 
-export default {}
+export default {};
 ```
 
 Then define an object for the Queries.
@@ -442,7 +442,7 @@ Then define an object for the Queries.
 ```typescript
 export default {
   Query: {},
-}
+};
 ```
 
 When defining the function for each of the queries (or mutations or fields) there are three important parameters.
@@ -485,22 +485,22 @@ export default {
       args,
       { dbConn }: { dbConn: mongoose.Connection }
     ): Promise<INote[]> => {
-      const Note: mongoose.Model<INote> = NoteModel(dbConn)
+      const Note: mongoose.Model<INote> = NoteModel(dbConn);
 
-      let list: INote[]
+      let list: INote[];
 
       try {
-        list = await Note.find().exec()
+        list = await Note.find().exec();
       } catch (error) {
-        console.error("> getAllNotes error: ", error)
+        console.error("> getAllNotes error: ", error);
 
-        throw new ApolloError("Error retrieving all notes")
+        throw new ApolloError("Error retrieving all notes");
       }
 
-      return list
+      return list;
     },
   },
-}
+};
 ```
 
 After that let's add the resolver for **getNote**.
@@ -513,19 +513,19 @@ export default {
       args,
       { dbConn }: { dbConn: mongoose.Connection }
     ): Promise<INote[]> => {
-      const Note: mongoose.Model<INote> = NoteModel(dbConn)
+      const Note: mongoose.Model<INote> = NoteModel(dbConn);
 
-      let list: INote[]
+      let list: INote[];
 
       try {
-        list = await Note.find().exec()
+        list = await Note.find().exec();
       } catch (error) {
-        console.error("> getAllNotes error: ", error)
+        console.error("> getAllNotes error: ", error);
 
-        throw new ApolloError("Error retrieving all notes")
+        throw new ApolloError("Error retrieving all notes");
       }
 
-      return list
+      return list;
     },
 
     getNote: async (
@@ -533,20 +533,20 @@ export default {
       { _id }: { _id: INote["_id"] },
       { dbConn }: { dbConn: mongoose.Connection }
     ): Promise<INote> => {
-      const Note: mongoose.Model<INote> = NoteModel(dbConn)
+      const Note: mongoose.Model<INote> = NoteModel(dbConn);
 
       try {
-        const note = await Note.findById(_id).exec()
+        const note = await Note.findById(_id).exec();
 
-        return note
+        return note;
       } catch (error) {
-        console.error("> getNote error: ", error)
+        console.error("> getNote error: ", error);
 
-        throw new ApolloError("Error retrieving all notes")
+        throw new ApolloError("Error retrieving all notes");
       }
     },
   },
-}
+};
 ```
 
 We can retrieve the _id_ argument from the second parameter.
@@ -562,20 +562,20 @@ export default {
       { title, content }: { title: INote["title"]; content: INote["content"] },
       { dbConn }: { dbConn: mongoose.Connection }
     ): Promise<INote> => {
-      const Note: mongoose.Model<INote> = NoteModel(dbConn)
+      const Note: mongoose.Model<INote> = NoteModel(dbConn);
 
       try {
         const note = await Note.create({
           title,
           content,
           date: dayjs().toDate(),
-        })
+        });
 
-        return note
+        return note;
       } catch (error) {
-        console.error("> saveNote error: ", error)
+        console.error("> saveNote error: ", error);
 
-        throw new ApolloError("Error creating note")
+        throw new ApolloError("Error creating note");
       }
     },
 
@@ -584,30 +584,30 @@ export default {
       { _id }: { _id: INote["_id"] },
       { dbConn }: { dbConn: mongoose.Connection }
     ): Promise<INote> => {
-      const Note: mongoose.Model<INote> = NoteModel(dbConn)
+      const Note: mongoose.Model<INote> = NoteModel(dbConn);
 
       try {
-        const note = await Note.findByIdAndDelete(_id).exec()
+        const note = await Note.findByIdAndDelete(_id).exec();
 
-        return note
+        return note;
       } catch (error) {
-        console.error("> getNote error: ", error)
+        console.error("> getNote error: ", error);
 
-        throw new ApolloError("Error retrieving all notes")
+        throw new ApolloError("Error retrieving all notes");
       }
     },
   },
-}
+};
 ```
 
 Finally the file should look like this.
 
 ```typescript
 // src/graphql/resolvers/note.ts
-import mongoose from "mongoose"
-import dayjs from "dayjs"
-import NoteModel, { INote } from "../../database/models/note"
-import { ApolloError } from "apollo-server-micro"
+import mongoose from "mongoose";
+import dayjs from "dayjs";
+import NoteModel, { INote } from "../../database/models/note";
+import { ApolloError } from "apollo-server-micro";
 
 export default {
   Query: {
@@ -616,19 +616,19 @@ export default {
       args,
       { dbConn }: { dbConn: mongoose.Connection }
     ): Promise<INote[]> => {
-      const Note: mongoose.Model<INote> = NoteModel(dbConn)
+      const Note: mongoose.Model<INote> = NoteModel(dbConn);
 
-      let list: INote[]
+      let list: INote[];
 
       try {
-        list = await Note.find().exec()
+        list = await Note.find().exec();
       } catch (error) {
-        console.error("> getAllNotes error: ", error)
+        console.error("> getAllNotes error: ", error);
 
-        throw new ApolloError("Error retrieving all notes")
+        throw new ApolloError("Error retrieving all notes");
       }
 
-      return list
+      return list;
     },
 
     getNote: async (
@@ -636,16 +636,16 @@ export default {
       { _id }: { _id: INote["_id"] },
       { dbConn }: { dbConn: mongoose.Connection }
     ): Promise<INote> => {
-      const Note: mongoose.Model<INote> = NoteModel(dbConn)
+      const Note: mongoose.Model<INote> = NoteModel(dbConn);
 
       try {
-        const note = await Note.findById(_id).exec()
+        const note = await Note.findById(_id).exec();
 
-        return note
+        return note;
       } catch (error) {
-        console.error("> getNote error: ", error)
+        console.error("> getNote error: ", error);
 
-        throw new ApolloError("Error retrieving all notes")
+        throw new ApolloError("Error retrieving all notes");
       }
     },
   },
@@ -656,20 +656,20 @@ export default {
       { title, content }: { title: INote["title"]; content: INote["content"] },
       { dbConn }: { dbConn: mongoose.Connection }
     ): Promise<INote> => {
-      const Note: mongoose.Model<INote> = NoteModel(dbConn)
+      const Note: mongoose.Model<INote> = NoteModel(dbConn);
 
       try {
         const note = await Note.create({
           title,
           content,
           date: dayjs().toDate(),
-        })
+        });
 
-        return note
+        return note;
       } catch (error) {
-        console.error("> saveNote error: ", error)
+        console.error("> saveNote error: ", error);
 
-        throw new ApolloError("Error creating note")
+        throw new ApolloError("Error creating note");
       }
     },
 
@@ -678,30 +678,30 @@ export default {
       { _id }: { _id: INote["_id"] },
       { dbConn }: { dbConn: mongoose.Connection }
     ): Promise<INote> => {
-      const Note: mongoose.Model<INote> = NoteModel(dbConn)
+      const Note: mongoose.Model<INote> = NoteModel(dbConn);
 
       try {
-        const note = await Note.findByIdAndDelete(_id).exec()
+        const note = await Note.findByIdAndDelete(_id).exec();
 
-        return note
+        return note;
       } catch (error) {
-        console.error("> getNote error: ", error)
+        console.error("> getNote error: ", error);
 
-        throw new ApolloError("Error retrieving all notes")
+        throw new ApolloError("Error retrieving all notes");
       }
     },
   },
-}
+};
 ```
 
 Now we have to connect all the resolvers together using an _index.ts_ file created in the _resolvers_ folder.
 
 ```typescript
 // src/graphql/resolvers/index.ts
-import noteResolver from "./note"
-import customResolver from "./custom"
+import noteResolver from "./note";
+import customResolver from "./custom";
 
-export default [noteResolver, customResolver]
+export default [noteResolver, customResolver];
 ```
 
 ## Running the API locally

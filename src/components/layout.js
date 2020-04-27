@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import tw from "twin.macro";
+import DarkToggle from "./DarkToggle";
 import { Global, css } from "@emotion/core";
 import { Link } from "gatsby";
 
@@ -20,32 +21,27 @@ const Layout = ({ location, title, children }) => {
     <Wrapper>
       <Global
         styles={css`
+          html {
+            color: var(--color-text);
+            background-color: var(--color-background);
+            ${tw`transition-colors duration-200`}
+          }
+
           a {
             ${tw`text-green-700 no-underline`}
           }
         `}
       />
 
-      {title ? (
-        <header>
-          <h2
-            style={{
-              fontFamily: `Inter, sans-serif`,
-              marginTop: 0,
-            }}
-          >
-            <Link
-              style={{
-                boxShadow: `none`,
-                color: `inherit`,
-              }}
-              to={`/`}
-            >
-              {title}
-            </Link>
+      <header className="flex flex-row-reverse items-center">
+        <DarkToggle />
+
+        {title ? (
+          <h2 className="flex-1">
+            <Link to={`/`}>{title}</Link>
           </h2>
-        </header>
-      ) : null}
+        ) : null}
+      </header>
 
       <main className="grid grid-cols-1 gap-4">{children}</main>
 

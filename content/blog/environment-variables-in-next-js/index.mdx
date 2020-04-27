@@ -22,7 +22,7 @@ Next we need to modify the Webpack configuration in Next.js. This is done throug
 First import the dotenv-file dependency.
 
 ```javascript
-const Dotenv = require("dotenv-webpack")
+const Dotenv = require("dotenv-webpack");
 ```
 
 Next export the config object with the default Webpack config function.
@@ -30,9 +30,9 @@ Next export the config object with the default Webpack config function.
 ```javascript
 module.exports = {
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    return config
+    return config;
   },
-}
+};
 ```
 
 All we need to do now is add the dotenv-plugin into the Webpack plugins array.
@@ -41,27 +41,27 @@ All we need to do now is add the dotenv-plugin into the Webpack plugins array.
 module.exports = {
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     // Add the new plugin to the existing webpack plugins
-    config.plugins.push(new Dotenv({ silent: true }))
+    config.plugins.push(new Dotenv({ silent: true }));
 
-    return config
+    return config;
   },
-}
+};
 ```
 
 Finally the _next.config.js_ should look like this.
 
 ```javascript
 // next.config.js
-const Dotenv = require("dotenv-webpack")
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     // Add the new plugin to the existing webpack plugins
-    config.plugins.push(new Dotenv({ silent: true }))
+    config.plugins.push(new Dotenv({ silent: true }));
 
-    return config
+    return config;
   },
-}
+};
 ```
 
 Now you can use environment variables in the application. For example, if your _.env_ file is like this,
@@ -79,7 +79,7 @@ You can use the variable like this, `process.env.AUTH_SECRET`.
 If you are using a Git provider like Github to deploy the Application in Vercel, you can't use _.env_ file. This is the reason we set the _silent_ property when adding dotenv-webpack plugin, to prevent any errors because of the missing _.env_ file.
 
 ```javascript
-config.plugins.push(new Dotenv({ silent: true }))
+config.plugins.push(new Dotenv({ silent: true }));
 ```
 
 Instead of the _.env_ file we will use the [Environment Variables UI](https://vercel.com/blog/environment-variables-ui) available in Vercel.

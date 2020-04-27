@@ -25,7 +25,7 @@ Then declare a private member variable array to store the data of the stack. Mak
 
 ```typescript
 class Stack<T> {
-  private _data: T[] = []
+  private _data: T[] = [];
 }
 ```
 
@@ -37,7 +37,7 @@ class Stack<T> {
 
   // Check the size of the stack
   get size(): number {
-    return this._data.length
+    return this._data.length;
   }
 }
 ```
@@ -50,7 +50,7 @@ class Stack<T> {
 
   // Returns whether the stack is empty or not
   public isEmpty(): boolean {
-    return this._data.length === 0
+    return this._data.length === 0;
   }
 }
 ```
@@ -63,9 +63,9 @@ class Stack<T> {
 
   // Adds an element to the top of the stack
   public push(element: T): T {
-    this._data.push(element)
+    this._data.push(element);
 
-    return element
+    return element;
   }
 }
 ```
@@ -79,19 +79,19 @@ class Stack<T> {
   // Returns the value of the element on top of the stack without removing it
   public peek(): T {
     if (this.isEmpty()) {
-      throw new Error("Stack is empty")
+      throw new Error("Stack is empty");
     }
 
-    return this._data[this._data.length - 1]
+    return this._data[this._data.length - 1];
   }
 
   // Removes the topmost element of the stack and returns it
   public pop(): T {
     if (this.isEmpty()) {
-      throw new Error("Stack is empty")
+      throw new Error("Stack is empty");
     }
 
-    return this._data.pop() as T
+    return this._data.pop() as T;
   }
 }
 ```
@@ -100,41 +100,41 @@ Finally your stack class should look like this.
 
 ```typescript
 class Stack<T> {
-  private _data: T[] = []
+  private _data: T[] = [];
 
   // Check the size of the stack
   get size(): number {
-    return this._data.length
+    return this._data.length;
   }
 
   // Returns whether the stack is empty or not
   public isEmpty(): boolean {
-    return this._data.length === 0
+    return this._data.length === 0;
   }
 
   // Adds an element to the top of the stack
   public push(element: T): T {
-    this._data.push(element)
+    this._data.push(element);
 
-    return element
+    return element;
   }
 
   // Returns the value of the element on top of the stack without removing it
   public peek(): T {
     if (this.isEmpty()) {
-      throw new Error("Stack is empty")
+      throw new Error("Stack is empty");
     }
 
-    return this._data[this._data.length - 1]
+    return this._data[this._data.length - 1];
   }
 
   // Removes the topmost element of the stack and returns it
   public pop(): T {
     if (this.isEmpty()) {
-      throw new Error("Stack is empty")
+      throw new Error("Stack is empty");
     }
 
-    return this._data.pop() as T
+    return this._data.pop() as T;
   }
 }
 ```
@@ -142,26 +142,26 @@ class Stack<T> {
 Below is an example on how to use the **Stack** class we just created. The stack can be created to hold any type of data.
 
 ```typescript
-const numberStack: Stack<number> = new Stack<number>()
+const numberStack: Stack<number> = new Stack<number>();
 
-console.log(numberStack.isEmpty()) // true
-console.log(numberStack.size) // 0
+console.log(numberStack.isEmpty()); // true
+console.log(numberStack.size); // 0
 
-numberStack.push(1)
+numberStack.push(1);
 // 1
-numberStack.push(2)
+numberStack.push(2);
 // 1, 2
-numberStack.push(3)
+numberStack.push(3);
 // 1, 2, 3
 
-console.log(numberStack.isEmpty()) // false
-console.log(numberStack.size) // 3
+console.log(numberStack.isEmpty()); // false
+console.log(numberStack.size); // 3
 
-console.log(numberStack.peek()) // 3
-console.log(numberStack.pop()) // 3
-console.log(numberStack.pop()) // 2
-console.log(numberStack.pop()) // 1
+console.log(numberStack.peek()); // 3
+console.log(numberStack.pop()); // 3
+console.log(numberStack.pop()); // 2
+console.log(numberStack.pop()); // 1
 
-console.log(numberStack.isEmpty()) // true
-console.log(numberStack.size) // 0
+console.log(numberStack.isEmpty()); // true
+console.log(numberStack.size); // 0
 ```

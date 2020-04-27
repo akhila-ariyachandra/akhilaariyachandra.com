@@ -14,8 +14,8 @@ To clearly understand how `this` can change let's look at the places it can be c
 ## "this" alone
 
 ```javascript
-const test = this
-console.log(test) // global variable
+const test = this;
+console.log(test); // global variable
 ```
 
 `this` accessed outside a function will return the global variable.
@@ -24,7 +24,7 @@ console.log(test) // global variable
 
 ```javascript
 function foo() {
-  console.log(this) // undefined in “strict mode” or the global variable
+  console.log(this); // undefined in “strict mode” or the global variable
 }
 ```
 
@@ -37,11 +37,11 @@ const user = {
   firstName: "Akhila",
   lastName: "Ariyachandra",
   fullName: function () {
-    return this.firstName + " " + this.lastName
+    return this.firstName + " " + this.lastName;
   },
-}
+};
 
-console.log(user.fullName()) // Akhila Ariyachandra
+console.log(user.fullName()); // Akhila Ariyachandra
 ```
 
 When `this` is accessed in a method, it refers to the owner of the method, which is the object it's in.
@@ -53,18 +53,18 @@ const user = {
   firstName: "Akhila",
   lastName: "Ariyachandra",
   fullName: function () {
-    return this.firstName + " " + this.lastName
+    return this.firstName + " " + this.lastName;
   },
   innerFunction: function () {
     function testFunction() {
-      return this.firstName + " " + this.lastName
+      return this.firstName + " " + this.lastName;
     }
 
-    return testFunction()
+    return testFunction();
   },
-}
+};
 
-console.log(user.innerFunction()) // undefined undefined
+console.log(user.innerFunction()); // undefined undefined
 ```
 
 Here `this` changes inside `testFunction()`. In order to understand why we need to know how scope applies to `this`.
@@ -82,16 +82,16 @@ const user = {
   firstName: "Akhila",
   lastName: "Ariyachandra",
   innerFunction: function () {
-    const that = this
+    const that = this;
     function testFunction() {
-      return that.firstName + " " + that.lastName
+      return that.firstName + " " + that.lastName;
     }
 
-    return testFunction()
+    return testFunction();
   },
-}
+};
 
-console.log(user.innerFunction()) // Akhila Ariyachandra
+console.log(user.innerFunction()); // Akhila Ariyachandra
 ```
 
 Before _ES5_ there was no proper way to pass `this` to inner functions. The example shown around is a workaround. [^3]
@@ -104,16 +104,16 @@ const user = {
   lastName: "Ariyachandra",
   innerFunction: function () {
     function testFunction() {
-      return this.firstName + " " + this.lastName
+      return this.firstName + " " + this.lastName;
     }
 
-    testFunction = testFunction.bind(this)
+    testFunction = testFunction.bind(this);
 
-    return testFunction()
+    return testFunction();
   },
-}
+};
 
-console.log(user.innerFunction()) // Akhila Ariyachandra
+console.log(user.innerFunction()); // Akhila Ariyachandra
 ```
 
 _ES5_ introduced the `bind` method, which allows us to set the `this` of the function. So after we run the line `testFunction = testFunction.bind(this)`, the `this` of `testFunction()` becomes the `user` object.
@@ -126,14 +126,14 @@ const user = {
   lastName: "Ariyachandra",
   innerFunction: function () {
     const testFunction = () => {
-      return this.firstName + " " + this.lastName
-    }
+      return this.firstName + " " + this.lastName;
+    };
 
-    return testFunction()
+    return testFunction();
   },
-}
+};
 
-console.log(user.innerFunction()) // Akhila Ariyachandra
+console.log(user.innerFunction()); // Akhila Ariyachandra
 ```
 
 _ES6_ brought us **arrow functions**, which automatically binds `this` to the function, which leads to less and cleaner code.
@@ -145,14 +145,14 @@ Consider the following code.
 ```jsx
 class App extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       text: "",
-    }
+    };
   }
 
   setText() {
-    this.setState({ text: "Hello World!" })
+    this.setState({ text: "Hello World!" });
   }
 
   render() {
@@ -161,7 +161,7 @@ class App extends React.Component {
         <h1>{this.state.text}</h1>
         <button onClick={this.setText}>Set Text</button>
       </div>
-    )
+    );
   }
 }
 ```
@@ -173,15 +173,15 @@ We could solve this by using the way we did it the before _ES5_ example but that
 ```jsx
 class App extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       text: "",
-    }
-    this.setText = this.setText.bind(this)
+    };
+    this.setText = this.setText.bind(this);
   }
 
   setText() {
-    this.setState({ text: "Hello World!" })
+    this.setState({ text: "Hello World!" });
   }
 
   render() {
@@ -190,7 +190,7 @@ class App extends React.Component {
         <h1>{this.state.text}</h1>
         <button onClick={this.setText}>Set Text</button>
       </div>
-    )
+    );
   }
 }
 ```
@@ -202,15 +202,15 @@ Arrow functions can make it easier by just needing to change `setText()` to an a
 ```jsx
 class App extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       text: "",
-    }
+    };
   }
 
   setText = () => {
-    this.setState({ text: "Hello World!" })
-  }
+    this.setState({ text: "Hello World!" });
+  };
 
   render() {
     return (
@@ -218,7 +218,7 @@ class App extends React.Component {
         <h1>{this.state.text}</h1>
         <button onClick={this.setText}>Set Text</button>
       </div>
-    )
+    );
   }
 }
 ```

@@ -9,7 +9,7 @@ const PostsContainer = ({ title, posts }) => {
         <React.Fragment>
           <h3 className="text-lg sm:text-2xl font-medium">{title}</h3>
 
-          <hr className="border-gray-400 border bg-gray-400"/>
+          <hr className="border-gray-400 border bg-gray-400" />
         </React.Fragment>
       ) : null}
 

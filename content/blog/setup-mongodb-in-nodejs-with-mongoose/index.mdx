@@ -28,13 +28,14 @@ Then we will create a file with the database configuration and instance as datab
 First let import the dependency;
 
 ```javascript
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 ```
 
 Then let’s store the path of the database in a variable. The path should look like the following, with _dbuser_ and _dbpassword_ being replaced with a user you have created for the database.
 
 ```javascript
-const dbPath = "mongodb://<dbuser>:<dbpassword>@ds250607.mlab.com:38485/test-db"
+const dbPath =
+  "mongodb://<dbuser>:<dbpassword>@ds250607.mlab.com:38485/test-db";
 ```
 
 After that we’ll connect to the database.
@@ -42,44 +43,45 @@ After that we’ll connect to the database.
 ```javascript
 mongoose.connect(dbPath, {
   useNewUrlParser: true,
-})
+});
 ```
 
 We’ll need to export this instance of the database to be used later.
 
 ```javascript
-module.exports = mongoose
+module.exports = mongoose;
 ```
 
 Once the application is started, it would be better if there was an indicator showing whether the application successfully connected to the database or not. So let’s add some more code to fix that.
 
 ```javascript
-const db = mongoose.connection
+const db = mongoose.connection;
 db.on("error", () => {
-  console.log("> error occurred from the database")
-})
+  console.log("> error occurred from the database");
+});
 db.once("open", () => {
-  console.log("> successfully opened the database")
-})
+  console.log("> successfully opened the database");
+});
 ```
 
 In the end the database.js should look like this.
 
 ```javascript
 // database.js
-const mongoose = require("mongoose")
-const dbPath = "mongodb://<dbuser>:<dbpassword>@ds250607.mlab.com:38485/test-db"
+const mongoose = require("mongoose");
+const dbPath =
+  "mongodb://<dbuser>:<dbpassword>@ds250607.mlab.com:38485/test-db";
 mongoose.connect(dbPath, {
   useNewUrlParser: true,
-})
-const db = mongoose.connection
+});
+const db = mongoose.connection;
 db.on("error", () => {
-  console.log("> error occurred from the database")
-})
+  console.log("> error occurred from the database");
+});
 db.once("open", () => {
-  console.log("> successfully opened the database")
-})
-module.exports = mongoose
+  console.log("> successfully opened the database");
+});
+module.exports = mongoose;
 ```
 
 ## Setting up models/schema
@@ -88,7 +90,7 @@ After setting up the database connection, let’s setup an entity model to save 
 
 ```javascript
 // models/userModel.js
-const mongoose = require("../database")
+const mongoose = require("../database");
 const schema = {
   name: { type: mongoose.SchemaTypes.String, required: true },
   email: { type: mongoose.SchemaTypes.String, required: true },
@@ -97,11 +99,11 @@ const schema = {
     required: true,
     select: false,
   },
-}
-const collectionName = "user" // Name of the collection of documents
-const userSchema = mongoose.Schema(schema)
-const User = mongoose.model(collectionName, userSchema)
-module.exports = User
+};
+const collectionName = "user"; // Name of the collection of documents
+const userSchema = mongoose.Schema(schema);
+const User = mongoose.model(collectionName, userSchema);
+module.exports = User;
 ```
 
 A couple of notes here. The structure of the schema is defined in the schema constant. Each property should have a type field. The required field is to set whether the property is mandatory or not. In the above example all three properties are. The password property has an extra select field set to true. This is to make sure the password property is not returned by default when querying.
@@ -114,15 +116,15 @@ User.create({
   name: name,
   email: email,
   password: password,
-})
+});
 // Find user by email
 User.findOne({
   email: email,
-})
+});
 // Find user by email with the password field included
 User.findOne({
   email: email,
-}).select("+password")
+}).select("+password");
 ```
 
 ## Wrapping up

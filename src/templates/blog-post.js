@@ -38,7 +38,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         <MDXRenderer>{post.body}</MDXRenderer>
 
         <hr />
-        
+
         <footer>
           <Bio />
         </footer>

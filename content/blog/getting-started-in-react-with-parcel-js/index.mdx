@@ -79,24 +79,24 @@ After that we will create the `index.js` file (also in `src`) which will connect
 
 ```jsx
 // src/index.js
-import React from "react"
-import ReactDOM from "react-dom"
-import App from "./App.js"
-import "regenerator-runtime/runtime"
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App.js";
+import "regenerator-runtime/runtime";
 
-ReactDOM.render(<App />, document.getElementById("root"))
+ReactDOM.render(<App />, document.getElementById("root"));
 ```
 
 Next let's create the root component in the `App.js` file. The root component is going to contain the routing configuration.
 
 ```jsx
 // src/App.js
-import React from "react"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // Import pages
-import Home from "./pages/home"
-import About from "./pages/about"
+import Home from "./pages/home";
+import About from "./pages/about";
 
 const App = () => {
   return (
@@ -111,18 +111,18 @@ const App = () => {
         </Route>
       </Switch>
     </Router>
-  )
-}
+  );
+};
 
-export default App
+export default App;
 ```
 
 After that let's create a layout for our pages. Create the folder `components` in `src` and in it create `Layout.js`. The layout component is also going to contain the navigation links within the app.
 
 ```jsx
 // src/components/Layout.js
-import React from "react"
-import { Link } from "react-router-dom"
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Layout = ({ children }) => {
   return (
@@ -139,36 +139,36 @@ const Layout = ({ children }) => {
 
       <main>{children}</main>
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
 ```
 
 Then let's create the pages. In `src` create a folder called `pages`. The first page we are going to create is the home page.
 
 ```jsx
 // src/pages/home.js
-import React from "react"
-import Layout from "../components/Layout"
+import React from "react";
+import Layout from "../components/Layout";
 
 const Home = () => {
   return (
     <Layout>
       <h1>React Parcel Starter</h1>
     </Layout>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
 ```
 
 After that we will create the about page.
 
 ```jsx
 // src/pages/about.js
-import React from "react"
-import Layout from "../components/Layout"
+import React from "react";
+import Layout from "../components/Layout";
 
 const About = () => {
   return (
@@ -184,10 +184,10 @@ const About = () => {
         libero ipsum. Duis sollicitudin vitae diam vitae tempor.
       </p>
     </Layout>
-  )
-}
+  );
+};
 
-export default About
+export default About;
 ```
 
 Finally all that's left to do is to add the scripts to run the app. Add the following in the `package.json` file.

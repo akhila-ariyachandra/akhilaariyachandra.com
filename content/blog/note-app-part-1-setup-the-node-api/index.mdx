@@ -53,27 +53,28 @@ After that create a folder with the name **'src'** in the project,create a file 
 ```javascript
 // src/database.js
 // Import the dependency
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
 // The database path
-const dbPath = "mongodb://<dbuser>:<dbpassword>@ds250607.mlab.com:38485/test-db"
+const dbPath =
+  "mongodb://<dbuser>:<dbpassword>@ds250607.mlab.com:38485/test-db";
 
 // Connect the database
 mongoose.connect(dbPath, {
   useNewUrlParser: true,
-})
+});
 
 // Check if the API successfully connected to the database
-const db = mongoose.connection
+const db = mongoose.connection;
 db.on("error", () => {
-  console.log("> error occurred from the database")
-})
+  console.log("> error occurred from the database");
+});
 db.once("open", () => {
-  console.log("> successfully opened the database")
-})
+  console.log("> successfully opened the database");
+});
 
 // Export the database instance
-export default mongoose
+export default mongoose;
 ```
 
 Replace the value of `dbPath` with the path of your database.
@@ -87,20 +88,20 @@ First create a folder with the name **'models'** in **'src'**. Then create a fil
 ```javascript
 // src/models/noteModel.js
 // Import the database instance
-import mongoose from "../database"
+import mongoose from "../database";
 
 // Define the schema for a note
 const schema = {
   title: { type: mongoose.SchemaTypes.String, required: true },
   content: { type: mongoose.SchemaTypes.String, required: true },
-}
+};
 
-const collectionName = "notes" // Name of the collection of documents
-const noteSchema = mongoose.Schema(schema)
-const Note = mongoose.model(collectionName, noteSchema)
+const collectionName = "notes"; // Name of the collection of documents
+const noteSchema = mongoose.Schema(schema);
+const Note = mongoose.model(collectionName, noteSchema);
 
 // Export the Note model
-export default Note
+export default Note;
 ```
 
 ## Setup the server and routes
@@ -118,13 +119,13 @@ After the dependencies have finished installing create the file `index.js` in **
 ```javascript
 // src/index.js
 // Import the dependencies
-import express from "express"
-import bodyParser from "body-parser"
-import cors from "cors"
-import Note from "./models/noteModel"
+import express from "express";
+import bodyParser from "body-parser";
+import cors from "cors";
+import Note from "./models/noteModel";
 
 // Create a new instance of the express server
-const app = express()
+const app = express();
 
 // Apply middleware
 app.use(bodyParser.json({ type: "application/json" })).use(
@@ -136,19 +137,19 @@ app.use(bodyParser.json({ type: "application/json" })).use(
       "x-access-token",
     ],
   })
-)
+);
 
 /**
  * We'll define our routes here for the CRUD operations
  */
 
 // Set port number
-const portNo = process.env.PORT || 8080
+const portNo = process.env.PORT || 8080;
 
 // Start server
 app.listen(portNo, () => {
-  console.log(`> Server listening at http://localhost:${portNo}`)
-})
+  console.log(`> Server listening at http://localhost:${portNo}`);
+});
 ```
 
 Just to make sure what we've done so far works fine run `yarn dev`. If nothing's wrong it should show
@@ -170,16 +171,16 @@ app.post("/note", async (req, res) => {
     const result = await Note.create({
       title: req.body.title,
       content: req.body.content,
-    })
+    });
 
     // Send the result of the save function as the server response
-    return res.json(result)
+    return res.json(result);
   } catch (error) {
     // Handle error
     // Display error in console
-    console.log(error)
+    console.log(error);
   }
-})
+});
 ```
 
 The next route will be to get the entire list of notes.
@@ -189,16 +190,16 @@ The next route will be to get the entire list of notes.
 app.get("/note", async (req, res) => {
   try {
     // Get all notes from the database
-    const result = await Note.find({}).exec()
+    const result = await Note.find({}).exec();
 
     // Send the results as the server response
-    return res.json(result)
+    return res.json(result);
   } catch (error) {
     // Handle error
     // Display error in console
-    console.log(error)
+    console.log(error);
   }
-})
+});
 ```
 
 We'll need a route to get a single note based on the ID.
@@ -208,19 +209,19 @@ We'll need a route to get a single note based on the ID.
 app.get("/note/:id", async (req, res) => {
   try {
     // Get the ID
-    const id = req.params.id
+    const id = req.params.id;
 
     // Find the note from the ID
-    const result = await Note.findById(id).exec()
+    const result = await Note.findById(id).exec();
 
     // Send the result as the server response
-    return res.json(result)
+    return res.json(result);
   } catch (error) {
     // Handle error
     // Display error in console
-    console.log(error)
+    console.log(error);
   }
-})
+});
 ```
 
 The second to last route will be to update a note.
@@ -230,22 +231,22 @@ The second to last route will be to update a note.
 app.put("/note/:id", async (req, res) => {
   try {
     // Get the ID
-    const id = req.params.id
+    const id = req.params.id;
 
     // Update the note
     const result = await Note.findByIdAndUpdate(id, {
       title: req.body.title,
       content: req.body.content,
-    }).exec()
+    }).exec();
 
     // Send the result as the server response
-    return res.json(result)
+    return res.json(result);
   } catch (error) {
     // Handle error
     // Display error in console
-    console.log(error)
+    console.log(error);
   }
-})
+});
 ```
 
 Our final route will be to delete a note.
@@ -255,19 +256,19 @@ Our final route will be to delete a note.
 app.delete("/note/:id", async (req, res) => {
   try {
     // Get the ID
-    const id = req.params.id
+    const id = req.params.id;
 
     // Delete the note
-    const result = await Note.findByIdAndDelete(id).exec()
+    const result = await Note.findByIdAndDelete(id).exec();
 
     // Send the result as the server response
-    return res.json(result)
+    return res.json(result);
   } catch (error) {
     // Handle error
     // Display error in console
-    console.log(error)
+    console.log(error);
   }
-})
+});
 ```
 
 Finally `index.js` should look like this.
@@ -275,13 +276,13 @@ Finally `index.js` should look like this.
 ```javascript
 // src/index.js
 // Import the dependencies
-import express from "express"
-import bodyParser from "body-parser"
-import cors from "cors"
-import Note from "./models/noteModel"
+import express from "express";
+import bodyParser from "body-parser";
+import cors from "cors";
+import Note from "./models/noteModel";
 
 // Create a new instance of the express server
-const app = express()
+const app = express();
 
 // Apply middleware
 app.use(bodyParser.json({ type: "application/json" })).use(
@@ -293,7 +294,7 @@ app.use(bodyParser.json({ type: "application/json" })).use(
       "x-access-token",
     ],
   })
-)
+);
 
 // Route to save a new note - POST method
 app.post("/note", async (req, res) => {
@@ -302,96 +303,96 @@ app.post("/note", async (req, res) => {
     const result = await Note.create({
       title: req.body.title,
       content: req.body.content,
-    })
+    });
 
     // Send the result of the save function as the server response
-    return res.json(result)
+    return res.json(result);
   } catch (error) {
     // Handle error
     // Display error in console
-    console.log(error)
+    console.log(error);
   }
-})
+});
 
 // Route to get all the notes - GET method
 app.get("/note", async (req, res) => {
   try {
     // Get all notes from the database
-    const result = await Note.find({}).exec()
+    const result = await Note.find({}).exec();
 
     // Send the results as the server response
-    return res.json(result)
+    return res.json(result);
   } catch (error) {
     // Handle error
     // Display error in console
-    console.log(error)
+    console.log(error);
   }
-})
+});
 
 // Route to get one note based on the ID - GET method
 app.get("/note/:id", async (req, res) => {
   try {
     // Get the ID
-    const id = req.params.id
+    const id = req.params.id;
 
     // Find the note from the ID
-    const result = await Note.findById(id).exec()
+    const result = await Note.findById(id).exec();
 
     // Send the result as the server response
-    return res.json(result)
+    return res.json(result);
   } catch (error) {
     // Handle error
     // Display error in console
-    console.log(error)
+    console.log(error);
   }
-})
+});
 
 // Route to update a note - PUT method
 app.put("/note/:id", async (req, res) => {
   try {
     // Get the ID
-    const id = req.params.id
+    const id = req.params.id;
 
     // Update the note
     const result = await Note.findByIdAndUpdate(id, {
       title: req.body.title,
       content: req.body.content,
-    }).exec()
+    }).exec();
 
     // Send the result as the server response
-    return res.json(result)
+    return res.json(result);
   } catch (error) {
     // Handle error
     // Display error in console
-    console.log(error)
+    console.log(error);
   }
-})
+});
 
 // Route to delete a note - DELETE method
 app.delete("/note/:id", async (req, res) => {
   try {
     // Get the ID
-    const id = req.params.id
+    const id = req.params.id;
 
     // Delete the note
-    const result = await Note.findByIdAndDelete(id).exec()
+    const result = await Note.findByIdAndDelete(id).exec();
 
     // Send the result as the server response
-    return res.json(result)
+    return res.json(result);
   } catch (error) {
     // Handle error
     // Display error in console
-    console.log(error)
+    console.log(error);
   }
-})
+});
 
 // Set port number
-const portNo = process.env.PORT || 8080
+const portNo = process.env.PORT || 8080;
 
 // Start server
 app.listen(portNo, () => {
-  console.log(`> Server listening at http://localhost:${portNo}`)
-})
+  console.log(`> Server listening at http://localhost:${portNo}`);
+});
 ```
 
 ## Wrapping up

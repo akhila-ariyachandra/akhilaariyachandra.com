@@ -37,13 +37,13 @@ yarn add sass -D
 Let's create an instance of `axios` so that we don't have to enter the base URL for all network requests. In the `src` folder create another folder `services` and in that folder create the `api.js` file and add the following code.
 
 ```javascript
-import axios from "axios"
+import axios from "axios";
 
 const api = axios.create({
   baseURL: "http://localhost:8080",
-})
+});
 
-export default api
+export default api;
 ```
 
 We'll also need to change the font and title of the app. In `index.html` add the link to the **Rubik** font files and a new title. Add these between `<head>` and `</head>`.
@@ -92,7 +92,7 @@ First first we need to figure out how we're going to store the notes list. We co
 In `src/App.js` change the React import to
 
 ```jsx
-import React, { useReducer } from "react"
+import React, { useReducer } from "react";
 ```
 
 Then let's declare the initial state and reducer
@@ -100,25 +100,25 @@ Then let's declare the initial state and reducer
 ```jsx
 const initialState = {
   notesList: [],
-}
+};
 
 const reducer = (state, action) => {
-  let { notesList } = state
+  let { notesList } = state;
 
   switch (action.type) {
     case "refresh":
-      notesList = [...action.payload]
-      break
+      notesList = [...action.payload];
+      break;
     case "add":
-      notesList = [...notesList, action.payload]
-      break
+      notesList = [...notesList, action.payload];
+      break;
     case "remove":
-      notesList = notesList.filter(note => note._id !== action.payload._id)
-      break
+      notesList = notesList.filter((note) => note._id !== action.payload._id);
+      break;
   }
 
-  return { notesList }
-}
+  return { notesList };
+};
 ```
 
 Initially we going to hold an empty array in the state. The reducer will have three actions, `"refresh"` to get the list of notes when the app loads, `"add"` to add a new note to the list, and `"remove"` to delete a note. In the case of `"add"` and `"remove"` we could just refresh the whole list after doing them but that would be unnecessary and a waste of a network call.
@@ -133,8 +133,8 @@ const App = () => {
 Next we need to load the list of notes when the app loads. We can do with the `useEffect` hook. We'll need to import `useEffect` and the `axios` instance we created earlier.
 
 ```jsx
-import React, { useReducer, useEffect } from "react"
-import api from "./services/api"
+import React, { useReducer, useEffect } from "react";
+import api from "./services/api";
 ```
 
 Add the following code before the `return` in `App`.
@@ -142,17 +142,17 @@ Add the following code before the `return` in `App`.
 ```jsx
 const getAllNotes = async () => {
   try {
-    const response = await api.request({ url: "/note" })
+    const response = await api.request({ url: "/note" });
 
-    dispatch({ type: "refresh", payload: response.data })
+    dispatch({ type: "refresh", payload: response.data });
   } catch (error) {
-    console.error("Error fetching notes", error)
+    console.error("Error fetching notes", error);
   }
-}
+};
 
 useEffect(() => {
-  getAllNotes()
-}, [])
+  getAllNotes();
+}, []);
 ```
 
 All we're doing here is fetching the notes list as soon as the component mounts and updating the state using the reducer with `"refresh"`. The second parameter of `[]` in `useEffect` prevents this effect from running multiple times.
@@ -163,7 +163,7 @@ Now that we're loading the notes we need to display them. In `return`, add the f
 <main>
   <h1>Notes App</h1>
 
-  {state.notesList.map(note => (
+  {state.notesList.map((note) => (
     <div key={note._id} className="note">
       <div className="container">
         <h2>{note.title}</h2>
@@ -179,7 +179,7 @@ We have no notes to load to load at the moment so let's add a footer to the page
 First we need to import `formik` which going to make handling the forms much easier.
 
 ```jsx
-import { Formik } from "formik"
+import { Formik } from "formik";
 ```
 
 Then let's add the UI and logic to create new note. Add this just after the `<main>` tag.
@@ -188,18 +188,18 @@ Then let's add the UI and logic to create new note. Add this just after the `<ma
 <footer>
   <Formik
     initialValues={{ title: "", content: "" }}
-    validate={values => {
-      let errors = {}
+    validate={(values) => {
+      let errors = {};
 
       if (!values.title) {
-        errors.title = "Title is required"
+        errors.title = "Title is required";
       }
 
       if (!values.content) {
-        errors.content = "Content is required"
+        errors.content = "Content is required";
       }
 
-      return errors
+      return errors;
     }}
     onSubmit={async (values, { setSubmitting, resetForm }) => {
       try {
@@ -210,14 +210,14 @@ Then let's add the UI and logic to create new note. Add this just after the `<ma
             title: values.title,
             content: values.content,
           },
-        })
+        });
 
-        dispatch({ type: "add", payload: response.data })
-        resetForm()
+        dispatch({ type: "add", payload: response.data });
+        resetForm();
       } catch (error) {
-        console.error("Error creating note", error)
+        console.error("Error creating note", error);
       } finally {
-        setSubmitting(false)
+        setSubmitting(false);
       }
     }}
   >
@@ -277,24 +277,24 @@ Also we'll need some separation from `main` and `footer` so add this between the
 Finally we need to be able to delete created notes, so we'll add a delete button to each note. First we need to add the delete function before the `return`.
 
 ```jsx
-const removeNote = async id => {
+const removeNote = async (id) => {
   try {
     const response = await api.request({
       url: `/note/${id}`,
       method: "delete",
-    })
+    });
 
-    dispatch({ type: "remove", payload: response.data })
+    dispatch({ type: "remove", payload: response.data });
   } catch (error) {
-    console.error("Error deleting note", error)
+    console.error("Error deleting note", error);
   }
-}
+};
 ```
 
 We'll need an icon for the delete note, so we'll import one from `react-icons`.
 
 ```jsx
-import { FaTrash } from "react-icons/fa"
+import { FaTrash } from "react-icons/fa";
 ```
 
 Then change the note component.
@@ -377,77 +377,77 @@ footer > form {
 Then import that in `App.js`.
 
 ```jsx
-import "./App.scss"
+import "./App.scss";
 ```
 
 Finally your `App.js` should look like this.
 
 ```jsx
 // src/App.js
-import React, { useReducer, useEffect } from "react"
-import api from "./services/api"
-import { Formik } from "formik"
-import { FaTrash } from "react-icons/fa"
-import "./App.scss"
+import React, { useReducer, useEffect } from "react";
+import api from "./services/api";
+import { Formik } from "formik";
+import { FaTrash } from "react-icons/fa";
+import "./App.scss";
 
 const initialState = {
   notesList: [],
-}
+};
 
 const reducer = (state, action) => {
-  let { notesList } = state
+  let { notesList } = state;
 
   switch (action.type) {
     case "refresh":
-      notesList = [...action.payload]
-      break
+      notesList = [...action.payload];
+      break;
     case "add":
-      notesList = [...notesList, action.payload]
-      break
+      notesList = [...notesList, action.payload];
+      break;
     case "remove":
-      notesList = notesList.filter(note => note._id !== action.payload._id)
-      break
+      notesList = notesList.filter((note) => note._id !== action.payload._id);
+      break;
   }
 
-  return { notesList }
-}
+  return { notesList };
+};
 
 const App = () => {
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const getAllNotes = async () => {
     try {
-      const response = await api.request({ url: "/note" })
+      const response = await api.request({ url: "/note" });
 
-      dispatch({ type: "refresh", payload: response.data })
+      dispatch({ type: "refresh", payload: response.data });
     } catch (error) {
-      console.error("Error fetching notes", error)
+      console.error("Error fetching notes", error);
     }
-  }
+  };
 
-  const removeNote = async id => {
+  const removeNote = async (id) => {
     try {
       const response = await api.request({
         url: `/note/${id}`,
         method: "delete",
-      })
+      });
 
-      dispatch({ type: "remove", payload: response.data })
+      dispatch({ type: "remove", payload: response.data });
     } catch (error) {
-      console.error("Error deleting note", error)
+      console.error("Error deleting note", error);
     }
-  }
+  };
 
   useEffect(() => {
-    getAllNotes()
-  }, [])
+    getAllNotes();
+  }, []);
 
   return (
     <div>
       <main>
         <h1>Notes App</h1>
 
-        {state.notesList.map(note => (
+        {state.notesList.map((note) => (
           <div key={note._id} className="note">
             <div className="container">
               <h2>{note.title}</h2>
@@ -466,18 +466,18 @@ const App = () => {
       <footer>
         <Formik
           initialValues={{ title: "", content: "" }}
-          validate={values => {
-            let errors = {}
+          validate={(values) => {
+            let errors = {};
 
             if (!values.title) {
-              errors.title = "Title is required"
+              errors.title = "Title is required";
             }
 
             if (!values.content) {
-              errors.content = "Content is required"
+              errors.content = "Content is required";
             }
 
-            return errors
+            return errors;
           }}
           onSubmit={async (values, { setSubmitting, resetForm }) => {
             try {
@@ -488,14 +488,14 @@ const App = () => {
                   title: values.title,
                   content: values.content,
                 },
-              })
+              });
 
-              dispatch({ type: "add", payload: response.data })
-              resetForm()
+              dispatch({ type: "add", payload: response.data });
+              resetForm();
             } catch (error) {
-              console.error("Error creating note", error)
+              console.error("Error creating note", error);
             } finally {
-              setSubmitting(false)
+              setSubmitting(false);
             }
           }}
         >
@@ -543,10 +543,10 @@ const App = () => {
         </Formik>
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
 ```
 
 ## Running the app
