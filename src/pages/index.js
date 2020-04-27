@@ -16,7 +16,10 @@ import {
 } from "react-icons/fa";
 import { OutboundLink } from "gatsby-plugin-google-analytics";
 
-const LINKS = [{ to: "/blog/", title: "Blog" }];
+const LINKS = [
+  { to: "/blog/", title: "Blog" },
+  { to: "/about/", title: "About" },
+];
 
 const StyledTitleContainer = styled.div`
   ${tw`my-20 sm:my-48 grid grid-cols-1 gap-2`}
@@ -27,16 +30,6 @@ const StyledTitleContainer = styled.div`
 
   p {
     ${tw`text-lg sm:text-2xl font-normal my-1 py-0`}
-  }
-
-  #site-nav {
-    h3 {
-      ${tw`text-2xl sm:text-4xl font-medium my-1 py-0`}
-    }
-
-    h3:not(:first-child) {
-      ${tw`ml-2`}
-    }
   }
 
   #social {
@@ -98,10 +91,16 @@ const Index = ({ data, location }) => {
 
         <p>{data.site.siteMetadata.description}</p>
 
-        <nav id="site-nav">
-          {LINKS.map((link) => (
+        <nav id="site-nav" className="flex">
+          {LINKS.map((link, index) => (
             <Link to={link.to}>
-              <h3>{link.title}</h3>
+              <h3
+                className={`text-2xl sm:text-4xl font-medium my-1 py-0 ${
+                  index !== 0 ? "ml-3" : ""
+                }`}
+              >
+                {link.title}
+              </h3>
             </Link>
           ))}
         </nav>
