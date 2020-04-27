@@ -1,5 +1,6 @@
 import React from "react";
 import { ThemeContext } from "../context/ThemeContext";
+import { FaSun, FaMoon } from "react-icons/fa";
 
 const DarkToggle = () => {
   const { colorMode, setColorMode } = React.useContext(ThemeContext);
@@ -9,16 +10,15 @@ const DarkToggle = () => {
   }
 
   return (
-    <label>
-      <input
-        type="checkbox"
-        checked={colorMode === "dark"}
-        onChange={(ev) => {
-          setColorMode(ev.target.checked ? "dark" : "light");
-        }}
-      />{" "}
-      Dark
-    </label>
+    <button
+      aria-label="Dark Mode toggle"
+      onClick={() =>
+        colorMode === "light" ? setColorMode("dark") : setColorMode("light")
+      }
+      className="text-xl sm:text-2xl"
+    >
+      {colorMode === "light" ? <FaSun /> : <FaMoon />}
+    </button>
   );
 };
 
