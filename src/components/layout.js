@@ -42,7 +42,7 @@ const Layout = ({ location, children }) => {
         ) : null}
       </header>
 
-      <main className="grid grid-cols-1 gap-4">{children}</main>
+      <main className="grid grid-cols-1 gap-4 py-10">{children}</main>
 
       <StyledFooter>
         © {new Date().getFullYear()}, Built with
