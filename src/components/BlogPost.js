@@ -1,44 +1,30 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "@emotion/styled";
 import { Link } from "gatsby";
-
-const StyledWrapper = styled.div`
-  h2 {
-    font-family: "Inter", sans-serif;
-    font-size: 1.6em;
-    margin: 0.5em 0;
-  }
-
-  p,
-  span {
-    font-family: "Roboto", sans-serif;
-  }
-
-  span {
-    display: flex;
-
-    small:first-child {
-      flex: 1;
-    }
-  }
-`;
 
 const BlogPost = ({ node }) => {
   return (
-    <StyledWrapper>
-      <Link to={node.fields.slug}>
-        <h2>{node.frontmatter.title}</h2>
-      </Link>
+    <article>
+      <header>
+        <Link to={node.fields.slug}>
+          <h2 className="text-xl sm:text-3xl font-semibold">
+            {node.frontmatter.title}
+          </h2>
+        </Link>
+      </header>
 
-      <span>
-        <small>{node.frontmatter.date}</small>
+      <section>
+        <span className="flex items-center text-base sm:text-xl font-normal my-1">
+          <small className="flex-1">{node.frontmatter.date}</small>
 
-        <small>{`${node.timeToRead} min read`}</small>
-      </span>
+          <small>{`${node.timeToRead} min read`}</small>
+        </span>
 
-      <p>{node.frontmatter.description}</p>
-    </StyledWrapper>
+        <p className="text-lg sm:text-2xl font-normal">
+          {node.frontmatter.description}
+        </p>
+      </section>
+    </article>
   );
 };
 

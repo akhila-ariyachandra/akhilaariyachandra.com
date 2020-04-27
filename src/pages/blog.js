@@ -1,7 +1,8 @@
 import React from "react";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import PostsContainer from "../components/PostsContainer";
+import ListContainer from "../components/ListContainer";
+import BlogPost from "../components/BlogPost";
 import { graphql, useStaticQuery } from "gatsby";
 
 const Blog = ({ location }) => {
@@ -30,9 +31,13 @@ const Blog = ({ location }) => {
 
   return (
     <Layout location={location}>
-      <SEO title="All posts" />
+      <SEO title="Blog" />
 
-      <PostsContainer title="Blog" posts={posts} />
+      <ListContainer title="Blog">
+        {posts.map(({ node }) => (
+          <BlogPost key={node.id} node={node} />
+        ))}
+      </ListContainer>
     </Layout>
   );
 };

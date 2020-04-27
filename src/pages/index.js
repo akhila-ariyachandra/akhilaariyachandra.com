@@ -3,8 +3,10 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import styled from "@emotion/styled";
 import tw from "twin.macro";
-import PostsContainer from "../components/PostsContainer";
-import { Link, graphql } from "gatsby";
+import ListContainer from "../components/ListContainer";
+import BlogPost from "../components/BlogPost";
+import ProjectLink from "../components/ProjectLink";
+import { Link, useStaticQuery, graphql } from "gatsby";
 import {
   FaGithub,
   FaDev,
@@ -51,8 +53,41 @@ const StyledTitleContainer = styled.div`
 `;
 
 const Index = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata.title;
-  const posts = data.allMdx.edges;
+  const { site, allMdx } = useStaticQuery(graphql`
+    query Index {
+      site {
+        siteMetadata {
+          title
+          description
+          projects {
+            title
+            url
+            description
+          }
+        }
+      }
+      allMdx(sort: { fields: [frontmatter___date], order: DESC }, limit: 3) {
+        edges {
+          node {
+            id
+            fields {
+              slug
+            }
+            frontmatter {
+              date(formatString: "MMMM Do, YYYY")
+              title
+              description
+            }
+            timeToRead
+          }
+        }
+      }
+    }
+  `);
+
+  const siteTitle = site.siteMetadata.title;
+  const posts = allMdx.edges;
+  const projects = site.siteMetadata.projects;
 
   return (
     <Layout location={location}>
@@ -124,36 +159,19 @@ const Index = ({ data, location }) => {
         </div>
       </StyledTitleContainer>
 
-      <PostsContainer posts={posts} title="Latest Posts" />
+      <ListContainer title="Latest Posts">
+        {posts.map(({ node }) => (
+          <BlogPost key={node.id} node={node} />
+        ))}
+      </ListContainer>
+
+      <ListContainer title="Projects">
+        {projects.map((project) => (
+          <ProjectLink project={project} key={project.url} />
+        ))}
+      </ListContainer>
     </Layout>
   );
 };
 
 export default Index;
-
-export const pageQuery = graphql`
-  query Index {
-    site {
-      siteMetadata {
-        title
-        description
-      }
-    }
-    allMdx(sort: { fields: [frontmatter___date], order: DESC }, limit: 3) {
-      edges {
-        node {
-          id
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM Do, YYYY")
-            title
-            description
-          }
-          timeToRead
-        }
-      }
-    }
-  }
-`;
