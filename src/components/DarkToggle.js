@@ -1,13 +1,9 @@
 import React from "react";
 import { ThemeContext } from "../context/ThemeContext";
-import { FaSun, FaMoon } from "react-icons/fa";
+import { FaSun, FaMoon, FaHourglass } from "react-icons/fa";
 
 const DarkToggle = () => {
   const { colorMode, setColorMode } = React.useContext(ThemeContext);
-
-  if (!colorMode) {
-    return null;
-  }
 
   return (
     <button
@@ -16,8 +12,15 @@ const DarkToggle = () => {
         colorMode === "light" ? setColorMode("dark") : setColorMode("light")
       }
       className="text-xl sm:text-2xl"
+      disabled={!colorMode}
     >
-      {colorMode === "light" ? <FaSun /> : <FaMoon />}
+      {!colorMode ? (
+        <FaHourglass />
+      ) : colorMode === "light" ? (
+        <FaSun />
+      ) : (
+        <FaMoon />
+      )}
     </button>
   );
 };
