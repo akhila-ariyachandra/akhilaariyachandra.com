@@ -3,16 +3,13 @@ import styled from "@emotion/styled";
 import DarkToggle from "./DarkToggle";
 import PropTypes from "prop-types";
 import { Link, useStaticQuery, graphql } from "gatsby";
+import { OutboundLink } from "gatsby-plugin-google-analytics";
 
 const Wrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
   max-width: 1000px;
   padding: 2rem;
-`;
-
-const StyledFooter = styled.footer`
-  font-family: "Inter", sans-serif;
 `;
 
 const Layout = ({ location, children }) => {
@@ -36,7 +33,7 @@ const Layout = ({ location, children }) => {
         <DarkToggle />
 
         {location.pathname !== "/" ? (
-          <h2 className="flex-1">
+          <h2 className="flex-1 text-xl sm:text-3xl font-medium	">
             <Link to={`/`}>{title}</Link>
           </h2>
         ) : null}
@@ -46,11 +43,18 @@ const Layout = ({ location, children }) => {
         {children}
       </main>
 
-      <StyledFooter>
+      <footer className="font-normal text-base sm:text-xl">
         © {new Date().getFullYear()}, Built with
         {` `}
-        <a href="https://www.gatsbyjs.org">Gatsby</a>
-      </StyledFooter>
+        <OutboundLink
+          className="font-medium"
+          href="https://www.gatsbyjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Gatsby
+        </OutboundLink>
+      </footer>
     </Wrapper>
   );
 };
