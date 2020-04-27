@@ -32,7 +32,7 @@ const Blog = ({ location }) => {
     <Layout location={location}>
       <SEO title="All posts" />
 
-      <PostsContainer posts={posts} />
+      <PostsContainer title="Blog" posts={posts} />
     </Layout>
   );
 };
