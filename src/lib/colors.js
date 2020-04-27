@@ -6,7 +6,7 @@ export const COLORS = {
   },
   dark: {
     text: "#FFFFFF",
-    background: "#2d3748",
+    background: "#1a202c",
     primary: "#38a169",
   },
 };

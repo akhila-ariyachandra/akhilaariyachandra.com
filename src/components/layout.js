@@ -19,20 +19,6 @@ const StyledFooter = styled.footer`
 const Layout = ({ location, title, children }) => {
   return (
     <Wrapper>
-      <Global
-        styles={css`
-          html {
-            color: var(--color-text);
-            background-color: var(--color-background);
-            ${tw`transition-colors duration-200`}
-          }
-
-          a {
-            ${tw`text-green-700 no-underline`}
-          }
-        `}
-      />
-
       <header className="flex flex-row-reverse items-center">
         <DarkToggle />
 

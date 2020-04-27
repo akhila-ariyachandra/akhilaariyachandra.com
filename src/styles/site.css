@@ -3,3 +3,17 @@
 @tailwind components;
 
 @tailwind utilities;
+
+html {
+  @apply transition-colors;
+  @apply duration-200;
+
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+a {
+  @apply no-underline;
+
+  color: var(--color-primary);
+}
