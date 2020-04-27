@@ -4,7 +4,7 @@ import SEO from "../components/seo";
 import PostsContainer from "../components/PostsContainer";
 import { graphql, useStaticQuery } from "gatsby";
 
-const Blog = () => {
+const Blog = ({ location }) => {
   const { allMdx } = useStaticQuery(graphql`
     query BlogPageQuery {
       allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
@@ -29,7 +29,7 @@ const Blog = () => {
   const posts = allMdx.edges;
 
   return (
-    <Layout title="Akhila Ariyachandra">
+    <Layout location={location}>
       <SEO title="All posts" />
 
       <PostsContainer posts={posts} />

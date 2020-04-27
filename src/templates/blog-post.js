@@ -1,18 +1,16 @@
 import React from "react";
-import { Link, graphql } from "gatsby";
-
 import Bio from "../components/bio";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import { MDXRenderer } from "gatsby-plugin-mdx";
+import { Link, graphql } from "gatsby";
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.mdx;
-  const siteTitle = data.site.siteMetadata.title;
   const { previous, next } = pageContext;
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location}>
       <SEO
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
