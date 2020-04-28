@@ -5,8 +5,8 @@ const BlogAd = () => {
   return (
     <AdSense.Google
       style={{ display: "block" }}
-      client={process.env.GOOGLE_AD_CLIENT}
-      slot={process.env.GOOGLE_AD_SLOT}
+      client="ca-pub-9764216594022086"
+      slot="2810783403"
       format="auto"
       responsive="true"
       className="my-3"
