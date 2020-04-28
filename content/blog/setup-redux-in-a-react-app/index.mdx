@@ -5,6 +5,8 @@ description: "A guide to quickly get Redux up and running in React"
 banner: "./banner.png"
 ---
 
+import BlogAd from "../../../src/components/BlogAd";
+
 If you have used React chances are you have run into Redux at some point or the other. [Redux](https://redux.js.org/) is a library that help in sharing one single state between many components.
 
 Redux consists of the three parts, the **store**, **actions** and **reducer**. I'll explain each of these as we go through the post.
@@ -31,6 +33,8 @@ yarn add redux react-redux redux-logger redux-thunk
 - **redux-thunk** - another optional middleware to allow asynchronous actions in Redux (more on that later).
 
 Before we start setting up the Redux parts, let's create a folder called _redux_ in the _src_ folder to store all our Redux related code.
+
+<BlogAd />
 
 ## Setup the Store / Initial State
 
@@ -122,6 +126,8 @@ Let's go through the actions.
 > Note that actions do not directly change the state. They just signal to change the state.
 
 **getUser** is different by being an asynchronous action generator. By default redux only allow for synchronous action generators, but with **redux-thunk** we can generate functions too. To create a a function generator all we need to do is return a function which has the `dispatch` argument. The `dispatch` argument is a function that is used call other redux actions inside the current function such as us calling `dispatch(setIsFetchingUser(true))` at the beginning to set `isFetchingUser` to `true`.
+
+<BlogAd />
 
 ## Setup the Reducer
 
@@ -234,11 +240,13 @@ const store = configureStore();
 export default store;
 ```
 
+<BlogAd />
+
 ## Tying Redux to React
 
 We could user redux as is, but we could make it easier to work with using the library **react-redux**. With react-redux we can pass the redux state and actions through props to the component.
 
-# Building the rest of the app
+## Building the rest of the app
 
 To demonstrate how we can use redux to share state between multiple components we going to build the following app.
 
@@ -402,6 +410,8 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(Display);
 ```
 
+<BlogAd />
+
 ## The Controls component
 
 The Controls component will only be used to change the userId in the redux user state. We don't need to fetch the user in the Controls component because the effect in the Display will automatically run whenever the userId is changed.
@@ -488,6 +498,8 @@ export default App;
 _store_ is the redux store will initialize and exported in _src/redux/index.js_.
 
 Try running the app now. The user displayed should change when the buttons are pressed even though there is no direct link between the components (i.e. passing props to each other).
+
+<BlogAd />
 
 ## Wrap Up
 

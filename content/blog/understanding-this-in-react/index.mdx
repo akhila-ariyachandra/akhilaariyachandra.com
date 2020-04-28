@@ -5,11 +5,15 @@ description: 'Let''s try to make "this" a little less confusing'
 banner: "./banner.png"
 ---
 
+import BlogAd from "../../../src/components/BlogAd";
+
 `this` in JavaScript can confusing as it can change based on where it is called from. In this post I'll try to clear it up.
 
 > The JavaScript "this" keyword refers to the object it belongs to. [^1]
 
 To clearly understand how `this` can change let's look at the places it can be called from.
+
+<BlogAd />
 
 ## "this" alone
 
@@ -72,6 +76,8 @@ Here `this` changes inside `testFunction()`. In order to understand why we need 
 > Unlike variables, the this keyword does not have a scope, and nested functions do not inherit the this value of their caller. If a nested function is invoked as a method, its this value is the object it was invoked on. [^2]
 
 This means that the `this` of `testFunction()` is not aware of the `user` object so it returns `undefined` for `this.firstName` and `this.lastName`.
+
+<BlogAd />
 
 ### So how do we get the proper "this" into the inner function?
 
@@ -137,6 +143,8 @@ console.log(user.innerFunction()); // Akhila Ariyachandra
 ```
 
 _ES6_ brought us **arrow functions**, which automatically binds `this` to the function, which leads to less and cleaner code.
+
+<BlogAd />
 
 ## So what about React?
 
