@@ -1,5 +1,7 @@
 import { COLORS } from "./src/lib/colors";
 
+const googleAdClientId = "ca-pub-9764216594022086";
+
 const MagicScriptTag = () => {
   let codeToRunOnClient = `
     (function() {
@@ -51,6 +53,31 @@ const MagicScriptTag = () => {
   return <script dangerouslySetInnerHTML={{ __html: codeToRunOnClient }} />;
 };
 
-export const onRenderBody = ({ setPreBodyComponents }) => {
+export const onRenderBody = ({
+  setPreBodyComponents,
+  setPostBodyComponents,
+}) => {
   setPreBodyComponents(<MagicScriptTag />);
+
+  // Add AdSense script
+  if (process.env.NODE_ENV === `production`) {
+    setPostBodyComponents([
+      <script
+        async
+        type="text/javascript"
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+      />,
+      <script
+        key={`google-adsense`}
+        dangerouslySetInnerHTML={{
+          __html: `
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "${googleAdClientId}",
+                enable_page_level_ads: true
+            });
+        `,
+        }}
+      />,
+    ]);
+  }
 };
