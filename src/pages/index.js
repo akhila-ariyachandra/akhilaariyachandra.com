@@ -18,6 +18,7 @@ import { OutboundLink } from "gatsby-plugin-google-analytics";
 
 const LINKS = [
   { to: "/blog/", title: "Blog" },
+  { to: "/career/", title: "Career" },
   { to: "/about/", title: "About" },
 ];
 
@@ -47,7 +48,7 @@ const StyledTitleContainer = styled.div`
 
 const Index = ({ data, location }) => {
   const { site, allMdx } = useStaticQuery(graphql`
-    query Index {
+    query IndexPageQuery {
       site {
         siteMetadata {
           title
