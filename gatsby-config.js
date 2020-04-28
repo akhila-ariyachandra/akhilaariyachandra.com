@@ -309,7 +309,7 @@ module.exports = {
         printRejected: true, // Print removed selectors and processed file names
         tailwind: true, // Enable tailwindcss support
         whitelist: [...getClasses(gatsbyRemarkClasses)],
-        ignore: [`prismjs/themes/prism.css`],
+        ignore: [`prism-themes/themes/prism-atom-dark.css`],
       },
     },
     `gatsby-plugin-sitemap`,
