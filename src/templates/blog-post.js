@@ -1,12 +1,10 @@
 import React from "react";
-import Bio from "../components/Bio";
-import Layout from "../components/Layout";
-import SEO from "../components/SEO";
+import Bio from "../components/bio";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
 import Img from "gatsby-image";
-import BlogAd from "../components/ads/BlogAd";
+import { MDXRenderer } from "gatsby-plugin-mdx";
 import { Link, graphql } from "gatsby";
-import { Disqus } from "gatsby-plugin-disqus";
-import { OutboundLink } from "gatsby-plugin-google-analytics";
 import {
   FacebookShareButton,
   LinkedinShareButton,
@@ -19,12 +17,13 @@ import {
   WhatsappIcon,
   WorkplaceIcon,
 } from "react-share";
+import { OutboundLink } from "gatsby-plugin-google-analytics";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { MDXRenderer } from "gatsby-plugin-mdx";
+import { Disqus } from "gatsby-plugin-disqus";
 
 const ShareContainer = ({ url }) => {
   return (
-    <div className="my-2">
+    <div className="my-5">
       <FacebookShareButton url={url}>
         <FacebookIcon className="h-8 w-8 sm:h-10 sm:w-10 rounded" />
       </FacebookShareButton>
@@ -52,7 +51,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.mdx;
   const { previous, next } = pageContext;
 
-  let disqusConfig = {
+  const disqusConfig = {
     url: `${data.site.siteMetadata.siteUrl + location.pathname}`,
     identifier: post.fields.slug,
     title: post.frontmatter.title,
@@ -66,19 +65,16 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         image={post.frontmatter.banner.childImageSharp.fixed.src}
       />
 
-      <article
-        className="max-w-full p-3 rounded-md mt-10"
-        style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
-      >
+      <article>
         <header>
           <h1 className="text-2xl sm:text-5xl font-bold">
             {post.frontmatter.title}
           </h1>
 
-          <div className="flex items-center">
-            <p className="flex-1 text-lg">{`${post.frontmatter.date}`}</p>
+          <div className="flex items-center text-base sm:text-lg">
+            <p className="flex-1">{`${post.frontmatter.date}`}</p>
 
-            <p className="text-lg">{`${post.timeToRead} min read`}</p>
+            <p>{`${post.timeToRead} min read`}</p>
           </div>
 
           <ShareContainer url={location.href} />
@@ -92,54 +88,35 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           />
         </header>
 
-        <BlogAd className="my-3" />
-
         <MDXRenderer>{post.body}</MDXRenderer>
 
-        <hr className="my-3" />
-
-        <BlogAd />
+        <hr />
 
         <footer>
-          <hr className="my-3" />
-
           <ShareContainer url={location.href} />
 
-          <hr className="my-3" />
-
-          <h6 className="text-xl font-medium">
+          <h6 className="text-xl font-medium my-5">
             Enjoyed the post or found it useful?{" "}
             <OutboundLink
               href={data.site.siteMetadata.donationLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="underline text-green-500"
             >
               Please consider buying me a coffee.
             </OutboundLink>
           </h6>
 
-          <hr className="my-3" />
-
           <Bio />
-
-          <hr className="my-3" />
 
           <div className="bg-white rounded-md p-2">
             <Disqus config={disqusConfig} />
           </div>
-
-          <hr className="my-3" />
-
-          <BlogAd />
-
-          <hr className="my-3" />
         </footer>
       </article>
 
       <nav className="my-8 w-full">
         <ul className="flex flex-wrap justify-between list-none p-0">
-          <li className="text-2xl font-medium flex-1 text-left">
+          <li className="text-xl sm:text-2xl font-medium flex-1 text-left">
             {previous && (
               <Link to={previous.fields.slug} rel="prev">
                 <span className="flex flex-no-wrap items-center">
@@ -150,7 +127,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             )}
           </li>
 
-          <li className="text-2xl font-medium flex-1 text-right">
+          <li className="text-xl sm:text-2xl font-medium flex-1 text-right">
             {next && (
               <Link to={next.fields.slug} rel="next">
                 <span className="flex flex-no-wrap items-center justify-end">
@@ -162,12 +139,6 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           </li>
         </ul>
       </nav>
-
-      {/* Script for react-adsense*/}
-      <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-      />
     </Layout>
   );
 };

@@ -5,8 +5,6 @@ description: "A guide to quickly get Redux up and running in React"
 banner: "./banner.png"
 ---
 
-import BlogAd from "../../../src/components/ads/BlogAd.tsx";
-
 If you have used React chances are you have run into Redux at some point or the other. [Redux](https://redux.js.org/) is a library that help in sharing one single state between many components.
 
 Redux consists of the three parts, the **store**, **actions** and **reducer**. I'll explain each of these as we go through the post.
@@ -125,8 +123,6 @@ Let's go through the actions.
 
 **getUser** is different by being an asynchronous action generator. By default redux only allow for synchronous action generators, but with **redux-thunk** we can generate functions too. To create a a function generator all we need to do is return a function which has the `dispatch` argument. The `dispatch` argument is a function that is used call other redux actions inside the current function such as us calling `dispatch(setIsFetchingUser(true))` at the beginning to set `isFetchingUser` to `true`.
 
-<BlogAd className="my-3" />
-
 ## Setup the Reducer
 
 The **reducer** is the part of redux that changes the state based on the object return from the actions. The reducer has two arguments, _state_ for the state to change and _action_ for the object returned by the actions. The initial state will also be set as the default parameter of the _state_ argument.
@@ -237,8 +233,6 @@ const store = configureStore();
 
 export default store;
 ```
-
-<BlogAd className="my-3" />
 
 ## Tying Redux to React
 
@@ -464,8 +458,6 @@ A few notes here.
 - Instead of importing and using _getUser_ we're using _setUserId_
 - We're limiting the _userId_ between 1 and 10 because that's the number of the user records the API has.
 - We're also disabling the button based on _isFetchingUser_. It will be set to true when _getUser_ is called so the buttons will get disabled when a request to get the user is made and set to false once it's complete.
-
-<BlogAd className="my-3" />
 
 ## Bringing everything together in the root component
 

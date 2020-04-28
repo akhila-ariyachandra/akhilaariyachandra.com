@@ -1,7 +1,8 @@
 import React from "react";
-import Layout from "../components/Layout";
-import PostLink from "../components/PostLink";
-import SEO from "../components/SEO";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+import ListContainer from "../components/ListContainer";
+import BlogPost from "../components/BlogPost";
 import { graphql, useStaticQuery } from "gatsby";
 
 const Blog = ({ location }) => {
@@ -32,16 +33,14 @@ const Blog = ({ location }) => {
     <Layout location={location}>
       <SEO
         title="Blog"
-        description="A blog by Akhila Ariyachandra talking about JavaScript, React & Web Development"
+        description="A blog about Javascript, React and Web Development"
       />
 
-      <h1 className="text-5xl font-bold text-left mb-5 w-full mt-10">Blog</h1>
-
-      <div className="grid grid-cols-1 gap-4 w-full">
+      <ListContainer title="Blog">
         {posts.map(({ node }) => (
-          <PostLink node={node} key={node.id} dark={true} />
+          <BlogPost key={node.id} node={node} />
         ))}
-      </div>
+      </ListContainer>
     </Layout>
   );
 };

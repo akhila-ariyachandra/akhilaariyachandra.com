@@ -6,8 +6,8 @@
  */
 
 import React from "react";
-import { useStaticQuery, graphql } from "gatsby";
 import Image from "gatsby-image";
+import { useStaticQuery, graphql } from "gatsby";
 
 const Bio = () => {
   const data = useStaticQuery(graphql`
@@ -40,7 +40,8 @@ const Bio = () => {
         style={{ minWidth: 50, borderRadius: `100%` }}
         imgStyle={{ borderRadius: `50%` }}
       />
-      <p className="mb-0 ml-5 text-lg font-normal">
+
+      <p className="mb-0 ml-5 text-lg sm:text-xl font-normal">
         Written by <strong>{author.name}</strong>
         {author.summary}
       </p>

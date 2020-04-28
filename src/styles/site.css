@@ -4,12 +4,16 @@
 
 @tailwind utilities;
 
-/* Fix for Jumping Scrollbar Issue - https://css-tricks.com/elegant-fix-jumping-scrollbar-issue/ */
-/* html {
-  margin-left: calc(100vw - 100%);
-} */
+html {
+  @apply transition-colors;
+  @apply duration-200;
 
-body {
-  overflow-y: scroll;
-  background-color: black;
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+a {
+  @apply no-underline;
+
+  color: var(--color-primary);
 }

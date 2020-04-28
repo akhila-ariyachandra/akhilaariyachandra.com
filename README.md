@@ -1,18 +1,3 @@
-# [akhilaariyachandra.com](https://akhilaariyachandra.com)
-
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-
-## Environment Variables
-
-|    ENV Variable     | Description                                         |
-| :-----------------: | --------------------------------------------------- |
-| GOOGLE_ANALYTICS_ID | [Google Analytics](https://analytics.google.com) ID |
-|  GOOGLE_AD_CLIENT   | [Google Adsense](https://ads.google.com/) Client ID |
-|   GOOGLE_AD_SLOT    | [Google Adsense](https://ads.google.com/) Slot      |
-| GATSBY_DISQUS_NAME  | [Disqus](https://disqus.com/) Shortname             |
-
----
-
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.org">

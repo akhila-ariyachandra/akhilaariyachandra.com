@@ -10,41 +10,43 @@ const CareerBlock = ({ company }) => {
 
   return (
     <article className="p-3 grid grid-cols-1 sm:grid-cols-3 gap-4">
-      <OutboundLink
-        href={company.link}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <header className="container">
-          <Img
-            fluid={company.image.childImageSharp.fluid}
-            alt={company.company}
-            className="rounded-lg mx-auto"
-            style={{ maxWidth: 100 }}
-            imgStyle={{ maxWidth: 100 }}
-          />
+      <header className="container">
+        <Img
+          fluid={company.image.childImageSharp.fluid}
+          alt={company.company}
+          className="rounded-lg mx-auto"
+          style={{ maxWidth: 100 }}
+          imgStyle={{ maxWidth: 100 }}
+        />
 
-          <h3 className="text-2xl font-semibold text-center">
+        <OutboundLink
+          href={company.link}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <h3 className="text-2xl sm:text-3xl font-semibold text-center">
             {company.company}
           </h3>
+        </OutboundLink>
 
-          {sortedPositions.length > 1 ? (
-            <h5 className="text-lg font-hairline text-center">
-              {getPeriod(
-                dayjs(sortedPositions[sortedPositions.length - 1].start_date),
-                dayjs(sortedPositions[0].end_date)
-              )}
-            </h5>
-          ) : null}
-        </header>
-      </OutboundLink>
+        {sortedPositions.length > 1 ? (
+          <h5 className="text-lg sm:text-xl font-normal text-center">
+            {getPeriod(
+              dayjs(sortedPositions[sortedPositions.length - 1].start_date),
+              dayjs(sortedPositions[0].end_date)
+            )}
+          </h5>
+        ) : null}
+      </header>
 
       <section className="self-center grid grid-cols-1 gap-3 text-center sm:text-left col-span-1 sm:col-span-2">
         {sortedPositions.map((position) => (
           <div key={position.title}>
-            <h4 className="text-xl font-medium">{position.title}</h4>
+            <h4 className="text-xl sm:text-2xl font-medium">
+              {position.title}
+            </h4>
 
-            <h5 className="text-lg font-hairline">
+            <h5 className="text-lg sm:text-xl font-normal">
               {`${dayjs(position.start_date).format("MMMM YYYY")} - ${
                 position.end_date
                   ? dayjs(position.end_date).format("MMMM YYYY")

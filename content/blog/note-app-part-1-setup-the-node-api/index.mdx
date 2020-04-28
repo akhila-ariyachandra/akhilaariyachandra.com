@@ -5,8 +5,6 @@ description: "In this series we're going to create a notes app with Node, MongoD
 banner: "./banner.png"
 ---
 
-import BlogAd from "../../../src/components/ads/BlogAd.tsx";
-
 In this series we're going to create a notes app with Node, MongoDB & React. For the first part, let's setup the API.
 
 I'm going to be using **yarn** as my package manager, but feel free to use **npm** or **pnpm** instead.
@@ -81,8 +79,6 @@ export default mongoose;
 
 Replace the value of `dbPath` with the path of your database.
 
-<BlogAd className="my-3" />
-
 ## Create the notes model
 
 Once we're done setting up the database, we need to create a model to perform **CRUD** (Create, Retrieve, Update & Delete) operations on the database.
@@ -107,8 +103,6 @@ const Note = mongoose.model(collectionName, noteSchema);
 // Export the Note model
 export default Note;
 ```
-
-<BlogAd className="my-3" />
 
 ## Setup the server and routes
 
@@ -276,8 +270,6 @@ app.delete("/note/:id", async (req, res) => {
   }
 });
 ```
-
-<BlogAd className="my-3" />
 
 Finally `index.js` should look like this.
 
