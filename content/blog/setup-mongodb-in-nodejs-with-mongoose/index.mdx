@@ -5,9 +5,13 @@ description: "Chances are if you’re building an application with Node, you’l
 banner: "./banner.png"
 ---
 
+import BlogAd from "../../../src/components/BlogAd";
+
 Chances are if you’re building an application with Node, you’ll be needing to connect it to a MongoDB database. Here I’ll show you how to set it up. This guide assumes that you have already initialized a node project.
 
 If you don’t have a database already [mLab](https://mlab.com/) is probabaly the best place to get a free one.
+
+<BlogAd />
 
 ## Setting up database connection
 
@@ -83,6 +87,8 @@ db.once("open", () => {
 });
 module.exports = mongoose;
 ```
+
+<BlogAd />
 
 ## Setting up models/schema
 

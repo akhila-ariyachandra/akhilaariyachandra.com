@@ -5,7 +5,11 @@ description: "Let's a quick GraphQL API and deploy it using Now"
 banner: "./banner.png"
 ---
 
+import BlogAd from "../../../src/components/BlogAd";
+
 In this post we'll create a GraphQL API to create, view and delete notes that we can deploy to [Zeit](https://zeit.co/) using [Apollo Server](https://www.apollographql.com/docs/apollo-server/), TypeScript and MongoDB.
+
+<BlogAd />
 
 ## Initial Setup
 
@@ -74,6 +78,8 @@ Then define the name of the collection and the schema using schema definition.
 const collectionName: string = "note";
 const noteSchema: mongoose.Schema = new mongoose.Schema(schema);
 ```
+
+<BlogAd />
 
 Since we're building a serverless API, we can't depend on a persistent connection to database. When creating a Model we need to create it using the database connection.
 
@@ -186,6 +192,8 @@ export const getConnection = async (): Promise<mongoose.Connection> => {
 };
 ```
 
+<BlogAd />
+
 ## Setup the GraphQL API
 
 First let's install the dependencies.
@@ -277,6 +285,8 @@ const apolloServer = new ApolloServer({
 
 export default apolloServer.createHandler({ path: "/api/graphql" });
 ```
+
+<BlogAd />
 
 ## Setup the GraphQL Schema
 
@@ -408,6 +418,8 @@ const linkSchema = gql`
 
 export default [linkSchema, noteSchema, customSchema];
 ```
+
+<BlogAd />
 
 ## Setup the resolvers
 
@@ -703,6 +715,8 @@ import customResolver from "./custom";
 
 export default [noteResolver, customResolver];
 ```
+
+<BlogAd />
 
 ## Running the API locally
 

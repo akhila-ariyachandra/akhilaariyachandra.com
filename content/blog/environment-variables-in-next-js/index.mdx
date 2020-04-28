@@ -5,11 +5,15 @@ description: "A guide to working with Environment Variables in Next.js"
 banner: "./banner.png"
 ---
 
+import BlogAd from "../../../src/components/BlogAd";
+
 > Updated on 23rd April, 2020 to reflect the changes on how Vercel handles [Environment Variables](https://vercel.com/blog/environment-variables-ui).
 
 Often we need to use certain variables like the database path or authentication secrets without committing them to the repo.
 
 Since [Next.js](https://nextjs.org/ "Next.js") uses [Webpack](https://webpack.js.org/ "Webpack") we can use the [dotenv-webpack](https://www.npmjs.com/package/dotenv-webpack) dependency to load variable from a _.env_ file to our Next.js application.
+
+<BlogAd />
 
 Let's start by installing dotenv-webpack as a dev dependency.
 
@@ -73,6 +77,8 @@ AUTH_SECRET=verysecret
 You can use the variable like this, `process.env.AUTH_SECRET`.
 
 > Never commit the _.env_ file. Add it to the _.gitignore_ file.
+
+<BlogAd />
 
 ## Deploying to [Vercel](https://vercel.com/home)
 

@@ -7,7 +7,7 @@
 
 import React from "react";
 import Image from "gatsby-image";
-import { useStaticQuery, graphql } from "gatsby";
+import { useStaticQuery, graphql, Link } from "gatsby";
 
 const Bio = () => {
   const data = useStaticQuery(graphql`
@@ -42,7 +42,10 @@ const Bio = () => {
       />
 
       <p className="mb-0 ml-5 text-lg sm:text-xl font-normal">
-        Written by <strong>{author.name}</strong>
+        Written by{" "}
+        <Link to="/">
+          <strong>{author.name}</strong>
+        </Link>
         {author.summary}
       </p>
     </div>
