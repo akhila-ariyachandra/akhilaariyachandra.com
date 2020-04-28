@@ -1,3 +1,35 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
+const gatsbyRemarkClasses = {
+  "heading[depth=1]": "text-3xl sm:text-4xl sm:text-5xl font-bold my-3",
+  "heading[depth=2]": "text-2xl sm:text-3xl sm:text-4xl font-bold my-3",
+  "heading[depth=3]": "text-xl sm:text-2xl sm:text-3xl font-semibold my-3",
+  "heading[depth=4]": "text-lg sm:text-xl sm:text-2xl font-semibold my-3",
+  "heading[depth=5]": "text-base sm:text-lg sm:text-xl font-medium my-3",
+  "heading[depth=6]": "text-sm sm:text-base sm:text-lg font-medium my-3",
+  paragraph: "text-base sm:text-lg font-normal my-3",
+  link: "my-3",
+  blockquote:
+    "border-l-4 border-green-600 bg-green-100 rounded-md text-black italic font-medium pl-4 py-1 my-3 mx-0",
+  "list[ordered=false]": "list-disc my-3 list-inside",
+  "list[ordered=true]": "list-decimal my-3 list-inside pl-0",
+  table: "table-auto border-4 border-collapse my-3",
+  tableCell: "border p-2",
+  break: "my-3",
+};
+
+const getClasses = (object) => {
+  const classes = [];
+
+  for (const property in object) {
+    classes.push(...object[property].split(" "));
+  }
+
+  return Array.from(new Set(classes));
+};
+
 module.exports = {
   siteMetadata: {
     title: `Akhila Ariyachandra`,
@@ -170,6 +202,12 @@ module.exports = {
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
+          {
+            resolve: `gatsby-remark-classes`,
+            options: {
+              classMap: gatsbyRemarkClasses,
+            },
+          },
         ],
       },
     },
@@ -270,7 +308,27 @@ module.exports = {
       options: {
         printRejected: true, // Print removed selectors and processed file names
         tailwind: true, // Enable tailwindcss support
+        whitelist: [...getClasses(gatsbyRemarkClasses)],
         ignore: [`prismjs/themes/prism.css`],
+      },
+    },
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-robots-txt`,
+    {
+      resolve: `gatsby-plugin-disqus`,
+      options: {
+        shortname: process.env.GATSBY_DISQUS_NAME,
+      },
+    },
+    `gatsby-plugin-webpack-bundle-analyser-v2`,
+    `gatsby-plugin-preact`,
+    `gatsby-plugin-catch-links`,
+    `gatsby-plugin-zeit-now`,
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `https://akhilaariyachandra.com`,
+        stripQueryString: true,
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

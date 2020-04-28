@@ -2,14 +2,13 @@ import React from "react";
 import styled from "@emotion/styled";
 import DarkToggle from "./DarkToggle";
 import PropTypes from "prop-types";
+import tw from "twin.macro";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import { OutboundLink } from "gatsby-plugin-google-analytics";
 
 const Wrapper = styled.div`
-  margin-left: auto;
-  margin-right: auto;
   max-width: 1000px;
-  padding: 2rem;
+  ${tw`mx-auto p-5 sm:p-8`}
 `;
 
 const Layout = ({ location, children }) => {

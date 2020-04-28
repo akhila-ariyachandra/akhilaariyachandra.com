@@ -6,16 +6,16 @@
  */
 
 import React from "react";
-import { useStaticQuery, graphql } from "gatsby";
 import Image from "gatsby-image";
+import { useStaticQuery, graphql } from "gatsby";
 
 const Bio = () => {
   const data = useStaticQuery(graphql`
     query BioQuery {
       avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
         childImageSharp {
-          fixed(width: 50, height: 50) {
-            ...GatsbyImageSharpFixed
+          fluid(maxWidth: 100, maxHeight: 100) {
+            ...GatsbyImageSharpFluid
           }
         }
       }
@@ -25,39 +25,25 @@ const Bio = () => {
             name
             summary
           }
-          social {
-            twitter
-          }
         }
       }
     }
   `);
 
-  const { author, social } = data.site.siteMetadata;
+  const { author } = data.site.siteMetadata;
   return (
-    <div
-      style={{
-        display: `flex`,
-      }}
-    >
+    <div className="flex items-center my-5">
       <Image
-        fixed={data.avatar.childImageSharp.fixed}
+        fluid={data.avatar.childImageSharp.fluid}
         alt={author.name}
-        style={{
-          marginBottom: 0,
-          minWidth: 50,
-          borderRadius: `100%`,
-        }}
-        imgStyle={{
-          borderRadius: `50%`,
-        }}
+        className="mb-0"
+        style={{ minWidth: 50, borderRadius: `100%` }}
+        imgStyle={{ borderRadius: `50%` }}
       />
-      <p>
-        Written by <strong>{author.name}</strong> {author.summary}
-        {` `}
-        <a href={`https://twitter.com/${social.twitter}`}>
-          You should follow him on Twitter
-        </a>
+
+      <p className="mb-0 ml-5 text-lg sm:text-xl font-normal">
+        Written by <strong>{author.name}</strong>
+        {author.summary}
       </p>
     </div>
   );
