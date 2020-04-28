@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-blog",
+  "name": "akhilaariyachandra.com",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "description": "The code for akhilaariyachandra.com",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Akhila Ariyachandra <akhila_ariyachandra@live.com>",
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
@@ -12,6 +12,7 @@
     "@emotion/styled": "^10.0.27",
     "@mdx-js/mdx": "^1.5.9",
     "@mdx-js/react": "^1.5.9",
+    "autoprefixer": "^9.7.6",
     "dayjs": "^1.8.25",
     "gatsby": "^2.20.35",
     "gatsby-image": "^2.3.5",
@@ -56,7 +57,7 @@
     "prettier": "2.0.4",
     "tailwindcss": "^1.3.5"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "homepage": "https://github.com/akhila-ariyachandra/akhilaariyachandra.com#readme",
   "keywords": [
     "gatsby"
   ],
@@ -67,7 +68,7 @@
     "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
   },
   "scripts": {
-    "build": "gatsby clean && gatsby build",
+    "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md,mdx,css,yaml}\"",
     "start": "npm run develop",
