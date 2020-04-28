@@ -1,9 +1,12 @@
 import React from "react";
 import Layout from "../components/layout";
+import SEO from "../components/seo";
 
 const About = ({ location }) => {
   return (
     <Layout location={location}>
+      <SEO title="About" description="A little bit about myself" />
+
       <div className="my-16 sm:my-32">
         <h3 className="text-3xl sm:text-5xl font-medium">Hi.</h3>
 

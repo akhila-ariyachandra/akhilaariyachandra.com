@@ -34,7 +34,7 @@ const Career = ({ location }) => {
 
   return (
     <Layout location={location}>
-      <SEO title="Career" />
+      <SEO title="Career" description="My work experience" />
 
       <ListContainer title="Career">
         {companies.map((company) => (

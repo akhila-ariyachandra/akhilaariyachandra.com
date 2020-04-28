@@ -31,7 +31,10 @@ const Blog = ({ location }) => {
 
   return (
     <Layout location={location}>
-      <SEO title="Blog" />
+      <SEO
+        title="Blog"
+        description="A blog about Javascript, React and Web Development"
+      />
 
       <ListContainer title="Blog">
         {posts.map(({ node }) => (
