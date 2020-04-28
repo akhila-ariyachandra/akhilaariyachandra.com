@@ -1,0 +1,10 @@
+company: Villvay
+image: villvay.png
+link: https://villvay.com/
+positions:
+  - title: "Associate Software Engineer"
+    start-date: 2018-01-15
+    end-date: 2018-07-15
+  - title: "Software Engineer"
+    start-date: 2018-07-15
+    end-date: 2019-03-15
