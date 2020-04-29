@@ -55,7 +55,6 @@ const MagicScriptTag = ({ script }) => {
 };
 
 export const onRenderBody = ({
-  setHeadComponents,
   setPreBodyComponents,
   setPostBodyComponents,
 }) => {
