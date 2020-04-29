@@ -71,11 +71,13 @@ export const onRenderBody = ({
         rel="preconnect"
         href="https://adservice.google.com/"
         key="adservice-preconnect"
+        crossorigin
       />,
       <link
         rel="preconnect"
         href="https://googleads.g.doubleclick.net/"
         key="doubleclick-preconnect"
+        crossorigin
       />,
       <link
         rel="preconnect"
@@ -86,6 +88,7 @@ export const onRenderBody = ({
         rel="preconnect"
         href="https://tpc.googlesyndication.com/"
         key="googlesyndication-preconnect"
+        crossorigin
       />,
     ]);
 
