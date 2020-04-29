@@ -20,3 +20,8 @@ a {
 
   color: var(--color-primary);
 }
+
+blockquote > p > a {
+  @apply text-green-800;
+  @apply underline;
+}
