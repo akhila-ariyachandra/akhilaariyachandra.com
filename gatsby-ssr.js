@@ -71,25 +71,25 @@ export const onRenderBody = ({
         rel="preconnect"
         href="https://adservice.google.com/"
         key="adservice-preconnect"
-        crossorigin="use-credentials"
+        crossorigin="anonymous"
       />,
       <link
         rel="preconnect"
         href="https://googleads.g.doubleclick.net/"
         key="doubleclick-preconnect"
-        crossorigin="use-credentials"
+        crossorigin="anonymous"
       />,
       <link
         rel="preconnect"
         href="https://www.googletagservices.com/"
         key="googletagservices-preconnect"
-        crossorigin="use-credentials"
+        crossorigin="anonymous"
       />,
       <link
         rel="preconnect"
         href="https://tpc.googlesyndication.com/"
         key="googlesyndication-preconnect"
-        crossorigin="use-credentials"
+        crossorigin="anonymous"
       />,
     ]);
 
