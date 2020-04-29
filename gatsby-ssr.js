@@ -68,28 +68,24 @@ export const onRenderBody = ({
     // Preconnect
     setHeadComponents([
       <link
-        rel="preconnect"
+        rel="preconnect dns-prefetch"
         href="https://adservice.google.com/"
         key="adservice-preconnect"
-        crossorigin="anonymous"
       />,
       <link
-        rel="preconnect"
+        rel="preconnect dns-prefetch"
         href="https://googleads.g.doubleclick.net/"
         key="doubleclick-preconnect"
-        crossorigin="anonymous"
       />,
       <link
-        rel="preconnect"
+        rel="preconnect dns-prefetch"
         href="https://www.googletagservices.com/"
         key="googletagservices-preconnect"
-        crossorigin="anonymous"
       />,
       <link
-        rel="preconnect"
+        rel="preconnect dns-prefetch"
         href="https://tpc.googlesyndication.com/"
         key="googlesyndication-preconnect"
-        crossorigin="anonymous"
       />,
     ]);
 
