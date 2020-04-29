@@ -55,6 +55,7 @@ const MagicScriptTag = ({ script }) => {
 };
 
 export const onRenderBody = ({
+  setHeadComponents,
   setPreBodyComponents,
   setPostBodyComponents,
 }) => {
@@ -64,6 +65,30 @@ export const onRenderBody = ({
 
   // Add AdSense script
   if (process.env.NODE_ENV === `production`) {
+    // Preconnect
+    setHeadComponents([
+      <link
+        rel="preconnect"
+        href="https://adservice.google.com/"
+        key="adservice-preconnect"
+      />,
+      <link
+        rel="preconnect"
+        href="https://googleads.g.doubleclick.net/"
+        key="doubleclick-preconnect"
+      />,
+      <link
+        rel="preconnect"
+        href="https://www.googletagservices.com/"
+        key="googletagservices-preconnect"
+      />,
+      <link
+        rel="preconnect"
+        href="https://tpc.googlesyndication.com/"
+        key="googlesyndication-preconnect"
+      />,
+    ]);
+
     const script = `
       (adsbygoogle = window.adsbygoogle || []).push({
         google_ad_client: "${googleAdClientId}",
@@ -74,6 +99,7 @@ export const onRenderBody = ({
 
     setPostBodyComponents([
       <script
+        key="google-adsense-script"
         async
         type="text/javascript"
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
