@@ -65,30 +65,6 @@ export const onRenderBody = ({
 
   // Add AdSense script
   if (process.env.NODE_ENV === `production`) {
-    // Preconnect
-    setHeadComponents([
-      <link
-        rel="preconnect dns-prefetch"
-        href="https://adservice.google.com/"
-        key="adservice-preconnect"
-      />,
-      <link
-        rel="preconnect dns-prefetch"
-        href="https://googleads.g.doubleclick.net/"
-        key="doubleclick-preconnect"
-      />,
-      <link
-        rel="preconnect dns-prefetch"
-        href="https://www.googletagservices.com/"
-        key="googletagservices-preconnect"
-      />,
-      <link
-        rel="preconnect dns-prefetch"
-        href="https://tpc.googlesyndication.com/"
-        key="googlesyndication-preconnect"
-      />,
-    ]);
-
     const script = `
       (adsbygoogle = window.adsbygoogle || []).push({
         google_ad_client: "${googleAdClientId}",
