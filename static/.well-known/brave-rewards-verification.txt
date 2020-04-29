@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: akhilaariyachandra.com
+Token: 323127d908329304c30d063c107e8f296fbada63acc43e100e57a80e86359ab0
