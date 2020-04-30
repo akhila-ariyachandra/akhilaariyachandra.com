@@ -104,7 +104,7 @@ Then use the following command to set the Environment Variables in the deploymen
 now env add
 ```
 
-Finally to make the variables available in the runtime code, we need to add one more property to the Next.js config. Add a new property called `env` and list all the environment variables you want in the runtime code as follow.
+Finally to make the variables available in the client side code, we need to add one more property to the Next.js config. Add a new property called `env` and list all the environment variables you want in the client side code as follows.
 
 ```javascript
 // next.config.js
@@ -118,7 +118,7 @@ module.exports = {
     return config;
   },
   // Have to list all the environment variables used here to make it available
-  // to the runtime code
+  // to the client side code
   env: {
     AUTH_SECRET: process.env.AUTH_SECRET,
   },
