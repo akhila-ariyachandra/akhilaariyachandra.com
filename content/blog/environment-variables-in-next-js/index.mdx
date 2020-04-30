@@ -21,7 +21,7 @@ Let's start by installing dotenv-webpack as a dev dependency.
 npm install dotenv-webpack -D
 ```
 
-Next we need to modify the Webpack configuration in Next.js. This is done through the _next.config.js_ file.
+Next we need to modify the Webpack configuration in Next.js. This is done through the `next.config.js` file.
 
 First import the dotenv-file dependency.
 
@@ -52,7 +52,7 @@ module.exports = {
 };
 ```
 
-Finally the _next.config.js_ should look like this.
+Finally the `next.config.js` should look like this.
 
 ```javascript
 // next.config.js
@@ -104,6 +104,31 @@ Then use the following command to set the Environment Variables in the deploymen
 now env add
 ```
 
+Finally to make the variables available in the runtime code, we need to add one more property to the Next.js config. Add a new property called `env` and list all the environment variables you want in the runtime code as follow.
+
+```javascript
+// next.config.js
+const Dotenv = require("dotenv-webpack");
+
+module.exports = {
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    // Add the new plugin to the existing webpack plugins
+    config.plugins.push(new Dotenv({ silent: true }));
+
+    return config;
+  },
+  // Have to list all the environment variables used here to make it available
+  // to the runtime code
+  env: {
+    AUTH_SECRET: process.env.AUTH_SECRET,
+  },
+};
+```
+
+_This feels like a really hacky workaround to me, so if you have any suggestions on how to improve it please let me know in the comments below._
+
 ## Wrapping up
+
+You can find an example of the implementation [here](https://github.com/akhila-ariyachandra/next-env-test).
 
 I hope you found this guide helpful. Please be sure to share it and leave a comment below! 😊
