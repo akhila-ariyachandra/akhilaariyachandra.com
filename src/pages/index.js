@@ -40,7 +40,7 @@ const StyledTitleContainer = styled.div`
       ${tw`text-2xl sm:text-4xl`}
     }
 
-    .socialLink:not(:first-child) {
+    .socialLink:not(:first-of-type) {
       ${tw`ml-2`}
     }
   }
@@ -53,6 +53,12 @@ const Index = ({ data, location }) => {
         siteMetadata {
           title
           description
+          social {
+            github
+            dev
+            linkedin
+            twitter
+          }
           projects {
             title
             url
@@ -82,6 +88,43 @@ const Index = ({ data, location }) => {
   const siteTitle = site.siteMetadata.title;
   const posts = allMdx.edges;
   const projects = site.siteMetadata.projects;
+  const social = site.siteMetadata.social;
+
+  const SocialLink = ({ site, link }) => {
+    let Icon = null;
+
+    switch (site) {
+      case "GitHub":
+        Icon = FaGithub;
+        break;
+      case "DEV":
+        Icon = FaDev;
+        break;
+      case "LinkedIn":
+        Icon = FaLinkedin;
+        break;
+      case "Twitter":
+        Icon = FaTwitterSquare;
+        break;
+      case "RSS":
+        Icon = FaRssSquare;
+        break;
+      default:
+        Icon = null;
+    }
+
+    return (
+      <OutboundLink
+        className="socialLink"
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={site}
+      >
+        <Icon />
+      </OutboundLink>
+    );
+  };
 
   return (
     <Layout location={location}>
@@ -107,55 +150,15 @@ const Index = ({ data, location }) => {
         </nav>
 
         <div id="social">
-          <OutboundLink
-            className="socialLink"
-            href="https://github.com/akhila-ariyachandra"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-          >
-            <FaGithub />
-          </OutboundLink>
+          <SocialLink site="GitHub" link={social.github} />
 
-          <OutboundLink
-            className="socialLink"
-            href="https://dev.to/akhilaariyachandra"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="DEV"
-          >
-            <FaDev />
-          </OutboundLink>
+          <SocialLink site="DEV" link={social.dev} />
 
-          <OutboundLink
-            className="socialLink"
-            href="https://www.linkedin.com/in/akhila-ariyachandra/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-          >
-            <FaLinkedin />
-          </OutboundLink>
+          <SocialLink site="LinkedIn" link={social.linkedin} />
 
-          <OutboundLink
-            className="socialLink"
-            href="https://twitter.com/heshan_1010"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-          >
-            <FaTwitterSquare />
-          </OutboundLink>
+          <SocialLink site="Twitter" link={social.twitter} />
 
-          <OutboundLink
-            className="socialLink"
-            href="/rss.xml"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="RSS Feed"
-          >
-            <FaRssSquare />
-          </OutboundLink>
+          <SocialLink site="RSS" link="/rss.xml" />
         </div>
       </StyledTitleContainer>
 

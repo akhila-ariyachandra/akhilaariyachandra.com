@@ -1,8 +1,6 @@
 import Terser from "terser";
 import { COLORS } from "./src/lib/colors";
 
-const googleAdClientId = "ca-pub-9764216594022086";
-
 let codeToRunOnClient = `
   (function() {
     function getInitialColorMode() {
@@ -66,7 +64,7 @@ export const onRenderBody = ({
   if (process.env.NODE_ENV === `production`) {
     const script = `
       (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "${googleAdClientId}",
+        google_ad_client: "${process.env.GATSBY_GOOGLE_AD_CLIENT}",
         enable_page_level_ads: true
       });
     `;
