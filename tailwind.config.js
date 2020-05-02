@@ -3,6 +3,7 @@ module.exports = {
     "./src/components/**/*.js",
     "./src/context/**/*.js",
     "./src/pages/**/*.js",
+    "./src/pages/**/*.mdx",
     "./src/templates/**/*.js",
     "./src/**/*.css",
     "./gatsby-config.js",
