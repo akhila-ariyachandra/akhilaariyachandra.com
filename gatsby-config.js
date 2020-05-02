@@ -12,7 +12,10 @@ module.exports = {
     description: `Web Developer with a passion for JavaScript and React`,
     siteUrl: `https://akhilaariyachandra.com/`,
     social: {
-      twitter: `heshan_1010`,
+      github: `https://github.com/akhila-ariyachandra`,
+      dev: `https://dev.to/akhilaariyachandra`,
+      linkedin: `https://www.linkedin.com/in/akhila-ariyachandra/`,
+      twitter: `https://twitter.com/heshan_1010`,
     },
     projects: [
       {
