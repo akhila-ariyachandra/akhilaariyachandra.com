@@ -1,7 +1,7 @@
 ---
 title: Create a serverless API with TypeScript, GraphQL and MongoDB
 date: "2019-11-20"
-description: "Let's a quick GraphQL API and deploy it using Now"
+description: "Let's a Serverless GraphQL API quickly and deploy it using Vercel"
 banner: "./banner.png"
 ---
 
@@ -9,22 +9,22 @@ import BlogAd from "../../../src/components/BlogAd";
 
 > Updated on 3rd May, 2020 to reflect the changes on how Vercel handles [Environment Variables](https://vercel.com/blog/environment-variables-ui).
 
-In this post we'll create a GraphQL API to create, view and delete notes that we can deploy to [Zeit](https://zeit.co/) using [Apollo Server](https://www.apollographql.com/docs/apollo-server/), TypeScript and MongoDB.
+In this post we'll create a GraphQL API to create, view and delete notes that we can deploy to [Vercel](https://vercel.com/home) using [Apollo Server](https://www.apollographql.com/docs/apollo-server/), TypeScript and MongoDB.
 
 <BlogAd />
 
 ## Initial Setup
 
-First the [Now CLI](https://zeit.co/download) will need be downloaded, installed and logged into.
+First [Vercel](https://vercel.com/download) will need be downloaded, installed and logged into.
 
 ```shell
 npm i -g now
 now login
 ```
 
-The nice thing about using the **Now CLI** for development is that we don't have to worry about manually configuring TypeScript.
+The nice thing about using **Vercel** for development is that we don't have to worry about manually configuring TypeScript.
 
-Then create a folder, initialize a project in it and install _typescript_ as a dev dependency.
+Then create a folder, initialize a project in it and install `typescript` as a dev dependency.
 
 ```shell
 mkdir serverless-graphql-api-example
@@ -39,7 +39,7 @@ To start setting up the database first go to [MongoDB Atlas](https://www.mongodb
 
 > If you want a more detailed explanation check out my [previous guide here](https://akhilaariyachandra.com/setup-mongodb-in-nodejs-with-mongoose/). Note that you can't follow it exactly here because you can no longer create new accounts in MLab (use [MongoDB Atlas](https://www.mongodb.com/) instead) and that guide is for an always running server, not a serverless one.
 
-Then install the _mongoose_ dependency. Since we'll be working with TypeScript we'll need the types for _mongoose_ as well.
+Then install the `mongoose` dependency. Since we'll be working with TypeScript we'll need the types for `mongoose` as well.
 
 ```shell
 npm install mongoose
@@ -48,7 +48,7 @@ npm install @types/mongoose -D
 
 After let's create the model for the notes. Create a folder called `src`. After that create a folder called `database` in `src`. Then in that create another folder called `models` and in that create the file `note.ts`.
 
-Start by importing _mongoose_.
+Start by importing `mongoose`.
 
 ```typescript
 import mongoose from "mongoose";
