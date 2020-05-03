@@ -25,3 +25,27 @@ blockquote > p > a {
   @apply text-green-800;
   @apply underline;
 }
+
+.gatsby-highlight-code-line {
+  @apply bg-gray-800;
+  @apply block;
+  @apply -ml-4;
+  @apply -mr-4;
+  @apply pr-4;
+  @apply pl-3;
+  @apply border-l-4;
+  @apply border-solid;
+  @apply border-green-600;
+}
+
+.gatsby-highlight {
+  background-color: #1d1f21;
+  @apply overflow-auto;
+  @apply rounded-md;
+}
+
+.gatsby-highlight pre[class*="language-"] {
+  @apply bg-transparent;
+  @apply float-left;
+  @apply min-w-full;
+}
