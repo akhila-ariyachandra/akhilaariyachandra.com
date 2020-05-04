@@ -77,6 +77,7 @@ const Index = ({ data, location }) => {
               date(formatString: "MMMM Do, YYYY")
               title
               description
+              updated(formatString: "MMMM Do, YYYY")
             }
             timeToRead
           }

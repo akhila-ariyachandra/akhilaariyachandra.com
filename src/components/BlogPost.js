@@ -14,11 +14,15 @@ const BlogPost = ({ node }) => {
       </header>
 
       <section>
-        <span className="flex items-center text-base sm:text-xl font-normal my-1">
-          <small className="flex-1">{node.frontmatter.date}</small>
+        <span className="flex items-center text-sm sm:text-lg font-normal my-1 justify-between">
+          <p>{node.frontmatter.date}</p>
 
-          <small>{`${node.timeToRead} min read`}</small>
+          <p>{`${node.timeToRead} min read`}</p>
         </span>
+
+        {node.frontmatter.updated ? (
+          <p className="text-sm sm:text-lg font-normal my-1">{`Last updated on ${node.frontmatter.updated}`}</p>
+        ) : null}
 
         <p className="text-lg sm:text-2xl font-normal">
           {node.frontmatter.description}
