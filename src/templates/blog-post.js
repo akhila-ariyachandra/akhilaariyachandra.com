@@ -71,11 +71,15 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             {post.frontmatter.title}
           </h1>
 
-          <div className="flex items-center text-base sm:text-lg">
-            <p className="flex-1">{`${post.frontmatter.date}`}</p>
+          <div className="flex items-center justify-between text-base sm:text-lg my-2">
+            <p>{post.frontmatter.date}</p>
 
             <p>{`${post.timeToRead} min read`}</p>
           </div>
+
+          {post.frontmatter.updated ? (
+            <p className="text-base sm:text-lg my-2">{`Last updated on ${post.frontmatter.updated}`}</p>
+          ) : null}
 
           <ShareContainer url={location.href} />
 
@@ -172,6 +176,7 @@ export const pageQuery = graphql`
             }
           }
         }
+        updated(formatString: "MMMM Do, YYYY")
       }
       timeToRead
     }
