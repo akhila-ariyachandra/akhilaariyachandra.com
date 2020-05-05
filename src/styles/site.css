@@ -13,6 +13,8 @@ html {
 
   /* More Elegant Fix for Jumping Scrollbar Issue - https://css-tricks.com/elegant-fix-jumping-scrollbar-issue/ */
   margin-left: calc(100vw - 100%);
+
+  @apply antialiased;
 }
 
 a {

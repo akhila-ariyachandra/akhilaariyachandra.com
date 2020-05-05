@@ -1,6 +1,6 @@
 import React from "react";
 import { ThemeContext } from "../context/ThemeContext";
-import { FaSun, FaMoon, FaHourglass } from "react-icons/fa";
+import { FaSun, FaMoon, FaCircle } from "react-icons/fa";
 
 const DarkToggle = () => {
   const { colorMode, setColorMode } = React.useContext(ThemeContext);
@@ -15,7 +15,7 @@ const DarkToggle = () => {
       disabled={!colorMode}
     >
       {!colorMode ? (
-        <FaHourglass />
+        <FaCircle />
       ) : colorMode === "light" ? (
         <FaSun />
       ) : (
