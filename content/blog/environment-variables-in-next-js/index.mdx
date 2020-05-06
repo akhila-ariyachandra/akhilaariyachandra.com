@@ -7,6 +7,7 @@ updated: "2020-04-23"
 ---
 
 import BlogAd from "../../../src/components/BlogAd";
+import WarningBlock from "../../../src/components/WarningBlock";
 
 > Updated on 23rd April, 2020 to reflect the changes on how Vercel handles [Environment Variables](https://vercel.com/blog/environment-variables-ui).
 
@@ -32,7 +33,9 @@ const Dotenv = require("dotenv-webpack");
 
 Next export the config object with the default Webpack config function.
 
-```javascript
+```javascript{3-7}
+const Dotenv = require("dotenv-webpack");
+
 module.exports = {
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     return config;
@@ -42,21 +45,7 @@ module.exports = {
 
 All we need to do now is add the dotenv-plugin into the Webpack plugins array.
 
-```javascript
-module.exports = {
-  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    // Add the new plugin to the existing webpack plugins
-    config.plugins.push(new Dotenv({ silent: true }));
-
-    return config;
-  },
-};
-```
-
-Finally the `next.config.js` should look like this.
-
-```javascript
-// next.config.js
+```javascript{5-6}
 const Dotenv = require("dotenv-webpack");
 
 module.exports = {
@@ -77,7 +66,10 @@ AUTH_SECRET=verysecret
 
 You can use the variable like this, `process.env.AUTH_SECRET`.
 
-> Never commit the _.env_ file. Add it to the _.gitignore_ file.
+<WarningBlock>
+  Never commit the <strong>.env</strong> file. Add it to the{" "}
+  <strong>.gitignore</strong> file.
+</WarningBlock>
 
 <BlogAd />
 
@@ -85,8 +77,17 @@ You can use the variable like this, `process.env.AUTH_SECRET`.
 
 If you are using a Git provider like Github to deploy the Application in Vercel, you can't use _.env_ file. This is the reason we set the _silent_ property when adding dotenv-webpack plugin, to prevent any errors because of the missing _.env_ file.
 
-```javascript
-config.plugins.push(new Dotenv({ silent: true }));
+```javascript{6}
+const Dotenv = require("dotenv-webpack");
+
+module.exports = {
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    // Add the new plugin to the existing webpack plugins
+    config.plugins.push(new Dotenv({ silent: true }));
+
+    return config;
+  },
+};
 ```
 
 Instead of the _.env_ file we will use the [Environment Variables UI](https://vercel.com/blog/environment-variables-ui) available in Vercel.
@@ -105,10 +106,9 @@ Then use the following command to set the Environment Variables in the deploymen
 now env add
 ```
 
-Finally to make the variables available in the client side code, we need to add one more property to the Next.js config. Add a new property called `env` and list all the environment variables you want in the client side code as follows.
+Finally to make the variables available in the client JavaScript bundle, we need to add one more property to the Next.js config. Add a new property called `env` and list all the environment variables you want in the client JavaScript bundle as follows.
 
-```javascript
-// next.config.js
+```javascript{10-14}
 const Dotenv = require("dotenv-webpack");
 
 module.exports = {
@@ -119,14 +119,19 @@ module.exports = {
     return config;
   },
   // Have to list all the environment variables used here to make it available
-  // to the client side code
+  // in the client JavaScript bundle
   env: {
     AUTH_SECRET: process.env.AUTH_SECRET,
   },
 };
 ```
 
-_This feels like a really hacky workaround to me, so if you have any suggestions on how to improve it please let me know in the comments below._
+<WarningBlock>
+  Please be careful about which variables you include in the{" "}
+  <strong>env</strong> property as they will be included the client JavaScript
+  bundle, so make sure you avoid including sensitive data like a database
+  connection string or an authentication token secret.
+</WarningBlock>
 
 ## Wrapping up
 
