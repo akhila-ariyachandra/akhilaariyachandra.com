@@ -67,6 +67,14 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 
       <article>
         <header>
+          <Img
+            fluid={post.frontmatter.banner.childImageSharp.fluid}
+            alt={`${post.frontmatter.title} Banner`}
+            className="block mx-auto my-3 rounded-lg"
+            style={{ maxWidth: 1200 }}
+            imgStyle={{ maxWidth: 1200 }}
+          />
+
           <h1 className="text-2xl sm:text-5xl font-bold">
             {post.frontmatter.title}
           </h1>
@@ -82,14 +90,6 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           ) : null}
 
           <ShareContainer url={location.href} />
-
-          <Img
-            fluid={post.frontmatter.banner.childImageSharp.fluid}
-            alt={`${post.frontmatter.title} Banner`}
-            className="block mx-auto my-3 rounded-lg"
-            style={{ maxWidth: 1200 }}
-            imgStyle={{ maxWidth: 1200 }}
-          />
         </header>
 
         <MDXRenderer>{post.body}</MDXRenderer>
