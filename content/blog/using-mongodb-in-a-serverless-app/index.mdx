@@ -6,6 +6,7 @@ banner: "./banner.png"
 ---
 
 import BlogAd from "../../../src/components/BlogAd";
+import WarningBlock from "../../../src/components/WarningBlock";
 
 If you have been developing an API in Node setting up a connection to a MongoDB database is relatively straight forward. Check out my [previous post](https://akhilaariyachandra.com/setup-mongodb-in-nodejs-with-mongoose) if you need a refresher.
 
@@ -42,7 +43,11 @@ Next get the MongoDB connection URI.
 const uri: string = process.env.DB_PATH;
 ```
 
-You can use packages like [dotenv](https://www.npmjs.com/package/dotenv) and [dotenv-webpack](https://www.npmjs.com/package/dotenv-webpack) to load environment variables from a **.env** file into `process.env`. If you use the [Now CLI](https://zeit.co/download) this is done automatically. **Remember to not commit the _.env_ file!**
+You can use packages like [dotenv](https://www.npmjs.com/package/dotenv) and [dotenv-webpack](https://www.npmjs.com/package/dotenv-webpack) to load environment variables from a **.env** file into `process.env`. If you use the [Now CLI](https://zeit.co/download) this is done automatically.
+
+<WarningBlock>
+  Remember to not commit the <strong>.env</strong> file!
+</WarningBlock>
 
 Then we'll declare and export the function to create the database connection.
 
