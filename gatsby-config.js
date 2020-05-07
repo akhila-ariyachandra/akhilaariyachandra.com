@@ -77,26 +77,22 @@ module.exports = {
             resolve: `gatsby-remark-classes`,
             options: {
               classMap: {
-                "heading[depth=1]":
-                  "text-3xl sm:text-4xl sm:text-5xl font-bold my-3",
-                "heading[depth=2]":
-                  "text-2xl sm:text-3xl sm:text-4xl font-bold my-3",
-                "heading[depth=3]":
-                  "text-xl sm:text-2xl sm:text-3xl font-semibold my-3",
-                "heading[depth=4]":
-                  "text-lg sm:text-xl sm:text-2xl font-semibold my-3",
-                "heading[depth=5]":
-                  "text-base sm:text-lg sm:text-xl font-medium my-3",
-                "heading[depth=6]":
-                  "text-sm sm:text-base sm:text-lg font-medium my-3",
+                "heading[depth=1]": "text-3xl sm:text-5xl font-bold my-3",
+                "heading[depth=2]": "text-2xl sm:text-4xl font-bold my-3",
+                "heading[depth=3]": "text-xl sm:text-3xl font-semibold my-3",
+                "heading[depth=4]": "text-lg sm:text-2xl font-semibold my-3",
+                "heading[depth=5]": "text-base sm:text-xl font-medium my-3",
+                "heading[depth=6]": "text-base sm:text-lg font-medium my-3",
                 paragraph: "text-base sm:text-lg font-normal my-3",
                 link: "my-3",
                 blockquote:
                   "border-l-4 border-green-600 bg-green-100 rounded-md text-black font-normal text-base sm:text-lg px-4 py-1 my-3 mx-0",
-                "list[ordered=false]": "list-disc my-3 list-inside",
-                "list[ordered=true]": "list-decimal my-3 list-inside pl-0",
+                "list[ordered=false]":
+                  "list-disc my-3 list-inside text-base sm:text-lg",
+                "list[ordered=true]":
+                  "list-decimal my-3 list-inside pl-0 text-base sm:text-lg",
                 table: "table-auto border-4 border-collapse my-3",
-                tableCell: "border p-2",
+                tableCell: "border p-2 text-base sm:text-lg",
                 break: "my-3",
               },
             },

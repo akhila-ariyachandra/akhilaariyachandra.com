@@ -7,7 +7,7 @@ updated: "2020-04-23"
 ---
 
 import BlogAd from "../../../src/components/BlogAd";
-import WarningBlock from "../../../src/components/WarningBlock";
+import SpecialBlock from "../../../src/components/SpecialBlock";
 
 > Updated on 23rd April, 2020 to reflect the changes on how Vercel handles [Environment Variables](https://vercel.com/blog/environment-variables-ui).
 
@@ -66,10 +66,10 @@ AUTH_SECRET=verysecret
 
 You can use the variable like this, `process.env.AUTH_SECRET`.
 
-<WarningBlock>
+<SpecialBlock type="warn">
   Never commit the <strong>.env</strong> file. Add it to the{" "}
   <strong>.gitignore</strong> file.
-</WarningBlock>
+</SpecialBlock>
 
 <BlogAd />
 
@@ -126,12 +126,12 @@ module.exports = {
 };
 ```
 
-<WarningBlock>
+<SpecialBlock type="warn">
   Please be careful about which variables you include in the{" "}
   <strong>env</strong> property as they will be included the client JavaScript
   bundle, so make sure you avoid including sensitive data like a database
   connection string or an authentication token secret.
-</WarningBlock>
+</SpecialBlock>
 
 ## Wrapping up
 

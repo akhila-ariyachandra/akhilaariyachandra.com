@@ -75,18 +75,18 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             imgStyle={{ maxWidth: 1200 }}
           />
 
-          <h1 className="text-2xl sm:text-5xl font-bold">
+          <h1 className="text-4xl sm:text-6xl font-bold">
             {post.frontmatter.title}
           </h1>
 
-          <div className="flex items-center justify-between text-base sm:text-lg my-2">
+          <div className="flex items-center justify-between text-base sm:text-xl my-2">
             <p>{post.frontmatter.date}</p>
 
             <p>{`${post.timeToRead} min read`}</p>
           </div>
 
           {post.frontmatter.updated ? (
-            <p className="text-base sm:text-lg my-2">{`Last updated on ${post.frontmatter.updated}`}</p>
+            <p className="text-base sm:text-xl my-2">{`Last updated on ${post.frontmatter.updated}`}</p>
           ) : null}
 
           <ShareContainer url={location.href} />
@@ -99,7 +99,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         <footer>
           <ShareContainer url={location.href} />
 
-          <h6 className="text-xl font-medium my-5">
+          <h6 className="text:base sm:text-xl font-medium my-5">
             Enjoyed the post or found it useful?{" "}
             <OutboundLink
               href={data.site.siteMetadata.donationLink}
@@ -120,7 +120,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 
       <nav className="my-8 w-full">
         <ul className="flex flex-wrap justify-between list-none p-0">
-          <li className="text-xl sm:text-2xl font-medium flex-1 text-left">
+          <li className="text-lg sm:text-2xl font-medium flex-1 text-left">
             {previous && (
               <Link to={previous.fields.slug} rel="prev">
                 <span className="flex flex-no-wrap items-center">
@@ -131,7 +131,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             )}
           </li>
 
-          <li className="text-xl sm:text-2xl font-medium flex-1 text-right">
+          <li className="text-lg sm:text-2xl font-medium flex-1 text-right">
             {next && (
               <Link to={next.fields.slug} rel="next">
                 <span className="flex flex-no-wrap items-center justify-end">
