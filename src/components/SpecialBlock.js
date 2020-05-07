@@ -8,9 +8,7 @@ const SpecialBlock = ({ children, type }) => {
   let iconClass = "text-2xl sm:text-3xl ";
   let Icon = null;
 
-  switch (
-    type // eslint-disable-line default-case
-  ) {
+  switch (type) {
     case "warn":
       wrapperClass = wrapperClass + "bg-red-200 border-red-600";
       iconClass = iconClass + "text-red-600";
