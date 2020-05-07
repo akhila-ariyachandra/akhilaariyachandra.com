@@ -7,7 +7,7 @@ updated: "2020-05-03"
 ---
 
 import BlogAd from "../../../src/components/BlogAd";
-import WarningBlock from "../../../src/components/WarningBlock";
+import SpecialBlock from "../../../src/components/SpecialBlock";
 
 > Updated on 3rd May, 2020 to reflect the changes on how Vercel handles [Environment Variables](https://vercel.com/blog/environment-variables-ui).
 
@@ -143,10 +143,10 @@ Since we're using serverless, we can't have a persistent connection to database 
 
 First create the `.env` file in the project root to store the MongoDB URI as `DB_PATH`.
 
-<WarningBlock>
+<SpecialBlock type="warn">
   Never commit the <strong>.env</strong> file. Make sure to add it to{" "}
   <strong>.gitignore</strong>.
-</WarningBlock>
+</SpecialBlock>
 
 ```
 DB_PATH=mongodb://user:password@ds654321.mlab.com:12345/example-db
