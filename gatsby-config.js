@@ -29,7 +29,6 @@ module.exports = {
         description: `A simple blogging site`,
       },
     ],
-    donationLink: `https://ko-fi.com/V7V5ZOMO`,
   },
   plugins: [
     {
@@ -201,7 +200,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-webpack-bundle-analyser-v2`,
-    `gatsby-plugin-preact`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-zeit-now`,
     {
