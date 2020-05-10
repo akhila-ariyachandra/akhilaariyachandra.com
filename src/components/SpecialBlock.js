@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { FaExclamationCircle, FaLightbulb } from "react-icons/fa";
+import { FaExclamationCircle, FaLightbulb, FaStickyNote } from "react-icons/fa";
 
 const SpecialBlock = ({ children, type }) => {
   let wrapperClass =
@@ -19,6 +19,10 @@ const SpecialBlock = ({ children, type }) => {
       iconClass = iconClass + "text-yellow-600";
       Icon = FaLightbulb;
       break;
+    default:
+      wrapperClass = wrapperClass + "bg-green-200 border-green-600";
+      iconClass = iconClass + "text-green-600";
+      Icon = FaStickyNote;
   }
 
   return (
@@ -33,7 +37,7 @@ const SpecialBlock = ({ children, type }) => {
 };
 
 SpecialBlock.propTypes = {
-  type: PropTypes.oneOf(["warn", "info"]).isRequired,
+  type: PropTypes.oneOf(["warn", "info"]),
 };
 
 export default SpecialBlock;

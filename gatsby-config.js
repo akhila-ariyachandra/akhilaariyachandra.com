@@ -211,6 +211,12 @@ module.exports = {
         stripQueryString: true,
       },
     },
+    {
+      resolve: `gatsby-plugin-web-monetization`,
+      options: {
+        paymentPointer: process.env.GATSBY_ILP_PAYMENT_POINTER,
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,
