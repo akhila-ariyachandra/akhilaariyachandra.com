@@ -114,7 +114,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
               >
                 Coil
               </OutboundLink>{" "}
-              to support this site and disable Ads.
+              to support this site.
             </IfNotWebMonetized>
 
             <IfWebMonetized>
