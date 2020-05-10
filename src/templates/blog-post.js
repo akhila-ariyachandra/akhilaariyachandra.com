@@ -20,6 +20,11 @@ import {
 import { OutboundLink } from "gatsby-plugin-google-analytics";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { Disqus } from "gatsby-plugin-disqus";
+import {
+  IfWebMonetized,
+  IfNotWebMonetized,
+  IfWebMonetizationPending,
+} from "react-web-monetization";
 
 const ShareContainer = ({ url }) => {
   return (
@@ -100,14 +105,25 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           <ShareContainer url={location.href} />
 
           <h6 className="text:base sm:text-xl font-medium my-5">
-            Enjoyed the post or found it useful?{" "}
-            <OutboundLink
-              href={data.site.siteMetadata.donationLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Please consider buying me a coffee.
-            </OutboundLink>
+            <IfNotWebMonetized>
+              Sign up for{" "}
+              <OutboundLink
+                href="https://coil.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Coil
+              </OutboundLink>{" "}
+              to support this site and disable Ads.
+            </IfNotWebMonetized>
+
+            <IfWebMonetized>
+              Thank you for supporting me with Web Monetization!
+            </IfWebMonetized>
+
+            <IfWebMonetizationPending>
+              Web Monetization is pending!
+            </IfWebMonetizationPending>
           </h6>
 
           <Bio />
@@ -154,7 +170,6 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         siteUrl
-        donationLink
       }
     }
     mdx(fields: { slug: { eq: $slug } }) {

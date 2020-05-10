@@ -29,7 +29,6 @@ module.exports = {
         description: `A simple blogging site`,
       },
     ],
-    donationLink: `https://ko-fi.com/V7V5ZOMO`,
   },
   plugins: [
     {
