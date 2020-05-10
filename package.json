@@ -31,6 +31,7 @@
     "gatsby-plugin-robots-txt": "^1.5.0",
     "gatsby-plugin-sharp": "^2.6.2",
     "gatsby-plugin-sitemap": "^2.4.2",
+    "gatsby-plugin-web-monetization": "^1.0.1",
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.9",
     "gatsby-plugin-zeit-now": "^0.3.0",
     "gatsby-remark-classes": "^1.0.0",
@@ -51,6 +52,7 @@
     "react-helmet": "^6.0.0",
     "react-icons": "^3.10.0",
     "react-share": "^4.1.0",
+    "react-web-monetization": "0.0.12",
     "twin.macro": "^1.0.0-alpha.10"
   },
   "devDependencies": {

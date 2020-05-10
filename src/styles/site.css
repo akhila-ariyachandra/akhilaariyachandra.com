@@ -51,3 +51,26 @@ blockquote > p > a {
   @apply float-left;
   @apply min-w-full;
 }
+
+.web-monetization-banner {
+  @apply my-3;
+  @apply p-4;
+  @apply rounded-md;
+  @apply bg-gray-500;
+  @apply bg-opacity-25;
+}
+
+.web-monetization-banner > h4 {
+  @apply text-lg;
+  @apply font-normal;
+}
+
+@media (min-width: 640px) {
+  .web-monetization-banner > h4 {
+    @apply text-xl;
+  }
+}
+
+.web-monetization-banner > h4 > a {
+  @apply font-medium;
+}
