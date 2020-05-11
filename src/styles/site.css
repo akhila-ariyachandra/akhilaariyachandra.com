@@ -30,7 +30,6 @@ blockquote > p > a {
 
 .gatsby-highlight-code-line {
   @apply bg-gray-800;
-  @apply bg-opacity-75;
   @apply block;
   @apply -ml-4;
   @apply -mr-4;
