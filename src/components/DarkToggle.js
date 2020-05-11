@@ -5,22 +5,30 @@ import { FaSun, FaMoon, FaExclamationCircle } from "react-icons/fa";
 const DarkToggle = () => {
   const { colorMode, setColorMode } = React.useContext(ThemeContext);
 
+  if (!colorMode) {
+    return (
+      <button
+        aria-label="Dark Mode toggle"
+        onClick={() =>
+          colorMode === "light" ? setColorMode("dark") : setColorMode("light")
+        }
+        className="text-xl sm:text-2xl text-gray-500 cursor-default"
+        disabled={true}
+      >
+        <FaExclamationCircle />
+      </button>
+    );
+  }
+
   return (
     <button
       aria-label="Dark Mode toggle"
       onClick={() =>
         colorMode === "light" ? setColorMode("dark") : setColorMode("light")
       }
-      className="text-xl sm:text-2xl leading-5 sm:leading-6"
-      disabled={!colorMode}
+      className="text-xl sm:text-2xl"
     >
-      {!colorMode ? (
-        <FaExclamationCircle className="text-gray-500" />
-      ) : colorMode === "light" ? (
-        <FaSun />
-      ) : (
-        <FaMoon />
-      )}
+      {colorMode === "light" ? <FaSun /> : <FaMoon />}
     </button>
   );
 };
