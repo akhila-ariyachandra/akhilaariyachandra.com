@@ -1,8 +1,6 @@
 import React from "react";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import styled from "@emotion/styled";
-import tw from "twin.macro";
 import ListContainer from "../components/ListContainer";
 import BlogPost from "../components/BlogPost";
 import ProjectLink from "../components/ProjectLink";
@@ -21,30 +19,6 @@ const LINKS = [
   { to: "/career/", title: "Career" },
   { to: "/about/", title: "About" },
 ];
-
-const StyledTitleContainer = styled.div`
-  ${tw`my-20 sm:my-48 grid grid-cols-1 gap-2`}
-
-  h1 {
-    ${tw`text-4xl sm:text-6xl font-semibold my-1 py-0 leading-tight`}
-  }
-
-  p {
-    ${tw`text-lg sm:text-2xl font-normal my-1 py-0`}
-  }
-
-  #social {
-    ${tw`flex flex-row my-1 py-0`}
-
-    .socialLink {
-      ${tw`text-2xl sm:text-4xl`}
-    }
-
-    .socialLink:not(:first-of-type) {
-      ${tw`ml-2`}
-    }
-  }
-`;
 
 const Index = ({ data, location }) => {
   const { site, allMdx } = useStaticQuery(graphql`
@@ -116,7 +90,7 @@ const Index = ({ data, location }) => {
 
     return (
       <OutboundLink
-        className="socialLink"
+        className="text-2xl sm:text-4xl"
         href={link}
         target="_blank"
         rel="noopener noreferrer"
@@ -131,26 +105,26 @@ const Index = ({ data, location }) => {
     <Layout location={location}>
       <SEO title="Akhila Ariyachandra" />
 
-      <StyledTitleContainer>
-        <h1>{siteTitle}</h1>
+      <div className="my-20 sm:my-48 space-y-3">
+        <h1 className="text-4xl sm:text-6xl font-semibold py-0 leading-tight">
+          {siteTitle}
+        </h1>
 
-        <p>{data.site.siteMetadata.description}</p>
+        <p className="text-lg sm:text-2xl font-normal py-0">
+          {data.site.siteMetadata.description}
+        </p>
 
-        <nav id="site-nav" className="flex">
-          {LINKS.map((link, index) => (
+        <nav className="flex flex-row space-x-3">
+          {LINKS.map((link) => (
             <Link to={link.to}>
-              <h3
-                className={`text-2xl sm:text-4xl font-medium my-1 py-0 ${
-                  index !== 0 ? "ml-3" : ""
-                }`}
-              >
+              <h3 className="text-2xl sm:text-4xl font-medium my-1 py-0">
                 {link.title}
               </h3>
             </Link>
           ))}
         </nav>
 
-        <div id="social">
+        <div className="flex flex-row my-1 py-0 space-x-2">
           <SocialLink site="GitHub" link={social.github} />
 
           <SocialLink site="DEV" link={social.dev} />
@@ -161,7 +135,7 @@ const Index = ({ data, location }) => {
 
           <SocialLink site="RSS" link="/rss.xml" />
         </div>
-      </StyledTitleContainer>
+      </div>
 
       <ListContainer title="Latest Posts">
         {posts.map(({ node }) => (

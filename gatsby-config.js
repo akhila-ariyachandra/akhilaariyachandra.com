@@ -189,7 +189,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-emotion`,
     `gatsby-plugin-postcss`,
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-robots-txt`,
