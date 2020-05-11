@@ -1,3 +1,4 @@
+import React from "react";
 import Terser from "terser";
 import { COLORS } from "./src/lib/colors";
 

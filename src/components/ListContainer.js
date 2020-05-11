@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const ListContainer = ({ title, children }) => {
   return (
-    <div className="grid grid-cols-1 gap-8">
+    <div className="space-y-8">
       {title ? (
         <header>
           <h3 className="text-lg sm:text-2xl font-medium">{title}</h3>
