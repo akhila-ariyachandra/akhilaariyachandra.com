@@ -52,10 +52,27 @@ const MagicScriptTag = ({ script }) => {
   return <script dangerouslySetInnerHTML={{ __html: script }} />;
 };
 
+const FallbackStyles = () => {
+  return (
+    <style>
+      {`
+        html {
+          --color-text: ${COLORS.light.text};
+          --color-background: ${COLORS.light.background};
+          --color-primary: ${COLORS.light.primary};
+        }
+      `}
+    </style>
+  );
+};
+
 export const onRenderBody = ({
+  setHeadComponents,
   setPreBodyComponents,
   setPostBodyComponents,
 }) => {
+  setHeadComponents(<FallbackStyles />);
+
   const minfiedCode = Terser.minify(codeToRunOnClient).code;
 
   setPreBodyComponents(<MagicScriptTag script={minfiedCode} />);
