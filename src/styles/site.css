@@ -23,11 +23,6 @@ a {
   color: var(--color-primary);
 }
 
-blockquote > p > a {
-  @apply text-green-800;
-  @apply underline;
-}
-
 .gatsby-highlight-code-line {
   @apply bg-gray-800;
   @apply block;
