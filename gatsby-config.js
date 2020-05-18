@@ -71,11 +71,11 @@ module.exports = {
             resolve: `gatsby-remark-classes`,
             options: {
               classMap: {
-                "heading[depth=1]": "text-3xl sm:text-5xl font-bold my-3",
-                "heading[depth=2]": "text-2xl sm:text-4xl font-bold my-3",
-                "heading[depth=3]": "text-xl sm:text-3xl font-semibold my-3",
-                "heading[depth=4]": "text-lg sm:text-2xl font-semibold my-3",
-                "heading[depth=5]": "text-base sm:text-xl font-medium my-3",
+                "heading[depth=1]": "text-4xl sm:text-5xl font-bold my-3",
+                "heading[depth=2]": "text-3xl sm:text-4xl font-bold my-3",
+                "heading[depth=3]": "text-2xl sm:text-3xl font-semibold my-3",
+                "heading[depth=4]": "text-xl sm:text-2xl font-semibold my-3",
+                "heading[depth=5]": "text-lg sm:text-xl font-medium my-3",
                 "heading[depth=6]": "text-base sm:text-lg font-medium my-3",
                 paragraph: "text-base sm:text-lg font-normal my-3",
                 link: "my-3",
