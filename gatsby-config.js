@@ -178,7 +178,7 @@ module.exports = {
         short_name: `Akhila Ariyachandra`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#00c853`,
+        theme_color: `#38a169`,
         display: `minimal-ui`,
         icon: `content/assets/icon.png`,
       },
