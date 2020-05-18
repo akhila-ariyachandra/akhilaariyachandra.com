@@ -1,5 +1,15 @@
 import Layout from "../components/layout";
 import SEO from "../components/seo";
+import Img from "gatsby-image";
+import { Link, graphql } from "gatsby";
+
+<Img
+  fluid={props.data.picture.childImageSharp.fluid}
+  alt="Akhila Ariyachandra"
+  className="block mx-auto mb-3 rounded-lg"
+  style={{ maxWidth: 1200 }}
+  imgStyle={{ maxWidth: 1200 }}
+/>
 
 # Hi.
 
@@ -11,9 +21,21 @@ I first started learning React through developing a React Native app in my first
 
 Now I'm just trying to continue my pursuit in learning more about JavaScript, React and Web Development through things like Next.js, Gatsby.js and GraphQL, and share what I've learned.
 
-export default ({ location, children }) => (
+export default ({ data, location, children }) => (
   <Layout location={location}>
     <SEO title="About" description="A little bit about myself" />
-    <div className="my-16 sm:my-32">{children}</div>
+    <div>{children}</div>
   </Layout>
 );
+
+export const pageQuery = graphql`
+  query AboutPageQuery {
+    picture: file(absolutePath: { regex: "/cover-pic.jpg/" }) {
+      childImageSharp {
+        fluid(maxWidth: 1200, maxHeight: 600) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`;
