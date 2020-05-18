@@ -90,7 +90,7 @@ const Index = ({ data, location }) => {
 
     return (
       <OutboundLink
-        className="text-2xl sm:text-4xl"
+        className="text-3xl sm:text-4xl"
         href={link}
         target="_blank"
         rel="noopener noreferrer"
@@ -106,18 +106,18 @@ const Index = ({ data, location }) => {
       <SEO title="Akhila Ariyachandra" />
 
       <div className="my-20 sm:my-48 space-y-3">
-        <h1 className="text-4xl sm:text-6xl font-semibold py-0 leading-tight">
+        <h1 className="text-5xl sm:text-6xl font-semibold py-0 leading-tight">
           {siteTitle}
         </h1>
 
-        <p className="text-lg sm:text-2xl font-normal py-0">
+        <p className="text-xl sm:text-2xl font-normal py-0">
           {data.site.siteMetadata.description}
         </p>
 
         <nav className="flex flex-row space-x-3">
           {LINKS.map((link) => (
             <Link to={link.to}>
-              <h3 className="text-2xl sm:text-4xl font-medium my-1 py-0">
+              <h3 className="text-3xl sm:text-4xl font-medium my-1 py-0">
                 {link.title}
               </h3>
             </Link>
