@@ -46,6 +46,24 @@ const Layout = ({ location, children }) => {
         >
           Gatsby
         </OutboundLink>
+        {", "}
+        <OutboundLink
+          className="font-medium"
+          href="https://tailwindcss.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Tailwind CSS
+        </OutboundLink>
+        {", & "}
+        <OutboundLink
+          className="font-medium"
+          href="https://vercel.com/home"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Vercel
+        </OutboundLink>
       </footer>
     </div>
   );
