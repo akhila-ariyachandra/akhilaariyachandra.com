@@ -25,7 +25,7 @@ const Layout = ({ location, children }) => {
         <DarkToggle />
 
         {location.pathname !== "/" ? (
-          <h2 className="text-xl sm:text-3xl font-medium">
+          <h2 className="text-xl sm:text-2xl font-medium leading-5 sm:leading-6">
             <Link to={`/`}>{title}</Link>
           </h2>
         ) : null}
@@ -45,6 +45,24 @@ const Layout = ({ location, children }) => {
           rel="noopener noreferrer"
         >
           Gatsby
+        </OutboundLink>
+        {", "}
+        <OutboundLink
+          className="font-medium"
+          href="https://tailwindcss.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Tailwind CSS
+        </OutboundLink>
+        {", & "}
+        <OutboundLink
+          className="font-medium"
+          href="https://vercel.com/home"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Vercel
         </OutboundLink>
       </footer>
     </div>
