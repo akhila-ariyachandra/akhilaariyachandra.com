@@ -31,7 +31,7 @@ const Layout = ({ location, children }) => {
         ) : null}
       </header>
 
-      <main className="grid grid-cols-1 gap-24 sm:gap-32 py-10">
+      <main className="grid grid-cols-1 gap-24 sm:gap-32 py-5 sm:py-8">
         {children}
       </main>
 
