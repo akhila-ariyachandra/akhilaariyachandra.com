@@ -5,9 +5,6 @@ description: "Let's see how we can use some of the React life cycle methods in F
 banner: "./banner.png"
 ---
 
-import BlogAd from "../../../src/components/BlogAd";
-import SpecialBlock from "../../../src/components/SpecialBlock";
-
 Until somewhat recently, if you wanted to use state in React you had to use a class component extending from either `React.Component` or `React.PureComponent`. The release of React 16.8 brought **hooks** which allowed state to be used in functional components.
 
 If you wanted to do something like converting an existing class component to a functional component or fetch data in a functional component, you might be wondering how we can bring over the functionality of the life cycle methods. Three of the more popular methods, namely `componentDidMount`, `componentWillUnmount` and `componentDidUpdate`, can all be implemented with a single hook, `useEffect`.

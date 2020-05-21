@@ -3,7 +3,10 @@ import Bio from "../components/bio";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Img from "gatsby-image";
+import BlogAd from "../components/BlogAd";
+import SpecialBlock from "../components/SpecialBlock";
 import { MDXRenderer } from "gatsby-plugin-mdx";
+import { MDXProvider } from "@mdx-js/react";
 import { Link, graphql } from "gatsby";
 import {
   FacebookShareButton,
@@ -17,7 +20,6 @@ import {
   WhatsappIcon,
   WorkplaceIcon,
 } from "react-share";
-import { OutboundLink } from "gatsby-plugin-google-analytics";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { Disqus } from "gatsby-plugin-disqus";
 import {
@@ -25,6 +27,9 @@ import {
   IfNotWebMonetized,
   IfWebMonetizationPending,
 } from "react-web-monetization";
+import { OutboundLink } from "gatsby-plugin-google-analytics";
+
+const components = { BlogAd, SpecialBlock, OutboundLink };
 
 const ShareContainer = ({ url }) => {
   return (
@@ -63,103 +68,105 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
   };
 
   return (
-    <Layout location={location}>
-      <SEO
-        title={post.frontmatter.title}
-        description={post.frontmatter.description}
-        image={post.frontmatter.banner.childImageSharp.fixed.src}
-      />
+    <MDXProvider components={components}>
+      <Layout location={location}>
+        <SEO
+          title={post.frontmatter.title}
+          description={post.frontmatter.description}
+          image={post.frontmatter.banner.childImageSharp.fixed.src}
+        />
 
-      <article>
-        <header>
-          <Img
-            fluid={post.frontmatter.banner.childImageSharp.fluid}
-            alt={`${post.frontmatter.title} Banner`}
-            className="block mx-auto my-3 rounded-lg"
-            style={{ maxWidth: 1200 }}
-            imgStyle={{ maxWidth: 1200 }}
-          />
+        <article>
+          <header>
+            <Img
+              fluid={post.frontmatter.banner.childImageSharp.fluid}
+              alt={`${post.frontmatter.title} Banner`}
+              className="block mx-auto my-3 rounded-lg"
+              style={{ maxWidth: 1200 }}
+              imgStyle={{ maxWidth: 1200 }}
+            />
 
-          <h1 className="text-5xl sm:text-6xl font-bold">
-            {post.frontmatter.title}
-          </h1>
+            <h1 className="text-4xl sm:text-6xl font-bold">
+              {post.frontmatter.title}
+            </h1>
 
-          <div className="flex items-center justify-between text-lg sm:text-xl my-2">
-            <p>{post.frontmatter.date}</p>
+            <div className="flex items-center justify-between text-lg sm:text-xl my-2">
+              <p>{post.frontmatter.date}</p>
 
-            <p>{`${post.timeToRead} min read`}</p>
-          </div>
+              <p>{`${post.timeToRead} min read`}</p>
+            </div>
 
-          {post.frontmatter.updated ? (
-            <p className="text-lg sm:text-xl my-2">{`Last updated on ${post.frontmatter.updated}`}</p>
-          ) : null}
+            {post.frontmatter.updated ? (
+              <p className="text-lg sm:text-xl my-2">{`Last updated on ${post.frontmatter.updated}`}</p>
+            ) : null}
 
-          <ShareContainer url={location.href} />
-        </header>
+            <ShareContainer url={location.href} />
+          </header>
 
-        <MDXRenderer>{post.body}</MDXRenderer>
+          <MDXRenderer>{post.body}</MDXRenderer>
 
-        <hr />
+          <hr />
 
-        <footer>
-          <ShareContainer url={location.href} />
+          <footer>
+            <ShareContainer url={location.href} />
 
-          <h6 className="text:lg sm:text-xl font-medium my-5">
-            <IfNotWebMonetized>
-              Sign up for{" "}
-              <OutboundLink
-                href="https://coil.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Coil
-              </OutboundLink>{" "}
-              to support this site.
-            </IfNotWebMonetized>
+            <h6 className="text:lg sm:text-xl font-medium my-5">
+              <IfNotWebMonetized>
+                Sign up for{" "}
+                <OutboundLink
+                  href="https://coil.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Coil
+                </OutboundLink>{" "}
+                to support this site.
+              </IfNotWebMonetized>
 
-            <IfWebMonetized>
-              Thank you for supporting me with Web Monetization!
-            </IfWebMonetized>
+              <IfWebMonetized>
+                Thank you for supporting me with Web Monetization!
+              </IfWebMonetized>
 
-            <IfWebMonetizationPending>
-              Web Monetization is pending!
-            </IfWebMonetizationPending>
-          </h6>
+              <IfWebMonetizationPending>
+                Web Monetization is pending!
+              </IfWebMonetizationPending>
+            </h6>
 
-          <Bio />
+            <Bio />
 
-          <div className="bg-white rounded-md p-2">
-            <Disqus config={disqusConfig} />
-          </div>
-        </footer>
-      </article>
+            <div className="bg-white rounded-md p-2">
+              <Disqus config={disqusConfig} />
+            </div>
+          </footer>
+        </article>
 
-      <nav className="my-8 w-full">
-        <ul className="flex flex-wrap justify-between list-none p-0">
-          <li className="text-xl sm:text-2xl font-medium flex-1 text-left">
-            {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                <span className="flex flex-no-wrap items-center">
-                  <FaArrowLeft className="mr-2" />
-                  {previous.frontmatter.title}
-                </span>
-              </Link>
-            )}
-          </li>
+        <nav className="my-8 w-full">
+          <ul className="flex flex-wrap justify-between list-none p-0">
+            <li className="text-xl sm:text-2xl font-medium flex-1 text-left">
+              {previous && (
+                <Link to={previous.fields.slug} rel="prev">
+                  <span className="flex flex-no-wrap items-center">
+                    <FaArrowLeft className="mr-2" />
+                    {previous.frontmatter.title}
+                  </span>
+                </Link>
+              )}
+            </li>
 
-          <li className="text-xl sm:text-2xl font-medium flex-1 text-right">
-            {next && (
-              <Link to={next.fields.slug} rel="next">
-                <span className="flex flex-no-wrap items-center justify-end">
-                  {next.frontmatter.title}
-                  <FaArrowRight className="ml-2" />
-                </span>
-              </Link>
-            )}
-          </li>
-        </ul>
-      </nav>
-    </Layout>
+            <li className="text-xl sm:text-2xl font-medium flex-1 text-right">
+              {next && (
+                <Link to={next.fields.slug} rel="next">
+                  <span className="flex flex-no-wrap items-center justify-end">
+                    {next.frontmatter.title}
+                    <FaArrowRight className="ml-2" />
+                  </span>
+                </Link>
+              )}
+            </li>
+          </ul>
+        </nav>
+      </Layout>
+    </MDXProvider>
   );
 };
 
