@@ -86,7 +86,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
               imgStyle={{ maxWidth: 1200 }}
             />
 
-            <h1 className="text-5xl sm:text-6xl font-bold">
+            <h1 className="text-4xl sm:text-6xl font-bold">
               {post.frontmatter.title}
             </h1>
 
