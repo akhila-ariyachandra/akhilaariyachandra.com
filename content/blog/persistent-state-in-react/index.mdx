@@ -1,0 +1,49 @@
+---
+title: Persistent State in React
+date: "2020-05-24"
+description: "A short practical guide to using Context in React"
+banner: "./banner.png"
+---
+
+```jsx
+import React from "react";
+
+const useStickyState = (key = "sticky", defaultValue = null) => {
+  const [state, setState] = React.useState(() => {
+    const storedState = localStorage.getItem(key);
+
+    return storedState ?? defaultValue;
+  });
+
+  React.useEffect(() => {
+    localStorage.setItem(key, state);
+  }, [state]);
+
+  const clearState = () => localStorage.removeItem(key);
+
+  return [state, setState, clearState];
+};
+
+export default function App() {
+  const [value, setValue, clearValue] = useStickyState(
+    "sticky",
+    "Hello World!!!"
+  );
+
+  return (
+    <div className="App">
+      <h1>{`Value : ${value}`}</h1>
+
+      <input
+        type="text"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+
+      <button onClick={() => clearValue()}>Clear</button>
+    </div>
+  );
+}
+```
+
+[![Edit persistent-react-state](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/persistent-react-state-6s73k?fontsize=14&hidenavigation=1&theme=dark)
