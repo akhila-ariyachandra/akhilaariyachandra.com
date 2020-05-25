@@ -12,7 +12,7 @@ const DarkToggle = () => {
         onClick={() =>
           colorMode === "light" ? setColorMode("dark") : setColorMode("light")
         }
-        className="text-xl sm:text-2xl text-gray-500 cursor-default"
+        className="text-xl sm:text-2xl invisible cursor-default"
         disabled={true}
       >
         <FaExclamationCircle />
