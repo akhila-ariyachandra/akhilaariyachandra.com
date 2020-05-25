@@ -8,7 +8,39 @@ banner: "./banner.png"
 ```jsx
 import React from "react";
 
-const useStickyState = (key = "sticky", defaultValue = null) => {
+const useStickState = (initialState = null) => {};
+```
+
+Then let's initialize the state and return it.
+
+```jsx{2,4}
+const useStickState = () => {
+  const [state, useState] = React.useState(initialState);
+
+  return [state, setState];
+};
+```
+
+Next we'll add an effect to store the state in local storage when the state changes. Since we need an key to store a value in local storage we'll add one as an argument.
+
+```jsx{1,4-6}
+const useStickState = (key = "sticky", initialState = null) => {
+  const [state, useState] = React.useState(initialState);
+
+  React.useEffect(() => {
+    localStorage.setItem(key, state);
+  }, [state]);
+
+  return [state, setState];
+};
+```
+
+---
+
+```jsx
+import React from "react";
+
+const useStickyState = (key = "sticky", initialState = null) => {
   const [state, setState] = React.useState(() => {
     const storedState = localStorage.getItem(key);
 
