@@ -1,9 +1,11 @@
 ---
 title: Persistent State in React
-date: "2020-05-24"
-description: "A short practical guide to using Context in React"
+date: "2020-05-26"
+description: "How to save your state in localstorage"
 banner: "./banner.png"
 ---
+
+Sometimes we need to preserve the state in a React app in cases where we close the browser or reload the page. In this guide I'll show you a simple custom hook to store the state in `localstorage`.
 
 <SpecialBlock type="warn">
   This guide will not work as is in frameworks like{" "}
@@ -41,18 +43,22 @@ banner: "./banner.png"
   .
 </SpecialBlock>
 
+<BlogAd />
+
+First create a function called `useStickyState` with the initial state (`initialState`) as an argument.
+
 ```jsx
 import React from "react";
 
-const useStickState = (initialState = null) => {};
+const useStickyState = (initialState = null) => {};
 ```
 
-Then let's initialize the state and return it.
+Then let's initialize the state and return it and the function to change it.
 
 ```jsx{4,6}
 import React from "react";
 
-const useStickState = (initialState = null) => {
+const useStickyState = (initialState = null) => {
   const [state, useState] = React.useState(initialState);
 
   return [state, setState];
@@ -64,7 +70,7 @@ Next we'll add an effect to store the state in `localstorage` when the state cha
 ```jsx{3,6-8}
 import React from "react";
 
-const useStickState = (key = "sticky", initialState = null) => {
+const useStickyState = (key = "sticky", initialState = null) => {
   const [state, useState] = React.useState(initialState);
 
   React.useEffect(() => {
@@ -80,7 +86,7 @@ In its current form the state will always initialize with `initialState`, but we
 ```jsx{4-8}
 import React from "react";
 
-const useStickState = (key = "sticky", initialState = null) => {
+const useStickyState = (key = "sticky", initialState = null) => {
   const [state, setState] = React.useState(() => {
     const storedState = localStorage.getItem(key);
 
@@ -117,7 +123,11 @@ const useStickyState = (key = "sticky", initialState = null) => {
 };
 ```
 
+<BlogAd />
+
 # Wrapping up
+
+Below is an example on how to use the `useStickyState` hook to save the value in an `<input>`
 
 ```jsx{19-38}
 import React from "react";
@@ -159,5 +169,7 @@ export default function App() {
   );
 }
 ```
+
+You can check out a working example [here](https://codesandbox.io/s/persistent-react-state-6s73k?fontsize=14&hidenavigation=1&theme=dark).
 
 [![Edit persistent-react-state](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/persistent-react-state-6s73k?fontsize=14&hidenavigation=1&theme=dark)
