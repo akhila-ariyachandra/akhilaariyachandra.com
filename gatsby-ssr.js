@@ -72,11 +72,13 @@ export const onRenderBody = ({
   setPreBodyComponents,
   setPostBodyComponents,
 }) => {
-  setHeadComponents(<FallbackStyles />);
+  setHeadComponents(<FallbackStyles key={`fallback-styles`} />);
 
   const minfiedCode = Terser.minify(codeToRunOnClient).code;
 
-  setPreBodyComponents(<MagicScriptTag script={minfiedCode} />);
+  setPreBodyComponents(
+    <MagicScriptTag script={minfiedCode} key={`darkmode-script`} />
+  );
 
   // Add AdSense script
   if (process.env.NODE_ENV === `production`) {
