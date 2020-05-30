@@ -5,16 +5,18 @@
 @tailwind utilities;
 
 html {
+  /* More Elegant Fix for Jumping Scrollbar Issue - https://css-tricks.com/elegant-fix-jumping-scrollbar-issue/ */
+  margin-left: calc(100vw - 100%);
+}
+
+body {
   @apply transition-colors;
   @apply duration-200;
 
+  @apply antialiased;
+
   color: var(--color-text);
   background-color: var(--color-background);
-
-  /* More Elegant Fix for Jumping Scrollbar Issue - https://css-tricks.com/elegant-fix-jumping-scrollbar-issue/ */
-  margin-left: calc(100vw - 100%);
-
-  @apply antialiased;
 }
 
 a {
