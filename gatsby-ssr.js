@@ -58,9 +58,9 @@ const FallbackStyles = () => {
     <style>
       {`
         html {
-          --color-text: ${COLORS.light.text};
-          --color-background: ${COLORS.light.background};
-          --color-primary: ${COLORS.light.primary};
+          --color-text: ${COLORS.dark.text};
+          --color-background: ${COLORS.dark.background};
+          --color-primary: ${COLORS.dark.primary};
         }
       `}
     </style>
