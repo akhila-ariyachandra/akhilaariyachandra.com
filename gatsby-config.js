@@ -23,6 +23,11 @@ module.exports = {
         url: `https://sri-lanka-covid-19.now.sh/`,
         description: `COVID-19 Tracker for Sri Lanka`,
       },
+      {
+        title: `Blogger`,
+        url: `https://github.com/akhila-ariyachandra/blogger`,
+        description: `A simple blogging site`,
+      },
     ],
   },
   plugins: [
