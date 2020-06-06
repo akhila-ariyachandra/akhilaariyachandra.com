@@ -191,7 +191,7 @@ export const pageQuery = graphql`
         banner {
           childImageSharp {
             fluid(maxWidth: 1200, maxHeight: 600) {
-              ...GatsbyImageSharpFluid
+              ...GatsbyImageSharpFluid_withWebp_tracedSVG
             }
             fixed(width: 1200, height: 630) {
               ...GatsbyImageSharpFixed
