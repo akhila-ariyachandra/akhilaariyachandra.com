@@ -35,7 +35,7 @@ const Layout = ({ location, children }) => {
         {children}
       </main>
 
-      <footer className="font-normal text-base sm:text-xl">
+      <footer className="font-normal text-base sm:text-xl mt-5 sm:mt-8">
         © {new Date().getFullYear()}, Built with
         {` `}
         <OutboundLink
