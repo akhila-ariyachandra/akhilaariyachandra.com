@@ -28,7 +28,6 @@ import {
   IfWebMonetizationPending,
 } from "react-web-monetization";
 import { OutboundLink } from "gatsby-plugin-google-analytics";
-import { TipButton, TipScript } from "../components/XPRTipBot";
 
 const components = { BlogAd, SpecialBlock, OutboundLink };
 
@@ -101,11 +100,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
               <p className="text-lg sm:text-xl my-2">{`Last updated on ${post.frontmatter.updated}`}</p>
             ) : null}
 
-            <div className="flex justify-between flex-wrap items-center">
-              <ShareContainer url={location.href} />
-
-              <TipButton />
-            </div>
+            <ShareContainer url={location.href} />
           </header>
 
           <MDXRenderer>{post.body}</MDXRenderer>
@@ -115,31 +110,27 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           <footer>
             <ShareContainer url={location.href} />
 
-            <div className="flex justify-between flex-wrap items-center">
-              <h6 className="text:lg sm:text-xl font-medium my-5">
-                <IfNotWebMonetized>
-                  Sign up for{" "}
-                  <OutboundLink
-                    href="https://coil.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Coil
-                  </OutboundLink>{" "}
-                  to support this site.
-                </IfNotWebMonetized>
+            <h6 className="text:lg sm:text-xl font-medium my-5">
+              <IfNotWebMonetized>
+                Sign up for{" "}
+                <OutboundLink
+                  href="https://coil.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Coil
+                </OutboundLink>{" "}
+                to support this site.
+              </IfNotWebMonetized>
 
-                <IfWebMonetized>
-                  Thank you for supporting me with Web Monetization!
-                </IfWebMonetized>
+              <IfWebMonetized>
+                Thank you for supporting me with Web Monetization!
+              </IfWebMonetized>
 
-                <IfWebMonetizationPending>
-                  Web Monetization is pending!
-                </IfWebMonetizationPending>
-              </h6>
-
-              <TipButton />
-            </div>
+              <IfWebMonetizationPending>
+                Web Monetization is pending!
+              </IfWebMonetizationPending>
+            </h6>
 
             <Bio />
 
@@ -174,8 +165,6 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             </li>
           </ul>
         </nav>
-
-        <TipScript />
       </Layout>
     </MDXProvider>
   );
