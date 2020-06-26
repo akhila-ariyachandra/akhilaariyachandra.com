@@ -86,6 +86,29 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
               imgStyle={{ maxWidth: 1200 }}
             />
 
+            {post.frontmatter.photographer && post.frontmatter.unsplash_link ? (
+              <div className="text-center mb-4">
+                <span className="text-base sm:text-lg font-medium">
+                  Photo by{" "}
+                  <OutboundLink
+                    href={post.frontmatter.unsplash_link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {post.frontmatter.photographer}
+                  </OutboundLink>{" "}
+                  on{" "}
+                  <OutboundLink
+                    href="/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Unsplash
+                  </OutboundLink>
+                </span>
+              </div>
+            ) : null}
+
             <h1 className="text-4xl sm:text-6xl font-bold">
               {post.frontmatter.title}
             </h1>
@@ -199,6 +222,8 @@ export const pageQuery = graphql`
           }
         }
         updated(formatString: "MMMM Do, YYYY")
+        photographer
+        unsplash_link
       }
       timeToRead
     }
