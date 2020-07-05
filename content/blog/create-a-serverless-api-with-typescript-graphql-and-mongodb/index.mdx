@@ -10,8 +10,6 @@ updated: "2020-05-03"
 
 In this post we'll create a GraphQL API to create, view and delete notes that we can deploy to [Vercel](https://vercel.com/home) using [Apollo Server](https://www.apollographql.com/docs/apollo-server/), TypeScript and MongoDB.
 
-<BlogAd />
-
 ## Initial Setup
 
 First [Vercel](https://vercel.com/download) will need be downloaded, installed and logged into.
@@ -104,8 +102,6 @@ const collectionName: string = "note";
 const noteSchema: mongoose.Schema = new mongoose.Schema(schema);
 ```
 
-<BlogAd />
-
 Since we're building a serverless API, we can't depend on a persistent connection to database. When creating a Model we need to create it using the database connection.
 
 To compensate for using serverless we'll generate the Model at runtime using a function. After declaring the function, make it the default export.
@@ -196,8 +192,6 @@ export const getConnection = async (): Promise<mongoose.Connection> => {
   return conn;
 };
 ```
-
-<BlogAd />
 
 ## Setup the GraphQL API
 
@@ -290,8 +284,6 @@ const apolloServer = new ApolloServer({
 
 export default apolloServer.createHandler({ path: "/api/graphql" });
 ```
-
-<BlogAd />
 
 ## Setup the GraphQL Schema
 
@@ -427,8 +419,6 @@ const linkSchema = gql`
 
 export default [linkSchema, noteSchema, customSchema];
 ```
-
-<BlogAd />
 
 ## Setup the resolvers
 
@@ -697,8 +687,6 @@ import customResolver from "./custom";
 
 export default [noteResolver, customResolver];
 ```
-
-<BlogAd />
 
 ## Running the API locally
 

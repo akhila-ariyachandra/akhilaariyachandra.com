@@ -3,7 +3,6 @@ import Bio from "../components/bio";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Img from "gatsby-image";
-import BlogAd from "../components/BlogAd";
 import SpecialBlock from "../components/SpecialBlock";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { MDXProvider } from "@mdx-js/react";
@@ -29,7 +28,7 @@ import {
 } from "react-web-monetization";
 import { OutboundLink } from "gatsby-plugin-google-analytics";
 
-const components = { BlogAd, SpecialBlock, OutboundLink };
+const components = { SpecialBlock, OutboundLink };
 
 const ShareContainer = ({ url }) => {
   return (

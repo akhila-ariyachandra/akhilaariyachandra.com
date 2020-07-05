@@ -32,8 +32,6 @@ yarn add redux react-redux redux-logger redux-thunk
 
 Before we start setting up the Redux parts, let's create a folder called _redux_ in the _src_ folder to store all our Redux related code.
 
-<BlogAd />
-
 ## Setup the Store / Initial State
 
 The **store** is the first part of redux we are going to setup. The store is what holds the state in redux.
@@ -124,8 +122,6 @@ Let's go through the actions.
 > Note that actions do not directly change the state. They just signal to change the state.
 
 **getUser** is different by being an asynchronous action generator. By default redux only allow for synchronous action generators, but with **redux-thunk** we can generate functions too. To create a a function generator all we need to do is return a function which has the `dispatch` argument. The `dispatch` argument is a function that is used call other redux actions inside the current function such as us calling `dispatch(setIsFetchingUser(true))` at the beginning to set `isFetchingUser` to `true`.
-
-<BlogAd />
 
 ## Setup the Reducer
 
@@ -237,8 +233,6 @@ const store = configureStore();
 
 export default store;
 ```
-
-<BlogAd />
 
 ## Tying Redux to React
 
@@ -408,8 +402,6 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(Display);
 ```
 
-<BlogAd />
-
 ## The Controls component
 
 The Controls component will only be used to change the userId in the redux user state. We don't need to fetch the user in the Controls component because the effect in the Display will automatically run whenever the userId is changed.
@@ -496,8 +488,6 @@ export default App;
 _store_ is the redux store will initialize and exported in _src/redux/index.js_.
 
 Try running the app now. The user displayed should change when the buttons are pressed even though there is no direct link between the components (i.e. passing props to each other).
-
-<BlogAd />
 
 ## Wrap Up
 

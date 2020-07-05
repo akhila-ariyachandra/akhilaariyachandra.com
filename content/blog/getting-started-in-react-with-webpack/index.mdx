@@ -9,8 +9,6 @@ banner: "./banner.png"
 
 Usually when starting to work on a React project, developers go with **create-react-app**. While this is a great option for many cases, I find it to be a bit too bloated, especially after **ejecting** it. In this post I'll show you how to setup a React project with [Webpack](https://webpack.js.org/). If you prefer to use the [Parcel Bundler](https://parceljs.org/) instead of webpack, check out my [post here](https://akhilaariyachandra.com/getting-started-in-react-with-parcel-js "Getting started in React with Parcel.js").
 
-<BlogAd />
-
 To start let's initialize a project.
 
 ```shell
@@ -57,8 +55,6 @@ module.exports = {
   },
 };
 ```
-
-<BlogAd />
 
 ## Setup React
 
@@ -180,8 +176,6 @@ const About = () => {
 export default About;
 ```
 
-<BlogAd />
-
 ## Connecting to a HTML file
 
 Now we need to connect the javascript bundle to a HTML page. Webpack should output and an HTML page and place the javascript bundle in a `<script>` tag.
@@ -279,8 +273,6 @@ Then all you need to start the development server is the following command.
 ```shell
 npm run dev
 ```
-
-<BlogAd />
 
 ## Production build
 

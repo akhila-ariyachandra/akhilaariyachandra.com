@@ -36,8 +36,6 @@ Then add the following scripts to `package.json`.
 
 `yarn dev` is used to start the development server and `yarn build` is used to get the production build.
 
-<BlogAd />
-
 ## Setup the database
 
 Next let's setup the MongoDB database. If you want a more detailed explanation on setting up the database, you can check out my previous post [Setup MongoDB in Node.js with Mongoose](https://akhilaariyachandra.com/post/setup-mongodb-in-nodejs-with-mongoose/).
@@ -105,8 +103,6 @@ const Note = mongoose.model(collectionName, noteSchema);
 // Export the Note model
 export default Note;
 ```
-
-<BlogAd />
 
 ## Setup the server and routes
 
@@ -274,8 +270,6 @@ app.delete("/note/:id", async (req, res) => {
   }
 });
 ```
-
-<BlogAd />
 
 Finally `index.js` should look like this.
 

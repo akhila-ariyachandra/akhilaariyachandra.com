@@ -67,11 +67,7 @@ const FallbackStyles = () => {
   );
 };
 
-export const onRenderBody = ({
-  setHeadComponents,
-  setPreBodyComponents,
-  setPostBodyComponents,
-}) => {
+export const onRenderBody = ({ setHeadComponents, setPreBodyComponents }) => {
   setHeadComponents(<FallbackStyles key={`fallback-styles`} />);
 
   const minfiedCode = Terser.minify(codeToRunOnClient).code;
@@ -79,30 +75,4 @@ export const onRenderBody = ({
   setPreBodyComponents(
     <MagicScriptTag script={minfiedCode} key={`darkmode-script`} />
   );
-
-  // Add AdSense script
-  if (process.env.NODE_ENV === `production`) {
-    const script = `
-      (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "${process.env.GATSBY_GOOGLE_AD_CLIENT}",
-        enable_page_level_ads: true
-      });
-    `;
-    const minifiedScript = Terser.minify(script).code;
-
-    setPostBodyComponents([
-      <script
-        key="google-adsense-script"
-        async
-        type="text/javascript"
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-      />,
-      <script
-        key={`google-adsense`}
-        dangerouslySetInnerHTML={{
-          __html: minifiedScript,
-        }}
-      />,
-    ]);
-  }
 };
