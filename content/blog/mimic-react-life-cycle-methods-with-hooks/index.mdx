@@ -9,8 +9,6 @@ Until somewhat recently, if you wanted to use state in React you had to use a cl
 
 If you wanted to do something like converting an existing class component to a functional component or fetch data in a functional component, you might be wondering how we can bring over the functionality of the life cycle methods. Three of the more popular methods, namely `componentDidMount`, `componentWillUnmount` and `componentDidUpdate`, can all be implemented with a single hook, `useEffect`.
 
-<BlogAd />
-
 ## componentDidMount
 
 Say we have a component like this.
@@ -148,8 +146,6 @@ const App = () => {
 export default App;
 ```
 
-<BlogAd />
-
 ## componentWillUnmount
 
 To show how we can implement `componentWillUnmount` with hooks, let's consider the following example where we create a event listener to check for the window dimensions after the component has mounted and removing the listener when the component is about to unmount.
@@ -263,8 +259,6 @@ const App = () => {
 
 export default App;
 ```
-
-<BlogAd />
 
 ## componentDidUpdate
 

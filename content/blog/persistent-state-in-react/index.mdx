@@ -43,8 +43,6 @@ Sometimes we need to preserve the state in a React app in cases where we close t
   .
 </SpecialBlock>
 
-<BlogAd />
-
 First create a function called `useStickyState` with the initial state (`initialState`) as an argument.
 
 ```jsx
@@ -122,8 +120,6 @@ const useStickyState = (key = "sticky", initialState = null) => {
   return [state, setState, clearState];
 };
 ```
-
-<BlogAd />
 
 # Wrapping up
 

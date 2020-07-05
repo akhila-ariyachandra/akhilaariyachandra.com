@@ -14,8 +14,6 @@ Before we start refactoring let's check out the two hooks we are going to use.
 - `useSelector` - Allows us to get the state from the Redux store. This hook will be used to replace `mapStateToProps` in `connect()`.
 - `useDispatch` - Allows us to dispatch out redux actions. This hook will be used to replace `mapDispatchToProps` in `connect()`.
 
-<BlogAd />
-
 ## Refactoring the Controls Component
 
 First lets remove the props, `connect()` Higher Order Component and `mapStateToProps` and `mapDispatchToProps`.
@@ -107,8 +105,6 @@ const Controls = () => {
 export default Controls;
 ```
 
-<BlogAd />
-
 ## Refactoring the Display Component
 
 We need to refactor the Display component the same way we did the Controls component.
@@ -184,8 +180,6 @@ const Display = () => {
 
 export default Display;
 ```
-
-<BlogAd />
 
 ## Wrap Up
 

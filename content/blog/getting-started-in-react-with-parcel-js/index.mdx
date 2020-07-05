@@ -14,8 +14,6 @@ updated: "2019-11-27"
 
 Usually when starting to work on a React project, developers go with **create-react-app**. While this is a great option for many cases, I find it to be a bit too bloated, especially after **ejecting** it. I also find that it takes a little of work to manually setup and maintain a **webpack** config. [Parcel](https://parceljs.org/) is great for use with React as there is nothing to configure while setting up. It also helps that building the app in Parcel is also really fast.
 
-<BlogAd />
-
 First lets initialize a project with either `yarn` or `npm`. I'll be using `yarn`.
 
 ```shell
@@ -55,8 +53,6 @@ If you want to use **_async/await_** in your code, an additional dependency is n
 ```shell
 yarn add regenerator-runtime -D
 ```
-
-<BlogAd />
 
 Next we will need an entry point for out app. The nice thing about Parcel is that the entry file doesn't have to be a JavaScript file. In our case its going to be a HTML file.
 Create a folder with the name `src`. This folder is going to contain all the source code. In the `src` folder create the `index.html` file which is going to be the entry point of the app and add the following code.
@@ -195,8 +191,6 @@ const About = () => {
 
 export default About;
 ```
-
-<BlogAd />
 
 Finally all that's left to do is to add the scripts to run the app. Add the following in the `package.json` file.
 

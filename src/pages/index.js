@@ -111,7 +111,7 @@ const Index = ({ data, location }) => {
         </h1>
 
         <p className="text-xl sm:text-2xl font-normal py-0">
-          {data.site.siteMetadata.description}
+          {site.siteMetadata.description}
         </p>
 
         <nav className="flex flex-row space-x-3">
