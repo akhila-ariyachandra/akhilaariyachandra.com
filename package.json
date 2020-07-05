@@ -26,6 +26,7 @@
     "gatsby-plugin-preact": "^4.0.8",
     "gatsby-plugin-react-helmet": "^3.3.9",
     "gatsby-plugin-robots-txt": "^1.5.1",
+    "gatsby-plugin-segment-js": "^3.3.0",
     "gatsby-plugin-sharp": "^2.6.17",
     "gatsby-plugin-sitemap": "^2.4.10",
     "gatsby-plugin-web-monetization": "^1.0.1",

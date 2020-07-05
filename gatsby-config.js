@@ -114,6 +114,15 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-segment-js`,
+      options: {
+        prodKey: process.env.GATSBY_SEGMENT_PRODUCTION_WRITE_KEY,
+        trackPage: true,
+        delayLoad: true,
+        delayLoadTime: 1000,
+      },
+    },
+    {
       resolve: `gatsby-plugin-feed-mdx`,
       options: {
         query: `
