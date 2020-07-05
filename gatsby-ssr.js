@@ -22,8 +22,8 @@ let codeToRunOnClient = `
       return mql.matches ? 'dark' : 'light';
     }
     // If they are using a browser/OS that doesn't support
-    // color themes, let's default to 'light'.
-    return 'light';
+    // color themes, let's default to 'dark'.
+    return 'dark';
     }
 
     const colorMode = getInitialColorMode();
