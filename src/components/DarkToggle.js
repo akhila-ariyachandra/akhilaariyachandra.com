@@ -8,7 +8,7 @@ const DarkToggle = () => {
   if (!colorMode) {
     return (
       <button
-        aria-label="Dark Mode toggle"
+        aria-label="Disabled dark mode toggle"
         onClick={() =>
           colorMode === "light" ? setColorMode("dark") : setColorMode("light")
         }
@@ -22,13 +22,15 @@ const DarkToggle = () => {
 
   return (
     <button
-      aria-label="Dark Mode toggle"
+      aria-label={
+        colorMode === "light" ? "Enable dark mode" : "Enable light mode"
+      }
       onClick={() =>
         colorMode === "light" ? setColorMode("dark") : setColorMode("light")
       }
       className="text-xl sm:text-2xl"
     >
-      {colorMode === "light" ? <FaSun /> : <FaMoon />}
+      {colorMode === "light" ? <FaMoon /> : <FaSun />}
     </button>
   );
 };
