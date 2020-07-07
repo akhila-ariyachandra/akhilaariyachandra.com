@@ -116,10 +116,11 @@ const Index = ({ data, location }) => {
 
         <nav className="flex flex-row space-x-3">
           {LINKS.map((link) => (
-            <Link to={link.to}>
-              <h3 className="text-3xl sm:text-4xl font-medium my-1 py-0">
-                {link.title}
-              </h3>
+            <Link
+              to={link.to}
+              className="text-3xl sm:text-4xl font-medium my-1 py-0"
+            >
+              {link.title}
             </Link>
           ))}
         </nav>
