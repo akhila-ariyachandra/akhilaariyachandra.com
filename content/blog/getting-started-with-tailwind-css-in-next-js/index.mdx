@@ -95,7 +95,7 @@ Since we will will rarely use the all classes, we should specify which classes t
 
 In the `tailwind.config.js` add all the React component files in the `purge` property. In our case we will add all files in the `pages` and `components` folders.
 
-```jsx{2}
+```javascript{2}
 module.exports = {
   purge: ["./pages/**/*.js", "./src/components/**/*.js"],
   theme: {
@@ -140,7 +140,7 @@ That's all you need to do to start using Tailwind CSS in your Next.js project. Y
 
 For example, we can style the title in the index page like this.
 
-```bash{6}
+```jsx{6}
 import Layout from "../src/components/Layout";
 
 const Index = () => {
