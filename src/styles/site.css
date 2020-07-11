@@ -48,3 +48,7 @@ a {
   @apply float-left;
   @apply min-w-full;
 }
+
+#about > p > strong {
+  color: var(--color-primary);
+}
