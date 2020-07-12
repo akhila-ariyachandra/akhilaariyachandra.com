@@ -138,7 +138,11 @@ const Index = ({ data, location }) => {
         </div>
       </div>
 
-      <ListContainer title="Latest Posts">
+      <ListContainer
+        title="Latest Posts"
+        subTitle="Read all posts"
+        subTitleLink="/blog/"
+      >
         {posts.map(({ node }) => (
           <BlogPost key={node.id} node={node} />
         ))}
