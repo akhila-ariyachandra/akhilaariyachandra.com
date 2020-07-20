@@ -125,7 +125,9 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             <ShareContainer url={location.href} />
           </header>
 
-          <MDXRenderer>{post.body}</MDXRenderer>
+          <section>
+            <MDXRenderer>{post.body}</MDXRenderer>
+          </section>
 
           <hr />
 
