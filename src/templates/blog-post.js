@@ -98,7 +98,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
                   </OutboundLink>{" "}
                   on{" "}
                   <OutboundLink
-                    href="/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"
+                    href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -125,7 +125,9 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             <ShareContainer url={location.href} />
           </header>
 
-          <MDXRenderer>{post.body}</MDXRenderer>
+          <section>
+            <MDXRenderer>{post.body}</MDXRenderer>
+          </section>
 
           <hr />
 
@@ -150,7 +152,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
               </IfWebMonetized>
 
               <IfWebMonetizationPending>
-                Web Monetization is pending!
+                {" Web Monetization is pending!"}
               </IfWebMonetizationPending>
             </h6>
 
