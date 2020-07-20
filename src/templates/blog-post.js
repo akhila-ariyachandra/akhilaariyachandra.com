@@ -98,7 +98,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
                   </OutboundLink>{" "}
                   on{" "}
                   <OutboundLink
-                    href="/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"
+                    href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
