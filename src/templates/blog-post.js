@@ -150,7 +150,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
               </IfWebMonetized>
 
               <IfWebMonetizationPending>
-                Web Monetization is pending!
+                {" Web Monetization is pending!"}
               </IfWebMonetizationPending>
             </h6>
 
