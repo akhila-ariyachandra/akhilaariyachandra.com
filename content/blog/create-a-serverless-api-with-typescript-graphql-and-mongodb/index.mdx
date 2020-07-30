@@ -3,8 +3,10 @@ title: Create a serverless API with TypeScript, GraphQL and MongoDB
 date: "2019-11-20"
 description: "Let's create a Serverless GraphQL API and deploy it using Vercel"
 banner: "./banner.png"
-updated: "2020-05-03"
+updated: "2020-07-30"
 ---
+
+> Updated on 30th July, 2020 to show that this can be used in [Next.js API Routes](https://nextjs.org/docs/api-routes/introduction).
 
 > Updated on 3rd May, 2020 to reflect the changes on how Vercel handles [Environment Variables](https://vercel.com/blog/environment-variables-ui).
 
@@ -727,3 +729,21 @@ The GraphQL Playground should be visible in the `/api/graphql` route of the URL 
 I made a sample deployment which you can check out [here](https://serverless-graphql-api-example-five-gamma.now.sh/api/graphql). The source code is available on [GitHub](https://github.com/akhila-ariyachandra/serverless-graphql-api-example).
 
 If you want a more detailed explanation into GraphQL and making a server for it, you can check out the excellent guide that I learnt from [here](https://www.robinwieruch.de/graphql-apollo-server-tutorial).
+
+## Bonus: Using it in [Next.js](https://nextjs.org/)
+
+You can create a GraphQL API endpoint in your Next.js project by putting the `graphql.ts` inside the `api` folder in the `pages` folder.
+
+The only extra step you need to do is to add this bit of code to the end of the `graphql.ts` file.
+
+```typescript{5-9}
+// ...
+
+export default apolloServer.createHandler({ path: "/api/graphql" });
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+```
