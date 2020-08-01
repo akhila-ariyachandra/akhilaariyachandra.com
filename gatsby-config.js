@@ -220,7 +220,6 @@ module.exports = {
         googleAdClientId: process.env.GATSBY_ADSENSE_CLIENT_ID,
       },
     }, */
-    `gatsby-plugin-preact`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,
