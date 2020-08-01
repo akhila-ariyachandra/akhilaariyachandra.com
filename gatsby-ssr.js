@@ -1,5 +1,4 @@
 import React from "react";
-import Terser from "terser";
 import { COLORS } from "./src/lib/colors";
 
 let codeToRunOnClient = `
@@ -67,12 +66,13 @@ const FallbackStyles = () => {
   );
 };
 
-export const onRenderBody = ({ setHeadComponents, setPreBodyComponents }) => {
+export const onRenderBody = async ({
+  setHeadComponents,
+  setPreBodyComponents,
+}) => {
   setHeadComponents(<FallbackStyles key={`fallback-styles`} />);
 
-  const minfiedCode = Terser.minify(codeToRunOnClient).code;
-
   setPreBodyComponents(
-    <MagicScriptTag script={minfiedCode} key={`darkmode-script`} />
+    <MagicScriptTag script={codeToRunOnClient} key={`darkmode-script`} />
   );
 };
