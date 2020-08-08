@@ -40,7 +40,7 @@
     "gatsby-transformer-sharp": "^2.5.12",
     "gatsby-transformer-yaml": "^2.4.10",
     "prism-themes": "^1.4.0",
-    "prismjs": "^1.19.0",
+    "prismjs": "^1.21.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.1.0",
