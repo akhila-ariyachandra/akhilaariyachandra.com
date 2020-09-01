@@ -134,7 +134,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           <footer>
             <ShareContainer url={location.href} />
 
-            <h6 className="text:lg sm:text-xl font-medium my-5">
+            <p className="text:lg sm:text-xl font-medium my-5">
               <IfNotWebMonetized>
                 Sign up for{" "}
                 <OutboundLink
@@ -154,7 +154,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
               <IfWebMonetizationPending>
                 {" Web Monetization is pending!"}
               </IfWebMonetizationPending>
-            </h6>
+            </p>
 
             <Bio />
 

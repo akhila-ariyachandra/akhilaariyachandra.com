@@ -7,9 +7,9 @@ const BlogPost = ({ node }) => {
     <article>
       <header>
         <Link to={node.fields.slug}>
-          <h2 className="text-2xl sm:text-3xl font-semibold">
+          <h3 className="text-2xl sm:text-3xl font-semibold">
             {node.frontmatter.title}
-          </h2>
+          </h3>
         </Link>
       </header>
 

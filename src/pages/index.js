@@ -110,9 +110,9 @@ const Index = ({ data, location }) => {
           {siteTitle}
         </h1>
 
-        <p className="text-xl sm:text-2xl font-normal py-0">
+        <h2 className="text-xl sm:text-2xl font-normal py-0">
           {site.siteMetadata.description}
-        </p>
+        </h2>
 
         <nav className="flex flex-row space-x-3">
           {LINKS.map((link) => (

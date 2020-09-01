@@ -25,9 +25,9 @@ const Layout = ({ location, children }) => {
         <DarkToggle />
 
         {location.pathname !== "/" ? (
-          <h2 className="text-xl sm:text-2xl font-medium leading-5 sm:leading-6">
+          <span className="text-xl sm:text-2xl font-medium leading-5 sm:leading-6">
             <Link to={`/`}>{title}</Link>
-          </h2>
+          </span>
         ) : null}
       </header>
 
