@@ -8,7 +8,7 @@ const ListContainer = ({ title, children, subTitle, subTitleLink }) => {
       {title ? (
         <header>
           <div className="flex flex-row items-center justify-between">
-            <h3 className="text-xl sm:text-2xl font-medium">{title}</h3>
+            <span className="text-xl sm:text-2xl font-medium">{title}</span>
 
             {subTitle && subTitleLink ? (
               <Link
