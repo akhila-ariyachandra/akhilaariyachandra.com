@@ -1,13 +1,17 @@
 module.exports = {
-  purge: [
-    "./src/components/**/*.js",
-    "./src/context/**/*.js",
-    "./src/pages/**/*.js",
-    "./src/pages/**/*.mdx",
-    "./src/templates/**/*.js",
-    "./src/**/*.css",
-    "./gatsby-config.js",
-  ],
+  purge: {
+    mode: "layers",
+    layers: ["base", "components", "utilities"],
+    content: [
+      "./src/components/**/*.js",
+      "./src/context/**/*.js",
+      "./src/pages/**/*.js",
+      "./src/pages/**/*.mdx",
+      "./src/templates/**/*.js",
+      "./src/**/*.css",
+      "./gatsby-config.js",
+    ],
+  },
   theme: {
     extend: {},
   },
@@ -15,5 +19,6 @@ module.exports = {
   plugins: [],
   future: {
     removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true,
   },
 };
