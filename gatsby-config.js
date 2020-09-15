@@ -96,6 +96,7 @@ module.exports = {
               },
             },
           },
+          `gatsby-remark-external-links`,
         ],
       },
     },
