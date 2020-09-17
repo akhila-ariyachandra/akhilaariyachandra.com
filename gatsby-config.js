@@ -215,12 +215,12 @@ module.exports = {
         paymentPointer: process.env.GATSBY_ILP_PAYMENT_POINTER,
       },
     },
-    /* {
+    {
       resolve: `gatsby-plugin-adsense`,
       options: {
         googleAdClientId: process.env.GATSBY_ADSENSE_CLIENT_ID,
       },
-    }, */
+    },
     `gatsby-plugin-preact`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
