@@ -20,6 +20,13 @@ const Blog = ({ location }) => {
               title
               description
               updated(formatString: "MMMM Do, YYYY")
+              banner {
+                childImageSharp {
+                  fluid(maxWidth: 1200, maxHeight: 600) {
+                    ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                  }
+                }
+              }
             }
             timeToRead
           }
@@ -38,9 +45,11 @@ const Blog = ({ location }) => {
       />
 
       <ListContainer title="Blog">
-        {posts.map(({ node }) => (
-          <BlogPost key={node.id} node={node} />
-        ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {posts.map(({ node }, index) => (
+            <BlogPost key={node.id} node={node} pos={index} />
+          ))}
+        </div>
       </ListContainer>
     </Layout>
   );
