@@ -20,7 +20,7 @@ const LINKS = [
   { to: "/about/", title: "About" },
 ];
 
-const Index = ({ data, location }) => {
+const Index = ({ location }) => {
   const { site, allMdx } = useStaticQuery(graphql`
     query IndexPageQuery {
       site {
@@ -52,6 +52,13 @@ const Index = ({ data, location }) => {
               title
               description
               updated(formatString: "MMMM Do, YYYY")
+              banner {
+                childImageSharp {
+                  fluid(maxWidth: 1200, maxHeight: 600) {
+                    ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                  }
+                }
+              }
             }
             timeToRead
           }
@@ -143,9 +150,11 @@ const Index = ({ data, location }) => {
         subTitle="Read all posts"
         subTitleLink="/blog/"
       >
-        {posts.map(({ node }) => (
-          <BlogPost key={node.id} node={node} />
-        ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {posts.map(({ node }, index) => (
+            <BlogPost key={node.id} node={node} pos={index} />
+          ))}
+        </div>
       </ListContainer>
 
       <ListContainer title="Projects">
