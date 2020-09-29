@@ -33,7 +33,7 @@ const components = { SpecialBlock, OutboundLink };
 
 const ShareContainer = ({ url }) => {
   return (
-    <div className="flex flex-no-wrap">
+    <div className="flex flex-no-wrap my-5">
       <FacebookShareButton url={url}>
         <FacebookIcon className="h-8 w-8 sm:h-10 sm:w-10 rounded" />
       </FacebookShareButton>
