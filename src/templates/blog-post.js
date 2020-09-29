@@ -4,6 +4,7 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Img from "gatsby-image";
 import SpecialBlock from "../components/SpecialBlock";
+import HitCounter from "../components/HitCounter";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { MDXProvider } from "@mdx-js/react";
 import { Link, graphql } from "gatsby";
@@ -32,7 +33,7 @@ const components = { SpecialBlock, OutboundLink };
 
 const ShareContainer = ({ url }) => {
   return (
-    <div className="my-5 flex-no-wrap">
+    <div className="flex flex-no-wrap">
       <FacebookShareButton url={url}>
         <FacebookIcon className="h-8 w-8 sm:h-10 sm:w-10 rounded" />
       </FacebookShareButton>
@@ -122,7 +123,11 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
               <p className="text-lg sm:text-xl my-2">{`Last updated on ${post.frontmatter.updated}`}</p>
             ) : null}
 
-            <ShareContainer url={location.href} />
+            <div className="flex justify-between items-center flex-wrap my-5 space-y-4 space-x-4">
+              <ShareContainer url={location.href} />
+
+              <HitCounter slug={post.fields.slug} />
+            </div>
           </header>
 
           <section>
