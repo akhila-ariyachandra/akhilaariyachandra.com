@@ -123,11 +123,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
               <p className="text-lg sm:text-xl my-2">{`Last updated on ${post.frontmatter.updated}`}</p>
             ) : null}
 
-            <div className="flex justify-between items-center flex-wrap my-5 space-y-4 space-x-4">
-              <ShareContainer url={location.href} />
-
-              <HitCounter slug={post.fields.slug} />
-            </div>
+            <ShareContainer url={location.href} />
           </header>
 
           <section>
@@ -137,6 +133,10 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           <hr />
 
           <footer>
+            <div className="my-5 flex justify-center">
+              <HitCounter slug={post.fields.slug} />
+            </div>
+
             <ShareContainer url={location.href} />
 
             <p className="text:lg sm:text-xl font-medium my-5">
