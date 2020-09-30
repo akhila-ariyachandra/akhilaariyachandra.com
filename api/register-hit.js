@@ -33,13 +33,16 @@ module.exports = async (req, res) => {
     q.Get(q.Match(q.Index("hits_by_slug"), slug))
   );
 
-  await client.query(
-    q.Update(document.ref, {
-      data: {
-        hits: document.data.hits + 1,
-      },
-    })
-  );
+  // Don't increment in development environment
+  if (process.env.NODE_ENV === "production") {
+    await client.query(
+      q.Update(document.ref, {
+        data: {
+          hits: document.data.hits + 1,
+        },
+      })
+    );
+  }
 
   return res.status(200).json({
     hits: document.data.hits,
