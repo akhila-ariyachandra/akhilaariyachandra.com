@@ -35,6 +35,7 @@ body {
     @apply p-4;
     @apply transition-colors;
     @apply duration-200;
+    @apply z-50;
 
     background-color: var(--background);
   }
