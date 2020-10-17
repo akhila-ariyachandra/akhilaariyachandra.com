@@ -19,7 +19,10 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
       <br />
       <p>{postData.date}</p>
 
-      <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} className="prose sm:prose-xl p-4"/>
+      <div
+        dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
+        className="prose sm:prose-xl p-4"
+      />
     </Layout>
   );
 };

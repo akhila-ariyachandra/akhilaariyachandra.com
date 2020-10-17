@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import remark from "remark";
 import html from "remark-html";
 import { Post } from "src/lib/types";
+import { formatDate } from "src/lib/helpers";
 
 const postsDirectory = path.join(process.cwd(), "src", "posts");
 
@@ -27,6 +28,7 @@ export const getSortedPostsData = (): Post[] => {
       id,
       title: matterResult.data.title,
       date: matterResult.data.date,
+      formattedDate: formatDate(matterResult.data.date),
     };
   });
 
@@ -83,6 +85,7 @@ export const getPostData = async (id): Promise<Post> => {
     id,
     title: matterResult.data.title,
     date: matterResult.data.date,
+    formattedDate: formatDate(matterResult.data.date),
     contentHtml,
   };
 };
