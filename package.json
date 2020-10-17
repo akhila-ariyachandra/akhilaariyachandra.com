@@ -14,7 +14,9 @@
     "format": "prettier --write \"**/*.{ts,tsx,js,json,md}\""
   },
   "dependencies": {
+    "@tailwindcss/typography": "^0.2.0",
     "framer-motion": "^2.9.1",
+    "gray-matter": "^4.0.2",
     "next": "^9.5.5",
     "next-offline": "^5.0.2",
     "next-seo": "^4.13.0",
@@ -22,6 +24,8 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-icons": "^3.11.0",
+    "remark": "^13.0.0",
+    "remark-html": "^13.0.1",
     "sass": "^1.27.0"
   },
   "devDependencies": {

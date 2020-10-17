@@ -11,8 +11,17 @@ module.exports = {
     "./src/styles/**/*.scss",
   ],
   theme: {
-    extend: {},
+    typography: {
+      default: {
+        css: {
+          color: "var(---text)",
+          strong: {
+            color: "var(---text)",
+          },
+        },
+      },
+    },
   },
   variants: {},
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
