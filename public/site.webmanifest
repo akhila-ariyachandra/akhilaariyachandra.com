@@ -1,0 +1,21 @@
+{
+  "name": "Akhila Ariyachandra",
+  "short_name": "Akhila Ariyachandra",
+  "description": "Web Developer with a passion for JavaScript and React",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "theme_color": "#38a169",
+  "background_color": "#ffffff",
+  "display": "minimal-ui"
+}

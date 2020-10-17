@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --text: black;
+  --background: white;
+  --primary: #2f855a;
+}
+
+[data-theme="dark"] {
+  --text: white;
+  --background: #1a202c;
+  --primary: #38a169;
+}
+
+body {
+  @apply transition-colors;
+  @apply duration-200;
+
+  color: var(--text);
+  background-color: var(--background);
+
+  a {
+    color: var(--primary);
+  }
+
+  #header {
+    @apply sticky;
+    @apply top-0;
+    @apply flex;
+    @apply flex-row-reverse;
+    @apply justify-between;
+    @apply items-center;
+    @apply p-4;
+    @apply transition-colors;
+    @apply duration-200;
+
+    background-color: var(--background);
+  }
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns:
+    1fr
+    min(65ch, 100%)
+    1fr;
+
+  * {
+    grid-column: 2;
+  }
+
+  .full-bleed {
+    width: 100%;
+    grid-column: 1 / -1;
+  }
+
+  .pseudo-full-bleed {
+    width: 100%;
+    grid-column: 1 / -1;
+    /* constrain the width for very-large monitors */
+    @apply max-w-screen-lg;
+    /* center the element */
+    @apply mx-auto;
+  }
+}
