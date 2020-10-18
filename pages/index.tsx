@@ -59,7 +59,7 @@ const Index: NextPage = () => {
     <Layout>
       <SEO />
 
-      <div className="px-4 py-32 sm:py-40 space-y-4">
+      <div className="px-4 space-y-4">
         <div>
           <div className="h-12 sm:h-16 overflow-hidden">
             <motion.h1
