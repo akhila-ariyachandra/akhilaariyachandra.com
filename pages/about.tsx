@@ -15,8 +15,6 @@ const About: NextPage<Props> = ({ content }) => {
     <Layout>
       <SEO title="About" description="A little bit about myself" />
 
-      <h1 className="text-4xl sm:text-5xl font-bold my-10 mx-4">About Me</h1>
-
       <img
         src={require("images/cover-pic.jpg?webp")}
         alt={config.title}
