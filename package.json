@@ -28,8 +28,6 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-icons": "^3.11.0",
-    "remark": "^13.0.0",
-    "remark-html": "^13.0.1",
     "sass": "^1.27.0",
     "webp-loader": "^0.6.0"
   },

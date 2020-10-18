@@ -1,8 +1,6 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import remark from "remark";
-import html from "remark-html";
 import { Post } from "src/lib/types";
 import { formatDate } from "src/lib/helpers";
 
@@ -74,18 +72,12 @@ export const getPostData = async (id): Promise<Post> => {
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents);
 
-  // Use remark to convert markdown into HTML string
-  const processedContent = await remark()
-    .use(html)
-    .process(matterResult.content);
-  const contentHtml = processedContent.toString();
-
   // Combine the data with the id and contentHtml
   return {
     id,
     title: matterResult.data.title,
     date: matterResult.data.date,
     formattedDate: formatDate(matterResult.data.date),
-    contentHtml,
+    content: matterResult.content,
   };
 };

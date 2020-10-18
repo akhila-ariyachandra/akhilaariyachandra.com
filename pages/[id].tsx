@@ -1,5 +1,6 @@
 import Layout from "src/components/Layout";
 import SEO from "src/components/SEO";
+import Markdown from "markdown-to-jsx";
 import { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import { getAllPostIds, getPostData } from "src/lib/posts";
 import { Post } from "src/lib/types";
@@ -19,10 +20,9 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
       <br />
       <p>{postData.date}</p>
 
-      <div
-        dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
-        className="prose sm:prose-xl p-4"
-      />
+      <div className="prose sm:prose-xl p-4">
+        <Markdown children={postData.content} />
+      </div>
     </Layout>
   );
 };

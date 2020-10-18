@@ -3,5 +3,5 @@ export type Post = {
   title: string;
   date: string;
   formattedDate?: string;
-  contentHtml?: string;
+  content?: string;
 };
