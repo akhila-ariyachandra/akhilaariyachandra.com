@@ -14,9 +14,13 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
     <Layout>
       <SEO title={postData.title} />
 
-      <h1 className="text-4xl sm:text-5xl font-black px-4 my-4">{postData.title}</h1>
+      <h1 className="text-4xl sm:text-5xl font-black px-4 my-4">
+        {postData.title}
+      </h1>
 
-      <p className="px-4 my-2">{postData.formattedDate}</p>
+      <p className="text-lg sm:text-xl font-medium px-4 my-2">
+        {postData.formattedDate}
+      </p>
 
       <div className="prose sm:prose-xl p-4">
         <Markdown children={postData.content} />
