@@ -16,7 +16,7 @@ module.exports = {
         css: {
           color: "var(--text)",
           strong: {
-            color: "var(--text)",
+            color: "var(--primary)",
           },
           h1: {
             color: "var(--text)",
@@ -35,6 +35,12 @@ module.exports = {
           },
           h6: {
             color: "var(--text)",
+          },
+          a: {
+            color: "var(--primary)",
+          },
+          code: {
+            color: "var(--primary)",
           },
         },
       },

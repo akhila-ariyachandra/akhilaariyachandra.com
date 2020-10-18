@@ -12,7 +12,14 @@ type Props = {
 const BlogPost: NextPage<Props> = ({ postData }) => {
   return (
     <Layout>
-      <SEO title={postData.title} />
+      <SEO title={postData.title} description={postData.description} />
+
+      <img
+        src={require(`../src/content/images${postData.banner}?webp"`)}
+        alt={postData.title}
+        title={postData.title}
+        className="pseudo-full-bleed lg:rounded-lg"
+      />
 
       <h1 className="text-4xl sm:text-5xl font-black px-4 my-4">
         {postData.title}

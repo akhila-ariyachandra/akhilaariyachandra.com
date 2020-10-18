@@ -27,6 +27,8 @@ export const getSortedPostsData = (): Post[] => {
       title: matterResult.data.title,
       date: matterResult.data.date,
       formattedDate: formatDate(matterResult.data.date),
+      description: matterResult.data.description,
+      banner: matterResult.data.banner,
     };
   });
 
@@ -78,6 +80,8 @@ export const getPostData = async (id): Promise<Post> => {
     title: matterResult.data.title,
     date: matterResult.data.date,
     formattedDate: formatDate(matterResult.data.date),
+    description: matterResult.data.description,
     content: matterResult.content,
+    banner: matterResult.data.banner,
   };
 };
