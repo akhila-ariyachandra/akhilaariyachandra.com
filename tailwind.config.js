@@ -14,9 +14,27 @@ module.exports = {
     typography: {
       default: {
         css: {
-          color: "var(---text)",
+          color: "var(--text)",
           strong: {
-            color: "var(---text)",
+            color: "var(--text)",
+          },
+          h1: {
+            color: "var(--text)",
+          },
+          h2: {
+            color: "var(--text)",
+          },
+          h3: {
+            color: "var(--text)",
+          },
+          h4: {
+            color: "var(--text)",
+          },
+          h5: {
+            color: "var(--text)",
+          },
+          h6: {
+            color: "var(--text)",
           },
         },
       },

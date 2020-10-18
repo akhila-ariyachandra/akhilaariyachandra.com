@@ -15,6 +15,7 @@ import { motion } from "framer-motion";
 const LINKS = [
   { href: "/blog", title: "Blog" },
   { href: "/career", title: "Career" },
+  { href: "/about", title: "About" },
 ];
 
 const SocialLink = ({ site, link }) => {

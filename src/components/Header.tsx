@@ -18,21 +18,26 @@ const Header: FunctionComponent = () => {
   };
 
   return (
-    <header id="header">
-      <button
-        onClick={handleTheme}
-        className="text-xl sm:text-2xl focus:outline-none"
-      >
-        {theme === "light" ? <FaMoon /> : <FaSun />}
-      </button>
+    <header
+      id="header"
+      className="sticky top-0 transition-colors duration-200 z-50 full-bleed wrapper"
+    >
+      <div className="flex flex-row-reverse justify-between items-center p-4">
+        <button
+          onClick={handleTheme}
+          className="text-xl sm:text-2xl focus:outline-none"
+        >
+          {theme === "light" ? <FaMoon /> : <FaSun />}
+        </button>
 
-      {router.asPath !== "/" ? (
-        <Link href="/">
-          <a className="text-xl sm:text-2xl font-medium leading-5 sm:leading-6">
-            {config.title}
-          </a>
-        </Link>
-      ) : null}
+        {router.asPath !== "/" ? (
+          <Link href="/">
+            <a className="text-xl sm:text-2xl font-medium leading-5 sm:leading-6">
+              {config.title}
+            </a>
+          </Link>
+        ) : null}
+      </div>
     </header>
   );
 };

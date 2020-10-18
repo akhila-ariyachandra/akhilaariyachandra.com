@@ -14,6 +14,11 @@
   --primary: #38a169;
 }
 
+html {
+  /* More Elegant Fix for Jumping Scrollbar Issue - https://css-tricks.com/elegant-fix-jumping-scrollbar-issue/ */
+  margin-left: calc(100vw - 100%);
+}
+
 body {
   @apply transition-colors;
   @apply duration-200;
@@ -26,17 +31,6 @@ body {
   }
 
   #header {
-    @apply sticky;
-    @apply top-0;
-    @apply flex;
-    @apply flex-row-reverse;
-    @apply justify-between;
-    @apply items-center;
-    @apply p-4;
-    @apply transition-colors;
-    @apply duration-200;
-    @apply z-50;
-
     background-color: var(--background);
   }
 }
