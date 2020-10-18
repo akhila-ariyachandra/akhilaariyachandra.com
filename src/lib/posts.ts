@@ -6,7 +6,7 @@ import html from "remark-html";
 import { Post } from "src/lib/types";
 import { formatDate } from "src/lib/helpers";
 
-const postsDirectory = path.join(process.cwd(), "src", "posts");
+const postsDirectory = path.join(process.cwd(), "src", "content", "posts");
 
 export const getSortedPostsData = (): Post[] => {
   // Get file names under /src/posts
