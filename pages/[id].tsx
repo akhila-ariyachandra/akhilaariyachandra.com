@@ -26,7 +26,7 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
       </h1>
 
       <p className="text-lg sm:text-xl font-medium px-4 my-2">
-        {postData.formattedDate}
+        {`Posted on ${postData.formattedDate}`}
       </p>
 
       <div className="prose sm:prose-xl p-4">
