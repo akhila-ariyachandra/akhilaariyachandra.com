@@ -26,6 +26,7 @@ const Header: FunctionComponent = () => {
         <button
           onClick={handleTheme}
           className="text-xl sm:text-2xl focus:outline-none"
+          aria-label="Theme Switcher"
         >
           {theme === "light" ? <FaMoon /> : <FaSun />}
         </button>
