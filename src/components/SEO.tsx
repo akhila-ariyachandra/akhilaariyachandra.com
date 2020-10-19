@@ -21,6 +21,12 @@ const SEO: FunctionComponent<Props> = ({ title, description, image }) => {
       description={description}
       canonical={`${config.siteUrl}${router.asPath}`}
       openGraph={{ images: [{ url: `${config.siteUrl}${image}` }] }}
+      additionalMetaTags={[
+        {
+          name: "monetization",
+          content: process.env.NEXT_PUBLIC_ILP_PAYMENT_POINTER,
+        },
+      ]}
     />
   );
 };
