@@ -1,6 +1,7 @@
 import Layout from "src/components/Layout";
 import SEO from "src/components/SEO";
 import Markdown from "markdown-to-jsx";
+import Image from "src/components/post/Image";
 import { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import { getAllPostIds, getPostData } from "src/lib/posts";
 import { Post } from "src/lib/types";
@@ -30,7 +31,16 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
       </p>
 
       <div className="prose sm:prose-xl p-4">
-        <Markdown children={postData.content} />
+        <Markdown
+          children={postData.content}
+          options={{
+            overrides: {
+              img: ({ children, ...props }) => (
+                <Image path={props.src} title={props.alt} />
+              ),
+            },
+          }}
+        />
       </div>
     </Layout>
   );
