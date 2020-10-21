@@ -16,7 +16,7 @@
   "dependencies": {
     "@tailwindcss/typography": "^0.2.0",
     "dayjs": "^1.9.3",
-    "framer-motion": "^2.9.1",
+    "framer-motion": "^2.9.4",
     "gray-matter": "^4.0.2",
     "imagemin-mozjpeg": "^9.0.0",
     "imagemin-optipng": "^8.0.0",
@@ -26,8 +26,8 @@
     "next-optimized-images": "^2.6.2",
     "next-seo": "^4.13.0",
     "next-themes": "^0.0.4",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
     "react-icons": "^3.11.0",
     "sass": "^1.27.0",
     "webp-loader": "^0.6.0"
