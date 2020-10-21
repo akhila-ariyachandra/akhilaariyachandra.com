@@ -45,6 +45,9 @@ module.exports = {
           blockquote: {
             color: "var(--text)",
           },
+          th: {
+            color: "var(--text)",
+          },
         },
       },
     },

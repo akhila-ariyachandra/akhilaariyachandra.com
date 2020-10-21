@@ -6,9 +6,11 @@ type Props = {
 };
 
 const Image: FunctionComponent<Props> = ({ path, title }) => {
+  const r = new RegExp("^(?:[a-z]+:)?//", "i");
+
   return (
     <img
-      src={require(`../../content/images${path}?webp"`)}
+      src={r.test(path) ? path : require(`../../content/images${path}?webp"`)}
       alt={title}
       title={title}
       className="rounded sm:rounded-md"

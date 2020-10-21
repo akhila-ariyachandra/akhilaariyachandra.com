@@ -2,6 +2,7 @@ import Layout from "src/components/Layout";
 import SEO from "src/components/SEO";
 import Markdown from "markdown-to-jsx";
 import Image from "src/components/post/Image";
+import SpecialBlock from "src/components/post/SpecialBlock";
 import { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import { getAllPostIds, getPostData } from "src/lib/posts";
 import { Post } from "src/lib/types";
@@ -38,6 +39,9 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
               img: ({ children, ...props }) => (
                 <Image path={props.src} title={props.alt} />
               ),
+              SpecialBlock: {
+                component: SpecialBlock,
+              },
             },
           }}
         />
