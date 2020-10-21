@@ -19,14 +19,14 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
         src={require(`../src/content/images${postData.banner}?webp"`)}
         alt={postData.title}
         title={postData.title}
-        className="pseudo-full-bleed lg:rounded-lg"
+        className="pseudo-full-bleed lg:rounded-lg my-4"
       />
 
-      <h1 className="text-4xl sm:text-5xl font-black px-4 my-4">
+      <h1 className="text-4xl sm:text-5xl font-black text-center px-4 my-4">
         {postData.title}
       </h1>
 
-      <p className="text-lg sm:text-xl font-medium px-4 my-2">
+      <p className="text-lg sm:text-xl font-medium text-center px-4 my-2">
         {`Posted on ${postData.formattedDate}`}
       </p>
 
