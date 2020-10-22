@@ -139,7 +139,7 @@ Since we're using serverless, we can't have a persistent connection to database 
 First create the `.env` file in the project root to store the MongoDB URI as `DB_PATH`.
 
 <SpecialBlock type="warn">
-  Never commit the <strong>.env</strong> file. Make sure to add it to{" "}
+  Never commit the <strong>.env</strong> file. Make sure to add it to
   <strong>.gitignore</strong>.
 </SpecialBlock>
 
