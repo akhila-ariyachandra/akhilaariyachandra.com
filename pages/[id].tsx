@@ -23,6 +23,19 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
         className="pseudo-full-bleed lg:rounded-lg my-4"
       />
 
+      {postData.photographer && postData.unsplash_link ? (
+        <p className="text-base sm:text-xlg font-medium text-center px-4 my-2">
+          {"Photo by "}
+          <a
+            href={postData.unsplash_link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {postData.photographer}
+          </a>
+        </p>
+      ) : null}
+
       <h1 className="text-4xl sm:text-5xl font-black text-center px-4 my-4">
         {postData.title}
       </h1>
@@ -30,6 +43,12 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
       <p className="text-lg sm:text-xl font-medium text-center px-4 my-2">
         {`Posted on ${postData.formattedDate}`}
       </p>
+
+      {postData.updated ? (
+        <p className="text-lg sm:text-xl font-medium text-center px-4 my-2">
+          {`Last updated on ${postData.formattedUpdated}`}
+        </p>
+      ) : null}
 
       <div className="prose sm:prose-xl p-4">
         <Markdown

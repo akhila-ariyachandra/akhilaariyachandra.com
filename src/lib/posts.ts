@@ -22,7 +22,7 @@ export const getSortedPostsData = (): Post[] => {
     const matterResult = matter(fileContents);
 
     // Combine the data with the id
-    return {
+    const post: Post = {
       id,
       title: matterResult.data.title,
       date: matterResult.data.date,
@@ -30,6 +30,20 @@ export const getSortedPostsData = (): Post[] => {
       description: matterResult.data.description,
       banner: matterResult.data.banner,
     };
+
+    // Check for updated date
+    if (matterResult.data.updated) {
+      post.updated = matterResult.data.updated;
+      post.formattedUpdated = formatDate(matterResult.data.updated);
+    }
+
+    // Check for Unsplash photographer credits
+    if (matterResult.data.photographer && matterResult.data.unsplash_link) {
+      post.photographer = matterResult.data.photographer;
+      post.unsplash_link = matterResult.data.unsplash_link;
+    }
+
+    return post;
   });
 
   // Sort posts by date
@@ -74,8 +88,7 @@ export const getPostData = async (id): Promise<Post> => {
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents);
 
-  // Combine the data with the id and contentHtml
-  return {
+  const post: Post = {
     id,
     title: matterResult.data.title,
     date: matterResult.data.date,
@@ -84,4 +97,18 @@ export const getPostData = async (id): Promise<Post> => {
     content: matterResult.content,
     banner: matterResult.data.banner,
   };
+
+  // Check for updated date
+  if (matterResult.data.updated) {
+    post.updated = matterResult.data.updated;
+    post.formattedUpdated = formatDate(matterResult.data.updated);
+  }
+
+  // Check for Unsplash photographer credits
+  if (matterResult.data.photographer && matterResult.data.unsplash_link) {
+    post.photographer = matterResult.data.photographer;
+    post.unsplash_link = matterResult.data.unsplash_link;
+  }
+
+  return post;
 };
