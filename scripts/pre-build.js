@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const minifyXML = require("minify-xml").minify;
 
 // Generate sitemap.xml
 (() => {
@@ -34,7 +35,7 @@ const path = require("path");
 
   // Write to /public/sitemap.xml
   const sitemapFile = path.join(process.cwd(), "public", "sitemap.xml");
-  fs.writeFileSync(sitemapFile, content);
+  fs.writeFileSync(sitemapFile, minifyXML(content));
 
   console.log("> Generated sitemap.xml");
 })();
