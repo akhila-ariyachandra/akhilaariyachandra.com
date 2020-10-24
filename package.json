@@ -12,7 +12,7 @@
     "prebuild": "node scripts/pre-build.js",
     "build": "next build",
     "start": "next start",
-    "format": "prettier --write \"**/*.{ts,tsx,js,json,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md,yaml}\""
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.2.0",
@@ -31,7 +31,8 @@
     "react-dom": "^17.0.0",
     "react-icons": "^3.11.0",
     "sass": "^1.27.0",
-    "webp-loader": "^0.6.0"
+    "webp-loader": "^0.6.0",
+    "yaml": "^1.10.0"
   },
   "devDependencies": {
     "@types/node": "^14.11.8",

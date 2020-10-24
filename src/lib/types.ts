@@ -11,3 +11,16 @@ export type Post = {
   unsplash_link?: string;
   content?: string;
 };
+
+export type Job = {
+  company?: string;
+  image?: string;
+  link?: string;
+  overallPeriod?: string;
+  positions?: [
+    {
+      title: string;
+      period: string;
+    }
+  ];
+};
