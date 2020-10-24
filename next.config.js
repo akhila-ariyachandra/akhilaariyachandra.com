@@ -8,6 +8,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 module.exports = withBundleAnalyzer(
   withOffline(
     withOptimizedImages({
+      inlineImageLimit: -1,
       webpack: (config) => {
         config.resolve.alias.images = path.join(
           __dirname,
