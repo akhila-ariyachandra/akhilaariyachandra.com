@@ -1,50 +1,64 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import renderToString from "next-mdx-remote/render-to-string";
+import SpecialBlock from "src/components/post/SpecialBlock";
+import CodeBlock from "src/components/post/CodeBlock";
+import Image from "src/components/post/Image";
 import { Post } from "src/lib/types";
 import { formatDate } from "src/lib/helpers";
+import { createElement } from "react";
+
+export const mdxComponents = {
+  SpecialBlock,
+  pre: (props) => createElement("div", props),
+  code: CodeBlock,
+  img: ({ src, alt }) => createElement(Image, { path: src, title: alt }),
+};
 
 const postsDirectory = path.join(process.cwd(), "src", "content", "posts");
 
-export const getSortedPostsData = (): Post[] => {
+export const getSortedPostsData = async (): Promise<Post[]> => {
   // Get file names under /src/posts
   const fileNames = fs.readdirSync(postsDirectory);
 
-  const allPostsData: Post[] = fileNames.map((fileName) => {
-    // Remove ".md" from file name to get id
-    const id = fileName.replace(/\.md$/, "");
+  const allPostsData: Post[] = [];
 
-    // Read markdown file as string
+  for (const fileName of fileNames) {
+    // Remove ".mdx" from file name to get id
+    const id = fileName.replace(/\.mdx$/, "");
+
+    // Read MDX file as string
     const fullPath = path.join(postsDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, "utf8");
+    const source = fs.readFileSync(fullPath, "utf8");
 
-    // Use gray-matter to parse the post metadata section
-    const matterResult = matter(fileContents);
+    // Get frontmatter
+    const { data } = matter(source);
 
     // Combine the data with the id
     const post: Post = {
       id,
-      title: matterResult.data.title,
-      date: matterResult.data.date,
-      formattedDate: formatDate(matterResult.data.date),
-      description: matterResult.data.description,
-      banner: matterResult.data.banner,
+      title: data.title,
+      date: data.date,
+      formattedDate: formatDate(data.date),
+      description: data.description,
+      banner: data.banner,
     };
 
     // Check for updated date
-    if (matterResult.data.updated) {
-      post.updated = matterResult.data.updated;
-      post.formattedUpdated = formatDate(matterResult.data.updated);
+    if (data.updated) {
+      post.updated = data.updated;
+      post.formattedUpdated = formatDate(data.updated);
     }
 
     // Check for Unsplash photographer credits
-    if (matterResult.data.photographer && matterResult.data.unsplash_link) {
-      post.photographer = matterResult.data.photographer;
-      post.unsplash_link = matterResult.data.unsplash_link;
+    if (data.photographer && data.unsplash_link) {
+      post.photographer = data.photographer;
+      post.unsplash_link = data.unsplash_link;
     }
 
-    return post;
-  });
+    allPostsData.push(post);
+  }
 
   // Sort posts by date
   return allPostsData.sort((a, b) => {
@@ -75,39 +89,43 @@ export const getAllPostIds = () => {
   return fileNames.map((fileName) => {
     return {
       params: {
-        id: fileName.replace(/\.md$/, ""),
+        id: fileName.replace(/\.mdx$/, ""),
       },
     };
   });
 };
 
 export const getPostData = async (id): Promise<Post> => {
-  const fullPath = path.join(postsDirectory, `${id}.md`);
-  const fileContents = fs.readFileSync(fullPath, "utf8");
+  const fullPath = path.join(postsDirectory, `${id}.mdx`);
+  const source = fs.readFileSync(fullPath, "utf8");
 
-  // Use gray-matter to parse the post metadata section
-  const matterResult = matter(fileContents);
+  // Get frontmatter and content
+  const { content, data } = matter(source);
+  const mdxSource = await renderToString(content, {
+    components: mdxComponents,
+    scope: data,
+  });
 
   const post: Post = {
     id,
-    title: matterResult.data.title,
-    date: matterResult.data.date,
-    formattedDate: formatDate(matterResult.data.date),
-    description: matterResult.data.description,
-    content: matterResult.content,
-    banner: matterResult.data.banner,
+    title: data.title,
+    date: data.date,
+    formattedDate: formatDate(data.date),
+    description: data.description,
+    content: mdxSource,
+    banner: data.banner,
   };
 
   // Check for updated date
-  if (matterResult.data.updated) {
-    post.updated = matterResult.data.updated;
-    post.formattedUpdated = formatDate(matterResult.data.updated);
+  if (data.updated) {
+    post.updated = data.updated;
+    post.formattedUpdated = formatDate(data.updated);
   }
 
   // Check for Unsplash photographer credits
-  if (matterResult.data.photographer && matterResult.data.unsplash_link) {
-    post.photographer = matterResult.data.photographer;
-    post.unsplash_link = matterResult.data.unsplash_link;
+  if (data.photographer && data.unsplash_link) {
+    post.photographer = data.photographer;
+    post.unsplash_link = data.unsplash_link;
   }
 
   return post;

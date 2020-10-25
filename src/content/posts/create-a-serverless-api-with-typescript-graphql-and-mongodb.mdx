@@ -55,7 +55,7 @@ import mongoose from "mongoose";
 
 Next create an interface for the model which extends from `mongoose.Document`. We'll need to export this interface for use later as well.
 
-```typescript{3-7}
+```typescript {3-7}
 import mongoose from "mongoose";
 
 export interface INote extends mongoose.Document {
@@ -67,7 +67,7 @@ export interface INote extends mongoose.Document {
 
 After that we'll create the schema definition.
 
-```typescript{9-13}
+```typescript {9-13}
 import mongoose from "mongoose";
 
 export interface INote extends mongoose.Document {
@@ -85,7 +85,7 @@ const schema: mongoose.SchemaDefinition = {
 
 Then define the name of the collection and the schema using schema definition.
 
-```typescript{15-16}
+```typescript {15-16}
 import mongoose from "mongoose";
 
 export interface INote extends mongoose.Document {
@@ -108,7 +108,7 @@ Since we're building a serverless API, we can't depend on a persistent connectio
 
 To compensate for using serverless we'll generate the Model at runtime using a function. After declaring the function, make it the default export.
 
-```typescript{18-19,21}
+```typescript {18-19,21}
 import mongoose from "mongoose";
 
 export interface INote extends mongoose.Document {
@@ -155,7 +155,7 @@ import mongoose from "mongoose";
 
 Then get the MongoDB URI that we included in the **.env** file. It can be accessed as a key in `process.env`.
 
-```typescript{3}
+```typescript {3}
 import mongoose from "mongoose";
 
 const uri: string = process.env.DB_PATH;
@@ -163,7 +163,7 @@ const uri: string = process.env.DB_PATH;
 
 After that declare a variable that will be used to cache the database connection between function invocations to prevent overloading the database.
 
-```typescript{5}
+```typescript {5}
 import mongoose from "mongoose";
 
 const uri: string = process.env.DB_PATH;
@@ -173,7 +173,7 @@ let conn: mongoose.Connection = null;
 
 Finally we need to create a function that will return a database connection. The function will first check if there is a cached connection. If there is one it will return it or else it will create a new connection and cache and return it. Be sure to export the function.
 
-```typescript{7-19}
+```typescript {7-19}
 import mongoose from "mongoose";
 
 const uri: string = process.env.DB_PATH;
@@ -214,7 +214,7 @@ import { getConnection } from "../src/database";
 
 After that import the GraphQL Schemas and Resolvers. We'll create these later.
 
-```typescript{4-5}
+```typescript {4-5}
 import { ApolloServer } from "apollo-server-micro";
 import { getConnection } from "../src/database";
 
@@ -224,7 +224,7 @@ import resolvers from "../src/graphql/resolvers";
 
 Then initialize the Apollo Server and export it.
 
-```typescript{7-10,12}
+```typescript {7-10,12}
 import { ApolloServer } from "apollo-server-micro";
 import { getConnection } from "../src/database";
 
@@ -243,7 +243,7 @@ When creating a new `ApolloServer`, we can define the `context` option. The `con
 
 This will be a good place to initialize the database connection and automatically pass it down to the resolvers.
 
-```typescript{10-14}
+```typescript {10-14}
 import { ApolloServer } from "apollo-server-micro";
 import { getConnection } from "../src/database";
 
@@ -265,7 +265,7 @@ export default apolloServer.createHandler({ path: "/api/graphql" });
 
 To finish configuring we'll set the `introspection` and `playground` options.
 
-```typescript{15-16}
+```typescript {15-16}
 import { ApolloServer } from "apollo-server-micro";
 import { getConnection } from "../src/database";
 
@@ -315,7 +315,7 @@ export default gql``;
 
 Then add the Note type.
 
-```typescript{3-10}
+```typescript {3-10}
 import { gql } from "apollo-server-micro";
 
 export default gql`
@@ -330,7 +330,7 @@ export default gql`
 
 After that add two Queries, one to get all Notes and one to get a specific Note.
 
-```typescript{4-7}
+```typescript {4-7}
 import { gql } from "apollo-server-micro";
 
 export default gql`
@@ -350,7 +350,7 @@ export default gql`
 
 Next add two Mutations to create new Notes and delete existing ones.
 
-```typescript{9-12}
+```typescript {9-12}
 import { gql } from "apollo-server-micro";
 
 export default gql`
@@ -399,7 +399,7 @@ export default [linkSchema];
 
 Then import the other Schemas and add them to the array.
 
-```typescript{3-4,20}
+```typescript {3-4,20}
 import { gql } from "apollo-server-micro";
 
 import noteSchema from "./note";
@@ -451,7 +451,7 @@ export default {};
 
 Then define an object for the Queries.
 
-```typescript{7}
+```typescript {7}
 import mongoose from "mongoose";
 import dayjs from "dayjs";
 import NoteModel, { INote } from "../../database/models/note";
@@ -470,7 +470,7 @@ When defining the function for each of the queries (or mutations or fields) ther
 
 First let's write the resolver for `getAllNotes`. Start by declaring the function.
 
-```typescript{7-11}
+```typescript {7-11}
 import mongoose from "mongoose";
 import dayjs from "dayjs";
 import NoteModel, { INote } from "../../database/models/note";
@@ -487,7 +487,7 @@ export default {
 
 Let's destructure the `context` object.
 
-```typescript{10}
+```typescript {10}
 import mongoose from "mongoose";
 import dayjs from "dayjs";
 import NoteModel, { INote } from "../../database/models/note";
@@ -504,7 +504,7 @@ export default {
 
 In the function we should create the Note model using the database connection from the context and retrieve all the Notes using it.
 
-```typescript{13-25}
+```typescript {13-25}
 import mongoose from "mongoose";
 import dayjs from "dayjs";
 import NoteModel, { INote } from "../../database/models/note";
@@ -537,7 +537,7 @@ export default {
 
 After that let's add the resolver for `getNote`.
 
-```typescript{28-44}
+```typescript {28-44}
 import mongoose from "mongoose";
 import dayjs from "dayjs";
 import NoteModel, { INote } from "../../database/models/note";
@@ -590,7 +590,7 @@ We can retrieve the `id` argument from the second parameter.
 
 Let's finish of the Note resolvers by adding the resolvers for the mutations.
 
-```typescript{47-87}
+```typescript {47-87}
 import mongoose from "mongoose";
 import dayjs from "dayjs";
 import NoteModel, { INote } from "../../database/models/note";
@@ -736,7 +736,7 @@ You can create a GraphQL API endpoint in your Next.js project by putting the `gr
 
 The only extra step you need to do is to add this bit of code to the end of the `graphql.ts` file.
 
-```typescript{5-9}
+```typescript {5-9}
 // ...
 
 export default apolloServer.createHandler({ path: "/api/graphql" });

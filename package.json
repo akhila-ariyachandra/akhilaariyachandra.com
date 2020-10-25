@@ -13,7 +13,7 @@
     "prebuild": "node scripts/pre-build.js",
     "build": "next build",
     "start": "next start",
-    "format": "prettier --write \"**/*.{ts,tsx,js,json,md,yaml}\""
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md,mdx,yaml}\""
   },
   "dependencies": {
     "@next/bundle-analyzer": "^9.5.5",
@@ -21,19 +21,17 @@
     "dayjs": "^1.9.3",
     "framer-motion": "^2.9.4",
     "gray-matter": "^4.0.2",
-    "imagemin-mozjpeg": "^9.0.0",
-    "imagemin-optipng": "^8.0.0",
-    "markdown-to-jsx": "^7.0.1",
-    "next": "^9.5.5",
+    "next": "^9.5.6-canary.14",
+    "next-mdx-remote": "^1.0.0",
     "next-offline": "^5.0.2",
-    "next-optimized-images": "^2.6.2",
     "next-seo": "^4.13.0",
     "next-themes": "^0.0.4",
+    "parse-numeric-range": "^1.2.0",
+    "prism-react-renderer": "^1.1.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-icons": "^3.11.0",
     "sass": "^1.27.0",
-    "webp-loader": "^0.6.0",
     "yaml": "^1.10.0"
   },
   "devDependencies": {

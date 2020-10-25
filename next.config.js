@@ -1,47 +1,32 @@
 const withOffline = require("next-offline");
-const withOptimizedImages = require("next-optimized-images");
-const path = require("path");
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
 
 module.exports = withBundleAnalyzer(
-  withOffline(
-    withOptimizedImages({
-      inlineImageLimit: -1,
-      webpack: (config) => {
-        config.resolve.alias.images = path.join(
-          __dirname,
-          "src",
-          "content",
-          "images"
-        );
-
-        return config;
-      },
-      workboxOpts: {
-        swDest: "static/service-worker.js",
-        runtimeCaching: [
-          {
-            urlPattern: /^https?.*/,
-            handler: "NetworkFirst",
-            options: {
-              cacheName: "offlineCache",
-              expiration: {
-                maxEntries: 200,
-              },
+  withOffline({
+    workboxOpts: {
+      swDest: "static/service-worker.js",
+      runtimeCaching: [
+        {
+          urlPattern: /^https?.*/,
+          handler: "NetworkFirst",
+          options: {
+            cacheName: "offlineCache",
+            expiration: {
+              maxEntries: 200,
             },
           },
-        ],
-      },
-      async rewrites() {
-        return [
-          {
-            source: "/service-worker.js",
-            destination: "/_next/static/service-worker.js",
-          },
-        ];
-      },
-    })
-  )
+        },
+      ],
+    },
+    async rewrites() {
+      return [
+        {
+          source: "/service-worker.js",
+          destination: "/_next/static/service-worker.js",
+        },
+      ];
+    },
+  })
 );

@@ -1,26 +1,45 @@
 import Layout from "src/components/Layout";
 import SEO from "src/components/SEO";
-import Markdown from "markdown-to-jsx";
-import Image from "src/components/post/Image";
 import SpecialBlock from "src/components/post/SpecialBlock";
+import CodeBlock from "src/components/post/CodeBlock";
+import PostImage from "src/components/post/Image";
+import Image from "next/image";
+import hydrate from "next-mdx-remote/hydrate";
 import { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import { getAllPostIds, getPostData } from "src/lib/posts";
 import { Post } from "src/lib/types";
+
+const mdxComponents = {
+  SpecialBlock,
+  pre: (props) => <div {...props} />,
+  code: CodeBlock,
+  img: ({ src, alt }) => <PostImage path={src} title={alt} />,
+};
 
 type Props = {
   postData: Post;
 };
 
 const BlogPost: NextPage<Props> = ({ postData }) => {
+  const content = hydrate(postData.content, {
+    components: mdxComponents,
+  });
+
   return (
     <Layout>
-      <SEO title={postData.title} description={postData.description} />
+      <SEO
+        title={postData.title}
+        description={postData.description}
+        image={postData.banner}
+      />
 
-      <img
-        src={require(`../src/content/images${postData.banner}?webp"`)}
+      <Image
+        src={postData.banner}
         alt={postData.title}
         title={postData.title}
         className="pseudo-full-bleed lg:rounded-lg my-4"
+        width={1200}
+        height={630}
       />
 
       {postData.photographer && postData.unsplash_link ? (
@@ -50,21 +69,7 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
         </p>
       ) : null}
 
-      <div className="prose sm:prose-xl p-4">
-        <Markdown
-          children={postData.content}
-          options={{
-            overrides: {
-              img: ({ children, ...props }) => (
-                <Image path={props.src} title={props.alt} />
-              ),
-              SpecialBlock: {
-                component: SpecialBlock,
-              },
-            },
-          }}
-        />
-      </div>
+      <div className="prose sm:prose-xl p-4">{content}</div>
     </Layout>
   );
 };

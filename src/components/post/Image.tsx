@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FunctionComponent } from "react";
 
 type Props = {
@@ -5,17 +6,17 @@ type Props = {
   title: string;
 };
 
-const Image: FunctionComponent<Props> = ({ path, title }) => {
-  const r = new RegExp("^(?:[a-z]+:)?//", "i");
-
+const PostImage: FunctionComponent<Props> = ({ path, title }) => {
   return (
-    <img
-      src={r.test(path) ? path : require(`../../content/images${path}?webp"`)}
+    <Image
+      src={path}
       alt={title}
       title={title}
       className="rounded sm:rounded-md"
+      width={1200}
+      height={630}
     />
   );
 };
 
-export default Image;
+export default PostImage;

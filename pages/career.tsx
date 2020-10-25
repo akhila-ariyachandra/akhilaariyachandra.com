@@ -1,5 +1,6 @@
 import Layout from "src/components/Layout";
 import SEO from "src/components/SEO";
+import Image from "next/image";
 import fs from "fs";
 import path from "path";
 import yaml from "yaml";
@@ -22,11 +23,13 @@ const Career: NextPage<Props> = ({ careerList }) => {
             key={company.company}
             className="grid place-content-center place-items-center gap-4 pr-4"
           >
-            <img
-              src={require(`../src/content/images/career/${company.image}`)}
+            <Image
+              src={`/career/${company.image}`}
               alt={company.company}
               title={company.company}
               className="w-24 h-24 rounded-md sm:w-32 sm:h-32 sm:rounded-lg"
+              width={128}
+              height={128}
             />
 
             <a

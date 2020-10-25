@@ -31,7 +31,7 @@ const Blog: NextPage<Props> = ({ allPostsData }) => {
 export default Blog;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const allPostsData = getSortedPostsData();
+  const allPostsData = await getSortedPostsData();
 
   return {
     props: {

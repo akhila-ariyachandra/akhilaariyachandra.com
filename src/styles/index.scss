@@ -60,3 +60,14 @@ body {
     @apply mx-auto;
   }
 }
+
+.highlight-line {
+  @apply bg-gray-600;
+  @apply block;
+  @apply -mr-4;
+  @apply -ml-6;
+  @apply pr-4;
+  @apply pl-3;
+  @apply border-l-8;
+  @apply border-green-500;
+}

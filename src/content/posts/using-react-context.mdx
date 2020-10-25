@@ -9,7 +9,7 @@ While developing a React app you might come across a situation where you need to
 
 <SpecialBlock type="info">
   If you want to learn how to setup Redux in a React App, check out my{" "}
-  <OutboundLink
+  <a
     className="font-medium"
     href="https://akhilaariyachandra.com/setup-redux-in-a-react-app/"
     title="Setup Redux in a React app"
@@ -17,8 +17,8 @@ While developing a React app you might come across a situation where you need to
     rel="noopener noreferrer"
   >
     post here
-  </OutboundLink>
-  . If you want to use Redux with hooks check out my <OutboundLink
+  </a>
+  . If you want to use Redux with hooks check out my <a
     className="font-medium"
     href="https://akhilaariyachandra.com/use-hooks-in-react-redux/"
     title="Use Hooks in React Redux"
@@ -26,7 +26,7 @@ While developing a React app you might come across a situation where you need to
     rel="noopener noreferrer"
   >
     post here
-  </OutboundLink>.
+  </a>.
 </SpecialBlock>
 
 If the state to be shared isn't complex, Redux might be overkill as it takes some effort to setup and use. For those cases we can use React Context.
@@ -62,7 +62,7 @@ import React from "react";
 
 Next let's create and export the context with some default values.
 
-```jsx{3-8}
+```jsx {3-8}
 import React from "react";
 
 export const UserContext = React.createContext({
@@ -75,7 +75,7 @@ export const UserContext = React.createContext({
 
 After that we'll declare a Context Provider which will expose the context to its child components.
 
-```jsx{10-12}
+```jsx {10-12}
 import React from "react";
 
 export const UserContext = React.createContext({
@@ -92,7 +92,7 @@ export const UserProvider = ({ children }) => {
 
 Then let's declare the `userId`, `user` and `isFetching` states and pass them to the provider.
 
-```jsx{11-13, 16}
+```jsx {11-13, 16}
 import React from "react";
 
 export const UserContext = React.createContext({
@@ -117,7 +117,7 @@ export const UserProvider = ({ children }) => {
 
 Now we'll setup an [effect](https://reactjs.org/docs/hooks-effect.html "useEffect") to automatically update the `user` state whenever the `userId` state is changed.
 
-```jsx{15-30,32-34}
+```jsx {15-30,32-34}
 import React from "react";
 
 export const UserContext = React.createContext({
@@ -177,7 +177,7 @@ export default Display;
 
 Now we can get the `user` state by from the `UserContext` with the `useContext` [hook](https://reactjs.org/docs/hooks-reference.html#usecontext).
 
-```jsx{2,5}
+```jsx {2,5}
 import React from "react";
 import { UserContext } from "../context/UserContext";
 
@@ -192,7 +192,7 @@ export default Display;
 
 To finish off the `Display` component, let's display the User data in a table.
 
-```jsx{9-31}
+```jsx {9-31}
 import React from "react";
 import { UserContext } from "../context/UserContext";
 
@@ -249,7 +249,7 @@ export default Controls;
 
 After that, we can get `userId`, `setUserId` and `isFetching` from `UserContext`.
 
-```jsx{2,5}
+```jsx {2,5}
 import React from "react";
 import { UserContext } from "../context/UserContext";
 
@@ -264,7 +264,7 @@ export default Controls;
 
 Next we can add two buttons to change the `userId`.
 
-```jsx{9,11}
+```jsx {9,11}
 import React from "react";
 import { UserContext } from "../context/UserContext";
 
@@ -285,7 +285,7 @@ export default Controls;
 
 Finally we will add a check to the buttons to disable them if the app is already fetching a user or to stop `userId` from being set to value less than 1 or more than 10.
 
-```jsx{11,18}
+```jsx {11,18}
 import React from "react";
 import { UserContext } from "../context/UserContext";
 
@@ -330,7 +330,7 @@ export default App;
 
 Then we should wrap the root `div` in the `UserProvider` to make the context available to all components.
 
-```jsx{2,6,8}
+```jsx {2,6,8}
 import React from "react";
 import { UserProvider } from "./context/UserContext";
 
@@ -347,7 +347,7 @@ export default App;
 
 Finally add the `Display` and `Controls` components.
 
-```jsx{2-3,10,12}
+```jsx {2-3,10,12}
 import React from "react";
 import Display from "./components/Display";
 import Controls from "./components/Controls";
@@ -372,11 +372,6 @@ export default App;
 
 Below is a sample of the app we just built. If you think you missed something, feel free to check out the code.
 
-<iframe src="https://codesandbox.io/embed/react-context-example-le3pc?fontsize=14&hidenavigation=1&theme=dark"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="react-context-example"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   />
+[![Edit react-context-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-context-example-le3pc?fontsize=14&hidenavigation=1&theme=dark)
 
 If you found this post helpful please be sure to share it! 😊
