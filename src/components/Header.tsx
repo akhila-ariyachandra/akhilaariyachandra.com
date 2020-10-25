@@ -20,7 +20,7 @@ const Header: FunctionComponent = () => {
   return (
     <header
       id="header"
-      className="sticky top-0 transition-colors duration-200 z-50 full-bleed wrapper"
+      className="sticky top-0 transition-colors duration-200 z-40 full-bleed wrapper"
     >
       <div className="flex flex-row-reverse justify-between items-center p-4">
         <button

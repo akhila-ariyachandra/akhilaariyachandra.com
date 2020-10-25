@@ -1205,6 +1205,11 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
+"@badrap/bar-of-progress@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@badrap/bar-of-progress/-/bar-of-progress-0.1.1.tgz#f9b3023b50c182bbace984c6384244cc2a5f4f2c"
+  integrity sha512-71I3n/S8x9a/KW8JMboNRlDz0TLOI0YEjBjw3OxrwSzoJ9EZd46eaS5IIKn9XfBouJB3Kquzih/KrlvZtj2w/Q==
+
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"

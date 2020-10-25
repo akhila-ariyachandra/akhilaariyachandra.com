@@ -16,6 +16,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,js,json,md,mdx,yaml}\""
   },
   "dependencies": {
+    "@badrap/bar-of-progress": "^0.1.1",
     "@next/bundle-analyzer": "^9.5.5",
     "@tailwindcss/typography": "^0.2.0",
     "dayjs": "^1.9.3",
