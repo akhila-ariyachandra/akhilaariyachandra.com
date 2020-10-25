@@ -11,7 +11,8 @@ import { createElement } from "react";
 
 export const mdxComponents = {
   SpecialBlock,
-  pre: (props) => createElement("div", props),
+  pre: (props) =>
+    createElement("div", { ...props, className: "next-highlight" }),
   code: CodeBlock,
   img: ({ src, alt }) => createElement(Image, { path: src, title: alt }),
 };

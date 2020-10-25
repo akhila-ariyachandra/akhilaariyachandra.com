@@ -11,7 +11,7 @@ import { Post } from "src/lib/types";
 
 const mdxComponents = {
   SpecialBlock,
-  pre: (props) => <div {...props} />,
+  pre: (props) => <div {...props} className="next-highlight" />,
   code: CodeBlock,
   img: ({ src, alt }) => <PostImage path={src} title={alt} />,
 };

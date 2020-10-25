@@ -62,12 +62,32 @@ body {
 }
 
 .highlight-line {
-  @apply bg-gray-600;
+  @apply bg-gray-800;
   @apply block;
+  @apply -ml-4;
   @apply -mr-4;
-  @apply -ml-6;
   @apply pr-4;
   @apply pl-3;
-  @apply border-l-8;
-  @apply border-green-500;
+  @apply border-l-4;
+  @apply border-solid;
+  @apply border-green-600;
+}
+
+.next-highlight {
+  background-color: #1d1f21;
+  @apply overflow-auto;
+  @apply rounded-md;
+}
+
+.next-highlight pre[class*="language-"] {
+  @apply bg-transparent;
+  @apply float-left;
+  @apply min-w-full;
+}
+
+@screen sm {
+  .highlight-line {
+    @apply -ml-6;
+    @apply -mr-6;
+  }
 }

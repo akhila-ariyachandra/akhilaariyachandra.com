@@ -48,6 +48,10 @@ module.exports = {
           th: {
             color: "var(--text)",
           },
+          pre: {
+            "margin-top": 0,
+            "margin-bottom": 0,
+          },
         },
       },
     },
