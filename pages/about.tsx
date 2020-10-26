@@ -19,14 +19,16 @@ const About: NextPage<Props> = ({ source }) => {
     <Layout>
       <SEO title="About" description="A little bit about myself" />
 
-      <Image
-        src="/cover-pic.jpg"
-        alt={config.title}
-        title={config.title}
-        className="pseudo-full-bleed lg:rounded-lg"
-        width={1200}
-        height={630}
-      />
+      <div className="pseudo-full-bleed my-4">
+        <Image
+          src="/cover-pic.jpg"
+          alt={config.title}
+          title={config.title}
+          className="lg:rounded-lg"
+          width={1200}
+          height={630}
+        />
+      </div>
 
       <div className="prose sm:prose-xl p-4 my-4">{content}</div>
     </Layout>
