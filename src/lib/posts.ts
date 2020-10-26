@@ -4,7 +4,6 @@ import matter from "gray-matter";
 import renderToString from "next-mdx-remote/render-to-string";
 import SpecialBlock from "src/components/post/SpecialBlock";
 import CodeBlock from "src/components/post/CodeBlock";
-import Image from "src/components/post/Image";
 import { Post } from "src/lib/types";
 import { formatDate } from "src/lib/helpers";
 import { createElement } from "react";
@@ -14,7 +13,6 @@ export const mdxComponents = {
   pre: (props) =>
     createElement("div", { ...props, className: "next-highlight" }),
   code: CodeBlock,
-  img: ({ src, alt }) => createElement(Image, { path: src, title: alt }),
 };
 
 const postsDirectory = path.join(process.cwd(), "src", "content", "posts");

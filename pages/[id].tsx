@@ -2,7 +2,6 @@ import Layout from "src/components/Layout";
 import SEO from "src/components/SEO";
 import SpecialBlock from "src/components/post/SpecialBlock";
 import CodeBlock from "src/components/post/CodeBlock";
-import PostImage from "src/components/post/Image";
 import Image from "next/image";
 import HitCounter from "src/components/post/HitCounter";
 import hydrate from "next-mdx-remote/hydrate";
@@ -14,7 +13,6 @@ const mdxComponents = {
   SpecialBlock,
   pre: (props) => <div {...props} className="next-highlight" />,
   code: CodeBlock,
-  img: ({ src, alt }) => <PostImage path={src} title={alt} />,
 };
 
 type Props = {
@@ -34,14 +32,15 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
         image={postData.banner}
       />
 
-      <Image
-        src={postData.banner}
-        alt={postData.title}
-        title={postData.title}
-        className="pseudo-full-bleed lg:rounded-lg my-4"
-        width={1200}
-        height={630}
-      />
+      <div className="my-4 pseudo-full-bleed lg:rounded-lg overflow-hidden">
+        <Image
+          src={postData.banner}
+          alt={postData.title}
+          title={postData.title}
+          width={1200}
+          height={630}
+        />
+      </div>
 
       {postData.photographer && postData.unsplash_link ? (
         <p className="text-base sm:text-xlg font-medium text-center px-4 my-2">
@@ -56,7 +55,7 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
         </p>
       ) : null}
 
-      <h1 className="text-4xl sm:text-5xl font-black text-center px-4 my-4">
+      <h1 className="pseudo-full-bleed text-4xl sm:text-5xl font-black text-center px-4 my-4">
         {postData.title}
       </h1>
 
