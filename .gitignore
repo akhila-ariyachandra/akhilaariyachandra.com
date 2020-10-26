@@ -2,4 +2,7 @@ node_modules
 .next
 .vercel
 .env
+
+# Generated content
 public/sitemap.xml
+public/rss.xml

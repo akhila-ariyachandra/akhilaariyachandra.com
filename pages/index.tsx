@@ -119,6 +119,8 @@ const Index: NextPage = () => {
           <SocialLink site="LinkedIn" link={config.social.linkedin} />
 
           <SocialLink site="Twitter" link={config.social.twitter} />
+
+          <SocialLink site="RSS" link="/rss.xml" />
         </motion.div>
       </div>
     </Layout>

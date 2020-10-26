@@ -1,6 +1,9 @@
 const fs = require("fs");
 const path = require("path");
+const matter = require("gray-matter");
+const dayjs = require("dayjs");
 const minifyXML = require("minify-xml").minify;
+const Feed = require("feed").Feed;
 
 // Generate sitemap.xml
 (() => {
@@ -38,4 +41,51 @@ const minifyXML = require("minify-xml").minify;
   fs.writeFileSync(sitemapFile, minifyXML(content));
 
   console.log("> Generated sitemap.xml");
+})();
+
+// Generate RSS Feed
+(async () => {
+  const feed = new Feed({
+    title: "Akhila Ariyachandra's Blog RSS",
+    description: "The RSS feed for my blog",
+    id: "https://akhilaariyachandra.com/",
+    link: "https://akhilaariyachandra.com/",
+    image: "https://akhilaariyachandra.com/cover-pic.jpg",
+    favicon: "https://akhilaariyachandra.com/favicon-32x32.png",
+    copyright: `All rights reserved ${new Date().getFullYear()}, Akhila Ariyachandra`,
+    author: {
+      name: "Akhila Ariyachandra",
+      link: "https://akhilaariyachandra.com/",
+    },
+  });
+
+  // Add posts
+  const postsDirectory = path.join(process.cwd(), "src", "content", "posts");
+  const fileNames = fs.readdirSync(postsDirectory);
+  for (const fileName of fileNames) {
+    const id = fileName.replace(/\.mdx$/, "");
+    const fullPath = path.join(postsDirectory, fileName);
+    const source = fs.readFileSync(fullPath, "utf8");
+
+    // Get frontmatter
+    const { data } = matter(source);
+
+    feed.addItem({
+      title: data.title,
+      id: `https://akhilaariyachandra.com/${id}`,
+      link: `https://akhilaariyachandra.com/${id}`,
+      description: data.description,
+      date: dayjs(data.date).toDate(),
+      image: `https://akhilaariyachandra.com${data.banner}`,
+    });
+  }
+
+  // Generate XML content
+  const content = feed.rss2();
+
+  // Write to /public/rss.xml
+  const rssFile = path.join(process.cwd(), "public", "rss.xml");
+  fs.writeFileSync(rssFile, minifyXML(content));
+
+  console.log("> Generated rss.xml");
 })();
