@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --text: black;
+  --background: white;
+  --primary: #2f855a;
+}
+
+[data-theme="dark"] {
+  --text: white;
+  --background: #1a202c;
+  --primary: #38a169;
+}
+
+html {
+  /* More Elegant Fix for Jumping Scrollbar Issue - https://css-tricks.com/elegant-fix-jumping-scrollbar-issue/ */
+  margin-left: calc(100vw - 100%);
+}
+
+body {
+  @apply transition-colors;
+  @apply duration-200;
+
+  color: var(--text);
+  background-color: var(--background);
+
+  a {
+    color: var(--primary);
+  }
+
+  #header {
+    background-color: var(--background);
+  }
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns:
+    1fr
+    min(65ch, 100%)
+    1fr;
+
+  * {
+    grid-column: 2;
+  }
+
+  .full-bleed {
+    width: 100%;
+    grid-column: 1 / -1;
+  }
+
+  .pseudo-full-bleed {
+    width: 100%;
+    grid-column: 1 / -1;
+    /* constrain the width for very-large monitors */
+    @apply max-w-screen-lg;
+    /* center the element */
+    @apply mx-auto;
+  }
+}
+
+.highlight-line {
+  @apply bg-gray-800;
+  @apply block;
+  @apply -ml-4;
+  @apply -mr-4;
+  @apply pr-4;
+  @apply pl-3;
+  @apply border-l-4;
+  @apply border-solid;
+  @apply border-green-600;
+}
+
+.next-highlight {
+  background-color: #1d1f21;
+  @apply overflow-auto;
+  @apply rounded-md;
+}
+
+.next-highlight pre[class*="language-"] {
+  @apply bg-transparent;
+  @apply float-left;
+  @apply min-w-full;
+}
+
+@screen sm {
+  .highlight-line {
+    @apply -ml-6;
+    @apply -mr-6;
+  }
+}
+
+.bar-of-progress {
+  @apply z-50;
+}
