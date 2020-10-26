@@ -54,8 +54,20 @@ module.exports = {
           },
         },
       },
+      xl: {
+        css: {
+          pre: {
+            "margin-top": 0,
+            "margin-bottom": 0,
+          },
+        },
+      },
     },
   },
   variants: {},
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [
+    require("@tailwindcss/typography")({
+      modifiers: ["xl"],
+    }),
+  ],
 };
