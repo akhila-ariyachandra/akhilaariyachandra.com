@@ -4,6 +4,7 @@ import SpecialBlock from "src/components/post/SpecialBlock";
 import CodeBlock from "src/components/post/CodeBlock";
 import PostImage from "src/components/post/Image";
 import Image from "next/image";
+import HitCounter from "src/components/post/HitCounter";
 import hydrate from "next-mdx-remote/hydrate";
 import { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import { getAllPostIds, getPostData } from "src/lib/posts";
@@ -70,6 +71,10 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
       ) : null}
 
       <div className="prose sm:prose-xl p-4">{content}</div>
+
+      <div className="flex justify-center">
+        <HitCounter />
+      </div>
     </Layout>
   );
 };
