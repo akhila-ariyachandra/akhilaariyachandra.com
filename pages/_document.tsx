@@ -60,6 +60,12 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+
+          <script
+            data-ad-client={process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID}
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+          />
         </body>
       </Html>
     );
