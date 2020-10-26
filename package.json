@@ -20,6 +20,7 @@
     "@next/bundle-analyzer": "^9.5.5",
     "@tailwindcss/typography": "^0.2.0",
     "dayjs": "^1.9.3",
+    "disqus-react": "^1.0.10",
     "faunadb": "^3.0.1",
     "framer-motion": "^2.9.4",
     "gray-matter": "^4.0.2",
