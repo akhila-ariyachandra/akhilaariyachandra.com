@@ -42,7 +42,7 @@ const Career: NextPage<Props> = ({ careerList }) => {
             </a>
 
             {company.positions.map((position) => (
-              <div>
+              <div key={position.title}>
                 <p className="text-xl sm:text-2xl font-medium text-center">
                   {position.title}
                 </p>
