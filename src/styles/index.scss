@@ -89,9 +89,15 @@ body {
   .highlight-line {
     @apply -ml-6;
     @apply -mr-6;
+    @apply pl-5;
   }
 }
 
 .bar-of-progress {
   @apply z-50;
+}
+
+.post-image {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
