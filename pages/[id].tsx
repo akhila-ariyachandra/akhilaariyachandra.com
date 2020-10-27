@@ -4,6 +4,7 @@ import SpecialBlock from "src/components/post/SpecialBlock";
 import CodeBlock from "src/components/post/CodeBlock";
 import Image from "next/image";
 import HitCounter from "src/components/post/HitCounter";
+import PostImage from "src/components/post/PostImage";
 import hydrate from "next-mdx-remote/hydrate";
 import config from "src/config";
 import { DiscussionEmbed } from "disqus-react";
@@ -16,6 +17,7 @@ const mdxComponents = {
   SpecialBlock,
   pre: (props) => <div {...props} className="next-highlight" />,
   code: CodeBlock,
+  PostImage,
 };
 
 type Props = {
