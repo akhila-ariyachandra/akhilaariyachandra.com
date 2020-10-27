@@ -23,7 +23,6 @@
     "disqus-react": "^1.0.10",
     "faunadb": "^3.0.1",
     "feed": "^4.2.1",
-    "framer-motion": "^2.9.4",
     "gray-matter": "^4.0.2",
     "next": "^10.0.0",
     "next-mdx-remote": "^1.0.0",
