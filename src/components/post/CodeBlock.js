@@ -14,10 +14,6 @@ const calculateLinesToHighlight = (meta) => {
 };
 
 const CodeBlock = ({ children, className, metastring }) => {
-  if (!className) {
-    return <code>{children}</code>;
-  }
-
   const language = className.replace(/language-/, "");
   const shouldHighlightLine = calculateLinesToHighlight(metastring);
 
@@ -47,6 +43,10 @@ const CodeBlock = ({ children, className, metastring }) => {
       )}
     </Highlight>
   );
+};
+
+CodeBlock.defaultProps = {
+  className: "",
 };
 
 export default CodeBlock;
