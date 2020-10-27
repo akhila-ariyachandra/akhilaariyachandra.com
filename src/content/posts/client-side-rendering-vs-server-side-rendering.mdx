@@ -33,7 +33,12 @@ When the browser makes the initial request to the SPA server, the server returns
 
 After the initial HTML and CSS loads the browser requests the rest of the application which comes in a JS file. While this JS is being loaded and parsed, the page will be blank. The content will be viewable and intractable once the JS file has been parsed.
 
-![Client Side Rendering](/client-side-rendering-vs-server-side-rendering/csr.png)
+<PostImage
+  src="/client-side-rendering-vs-server-side-rendering/csr.png"
+  width={4000}
+  height={2823}
+  title="Client Side Rendering"
+/>
 
 The advantage of Client Side Rendering (CSR) is once the page loads all subsequent navigation within the site will be fast as no more pages needed to be loaded from the server unlike a Multi Page Application.
 
@@ -47,7 +52,12 @@ JavaScript Single Page Application Frameworks like [React](https://reactjs.org/)
 
 We can solve these issues by using Server Side Rendering. SSR is rendering the app to a string (HTML) in the server itself and sending it to the browser. This takes the work of rendering from the client to the server. So when the browser receives the initial HTML file there is content for the user to see unlike a CSR site where the entire JS file needs to be downloaded and parsed before something meaningful can be shown on screen. The site becomes interactive once the JS file has been downloaded and parsed.
 
-![Server Side Rendering](/client-side-rendering-vs-server-side-rendering/ssr.png)
+<PostImage
+  src="/client-side-rendering-vs-server-side-rendering/ssr.png"
+  width={4000}
+  height={2854}
+  title="Server Side Rendering"
+/>
 
 The downside of using just SSR is that it makes navigation within the site slow as each page needs to be rendered and fetched from the server. This also increases the load on the server.
 
