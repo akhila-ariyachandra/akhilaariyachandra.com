@@ -33,4 +33,3 @@ yarn format
 |     `NEXT_PUBLIC_DISQUS_NAME`     | [Disqus](https://disqus.com/) Shortname                          |
 | `NEXT_PUBLIC_ILP_PAYMENT_POINTER` | [Web Monetization](https://webmonetization.org/) Payment Pointer |
 |        `FAUNA_SECRET_KEY`         | [FaunaDB](https://fauna.com/) secret key                         |
-|  `NEXT_PUBLIC_ADSENSE_CLIENT_ID`  | [AdSense](https://www.google.com/adsense/start/) Client ID       |
