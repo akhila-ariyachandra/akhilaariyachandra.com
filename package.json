@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@badrap/bar-of-progress": "^0.1.1",
-    "@next/bundle-analyzer": "^9.5.5",
+    "@next/bundle-analyzer": "^10.0.0",
     "@tailwindcss/typography": "^0.2.0",
     "dayjs": "^1.9.3",
     "disqus-react": "^1.0.10",
@@ -25,7 +25,7 @@
     "feed": "^4.2.1",
     "framer-motion": "^2.9.4",
     "gray-matter": "^4.0.2",
-    "next": "^9.5.6-canary.14",
+    "next": "^10.0.0",
     "next-mdx-remote": "^1.0.0",
     "next-offline": "^5.0.2",
     "next-seo": "^4.13.0",
