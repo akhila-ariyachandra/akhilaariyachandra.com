@@ -101,3 +101,14 @@ body {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
+
+/* Fix for h1 right below code for being too close */
+.next-highlight + h1 {
+  margin-top: 0.8888889em !important;
+
+  @screen sm {
+    & {
+      margin-top: 0.8571429em !important;
+    }
+  }
+}
