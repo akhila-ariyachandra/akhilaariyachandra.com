@@ -1,4 +1,4 @@
-import vsDark from "prism-react-renderer/themes/vsDark";
+import nightOwl from "prism-react-renderer/themes/nightOwl";
 import rangeParser from "parse-numeric-range";
 import Highlight, { defaultProps } from "prism-react-renderer";
 
@@ -22,7 +22,7 @@ const CodeBlock = ({ children, className, metastring }) => {
       {...defaultProps}
       code={children}
       language={language}
-      theme={vsDark}
+      theme={nightOwl}
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <pre className={className} style={{ ...style }}>
