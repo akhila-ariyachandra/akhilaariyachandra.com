@@ -1,4 +1,5 @@
 import faunadb from "faunadb";
+import config from "src/config";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const RegisterHit = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -34,8 +35,9 @@ const RegisterHit = async (req: NextApiRequest, res: NextApiResponse) => {
     q.Get(q.Match(q.Index("hits_by_slug"), slug))
   );
 
-  // Don't increment in development environment
-  if (process.env.NODE_ENV === "production") {
+  // Don't increment in development and preview environments
+  const host = new URL(config.siteUrl);
+  if (host.hostname === req.headers.host) {
     await client.query(
       q.Update(document.ref, {
         data: {
