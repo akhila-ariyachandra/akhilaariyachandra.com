@@ -8,6 +8,7 @@ import {
   FaLinkedin,
   FaTwitterSquare,
   FaRssSquare,
+  FaBookmark,
 } from "react-icons/fa";
 import { NextPage } from "next";
 
@@ -81,6 +82,12 @@ const Index: NextPage = () => {
           <SocialLink site="Twitter" link={config.social.twitter} />
 
           <SocialLink site="RSS" link="/rss.xml" />
+
+          <Link href="/reading-list">
+            <a className="text-3xl sm:text-4xl" aria-label="Reading List">
+              <FaBookmark />
+            </a>
+          </Link>
         </div>
       </div>
     </Layout>
