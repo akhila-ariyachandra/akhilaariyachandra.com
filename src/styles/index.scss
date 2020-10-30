@@ -76,7 +76,6 @@ body {
 .next-highlight {
   background-color: rgb(1, 22, 39);
   @apply overflow-auto;
-  @apply rounded-b-md;
 }
 
 .next-highlight pre[class*="language-"] {
@@ -91,6 +90,11 @@ body {
     @apply -mr-6;
     @apply pl-5;
   }
+}
+
+.code-block {
+  @apply rounded-md;
+  @apply overflow-hidden;
 }
 
 /* Fix for h1 right below code for being too close */

@@ -6,7 +6,7 @@ type Props = {
 
 const Title: FunctionComponent<Props> = ({ text, children }) => {
   return (
-    <div className="flex justify-between items-center bg-green-300 px-5 py-3 rounded-t-md">
+    <div className="flex justify-between items-center bg-green-300 px-5 py-3">
       <style jsx>{`
         p {
           margin-top: 0 !important;
