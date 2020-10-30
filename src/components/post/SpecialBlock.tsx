@@ -7,7 +7,7 @@ type Props = {
 
 const SpecialBlock: FunctionComponent<Props> = ({ children, type }) => {
   let wrapperClass =
-    "text-base sm:text-lg my-3 p-4 border-l-4 flex items-start ";
+    "text-base sm:text-lg my-4 p-4 border-l-4 flex items-start ";
   let iconClass = "text-2xl sm:text-3xl ";
   let Icon = null;
 

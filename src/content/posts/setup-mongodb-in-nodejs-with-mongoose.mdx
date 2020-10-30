@@ -23,24 +23,24 @@ Or with yarn.
 yarn add mongoose
 ```
 
-Then we will create a file with the database configuration and instance as database.js .
+Then we will create a file with the database configuration and instance as `database.js` .
 
 First let import the dependency;
 
-```javascript
+```javascript:title=database.js
 const mongoose = require("mongoose");
 ```
 
 Then let’s store the path of the database in a variable. The path should look like the following, with _dbuser_ and _dbpassword_ being replaced with a user you have created for the database.
 
-```javascript
+```javascript:title=database.js
 const dbPath =
   "mongodb://<dbuser>:<dbpassword>@ds250607.mlab.com:38485/test-db";
 ```
 
 After that we’ll connect to the database.
 
-```javascript
+```javascript:title=database.js
 mongoose.connect(dbPath, {
   useNewUrlParser: true,
 });
@@ -48,17 +48,19 @@ mongoose.connect(dbPath, {
 
 We’ll need to export this instance of the database to be used later.
 
-```javascript
+```javascript:title=database.js
 module.exports = mongoose;
 ```
 
 Once the application is started, it would be better if there was an indicator showing whether the application successfully connected to the database or not. So let’s add some more code to fix that.
 
-```javascript
+```javascript:title=database.js
 const db = mongoose.connection;
+
 db.on("error", () => {
   console.log("> error occurred from the database");
 });
+
 db.once("open", () => {
   console.log("> successfully opened the database");
 });
@@ -66,21 +68,26 @@ db.once("open", () => {
 
 In the end the database.js should look like this.
 
-```javascript
-// database.js
+```javascript:title=database.js
 const mongoose = require("mongoose");
+
 const dbPath =
   "mongodb://<dbuser>:<dbpassword>@ds250607.mlab.com:38485/test-db";
+
 mongoose.connect(dbPath, {
   useNewUrlParser: true,
 });
+
 const db = mongoose.connection;
+
 db.on("error", () => {
   console.log("> error occurred from the database");
 });
+
 db.once("open", () => {
   console.log("> successfully opened the database");
 });
+
 module.exports = mongoose;
 ```
 
@@ -88,9 +95,9 @@ module.exports = mongoose;
 
 After setting up the database connection, let’s setup an entity model to save and retrieve. For this example in going with an **User** entity. It will have three fields, name, email and password. We’ll store all the models in the models folder.
 
-```javascript
-// models/userModel.js
+```javascript:title=models/userModel.js
 const mongoose = require("../database");
+
 const schema = {
   name: { type: mongoose.SchemaTypes.String, required: true },
   email: { type: mongoose.SchemaTypes.String, required: true },
@@ -100,9 +107,11 @@ const schema = {
     select: false,
   },
 };
+
 const collectionName = "user"; // Name of the collection of documents
 const userSchema = mongoose.Schema(schema);
 const User = mongoose.model(collectionName, userSchema);
+
 module.exports = User;
 ```
 
@@ -117,10 +126,12 @@ User.create({
   email: email,
   password: password,
 });
+
 // Find user by email
 User.findOne({
   email: email,
 });
+
 // Find user by email with the password field included
 User.findOne({
   email: email,

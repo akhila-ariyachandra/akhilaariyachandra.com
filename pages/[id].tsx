@@ -1,10 +1,10 @@
 import Layout from "src/components/Layout";
 import SEO from "src/components/SEO";
 import SpecialBlock from "src/components/post/SpecialBlock";
-import CodeBlock from "src/components/post/CodeBlock";
 import Image from "next/image";
 import HitCounter from "src/components/post/HitCounter";
 import PostImage from "src/components/post/PostImage";
+import Code from "src/components/code/Code";
 import hydrate from "next-mdx-remote/hydrate";
 import config from "src/config";
 import { DiscussionEmbed } from "disqus-react";
@@ -15,8 +15,7 @@ import { useRouter } from "next/router";
 
 const mdxComponents = {
   SpecialBlock,
-  pre: (props) => <div {...props} className="next-highlight" />,
-  code: CodeBlock,
+  pre: (props) => <Code {...props} />,
   PostImage,
 };
 

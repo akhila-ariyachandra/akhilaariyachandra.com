@@ -3,17 +3,15 @@ import path from "path";
 import matter from "gray-matter";
 import renderToString from "next-mdx-remote/render-to-string";
 import SpecialBlock from "src/components/post/SpecialBlock";
-import CodeBlock from "src/components/post/CodeBlock";
 import PostImage from "src/components/post/PostImage";
+import Code from "src/components/code/Code";
 import { Post } from "src/lib/types";
 import { formatDate } from "src/lib/helpers";
 import { createElement } from "react";
 
 export const mdxComponents = {
   SpecialBlock,
-  pre: (props) =>
-    createElement("div", { ...props, className: "next-highlight" }),
-  code: CodeBlock,
+  pre: (props) => createElement(Code, { ...props }),
   PostImage,
 };
 
