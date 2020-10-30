@@ -33,35 +33,38 @@ const SyntaxHighlight = ({ children }) => {
   const shouldHighlightLine = calculateLinesToHighlight(metastring);
 
   return (
-    <Highlight
-      {...defaultProps}
-      theme={theme}
-      code={children.props.children.trim()}
-      language={language}
-    >
-      {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <div className="next-highlight my-4">
-          <Title className="code-title" text={title}>
-            {language}
-          </Title>
-          <pre className={className} style={{ ...style, ...ifTitle }}>
-            {tokens.map((line, i) => {
-              const lineProps = getLineProps({ line, key: i });
-              if (shouldHighlightLine(i)) {
-                lineProps.className = `${lineProps.className} highlight-line`;
-              }
-              return (
-                <div key={i} {...lineProps}>
-                  {line.map((token, key) => (
-                    <span {...getTokenProps({ token, key })} />
-                  ))}
-                </div>
-              );
-            })}
-          </pre>
-        </div>
-      )}
-    </Highlight>
+    <div className="code-block">
+      <Title className="code-title" text={title}>
+        {language}
+      </Title>
+
+      <Highlight
+        {...defaultProps}
+        theme={theme}
+        code={children.props.children.trim()}
+        language={language}
+      >
+        {({ className, style, tokens, getLineProps, getTokenProps }) => (
+          <div className="next-highlight">
+            <pre className={className} style={{ ...style, ...ifTitle }}>
+              {tokens.map((line, i) => {
+                const lineProps = getLineProps({ line, key: i });
+                if (shouldHighlightLine(i)) {
+                  lineProps.className = `${lineProps.className} highlight-line`;
+                }
+                return (
+                  <div key={i} {...lineProps}>
+                    {line.map((token, key) => (
+                      <span {...getTokenProps({ token, key })} />
+                    ))}
+                  </div>
+                );
+              })}
+            </pre>
+          </div>
+        )}
+      </Highlight>
+    </div>
   );
 };
 

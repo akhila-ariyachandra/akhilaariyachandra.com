@@ -74,9 +74,9 @@ body {
 }
 
 .next-highlight {
-  background-color: #1d1f21;
+  background-color: rgb(1, 22, 39);
   @apply overflow-auto;
-  @apply rounded-md;
+  @apply rounded-b-md;
 }
 
 .next-highlight pre[class*="language-"] {
@@ -94,7 +94,7 @@ body {
 }
 
 /* Fix for h1 right below code for being too close */
-.next-highlight + h1 {
+.code-block + h1 {
   margin-top: 0.8888889em !important;
 
   @screen sm {
