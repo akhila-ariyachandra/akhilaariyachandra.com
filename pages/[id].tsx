@@ -37,7 +37,10 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
         image={postData.banner}
       />
 
-      <div className="my-4 pseudo-full-bleed lg:rounded-lg overflow-hidden">
+      <div
+        className="my-4 pseudo-full-bleed overflow-hidden"
+        id="banner-container"
+      >
         <Image
           src={postData.banner}
           alt={postData.title}

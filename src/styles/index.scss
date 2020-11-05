@@ -122,3 +122,12 @@ body {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
+
+#banner-container {
+  & > div {
+    @screen lg {
+      @apply rounded-lg;
+      @apply overflow-hidden;
+    }
+  }
+}
