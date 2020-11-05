@@ -11,6 +11,8 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <meta charSet="UTF-8" />
+
           <link
             rel="apple-touch-icon"
             sizes="180x180"
