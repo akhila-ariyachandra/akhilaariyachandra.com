@@ -38,6 +38,8 @@
     "react-icons": "^3.11.0",
     "react-retro-hit-counter": "^1.0.1",
     "sass": "^1.28.0",
+    "swr": "^0.3.8",
+    "unfetch": "^4.2.0",
     "yaml": "^1.10.0"
   },
   "devDependencies": {
