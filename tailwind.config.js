@@ -8,6 +8,7 @@ module.exports = {
   purge: [
     "./pages/**/*.tsx",
     "./src/components/**/*.tsx",
+    "./src/components/**/*.js",
     "./src/styles/**/*.scss",
   ],
   theme: {

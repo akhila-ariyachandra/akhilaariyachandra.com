@@ -5,13 +5,11 @@ import Image from "next/image";
 import HitCounter from "src/components/post/HitCounter";
 import PostImage from "src/components/post/PostImage";
 import Code from "src/components/code/Code";
+import Comment from "src/components/post/Comment";
 import hydrate from "next-mdx-remote/hydrate";
-import config from "src/config";
-import { DiscussionEmbed } from "disqus-react";
 import { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import { getAllPostIds, getPostData } from "src/lib/posts";
 import { Post } from "src/lib/types";
-import { useRouter } from "next/router";
 
 const mdxComponents = {
   SpecialBlock,
@@ -24,7 +22,6 @@ type Props = {
 };
 
 const BlogPost: NextPage<Props> = ({ postData }) => {
-  const router = useRouter();
   const content = hydrate(postData.content, {
     components: mdxComponents,
   });
@@ -85,16 +82,7 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
         <HitCounter />
       </div>
 
-      <div className="bg-white p-4 m-4 rounded-lg">
-        <DiscussionEmbed
-          shortname={process.env.NEXT_PUBLIC_DISQUS_NAME}
-          config={{
-            url: `${config.siteUrl}${router.asPath}`,
-            identifier: postData.id,
-            title: postData.title,
-          }}
-        />
-      </div>
+      <Comment />
     </Layout>
   );
 };
