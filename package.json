@@ -22,7 +22,6 @@
     "axios": "^0.21.0",
     "cheerio": "^1.0.0-rc.3",
     "dayjs": "^1.9.5",
-    "disqus-react": "^1.0.10",
     "faunadb": "^3.0.1",
     "feed": "^4.2.1",
     "gray-matter": "^4.0.2",
