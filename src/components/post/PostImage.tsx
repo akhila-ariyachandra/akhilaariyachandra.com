@@ -19,6 +19,7 @@ const PostImage: FunctionComponent<Props> = ({ src, width, height, title }) => {
         className="post-image"
         alt={title}
         title={title}
+        layout="responsive"
       />
       <div className="h-8" />
     </>
