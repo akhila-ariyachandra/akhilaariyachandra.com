@@ -10,8 +10,7 @@ type Props = {
 
 const PostImage: FunctionComponent<Props> = ({ src, width, height, title }) => {
   return (
-    <>
-      <div className="h-8" />
+    <div className="py-8">
       <Image
         src={src}
         width={width}
@@ -21,8 +20,7 @@ const PostImage: FunctionComponent<Props> = ({ src, width, height, title }) => {
         title={title}
         layout="responsive"
       />
-      <div className="h-8" />
-    </>
+    </div>
   );
 };
 
