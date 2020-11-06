@@ -8,7 +8,7 @@ import * as gtag from "src/lib/gtag";
 import "src/styles/index.scss";
 
 const progress = new ProgressBar({
-  size: 2,
+  size: 4,
   color: "var(--primary)",
   className: "bar-of-progress",
   delay: 100,
