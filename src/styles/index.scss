@@ -43,7 +43,7 @@ body {
 // Scrollbar color and border radius
 ::-webkit-scrollbar-thumb {
   background: var(--primary);
-  @apply rounded;
+  @apply rounded-full;
 }
 
 .wrapper {
