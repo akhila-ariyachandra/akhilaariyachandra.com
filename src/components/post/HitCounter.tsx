@@ -8,7 +8,9 @@ const fetcher = (url) => fetch(url).then((r) => r.json());
 
 const HitCounter: FunctionComponent = () => {
   const router = useRouter();
-  const { data } = useSWR(`/api/register-hit?slug=${router.asPath}`, fetcher, {
+  // Remove query from page URL (due to things like utterances)
+  const path = router.asPath.split(/[?#]/)[0];
+  const { data } = useSWR(`/api/register-hit?slug=${path}`, fetcher, {
     initialData: { hits: 0 },
     revalidateOnMount: true,
     revalidateOnFocus: false,
