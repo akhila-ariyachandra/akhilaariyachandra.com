@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "./scrollbar.scss";
+@import "./code.scss";
+@import "./post.scss";
+
 :root {
   --text: black;
   --background: white;
@@ -12,11 +16,6 @@
   --text: white;
   --background: #1a202c;
   --primary: #38a169;
-}
-
-html {
-  // Force scrollbar to be on at all times
-  overflow-y: scroll;
 }
 
 body {
@@ -33,17 +32,6 @@ body {
   #header {
     background-color: var(--background);
   }
-}
-
-// Scrollbar width
-::-webkit-scrollbar {
-  @apply w-3;
-}
-
-// Scrollbar color and border radius
-::-webkit-scrollbar-thumb {
-  background: var(--primary);
-  @apply rounded-full;
 }
 
 .wrapper {
@@ -72,73 +60,6 @@ body {
   }
 }
 
-.highlight-line {
-  @apply bg-gray-800;
-  @apply block;
-  @apply -ml-4;
-  @apply -mr-4;
-  @apply pr-4;
-  @apply pl-3;
-  @apply border-l-4;
-  @apply border-solid;
-  @apply border-green-600;
-}
-
-.next-highlight {
-  background-color: rgb(1, 22, 39);
-  @apply overflow-auto;
-}
-
-.next-highlight pre[class*="language-"] {
-  @apply bg-transparent;
-  @apply float-left;
-  @apply min-w-full;
-}
-
-@screen sm {
-  .highlight-line {
-    @apply -ml-6;
-    @apply -mr-6;
-    @apply pl-5;
-  }
-}
-
-.code-block {
-  @apply rounded-md;
-  @apply overflow-hidden;
-  @apply my-5;
-}
-
-/* Fix for h1 in Tailwind Typography having no top margin */
-.prose * + h1 {
-  margin-top: 0.8888889em !important;
-
-  @screen sm {
-    & {
-      margin-top: 0.8571429em !important;
-    }
-  }
-}
-
-.prism-code {
-  border-top-left-radius: 0 !important;
-  border-top-right-radius: 0 !important;
-}
-
 .bar-of-progress {
   @apply z-50;
-}
-
-.post-image {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-}
-
-#banner-container {
-  & > div {
-    @screen lg {
-      @apply rounded-lg;
-      @apply overflow-hidden;
-    }
-  }
 }

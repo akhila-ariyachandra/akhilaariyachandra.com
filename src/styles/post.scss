@@ -1,0 +1,24 @@
+/* Fix for h1 in Tailwind Typography having no top margin */
+.prose * + h1 {
+  margin-top: 0.8888889em !important;
+
+  @screen sm {
+    & {
+      margin-top: 0.8571429em !important;
+    }
+  }
+}
+
+.post-image {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+#banner-container {
+  & > div {
+    @screen lg {
+      @apply rounded-lg;
+      @apply overflow-hidden;
+    }
+  }
+}

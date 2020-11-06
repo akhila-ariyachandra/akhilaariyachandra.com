@@ -1,0 +1,15 @@
+html {
+  // Force scrollbar to be on at all times
+  overflow-y: scroll;
+}
+
+// Scrollbar width
+::-webkit-scrollbar {
+  @apply w-3;
+}
+
+// Scrollbar color and border radius
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  @apply rounded-full;
+}
