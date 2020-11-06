@@ -98,8 +98,8 @@ body {
   @apply my-5;
 }
 
-/* Fix for h1 right below code for being too close */
-.code-block + h1 {
+/* Fix for h1 in Tailwind Typography having no top margin */
+.prose * + h1 {
   margin-top: 0.8888889em !important;
 
   @screen sm {
