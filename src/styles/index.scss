@@ -15,8 +15,8 @@
 }
 
 html {
-  /* More Elegant Fix for Jumping Scrollbar Issue - https://css-tricks.com/elegant-fix-jumping-scrollbar-issue/ */
-  margin-left: calc(100vw - 100%);
+  // Force scrollbar to be on at all times
+  overflow-y: scroll;
 }
 
 body {
@@ -33,6 +33,17 @@ body {
   #header {
     background-color: var(--background);
   }
+}
+
+// Scrollbar width
+::-webkit-scrollbar {
+  @apply w-3;
+}
+
+// Scrollbar color and border radius
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  @apply rounded;
 }
 
 .wrapper {
