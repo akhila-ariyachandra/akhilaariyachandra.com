@@ -2,6 +2,7 @@ node_modules
 .next
 .vercel
 .env
+*.log
 
 # Generated content
 public/sitemap.xml
