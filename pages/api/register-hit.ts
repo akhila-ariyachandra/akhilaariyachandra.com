@@ -1,6 +1,7 @@
 import faunadb from "faunadb";
 import config from "src/config";
 import { NextApiRequest, NextApiResponse } from "next";
+import { removeTrailingSlash } from "src/lib/helpers";
 
 const RegisterHit = async (req: NextApiRequest, res: NextApiResponse) => {
   const q = faunadb.query;
@@ -9,7 +10,7 @@ const RegisterHit = async (req: NextApiRequest, res: NextApiResponse) => {
     secret: process.env.FAUNA_SECRET_KEY,
   });
 
-  const { slug } = req.query;
+  const slug = req.query.slug as string;
 
   if (!slug) {
     return res.status(400).json({
@@ -19,20 +20,20 @@ const RegisterHit = async (req: NextApiRequest, res: NextApiResponse) => {
 
   // Check and see if the doc exists.
   const doesDocExist = await client.query(
-    q.Exists(q.Match(q.Index("hits_by_slug"), slug))
+    q.Exists(q.Match(q.Index("hits_by_slug"), removeTrailingSlash(slug)))
   );
 
   if (!doesDocExist) {
     await client.query(
       q.Create(q.Collection("hits"), {
-        data: { slug: slug, hits: 0 },
+        data: { slug: removeTrailingSlash(slug), hits: 0 },
       })
     );
   }
 
   // Fetch the document for-real
   const document: any = await client.query(
-    q.Get(q.Match(q.Index("hits_by_slug"), slug))
+    q.Get(q.Match(q.Index("hits_by_slug"), removeTrailingSlash(slug)))
   );
 
   // Don't increment in development and preview environments

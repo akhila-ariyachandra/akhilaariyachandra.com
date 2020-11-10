@@ -5,3 +5,6 @@ dayjs.extend(advancedFormat);
 
 export const formatDate = (date: string): string =>
   dayjs(date).format("Do MMMM YYYY");
+
+export const removeTrailingSlash = (route: string): string =>
+  route.replace(/\/$/, "");
