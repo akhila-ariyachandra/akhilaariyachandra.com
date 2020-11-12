@@ -48,6 +48,7 @@
     "autoprefixer": "^10.0.1",
     "cross-env": "^7.0.2",
     "minify-xml": "^2.1.5",
+    "next-compose-plugins": "^2.2.1",
     "postcss-import": "^13.0.0",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.1.2",
