@@ -1,5 +1,7 @@
 import { FunctionComponent } from "react";
 
+import styles from "src/components/code/Title.module.scss";
+
 type Props = {
   text: string;
 };
@@ -7,14 +9,7 @@ type Props = {
 const Title: FunctionComponent<Props> = ({ text, children }) => {
   return (
     <div className="flex justify-between items-center bg-green-300 px-5 py-3">
-      <style jsx>{`
-        p {
-          margin-top: 0 !important;
-          margin-bottom: 0 !important;
-        }
-      `}</style>
-
-      <p className="text-black font-bold">{text}</p>
+      <p className={styles.codeBlockTitle}>{text}</p>
 
       {children ? (
         <div className="text-white text-base sm:text-lg bg-green-700 px-2 py-1 rounded">

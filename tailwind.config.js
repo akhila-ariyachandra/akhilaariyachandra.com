@@ -9,6 +9,7 @@ module.exports = {
     "./pages/**/*.tsx",
     "./src/components/**/*.tsx",
     "./src/components/**/*.js",
+    "./src/components/**/*.scss",
     "./src/styles/**/*.scss",
   ],
   theme: {
