@@ -5,28 +5,16 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
 
-module.exports = withPlugins(
+module.exports = withPlugins([
+  [withBundleAnalyzer],
   [
-    [withBundleAnalyzer],
-    [
-      withPWA,
-      {
-        pwa: {
-          dest: "public",
-          runtimeCaching,
-          disable: process.env.NODE_ENV === "development",
-        },
+    withPWA,
+    {
+      pwa: {
+        dest: "public",
+        runtimeCaching,
+        disable: process.env.NODE_ENV === "development",
       },
-    ],
-  ],
-  {
-    async rewrites() {
-      return [
-        {
-          source: "/service-worker.js",
-          destination: "/_next/static/service-worker.js",
-        },
-      ];
     },
-  }
-);
+  ],
+]);
