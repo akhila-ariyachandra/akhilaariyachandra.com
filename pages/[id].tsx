@@ -83,6 +83,8 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
       </div>
 
       <Comment />
+
+      {/* Further reading */}
     </Layout>
   );
 };

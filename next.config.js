@@ -1,5 +1,6 @@
 const withPlugins = require("next-compose-plugins");
-const withOffline = require("next-offline");
+const withPWA = require("next-pwa");
+const runtimeCaching = require("next-pwa/cache");
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
@@ -8,23 +9,11 @@ module.exports = withPlugins(
   [
     [withBundleAnalyzer],
     [
-      withOffline,
+      withPWA,
       {
-        workboxOpts: {
-          swDest: "static/service-worker.js",
-          runtimeCaching: [
-            {
-              urlPattern: /^https?.*/,
-              handler: "NetworkFirst",
-              options: {
-                cacheName: "offlineCache",
-                expiration: {
-                  maxEntries: 200,
-                },
-              },
-            },
-          ],
-        },
+        dest: "public",
+        runtimeCaching,
+        disable: process.env.NODE_ENV === "development",
       },
     ],
   ],
