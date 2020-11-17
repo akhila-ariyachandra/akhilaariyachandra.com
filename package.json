@@ -38,8 +38,6 @@
     "react-retro-hit-counter": "^1.0.1",
     "remark-external-links": "^8.0.0",
     "sass": "^1.29.0",
-    "swr": "^0.3.8",
-    "unfetch": "^4.2.0",
     "yaml": "^1.10.0"
   },
   "devDependencies": {

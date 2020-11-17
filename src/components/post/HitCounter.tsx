@@ -1,23 +1,20 @@
 import RetroHitCounter from "react-retro-hit-counter";
-import useSWR from "swr";
-import fetch from "unfetch";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState, useEffect } from "react";
 import { useRouter } from "next/router";
-
-const fetcher = (url) => fetch(url).then((r) => r.json());
 
 const HitCounter: FunctionComponent = () => {
   const router = useRouter();
+  const [hits, setHits] = useState<number>(0);
   // Remove query from page URL (due to things like utterances)
   const path = router.asPath.split(/[?#]/)[0];
-  const { data } = useSWR(`/api/register-hit?slug=${path}`, fetcher, {
-    initialData: { hits: 0 },
-    revalidateOnMount: true,
-    revalidateOnFocus: false,
-    revalidateOnReconnect: false,
-  });
 
-  return <RetroHitCounter hits={data.hits} />;
+  useEffect(() => {
+    fetch(`/api/register-hit?slug=${path}`)
+      .then((response) => response.json())
+      .then(({ hits }) => setHits(hits));
+  }, []);
+
+  return <RetroHitCounter hits={hits} />;
 };
 
 export default HitCounter;
