@@ -1,4 +1,3 @@
-import RetroHitCounter from "react-retro-hit-counter";
 import { FunctionComponent, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
@@ -14,7 +13,9 @@ const HitCounter: FunctionComponent = () => {
       .then(({ hits }) => setHits(hits));
   }, []);
 
-  return <RetroHitCounter hits={hits} />;
+  return (
+    <p className="text-center text-2xl sm:text-3xl font-semibold my-4">{`${hits} views`}</p>
+  );
 };
 
 export default HitCounter;

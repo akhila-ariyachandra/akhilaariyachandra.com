@@ -78,9 +78,7 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
 
       <div className="prose sm:prose-xl p-4">{content}</div>
 
-      <div className="flex justify-center my-6">
-        <HitCounter />
-      </div>
+      <HitCounter />
 
       <Comment />
 
