@@ -10,7 +10,10 @@ const RegisterHit = async (req: NextApiRequest, res: NextApiResponse) => {
     secret: process.env.FAUNA_SECRET_KEY,
   });
 
-  const slug = req.query.slug as string;
+  const {
+    query: { id },
+  } = req;
+  const slug = `/${id}`;
 
   if (!slug) {
     return res.status(400).json({
@@ -20,20 +23,20 @@ const RegisterHit = async (req: NextApiRequest, res: NextApiResponse) => {
 
   // Check and see if the doc exists.
   const doesDocExist = await client.query(
-    q.Exists(q.Match(q.Index("hits_by_slug"), removeTrailingSlash(slug)))
+    q.Exists(q.Match(q.Index("hits_by_slug"), slug))
   );
 
   if (!doesDocExist) {
     await client.query(
       q.Create(q.Collection("hits"), {
-        data: { slug: removeTrailingSlash(slug), hits: 0 },
+        data: { slug, hits: 0 },
       })
     );
   }
 
   // Fetch the document for-real
   const document: any = await client.query(
-    q.Get(q.Match(q.Index("hits_by_slug"), removeTrailingSlash(slug)))
+    q.Get(q.Match(q.Index("hits_by_slug"), slug))
   );
 
   // Don't increment in development and preview environments

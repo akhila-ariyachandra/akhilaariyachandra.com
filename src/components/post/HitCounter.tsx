@@ -4,13 +4,13 @@ import { useRouter } from "next/router";
 const HitCounter: FunctionComponent = () => {
   const router = useRouter();
   const [hits, setHits] = useState<number>(0);
-  // Remove query from page URL (due to things like utterances)
-  const path = router.asPath.split(/[?#]/)[0];
 
   useEffect(() => {
-    fetch(`/api/register-hit?slug=${path}`)
-      .then((response) => response.json())
-      .then(({ hits }) => setHits(hits));
+    if (router.query.id) {
+      fetch(`/api/hit/${router.query.id}`)
+        .then((response) => response.json())
+        .then(({ hits }) => setHits(hits));
+    }
   }, []);
 
   return (
