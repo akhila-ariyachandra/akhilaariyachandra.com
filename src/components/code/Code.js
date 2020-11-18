@@ -3,6 +3,8 @@ import theme from "prism-react-renderer/themes/nightOwl";
 import rangeParser from "parse-numeric-range";
 import Highlight, { defaultProps } from "prism-react-renderer";
 
+import styles from "src/components/code/Code.module.scss";
+
 const getParams = (className = ``) => {
   const [lang = ``, params = ``] = className.split(`:`);
   return [lang.split(`language-`).pop().split(`{`).shift()].concat(
@@ -33,10 +35,8 @@ const SyntaxHighlight = ({ children }) => {
   const shouldHighlightLine = calculateLinesToHighlight(metastring);
 
   return (
-    <div className="code-block">
-      <Title className="code-title" text={title}>
-        {language}
-      </Title>
+    <div className={styles.codeBlock}>
+      <Title text={title}>{language}</Title>
 
       <Highlight
         {...defaultProps}
@@ -45,12 +45,15 @@ const SyntaxHighlight = ({ children }) => {
         language={language}
       >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <div className="next-highlight">
-            <pre className={className} style={{ ...style, ...ifTitle }}>
+          <div className={styles.nextHighlight}>
+            <pre
+              className={`${className} ${styles.prismCode}`}
+              style={{ ...style, ...ifTitle }}
+            >
               {tokens.map((line, i) => {
                 const lineProps = getLineProps({ line, key: i });
                 if (shouldHighlightLine(i)) {
-                  lineProps.className = `${lineProps.className} highlight-line`;
+                  lineProps.className = `${lineProps.className} ${styles.highlightLine}`;
                 }
                 return (
                   <div key={i} {...lineProps}>

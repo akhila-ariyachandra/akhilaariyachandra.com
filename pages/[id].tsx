@@ -11,6 +11,8 @@ import { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import { getAllPostIds, getPostData } from "src/lib/posts";
 import { Post } from "src/lib/types";
 
+import styles from "src/styles/post.module.scss";
+
 const mdxComponents = {
   SpecialBlock,
   pre: (props) => <Code {...props} />,
@@ -35,8 +37,7 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
       />
 
       <div
-        className="my-4 pseudo-full-bleed overflow-hidden"
-        id="banner-container"
+        className={`my-4 pseudo-full-bleed overflow-hidden ${styles.bannerContainer}`}
       >
         <Image
           src={postData.banner}
@@ -76,7 +77,7 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
         </p>
       ) : null}
 
-      <div className="prose sm:prose-xl p-4">{content}</div>
+      <div className={`prose sm:prose-xl p-4 ${styles.prose}`}>{content}</div>
 
       <HitCounter />
 

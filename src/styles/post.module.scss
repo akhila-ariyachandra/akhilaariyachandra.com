@@ -9,12 +9,7 @@
   }
 }
 
-.post-image {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-}
-
-#banner-container {
+.bannerContainer {
   & > div {
     @screen lg {
       @apply rounded-lg;

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { FunctionComponent } from "react";
 
+import styles from "src/components/post/PostImage.module.scss";
+
 type Props = {
   src: string;
   width: number;
@@ -15,7 +17,7 @@ const PostImage: FunctionComponent<Props> = ({ src, width, height, title }) => {
         src={src}
         width={width}
         height={height}
-        className="post-image"
+        className={styles.postImage}
         alt={title}
         title={title}
         layout="responsive"
