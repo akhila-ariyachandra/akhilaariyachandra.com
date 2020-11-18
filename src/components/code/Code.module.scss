@@ -3,37 +3,3 @@
   @apply overflow-hidden;
   @apply my-5;
 }
-
-.nextHighlight {
-  background-color: rgb(1, 22, 39);
-  @apply overflow-auto;
-}
-
-.nextHighlight pre[class*="language-"] {
-  @apply bg-transparent;
-  @apply float-left;
-  @apply min-w-full;
-}
-
-.highlightLine {
-  @apply bg-gray-800;
-  @apply block;
-  @apply -ml-4;
-  @apply -mr-4;
-  @apply pr-4;
-  @apply pl-3;
-  @apply border-l-4;
-  @apply border-solid;
-  @apply border-green-600;
-
-  @screen sm {
-    @apply -ml-6;
-    @apply -mr-6;
-    @apply pl-5;
-  }
-}
-
-.prismCode {
-  border-top-left-radius: 0 !important;
-  border-top-right-radius: 0 !important;
-}
