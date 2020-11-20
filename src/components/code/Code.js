@@ -1,7 +1,10 @@
 import dynamic from "next/dynamic";
 import Title from "src/components/code/Title";
-const SyntaxHighlight = dynamic(() =>
-  import("src/components/code/SyntaxHighlight")
+import LazyLoad from "react-lazyload";
+import Loading from "src/components/code/Loading";
+const SyntaxHighlight = dynamic(
+  () => import("src/components/code/SyntaxHighlight"),
+  { ssr: false }
 );
 
 import styles from "src/components/code/Code.module.scss";
@@ -20,14 +23,22 @@ const getParams = (className = ``) => {
 const Code = ({ children }) => {
   const className = children.props.className || "";
   const [language, { title = `` }] = getParams(className);
+  const noOfLines = children.props.children.trim().split(/\r\n|\r|\n/).length;
 
   return (
     <div className={styles.codeBlock}>
       <Title text={title}>{language}</Title>
 
-      <SyntaxHighlight title={title} language={language}>
-        {children}
-      </SyntaxHighlight>
+      <LazyLoad
+        height={`${noOfLines * 1.74 + 2 * 0.984}em`}
+        placeholder={<Loading noOfLines={noOfLines} />}
+        once
+        offset={100}
+      >
+        <SyntaxHighlight title={title} language={language}>
+          {children}
+        </SyntaxHighlight>
+      </LazyLoad>
     </div>
   );
 };
