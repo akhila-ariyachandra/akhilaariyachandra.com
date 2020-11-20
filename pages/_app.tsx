@@ -1,7 +1,7 @@
 import ProgressBar from "@badrap/bar-of-progress";
 import Router, { useRouter } from "next/router";
 import { useEffect } from "react";
-import { AppProps } from "next/app";
+import { AppProps, NextWebVitalsMetric } from "next/app";
 import { ThemeProvider } from "next-themes";
 import * as gtag from "src/lib/gtag";
 
@@ -38,6 +38,21 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <Component {...pageProps} />
     </ThemeProvider>
   );
+};
+
+export const reportWebVitals = ({
+  id,
+  name,
+  label,
+  value,
+}: NextWebVitalsMetric) => {
+  window.gtag("event", name, {
+    event_category:
+      label === "web-vital" ? "Web Vitals" : "Next.js custom metric",
+    value: Math.round(name === "CLS" ? value * 1000 : value), // values must be integers
+    event_label: id, // id unique to current page load
+    non_interaction: true, // avoids affecting bounce rate.
+  });
 };
 
 export default MyApp;
