@@ -8,7 +8,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 4000",
+    "dev": "next dev",
     "analyze": "cross-env ANALYZE=true next build",
     "prebuild": "node scripts/pre-build.js",
     "build": "next build",
@@ -20,7 +20,6 @@
     "@fec/remark-a11y-emoji": "^2.0.0",
     "@next/bundle-analyzer": "^10.0.2",
     "@silvenon/remark-smartypants": "^1.0.0",
-    "@tailwindcss/typography": "^0.2.0",
     "dayjs": "^1.9.5",
     "faunadb": "^4.0.0",
     "feed": "^4.2.1",
@@ -43,17 +42,18 @@
     "yaml": "^1.10.0"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.3.1",
     "@types/gtag.js": "^0.0.3",
     "@types/node": "^14.14.9",
-    "@types/react": "^16.9.55",
-    "autoprefixer": "^10.0.1",
+    "@types/react": "^17.0.0",
+    "autoprefixer": "^10.0.2",
     "cross-env": "^7.0.2",
     "minify-xml": "^2.3.1",
     "next-compose-plugins": "^2.2.1",
-    "postcss-import": "^13.0.0",
+    "postcss": "^8.1.8",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.2.0",
-    "tailwindcss": "^1.9.2",
+    "tailwindcss": "^2.0.1",
     "typescript": "^4.1.2"
   }
 }

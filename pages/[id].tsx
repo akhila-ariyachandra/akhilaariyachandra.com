@@ -82,8 +82,6 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
       <HitCounter />
 
       <Comment />
-
-      {/* Further reading */}
     </Layout>
   );
 };

@@ -5,13 +5,13 @@
 :root {
   --text: black;
   --background: white;
-  --primary: #2f855a;
+  --primary: rgba(4, 120, 87, 1);
 }
 
 [data-theme="dark"] {
   --text: white;
-  --background: #1a202c;
-  --primary: #38a169;
+  --background: rgba(17, 24, 39, 1);
+  --primary: rgba(5, 150, 105, 1);
 }
 
 html {
@@ -43,6 +43,10 @@ body {
 
   #header {
     background-color: var(--background);
+  }
+
+  * {
+    @apply antialiased;
   }
 }
 
