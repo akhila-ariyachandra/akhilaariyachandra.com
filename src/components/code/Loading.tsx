@@ -1,25 +1,15 @@
-import { FunctionComponent, Fragment } from "react";
+import { FunctionComponent } from "react";
 import { FaCog } from "react-icons/fa";
 
-import styles from "src/components/code/Loading.module.scss";
-
 type Props = {
-  noOfLines?: number;
+  height: number | string;
 };
 
-const Loading: FunctionComponent<Props> = ({ noOfLines = 1 }) => {
+const Loading: FunctionComponent<Props> = ({ height }) => {
   return (
-    <Fragment>
-      <style jsx>{`
-        div {
-          height: ${noOfLines * 1.74}em;
-        }
-      `}</style>
-
-      <div className={styles.loadingContainer}>
-        <FaCog className="text-white animate-spin" />
-      </div>
-    </Fragment>
+    <div className="flex justify-center items-center" style={{ height }}>
+      <FaCog className="text-white animate-spin" />
+    </div>
   );
 };
 
