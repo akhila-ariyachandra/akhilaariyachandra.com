@@ -1,12 +1,8 @@
-import dynamic from "next/dynamic";
 import useMedia from "use-media";
 import Title from "src/components/code/Title";
 import LazyLoad from "react-lazyload";
 import Loading from "src/components/code/Loading";
-const SyntaxHighlight = dynamic(() =>
-  import("src/components/code/SyntaxHighlight")
-);
-
+import SyntaxHighlight from "src/components/code/SyntaxHighlight";
 import styles from "src/components/code/Code.module.scss";
 
 const getParams = (className = ``) => {
