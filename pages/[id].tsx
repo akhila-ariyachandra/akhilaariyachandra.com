@@ -17,6 +17,7 @@ const mdxComponents = {
   SpecialBlock,
   pre: (props) => <Code {...props} />,
   PostImage,
+  Image,
 };
 
 type Props = {
