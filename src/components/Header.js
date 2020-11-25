@@ -1,13 +1,15 @@
 import Link from "next/link";
 import config from "src/config";
+import useBoop from "src/hooks/use-boop";
 import { FaSun, FaMoon } from "react-icons/fa";
-import { FunctionComponent } from "react";
 import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
+import { animated } from "react-spring";
 
-const Header: FunctionComponent = () => {
+const Header = () => {
   const router = useRouter();
   const { theme, setTheme } = useTheme();
+  const [style, trigger] = useBoop({ rotation: 20, timing: 200 });
 
   const handleTheme = () => {
     if (theme === "light") {
@@ -23,13 +25,15 @@ const Header: FunctionComponent = () => {
       className="sticky top-0 transition-colors duration-200 z-40 full-bleed wrapper"
     >
       <div className="flex flex-row-reverse justify-between items-center p-4">
-        <button
+        <animated.button
           onClick={handleTheme}
           className="text-xl sm:text-2xl focus:outline-none"
           aria-label="Theme Switcher"
+          style={style}
+          onMouseEnter={trigger}
         >
           {theme === "light" ? <FaMoon /> : <FaSun />}
-        </button>
+        </animated.button>
 
         {router.asPath !== "/" ? (
           <Link href="/">
