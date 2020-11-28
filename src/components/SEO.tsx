@@ -7,9 +7,15 @@ type Props = {
   title?: string;
   description?: string;
   image?: string;
+  skipIndex?: boolean;
 };
 
-const SEO: FunctionComponent<Props> = ({ title, description, image }) => {
+const SEO: FunctionComponent<Props> = ({
+  title,
+  description,
+  image,
+  skipIndex,
+}) => {
   const router = useRouter();
 
   const titleTemplate = router.asPath === "/" ? "%s" : `%s | ${config.title}`;
@@ -27,6 +33,8 @@ const SEO: FunctionComponent<Props> = ({ title, description, image }) => {
           content: process.env.NEXT_PUBLIC_ILP_PAYMENT_POINTER,
         },
       ]}
+      noindex={skipIndex}
+      nofollow={skipIndex}
     />
   );
 };
@@ -35,6 +43,7 @@ SEO.defaultProps = {
   title: config.title,
   description: config.description,
   image: "/cover-pic.jpg",
+  skipIndex: false,
 };
 
 export default SEO;

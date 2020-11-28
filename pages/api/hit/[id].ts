@@ -1,7 +1,6 @@
 import faunadb from "faunadb";
 import config from "src/config";
 import { NextApiRequest, NextApiResponse } from "next";
-import { removeTrailingSlash } from "src/lib/helpers";
 
 const RegisterHit = async (req: NextApiRequest, res: NextApiResponse) => {
   const q = faunadb.query;
