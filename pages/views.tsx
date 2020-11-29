@@ -2,7 +2,7 @@ import faunadb from "faunadb";
 import Layout from "src/components/Layout";
 import SEO from "src/components/SEO";
 import Link from "next/link";
-import { NextPage, GetStaticProps } from "next";
+import { NextPage, GetServerSideProps } from "next";
 import { getSortedPostsData } from "src/lib/posts";
 
 type Props = {
@@ -49,7 +49,7 @@ const Views: NextPage<Props> = ({ postViews }) => {
 
 export default Views;
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const allPostsData = await getSortedPostsData();
 
   const q = faunadb.query;
@@ -74,6 +74,5 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: { postViews },
-    revalidate: 1,
   };
 };
