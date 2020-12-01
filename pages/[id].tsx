@@ -1,3 +1,4 @@
+import React from "react";
 import Layout from "src/components/Layout";
 import SEO from "src/components/SEO";
 import SpecialBlock from "src/components/post/SpecialBlock";
@@ -9,6 +10,7 @@ import Comment from "src/components/post/Comment";
 import hydrate from "next-mdx-remote/hydrate";
 import { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import { getAllPostIds, getPostData } from "src/lib/posts";
+import { useMonetizationState } from "react-web-monetization";
 import { Post } from "src/lib/types";
 
 import styles from "src/styles/post.module.scss";
@@ -25,6 +27,8 @@ type Props = {
 };
 
 const BlogPost: NextPage<Props> = ({ postData }) => {
+  const monetization = useMonetizationState();
+
   const content = hydrate(postData.content, {
     components: mdxComponents,
   });
@@ -79,6 +83,28 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
       <div className={`prose sm:prose-xl p-4 ${styles.prose}`}>{content}</div>
 
       <HitCounter />
+
+      {monetization.state ? (
+        <p className="text-center text-xl sm:text-2xl font-semibold my-4 px-4">
+          {monetization.state === "stopped" && "Stopped"}
+          {monetization.state === "pending" && "Loading..."}
+          {monetization.state === "started" &&
+            "Thank you for supporting this site!"}
+        </p>
+      ) : (
+        <p className="text-center text-xl sm:text-2xl font-semibold my-4 px-4">
+          Sign up for{" "}
+          <a
+            href="https://coil.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold"
+          >
+            Coil
+          </a>{" "}
+          to support this site!
+        </p>
+      )}
 
       <Comment />
     </Layout>
