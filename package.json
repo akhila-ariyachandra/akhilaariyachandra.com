@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@badrap/bar-of-progress": "^0.1.1",
-    "@fec/remark-a11y-emoji": "^2.0.0",
+    "@fec/remark-a11y-emoji": "^3.0.0",
     "@next/bundle-analyzer": "^10.0.3",
     "@silvenon/remark-smartypants": "^1.0.0",
     "dayjs": "^1.9.5",
@@ -47,7 +47,7 @@
     "@types/react": "^17.0.0",
     "autoprefixer": "^10.0.4",
     "cross-env": "^7.0.2",
-    "minify-xml": "^2.3.1",
+    "minify-xml": "^2.4.0",
     "next-compose-plugins": "^2.2.1",
     "postcss": "^8.1.10",
     "postcss-preset-env": "^6.7.0",
