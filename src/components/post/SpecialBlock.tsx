@@ -18,8 +18,8 @@ const SpecialBlock: FunctionComponent<Props> = ({ children, type }) => {
       Icon = FaExclamationCircle;
       break;
     case "info":
-      wrapperClass = wrapperClass + "border-yellow-600";
-      iconClass = iconClass + "text-yellow-600";
+      wrapperClass = wrapperClass + "border-yellow-400";
+      iconClass = iconClass + "text-yellow-400";
       Icon = FaLightbulb;
       break;
     default:
