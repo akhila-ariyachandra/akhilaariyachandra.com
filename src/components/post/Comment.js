@@ -19,7 +19,12 @@ const Comment = () => {
     }
   }, []);
 
-  return <div ref={commentBox} className="bg-white p-2 m-4 rounded-lg" />;
+  return (
+    <div
+      ref={commentBox}
+      className="bg-white p-2 m-4 sm:rounded-lg full-bleed max-w-screen-sm mx-auto"
+    />
+  );
 };
 
 export default Comment;
