@@ -1,9 +1,8 @@
 import ProgressBar from "@badrap/bar-of-progress";
-import Router, { useRouter } from "next/router";
-import { useEffect } from "react";
-import { AppProps, NextWebVitalsMetric } from "next/app";
+import Router from "next/router";
+import { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
-import * as gtag from "src/lib/gtag";
+/* import * as gtag from "src/lib/gtag"; */
 
 import "src/styles/index.scss";
 
@@ -19,7 +18,7 @@ Router.events.on("routeChangeComplete", progress.finish);
 Router.events.on("routeChangeError", progress.finish);
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-  const router = useRouter();
+  /* const router = useRouter();
 
   useEffect(() => {
     const handleRouteChange = (url: URL) => {
@@ -31,7 +30,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     return () => {
       router.events.off("routeChangeComplete", handleRouteChange);
     };
-  }, [router.events]);
+  }, [router.events]); */
 
   return (
     <ThemeProvider defaultTheme="dark">
@@ -40,7 +39,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   );
 };
 
-export const reportWebVitals = ({
+/* export const reportWebVitals = ({
   id,
   name,
   label,
@@ -53,6 +52,6 @@ export const reportWebVitals = ({
     event_label: id, // id unique to current page load
     non_interaction: true, // avoids affecting bounce rate.
   });
-};
+}; */
 
 export default MyApp;

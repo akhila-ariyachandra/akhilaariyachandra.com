@@ -1,5 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import { GA_TRACKING_ID } from "src/lib/gtag";
+/* import { GA_TRACKING_ID } from "src/lib/gtag"; */
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -41,7 +41,7 @@ class MyDocument extends Document {
           <meta name="theme-color" content="#38a169" />
 
           {/* Global Site Tag (gtag.js) - Google Analytics */}
-          <script
+          {/* <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
           />
@@ -56,7 +56,7 @@ class MyDocument extends Document {
               });
           `,
             }}
-          />
+          /> */}
         </Head>
 
         <body>
