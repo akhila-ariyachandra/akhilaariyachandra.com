@@ -3,8 +3,10 @@ title: Create a serverless API with TypeScript, GraphQL and MongoDB
 date: "2019-11-20"
 description: "Let's create a Serverless GraphQL API and deploy it using Vercel"
 banner: "/create-a-serverless-api-with-typescript-graphql-and-mongodb/banner.png"
-updated: "2020-07-30"
+updated: "2020-12-04"
 ---
+
+> Updated on 4th December, 2020 to update [ZEIT's change to Vercel](https://vercel.com/blog/zeit-is-now-vercel).
 
 > Updated on 30th July, 2020 to show that this can be used in [Next.js API Routes](https://nextjs.org/docs/api-routes/introduction).
 
@@ -17,8 +19,8 @@ In this post we'll create a GraphQL API to create, view and delete notes that we
 First [Vercel](https://vercel.com/download) will need be downloaded, installed and logged into.
 
 ```shell
-npm i -g now
-now login
+npm i -g vercel
+vercel login
 ```
 
 The nice thing about using **Vercel** for development is that we don't have to worry about manually configuring TypeScript.
@@ -203,7 +205,7 @@ First let's install the dependencies.
 npm install apollo-server-micro dayjs graphql graphql-iso-date
 ```
 
-Next create the folder `api` in the project root and in it create the file `graphql.ts`. **Now** will expose the serverless function in the file as the endpoint **/api/graphql**. The GraphQL function will be created using [Apollo Server](https://www.apollographql.com/docs/apollo-server/). Since we're doing a serverless version we'll be using [apollo-server-micro](https://www.npmjs.com/package/apollo-server-micro).
+Next create the folder `api` in the project root and in it create the file `graphql.ts`. **Vercel** will expose the serverless function in the file as the endpoint **/api/graphql**. The GraphQL function will be created using [Apollo Server](https://www.apollographql.com/docs/apollo-server/). Since we're doing a serverless version we'll be using [apollo-server-micro](https://www.npmjs.com/package/apollo-server-micro).
 
 Then import `ApolloServer` from `apollo-server-micro` and the function to create the database connection.
 
@@ -695,13 +697,13 @@ export default [noteResolver, customResolver];
 To run the project locally first you need to link it to a **Vercel** project.
 
 ```shell
-now
+vercel link
 ```
 
-Then run `now dev` to start the API locally.
+Then run `vercel dev` to start the API locally.
 
 ```shell
-now dev
+vercel dev
 ```
 
 If you visit `http://localhost:3000/api/graphql` you can see the GraphQL Playground.
@@ -711,7 +713,7 @@ If you visit `http://localhost:3000/api/graphql` you can see the GraphQL Playgro
 First we need to upload the database path as an [Environment Variable](https://vercel.com/blog/environment-variables-ui).
 
 ```shell
-now env add
+vercel env add
 ```
 
 Name the variable `DB_PATH` and make sure you make to available for all three environments (**Production**, **Preview** and **Development**).
@@ -719,7 +721,7 @@ Name the variable `DB_PATH` and make sure you make to available for all three en
 Then all that's left to do is to deploy to _Vercel_.
 
 ```shell
-now
+vercel
 ```
 
 The GraphQL Playground should be visible in the `/api/graphql` route of the URL returned.
