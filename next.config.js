@@ -5,16 +5,32 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
 
-module.exports = withPlugins([
-  [withBundleAnalyzer],
+module.exports = withPlugins(
   [
-    withPWA,
-    {
-      pwa: {
-        dest: "public",
-        runtimeCaching,
-        disable: process.env.NODE_ENV === "development",
+    [withBundleAnalyzer],
+    [
+      withPWA,
+      {
+        pwa: {
+          dest: "public",
+          runtimeCaching,
+          disable: process.env.NODE_ENV === "development",
+        },
       },
-    },
+    ],
   ],
-]);
+  {
+    async rewrites() {
+      return [
+        {
+          source: "/bee.js",
+          destination: "https://cdn.splitbee.io/sb.js",
+        },
+        {
+          source: "/_hive/:slug",
+          destination: "https://hive.splitbee.io/:slug",
+        },
+      ];
+    },
+  }
+);
