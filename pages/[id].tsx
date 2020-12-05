@@ -50,6 +50,7 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
           title={postData.title}
           width={1200}
           height={630}
+          priority
         />
       </div>
 
