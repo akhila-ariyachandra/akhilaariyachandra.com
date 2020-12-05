@@ -37,6 +37,7 @@
     "react-spring": "^8.0.27",
     "react-web-monetization": "^0.0.13",
     "remark-external-links": "^8.0.0",
+    "remark-slug": "^6.0.0",
     "sass": "^1.29.0",
     "sharp": "^0.26.3",
     "yaml": "^1.10.0"

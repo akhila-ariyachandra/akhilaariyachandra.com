@@ -5,6 +5,7 @@ import renderToString from "next-mdx-remote/render-to-string";
 import smartypants from "@silvenon/remark-smartypants";
 import a11yEmoji from "@fec/remark-a11y-emoji";
 import externalLinks from "remark-external-links";
+import slug from "remark-slug";
 import SpecialBlock from "src/components/post/SpecialBlock";
 import PostImage from "src/components/post/PostImage";
 import Code from "src/components/code/Code";
@@ -108,7 +109,7 @@ export const getPostData = async (id): Promise<Post> => {
   const mdxSource = await renderToString(content, {
     components: mdxComponents,
     mdxOptions: {
-      remarkPlugins: [smartypants, a11yEmoji, externalLinks],
+      remarkPlugins: [smartypants, a11yEmoji, externalLinks, slug],
     },
     scope: data,
   });
