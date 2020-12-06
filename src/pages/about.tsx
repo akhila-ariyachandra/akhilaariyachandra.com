@@ -27,6 +27,7 @@ const About: NextPage<Props> = ({ source }) => {
           className="lg:rounded-lg"
           width={1200}
           height={630}
+          priority
         />
       </div>
 
