@@ -38,7 +38,7 @@ const About: NextPage<Props> = ({ source }) => {
 export default About;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const aboutFile = path.join(process.cwd(), "src", "content", "about.mdx");
+  const aboutFile = path.join("content", "about.mdx");
   const fileContents = fs.readFileSync(aboutFile, "utf8");
   const mdxSource = await renderToString(fileContents);
 

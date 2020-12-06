@@ -19,7 +19,7 @@ const Feed = require("feed").Feed;
   };
 
   // Read all the blog posts first
-  const postsDirectory = path.join(process.cwd(), "src", "content", "posts");
+  const postsDirectory = path.join(process.cwd(), "content", "posts");
   const fileNames = fs.readdirSync(postsDirectory);
   const routes = fileNames.map((fileName) => fileName.replace(/\.mdx$/, ""));
 
@@ -60,7 +60,7 @@ const Feed = require("feed").Feed;
   });
 
   // Add posts
-  const postsDirectory = path.join(process.cwd(), "src", "content", "posts");
+  const postsDirectory = path.join(process.cwd(), "content", "posts");
   const fileNames = fs.readdirSync(postsDirectory);
   for (const fileName of fileNames) {
     const id = fileName.replace(/\.mdx$/, "");

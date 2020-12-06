@@ -1,7 +1,7 @@
 module.exports = {
   future: {},
   purge: [
-    "./pages/**/*.tsx",
+    "./src/pages/**/*.tsx",
     "./src/components/**/*.tsx",
     "./src/components/**/*.js",
     "./src/components/**/*.scss",

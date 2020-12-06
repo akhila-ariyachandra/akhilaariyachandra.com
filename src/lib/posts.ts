@@ -21,7 +21,7 @@ export const mdxComponents = {
   Image,
 };
 
-const postsDirectory = path.join(process.cwd(), "src", "content", "posts");
+const postsDirectory = path.join("content", "posts");
 
 export const getSortedPostsData = async (): Promise<Post[]> => {
   // Get file names under /src/posts

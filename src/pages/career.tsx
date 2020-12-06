@@ -61,7 +61,7 @@ const Career: NextPage<Props> = ({ careerList }) => {
 export default Career;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const careerFile = path.join(process.cwd(), "src", "content", "career.yaml");
+  const careerFile = path.join("content", "career.yaml");
   const file = fs.readFileSync(careerFile, "utf8");
   const fileContent = yaml.parse(file);
 
