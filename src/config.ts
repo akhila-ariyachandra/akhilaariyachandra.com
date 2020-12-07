@@ -3,6 +3,7 @@ const config = {
   author: {
     name: `Akhila Ariyachandra`,
     summary: `, Web Developer with a passion for JavaScript and React`,
+    twitter: `@heshan_1010`,
   },
   description: `Web Developer with a passion for JavaScript and React`,
   siteUrl: `https://akhilaariyachandra.com`,

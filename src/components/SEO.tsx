@@ -44,6 +44,10 @@ const SEO: FunctionComponent<Props> = ({
         images: [{ url: `${config.siteUrl}${image}` }],
         article: ogArticle,
       }}
+      twitter={{
+        cardType: "summary_large_image",
+        handle: config.author.twitter,
+      }}
       additionalMetaTags={[
         {
           name: "monetization",
