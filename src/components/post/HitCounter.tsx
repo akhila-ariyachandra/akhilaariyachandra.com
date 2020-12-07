@@ -9,7 +9,10 @@ const HitCounter: FunctionComponent = () => {
     if (router.query.id) {
       fetch(`/api/hit/${router.query.id}`)
         .then((response) => response.json())
-        .then(({ hits }) => setHits(hits));
+        .then(({ hits }) => setHits(hits))
+        .catch(() => {
+          console.error("> Error fetching page view count");
+        });
     }
   }, []);
 
