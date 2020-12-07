@@ -26,7 +26,10 @@ const SEO: FunctionComponent<Props> = ({
       titleTemplate={titleTemplate}
       description={description}
       canonical={`${config.siteUrl}${router.asPath}`}
-      openGraph={{ images: [{ url: `${config.siteUrl}${image}` }] }}
+      openGraph={{
+        type: "website",
+        images: [{ url: `${config.siteUrl}${image}` }],
+      }}
       additionalMetaTags={[
         {
           name: "monetization",
