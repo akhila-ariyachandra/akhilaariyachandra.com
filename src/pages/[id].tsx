@@ -39,6 +39,8 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
         title={postData.title}
         description={postData.description}
         image={postData.banner}
+        date={new Date(postData.date)}
+        updated={postData.updated ? new Date(postData.updated) : undefined}
       />
 
       <div

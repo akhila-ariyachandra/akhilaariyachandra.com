@@ -8,6 +8,8 @@ type Props = {
   description?: string;
   image?: string;
   skipIndex?: boolean;
+  date: Date;
+  updated?: Date;
 };
 
 const SEO: FunctionComponent<Props> = ({
@@ -15,10 +17,21 @@ const SEO: FunctionComponent<Props> = ({
   description,
   image,
   skipIndex,
+  date,
+  updated,
 }) => {
   const router = useRouter();
 
   const titleTemplate = router.asPath === "/" ? "%s" : `%s | ${config.title}`;
+
+  const ogArticle = {};
+  if (date) {
+    ogArticle["publishedTime"] = date;
+    if (updated) {
+      ogArticle["modifiedTime"] = updated;
+    }
+    ogArticle["authors"] = [config.author.name];
+  }
 
   return (
     <NextSeo
@@ -27,8 +40,9 @@ const SEO: FunctionComponent<Props> = ({
       description={description}
       canonical={`${config.siteUrl}${router.asPath}`}
       openGraph={{
-        type: "website",
+        type: date ? "article" : "website",
         images: [{ url: `${config.siteUrl}${image}` }],
+        article: ogArticle,
       }}
       additionalMetaTags={[
         {
