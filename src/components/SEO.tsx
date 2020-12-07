@@ -8,7 +8,7 @@ type Props = {
   description?: string;
   image?: string;
   skipIndex?: boolean;
-  date: Date;
+  date?: Date;
   updated?: Date;
 };
 
