@@ -7,16 +7,14 @@ type Props = {
   title?: string;
   description?: string;
   image?: string;
-  skipIndex?: boolean;
   date?: Date;
   updated?: Date;
 };
 
 const SEO: FunctionComponent<Props> = ({
-  title,
-  description,
-  image,
-  skipIndex,
+  title = config.title,
+  description = config.description,
+  image = "/cover-pic.jpg",
   date,
   updated,
 }) => {
@@ -54,17 +52,8 @@ const SEO: FunctionComponent<Props> = ({
           content: process.env.NEXT_PUBLIC_ILP_PAYMENT_POINTER,
         },
       ]}
-      noindex={skipIndex}
-      nofollow={skipIndex}
     />
   );
-};
-
-SEO.defaultProps = {
-  title: config.title,
-  description: config.description,
-  image: "/cover-pic.jpg",
-  skipIndex: false,
 };
 
 export default SEO;
