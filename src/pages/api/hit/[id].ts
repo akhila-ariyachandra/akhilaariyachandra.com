@@ -1,6 +1,6 @@
 import faunadb from "faunadb";
 import config from "src/config";
-import { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 const RegisterHit = async (req: NextApiRequest, res: NextApiResponse) => {
   const q = faunadb.query;

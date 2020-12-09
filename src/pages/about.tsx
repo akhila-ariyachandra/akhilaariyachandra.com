@@ -6,7 +6,7 @@ import path from "path";
 import config from "src/config";
 import renderToString from "next-mdx-remote/render-to-string";
 import hydrate from "next-mdx-remote/hydrate";
-import { NextPage, GetStaticProps } from "next";
+import type { NextPage, GetStaticProps } from "next";
 
 type Props = {
   source: string;

@@ -5,8 +5,8 @@ import fs from "fs";
 import path from "path";
 import yaml from "yaml";
 import dayjs from "dayjs";
-import { NextPage, GetStaticProps } from "next";
-import { Job } from "src/lib/types";
+import type { NextPage, GetStaticProps } from "next";
+import type { Job } from "src/lib/types";
 
 type Props = {
   careerList: Job[];

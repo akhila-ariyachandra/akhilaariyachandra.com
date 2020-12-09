@@ -1,9 +1,9 @@
 import Layout from "src/components/Layout";
 import SEO from "src/components/SEO";
 import PostLink from "src/components/PostLink";
-import { NextPage, GetStaticProps } from "next";
+import type { NextPage, GetStaticProps } from "next";
+import type { Post } from "src/lib/types";
 import { getSortedPostsData } from "src/lib/posts";
-import { Post } from "src/lib/types";
 
 type Props = {
   allPostsData: Post[];

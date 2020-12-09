@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import type { FunctionComponent } from "react";
 import { FaExclamationCircle, FaLightbulb, FaStickyNote } from "react-icons/fa";
 
 type Props = {

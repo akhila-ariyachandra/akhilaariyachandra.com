@@ -1,5 +1,5 @@
 import config from "src/config";
-import { FunctionComponent } from "react";
+import type { FunctionComponent } from "react";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 

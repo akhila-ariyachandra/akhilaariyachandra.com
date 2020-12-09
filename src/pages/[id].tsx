@@ -8,10 +8,10 @@ import PostImage from "src/components/post/PostImage";
 import Code from "src/components/code/Code";
 import Comment from "src/components/post/Comment";
 import hydrate from "next-mdx-remote/hydrate";
-import { NextPage, GetStaticProps, GetStaticPaths } from "next";
+import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
+import type { Post } from "src/lib/types";
 import { getAllPostIds, getPostData } from "src/lib/posts";
 import { useMonetizationState } from "react-web-monetization";
-import { Post } from "src/lib/types";
 
 import styles from "src/styles/post.module.scss";
 

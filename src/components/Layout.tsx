@@ -1,5 +1,5 @@
 import Header from "src/components/Header";
-import { FunctionComponent } from "react";
+import type { FunctionComponent } from "react";
 import { FaGithub } from "react-icons/fa";
 
 const Layout: FunctionComponent = ({ children }) => {

@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { FunctionComponent } from "react";
-import { Post } from "src/lib/types";
+import type { FunctionComponent } from "react";
+import type { Post } from "src/lib/types";
 
 type Props = {
   post: Post;

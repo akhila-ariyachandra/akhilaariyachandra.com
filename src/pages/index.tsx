@@ -2,6 +2,7 @@ import Layout from "src/components/Layout";
 import SEO from "src/components/SEO";
 import Link from "next/link";
 import config from "src/config";
+import type { NextPage } from "next";
 import {
   FaGithub,
   FaDev,
@@ -9,7 +10,6 @@ import {
   FaTwitterSquare,
   FaRssSquare,
 } from "react-icons/fa";
-import { NextPage } from "next";
 
 const LINKS = [
   { href: "/blog", title: "Blog" },

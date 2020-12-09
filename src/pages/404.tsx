@@ -1,6 +1,6 @@
 import Layout from "src/components/Layout";
 import SEO from "src/components/SEO";
-import { NextPage } from "next";
+import type { NextPage } from "next";
 
 const NotFound: NextPage = () => {
   return (

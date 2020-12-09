@@ -1,6 +1,6 @@
 import ProgressBar from "@badrap/bar-of-progress";
 import Router from "next/router";
-import { AppProps } from "next/app";
+import type { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
 
 import "src/styles/index.scss";
