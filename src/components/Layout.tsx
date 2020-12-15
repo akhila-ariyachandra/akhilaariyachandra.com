@@ -10,11 +10,11 @@ const Layout: FunctionComponent = ({ children }) => {
       {children}
 
       <footer className="p-4 mt-5 flex justify-between items-center space-x-4">
-        <span className="font-normal text-base sm:text-xl">
+        <span className="font-normal text-base text-black dark:text-white">
           © {new Date().getFullYear()}, Built with
           {` `}
           <a
-            className="font-medium"
+            className="font-medium text-green-700 dark:text-green-600"
             href="https://nextjs.org/"
             target="_blank"
             rel="noopener noreferrer"
@@ -23,7 +23,7 @@ const Layout: FunctionComponent = ({ children }) => {
           </a>
           {", "}
           <a
-            className="font-medium"
+            className="font-medium text-green-700 dark:text-green-600"
             href="https://tailwindcss.com/"
             target="_blank"
             rel="noopener noreferrer"
@@ -32,7 +32,7 @@ const Layout: FunctionComponent = ({ children }) => {
           </a>
           {", & "}
           <a
-            className="font-medium"
+            className="font-medium text-green-700 dark:text-green-600"
             href="https://vercel.com/home"
             target="_blank"
             rel="noopener noreferrer"
@@ -45,7 +45,7 @@ const Layout: FunctionComponent = ({ children }) => {
           href="https://github.com/akhila-ariyachandra/akhilaariyachandra.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xl sm:text-2xl"
+          className="text-xl text-green-700 dark:text-green-600"
         >
           <FaGithub />
         </a>

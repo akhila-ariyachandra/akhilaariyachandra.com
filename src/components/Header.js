@@ -6,6 +6,8 @@ import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
 import { animated } from "react-spring";
 
+import styles from "src/components/Header.module.scss";
+
 const Header = () => {
   const router = useRouter();
   const { theme, setTheme } = useTheme();
@@ -21,13 +23,12 @@ const Header = () => {
 
   return (
     <header
-      id="header"
-      className="sticky top-0 transition-colors duration-200 z-40 full-bleed wrapper"
+      className={`sticky top-0 transition-colors duration-200 z-40 full-bleed wrapper bg-white dark:bg-gray-900 bg-opacity-10 ${styles.header}`}
     >
       <div className="flex flex-row-reverse justify-between items-center p-4">
         <animated.button
           onClick={handleTheme}
-          className="text-xl sm:text-2xl focus:outline-none"
+          className="text-xl focus:outline-none text-black dark:text-white"
           aria-label="Theme Switcher"
           style={style}
           onMouseEnter={trigger}
@@ -37,7 +38,7 @@ const Header = () => {
 
         {router.asPath !== "/" ? (
           <Link href="/">
-            <a className="text-xl sm:text-2xl font-medium leading-5 sm:leading-6">
+            <a className="text-xl font-medium leading-5 text-green-700 dark:text-green-600">
               {config.title}
             </a>
           </Link>

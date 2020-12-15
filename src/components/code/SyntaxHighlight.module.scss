@@ -19,12 +19,6 @@
   @apply border-l-4;
   @apply border-solid;
   @apply border-green-600;
-
-  @screen sm {
-    @apply -ml-6;
-    @apply -mr-6;
-    @apply pl-5;
-  }
 }
 
 .prismCode {

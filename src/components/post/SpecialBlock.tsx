@@ -6,9 +6,8 @@ type Props = {
 };
 
 const SpecialBlock: FunctionComponent<Props> = ({ children, type }) => {
-  let wrapperClass =
-    "text-base sm:text-lg my-4 p-4 border-l-4 flex items-start ";
-  let iconClass = "text-2xl sm:text-3xl ";
+  let wrapperClass = "text-base my-4 p-4 border-l-4 flex items-start ";
+  let iconClass = "text-2xl ";
   let Icon = null;
 
   switch (type) {
@@ -32,7 +31,9 @@ const SpecialBlock: FunctionComponent<Props> = ({ children, type }) => {
     <div className={wrapperClass}>
       <Icon className={iconClass} />
 
-      <div className="text-base sm:text-lg flex-1 ml-2 sm:ml-4">{children}</div>
+      <div className="text-base text-black dark:text-white flex-1 ml-2">
+        {children}
+      </div>
     </div>
   );
 };

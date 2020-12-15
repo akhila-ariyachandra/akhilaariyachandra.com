@@ -27,7 +27,7 @@ const Career: NextPage<Props> = ({ careerList }) => {
               src={`/career/${company.image}`}
               alt={company.company}
               title={company.company}
-              className="w-24 h-24 rounded-md sm:w-32 sm:h-32 sm:rounded-lg"
+              className="w-24 h-24 rounded-md"
               width={128}
               height={128}
             />
@@ -36,17 +36,17 @@ const Career: NextPage<Props> = ({ careerList }) => {
               href={company.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-2xl sm:text-3xl font-semibold text-center"
+              className="text-2xl font-semibold text-center text-green-700 dark:text-green-600"
             >
               {company.company}
             </a>
 
             {company.positions.map((position) => (
               <div key={position.title}>
-                <p className="text-xl sm:text-2xl font-medium text-center">
+                <p className="text-xl font-medium text-center text-black dark:text-white">
                   {position.title}
                 </p>
-                <p className="text-lg sm:text-xl font-normal text-center">
+                <p className="text-lg font-normal text-center text-black dark:text-white">
                   {position.period}
                 </p>
               </div>

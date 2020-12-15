@@ -17,7 +17,9 @@ const Blog: NextPage<Props> = ({ allPostsData }) => {
         description="A blog about Javascript, React and Web Development"
       />
 
-      <h1 className="text-4xl sm:text-5xl font-bold my-10 mx-4">Blog</h1>
+      <h1 className="text-4xl font-bold my-10 mx-4 text-black dark:text-white">
+        Blog
+      </h1>
 
       <section className="grid grid-cols-1 gap-4 mr-4">
         {allPostsData.map(({ id, date, title, formattedDate }) => (

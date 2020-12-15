@@ -42,7 +42,7 @@ const SocialLink = ({ site, link }) => {
 
   return (
     <a
-      className="text-3xl sm:text-4xl"
+      className="text-3xl text-green-700 dark:text-green-600"
       href={link}
       target="_blank"
       rel="noopener noreferrer"
@@ -59,14 +59,20 @@ const Index: NextPage = () => {
       <SEO />
 
       <div className="px-4 space-y-4">
-        <h1 className="text-4xl sm:text-5xl font-black">{config.title}</h1>
+        <h1 className="text-4xl font-black text-black dark:text-white">
+          {config.title}
+        </h1>
 
-        <p className="text-lg sm:text-xl font-medium">{config.description}</p>
+        <p className="text-lg font-medium text-black dark:text-white">
+          {config.description}
+        </p>
 
         <nav className="flex flex-row space-x-3">
           {LINKS.map((link) => (
             <Link href={link.href} key={link.href}>
-              <a className="text-3xl sm:text-4xl font-medium">{link.title}</a>
+              <a className="text-3xl font-medium text-green-700 dark:text-green-600">
+                {link.title}
+              </a>
             </Link>
           ))}
         </nav>

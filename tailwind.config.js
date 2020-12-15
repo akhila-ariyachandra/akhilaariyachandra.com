@@ -7,54 +7,37 @@ module.exports = {
     "./src/components/**/*.scss",
     "./src/styles/**/*.scss",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       typography: (theme) => ({
         DEFAULT: {
           css: {
-            color: "var(--text)",
-            strong: {
-              color: "var(--primary)",
+            color: theme("colors.black"),
+            "strong,a,code": {
+              color: theme("colors.green.700"),
             },
-            h1: {
-              color: "var(--text)",
+            "h1,h2,h3,h4,h5,h6,blockquote,th": {
+              color: theme("colors.black"),
             },
-            h2: {
-              color: "var(--text)",
+          },
+        },
+        dark: {
+          css: {
+            color: theme("colors.white"),
+            "strong,a,code": {
+              color: theme("colors.green.600"),
             },
-            h3: {
-              color: "var(--text)",
-            },
-            h4: {
-              color: "var(--text)",
-            },
-            h5: {
-              color: "var(--text)",
-            },
-            h6: {
-              color: "var(--text)",
-            },
-            a: {
-              color: "var(--primary)",
-            },
-            code: {
-              color: "var(--primary)",
-            },
-            blockquote: {
-              color: "var(--text)",
-            },
-            th: {
-              color: "var(--text)",
+            "h1,h2,h3,h4,h5,h6,blockquote,th": {
+              color: theme("colors.white"),
             },
           },
         },
       }),
     },
   },
-  variants: {},
-  plugins: [
-    require("@tailwindcss/typography")({
-      modifiers: ["xl"],
-    }),
-  ],
+  variants: {
+    typography: ["dark"],
+  },
+  plugins: [require("@tailwindcss/typography")],
 };

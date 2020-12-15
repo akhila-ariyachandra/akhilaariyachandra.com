@@ -8,9 +8,11 @@ const NotFound: NextPage = () => {
       <SEO title="404: Not Found" />
 
       <div className="p-4">
-        <h1 className="text-3xl sm:text-4xl font-semibold">Not Found</h1>
+        <h1 className="text-3xl text-black dark:text-white font-semibold">
+          Not Found
+        </h1>
 
-        <p className="text-lg sm:text-xl font-base">
+        <p className="text-lg text-black dark:text-white font-base">
           You just hit a route that doesn&#39;t exist... the sadness.{" "}
           <span role="img" aria-label="Sad Emoji">
             😢

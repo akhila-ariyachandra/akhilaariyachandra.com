@@ -57,51 +57,54 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
       </div>
 
       {postData.photographer && postData.unsplash_link ? (
-        <p className="text-base sm:text-xlg font-medium text-center px-4 my-2">
+        <p className="text-base text-black dark:text-white font-medium text-center px-4 my-2">
           {"Photo by "}
           <a
             href={postData.unsplash_link}
             target="_blank"
             rel="noopener noreferrer"
+            className="text-green-700 dark:text-green-600"
           >
             {postData.photographer}
           </a>
         </p>
       ) : null}
 
-      <h1 className="pseudo-full-bleed text-4xl sm:text-5xl font-black text-center px-4 my-4">
+      <h1 className="pseudo-full-bleed text-4xl text-black dark:text-white font-black text-center px-4 my-4">
         {postData.title}
       </h1>
 
-      <p className="text-lg sm:text-xl font-medium text-center px-4 my-2">
+      <p className="text-lg text-black dark:text-white font-medium text-center px-4 my-2">
         {`Posted on ${postData.formattedDate}`}
       </p>
 
       {postData.updated ? (
-        <p className="text-lg sm:text-xl font-medium text-center px-4 my-2">
+        <p className="text-lg text-black dark:text-white font-medium text-center px-4 my-2">
           {`Last updated on ${postData.formattedUpdated}`}
         </p>
       ) : null}
 
-      <div className={`prose sm:prose-xl p-4 ${styles.prose}`}>{content}</div>
+      <div className={`prose dark:prose-dark p-4 ${styles.prose}`}>
+        {content}
+      </div>
 
       <HitCounter />
 
       {monetization.state ? (
-        <p className="text-center text-xl sm:text-2xl font-semibold my-4 px-4">
+        <p className="text-center text-xl text-black dark:text-white font-semibold my-4 px-4">
           {monetization.state === "stopped" && "Stopped"}
           {monetization.state === "pending" && "Loading..."}
           {monetization.state === "started" &&
             "Thank you for supporting this site!"}
         </p>
       ) : (
-        <p className="text-center text-xl sm:text-2xl font-semibold my-4 px-4">
+        <p className="text-center text-xl text-black dark:text-white font-semibold my-4 px-4">
           Sign up for{" "}
           <a
             href="https://coil.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-bold"
+            className="font-bold text-green-700 dark:text-green-600"
           >
             Coil
           </a>{" "}

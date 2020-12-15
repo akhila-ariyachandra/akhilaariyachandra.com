@@ -10,10 +10,14 @@ const PostLink: FunctionComponent<Props> = ({ post }) => {
   return (
     <article className="space-y-2">
       <Link href={`/${post.id}`}>
-        <a className="text-3xl sm:text-4xl font-bold">{post.title}</a>
+        <a className="text-3xl font-bold text-green-700 dark:text-green-600">
+          {post.title}
+        </a>
       </Link>
 
-      <p className="text-lg sm:text-xl font-medium">{post.formattedDate}</p>
+      <p className="text-lg font-medium text-black dark:text-white">
+        {post.formattedDate}
+      </p>
     </article>
   );
 };

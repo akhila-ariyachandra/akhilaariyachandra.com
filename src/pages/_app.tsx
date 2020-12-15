@@ -7,7 +7,7 @@ import "src/styles/index.scss";
 
 const progress = new ProgressBar({
   size: 4,
-  color: "var(--primary)",
+  color: "rgba(5, 150, 105, 1)",
   className: "bar-of-progress",
   delay: 100,
 });
@@ -18,7 +18,7 @@ Router.events.on("routeChangeError", progress.finish);
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <ThemeProvider defaultTheme="dark">
+    <ThemeProvider defaultTheme="dark" attribute="class">
       <Component {...pageProps} />
     </ThemeProvider>
   );
