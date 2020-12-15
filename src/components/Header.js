@@ -1,7 +1,8 @@
+import React from "react";
 import Link from "next/link";
 import config from "src/config";
 import useBoop from "src/hooks/use-boop";
-import { FaSun, FaMoon } from "react-icons/fa";
+import { FaSun, FaMoon, FaCircle } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
 import { animated } from "react-spring";
@@ -12,6 +13,11 @@ const Header = () => {
   const router = useRouter();
   const { theme, setTheme } = useTheme();
   const [style, trigger] = useBoop({ rotation: 20, timing: 200 });
+  const [hasMounted, setHasMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   const handleTheme = () => {
     if (theme === "light") {
@@ -33,7 +39,13 @@ const Header = () => {
           style={style}
           onMouseEnter={trigger}
         >
-          {theme === "light" ? <FaMoon /> : <FaSun />}
+          {!hasMounted ? (
+            <FaCircle />
+          ) : theme === "light" ? (
+            <FaMoon />
+          ) : (
+            <FaSun />
+          )}
         </animated.button>
 
         {router.asPath !== "/" ? (

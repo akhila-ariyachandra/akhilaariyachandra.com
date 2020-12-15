@@ -18,7 +18,11 @@ Router.events.on("routeChangeError", progress.finish);
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <ThemeProvider defaultTheme="dark" attribute="class">
+    <ThemeProvider
+      defaultTheme="dark"
+      themes={["light", "dark"]}
+      attribute="class"
+    >
       <Component {...pageProps} />
     </ThemeProvider>
   );
