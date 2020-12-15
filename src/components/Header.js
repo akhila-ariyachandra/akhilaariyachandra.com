@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <header
-      className={`sticky top-0 transition-colors duration-200 z-40 full-bleed wrapper bg-white dark:bg-gray-900 bg-opacity-10 ${styles.header}`}
+      className={`sticky top-0 z-40 full-bleed wrapper bg-white dark:bg-gray-900 bg-opacity-10 ${styles.header}`}
     >
       <div className="flex flex-row-reverse justify-between items-center p-4">
         <animated.button
