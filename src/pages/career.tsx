@@ -7,6 +7,7 @@ import yaml from "yaml";
 import dayjs from "dayjs";
 import type { NextPage, GetStaticProps } from "next";
 import type { Job } from "src/lib/types";
+import { trackEvent } from "src/lib/splitbee";
 
 type Props = {
   careerList: Job[];
@@ -37,6 +38,9 @@ const Career: NextPage<Props> = ({ careerList }) => {
               target="_blank"
               rel="noopener noreferrer"
               className="text-2xl font-semibold text-center text-green-700 dark:text-green-600"
+              onClick={() => {
+                trackEvent("Open Company Link", { name: company.company });
+              }}
             >
               {company.company}
             </a>

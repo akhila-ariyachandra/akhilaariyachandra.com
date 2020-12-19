@@ -3,6 +3,7 @@ import SEO from "src/components/SEO";
 import Link from "next/link";
 import config from "src/config";
 import type { NextPage } from "next";
+import { trackEvent } from "src/lib/splitbee";
 import {
   FaGithub,
   FaDev,
@@ -47,6 +48,9 @@ const SocialLink = ({ site, link }) => {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={site}
+      onClick={() => {
+        trackEvent("Open Social Link", { name: site });
+      }}
     >
       <Icon />
     </a>

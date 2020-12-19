@@ -1,5 +1,6 @@
 import Header from "src/components/Header";
 import type { FunctionComponent } from "react";
+import { trackEvent } from "src/lib/splitbee";
 import { FaGithub } from "react-icons/fa";
 
 const Layout: FunctionComponent = ({ children }) => {
@@ -18,6 +19,9 @@ const Layout: FunctionComponent = ({ children }) => {
             href="https://nextjs.org/"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => {
+              trackEvent("Open Link", { name: "Next.js" });
+            }}
           >
             Next.js
           </a>
@@ -27,6 +31,9 @@ const Layout: FunctionComponent = ({ children }) => {
             href="https://tailwindcss.com/"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => {
+              trackEvent("Open Link", { name: "Tailwind.css" });
+            }}
           >
             Tailwind CSS
           </a>
@@ -36,6 +43,9 @@ const Layout: FunctionComponent = ({ children }) => {
             href="https://vercel.com/home"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => {
+              trackEvent("Open Link", { name: "Vercel" });
+            }}
           >
             Vercel
           </a>
@@ -46,6 +56,9 @@ const Layout: FunctionComponent = ({ children }) => {
           target="_blank"
           rel="noopener noreferrer"
           className="text-xl text-green-700 dark:text-green-600"
+          onClick={() => {
+            trackEvent("Open Link", { name: "GitHub Repo" });
+          }}
         >
           <FaGithub />
         </a>

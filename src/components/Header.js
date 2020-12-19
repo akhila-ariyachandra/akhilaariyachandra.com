@@ -6,6 +6,7 @@ import { FaSun, FaMoon, FaCircle } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
 import { animated } from "react-spring";
+import { trackEvent } from "src/lib/splitbee";
 
 import styles from "src/components/Header.module.scss";
 
@@ -21,8 +22,10 @@ const Header = () => {
 
   const handleTheme = () => {
     if (theme === "light") {
+      trackEvent("Change Theme", { type: "dark" });
       setTheme("dark");
     } else {
+      trackEvent("Change Theme", { type: "light" });
       setTheme("light");
     }
   };

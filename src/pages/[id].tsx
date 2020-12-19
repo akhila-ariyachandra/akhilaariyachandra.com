@@ -12,6 +12,7 @@ import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import type { Post } from "src/lib/types";
 import { getAllPostIds, getPostData } from "src/lib/posts";
 import { useMonetizationState } from "react-web-monetization";
+import { trackEvent } from "src/lib/splitbee";
 
 import styles from "src/styles/post.module.scss";
 
@@ -63,6 +64,9 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
             target="_blank"
             rel="noopener noreferrer"
             className="text-green-700 dark:text-green-600"
+            onClick={() => {
+              trackEvent("Open Link", { name: "Unsplash" });
+            }}
           >
             {postData.photographer}
           </a>
@@ -104,6 +108,9 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
             target="_blank"
             rel="noopener noreferrer"
             className="font-bold text-green-700 dark:text-green-600"
+            onClick={() => {
+              trackEvent("Open Link", { name: "Coil" });
+            }}
           >
             Coil
           </a>{" "}
