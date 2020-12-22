@@ -12,6 +12,8 @@ import {
   FaRssSquare,
 } from "react-icons/fa";
 
+import styles from "src/styles/index.module.scss";
+
 const LINKS = [
   { href: "/blog", title: "Blog" },
   { href: "/career", title: "Career" },
@@ -72,7 +74,7 @@ const Index: NextPage = () => {
           {config.description}
         </p>
 
-        <nav className="flex flex-row space-x-3 flex-wrap">
+        <nav className={`flex flex-row space-x-3 flex-wrap ${styles.indexNav}`}>
           {LINKS.map((link) => (
             <Link href={link.href} key={link.href}>
               <a className="text-3xl font-medium text-green-700 dark:text-green-600">

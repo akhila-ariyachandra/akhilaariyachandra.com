@@ -3,7 +3,7 @@ import Router from "next/router";
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
 
-import "src/styles/index.scss";
+import "src/styles/global.scss";
 
 const progress = new ProgressBar({
   size: 4,

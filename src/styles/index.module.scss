@@ -1,0 +1,7 @@
+.indexNav {
+  @media (max-width: 420px) {
+    a:last-child {
+      margin-left: 0 !important;
+    }
+  }
+}
