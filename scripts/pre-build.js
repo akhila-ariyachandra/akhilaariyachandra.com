@@ -27,7 +27,7 @@ const Feed = require("feed").Feed;
   const snippetDirectory = path.join("content", "snippets");
   const snippetFileNames = fs.readdirSync(snippetDirectory);
   for (const fileName of snippetFileNames) {
-    routes.push(fileName.replace(/\.mdx$/, ""));
+    routes.push(`snippets/${fileName.replace(/\.mdx$/, "")}`);
   }
 
   // Add remaining pages
