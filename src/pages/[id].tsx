@@ -6,7 +6,7 @@ import Image from "next/image";
 import HitCounter from "src/components/post/HitCounter";
 import PostImage from "src/components/post/PostImage";
 import Code from "src/components/code/Code";
-import Comment from "src/components/post/Comment";
+import Comment from "src/components/Comment";
 import hydrate from "next-mdx-remote/hydrate";
 import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import type { Post } from "src/lib/types";
