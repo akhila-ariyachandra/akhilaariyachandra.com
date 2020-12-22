@@ -15,6 +15,7 @@ const Snippets: NextPage<Props> = ({ snippets }) => {
       <SEO
         title="Code Snippets"
         description="A few pieces of code I've found useful"
+        image="/snippets-cover.jpg"
       />
 
       <h1 className="text-4xl font-bold my-10 mx-4 text-black dark:text-white">

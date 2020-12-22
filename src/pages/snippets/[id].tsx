@@ -24,7 +24,11 @@ const Snippet: NextPage<Props> = ({ snippet }) => {
 
   return (
     <Layout>
-      <SEO title={snippet.title} description={snippet.description} />
+      <SEO
+        title={snippet.title}
+        description={snippet.description}
+        image="/snippets-cover.jpg"
+      />
 
       <h1 className="pseudo-full-bleed text-4xl text-black dark:text-white font-black text-center px-4 my-8">
         {snippet.title}
