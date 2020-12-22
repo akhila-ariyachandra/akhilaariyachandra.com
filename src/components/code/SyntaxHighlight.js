@@ -28,7 +28,7 @@ const SyntaxHighlight = ({ children, title, language }) => {
       language={language}
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <div className={styles.nextHighlight}>
+        <div className={`${styles.nextHighlight} horizontalScroll`}>
           <pre
             className={`${className} ${styles.prismCode}`}
             style={{ ...style, ...ifTitle }}

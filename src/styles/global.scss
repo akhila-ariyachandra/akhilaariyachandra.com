@@ -53,3 +53,7 @@ body {
 .bar-of-progress {
   @apply z-50;
 }
+
+.horizontalScroll::-webkit-scrollbar {
+  @apply h-2;
+}
