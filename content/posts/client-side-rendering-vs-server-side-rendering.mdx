@@ -2,7 +2,7 @@
 title: Client Side Rendering vs Server Side Rendering
 date: "2019-10-09"
 description: "A quick look into Client Side Rendering and Server Side Rendering"
-banner: "/client-side-rendering-vs-server-side-rendering/banner.png"
+banner: "/blog/client-side-rendering-vs-server-side-rendering/banner.png"
 ---
 
 You might have heard the terms Client Side Rendering (CSR) and Server Side Rendering (SSR) when working with Single Page Application (SPA) technologies like [React](https://reactjs.org/) and [Angular](https://angular.io/) and how they might affect the performance of your site. Let's try to figure out what CSR and SSR actually are and how they change the way your site works.
@@ -34,7 +34,7 @@ When the browser makes the initial request to the SPA server, the server returns
 After the initial HTML and CSS loads the browser requests the rest of the application which comes in a JS file. While this JS is being loaded and parsed, the page will be blank. The content will be viewable and intractable once the JS file has been parsed.
 
 <PostImage
-  src="/client-side-rendering-vs-server-side-rendering/csr.png"
+  src="/blog/client-side-rendering-vs-server-side-rendering/csr.png"
   width={4000}
   height={2823}
   title="Client Side Rendering"
@@ -53,7 +53,7 @@ JavaScript Single Page Application Frameworks like [React](https://reactjs.org/)
 We can solve these issues by using Server Side Rendering. SSR is rendering the app to a string (HTML) in the server itself and sending it to the browser. This takes the work of rendering from the client to the server. So when the browser receives the initial HTML file there is content for the user to see unlike a CSR site where the entire JS file needs to be downloaded and parsed before something meaningful can be shown on screen. The site becomes interactive once the JS file has been downloaded and parsed.
 
 <PostImage
-  src="/client-side-rendering-vs-server-side-rendering/ssr.png"
+  src="/blog/client-side-rendering-vs-server-side-rendering/ssr.png"
   width={4000}
   height={2854}
   title="Server Side Rendering"
