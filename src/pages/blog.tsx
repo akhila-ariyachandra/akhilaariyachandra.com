@@ -21,7 +21,7 @@ const Blog: NextPage<Props> = ({ allPostsData }) => {
         Blog
       </h1>
 
-      <section className="grid grid-cols-1 gap-4 mr-4">
+      <section className="grid grid-cols-1 gap-4 mx-4">
         {allPostsData.map(({ id, date, title, formattedDate }) => (
           <PostLink post={{ id, date, title, formattedDate }} key={id} />
         ))}
