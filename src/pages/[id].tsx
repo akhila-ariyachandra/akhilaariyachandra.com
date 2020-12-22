@@ -87,7 +87,9 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
         </p>
       ) : null}
 
-      <div className={`prose dark:prose-dark p-4 ${styles.prose}`}>
+      <div
+        className={`prose dark:prose-dark max-w-none p-4 ${styles.prose} full-bleed wrapper`}
+      >
         {content}
       </div>
 

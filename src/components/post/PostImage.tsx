@@ -17,15 +17,17 @@ const PostImage: FunctionComponent<Props> = ({
   unoptimized = false,
 }) => {
   return (
-    <Image
-      src={src}
-      width={width}
-      height={height}
-      className="object-contain"
-      alt={title}
-      title={title}
-      unoptimized={unoptimized}
-    />
+    <div className="pseudo-full-bleed grid place-items-center">
+      <Image
+        src={src}
+        width={width}
+        height={height}
+        className="object-contain"
+        alt={title}
+        title={title}
+        unoptimized={unoptimized}
+      />
+    </div>
   );
 };
 
