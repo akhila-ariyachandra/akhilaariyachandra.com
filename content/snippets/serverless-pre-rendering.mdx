@@ -1,0 +1,14 @@
+---
+title: "Serverless Pre-Rendering"
+description: "Speeding up serverless function response times in deployments like in Vercel"
+---
+
+Extracted from the following [link](https://vercel.com/blog/serverless-pre-rendering "Introducing Serverless Pre-Rendering (SPR)").
+
+Just add the following code where you can access the response object.
+
+```javascript
+res.setHeader("Cache-Control", "s-maxage=1, stale-while-revalidate");
+```
+
+Set the `s-maxage` value according to how long you want the CDN to cache the response (in seconds).

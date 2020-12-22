@@ -19,9 +19,16 @@ const Feed = require("feed").Feed;
   };
 
   // Read all the blog posts first
-  const postsDirectory = path.join(process.cwd(), "content", "posts");
+  const postsDirectory = path.join("content", "posts");
   const fileNames = fs.readdirSync(postsDirectory);
   const routes = fileNames.map((fileName) => fileName.replace(/\.mdx$/, ""));
+
+  // Read all snippets
+  const snippetDirectory = path.join("content", "snippets");
+  const snippetFileNames = fs.readdirSync(snippetDirectory);
+  for (const fileName of snippetFileNames) {
+    routes.push(fileName.replace(/\.mdx$/, ""));
+  }
 
   // Add remaining pages
   routes.push("");

@@ -16,6 +16,7 @@ const LINKS = [
   { href: "/blog", title: "Blog" },
   { href: "/career", title: "Career" },
   { href: "/about", title: "About" },
+  { href: "/snippets", title: "Snippets" },
 ];
 
 const SocialLink = ({ site, link }) => {
@@ -71,7 +72,7 @@ const Index: NextPage = () => {
           {config.description}
         </p>
 
-        <nav className="flex flex-row space-x-3">
+        <nav className="flex flex-row space-x-3 flex-wrap">
           {LINKS.map((link) => (
             <Link href={link.href} key={link.href}>
               <a className="text-3xl font-medium text-green-700 dark:text-green-600">

@@ -1,4 +1,4 @@
-type Post = {
+export type Post = {
   id: string;
   title: string;
   date: string;
@@ -12,7 +12,7 @@ type Post = {
   content?: string;
 };
 
-type Job = {
+export type Job = {
   company?: string;
   image?: string;
   link?: string;
@@ -25,4 +25,9 @@ type Job = {
   ];
 };
 
-export type { Post, Job };
+export type Snippet = {
+  id: string;
+  title: string;
+  description: string;
+  content?: string;
+};
