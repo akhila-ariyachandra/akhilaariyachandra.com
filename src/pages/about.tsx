@@ -13,7 +13,7 @@ type Props = {
 };
 
 const About: NextPage<Props> = ({ source }) => {
-  const content = hydrate(source);
+  const content = hydrate(source, { components: {} });
 
   return (
     <Layout>
