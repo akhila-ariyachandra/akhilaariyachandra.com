@@ -7,6 +7,7 @@ import a11yEmoji from "@fec/remark-a11y-emoji";
 import externalLinks from "remark-external-links";
 import slug from "remark-slug";
 import Code from "src/components/code/Code";
+import Image from "next/image";
 import type { Snippet } from "src/lib/types";
 import { createElement } from "react";
 
@@ -14,6 +15,7 @@ const snippetsDirectory = path.join("content", "snippets");
 
 export const mdxComponents = {
   pre: (props) => createElement(Code, { ...props }),
+  Image,
 };
 
 export const getSortedSnippets = async (): Promise<Snippet[]> => {

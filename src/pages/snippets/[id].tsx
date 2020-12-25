@@ -3,6 +3,7 @@ import Layout from "src/components/Layout";
 import SEO from "src/components/SEO";
 import Code from "src/components/code/Code";
 import Comment from "src/components/Comment";
+import Image from "next/image";
 import type { NextPage, GetStaticPaths, GetStaticProps } from "next";
 import type { Snippet as SnippetType } from "src/lib/types";
 import { getAllSnippetIds, getSnippetData } from "src/lib/snippets";
@@ -11,6 +12,7 @@ import styles from "src/styles/snippets/snippet.module.scss";
 
 const mdxComponents = {
   pre: (props) => <Code {...props} />,
+  Image,
 };
 
 type Props = {
