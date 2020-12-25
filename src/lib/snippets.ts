@@ -8,7 +8,6 @@ import externalLinks from "remark-external-links";
 import slug from "remark-slug";
 import Code from "src/components/code/Code";
 import type { Snippet } from "src/lib/types";
-import { formatDate } from "src/lib/helpers";
 import { createElement } from "react";
 
 const snippetsDirectory = path.join("content", "snippets");
