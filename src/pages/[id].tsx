@@ -11,7 +11,6 @@ import hydrate from "next-mdx-remote/hydrate";
 import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import type { Post } from "src/lib/types";
 import { getAllPostIds, getPostData } from "src/lib/posts";
-import { useMonetizationState } from "react-web-monetization";
 import { trackEvent } from "src/lib/splitbee";
 
 import styles from "src/styles/post.module.scss";
@@ -27,8 +26,6 @@ type Props = {
 };
 
 const BlogPost: NextPage<Props> = ({ postData }) => {
-  const monetization = useMonetizationState();
-
   const content = hydrate(postData.content, {
     components: mdxComponents,
   });
@@ -94,31 +91,6 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
       </div>
 
       <HitCounter />
-
-      {monetization.state ? (
-        <p className="text-center text-xl text-black dark:text-white font-semibold my-4 px-4">
-          {monetization.state === "stopped" && "Stopped"}
-          {monetization.state === "pending" && "Loading..."}
-          {monetization.state === "started" &&
-            "Thank you for supporting this site!"}
-        </p>
-      ) : (
-        <p className="text-center text-xl text-black dark:text-white font-semibold my-4 px-4">
-          Sign up for{" "}
-          <a
-            href="https://coil.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-bold text-green-700 dark:text-green-600"
-            onClick={() => {
-              trackEvent("Open Link", { name: "Coil" });
-            }}
-          >
-            Coil
-          </a>{" "}
-          to support this site!
-        </p>
-      )}
 
       <Comment />
     </Layout>
