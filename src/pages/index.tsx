@@ -1,6 +1,5 @@
 import Layout from "src/components/Layout";
 import SEO from "src/components/SEO";
-import Link from "next/link";
 import config from "src/config";
 import type { NextPage } from "next";
 import { trackEvent } from "src/lib/splitbee";
@@ -11,13 +10,6 @@ import {
   FaTwitterSquare,
   FaRssSquare,
 } from "react-icons/fa";
-
-const LINKS = [
-  { href: "/blog", title: "Blog" },
-  { href: "/career", title: "Career" },
-  { href: "/about", title: "About" },
-  { href: "/snippets", title: "Snippets" },
-];
 
 const SocialLink = ({ site, link }) => {
   let Icon = null;
@@ -71,16 +63,6 @@ const Index: NextPage = () => {
         <p className="text-lg font-medium text-black dark:text-white">
           {config.description}
         </p>
-
-        <nav className="flex flex-row space-x-3 overflow-x-scroll horizontalScroll py-2">
-          {LINKS.map((link) => (
-            <Link href={link.href} key={link.href}>
-              <a className="text-3xl font-medium text-green-700 dark:text-green-600">
-                {link.title}
-              </a>
-            </Link>
-          ))}
-        </nav>
 
         <div className="flex flex-row space-x-2">
           <SocialLink site="GitHub" link={config.social.github} />

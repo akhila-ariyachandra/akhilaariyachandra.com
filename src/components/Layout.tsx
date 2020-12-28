@@ -2,7 +2,6 @@ import Header from "src/components/Header";
 import Link from "next/link";
 import type { FunctionComponent } from "react";
 import { trackEvent } from "src/lib/splitbee";
-import { useRouter } from "next/router";
 import { FaGithub } from "react-icons/fa";
 
 const LINKS = [
@@ -13,8 +12,6 @@ const LINKS = [
 ];
 
 const Layout: FunctionComponent = ({ children }) => {
-  const router = useRouter();
-
   return (
     <main className="wrapper mx-auto min-h-screen place-content-between">
       <Header />
@@ -22,17 +19,15 @@ const Layout: FunctionComponent = ({ children }) => {
       {children}
 
       <footer className="p-4 mt-10 flex flex-col space-y-4">
-        {router.asPath !== "/" ? (
-          <nav className="flex space-x-4">
-            {LINKS.map((link) => (
-              <Link href={link.href} key={link.href}>
-                <a className="text-xl font-medium text-green-700 dark:text-green-600">
-                  {link.title}
-                </a>
-              </Link>
-            ))}
-          </nav>
-        ) : null}
+        <nav className="flex space-x-4">
+          {LINKS.map((link) => (
+            <Link href={link.href} key={link.href}>
+              <a className="text-xl font-medium text-green-700 dark:text-green-600">
+                {link.title}
+              </a>
+            </Link>
+          ))}
+        </nav>
 
         <div className="flex justify-between items-center">
           <span className="font-normal text-base text-black dark:text-white">
