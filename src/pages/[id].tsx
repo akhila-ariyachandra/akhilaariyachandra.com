@@ -8,6 +8,7 @@ import PostImage from "src/components/post/PostImage";
 import Code from "src/components/code/Code";
 import Comment from "src/components/Comment";
 import hydrate from "next-mdx-remote/hydrate";
+import CodeSandboxWrapper from "src/components/post/CodeSandboxWrapper";
 import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import type { Post } from "src/lib/types";
 import { getAllPostIds, getPostData } from "src/lib/posts";
@@ -19,6 +20,7 @@ const mdxComponents = {
   SpecialBlock,
   pre: (props) => <Code {...props} />,
   PostImage,
+  CodeSandboxWrapper,
 };
 
 type Props = {

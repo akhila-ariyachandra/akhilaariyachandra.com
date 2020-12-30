@@ -9,6 +9,7 @@ import slug from "remark-slug";
 import SpecialBlock from "src/components/post/SpecialBlock";
 import PostImage from "src/components/post/PostImage";
 import Code from "src/components/code/Code";
+import CodeSandboxWrapper from "src/components/post/CodeSandboxWrapper";
 import type { Post } from "src/lib/types";
 import { formatDate } from "src/lib/helpers";
 import { createElement } from "react";
@@ -17,6 +18,7 @@ export const mdxComponents = {
   SpecialBlock,
   pre: (props) => createElement(Code, { ...props }),
   PostImage,
+  CodeSandboxWrapper,
 };
 
 const postsDirectory = path.join("content", "posts");
