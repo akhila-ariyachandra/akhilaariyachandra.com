@@ -18,7 +18,7 @@ const HitCounter: FunctionComponent = () => {
   }, []);
 
   return (
-    <p className="text-center text-2xl text-black dark:text-white font-semibold my-4">{`${hits} views`}</p>
+    <p className="my-4 text-center text-black dark:text-white text-2xl font-semibold">{`${hits} views`}</p>
   );
 };
 

@@ -34,10 +34,10 @@ const Header = () => {
     <header
       className={`sticky top-0 z-40 full-bleed wrapper bg-white dark:bg-gray-900 bg-opacity-10 ${styles.header}`}
     >
-      <div className="flex flex-row-reverse justify-between items-center p-4">
+      <div className="flex flex-row-reverse items-center justify-between p-4">
         <animated.button
           onClick={handleTheme}
-          className="text-xl focus:outline-none text-black dark:text-white"
+          className="text-black dark:text-white text-xl focus:outline-none"
           aria-label="Theme Switcher"
           style={style}
           onMouseEnter={trigger}
@@ -53,7 +53,7 @@ const Header = () => {
 
         {router.asPath !== "/" ? (
           <Link href="/">
-            <a className="text-xl font-medium leading-5 text-green-700 dark:text-green-600">
+            <a className="dark:text-green-600 text-green-700 text-xl font-medium leading-5">
               {config.title}
             </a>
           </Link>

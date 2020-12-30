@@ -36,7 +36,7 @@ const SocialLink = ({ site, link }) => {
 
   return (
     <a
-      className="text-3xl text-green-700 dark:text-green-600"
+      className="dark:text-green-600 text-green-700 text-3xl"
       href={link}
       target="_blank"
       rel="noopener noreferrer"
@@ -56,11 +56,11 @@ const Index: NextPage = () => {
       <SEO />
 
       <div className="px-4 space-y-4">
-        <h1 className="text-4xl font-black text-black dark:text-white">
+        <h1 className="text-black dark:text-white text-4xl font-black">
           {config.title}
         </h1>
 
-        <p className="text-lg font-medium text-black dark:text-white">
+        <p className="text-black dark:text-white text-lg font-medium">
           {config.description}
         </p>
 

@@ -31,7 +31,7 @@ const About: NextPage<Props> = ({ source }) => {
         />
       </div>
 
-      <div className="prose dark:prose-dark p-4 my-4">{content}</div>
+      <div className="prose dark:prose-dark my-4 p-4">{content}</div>
     </Layout>
   );
 };

@@ -22,7 +22,7 @@ const Career: NextPage<Props> = ({ careerList }) => {
         {careerList.map((company) => (
           <div
             key={company.company}
-            className="grid place-content-center place-items-center gap-4 pr-4"
+            className="grid gap-4 place-content-center place-items-center pr-4"
           >
             <Image
               src={`/career/${company.image}`}
@@ -37,7 +37,7 @@ const Career: NextPage<Props> = ({ careerList }) => {
               href={company.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-2xl font-semibold text-center text-green-700 dark:text-green-600"
+              className="text-center dark:text-green-600 text-green-700 text-2xl font-semibold"
               onClick={() => {
                 trackEvent("Open Company Link", { name: company.company });
               }}
@@ -47,10 +47,10 @@ const Career: NextPage<Props> = ({ careerList }) => {
 
             {company.positions.map((position) => (
               <div key={position.title}>
-                <p className="text-xl font-medium text-center text-black dark:text-white">
+                <p className="text-center text-black dark:text-white text-xl font-medium">
                   {position.title}
                 </p>
-                <p className="text-lg font-normal text-center text-black dark:text-white">
+                <p className="text-center text-black dark:text-white text-lg font-normal">
                   {position.period}
                 </p>
               </div>

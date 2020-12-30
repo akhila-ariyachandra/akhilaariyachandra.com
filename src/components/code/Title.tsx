@@ -8,11 +8,11 @@ type Props = {
 
 const Title: FunctionComponent<Props> = ({ text, children }) => {
   return (
-    <div className="flex justify-between items-center bg-green-300 px-5 py-3">
+    <div className="flex items-center justify-between px-5 py-3 bg-green-300">
       <p className={styles.codeBlockTitle}>{text}</p>
 
       {children ? (
-        <div className="text-white text-base bg-green-700 px-2 py-1 rounded">
+        <div className="px-2 py-1 text-white text-base bg-green-700 rounded">
           {children}
         </div>
       ) : null}

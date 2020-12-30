@@ -13,28 +13,28 @@ const LINKS = [
 
 const Layout: FunctionComponent = ({ children }) => {
   return (
-    <main className="wrapper mx-auto min-h-screen place-content-between">
+    <main className="wrapper place-content-between mx-auto min-h-screen">
       <Header />
 
       {children}
 
-      <footer className="p-4 mt-10 flex flex-col space-y-4">
+      <footer className="flex flex-col mt-10 p-4 space-y-4">
         <nav className="flex space-x-4">
           {LINKS.map((link) => (
             <Link href={link.href} key={link.href}>
-              <a className="text-xl font-medium text-green-700 dark:text-green-600">
+              <a className="dark:text-green-600 text-green-700 text-xl font-medium">
                 {link.title}
               </a>
             </Link>
           ))}
         </nav>
 
-        <div className="flex justify-between items-center">
-          <span className="font-normal text-base text-black dark:text-white">
+        <div className="flex items-center justify-between">
+          <span className="text-black dark:text-white text-base font-normal">
             © {new Date().getFullYear()}, Built with
             {` `}
             <a
-              className="font-medium text-green-700 dark:text-green-600"
+              className="dark:text-green-600 text-green-700 font-medium"
               href="https://nextjs.org/"
               target="_blank"
               rel="noopener noreferrer"
@@ -46,7 +46,7 @@ const Layout: FunctionComponent = ({ children }) => {
             </a>
             {", "}
             <a
-              className="font-medium text-green-700 dark:text-green-600"
+              className="dark:text-green-600 text-green-700 font-medium"
               href="https://tailwindcss.com/"
               target="_blank"
               rel="noopener noreferrer"
@@ -58,7 +58,7 @@ const Layout: FunctionComponent = ({ children }) => {
             </a>
             {", & "}
             <a
-              className="font-medium text-green-700 dark:text-green-600"
+              className="dark:text-green-600 text-green-700 font-medium"
               href="https://vercel.com/home"
               target="_blank"
               rel="noopener noreferrer"
@@ -74,7 +74,7 @@ const Layout: FunctionComponent = ({ children }) => {
             href="https://github.com/akhila-ariyachandra/akhilaariyachandra.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xl text-green-700 dark:text-green-600"
+            className="dark:text-green-600 text-green-700 text-xl"
             onClick={() => {
               trackEvent("Open Link", { name: "GitHub Repo" });
             }}

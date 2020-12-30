@@ -18,7 +18,7 @@ const Snippets: NextPage<Props> = ({ snippets }) => {
         image="/snippets-cover.jpg"
       />
 
-      <h1 className="text-4xl font-bold my-10 mx-4 text-black dark:text-white">
+      <h1 className="mx-4 my-10 text-black dark:text-white text-4xl font-bold">
         Code Snippets
       </h1>
 
@@ -26,12 +26,12 @@ const Snippets: NextPage<Props> = ({ snippets }) => {
         {snippets.map((snippet) => (
           <article key={snippet.id}>
             <Link href={`/snippets/${snippet.id}`}>
-              <a className="text-3xl font-bold text-green-700 dark:text-green-600">
+              <a className="dark:text-green-600 text-green-700 text-3xl font-bold">
                 {snippet.title}
               </a>
             </Link>
 
-            <p className="text-lg font-medium text-black dark:text-white">
+            <p className="text-black dark:text-white text-lg font-medium">
               {snippet.description}
             </p>
           </article>

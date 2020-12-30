@@ -31,7 +31,7 @@ const SpecialBlock: FunctionComponent<Props> = ({ children, type }) => {
     <div className={wrapperClass}>
       <Icon className={iconClass} />
 
-      <div className="text-base text-black dark:text-white flex-1 ml-2">
+      <div className="flex-1 ml-2 text-black dark:text-white text-base">
         {children}
       </div>
     </div>

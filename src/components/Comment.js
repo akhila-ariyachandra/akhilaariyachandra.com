@@ -22,7 +22,7 @@ const Comment = () => {
   return (
     <div
       ref={commentBox}
-      className="bg-white p-2 m-4 sm:rounded-lg full-bleed max-w-screen-sm mx-auto"
+      className="full-bleed m-4 mx-auto p-2 max-w-screen-sm bg-white sm:rounded-lg"
     />
   );
 };
