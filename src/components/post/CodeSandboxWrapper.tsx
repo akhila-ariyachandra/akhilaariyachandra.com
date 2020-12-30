@@ -1,8 +1,5 @@
 import React from "react";
-import dynamic from "next/dynamic";
-const CodeSandbox = dynamic(() =>
-  import("mdx-embed").then((mod) => mod.CodeSandbox)
-);
+import { CodeSandbox } from "mdx-embed";
 
 type Props = {
   codeSandboxId: string;
