@@ -9,6 +9,7 @@ import Code from "src/components/code/Code";
 import Comment from "src/components/Comment";
 import hydrate from "next-mdx-remote/hydrate";
 import CodeSandboxWrapper from "src/components/post/CodeSandboxWrapper";
+import Iframe from "src/components/post/Iframe";
 import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import type { Post } from "src/lib/types";
 import { getAllPostIds, getPostData } from "src/lib/posts";
@@ -21,6 +22,7 @@ const mdxComponents = {
   pre: (props) => <Code {...props} />,
   PostImage,
   CodeSandboxWrapper,
+  Iframe,
 };
 
 type Props = {
