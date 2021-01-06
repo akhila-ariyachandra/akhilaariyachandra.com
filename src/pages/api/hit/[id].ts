@@ -38,16 +38,18 @@ const RegisterHit = async (req: NextApiRequest, res: NextApiResponse) => {
     q.Get(q.Match(q.Index("hits_by_slug"), slug))
   );
 
-  // Don't increment in development and preview environments
-  const host = new URL(config.siteUrl);
-  if (host.hostname === req.headers.host) {
-    await client.query(
-      q.Update(document.ref, {
-        data: {
-          hits: document.data.hits + 1,
-        },
-      })
-    );
+  if (req.method === "POST") {
+    // Don't increment in development and preview environments
+    const host = new URL(config.siteUrl);
+    if (host.hostname === req.headers.host) {
+      await client.query(
+        q.Update(document.ref, {
+          data: {
+            hits: document.data.hits + 1,
+          },
+        })
+      );
+    }
   }
 
   return res.status(200).json({

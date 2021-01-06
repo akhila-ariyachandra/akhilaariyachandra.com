@@ -42,6 +42,7 @@
     "remark-slug": "^6.0.0",
     "sass": "^1.32.0",
     "sharp": "^0.27.0",
+    "swr": "^0.3.11",
     "yaml": "^1.10.0"
   },
   "devDependencies": {
