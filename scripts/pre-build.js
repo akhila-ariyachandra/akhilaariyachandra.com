@@ -21,7 +21,9 @@ const Feed = require("feed").Feed;
   // Read all the blog posts first
   const postsDirectory = path.join("content", "posts");
   const fileNames = fs.readdirSync(postsDirectory);
-  const routes = fileNames.map((fileName) => fileName.replace(/\.mdx$/, ""));
+  const routes = fileNames.map(
+    (fileName) => `post/${fileName.replace(/\.mdx$/, "")}`
+  );
 
   // Read all snippets
   const snippetDirectory = path.join("content", "snippets");

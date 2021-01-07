@@ -9,7 +9,7 @@ type Props = {
 const PostLink: FunctionComponent<Props> = ({ post }) => {
   return (
     <article className="space-y-2">
-      <Link href={`/${post.id}`}>
+      <Link href={`/post/${post.id}`}>
         <a className="dark:text-green-600 text-green-700 text-3xl font-bold">
           {post.title}
         </a>
