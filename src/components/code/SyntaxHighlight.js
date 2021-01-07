@@ -1,5 +1,7 @@
 import theme from "prism-react-renderer/themes/nightOwl";
 import rangeParser from "parse-numeric-range";
+import LazyLoad from "react-lazyload";
+import Skeleton from "react-loading-skeleton";
 import Highlight, { defaultProps } from "prism-react-renderer";
 
 import styles from "src/components/code/SyntaxHighlight.module.scss";
@@ -40,9 +42,15 @@ const SyntaxHighlight = ({ children, title, language }) => {
               }
               return (
                 <div key={i} {...lineProps}>
-                  {line.map((token, key) => (
-                    <span {...getTokenProps({ token, key })} />
-                  ))}
+                  <LazyLoad
+                    placeholder={<Skeleton className="opacity-25" />}
+                    offset={200}
+                    once
+                  >
+                    {line.map((token, key) => (
+                      <span {...getTokenProps({ token, key })} />
+                    ))}
+                  </LazyLoad>
                 </div>
               );
             })}
