@@ -22,7 +22,7 @@ const Feed = require("feed").Feed;
   const postsDirectory = path.join("content", "posts");
   const fileNames = fs.readdirSync(postsDirectory);
   const routes = fileNames.map(
-    (fileName) => `post/${fileName.replace(/\.mdx$/, "")}`
+    (fileName) => `blog/${fileName.replace(/\.mdx$/, "")}`
   );
 
   // Read all snippets
@@ -82,8 +82,8 @@ const Feed = require("feed").Feed;
 
     feed.addItem({
       title: data.title,
-      id: `https://akhilaariyachandra.com/post/${id}`,
-      link: `https://akhilaariyachandra.com/post/${id}`,
+      id: `https://akhilaariyachandra.com/blog/${id}`,
+      link: `https://akhilaariyachandra.com/blog/${id}`,
       description: data.description,
       date: dayjs(data.date).toDate(),
       image: `https://akhilaariyachandra.com${data.banner}`,

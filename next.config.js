@@ -35,18 +35,31 @@ module.exports = withPlugins(
       ];
     },
     redirects: async () => {
-      // Move all blog posts under /post
+      const redirects = [];
+
+      // Move all blog posts under /blog
       const postsDirectory = path.join("content", "posts");
       const fileNames = fs.readdirSync(postsDirectory);
       const routes = fileNames.map((fileName) =>
         fileName.replace(/\.mdx$/, "")
       );
 
-      return routes.map((route) => ({
-        source: `/${route}`,
-        destination: `/post/${route}`,
-        permanent: true,
-      }));
+      for (const route of routes) {
+        redirects.push({
+          source: `/${route}`,
+          destination: `/blog/${route}`,
+          permanent: true,
+        });
+
+        // Fix for moving posts under /post
+        redirects.push({
+          source: `/post/${route}`,
+          destination: `/blog/${route}`,
+          permanent: true,
+        });
+      }
+
+      return redirects;
     },
     webpack: (config, { dev, isServer }) => {
       // Replace React with Preact only in client production build
