@@ -1,29 +1,31 @@
-import { createRef, useEffect } from "react";
+import React from "react";
+import Head from "next/head";
 
 const Comment = () => {
-  const commentBox = createRef();
+  const [mounted, setMounted] = React.useState(false);
 
-  useEffect(() => {
-    const scriptEl = document.createElement("script");
-    scriptEl.async = true;
-    scriptEl.src = "https://utteranc.es/client.js";
-    scriptEl.setAttribute("repo", process.env.NEXT_PUBLIC_UTTERANCES_REPO);
-    scriptEl.setAttribute("issue-term", "title");
-    scriptEl.setAttribute("id", "utterances");
-    scriptEl.setAttribute("theme", "github-light");
-    scriptEl.setAttribute("crossorigin", "anonymous");
-    if (commentBox?.current) {
-      commentBox.current.appendChild(scriptEl);
-    } else {
-      console.log(`Error adding utterances comments on: ${commentBox}`);
-    }
+  React.useEffect(() => {
+    setMounted(true);
   }, []);
 
   return (
-    <div
-      ref={commentBox}
-      className="full-bleed m-4 mx-auto p-2 max-w-screen-sm bg-white sm:rounded-lg"
-    />
+    <div className="full-bleed m-4 mx-auto p-2 max-w-screen-sm bg-white sm:rounded-lg">
+      <Head>
+        <link rel="preload" href="https://utteranc.es/client.js" as="script" />
+      </Head>
+
+      {mounted ? (
+        <script
+          src="https://utteranc.es/client.js"
+          repo={process.env.NEXT_PUBLIC_UTTERANCES_REPO}
+          issue-term="title"
+          id="utterances"
+          theme="github-light"
+          crossorigin="anonymous"
+          async
+        />
+      ) : null}
+    </div>
   );
 };
 
