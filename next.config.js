@@ -22,6 +22,9 @@ module.exports = withPlugins(
     ],
   ],
   {
+    images: {
+      domains: ["avatars2.githubusercontent.com"],
+    },
     rewrites: async () => {
       return [
         {

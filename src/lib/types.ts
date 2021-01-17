@@ -31,3 +31,12 @@ export type Snippet = {
   description: string;
   content?: string;
 };
+
+export type Comment = {
+  id: string;
+  userUid: string;
+  name: string;
+  picture: string;
+  body: string;
+  date: string;
+};
