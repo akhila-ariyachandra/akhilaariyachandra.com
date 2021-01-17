@@ -36,6 +36,40 @@ const Comment: NextApiHandler = async (req, res) => {
     }
 
     return res.status(200).send("OK");
+  } else if (req.method === "DELETE") {
+    let user: admin.auth.UserRecord;
+
+    try {
+      const token = req.headers.token;
+      const decodedToken = await verifyIdToken(token);
+      user = await admin.auth().getUser(decodedToken.uid);
+    } catch (error) {
+      return res.status(401).send("Unauthorised");
+    }
+
+    const {
+      body: { id },
+    } = req;
+
+    if (!id) {
+      return res.status(400).send("No comment ID");
+    }
+
+    const db = admin.firestore();
+    const commentRef = db.collection("comments").doc(id);
+    const doc = await commentRef.get();
+
+    if (!doc.exists) {
+      return res.status(400).send("No such comment");
+    } else {
+      if (doc.data().userUid !== user.uid) {
+        return res.status(401).send("Unauthorised");
+      }
+
+      await commentRef.delete();
+
+      return res.status(200).send(doc);
+    }
   } else {
     return res.status(405).send("Incorrect Method");
   }

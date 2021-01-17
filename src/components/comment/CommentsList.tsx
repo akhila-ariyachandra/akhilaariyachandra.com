@@ -3,16 +3,17 @@ import firebase from "src/lib/firebase";
 import axios from "axios";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
+import CommentContainer from "src/components/comment/CommentContainer";
 import useSWR, { mutate } from "swr";
 import type { Comment } from "src/lib/types";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { fetcher } from "src/lib/helpers";
-import { FaGithub, FaMarkdown } from "react-icons/fa";
+import { FaGithub, FaMarkdown, FaGoogle } from "react-icons/fa";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
-import styles from "src/components/Comment.module.scss";
+import styles from "src/components/comment/CommentList.module.scss";
 import "react-tabs/style/react-tabs.css";
 
 const auth = firebase.auth();
@@ -70,12 +71,15 @@ const CommentList: React.FunctionComponent<Props> = ({ comments = [] }) => {
     }
   }, [user, loading]);
 
-  const handleLogin = async (type: "github") => {
+  const handleLogin = async (type: "github" | "google") => {
     try {
       let provider;
       switch (type) {
         case "github":
           provider = new firebase.auth.GithubAuthProvider();
+          break;
+        case "google":
+          provider = new firebase.auth.GoogleAuthProvider();
           break;
       }
 
@@ -94,26 +98,11 @@ const CommentList: React.FunctionComponent<Props> = ({ comments = [] }) => {
     <div className="full-bleed m-4 mx-auto p-2 max-w-screen-sm bg-white sm:rounded-lg">
       <div className="grid gap-4 grid-cols-1 mb-4">
         {data.map((comment: Comment) => (
-          <div
-            key={comment.id}
-            className="p-2 bg-gray-100 rounded-md space-y-2"
-          >
-            <div className="flex flex-row space-x-4">
-              <div className="w-14 h-14 rounded-md overflow-hidden">
-                <Image src={comment.picture} width={460} height={460} />
-              </div>
-
-              <div className="flex-1">
-                <ReactMarkdown children={comment.body} className="prose" />
-              </div>
-            </div>
-
-            <p className="text-base font-normal">{`Posted by ${comment.name} on ${comment.date}`}</p>
-          </div>
+          <CommentContainer comment={comment} key={comment.id} />
         ))}
       </div>
 
-      <div className="p-2 bg-gray-200 rounded-md space-y-1">
+      <div className="p-2 bg-gray-200 rounded-md space-y-2">
         <div className={`p-2 bg-white rounded ${styles.markdown}`}>
           <Tabs>
             <TabList>
@@ -164,12 +153,19 @@ const CommentList: React.FunctionComponent<Props> = ({ comments = [] }) => {
                 </button>
               </div>
             ) : (
-              <div className="flex flex-row items-center h-14">
+              <div className="flex flex-row items-center h-14 space-x-4">
                 <button
                   onClick={() => handleLogin("github")}
                   className="text-4xl"
                 >
                   <FaGithub />
+                </button>
+
+                <button
+                  onClick={() => handleLogin("google")}
+                  className="text-4xl"
+                >
+                  <FaGoogle />
                 </button>
               </div>
             )}

@@ -8,7 +8,7 @@ import Image from "next/image";
 import HitCounter from "src/components/post/HitCounter";
 import PostImage from "src/components/post/PostImage";
 import Code from "src/components/code/Code";
-const CommentsList = dynamic(() => import("src/components/Comment"));
+const CommentsList = dynamic(() => import("src/components/comment/CommentsList"));
 import hydrate from "next-mdx-remote/hydrate";
 import CodeSandboxWrapper from "src/components/post/CodeSandboxWrapper";
 import Iframe from "src/components/post/Iframe";
@@ -153,6 +153,5 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       postData,
       comments,
     },
-    revalidate: 1,
   };
 };
