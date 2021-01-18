@@ -68,7 +68,7 @@ const Comment: NextApiHandler = async (req, res) => {
 
       await commentRef.delete();
 
-      return res.status(200).send(doc);
+      return res.status(200).send("Comment deleted");
     }
   } else {
     return res.status(405).send("Incorrect Method");

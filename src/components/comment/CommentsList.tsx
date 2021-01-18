@@ -1,6 +1,7 @@
 import React from "react";
 import firebase from "src/lib/firebase";
 import axios from "axios";
+import toast from "react-hot-toast";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import CommentContainer from "src/components/comment/CommentContainer";
@@ -42,26 +43,35 @@ const CommentList: React.FunctionComponent<Props> = ({ comments = [] }) => {
 
       return errors;
     },
-    onSubmit: async (values, { setSubmitting, resetForm }) => {
-      const token = await firebase.auth().currentUser.getIdToken();
-
-      await axios.request({
-        url: "/api/comment",
-        method: "POST",
-        headers: {
-          token,
-        },
-        data: {
-          body: values.body,
-          id: router.query.id,
-        },
+    onSubmit: async ({ body }) => {
+      toast.promise(postComment(body), {
+        loading: "Saving",
+        success: <b>Comment saved!</b>,
+        error: <b>Could not save.</b>,
       });
-
-      await mutate(`/api/comment/${router.query.id}`);
-      resetForm();
-      setSubmitting(false);
     },
   });
+
+  // Save the comment and provides the promise for the toast
+  const postComment = async (body: string) => {
+    const token = await firebase.auth().currentUser.getIdToken();
+
+    await axios.request({
+      url: "/api/comment",
+      method: "POST",
+      headers: {
+        token,
+      },
+      data: {
+        body,
+        id: router.query.id,
+      },
+    });
+
+    await mutate(`/api/comment/${router.query.id}`);
+
+    formik.resetForm();
+  };
 
   React.useEffect(() => {
     if (!loading && user) {
@@ -96,11 +106,13 @@ const CommentList: React.FunctionComponent<Props> = ({ comments = [] }) => {
 
   return (
     <div className="full-bleed m-4 mx-auto p-2 max-w-screen-sm bg-white sm:rounded-lg">
-      <div className="grid gap-4 grid-cols-1 mb-4">
-        {data.map((comment: Comment) => (
-          <CommentContainer comment={comment} key={comment.id} />
-        ))}
-      </div>
+      {data && data.length && data.length > 0 ? (
+        <div className="grid gap-4 grid-cols-1 mb-4">
+          {data.map((comment: Comment) => (
+            <CommentContainer comment={comment} key={comment.id} />
+          ))}
+        </div>
+      ) : null}
 
       <div className="p-2 bg-gray-200 rounded-md space-y-2">
         <div className={`p-2 bg-white rounded ${styles.markdown}`}>
@@ -130,7 +142,7 @@ const CommentList: React.FunctionComponent<Props> = ({ comments = [] }) => {
 
         <div className="flex flex-row items-center text-sm">
           <FaMarkdown className="mr-2" />
-          {" Markdown is supported"}
+          {" Styling in Markdown is supported"}
         </div>
 
         <div className="flex flex-row items-center space-x-4">
@@ -165,20 +177,24 @@ const CommentList: React.FunctionComponent<Props> = ({ comments = [] }) => {
                   onClick={() => handleLogin("google")}
                   className="text-4xl"
                 >
-                  <FaGoogle />
+                  <FaGoogle style={{ color: "#DB4437" }} />
                 </button>
               </div>
             )}
           </div>
 
-          <button
-            className="p-2 text-white bg-green-600 rounded-md"
-            disabled={!userLoaded || formik.isSubmitting}
-            type="submit"
-            onClick={() => formik.handleSubmit()}
-          >
-            {userLoaded ? "Comment" : "Sign in to comment"}
-          </button>
+          {userLoaded ? (
+            <button
+              className="p-2 text-white bg-green-600 rounded-md"
+              disabled={formik.isSubmitting}
+              type="submit"
+              onClick={() => formik.handleSubmit()}
+            >
+              Comment
+            </button>
+          ) : (
+            <div className="p-2">Sign in to comment</div>
+          )}
         </div>
       </div>
     </div>

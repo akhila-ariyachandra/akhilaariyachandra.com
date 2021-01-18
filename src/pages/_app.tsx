@@ -25,6 +25,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       attribute="class"
     >
       <Toaster position="bottom-right" />
+
       <Component {...pageProps} />
     </ThemeProvider>
   );
