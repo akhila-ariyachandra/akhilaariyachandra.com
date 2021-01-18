@@ -1,8 +1,9 @@
 import hydrate from "next-mdx-remote/hydrate";
+import dynamic from "next/dynamic";
 import Layout from "src/components/Layout";
 import SEO from "src/components/SEO";
 import Code from "src/components/code/Code";
-import Comment from "src/components/Comment";
+const Comment = dynamic(() => import("src/components/comment/CommentsList"));
 import Image from "next/image";
 import type { NextPage, GetStaticPaths, GetStaticProps } from "next";
 import type { Snippet as SnippetType } from "src/lib/types";

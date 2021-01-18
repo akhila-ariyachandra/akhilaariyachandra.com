@@ -5,3 +5,5 @@ dayjs.extend(advancedFormat);
 
 export const formatDate = (date: string): string =>
   dayjs(date).format("Do MMMM YYYY");
+
+export const fetcher = (url) => fetch(url).then((r) => r.json());
