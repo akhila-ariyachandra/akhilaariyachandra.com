@@ -142,7 +142,7 @@ const CommentList: React.FunctionComponent<Props> = ({ comments = [] }) => {
 
         <div className="flex flex-row items-center text-sm">
           <FaMarkdown className="mr-2" />
-          {" Styling in Markdown is supported"}
+          {" Styling with Markdown is supported"}
         </div>
 
         <div className="flex flex-row items-center space-x-4">
