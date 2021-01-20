@@ -1,13 +1,17 @@
 import hydrate from "next-mdx-remote/hydrate";
 import dynamic from "next/dynamic";
+import admin from "src/lib/firebaseAdmin";
 import Layout from "src/components/Layout";
 import SEO from "src/components/SEO";
 import Code from "src/components/code/Code";
-const Comment = dynamic(() => import("src/components/comment/CommentsList"));
+const CommentsList = dynamic(
+  () => import("src/components/comment/CommentsList")
+);
 import Image from "next/image";
 import type { NextPage, GetStaticPaths, GetStaticProps } from "next";
-import type { Snippet as SnippetType } from "src/lib/types";
+import type { Snippet as SnippetType, Comment } from "src/lib/types";
 import { getAllSnippetIds, getSnippetData } from "src/lib/snippets";
+import { formatDate } from "src/lib/helpers";
 
 import styles from "src/styles/snippets/snippet.module.scss";
 
@@ -18,9 +22,10 @@ const mdxComponents = {
 
 type Props = {
   snippet: SnippetType;
+  comments: Comment[];
 };
 
-const Snippet: NextPage<Props> = ({ snippet }) => {
+const Snippet: NextPage<Props> = ({ snippet, comments }) => {
   const content = hydrate(snippet.content, {
     components: mdxComponents,
   });
@@ -45,7 +50,7 @@ const Snippet: NextPage<Props> = ({ snippet }) => {
         {content}
       </div>
 
-      <Comment />
+      <CommentsList comments={comments} />
     </Layout>
   );
 };
@@ -61,11 +66,38 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const id = params.id as string;
-
   const snippet = await getSnippetData(id);
 
+  // Get comments
+  const db = admin.firestore();
+  const commentsRef = db.collection("comments");
+  const snapshot = await commentsRef
+    .where("id", "==", id)
+    .orderBy("date")
+    .get();
+  const rawComments = [];
+  const comments = [];
+  if (!snapshot.empty) {
+    snapshot.forEach((doc) => {
+      rawComments.push({ ...doc.data(), id: doc.id });
+    });
+
+    for (const doc of rawComments) {
+      const user = await admin.auth().getUser(doc.userUid);
+
+      comments.push({
+        id: doc.id,
+        userUid: doc.userUid,
+        name: user.displayName,
+        picture: user.photoURL,
+        body: doc.body,
+        date: formatDate(doc.date.toDate().toString()),
+      });
+    }
+  }
+
   return {
-    props: { snippet },
+    props: { snippet, comments },
   };
 };
 
