@@ -90,7 +90,7 @@ const Reaction: React.FunctionComponent<ReactionProps> = ({ type }) => {
       emoji = "❤";
       break;
     case ReactionType.Rocket:
-      emoji = "👩‍🚀";
+      emoji = "🚀";
       break;
     case ReactionType.Eyes:
       emoji = "👀";
