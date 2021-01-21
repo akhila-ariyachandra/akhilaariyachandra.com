@@ -7,6 +7,7 @@ import Code from "src/components/code/Code";
 const CommentsList = dynamic(
   () => import("src/components/comment/CommentsList")
 );
+const Reactions = dynamic(() => import("src/components/Reactions"));
 import Image from "next/image";
 import type { NextPage, GetStaticPaths, GetStaticProps } from "next";
 import type { Snippet as SnippetType, Comment } from "src/lib/types";
@@ -49,6 +50,8 @@ const Snippet: NextPage<Props> = ({ snippet, comments }) => {
       <div className={`prose dark:prose-dark p-4 ${styles.prose}`}>
         {content}
       </div>
+
+      <Reactions />
 
       <CommentsList comments={comments} />
     </Layout>

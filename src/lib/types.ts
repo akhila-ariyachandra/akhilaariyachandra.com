@@ -40,3 +40,14 @@ export type Comment = {
   body: string;
   date: string;
 };
+
+export enum ReactionType {
+  PlusOne = "PlusOne",
+  MinusOne = "MinusOne",
+  Laugh = "Laugh",
+  Hooray = "Hooray",
+  Confused = "Confused",
+  Heart = "Heart",
+  Rocket = "Rocket",
+  Eyes = "Eyes",
+}

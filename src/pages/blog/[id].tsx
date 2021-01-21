@@ -11,6 +11,7 @@ import Code from "src/components/code/Code";
 const CommentsList = dynamic(
   () => import("src/components/comment/CommentsList")
 );
+const Reactions = dynamic(() => import("src/components/Reactions"));
 import hydrate from "next-mdx-remote/hydrate";
 import CodeSandboxWrapper from "src/components/post/CodeSandboxWrapper";
 import Iframe from "src/components/post/Iframe";
@@ -101,6 +102,8 @@ const BlogPost: NextPage<Props> = ({ postData, comments }) => {
       </div>
 
       <HitCounter />
+
+      <Reactions />
 
       <CommentsList comments={comments} />
     </Layout>

@@ -11,7 +11,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { fetcher } from "src/lib/helpers";
-import { FaGithub, FaMarkdown, FaGoogle } from "react-icons/fa";
+import { FaGithub, FaMarkdown, FaGoogle, FaFacebook } from "react-icons/fa";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
 import styles from "src/components/comment/CommentList.module.scss";
@@ -81,7 +81,7 @@ const CommentList: React.FunctionComponent<Props> = ({ comments = [] }) => {
     }
   }, [user, loading]);
 
-  const handleLogin = async (type: "github" | "google") => {
+  const handleLogin = async (type: "github" | "google" | "facebook") => {
     try {
       let provider;
       switch (type) {
@@ -90,6 +90,9 @@ const CommentList: React.FunctionComponent<Props> = ({ comments = [] }) => {
           break;
         case "google":
           provider = new firebase.auth.GoogleAuthProvider();
+          break;
+        case "facebook":
+          provider = new firebase.auth.FacebookAuthProvider();
           break;
       }
 
@@ -179,6 +182,13 @@ const CommentList: React.FunctionComponent<Props> = ({ comments = [] }) => {
                 >
                   <FaGoogle style={{ color: "#DB4437" }} />
                 </button>
+
+                {/* <button
+                  onClick={() => handleLogin("facebook")}
+                  className="text-4xl"
+                >
+                  <FaFacebook style={{ color: "#3b5998" }} />
+                </button> */}
               </div>
             )}
           </div>
