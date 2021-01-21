@@ -33,7 +33,7 @@ const Reaction: React.FunctionComponent<ReactionProps> = ({ type }) => {
 
   const handleClick = async () => {
     try {
-      trackEvent("Reacted", {
+      trackEvent("React", {
         id: router.query.id,
         type,
       });
