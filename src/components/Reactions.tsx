@@ -33,11 +33,6 @@ const Reaction: React.FunctionComponent<ReactionProps> = ({ type }) => {
 
   const handleClick = async () => {
     try {
-      trackEvent("React", {
-        id: router.query.id,
-        type,
-      });
-
       setIsChanging(true);
 
       // If cookie has not been set increment
@@ -50,6 +45,11 @@ const Reaction: React.FunctionComponent<ReactionProps> = ({ type }) => {
             type,
           },
         });
+
+        trackEvent("React", {
+          id: router.query.id,
+          type,
+        });
       } else {
         await axios.request({
           url: "/api/reaction",
@@ -58,6 +58,11 @@ const Reaction: React.FunctionComponent<ReactionProps> = ({ type }) => {
             id: router.query.id,
             type,
           },
+        });
+
+        trackEvent("Unreact", {
+          id: router.query.id,
+          type,
         });
       }
 
