@@ -33,8 +33,6 @@ class MyDocument extends Document {
           <meta name="application-name" content="Akhila Ariyachandra" />
           <meta name="msapplication-TileColor" content="#00a300" />
           <meta name="theme-color" content="#38a169" />
-
-          <script async data-api="/_hive" src="/bee.js" />
         </Head>
 
         <body className="dark:bg-gray-900 bg-white">
