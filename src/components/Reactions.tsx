@@ -1,11 +1,11 @@
 import React from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import splitbee from "src/lib/splitbee";
 import useSWR, { mutate } from "swr";
 import { ReactionType } from "src/lib/types";
 import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
-import { trackEvent } from "src/lib/splitbee";
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
@@ -46,8 +46,8 @@ const Reaction: React.FunctionComponent<ReactionProps> = ({ type }) => {
           },
         });
 
-        trackEvent("React", {
-          id: router.query.id,
+        splitbee.track("React", {
+          slug: router.asPath,
           type,
         });
       } else {
@@ -60,8 +60,8 @@ const Reaction: React.FunctionComponent<ReactionProps> = ({ type }) => {
           },
         });
 
-        trackEvent("Unreact", {
-          id: router.query.id,
+        splitbee.track("Remove Reaction", {
+          id: router.asPath,
           type,
         });
       }

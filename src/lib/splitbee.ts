@@ -1,11 +1,9 @@
-declare global {
-  interface Window {
-    splitbee: {
-      track: (type: string, data?: any) => void;
-    };
-  }
-}
+import splitbee from "@splitbee/web";
 
-export const trackEvent = (type: string, data?: any) => {
-  window.splitbee.track(type, data);
-};
+splitbee.init({
+  // Set custom urls when using proxying
+  scriptUrl: "/bee.js",
+  apiUrl: "/_hive",
+});
+
+export default splitbee;

@@ -1,4 +1,5 @@
 import React from "react";
+import splitbee from "src/lib/splitbee";
 import Link from "next/link";
 import config from "src/config";
 import useBoop from "src/hooks/use-boop";
@@ -6,7 +7,6 @@ import { FaSun, FaMoon, FaCircle } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
 import { animated } from "react-spring";
-import { trackEvent } from "src/lib/splitbee";
 
 import styles from "src/components/Header.module.scss";
 
@@ -22,10 +22,10 @@ const Header = () => {
 
   const handleTheme = () => {
     if (theme === "light") {
-      trackEvent("Change Theme", { type: "dark" });
+      splitbee.track("Change Theme", { type: "Dark" });
       setTheme("dark");
     } else {
-      trackEvent("Change Theme", { type: "light" });
+      splitbee.track("Change Theme", { type: "Light" });
       setTheme("light");
     }
   };

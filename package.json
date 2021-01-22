@@ -20,6 +20,7 @@
     "@fec/remark-a11y-emoji": "^3.0.0",
     "@next/bundle-analyzer": "^10.0.5",
     "@silvenon/remark-smartypants": "^1.0.0",
+    "@splitbee/web": "^0.2.2",
     "@tailwindcss/forms": "^0.2.1",
     "axios": "^0.21.1",
     "dayjs": "^1.10.3",

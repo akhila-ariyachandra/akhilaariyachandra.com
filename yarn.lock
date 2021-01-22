@@ -1661,6 +1661,11 @@
     retext-smartypants "^4.0.0"
     unist-util-visit "^2.0.1"
 
+"@splitbee/web@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@splitbee/web/-/web-0.2.2.tgz#ab80d34a3f845126030014c43b1220d7e831b2d8"
+  integrity sha512-BZ39rWY1fksk4FkTXYTAC8wdcKYDqr05HdgufGfJiOnDeLh9HQK233Fsi3z9RCEqKuUJz4h2GGs+rkDHsiCKnQ==
+
 "@surma/rollup-plugin-off-main-thread@^1.4.1":
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/@surma/rollup-plugin-off-main-thread/-/rollup-plugin-off-main-thread-1.4.2.tgz#e6786b6af5799f82f7ab3a82e53f6182d2b91a58"

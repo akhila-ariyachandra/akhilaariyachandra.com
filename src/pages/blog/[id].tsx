@@ -18,7 +18,6 @@ import Iframe from "src/components/post/Iframe";
 import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import type { Post, Comment } from "src/lib/types";
 import { getAllPostIds, getPostData } from "src/lib/posts";
-import { trackEvent } from "src/lib/splitbee";
 import { formatDate } from "src/lib/helpers";
 
 import styles from "src/styles/post.module.scss";
@@ -72,9 +71,6 @@ const BlogPost: NextPage<Props> = ({ postData, comments }) => {
             target="_blank"
             rel="noopener noreferrer"
             className="dark:text-green-600 text-green-700"
-            onClick={() => {
-              trackEvent("Open Link", { name: "Unsplash" });
-            }}
           >
             {postData.photographer}
           </a>

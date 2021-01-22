@@ -1,8 +1,8 @@
+import splitbee from "src/lib/splitbee";
 import Layout from "src/components/Layout";
 import SEO from "src/components/SEO";
 import config from "src/config";
 import type { NextPage } from "next";
-import { trackEvent } from "src/lib/splitbee";
 import {
   FaGithub,
   FaDev,
@@ -42,7 +42,7 @@ const SocialLink = ({ site, link }) => {
       rel="noopener noreferrer"
       aria-label={site}
       onClick={() => {
-        trackEvent("Open Social Link", { name: site });
+        splitbee.track("Open Social Link", { name: site });
       }}
     >
       <Icon />
