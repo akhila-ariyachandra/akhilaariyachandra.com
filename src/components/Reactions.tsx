@@ -11,9 +11,10 @@ const fetcher = (url) => fetch(url).then((r) => r.json());
 
 type ReactionProps = {
   type: ReactionType;
+  emoji: string;
 };
 
-const Reaction: React.FunctionComponent<ReactionProps> = ({ type }) => {
+const Reaction: React.FunctionComponent<ReactionProps> = ({ type, emoji }) => {
   const [isPressed, setIsPressed] = React.useState<boolean>(false);
   const [isChanging, setIsChanging] = React.useState<boolean>(false);
   const router = useRouter();
@@ -74,34 +75,6 @@ const Reaction: React.FunctionComponent<ReactionProps> = ({ type }) => {
     }
   };
 
-  let emoji;
-  switch (type) {
-    case ReactionType.PlusOne:
-      emoji = "👍";
-      break;
-    case ReactionType.MinusOne:
-      emoji = "👎";
-      break;
-    case ReactionType.Laugh:
-      emoji = "😁";
-      break;
-    case ReactionType.Hooray:
-      emoji = "🎉";
-      break;
-    case ReactionType.Confused:
-      emoji = "😕";
-      break;
-    case ReactionType.Heart:
-      emoji = "❤";
-      break;
-    case ReactionType.Rocket:
-      emoji = "🚀";
-      break;
-    case ReactionType.Eyes:
-      emoji = "👀";
-      break;
-  }
-
   return (
     <button
       className={`p-2 text-black dark:text-white text-xl rounded-lg ${
@@ -119,21 +92,41 @@ const Reaction: React.FunctionComponent<ReactionProps> = ({ type }) => {
 const Reactions: React.FunctionComponent = () => {
   return (
     <div className="grid gap-4 grid-cols-4 place-items-center p-4">
-      <Reaction type={ReactionType.PlusOne} key={ReactionType.PlusOne} />
+      <Reaction
+        type={ReactionType.PlusOne}
+        emoji="👍"
+        key={ReactionType.PlusOne}
+      />
 
-      <Reaction type={ReactionType.MinusOne} key={ReactionType.PlusOne} />
+      <Reaction
+        type={ReactionType.MinusOne}
+        emoji="👎"
+        key={ReactionType.MinusOne}
+      />
 
-      <Reaction type={ReactionType.Laugh} key={ReactionType.PlusOne} />
+      <Reaction type={ReactionType.Laugh} emoji="😁" key={ReactionType.Laugh} />
 
-      <Reaction type={ReactionType.Hooray} key={ReactionType.PlusOne} />
+      <Reaction
+        type={ReactionType.Hooray}
+        emoji="🎉"
+        key={ReactionType.Hooray}
+      />
 
-      <Reaction type={ReactionType.Confused} key={ReactionType.PlusOne} />
+      <Reaction
+        type={ReactionType.Confused}
+        emoji="😕"
+        key={ReactionType.Confused}
+      />
 
-      <Reaction type={ReactionType.Heart} key={ReactionType.PlusOne} />
+      <Reaction type={ReactionType.Heart} emoji="❤" key={ReactionType.Heart} />
 
-      <Reaction type={ReactionType.Rocket} key={ReactionType.PlusOne} />
+      <Reaction
+        type={ReactionType.Rocket}
+        emoji="🚀"
+        key={ReactionType.Rocket}
+      />
 
-      <Reaction type={ReactionType.Eyes} key={ReactionType.PlusOne} />
+      <Reaction type={ReactionType.Eyes} emoji="👀" key={ReactionType.Eyes} />
     </div>
   );
 };
