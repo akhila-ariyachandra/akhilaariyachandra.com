@@ -4226,11 +4226,6 @@ globby@^6.1.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
-goober@^2.0.15:
-  version "2.0.26"
-  resolved "https://registry.yarnpkg.com/goober/-/goober-2.0.26.tgz#e5089ca5e5501e20a850a41949bd92a2441ad994"
-  integrity sha512-YatSB1/vndQaSghgIeIsiG1+pG3+3f4SSy0MaMcjj4OKqe7VQVqCgNbc7TCvaD8FoAi9EpgcBhsTimWuALSi9A==
-
 google-auth-library@^6.0.0, google-auth-library@^6.1.1, google-auth-library@^6.1.3:
   version "6.1.4"
   resolved "https://registry.yarnpkg.com/google-auth-library/-/google-auth-library-6.1.4.tgz#bc70c4f3b6681ae5273343466bcef37577b7ee44"
@@ -6904,13 +6899,6 @@ react-dom@^17.0.0:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     scheduler "^0.20.1"
-
-react-hot-toast@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/react-hot-toast/-/react-hot-toast-1.0.1.tgz#1352a526545f157bc83fbc2b19ac3ad1d92e780e"
-  integrity sha512-og5MNzjNHa7BTjdThj3cwGoyD8tLoxMN9c8/Sme6bBLCnlrF54QrNOJW5gJkETTsuAHVsUK5z8Q6vvkc+9OfCg==
-  dependencies:
-    goober "^2.0.15"
 
 react-icons@^4.1.0:
   version "4.1.0"

@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import toast from "react-hot-toast";
 import splitbee from "src/lib/splitbee";
 import useSWR from "swr";
 import { ReactionType } from "src/lib/types";
@@ -32,34 +31,30 @@ const Reaction: React.FunctionComponent<ReactionProps> = ({ type, emoji }) => {
   );
 
   const handleClick = async () => {
-    try {
-      // Optimistic update
-      await mutate(
-        { count: reacted ? count - 1 : count + 1, reacted: !reacted },
-        false
-      );
+    // Optimistic update
+    await mutate(
+      { count: reacted ? count - 1 : count + 1, reacted: !reacted },
+      false
+    );
 
-      await axios.request({
-        url: "/api/reaction",
-        method: "POST",
-        headers: {
-          uuid,
-        },
-        data: {
-          id: router.query.id,
-          type,
-        },
-      });
-
-      splitbee.track("React", {
-        slug: router.asPath,
+    await axios.request({
+      url: "/api/reaction",
+      method: "POST",
+      headers: {
+        uuid,
+      },
+      data: {
+        id: router.query.id,
         type,
-      });
+      },
+    });
 
-      await mutate();
-    } catch {
-      toast.error(<b>Please try again later</b>);
-    }
+    splitbee.track("React", {
+      slug: router.asPath,
+      type,
+    });
+
+    await mutate();
   };
 
   return (
