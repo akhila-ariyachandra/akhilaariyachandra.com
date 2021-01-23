@@ -3,6 +3,7 @@ import Router from "next/router";
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "react-hot-toast";
+import { UuidProvider } from "src/context/UuidContext";
 
 import "src/styles/global.scss";
 
@@ -24,9 +25,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       themes={["light", "dark"]}
       attribute="class"
     >
-      <Toaster position="bottom-right" />
+      <UuidProvider>
+        <Toaster position="bottom-right" />
 
-      <Component {...pageProps} />
+        <Component {...pageProps} />
+      </UuidProvider>
     </ThemeProvider>
   );
 };
