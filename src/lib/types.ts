@@ -32,15 +32,6 @@ export type Snippet = {
   content?: string;
 };
 
-export type Comment = {
-  id: string;
-  userUid: string;
-  name: string;
-  picture: string;
-  body: string;
-  date: string;
-};
-
 export enum ReactionType {
   PlusOne = "PlusOne",
   MinusOne = "MinusOne",

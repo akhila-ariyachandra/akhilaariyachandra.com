@@ -1,6 +1,5 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import admin from "src/lib/firebaseAdmin";
 import Layout from "src/components/Layout";
 import SEO from "src/components/SEO";
 import SpecialBlock from "src/components/post/SpecialBlock";
@@ -8,17 +7,13 @@ import Image from "next/image";
 import HitCounter from "src/components/post/HitCounter";
 import PostImage from "src/components/post/PostImage";
 import Code from "src/components/code/Code";
-const CommentsList = dynamic(
-  () => import("src/components/comment/CommentsList")
-);
 const Reactions = dynamic(() => import("src/components/Reactions"));
 import hydrate from "next-mdx-remote/hydrate";
 import CodeSandboxWrapper from "src/components/post/CodeSandboxWrapper";
 import Iframe from "src/components/post/Iframe";
 import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
-import type { Post, Comment } from "src/lib/types";
+import type { Post } from "src/lib/types";
 import { getAllPostIds, getPostData } from "src/lib/posts";
-import { formatDate } from "src/lib/helpers";
 
 import styles from "src/styles/post.module.scss";
 
@@ -32,10 +27,9 @@ const mdxComponents = {
 
 type Props = {
   postData: Post;
-  comments: Comment[];
 };
 
-const BlogPost: NextPage<Props> = ({ postData, comments }) => {
+const BlogPost: NextPage<Props> = ({ postData }) => {
   const content = hydrate(postData.content, {
     components: mdxComponents,
   });
@@ -100,8 +94,6 @@ const BlogPost: NextPage<Props> = ({ postData, comments }) => {
       <HitCounter />
 
       <Reactions />
-
-      <CommentsList comments={comments} />
     </Layout>
   );
 };
@@ -121,38 +113,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const id = params.id;
   const postData = await getPostData(id);
 
-  // Get comments
-  const db = admin.firestore();
-  const commentsRef = db.collection("comments");
-  const snapshot = await commentsRef
-    .where("id", "==", id)
-    .orderBy("date")
-    .get();
-  const rawComments = [];
-  const comments = [];
-  if (!snapshot.empty) {
-    snapshot.forEach((doc) => {
-      rawComments.push({ ...doc.data(), id: doc.id });
-    });
-
-    for (const doc of rawComments) {
-      const user = await admin.auth().getUser(doc.userUid);
-
-      comments.push({
-        id: doc.id,
-        userUid: doc.userUid,
-        name: user.displayName,
-        picture: user.photoURL,
-        body: doc.body,
-        date: formatDate(doc.date.toDate().toString()),
-      });
-    }
-  }
-
   return {
     props: {
       postData,
-      comments,
     },
   };
 };
