@@ -51,7 +51,7 @@ const Snippet: NextPage<Props> = ({ snippet, comments }) => {
         {content}
       </div>
 
-      <Reactions />
+      {/* <Reactions /> */}
 
       <CommentsList comments={comments} />
     </Layout>

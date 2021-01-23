@@ -99,7 +99,7 @@ const BlogPost: NextPage<Props> = ({ postData, comments }) => {
 
       <HitCounter />
 
-      <Reactions />
+      {/* <Reactions /> */}
 
       <CommentsList comments={comments} />
     </Layout>
