@@ -1,3 +1,5 @@
+import { MdxRemote } from "next-mdx-remote/types";
+
 export type Post = {
   id: string;
   title: string;
@@ -9,7 +11,7 @@ export type Post = {
   banner?: string;
   photographer?: string;
   unsplash_link?: string;
-  content?: string;
+  content?: MdxRemote.Source;
 };
 
 export type Job = {
@@ -29,7 +31,7 @@ export type Snippet = {
   id: string;
   title: string;
   description: string;
-  content?: string;
+  content?: MdxRemote.Source;
 };
 
 export enum ReactionType {
