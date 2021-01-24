@@ -4,7 +4,7 @@ import splitbee from "src/lib/splitbee";
 import useSWR from "swr";
 import { ReactionType } from "src/lib/types";
 import { useRouter } from "next/router";
-import { UuidContext } from "src/context/UuidContext";
+import { UniqueIdContext } from "src/context/UniqueIdContext";
 
 type ReactionProps = {
   type: ReactionType;
@@ -12,15 +12,17 @@ type ReactionProps = {
 };
 
 const Reaction: React.FunctionComponent<ReactionProps> = ({ type, emoji }) => {
-  const uuid = React.useContext(UuidContext);
+  const uniqueId = React.useContext(UniqueIdContext);
   const router = useRouter();
   const {
     data: { count, reacted },
     mutate,
   } = useSWR(
-    [`/api/reaction/${router.query.id}/${type}`, uuid],
-    (url, uuid) =>
-      axios.request({ url, headers: { uuid } }).then(({ data }) => data),
+    [`/api/reaction/${router.query.id}/${type}`, uniqueId],
+    (url, uniqueId) =>
+      axios
+        .request({ url, headers: { uniqueid: uniqueId } })
+        .then(({ data }) => data),
     {
       initialData: {
         count: 0,
@@ -41,7 +43,7 @@ const Reaction: React.FunctionComponent<ReactionProps> = ({ type, emoji }) => {
       url: "/api/reaction",
       method: "POST",
       headers: {
-        uuid,
+        uniqueid: uniqueId,
       },
       data: {
         id: router.query.id,

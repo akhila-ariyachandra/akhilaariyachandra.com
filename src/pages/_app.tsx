@@ -2,7 +2,7 @@ import ProgressBar from "@badrap/bar-of-progress";
 import Router from "next/router";
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
-import { UuidProvider } from "src/context/UuidContext";
+import { UniqueIdProvider } from "src/context/UniqueIdContext";
 
 import "src/styles/global.scss";
 
@@ -24,9 +24,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       themes={["light", "dark"]}
       attribute="class"
     >
-      <UuidProvider>
+      <UniqueIdProvider>
         <Component {...pageProps} />
-      </UuidProvider>
+      </UniqueIdProvider>
     </ThemeProvider>
   );
 };

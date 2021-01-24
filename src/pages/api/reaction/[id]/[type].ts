@@ -4,7 +4,7 @@ import { NextApiHandler } from "next";
 const Reaction: NextApiHandler = async (req, res) => {
   const id = req.query.id as string;
   const type = req.query.type as string;
-  const uuid = req.headers.uuid as string;
+  const uniqueId = req.headers.uniqueid as string;
 
   const db = admin.firestore();
   const typeRef = db
@@ -20,8 +20,8 @@ const Reaction: NextApiHandler = async (req, res) => {
       reacted: false,
     });
   } else {
-    const reacted: boolean = uuid
-      ? typeData.data().uniqueIds.includes(uuid)
+    const reacted: boolean = uniqueId
+      ? typeData.data().uniqueIds.includes(uniqueId)
       : false;
 
     return res.status(200).send({

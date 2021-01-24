@@ -5,11 +5,11 @@ import { ReactionType } from "src/lib/types";
 const Reaction: NextApiHandler = async (req, res) => {
   if (req.method === "POST") {
     const {
-      headers: { uuid },
+      headers: { uniqueid: uniqueId },
       body: { id, type },
     } = req;
 
-    if (!uuid) {
+    if (!uniqueId) {
       return res.status(401).send("Unauthorized");
     }
 
@@ -33,12 +33,12 @@ const Reaction: NextApiHandler = async (req, res) => {
     let operation: admin.firestore.FieldValue;
 
     if (!typeData.exists) {
-      operation = admin.firestore.FieldValue.arrayUnion(uuid);
+      operation = admin.firestore.FieldValue.arrayUnion(uniqueId);
     } else {
-      if (typeData.data().uniqueIds.includes(uuid)) {
-        operation = admin.firestore.FieldValue.arrayRemove(uuid);
+      if (typeData.data().uniqueIds.includes(uniqueId)) {
+        operation = admin.firestore.FieldValue.arrayRemove(uniqueId);
       } else {
-        operation = admin.firestore.FieldValue.arrayUnion(uuid);
+        operation = admin.firestore.FieldValue.arrayUnion(uniqueId);
       }
     }
 
