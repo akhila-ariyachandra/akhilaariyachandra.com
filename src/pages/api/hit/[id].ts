@@ -1,5 +1,6 @@
 import faunadb from "faunadb";
 import config from "src/config";
+import admin from "src/lib/firebaseAdmin";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 const RegisterHit = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -8,53 +9,45 @@ const RegisterHit = async (req: NextApiRequest, res: NextApiResponse) => {
   const client = new faunadb.Client({
     secret: process.env.FAUNA_SECRET_KEY,
   });
+  const db = admin.firestore();
 
-  const {
-    query: { id },
-  } = req;
+  const id = req.query.id as string;
   const slug = `/${id}`;
 
-  if (!slug) {
+  if (!id) {
     return res.status(400).json({
-      message: "Article slug not provided",
+      message: "Article id not provided",
     });
   }
 
-  // Check and see if the doc exists.
-  const doesDocExist = await client.query(
-    q.Exists(q.Match(q.Index("hits_by_slug"), slug))
-  );
+  // Check if document exists in Cloud Firestore
+  const hitRef = db.collection("hits").doc(id);
+  let hit = await hitRef.get();
 
-  if (!doesDocExist) {
-    await client.query(
-      q.Create(q.Collection("hits"), {
-        data: { slug, hits: 0 },
-      })
+  if (!hit.exists) {
+    // Check if values is present in Fauna
+    const faunaDocument: any = await client.query(
+      q.Get(q.Match(q.Index("hits_by_slug"), slug))
     );
-  }
 
-  // Fetch the document for-real
-  const document: any = await client.query(
-    q.Get(q.Match(q.Index("hits_by_slug"), slug))
-  );
+    await hitRef.set({
+      count: faunaDocument ? faunaDocument.data.hits : 0,
+    });
+  }
 
   if (req.method === "POST") {
     // Don't increment in development and preview environments
     const host = new URL(config.siteUrl);
     if (host.hostname === req.headers.host) {
-      await client.query(
-        q.Update(document.ref, {
-          data: {
-            hits: document.data.hits + 1,
-          },
-        })
-      );
+      await hitRef.update({
+        count: admin.firestore.FieldValue.increment(1),
+      });
     }
   }
 
-  return res.status(200).json({
-    hits: document.data.hits,
-  });
+  hit = await hitRef.get();
+
+  return res.status(200).send(hit.data().count);
 };
 
 export default RegisterHit;
