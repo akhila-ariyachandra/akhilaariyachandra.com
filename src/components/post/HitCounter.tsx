@@ -8,7 +8,7 @@ const fetcher = (url) => fetch(url).then((r) => r.json());
 const HitCounter: FunctionComponent = () => {
   const router = useRouter();
   const { data } = useSWR(`/api/hit/${router.query.id}`, fetcher, {
-    initialData: { hits: 0 },
+    initialData: 0,
   });
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const HitCounter: FunctionComponent = () => {
   }, []);
 
   return (
-    <p className="my-4 text-center text-black dark:text-white text-2xl font-semibold">{`${data.hits} views`}</p>
+    <p className="my-4 text-center text-black dark:text-white text-2xl font-semibold">{`${data} views`}</p>
   );
 };
 
