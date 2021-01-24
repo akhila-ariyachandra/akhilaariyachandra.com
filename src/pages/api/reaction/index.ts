@@ -23,26 +23,26 @@ const Reaction: NextApiHandler = async (req, res) => {
     }
 
     const db = admin.firestore();
-    const typeRef = db
-      .collection("reactions")
+    const reactionRef = db
+      .collection("pages")
       .doc(id)
-      .collection("types")
+      .collection("reactions")
       .doc(type);
-    const typeData = await typeRef.get();
+    const reactionData = await reactionRef.get();
 
     let operation: admin.firestore.FieldValue;
 
-    if (!typeData.exists) {
+    if (!reactionData.exists) {
       operation = admin.firestore.FieldValue.arrayUnion(uniqueId);
     } else {
-      if (typeData.data().uniqueIds.includes(uniqueId)) {
+      if (reactionData.data().uniqueIds.includes(uniqueId)) {
         operation = admin.firestore.FieldValue.arrayRemove(uniqueId);
       } else {
         operation = admin.firestore.FieldValue.arrayUnion(uniqueId);
       }
     }
 
-    await typeRef.set(
+    await reactionRef.set(
       {
         uniqueIds: operation,
       },

@@ -7,25 +7,25 @@ const Reaction: NextApiHandler = async (req, res) => {
   const uniqueId = req.headers.uniqueid as string;
 
   const db = admin.firestore();
-  const typeRef = db
-    .collection("reactions")
+  const reactionRef = db
+    .collection("pages")
     .doc(id)
-    .collection("types")
+    .collection("reactions")
     .doc(type);
-  const typeData = await typeRef.get();
+  const reactionData = await reactionRef.get();
 
-  if (!typeData.exists) {
+  if (!reactionData.exists) {
     return res.status(200).send({
       count: 0,
       reacted: false,
     });
   } else {
     const reacted: boolean = uniqueId
-      ? typeData.data().uniqueIds.includes(uniqueId)
+      ? reactionData.data().uniqueIds.includes(uniqueId)
       : false;
 
     return res.status(200).send({
-      count: typeData.data().uniqueIds.length,
+      count: reactionData.data().uniqueIds.length,
       reacted,
     });
   }
