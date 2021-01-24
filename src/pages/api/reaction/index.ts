@@ -42,9 +42,12 @@ const Reaction: NextApiHandler = async (req, res) => {
       }
     }
 
-    await typeRef.set({
-      uniqueIds: operation,
-    });
+    await typeRef.set(
+      {
+        uniqueIds: operation,
+      },
+      { merge: true }
+    );
 
     return res.status(200).send("OK");
   } else {
