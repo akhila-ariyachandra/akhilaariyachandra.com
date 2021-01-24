@@ -24,7 +24,7 @@ const Reaction: NextApiHandler = async (req, res) => {
       ? typeData.data().uniqueIds.includes(uniqueId)
       : false;
 
-    return res.status(200).json({
+    return res.status(200).send({
       count: typeData.data().uniqueIds.length,
       reacted,
     });
