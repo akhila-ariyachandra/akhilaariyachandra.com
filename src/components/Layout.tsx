@@ -9,6 +9,7 @@ const LINKS = [
   { href: "/career", title: "Career" },
   { href: "/about", title: "About" },
   { href: "/snippets", title: "Snippets" },
+  { href: "/stats", title: "Stats" },
 ];
 
 const Layout: FunctionComponent = ({ children }) => {
@@ -19,10 +20,10 @@ const Layout: FunctionComponent = ({ children }) => {
       {children}
 
       <footer className="flex flex-col mt-10 p-4 space-y-4">
-        <nav className="flex space-x-4">
+        <nav className="flex flex-wrap">
           {LINKS.map((link) => (
             <Link href={link.href} key={link.href}>
-              <a className="dark:text-green-600 text-green-700 text-xl font-medium">
+              <a className="mr-4 dark:text-green-600 text-green-700 text-xl font-medium">
                 {link.title}
               </a>
             </Link>
