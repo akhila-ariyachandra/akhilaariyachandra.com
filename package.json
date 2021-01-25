@@ -24,7 +24,6 @@
     "@tailwindcss/forms": "^0.2.1",
     "axios": "^0.21.1",
     "dayjs": "^1.10.4",
-    "faunadb": "^4.0.0",
     "feed": "^4.2.2",
     "firebase": "^8.2.4",
     "firebase-admin": "^9.4.2",
