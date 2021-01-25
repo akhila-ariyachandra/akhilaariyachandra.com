@@ -29,7 +29,8 @@ const TotalReactions: NextApiHandler = async (req, res) => {
     }
   }
 
-  res.setHeader("Cache-Control", "s-maxage=1, stale-while-revalidate");
+  // Update every 15 mins
+  res.setHeader("Cache-Control", "s-maxage=900, stale-while-revalidate");
 
   return res.status(200).send(totalReactions);
 };
