@@ -28,7 +28,7 @@ const DashboardItem: React.FunctionComponent<Props> = ({
         <Link href={link.url}>
           <a className="flex flex-row text-black dark:text-white text-3xl font-medium">
             {title}
-            <FaExternalLinkAlt className="ml-2 text-xl" />
+            <FaExternalLinkAlt className="ml-2 text-sm" />
           </a>
         </Link>
       ) : (
@@ -38,7 +38,7 @@ const DashboardItem: React.FunctionComponent<Props> = ({
           rel="noopener noreferrer"
         >
           {title}
-          <FaExternalLinkAlt className="ml-2 text-xl" />
+          <FaExternalLinkAlt className="ml-2 text-sm" />
         </a>
       )}
 
