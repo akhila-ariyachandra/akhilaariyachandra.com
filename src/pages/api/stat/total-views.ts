@@ -1,23 +1,8 @@
-import admin from "src/lib/firebaseAdmin";
 import type { NextApiHandler } from "next";
+import { getTotalViews } from "src/lib/stats";
 
 const TotalViews: NextApiHandler = async (req, res) => {
-  let totalViews = 0;
-
-  const db = admin.firestore();
-  const pagesRef = db.collection("pages");
-  const pagesSnapshot = await pagesRef.get();
-
-  if (!pagesSnapshot.empty) {
-    pagesSnapshot.forEach((doc) => {
-      const hits = doc.data().hits ?? 0;
-
-      totalViews = totalViews + hits;
-    });
-  }
-
-  // Update every 15 mins
-  res.setHeader("Cache-Control", "s-maxage=900, stale-while-revalidate");
+  const totalViews = await getTotalViews();
 
   return res.status(200).send(totalViews);
 };
