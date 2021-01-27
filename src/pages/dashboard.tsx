@@ -13,12 +13,11 @@ type Props = {
 };
 
 const Dashboard: NextPage<Props> = ({ totalViews, totalReactions }) => {
-  const totalViewsData = useSWR("/api/stat/total-views", fetcher, {
-    initialData: totalViews,
-    revalidateOnMount: true,
-  });
-  const totalReactionsData = useSWR("/api/stat/total-reactions", fetcher, {
-    initialData: totalReactions,
+  const { data } = useSWR("/api/stats", fetcher, {
+    initialData: {
+      totalViews,
+      totalReactions,
+    },
     revalidateOnMount: true,
   });
 
@@ -34,13 +33,13 @@ const Dashboard: NextPage<Props> = ({ totalViews, totalReactions }) => {
         <DashboardItem
           title="Total Views"
           link={{ type: "internal", url: "/blog" }}
-          value={totalViewsData.data}
+          value={data.totalViews}
         />
 
         <DashboardItem
           title="Total Reactions"
           link={{ type: "internal", url: "/blog" }}
-          value={totalReactionsData.data}
+          value={data.totalReactions}
         />
       </div>
     </Layout>
@@ -50,8 +49,10 @@ const Dashboard: NextPage<Props> = ({ totalViews, totalReactions }) => {
 export default Dashboard;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const totalViews = await getTotalViews();
-  const totalReactions = await getTotalReactions();
+  const [totalViews, totalReactions] = await Promise.all([
+    getTotalViews(),
+    getTotalReactions(),
+  ]);
 
   return {
     props: { totalViews, totalReactions },
