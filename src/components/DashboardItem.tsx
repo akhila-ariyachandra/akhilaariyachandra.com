@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import { useSpring, animated } from "react-spring";
-import { FaExternalLinkAlt } from "react-icons/fa";
 
 type Props = {
   title: string;
@@ -23,22 +22,20 @@ const DashboardItem: React.FunctionComponent<Props> = ({
   });
 
   return (
-    <div className="p-2 border-2 border-gray-400 border-opacity-50 rounded-md">
+    <div className="grid gap-2 grid-cols-1 p-2 border-2 border-gray-400 border-opacity-50 rounded-md">
       {link.type === "internal" ? (
         <Link href={link.url}>
-          <a className="flex flex-row text-black dark:text-white text-3xl font-medium">
+          <a className="flex flex-row dark:text-green-600 text-green-700 text-3xl font-medium">
             {title}
-            <FaExternalLinkAlt className="ml-2 text-sm" />
           </a>
         </Link>
       ) : (
         <a
-          className="flex flex-row text-black dark:text-white text-3xl font-medium"
+          className="flex flex-row dark:text-green-600 text-green-700 text-3xl font-medium"
           target="_blank"
           rel="noopener noreferrer"
         >
           {title}
-          <FaExternalLinkAlt className="ml-2 text-sm" />
         </a>
       )}
 
