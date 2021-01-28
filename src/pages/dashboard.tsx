@@ -60,7 +60,7 @@ const Dashboard: NextPage<Props> = ({
         </h2>
 
         <div className="grid gap-4 grid-cols-1">
-          {mostPopularPosts.map((post) => (
+          {data.mostPopularPosts.map((post) => (
             <article
               key={post.slug}
               className="p-2 border-2 border-gray-400 border-opacity-50 rounded-md"
