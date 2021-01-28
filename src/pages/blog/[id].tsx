@@ -1,5 +1,4 @@
 import React from "react";
-import dynamic from "next/dynamic";
 import Layout from "src/components/Layout";
 import SEO from "src/components/SEO";
 import SpecialBlock from "src/components/post/SpecialBlock";
@@ -7,7 +6,7 @@ import Image from "next/image";
 import HitCounter from "src/components/post/HitCounter";
 import PostImage from "src/components/post/PostImage";
 import Code from "src/components/code/Code";
-const Reactions = dynamic(() => import("src/components/Reactions"));
+import Reactions from "src/components/Reactions";
 import hydrate from "next-mdx-remote/hydrate";
 import CodeSandboxWrapper from "src/components/post/CodeSandboxWrapper";
 import Iframe from "src/components/post/Iframe";

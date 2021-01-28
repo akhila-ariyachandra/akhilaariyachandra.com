@@ -1,9 +1,8 @@
 import hydrate from "next-mdx-remote/hydrate";
-import dynamic from "next/dynamic";
 import Layout from "src/components/Layout";
 import SEO from "src/components/SEO";
 import Code from "src/components/code/Code";
-const Reactions = dynamic(() => import("src/components/Reactions"));
+import Reactions from "src/components/Reactions";
 import Image from "next/image";
 import HitCounter from "src/components/post/HitCounter";
 import type { NextPage, GetStaticPaths, GetStaticProps } from "next";
