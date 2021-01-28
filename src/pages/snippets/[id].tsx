@@ -5,6 +5,7 @@ import SEO from "src/components/SEO";
 import Code from "src/components/code/Code";
 const Reactions = dynamic(() => import("src/components/Reactions"));
 import Image from "next/image";
+import HitCounter from "src/components/post/HitCounter";
 import type { NextPage, GetStaticPaths, GetStaticProps } from "next";
 import type { Snippet as SnippetType } from "src/lib/types";
 import { getAllSnippetIds, getSnippetData } from "src/lib/snippets";
@@ -44,6 +45,8 @@ const Snippet: NextPage<Props> = ({ snippet }) => {
       <div className={`prose dark:prose-dark p-4 ${styles.prose}`}>
         {content}
       </div>
+
+      <HitCounter id={snippet.id} title={snippet.title} />
 
       <Reactions />
     </Layout>

@@ -91,7 +91,7 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
         {content}
       </div>
 
-      <HitCounter />
+      <HitCounter id={postData.id} title={postData.title} />
 
       <Reactions />
     </Layout>

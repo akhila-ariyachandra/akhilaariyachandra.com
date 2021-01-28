@@ -48,3 +48,21 @@ export const getTotalReactions = async (): Promise<number> => {
 
   return totalReactions;
 };
+
+export const getMostPopularPosts = async () => {
+  const posts: { title: string; slug: string; hits: number }[] = [];
+
+  const db = admin.firestore();
+  const pagesRef = db.collection("pages");
+  const pagesSnapshot = await pagesRef.orderBy("hits", "desc").limit(3).get();
+
+  if (!pagesSnapshot.empty) {
+    pagesSnapshot.forEach((doc) => {
+      const { title, slug, hits } = doc.data();
+
+      posts.push({ title, slug, hits });
+    });
+  }
+
+  return posts;
+};

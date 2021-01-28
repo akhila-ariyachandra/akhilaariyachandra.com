@@ -1,20 +1,32 @@
-import useSWR, { mutate } from "swr";
+import useSWR from "swr";
+import axios from "axios";
 import type { FunctionComponent } from "react";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 
-const fetcher = (url) => fetch(url).then((r) => r.json());
+const fetcher = (url) =>
+  axios.request({ url, method: "GET" }).then(({ data }) => data);
 
-const HitCounter: FunctionComponent = () => {
+type Props = {
+  id: string;
+  title: string;
+};
+
+const HitCounter: FunctionComponent<Props> = ({ id, title }) => {
   const router = useRouter();
-  const { data } = useSWR(`/api/hit/${router.query.id}`, fetcher, {
+  const { data, mutate } = useSWR(`/api/hit/${id}`, fetcher, {
     initialData: 0,
   });
 
   useEffect(() => {
     if (router.query.id) {
-      fetch(`/api/hit/${router.query.id}`, { method: "POST" })
-        .then(() => mutate(`/api/hit/${router.query.id}`))
+      axios
+        .request({
+          url: `/api/hit/${id}`,
+          method: "POST",
+          data: { title, slug: router.asPath },
+        })
+        .then(() => mutate())
         .catch(() => {
           console.error("> Error incrementing page view count");
         });

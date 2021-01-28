@@ -27,6 +27,13 @@ const RegisterHit = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   if (req.method === "POST") {
+    // Update page documents with page title and slug
+    const { title, slug } = req.body;
+    await pageRef.update({
+      title,
+      slug,
+    });
+
     // Don't increment in development and preview environments
     const host = new URL(config.siteUrl);
     if (host.hostname === req.headers.host) {
