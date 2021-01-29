@@ -61,17 +61,14 @@ const Dashboard: NextPage<Props> = ({
 
         <div className="grid gap-4 grid-cols-1">
           {data.mostPopularPosts.map((post) => (
-            <article
-              key={post.slug}
-              className="p-2 border-2 border-gray-400 border-opacity-50 rounded-md"
-            >
+            <article key={post.slug}>
               <Link href={post.slug}>
                 <a className="dark:text-green-600 text-green-700 text-2xl font-medium">
                   {post.title}
                 </a>
               </Link>
 
-              <p className="mt-2 text-black dark:text-white text-lg font-normal">{`${post.hits} views`}</p>
+              <p className="mt-1 text-black dark:text-white text-lg font-normal">{`${post.hits} views`}</p>
             </article>
           ))}
         </div>

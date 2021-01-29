@@ -22,7 +22,7 @@ const DashboardItem: React.FunctionComponent<Props> = ({
   });
 
   return (
-    <div className="grid gap-2 grid-cols-1 p-2 border-2 border-gray-400 border-opacity-50 rounded-md">
+    <div className="grid gap-2 grid-cols-1">
       {link.type === "internal" ? (
         <Link href={link.url}>
           <a className="flex flex-row dark:text-green-600 text-green-700 text-3xl font-medium">
