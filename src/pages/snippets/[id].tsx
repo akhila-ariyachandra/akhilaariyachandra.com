@@ -5,6 +5,7 @@ import Code from "src/components/code/Code";
 import Reactions from "src/components/Reactions";
 import Image from "next/image";
 import HitCounter from "src/components/post/HitCounter";
+import Comments from "src/components/Comments";
 import type { NextPage, GetStaticPaths, GetStaticProps } from "next";
 import type { Snippet as SnippetType } from "src/lib/types";
 import { getAllSnippetIds, getSnippetData } from "src/lib/snippets";
@@ -48,6 +49,8 @@ const Snippet: NextPage<Props> = ({ snippet }) => {
       <HitCounter id={snippet.id} title={snippet.title} />
 
       <Reactions />
+
+      <Comments />
     </Layout>
   );
 };

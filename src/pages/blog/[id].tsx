@@ -10,6 +10,7 @@ import Reactions from "src/components/Reactions";
 import hydrate from "next-mdx-remote/hydrate";
 import CodeSandboxWrapper from "src/components/post/CodeSandboxWrapper";
 import Iframe from "src/components/post/Iframe";
+import Comments from "src/components/Comments";
 import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import type { Post } from "src/lib/types";
 import { getAllPostIds, getPostData } from "src/lib/posts";
@@ -93,6 +94,8 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
       <HitCounter id={postData.id} title={postData.title} />
 
       <Reactions />
+
+      <Comments />
     </Layout>
   );
 };

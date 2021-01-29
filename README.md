@@ -27,10 +27,11 @@ yarn format
 
 ## Environment Variables
 
-|               Name                | Description                                                                |
-| :-------------------------------: | -------------------------------------------------------------------------- |
-| `NEXT_PUBLIC_ILP_PAYMENT_POINTER` | [Web Monetization](https://webmonetization.org/) Payment Pointer           |
-|    Firebase related variables     | Check [web](./src/lib/firebase.ts) and [admin](./src/lib/firebaseAdmin.ts) |
+|               Name                | Description                                                                   |
+| :-------------------------------: | ----------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_ILP_PAYMENT_POINTER` | [Web Monetization](https://webmonetization.org/) Payment Pointer              |
+|    Firebase related variables     | Check [web](./src/lib/firebase.ts) and [admin](./src/lib/firebaseAdmin.ts)    |
+|   `NEXT_PUBLIC_UTTERANCES_REPO`   | The GitHub repo to store the comments from [utterances](https://utteranc.es/) |
 
 ## Analytics
 
