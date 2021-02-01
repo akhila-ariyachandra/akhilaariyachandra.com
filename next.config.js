@@ -50,13 +50,6 @@ module.exports = withPlugins(
           destination: `/blog/${route}`,
           permanent: true,
         });
-
-        // Fix for moving posts under /post
-        redirects.push({
-          source: `/post/${route}`,
-          destination: `/blog/${route}`,
-          permanent: true,
-        });
       }
 
       return redirects;
