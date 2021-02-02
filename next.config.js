@@ -22,6 +22,7 @@ module.exports = withPlugins(
     ],
   ],
   {
+    future: { webpack5: true },
     rewrites: async () => {
       return [
         {
