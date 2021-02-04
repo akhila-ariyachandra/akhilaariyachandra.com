@@ -27,10 +27,10 @@ const Comments = () => {
     <React.Fragment>
       <Head>
         <link
-          rel="preconnect"
+          rel="preload"
           href="https://utteranc.es/client.js"
           as="script"
-          crossOrigin
+          crossOrigin="true"
         />
       </Head>
 
