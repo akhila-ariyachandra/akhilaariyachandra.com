@@ -37,7 +37,7 @@ const Header = () => {
       <div className="flex flex-row-reverse items-center justify-between p-4">
         <animated.button
           onClick={handleTheme}
-          className="text-black dark:text-white text-xl focus:outline-none"
+          className="dark:text-gray-200 text-gray-800 text-xl focus:outline-none"
           aria-label="Theme Switcher"
           style={style}
           onMouseEnter={trigger}

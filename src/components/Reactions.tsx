@@ -61,7 +61,7 @@ const Reaction: React.FunctionComponent<ReactionProps> = ({ type, emoji }) => {
 
   return (
     <button
-      className={`p-2 text-black dark:text-white text-xl rounded-lg ${
+      className={`p-2 text-gray-800 dark:text-gray-200 text-xl rounded-lg ${
         reacted ? "bg-gray-400 bg-opacity-30" : ""
       }`}
       onClick={handleClick}

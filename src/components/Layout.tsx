@@ -31,11 +31,11 @@ const Layout: FunctionComponent = ({ children }) => {
         </nav>
 
         <div className="flex items-center justify-between">
-          <span className="text-black dark:text-white text-base font-normal">
+          <span className="dark:text-gray-200 text-gray-800 text-base font-medium">
             © {new Date().getFullYear()}, Built with
             {` `}
             <a
-              className="dark:text-green-600 text-green-700 font-medium"
+              className="dark:text-green-600 text-green-700 font-semibold"
               href="https://nextjs.org/"
               target="_blank"
               rel="noopener noreferrer"
@@ -44,7 +44,7 @@ const Layout: FunctionComponent = ({ children }) => {
             </a>
             {", "}
             <a
-              className="dark:text-green-600 text-green-700 font-medium"
+              className="dark:text-green-600 text-green-700 font-semibold"
               href="https://tailwindcss.com/"
               target="_blank"
               rel="noopener noreferrer"
@@ -53,7 +53,7 @@ const Layout: FunctionComponent = ({ children }) => {
             </a>
             {", & "}
             <a
-              className="dark:text-green-600 text-green-700 font-medium"
+              className="dark:text-green-600 text-green-700 font-semibold"
               href="https://vercel.com/home"
               target="_blank"
               rel="noopener noreferrer"

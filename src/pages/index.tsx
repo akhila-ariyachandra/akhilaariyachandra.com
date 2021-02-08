@@ -56,11 +56,11 @@ const Index: NextPage = () => {
       <SEO />
 
       <div className="px-4 space-y-4">
-        <h1 className="text-black dark:text-white text-4xl font-black">
+        <h1 className="dark:text-gray-200 text-gray-800 text-4xl font-black">
           {config.title}
         </h1>
 
-        <p className="text-black dark:text-white text-lg font-medium">
+        <p className="dark:text-gray-200 text-gray-800 text-lg font-medium">
           {config.description}
         </p>
 

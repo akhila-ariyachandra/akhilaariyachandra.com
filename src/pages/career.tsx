@@ -43,10 +43,10 @@ const Career: NextPage<Props> = ({ careerList }) => {
 
             {company.positions.map((position) => (
               <div key={position.title}>
-                <p className="text-center text-black dark:text-white text-xl font-medium">
+                <p className="text-center dark:text-gray-200 text-gray-800 text-xl font-medium">
                   {position.title}
                 </p>
-                <p className="text-center text-black dark:text-white text-lg font-normal">
+                <p className="text-center dark:text-gray-200 text-gray-800 text-lg font-normal">
                   {position.period}
                 </p>
               </div>

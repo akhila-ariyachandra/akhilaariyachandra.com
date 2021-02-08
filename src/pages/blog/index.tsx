@@ -17,7 +17,7 @@ const Blog: NextPage<Props> = ({ allPostsData }) => {
         description="A blog about Javascript, React and Web Development"
       />
 
-      <h1 className="mx-4 my-10 text-black dark:text-white text-4xl font-bold">
+      <h1 className="mx-4 my-10 dark:text-gray-200 text-gray-800 text-4xl font-bold">
         Blog
       </h1>
 

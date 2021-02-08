@@ -39,7 +39,7 @@ const DashboardItem: React.FunctionComponent<Props> = ({
         </a>
       )}
 
-      <animated.div className="text-black dark:text-white text-2xl font-normal">
+      <animated.div className="dark:text-gray-200 text-gray-800 text-2xl font-normal">
         {props.number.interpolate((val: number) => Math.floor(val))}
       </animated.div>
     </div>

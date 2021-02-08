@@ -12,7 +12,7 @@ const Title: FunctionComponent<Props> = ({ text, children }) => {
       <p className={styles.codeBlockTitle}>{text}</p>
 
       {children ? (
-        <div className="px-2 py-1 text-white text-base bg-green-700 rounded">
+        <div className="px-2 py-1 text-gray-200 text-base bg-green-700 rounded">
           {children}
         </div>
       ) : null}

@@ -36,7 +36,7 @@ const Dashboard: NextPage<Props> = ({
     <Layout>
       <SEO title="Dashboard" />
 
-      <h1 className="mx-4 my-10 text-black dark:text-white text-4xl font-bold">
+      <h1 className="mx-4 my-10 dark:text-gray-200 text-gray-800 text-4xl font-bold">
         Dashboard
       </h1>
 
@@ -55,7 +55,7 @@ const Dashboard: NextPage<Props> = ({
       </div>
 
       <div className="my-4 p-4">
-        <h2 className="my-6 text-black dark:text-white text-3xl font-semibold">
+        <h2 className="my-6 dark:text-gray-200 text-gray-800 text-3xl font-semibold">
           Most Popular Posts
         </h2>
 
@@ -68,7 +68,7 @@ const Dashboard: NextPage<Props> = ({
                 </a>
               </Link>
 
-              <p className="mt-1 text-black dark:text-white text-lg font-normal">{`${post.hits} views`}</p>
+              <p className="mt-1 dark:text-gray-200 text-gray-800 text-lg font-normal">{`${post.hits} views`}</p>
             </article>
           ))}
         </div>

@@ -15,7 +15,7 @@ const PostLink: FunctionComponent<Props> = ({ post }) => {
         </a>
       </Link>
 
-      <p className="text-black dark:text-white text-lg font-medium">
+      <p className="dark:text-gray-200 text-gray-800 text-lg font-medium">
         {post.formattedDate}
       </p>
     </article>

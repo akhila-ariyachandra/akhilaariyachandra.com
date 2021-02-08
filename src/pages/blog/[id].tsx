@@ -58,7 +58,7 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
       </div>
 
       {postData.photographer && postData.unsplash_link ? (
-        <p className="my-2 px-4 text-center text-black dark:text-white text-base font-medium">
+        <p className="my-2 px-4 text-center dark:text-gray-200 text-gray-800 text-base font-medium">
           {"Photo by "}
           <a
             href={postData.unsplash_link}
@@ -71,16 +71,16 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
         </p>
       ) : null}
 
-      <h1 className="pseudo-full-bleed my-4 px-4 text-center text-black dark:text-white text-4xl font-black">
+      <h1 className="pseudo-full-bleed my-4 px-4 text-center dark:text-gray-200 text-gray-800 text-4xl font-black">
         {postData.title}
       </h1>
 
-      <p className="my-2 px-4 text-center text-black dark:text-white text-lg font-medium">
+      <p className="my-2 px-4 text-center dark:text-gray-200 text-gray-800 text-lg font-medium">
         {`Posted on ${postData.formattedDate}`}
       </p>
 
       {postData.updated ? (
-        <p className="my-2 px-4 text-center text-black dark:text-white text-lg font-medium">
+        <p className="my-2 px-4 text-center dark:text-gray-200 text-gray-800 text-lg font-medium">
           {`Last updated on ${postData.formattedUpdated}`}
         </p>
       ) : null}

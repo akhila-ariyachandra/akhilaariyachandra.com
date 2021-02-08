@@ -34,7 +34,7 @@ const HitCounter: FunctionComponent<Props> = ({ id, title }) => {
   }, []);
 
   return (
-    <p className="my-4 text-center text-black dark:text-white text-2xl font-semibold">{`${data} views`}</p>
+    <p className="my-4 text-center dark:text-gray-200 text-gray-800 text-2xl font-semibold">{`${data} views`}</p>
   );
 };
 
