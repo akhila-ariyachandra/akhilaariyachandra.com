@@ -23,7 +23,9 @@ const SyntaxHighlight = ({ children, title, language }) => {
   const ifTitle = (title || language) && { marginTop: `0px` };
   const metastring = children.props.metastring || "";
   const shouldHighlightLine = calculateLinesToHighlight(metastring);
+
   const noOfLines = children.props.children.trim().split(/\r\n|\r|\n/).length;
+  const placeholderHeight = `${noOfLines * LINE_HEIGHT + 2 * 0.8571429}em`;
 
   return (
     <Highlight
@@ -35,12 +37,14 @@ const SyntaxHighlight = ({ children, title, language }) => {
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <div className={`${styles.nextHighlight} horizontalScroll`}>
           <LazyLoad
-            height={`${noOfLines * LINE_HEIGHT}em`}
+            height={placeholderHeight}
             once
+            offset={200}
+            throttle={1000}
             placeholder={
               <div
                 style={{
-                  height: `${noOfLines * LINE_HEIGHT}em`,
+                  height: placeholderHeight,
                 }}
                 className="grid place-items-center"
               >
