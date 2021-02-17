@@ -1,11 +1,9 @@
 module.exports = {
   future: {},
   purge: [
-    "./src/pages/**/*.tsx",
-    "./src/components/**/*.tsx",
-    "./src/components/**/*.js",
-    "./src/components/**/*.scss",
-    "./src/styles/**/*.scss",
+    "./pages/**/*.tsx",
+    "./components/**/*.{tsx,js,scss}",
+    "./styles/**/*.scss",
   ],
   darkMode: "class",
   theme: {

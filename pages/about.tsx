@@ -1,0 +1,52 @@
+import Layout from "@/components/Layout";
+import SEO from "@/components/SEO";
+import Image from "next/image";
+import fs from "fs";
+import path from "path";
+import config from "@/lib/config";
+import renderToString from "next-mdx-remote/render-to-string";
+import hydrate from "next-mdx-remote/hydrate";
+import type { NextPage, GetStaticProps } from "next";
+import { MdxRemote } from "next-mdx-remote/types";
+
+type Props = {
+  source: MdxRemote.Source;
+};
+
+const About: NextPage<Props> = ({ source }) => {
+  const content = hydrate(source, { components: {} });
+
+  return (
+    <Layout>
+      <SEO title="About" description="A little bit about myself" />
+
+      <div className="pseudo-full-bleed my-4">
+        <Image
+          src="/cover-pic.jpg"
+          alt={config.title}
+          title={config.title}
+          className="lg:rounded-lg"
+          width={1200}
+          height={630}
+          priority
+        />
+      </div>
+
+      <div className="prose dark:prose-dark my-4 p-4">{content}</div>
+    </Layout>
+  );
+};
+
+export default About;
+
+export const getStaticProps: GetStaticProps = async () => {
+  const aboutFile = path.join("content", "about.mdx");
+  const fileContents = fs.readFileSync(aboutFile, "utf8");
+  const mdxSource = await renderToString(fileContents);
+
+  return {
+    props: {
+      source: mdxSource,
+    },
+  };
+};
