@@ -124,8 +124,12 @@ export const getPostData = async (id): Promise<Post> => {
     description: data.description,
     content: mdxSource,
     banner: data.banner,
-    sourceCode: data.sourceCode,
   };
+
+  // Check for source code link
+  if (data.sourceCode) {
+    post.sourceCode = data.sourceCode;
+  }
 
   // Check for updated date
   if (data.updated) {
