@@ -11,6 +11,7 @@ export type Post = {
   banner?: string;
   photographer?: string;
   unsplash_link?: string;
+  sourceCode?: string;
   content?: MdxRemote.Source;
 };
 

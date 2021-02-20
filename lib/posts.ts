@@ -124,6 +124,7 @@ export const getPostData = async (id): Promise<Post> => {
     description: data.description,
     content: mdxSource,
     banner: data.banner,
+    sourceCode: data.sourceCode,
   };
 
   // Check for updated date
