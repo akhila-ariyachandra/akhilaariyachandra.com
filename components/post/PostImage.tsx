@@ -7,6 +7,7 @@ type Props = {
   height: number;
   title: string;
   unoptimized?: boolean;
+  fullBleed?: boolean;
 };
 
 const PostImage: FunctionComponent<Props> = ({
@@ -15,9 +16,14 @@ const PostImage: FunctionComponent<Props> = ({
   height,
   title,
   unoptimized = false,
+  fullBleed = true,
 }) => {
   return (
-    <div className="pseudo-full-bleed grid place-items-center">
+    <div
+      className={`${
+        fullBleed ? "pseudo-full-bleed" : ""
+      } grid place-items-center`}
+    >
       <Image
         src={src}
         width={width}

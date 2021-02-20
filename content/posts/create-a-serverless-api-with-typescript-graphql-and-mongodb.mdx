@@ -34,21 +34,25 @@ In this post we'll create a GraphQL API to create, view and delete notes that we
 
 First [Vercel](https://vercel.com/download) will need be downloaded, installed and logged into.
 
-```shell
-npm i -g vercel
-vercel login
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/initial-setup/install-vercel.png"
+  width={1040}
+  height={560}
+  title="Installing Vercel"
+  fullBleed={false}
+/>
 
 The nice thing about using **Vercel** for development is that we don't have to worry about manually configuring TypeScript.
 
 Then create a folder, initialize a project in it and install `typescript` as a dev dependency.
 
-```shell
-mkdir serverless-graphql-api-example
-cd serverless-graphql-api-example
-npm init --yes
-npm install typescript -D
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/initial-setup/initialize-project.png"
+  width={1040}
+  height={548}
+  title="Initialize Project"
+  fullBleed={false}
+/>
 
 ## Setup the Database
 
@@ -58,97 +62,77 @@ To start setting up the database first go to [MongoDB Atlas](https://www.mongodb
 
 Then install the `mongoose` dependency. Since we'll be working with TypeScript we'll need the types for `mongoose` as well.
 
-```shell
-npm install mongoose
-npm install @types/mongoose -D
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-the-database/install-mongoose.png"
+  width={1040}
+  height={416}
+  title="Installing Mongoose"
+  fullBleed={false}
+/>
 
 After let's create the model for the notes. Create a folder called `src`. After that create a folder called `database` in `src`. Then in that create another folder called `models` and in that create the file `note.ts`.
 
 Start by importing `mongoose`.
 
-```typescript:title=src/database/models/note.ts
-import mongoose from "mongoose";
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-the-database/note.ts-1.png"
+  width={1040}
+  height={372}
+  title="Importing Mongoose"
+  fullBleed={false}
+/>
 
 Next create an interface for the model which extends from `mongoose.Document`. We'll need to export this interface for use later as well.
 
-```typescript:title=src/database/models/note.ts {3-7}
-import mongoose from "mongoose";
-
-export interface INote extends mongoose.Document {
-  title: string;
-  content: string;
-  date: Date;
-}
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-the-database/note.ts-2.png"
+  width={1040}
+  height={640}
+  title="Creating the Interface"
+  fullBleed={false}
+/>
 
 After that we'll create the schema definition.
 
-```typescript:title=src/database/models/note.ts {9-13}
-import mongoose from "mongoose";
-
-export interface INote extends mongoose.Document {
-  title: string;
-  content: string;
-  date: Date;
-}
-
-const schema: mongoose.SchemaDefinition = {
-  title: { type: mongoose.SchemaTypes.String, required: true },
-  content: { type: mongoose.SchemaTypes.String, required: true },
-  date: { type: mongoose.SchemaTypes.Date, required: true },
-};
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-the-database/note.ts-3.png"
+  width={1282}
+  height={640}
+  title="Schema Definition"
+  fullBleed={false}
+/>
 
 Then define the name of the collection and the schema using schema definition.
 
-```typescript:title=src/database/models/note.ts {15-16}
-import mongoose from "mongoose";
-
-export interface INote extends mongoose.Document {
-  title: string;
-  content: string;
-  date: Date;
-}
-
-const schema: mongoose.SchemaDefinition = {
-  title: { type: mongoose.SchemaTypes.String, required: true },
-  content: { type: mongoose.SchemaTypes.String, required: true },
-  date: { type: mongoose.SchemaTypes.Date, required: true },
-};
-
-const collectionName: string = "note";
-const noteSchema: mongoose.Schema = new mongoose.Schema(schema);
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-the-database/note.ts-4.png"
+  width={1264}
+  height={504}
+  title="Collection and Schema name"
+  fullBleed={false}
+/>
 
 Since we're building a serverless API, we can't depend on a persistent connection to database. When creating a Model we need to create it using the database connection.
 
 To compensate for using serverless we'll generate the Model at runtime using a function. After declaring the function, make it the default export.
 
-```typescript:title=src/database/models/note.ts {18-19,21}
-import mongoose from "mongoose";
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-the-database/note.ts-5.png"
+  width={1296}
+  height={592}
+  title="Model Connection"
+  fullBleed={false}
+/>
 
-export interface INote extends mongoose.Document {
-  title: string;
-  content: string;
-  date: Date;
-}
+In the end your `note.ts` file should look like this.
 
-const schema: mongoose.SchemaDefinition = {
-  title: { type: mongoose.SchemaTypes.String, required: true },
-  content: { type: mongoose.SchemaTypes.String, required: true },
-  date: { type: mongoose.SchemaTypes.Date, required: true },
-};
-
-const collectionName: string = "note";
-const noteSchema: mongoose.Schema = new mongoose.Schema(schema);
-
-const Note = (conn: mongoose.Connection): mongoose.Model<INote> =>
-  conn.model(collectionName, noteSchema);
-
-export default Note;
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-the-database/note.ts-6.png"
+  width={1298}
+  height={1268}
+  title="Note Model full"
+  fullBleed={false}
+/>
 
 After creating the Note Model, let's look into the database connection.
 
@@ -161,149 +145,129 @@ First create the `.env` file in the project root to store the MongoDB URI as `DB
   <strong>.gitignore</strong>.
 </SpecialBlock>
 
-```:title=.env
-DB_PATH=mongodb://user:password@ds654321.mlab.com:12345/example-db
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-the-database/env.png"
+  width={1296}
+  height={368}
+  title="Environment File"
+  fullBleed={false}
+/>
 
 Next create the the `index.js` file in `src/database` and import `mongoose`.
 
-```typescript:title=src/database/index.ts
-import mongoose from "mongoose";
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-the-database/index.ts-1.png"
+  width={1040}
+  height={368}
+  title="Importing Mongoose in Database file"
+  fullBleed={false}
+/>
 
 Then get the MongoDB URI that we included in the **.env** file. It can be accessed as a key in `process.env`.
 
-```typescript:title=src/database/index.ts {3}
-import mongoose from "mongoose";
-
-const uri: string = process.env.DB_PATH;
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-the-database/index.ts-2.png"
+  width={1040}
+  height={460}
+  title="Getting the MongoDB URI"
+  fullBleed={false}
+/>
 
 After that declare a variable that will be used to cache the database connection between function invocations to prevent overloading the database.
 
-```typescript:title=src/database/index.ts {5}
-import mongoose from "mongoose";
-
-const uri: string = process.env.DB_PATH;
-
-let conn: mongoose.Connection = null;
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-the-database/index.ts-3.png"
+  width={1040}
+  height={548}
+  title="Caching the Connection"
+  fullBleed={false}
+/>
 
 Finally we need to create a function that will return a database connection. The function will first check if there is a cached connection. If there is one it will return it or else it will create a new connection and cache and return it. Be sure to export the function.
 
-```typescript:title=src/database/index.ts {7-19}
-import mongoose from "mongoose";
-
-const uri: string = process.env.DB_PATH;
-
-let conn: mongoose.Connection = null;
-
-export const getConnection = async (): Promise<mongoose.Connection> => {
-  if (conn == null) {
-    conn = await mongoose.createConnection(uri, {
-      bufferCommands: false, // Disable mongoose buffering
-      bufferMaxEntries: 0, // and MongoDB driver buffering
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-    });
-  }
-
-  return conn;
-};
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-the-database/index.ts-4.png"
+  width={1396}
+  height={1178}
+  title="Full code of index.ts"
+  fullBleed={false}
+/>
 
 ## Setup the GraphQL API
 
 First let's install the dependencies.
 
-```shell
-npm install apollo-server-micro dayjs graphql graphql-iso-date
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql/install-dependencies.png"
+  width={1184}
+  height={372}
+  title="Installing GraphQL dependencies"
+  fullBleed={false}
+/>
 
 Next create the folder `api` in the project root and in it create the file `graphql.ts`. **Vercel** will expose the serverless function in the file as the endpoint **/api/graphql**. The GraphQL function will be created using [Apollo Server](https://www.apollographql.com/docs/apollo-server/). Since we're doing a serverless version we'll be using [apollo-server-micro](https://www.npmjs.com/package/apollo-server-micro).
 
 Then import `ApolloServer` from `apollo-server-micro` and the function to create the database connection.
 
-```typescript:title=api/graphql.ts
-import { ApolloServer } from "apollo-server-micro";
-import { getConnection } from "../src/database";
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql/graphql.ts-1.png"
+  width={1050}
+  height={412}
+  title="Importing Dependencies"
+  fullBleed={false}
+/>
 
 After that import the GraphQL Schemas and Resolvers. We'll create these later.
 
-```typescript:title=api/graphql.ts {4-5}
-import { ApolloServer } from "apollo-server-micro";
-import { getConnection } from "../src/database";
-
-import typeDefs from "../src/graphql/schema";
-import resolvers from "../src/graphql/resolvers";
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql/graphql.ts-2.png"
+  width={1040}
+  height={508}
+  title="Importing Schemas and Resolvers"
+  fullBleed={false}
+/>
 
 Then initialize the Apollo Server and export it.
 
-```typescript:title=api/graphql.ts {7-10,12}
-import { ApolloServer } from "apollo-server-micro";
-import { getConnection } from "../src/database";
-
-import typeDefs from "../src/graphql/schema";
-import resolvers from "../src/graphql/resolvers";
-
-const apolloServer = new ApolloServer({
-  typeDefs,
-  resolvers,
-});
-
-export default apolloServer.createHandler({ path: "/api/graphql" });
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql/graphql.ts-3.png"
+  width={1332}
+  height={684}
+  title="Initializing the Apollo Server"
+  fullBleed={false}
+/>
 
 When creating a new `ApolloServer`, we can define the `context` option. The `context` is an object which can be accessed by any of the resolvers.
 
 This will be a good place to initialize the database connection and automatically pass it down to the resolvers.
 
-```typescript:title=api/graphql.ts {10-14}
-import { ApolloServer } from "apollo-server-micro";
-import { getConnection } from "../src/database";
-
-import typeDefs from "../src/graphql/schema";
-import resolvers from "../src/graphql/resolvers";
-
-const apolloServer = new ApolloServer({
-  typeDefs,
-  resolvers,
-  context: async () => {
-    const dbConn = await getConnection();
-
-    return { dbConn };
-  },
-});
-
-export default apolloServer.createHandler({ path: "/api/graphql" });
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql/graphql.ts-4.png"
+  width={1040}
+  height={908}
+  title="Adding Context to the Apollo Server"
+  fullBleed={false}
+/>
 
 To finish configuring we'll set the `introspection` and `playground` options.
 
-```typescript:title=api/graphql.ts {15-16}
-import { ApolloServer } from "apollo-server-micro";
-import { getConnection } from "../src/database";
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql/graphql.ts-5.png"
+  width={1040}
+  height={1044}
+  title="Enabling Playground and Introspection"
+  fullBleed={false}
+/>
 
-import typeDefs from "../src/graphql/schema";
-import resolvers from "../src/graphql/resolvers";
+In the end the `graphql.ts` file should look like this.
 
-const apolloServer = new ApolloServer({
-  typeDefs,
-  resolvers,
-  context: async () => {
-    const dbConn = await getConnection();
-
-    return { dbConn };
-  },
-  playground: true,
-  introspection: true,
-});
-
-export default apolloServer.createHandler({ path: "/api/graphql" });
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql/graphql.ts-6.png"
+  width={1332}
+  height={1178}
+  title="Full graphql.ts file"
+  fullBleed={false}
+/>
 
 ## Setup the GraphQL Schema
 
@@ -311,174 +275,111 @@ In the `src` folder create the `graphql` folder and in it create the `schema` fo
 
 GraphQL doesn't have a type for date and time so we'll need a schema for those types. Create `custom.ts` in the `schema` folder.
 
-```typescript:title=src/graphql/schema/custom.ts
-import { gql } from "apollo-server-micro";
-
-export default gql`
-  scalar Date
-  scalar Time
-  scalar DateTime
-`;
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql-schema/custom.ts.png"
+  width={1040}
+  height={636}
+  title="Custom Schema file"
+  fullBleed={false}
+/>
 
 Next we'll setup the schema for Note.
 
 First create the Note schema file, `note.ts` in the `schema` folder.
 
-```typescript:title=src/graphql/schema/note.ts
-import { gql } from "apollo-server-micro";
-
-export default gql``;
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql-schema/note.ts-1.png"
+  width={1040}
+  height={460}
+  title="Import dependency"
+  fullBleed={false}
+/>
 
 Then add the Note type.
 
-```typescript:title=src/graphql/schema/note.ts {3-10}
-import { gql } from "apollo-server-micro";
-
-export default gql`
-  type Note {
-    _id: ID!
-    title: String!
-    content: String!
-    date: DateTime!
-  }
-`;
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql-schema/note.ts-2.png"
+  width={1040}
+  height={774}
+  title="Adding Note type"
+  fullBleed={false}
+/>
 
 After that add two Queries, one to get all Notes and one to get a specific Note.
 
-```typescript:title=src/graphql/schema/note.ts {4-7}
-import { gql } from "apollo-server-micro";
-
-export default gql`
-  extend type Query {
-    getAllNotes: [Note!]
-    getNote(_id: ID!): Note
-  }
-
-  type Note {
-    _id: ID!
-    title: String!
-    content: String!
-    date: DateTime!
-  }
-`;
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql-schema/note.ts-3.png"
+  width={1040}
+  height={998}
+  title="Adding Queries"
+  fullBleed={false}
+/>
 
 Next add two Mutations to create new Notes and delete existing ones.
 
-```typescript:title=src/graphql/schema/note.ts {9-12}
-import { gql } from "apollo-server-micro";
-
-export default gql`
-  extend type Query {
-    getAllNotes: [Note!]
-    getNote(_id: ID!): Note
-  }
-
-  extend type Mutation {
-    saveNote(title: String!, content: String!): Note!
-    deleteNote(_id: ID!): Note
-  }
-
-  type Note {
-    _id: ID!
-    title: String!
-    content: String!
-    date: DateTime!
-  }
-`;
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql-schema/note.ts-4.png"
+  width={1084}
+  height={1222}
+  title="Adding Mutations"
+  fullBleed={false}
+/>
 
 > Note that we add the keyword `extend` to the Query and Mutation type in the two schemas. This is because we'll be joining all the schemas into one later.
 
 Finally we'll need a schema a join all the others schemas together. Create `index.ts` in the `schema` folder and declare and export the Link Schema in an array.
 
-```typescript:title=src/graphql/schema/index.ts
-import { gql } from "apollo-server-micro";
-
-const linkSchema = gql`
-  type Query {
-    _: Boolean
-  }
-
-  type Mutation {
-    _: Boolean
-  }
-
-  type Subscription {
-    _: Boolean
-  }
-`;
-
-export default [linkSchema];
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql-schema/index.ts-1.png"
+  width={1040}
+  height={1088}
+  title="Joining Schemas"
+  fullBleed={false}
+/>
 
 Then import the other Schemas and add them to the array.
 
-```typescript:title=src/graphql/schema/index.ts {3-4,20}
-import { gql } from "apollo-server-micro";
-
-import noteSchema from "./note";
-import customSchema from "./custom";
-
-const linkSchema = gql`
-  type Query {
-    _: Boolean
-  }
-
-  type Mutation {
-    _: Boolean
-  }
-
-  type Subscription {
-    _: Boolean
-  }
-`;
-
-export default [linkSchema, noteSchema, customSchema];
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql-schema/index.ts-2.png"
+  width={1100}
+  height={1222}
+  title="Adding Schemas"
+  fullBleed={false}
+/>
 
 ## Setup the resolvers
 
 Since we added a custom type for dates and times in our schema, the first resolver we'll add is for those types. Create a folder called `resolvers` in the `graphql` folder and in it create `custom.ts`.
 
-```typescript:title=src/graphql/resolvers/custom.ts
-import { GraphQLDate, GraphQLTime, GraphQLDateTime } from "graphql-iso-date";
-
-export default {
-  Date: GraphQLDate,
-  Time: GraphQLTime,
-  DateTime: GraphQLDateTime,
-};
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql-resolvers/custom.ts.png"
+  width={1480}
+  height={640}
+  title="Custom Resolvers"
+  fullBleed={false}
+/>
 
 Next we'll start working on the resolver for Notes.
 
 Start by creating `note.ts` in `graphql`, importing the required dependencies and exporting an empty object which is going to be our resolver.
 
-```typescript:title=src/graphql/resolvers/note.ts
-import mongoose from "mongoose";
-import dayjs from "dayjs";
-import NoteModel, { INote } from "../../database/models/note";
-import { ApolloError } from "apollo-server-micro";
-
-export default {};
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql-resolvers/note.ts-1.png"
+  width={1232}
+  height={594}
+  title="Importing dependencies in Note resolvers"
+  fullBleed={false}
+/>
 
 Then define an object for the Queries.
 
-```typescript:title=src/graphql/resolvers/note.ts {7}
-import mongoose from "mongoose";
-import dayjs from "dayjs";
-import NoteModel, { INote } from "../../database/models/note";
-import { ApolloError } from "apollo-server-micro";
-
-export default {
-  Query: {},
-};
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql-resolvers/note.ts-2.png"
+  width={1040}
+  height={548}
+  title="Query Object"
+  fullBleed={false}
+/>
 
 When defining the function for each of the queries (or mutations or fields) there are three important parameters.
 
@@ -488,239 +389,97 @@ When defining the function for each of the queries (or mutations or fields) ther
 
 First let's write the resolver for `getAllNotes`. Start by declaring the function.
 
-```typescript:title=src/graphql/resolvers/note.ts {7-11}
-import mongoose from "mongoose";
-import dayjs from "dayjs";
-import NoteModel, { INote } from "../../database/models/note";
-import { ApolloError } from "apollo-server-micro";
-
-export default {
-  Query: {getAllNotes: async (
-      parent,
-      args,
-      context
-    ): Promise<INote[]> => {}
-};
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql-resolvers/note.ts-3.png"
+  width={1040}
+  height={730}
+  title="Arguments for getAllNotes"
+  fullBleed={false}
+/>
 
 Let's destructure the `context` object.
 
-```typescript:title=src/graphql/resolvers/note.ts {10}
-import mongoose from "mongoose";
-import dayjs from "dayjs";
-import NoteModel, { INote } from "../../database/models/note";
-import { ApolloError } from "apollo-server-micro";
-
-export default {
-  Query: {getAllNotes: async (
-      parent,
-      args,
-      { dbConn }: { dbConn: mongoose.Connection }
-    ): Promise<INote[]> => {}
-};
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql-resolvers/note.ts-4.png"
+  width={1040}
+  height={730}
+  title="Destructure context object"
+  fullBleed={false}
+/>
 
 In the function we should create the Note model using the database connection from the context and retrieve all the Notes using it.
 
-```typescript:title=src/graphql/resolvers/note.ts {13-25}
-import mongoose from "mongoose";
-import dayjs from "dayjs";
-import NoteModel, { INote } from "../../database/models/note";
-import { ApolloError } from "apollo-server-micro";
-
-export default {
-  Query: {
-    getAllNotes: async (
-      parent,
-      args,
-      { dbConn }: { dbConn: mongoose.Connection }
-    ): Promise<INote[]> => {
-      const Note: mongoose.Model<INote> = NoteModel(dbConn);
-
-      let list: INote[];
-
-      try {
-        list = await Note.find().exec();
-      } catch (error) {
-        console.error("> getAllNotes error: ", error);
-
-        throw new ApolloError("Error retrieving all notes");
-      }
-
-      return list;
-    },
-  },
-};
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql-resolvers/note.ts-5.png"
+  width={1198}
+  height={1146}
+  title="Get all Notes"
+  fullBleed={true}
+/>
 
 After that let's add the resolver for `getNote`.
 
-```typescript:title=src/graphql/resolvers/note.ts {28-44}
-import mongoose from "mongoose";
-import dayjs from "dayjs";
-import NoteModel, { INote } from "../../database/models/note";
-import { ApolloError } from "apollo-server-micro";
-
-export default {
-  Query: {
-    getAllNotes: async (
-      parent,
-      args,
-      { dbConn }: { dbConn: mongoose.Connection }
-    ): Promise<INote[]> => {
-      const Note: mongoose.Model<INote> = NoteModel(dbConn);
-
-      let list: INote[];
-
-      try {
-        list = await Note.find().exec();
-      } catch (error) {
-        console.error("> getAllNotes error: ", error);
-
-        throw new ApolloError("Error retrieving all notes");
-      }
-
-      return list;
-    },
-
-    getNote: async (
-      parent,
-      { _id }: { _id: INote["_id"] },
-      { dbConn }: { dbConn: mongoose.Connection }
-    ): Promise<INote> => {
-      const Note: mongoose.Model<INote> = NoteModel(dbConn);
-
-      try {
-        const note = await Note.findById(_id).exec();
-
-        return note;
-      } catch (error) {
-        console.error("> getNote error: ", error);
-
-        throw new ApolloError("Error retrieving all notes");
-      }
-    },
-  },
-};
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql-resolvers/note.ts-6.png"
+  width={1198}
+  height={1146}
+  title="Adding resolver for getNote"
+  fullBleed={true}
+/>
 
 We can retrieve the `id` argument from the second parameter.
 
 Let's finish of the Note resolvers by adding the resolvers for the mutations.
 
-```typescript:title=src/graphql/resolvers/note.ts {47-87}
-import mongoose from "mongoose";
-import dayjs from "dayjs";
-import NoteModel, { INote } from "../../database/models/note";
-import { ApolloError } from "apollo-server-micro";
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql-resolvers/note.ts-7.png"
+  width={1512}
+  height={2432}
+  title="Adding resolvers for Mutations"
+  fullBleed={true}
+/>
 
-export default {
-  Query: {
-    getAllNotes: async (
-      parent,
-      args,
-      { dbConn }: { dbConn: mongoose.Connection }
-    ): Promise<INote[]> => {
-      const Note: mongoose.Model<INote> = NoteModel(dbConn);
+In the end `note.ts` should look like this.
 
-      let list: INote[];
-
-      try {
-        list = await Note.find().exec();
-      } catch (error) {
-        console.error("> getAllNotes error: ", error);
-
-        throw new ApolloError("Error retrieving all notes");
-      }
-
-      return list;
-    },
-
-    getNote: async (
-      parent,
-      { _id }: { _id: INote["_id"] },
-      { dbConn }: { dbConn: mongoose.Connection }
-    ): Promise<INote> => {
-      const Note: mongoose.Model<INote> = NoteModel(dbConn);
-
-      try {
-        const note = await Note.findById(_id).exec();
-
-        return note;
-      } catch (error) {
-        console.error("> getNote error: ", error);
-
-        throw new ApolloError("Error retrieving all notes");
-      }
-    },
-  },
-
-  Mutation: {
-    saveNote: async (
-      parent,
-      { title, content }: { title: INote["title"]; content: INote["content"] },
-      { dbConn }: { dbConn: mongoose.Connection }
-    ): Promise<INote> => {
-      const Note: mongoose.Model<INote> = NoteModel(dbConn);
-
-      try {
-        const note = await Note.create({
-          title,
-          content,
-          date: dayjs().toDate(),
-        });
-
-        return note;
-      } catch (error) {
-        console.error("> saveNote error: ", error);
-
-        throw new ApolloError("Error creating note");
-      }
-    },
-
-    deleteNote: async (
-      parent,
-      { _id }: { _id: INote["_id"] },
-      { dbConn }: { dbConn: mongoose.Connection }
-    ): Promise<INote> => {
-      const Note: mongoose.Model<INote> = NoteModel(dbConn);
-
-      try {
-        const note = await Note.findByIdAndDelete(_id).exec();
-
-        return note;
-      } catch (error) {
-        console.error("> getNote error: ", error);
-
-        throw new ApolloError("Error retrieving all notes");
-      }
-    },
-  },
-};
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql-resolvers/note.ts-8.png"
+  width={1512}
+  height={4268}
+  title="Full note.ts file"
+  fullBleed={true}
+/>
 
 Now we have to connect all the resolvers together using an `index.ts` file created in the `resolvers` folder.
 
-```typescript:title=src/graphql/resolvers/index.ts
-import noteResolver from "./note";
-import customResolver from "./custom";
-
-export default [noteResolver, customResolver];
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql-resolvers/index.ts.png"
+  width={1040}
+  height={508}
+  title="Resolver Index"
+  fullBleed={false}
+/>
 
 ## Running the API locally
 
 To run the project locally first you need to link it to a **Vercel** project.
 
-```shell
-vercel link
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql-resolvers/shell-1.png"
+  width={1040}
+  height={370}
+  title="Linking to Vercel project"
+  fullBleed={false}
+/>
 
 Then run `vercel dev` to start the API locally.
 
-```shell
-vercel dev
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql-resolvers/shell-2.png"
+  width={1040}
+  height={370}
+  title="Running Vercel locally"
+  fullBleed={false}
+/>
 
 If you visit `http://localhost:3000/api/graphql` you can see the GraphQL Playground.
 
@@ -728,17 +487,25 @@ If you visit `http://localhost:3000/api/graphql` you can see the GraphQL Playgro
 
 First we need to upload the database path as an [Environment Variable](https://vercel.com/blog/environment-variables-ui).
 
-```shell
-vercel env add
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql-resolvers/shell-3.png"
+  width={1040}
+  height={370}
+  title="Adding Environment Variables"
+  fullBleed={false}
+/>
 
 Name the variable `DB_PATH` and make sure you make to available for all three environments (**Production**, **Preview** and **Development**).
 
 Then all that's left to do is to deploy to _Vercel_.
 
-```shell
-vercel
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql-resolvers/shell-4.png"
+  width={1040}
+  height={370}
+  title="Deploying to Vercel"
+  fullBleed={false}
+/>
 
 The GraphQL Playground should be visible in the `/api/graphql` route of the URL returned.
 
@@ -756,14 +523,10 @@ You can create a GraphQL API endpoint in your Next.js project by putting the `gr
 
 The only extra step you need to do is to add this bit of code to the end of the `graphql.ts` file.
 
-```typescript:title=pages/api/graphql.ts {5-9}
-// ...
-
-export default apolloServer.createHandler({ path: "/api/graphql" });
-
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-```
+<PostImage
+  src="/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/setup-graphql-resolvers/graphql.ts.png"
+  width={1332}
+  height={730}
+  title="Using in Next.js"
+  fullBleed={false}
+/>
