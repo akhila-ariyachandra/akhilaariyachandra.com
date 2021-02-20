@@ -88,8 +88,10 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
 
       {postData.sourceCode ? (
         <a
-          className="flex flex-row items-center justify-center my-4 p-4 dark:text-blue-500 text-blue-700 text-2xl font-medium space-x-4"
+          className="flex flex-row items-center justify-center place-self-center my-4 p-4 dark:text-green-600 text-green-700 text-2xl font-medium space-x-4"
           href={postData.sourceCode}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <FaGithub />
           <span>Check out the source code here</span>
