@@ -86,9 +86,12 @@ const Dashboard: NextPage<Props> = ({
           Spotify updated daily.
         </p>
 
-        <div className="flex flex-col space-y-4">
+        <div className="flex flex-col divide-gray-200 dark:divide-gray-600 divide-y space-y-3">
           {tracksData?.tracks?.map((track, index) => (
-            <div key={index} className="flex flex-row items-center space-x-6">
+            <div
+              key={index}
+              className="flex flex-row items-center pt-3 space-x-6"
+            >
               <div className="flex-shrink-0 w-20 h-20 rounded-sm overflow-hidden">
                 <Image
                   src={track.image}
