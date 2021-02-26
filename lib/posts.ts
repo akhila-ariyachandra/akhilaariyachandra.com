@@ -126,11 +126,6 @@ export const getPostData = async (id): Promise<Post> => {
     banner: data.banner,
   };
 
-  // Check for source code link
-  if (data.sourceCode) {
-    post.sourceCode = data.sourceCode;
-  }
-
   // Check for updated date
   if (data.updated) {
     post.updated = data.updated;

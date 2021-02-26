@@ -14,7 +14,6 @@ import Comments from "@/components/Comments";
 import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import type { Post } from "@/lib/types";
 import { getAllPostIds, getPostData } from "@/lib/posts";
-import { FaGithub } from "react-icons/fa";
 
 import styles from "@/styles/post.module.scss";
 
@@ -84,18 +83,6 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
         <p className="my-2 px-4 text-center dark:text-gray-200 text-gray-800 text-lg font-medium">
           {`Last updated on ${postData.formattedUpdated}`}
         </p>
-      ) : null}
-
-      {postData.sourceCode ? (
-        <a
-          className="flex flex-row items-center justify-center place-self-center my-4 p-4 dark:text-green-600 text-green-700 text-2xl font-medium space-x-4"
-          href={postData.sourceCode}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <FaGithub />
-          <span>Check out the source code here</span>
-        </a>
       ) : null}
 
       <div
