@@ -21,6 +21,8 @@ const Layout: FunctionComponent = ({ children }) => {
       {children}
 
       <footer className="flex flex-col mt-10 p-4 space-y-6">
+        <hr className="border-1 w-full border-gray-200 dark:border-gray-600" />
+
         <NowPlaying />
 
         <nav className="grid gap-2 grid-cols-2 sm:grid-cols-3">
