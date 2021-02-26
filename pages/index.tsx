@@ -8,6 +8,7 @@ import {
   FaDev,
   FaLinkedin,
   FaTwitterSquare,
+  FaSpotify,
   FaRssSquare,
 } from "react-icons/fa";
 
@@ -26,6 +27,9 @@ const SocialLink = ({ site, link }) => {
       break;
     case "Twitter":
       Icon = FaTwitterSquare;
+      break;
+    case "Spotify":
+      Icon = FaSpotify;
       break;
     case "RSS":
       Icon = FaRssSquare;
@@ -72,6 +76,8 @@ const Index: NextPage = () => {
           <SocialLink site="LinkedIn" link={config.social.linkedin} />
 
           <SocialLink site="Twitter" link={config.social.twitter} />
+
+          <SocialLink site="Spotify" link={config.social.spotify} />
 
           <SocialLink site="RSS" link="/rss.xml" />
         </div>

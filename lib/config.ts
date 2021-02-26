@@ -12,6 +12,7 @@ const config = {
     dev: `https://dev.to/akhilaariyachandra`,
     linkedin: `https://www.linkedin.com/in/akhila-ariyachandra/`,
     twitter: `https://twitter.com/heshan_1010`,
+    spotify: `https://open.spotify.com/user/1298590110?si=YivtTCIXS3i_bK6XT22b1w`,
   },
 };
 
