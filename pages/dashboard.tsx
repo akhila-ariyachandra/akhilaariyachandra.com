@@ -82,8 +82,8 @@ const Dashboard: NextPage<Props> = ({
         </h2>
 
         <p className="mb-10 mt-4 dark:text-gray-300 text-gray-500 text-lg">
-          Interested in what I'm listening to? Here are my top tracks in Spotify
-          updated daily.
+          Interested to know what I'm listening to? Here are my top tracks in
+          Spotify updated daily.
         </p>
 
         <div className="flex flex-col space-y-4">
