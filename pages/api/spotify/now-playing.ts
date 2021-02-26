@@ -16,8 +16,6 @@ const NowPlaying: NextApiHandler = async (_, res) => {
   const albumImageUrl = song.item.album.images[0].url;
   const songUrl = song.item.external_urls.spotify;
 
-  res.setHeader("Cache-Control", "s-maxage=60, stale-while-revalidate");
-
   return res.status(200).json({
     album,
     albumImageUrl,
