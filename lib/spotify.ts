@@ -59,6 +59,9 @@ export const getTopTracks = async () => {
       headers: {
         Authorization: `Bearer ${access_token}`,
       },
+      params: {
+        limit: 10,
+      },
     });
 
     return response;
