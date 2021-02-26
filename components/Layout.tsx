@@ -1,6 +1,7 @@
 import splitbee from "@/lib/splitbee";
 import Header from "components/Header";
 import Link from "next/link";
+import NowPlaying from "@/components/NowPlaying";
 import type { FunctionComponent } from "react";
 import { FaGithub } from "react-icons/fa";
 
@@ -19,7 +20,9 @@ const Layout: FunctionComponent = ({ children }) => {
 
       {children}
 
-      <footer className="flex flex-col mt-10 p-4 space-y-4">
+      <footer className="flex flex-col mt-10 p-4 space-y-6">
+        <NowPlaying />
+
         <nav className="grid gap-2 grid-cols-2 sm:grid-cols-3">
           {LINKS.map((link) => (
             <Link href={link.href} key={link.href}>

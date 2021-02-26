@@ -22,6 +22,9 @@ module.exports = withPlugins(
     ],
   ],
   {
+    images: {
+      domains: ["i.scdn.co"],
+    },
     rewrites: async () => {
       return [
         {

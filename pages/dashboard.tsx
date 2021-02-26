@@ -3,6 +3,7 @@ import Layout from "components/Layout";
 import SEO from "components/SEO";
 import DashboardItem from "components/DashboardItem";
 import Link from "next/link";
+import Image from "next/image";
 import type { NextPage, GetStaticProps } from "next";
 import {
   getTotalViews,
@@ -31,6 +32,7 @@ const Dashboard: NextPage<Props> = ({
     },
     revalidateOnMount: true,
   });
+  const { data: tracksData } = useSWR("/api/spotify/top-tracks", fetcher);
 
   return (
     <Layout>
@@ -70,6 +72,48 @@ const Dashboard: NextPage<Props> = ({
 
               <p className="mt-1 dark:text-gray-200 text-gray-800 text-lg font-normal">{`${post.hits} views`}</p>
             </article>
+          ))}
+        </div>
+      </div>
+
+      <div className="my-4 p-4">
+        <h2 className="mt-6 dark:text-gray-200 text-gray-800 text-3xl font-semibold">
+          Top Tracks
+        </h2>
+
+        <p className="mb-10 mt-4 dark:text-gray-300 text-gray-500 text-lg">
+          Interested in what I'm listening to? Here are my top tracks in Spotify
+          updated daily.
+        </p>
+
+        <div className="flex flex-col space-y-4">
+          {tracksData?.tracks?.map((track, index) => (
+            <div key={index} className="flex flex-row items-center space-x-6">
+              <div className="flex-shrink-0 w-20 h-20 rounded-sm overflow-hidden">
+                <Image
+                  src={track.image}
+                  width={640}
+                  height={640}
+                  alt={track.albumTitle}
+                  title={track.albumTitle}
+                />
+              </div>
+
+              <div>
+                <a
+                  href={track.songUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="dark:text-gray-100 text-gray-900 text-lg font-medium"
+                >
+                  {track.title}
+                </a>
+
+                <p className="dark:text-gray-300 text-gray-500">
+                  {track.artist}
+                </p>
+              </div>
+            </div>
           ))}
         </div>
       </div>
