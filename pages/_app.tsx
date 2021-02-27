@@ -3,6 +3,7 @@ import Router from "next/router";
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
 import { UniqueIdProvider } from "@/context/UniqueIdContext";
+import { HeaderMounterProvider } from "@/context/HeaderMountedContext";
 
 import "@/styles/global.scss";
 
@@ -24,9 +25,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       themes={["light", "dark"]}
       attribute="class"
     >
-      <UniqueIdProvider>
-        <Component {...pageProps} />
-      </UniqueIdProvider>
+      <HeaderMounterProvider>
+        <UniqueIdProvider>
+          <Component {...pageProps} />
+        </UniqueIdProvider>
+      </HeaderMounterProvider>
     </ThemeProvider>
   );
 };

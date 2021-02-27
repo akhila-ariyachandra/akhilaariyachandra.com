@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
 import { animated } from "react-spring";
+import { HeaderMountedContext } from "@/context/HeaderMountedContext";
 import { FaSun, FaMoon, FaCircle } from "react-icons/fa";
 
 import styles from "@/components/Header.module.scss";
@@ -14,11 +15,7 @@ const Header = () => {
   const router = useRouter();
   const { theme, setTheme } = useTheme();
   const [style, trigger] = useBoop({ rotation: 20, timing: 200 });
-  const [hasMounted, setHasMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setHasMounted(true);
-  }, []);
+  const hasMounted = React.useContext(HeaderMountedContext);
 
   const handleTheme = () => {
     if (theme === "light") {
