@@ -4,6 +4,7 @@ const runtimeCaching = require("next-pwa/cache");
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
+const withPreact = require("next-plugin-preact");
 const fs = require("fs");
 const path = require("path");
 
@@ -20,6 +21,7 @@ module.exports = withPlugins(
         },
       },
     ],
+    [withPreact],
   ],
   {
     images: {
