@@ -24,6 +24,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       defaultTheme="dark"
       themes={["light", "dark"]}
       attribute="class"
+      enableSystem={false}
     >
       <HeaderMounterProvider>
         <UniqueIdProvider>
