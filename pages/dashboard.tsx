@@ -14,21 +14,14 @@ import {
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
 type Props = {
-  totalViews: number;
-  totalReactions: number;
   mostPopularPosts: { title: string; slug: string; hits: number }[];
 };
 
-const Dashboard: NextPage<Props> = ({
-  totalViews,
-  totalReactions,
-  mostPopularPosts,
-}) => {
+const Dashboard: NextPage<Props> = ({ mostPopularPosts }) => {
   const { data } = useSWR("/api/stats", fetcher, {
     initialData: {
-      totalViews,
-      totalReactions,
-      mostPopularPosts,
+      totalViews: 0,
+      totalReactions: 0,
     },
     revalidateOnMount: true,
   });
@@ -62,7 +55,7 @@ const Dashboard: NextPage<Props> = ({
         </h2>
 
         <div className="grid gap-4 grid-cols-1">
-          {data.mostPopularPosts.map((post) => (
+          {mostPopularPosts.map((post) => (
             <article key={post.slug}>
               <Link href={post.slug}>
                 <a className="dark:text-green-600 text-green-700 text-2xl font-medium">
@@ -127,14 +120,10 @@ const Dashboard: NextPage<Props> = ({
 export default Dashboard;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const [totalViews, totalReactions, mostPopularPosts] = await Promise.all([
-    getTotalViews(),
-    getTotalReactions(),
-    getMostPopularPosts(),
-  ]);
+  const mostPopularPosts = await getMostPopularPosts();
 
   return {
-    props: { totalViews, totalReactions, mostPopularPosts },
-    revalidate: 3600, // Regenerate every hour
+    props: { mostPopularPosts },
+    revalidate: 3600, // Regenerate after an hour
   };
 };

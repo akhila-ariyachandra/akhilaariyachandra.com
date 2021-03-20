@@ -1,21 +1,21 @@
 import type { NextApiHandler } from "next";
-import {
-  getTotalViews,
-  getTotalReactions,
-  getMostPopularPosts,
-} from "@/lib/stats";
+import { getTotalViews, getTotalReactions } from "@/lib/stats";
 
 const Stats: NextApiHandler = async (req, res) => {
-  const [totalViews, totalReactions, mostPopularPosts] = await Promise.all([
+  const [totalViews, totalReactions] = await Promise.all([
     getTotalViews(),
     getTotalReactions(),
-    getMostPopularPosts(),
   ]);
+
+  // Cache the response
+  res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=600, stale-while-revalidate=300"
+  );
 
   return res.status(200).json({
     totalViews,
     totalReactions,
-    mostPopularPosts,
   });
 };
 
