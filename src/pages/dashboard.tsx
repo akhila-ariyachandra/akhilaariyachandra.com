@@ -120,6 +120,6 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: { mostPopularPosts },
-    revalidate: 3600, // Regenerate after an hour
+    revalidate: 600, // Regenerate after 10 mins
   };
 };

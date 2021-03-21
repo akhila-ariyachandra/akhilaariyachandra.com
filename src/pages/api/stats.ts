@@ -10,7 +10,7 @@ const Stats: NextApiHandler = async (req, res) => {
   // Cache the response
   res.setHeader(
     "Cache-Control",
-    "public, s-maxage=600, stale-while-revalidate=300"
+    "public, s-maxage=600, stale-while-revalidate"
   );
 
   return res.status(200).json({
