@@ -1,15 +1,11 @@
 import useSWR from "swr";
-import Layout from "components/Layout";
-import SEO from "components/SEO";
-import DashboardItem from "components/DashboardItem";
+import Layout from "@/components/Layout";
+import SEO from "@/components/SEO";
+import DashboardItem from "@/components/DashboardItem";
 import Link from "next/link";
 import Image from "next/image";
 import type { NextPage, GetStaticProps } from "next";
-import {
-  getTotalViews,
-  getTotalReactions,
-  getMostPopularPosts,
-} from "@/lib/stats";
+import { getMostPopularPosts } from "@/lib/stats";
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
 

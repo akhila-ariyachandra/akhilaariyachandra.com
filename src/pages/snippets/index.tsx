@@ -1,5 +1,5 @@
-import Layout from "components/Layout";
-import SEO from "components/SEO";
+import Layout from "@/components/Layout";
+import SEO from "@/components/SEO";
 import Link from "next/link";
 import type { NextPage, GetStaticProps } from "next";
 import type { Snippet } from "@/lib/types";

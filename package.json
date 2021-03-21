@@ -9,10 +9,17 @@
   "scripts": {
     "dev": "next dev -p 4000",
     "analyze": "cross-env ANALYZE=true next build",
-    "prebuild": "node scripts/pre-build.js",
+    "prebuild": "node src/scripts/pre-build.js",
     "build": "next build",
     "start": "next start",
     "format": "prettier --write \"**/*.{ts,tsx,js,json,md,mdx,yaml,scss}\""
+  },
+  "prettier": {
+    "endOfLine": "lf",
+    "semi": true,
+    "singleQuote": false,
+    "tabWidth": 2,
+    "trailingComma": "es5"
   },
   "dependencies": {
     "@badrap/bar-of-progress": "^0.1.2",

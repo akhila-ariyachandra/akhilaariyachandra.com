@@ -1,5 +1,5 @@
 import splitbee from "@/lib/splitbee";
-import Header from "components/Header";
+import Header from "@/components/Header";
 import Link from "next/link";
 import NowPlaying from "@/components/NowPlaying";
 import type { FunctionComponent } from "react";

@@ -1,7 +1,7 @@
 import splitbee from "@/lib/splitbee";
 import config from "@/lib/config";
-import Layout from "components/Layout";
-import SEO from "components/SEO";
+import Layout from "@/components/Layout";
+import SEO from "@/components/SEO";
 import type { NextPage } from "next";
 import {
   FaGithub,
