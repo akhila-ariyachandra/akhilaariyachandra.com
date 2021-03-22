@@ -91,17 +91,17 @@ const Dashboard: NextPage<Props> = ({ mostPopularPosts }) => {
                 />
               </div>
 
-              <div>
+              <div className="truncate">
                 <a
                   href={track.songUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="dark:text-gray-100 text-gray-900 text-lg font-medium"
+                  className="dark:text-gray-100 text-gray-900 text-lg font-medium truncate"
                 >
                   {track.title}
                 </a>
 
-                <p className="dark:text-gray-300 text-gray-500">
+                <p className="dark:text-gray-300 text-gray-500 truncate">
                   {track.artist}
                 </p>
               </div>
