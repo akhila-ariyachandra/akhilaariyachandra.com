@@ -44,8 +44,8 @@
     "preact": "^10.5.13",
     "prism-react-renderer": "^1.2.0",
     "querystring": "^0.2.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
     "react-lazyload": "^3.2.0",
     "react-spring": "^8.0.27",
@@ -57,7 +57,7 @@
     "yaml": "^1.10.2"
   },
   "devDependencies": {
-    "@tailwindcss/jit": "^0.1.5",
+    "@tailwindcss/jit": "^0.1.7",
     "@tailwindcss/typography": "^0.4.0",
     "@types/node": "^14.14.35",
     "@types/react": "^17.0.3",
