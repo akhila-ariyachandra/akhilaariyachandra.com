@@ -7,12 +7,6 @@ const Stats: NextApiHandler = async (req, res) => {
     getTotalReactions(),
   ]);
 
-  // Cache the response
-  res.setHeader(
-    "Cache-Control",
-    "public, s-maxage=600, stale-while-revalidate=3600"
-  );
-
   return res.status(200).json({
     totalViews,
     totalReactions,

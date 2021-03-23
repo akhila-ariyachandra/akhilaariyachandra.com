@@ -5,19 +5,29 @@ import DashboardItem from "@/components/DashboardItem";
 import Link from "next/link";
 import Image from "next/image";
 import type { NextPage, GetStaticProps } from "next";
-import { getMostPopularPosts } from "@/lib/stats";
+import {
+  getTotalViews,
+  getTotalReactions,
+  getMostPopularPosts,
+} from "@/lib/stats";
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
 type Props = {
+  totalViews;
+  totalReactions;
   mostPopularPosts: { title: string; slug: string; hits: number }[];
 };
 
-const Dashboard: NextPage<Props> = ({ mostPopularPosts }) => {
+const Dashboard: NextPage<Props> = ({
+  totalViews,
+  totalReactions,
+  mostPopularPosts,
+}) => {
   const { data } = useSWR("/api/stats", fetcher, {
     initialData: {
-      totalViews: 0,
-      totalReactions: 0,
+      totalViews,
+      totalReactions,
     },
     revalidateOnMount: true,
   });
@@ -116,10 +126,14 @@ const Dashboard: NextPage<Props> = ({ mostPopularPosts }) => {
 export default Dashboard;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const mostPopularPosts = await getMostPopularPosts();
+  const [totalViews, totalReactions, mostPopularPosts] = await Promise.all([
+    getTotalViews(),
+    getTotalReactions(),
+    getMostPopularPosts(),
+  ]);
 
   return {
-    props: { mostPopularPosts },
+    props: { totalViews, totalReactions, mostPopularPosts },
     revalidate: 600, // Regenerate after 10 mins
   };
 };
