@@ -75,6 +75,13 @@ const Reaction: React.FunctionComponent<ReactionProps> = ({ type, emoji }) => {
 const Reactions: React.FunctionComponent = () => {
   return (
     <div className="grid gap-4 grid-cols-4 place-items-center p-4">
+      <p className="col-span-full dark:text-gray-100 text-gray-800 text-lg font-medium">
+        Leave a Reaction below!!!{" "}
+        <span className="dark:text-gray-300 text-gray-600 font-normal">
+          (No login required)
+        </span>
+      </p>
+
       <Reaction type={ReactionType.PlusOne} emoji="👍" />
 
       <Reaction type={ReactionType.MinusOne} emoji="👎" />
