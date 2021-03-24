@@ -2,16 +2,15 @@ import React from "react";
 import axios from "axios";
 import splitbee from "@/lib/splitbee";
 import useSWR from "swr";
+import useBoop from "@/hooks/use-boop";
 import { ReactionType } from "@/lib/types";
 import { useRouter } from "next/router";
+import { animated } from "react-spring";
 import { UniqueIdContext } from "@/context/UniqueIdContext";
 
-type ReactionProps = {
-  type: ReactionType;
-  emoji: string;
-};
+const BOOP_AMOUNT = 10;
 
-const Reaction: React.FunctionComponent<ReactionProps> = ({ type, emoji }) => {
+const Reaction = ({ type, emoji }) => {
   const uniqueId = React.useContext(UniqueIdContext);
   const router = useRouter();
   const {
@@ -31,6 +30,9 @@ const Reaction: React.FunctionComponent<ReactionProps> = ({ type, emoji }) => {
       revalidateOnMount: true,
     }
   );
+  const [style, trigger] = useBoop({
+    y: reacted ? BOOP_AMOUNT * -1 : BOOP_AMOUNT,
+  });
 
   const handleClick = async () => {
     // Optimistic update
@@ -38,6 +40,7 @@ const Reaction: React.FunctionComponent<ReactionProps> = ({ type, emoji }) => {
       { count: reacted ? count - 1 : count + 1, reacted: !reacted },
       false
     );
+    trigger();
 
     await axios.request({
       url: "/api/reaction",
@@ -60,19 +63,20 @@ const Reaction: React.FunctionComponent<ReactionProps> = ({ type, emoji }) => {
   };
 
   return (
-    <button
+    <animated.button
       className={`p-2 text-gray-800 dark:text-gray-200 text-xl rounded-lg ${
         reacted ? "bg-gray-400 bg-opacity-30" : ""
       }`}
+      style={style}
       onClick={handleClick}
       aria-label={type}
     >
       {count === 0 ? emoji : `${emoji} ${count}`}
-    </button>
+    </animated.button>
   );
 };
 
-const Reactions: React.FunctionComponent = () => {
+const Reactions = () => {
   return (
     <div className="grid gap-4 grid-cols-4 place-items-center p-4">
       <p className="col-span-full dark:text-gray-100 text-gray-800 text-lg font-medium">
