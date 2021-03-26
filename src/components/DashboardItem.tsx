@@ -1,6 +1,9 @@
 import React from "react";
+import useSWR from "swr";
 import Link from "next/link";
 import { useSpring, animated } from "react-spring";
+
+const fetcher = (url) => fetch(url).then((r) => r.json());
 
 type Props = {
   title: string;
@@ -8,16 +11,20 @@ type Props = {
     url: string;
     type: "internal" | "external";
   };
-  value: number;
+  url: string;
 };
 
 const DashboardItem: React.FunctionComponent<Props> = ({
   title,
   link,
-  value,
+  url,
 }) => {
+  const { data } = useSWR(url, fetcher, {
+    initialData: 0,
+    revalidateOnMount: true,
+  });
   const props = useSpring({
-    number: value,
+    number: data,
     from: { number: 0 },
   });
 

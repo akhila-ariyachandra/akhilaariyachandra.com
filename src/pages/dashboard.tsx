@@ -5,32 +5,15 @@ import DashboardItem from "@/components/DashboardItem";
 import Link from "next/link";
 import Image from "next/image";
 import type { NextPage, GetStaticProps } from "next";
-import {
-  getTotalViews,
-  getTotalReactions,
-  getMostPopularPosts,
-} from "@/lib/stats";
+import { getMostPopularPosts } from "@/lib/stats";
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
 type Props = {
-  totalViews;
-  totalReactions;
   mostPopularPosts: { title: string; slug: string; hits: number }[];
 };
 
-const Dashboard: NextPage<Props> = ({
-  totalViews,
-  totalReactions,
-  mostPopularPosts,
-}) => {
-  const { data } = useSWR("/api/stats", fetcher, {
-    initialData: {
-      totalViews,
-      totalReactions,
-    },
-    revalidateOnMount: true,
-  });
+const Dashboard: NextPage<Props> = ({ mostPopularPosts }) => {
   const { data: tracksData } = useSWR("/api/spotify/top-tracks", fetcher);
 
   return (
@@ -45,13 +28,13 @@ const Dashboard: NextPage<Props> = ({
         <DashboardItem
           title="Total Views"
           link={{ type: "internal", url: "/blog" }}
-          value={data.totalViews}
+          url="/api/stats/total-views"
         />
 
         <DashboardItem
           title="Total Reactions"
           link={{ type: "internal", url: "/blog" }}
-          value={data.totalReactions}
+          url="/api/stats/total-reactions"
         />
       </div>
 
@@ -126,14 +109,10 @@ const Dashboard: NextPage<Props> = ({
 export default Dashboard;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const [totalViews, totalReactions, mostPopularPosts] = await Promise.all([
-    getTotalViews(),
-    getTotalReactions(),
-    getMostPopularPosts(),
-  ]);
+  const mostPopularPosts = await getMostPopularPosts();
 
   return {
-    props: { totalViews, totalReactions, mostPopularPosts },
+    props: { mostPopularPosts },
     revalidate: 600, // Regenerate after 10 mins
   };
 };
