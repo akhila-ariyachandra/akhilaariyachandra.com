@@ -17,40 +17,48 @@ const Career: NextPage<Props> = ({ careerList }) => {
     <Layout>
       <SEO title="Career" description="My work experience" />
 
+      <h1 className="mx-4 my-10 dark:text-gray-200 text-gray-800 text-4xl font-bold">
+        Career
+      </h1>
+
       <div className="p-4 space-y-10">
         {careerList.map((company) => (
           <div
             key={company.company}
-            className="grid gap-4 place-content-center place-items-center pr-4"
+            className="flex flex-row items-center space-x-4"
           >
-            <Image
-              src={`/career/${company.image}`}
-              alt={company.company}
-              title={company.company}
-              className="w-24 h-24 rounded-md"
-              width={128}
-              height={128}
-            />
+            <div className="flex-shrink-0 w-16 h-16 rounded-md overflow-hidden">
+              <Image
+                src={`/career/${company.image}`}
+                alt={company.company}
+                title={company.company}
+                width={128}
+                height={128}
+              />
+            </div>
 
-            <a
-              href={company.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-center dark:text-green-600 text-green-700 text-2xl font-semibold"
-            >
-              {company.company}
-            </a>
+            <div className="space-y-3 truncate">
+              <a
+                href={company.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-center dark:text-green-600 text-green-700 text-xl font-medium truncate"
+              >
+                {company.company}
+              </a>
 
-            {company.positions.map((position) => (
-              <div key={position.title}>
-                <p className="text-center dark:text-gray-200 text-gray-800 text-xl font-medium">
-                  {position.title}
-                </p>
-                <p className="text-center dark:text-gray-200 text-gray-800 text-lg font-normal">
-                  {position.period}
-                </p>
-              </div>
-            ))}
+              {company.positions.map((position) => (
+                <div key={position.title} className="space-y-1 truncate">
+                  <p className="dark:text-gray-200 text-gray-800 text-xl font-semibold truncate">
+                    {position.title}
+                  </p>
+
+                  <p className="dark:text-gray-200 text-gray-800 text-base font-normal truncate">
+                    {position.period}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         ))}
       </div>
