@@ -38,14 +38,22 @@ const Career: NextPage<Props> = ({ careerList }) => {
             </div>
 
             <div className="space-y-3 truncate">
-              <a
-                href={company.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-center dark:text-green-600 text-green-700 text-xl font-medium truncate"
-              >
-                {company.company}
-              </a>
+              <div className="flex flex-row text-xl space-x-2 truncate">
+                <a
+                  href={company.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="dark:text-green-600 text-green-700 font-medium truncate"
+                >
+                  {company.company}
+                </a>
+
+                {company.overallPeriod && (
+                  <p className="dark:text-gray-200 text-gray-800 font-normal truncate">
+                    {`(${company.overallPeriod})`}
+                  </p>
+                )}
+              </div>
 
               {company.positions.map((position) => (
                 <div key={position.title} className="space-y-1 truncate">
@@ -124,6 +132,13 @@ export const getStaticProps: GetStaticProps = async () => {
           period,
         };
       }),
+      overallPeriod:
+        element.positions.length > 1
+          ? getPeriod(
+              dayjs(element.positions[element.positions.length - 1].startDate),
+              dayjs(element.positions[0].endDate)
+            )
+          : null,
     };
 
     return job;
