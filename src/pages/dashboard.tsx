@@ -89,7 +89,7 @@ const Dashboard: NextPage<Props> = ({ mostPopularPosts }) => {
                   href={track.songUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="dark:text-gray-100 text-gray-900 text-lg font-medium truncate"
+                  className="dark:text-green-600 text-green-700 text-lg font-medium truncate"
                 >
                   {track.title}
                 </a>
