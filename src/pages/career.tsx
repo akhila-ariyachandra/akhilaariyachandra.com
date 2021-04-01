@@ -110,6 +110,12 @@ export const getStaticProps: GetStaticProps = async () => {
         }
       }
 
+      if (years === 0 && months === 0) {
+        const days = endDate.diff(startDate, "day");
+
+        period = `${days} days`;
+      }
+
       return period;
     };
 
