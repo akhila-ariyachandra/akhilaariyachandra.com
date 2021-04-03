@@ -12,6 +12,7 @@ export type Post = {
   photographer?: string;
   unsplash_link?: string;
   content?: MdxRemote.Source;
+  readingTime?: string;
 };
 
 export type Job = {

@@ -85,6 +85,10 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
         </p>
       ) : null}
 
+      <p className="my-2 px-4 text-center dark:text-gray-200 text-gray-800 text-lg font-medium">
+        {postData.readingTime}
+      </p>
+
       <div
         className={`prose dark:prose-dark max-w-none p-4 ${styles.prose} full-bleed wrapper`}
       >

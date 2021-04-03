@@ -6,6 +6,7 @@ import smartypants from "@silvenon/remark-smartypants";
 import a11yEmoji from "@fec/remark-a11y-emoji";
 import externalLinks from "remark-external-links";
 import slug from "remark-slug";
+import readingTime from "reading-time";
 import SpecialBlock from "@/components/post/SpecialBlock";
 import PostImage from "@/components/post/PostImage";
 import Code from "@/components/code/Code";
@@ -124,6 +125,7 @@ export const getPostData = async (id): Promise<Post> => {
     description: data.description,
     content: mdxSource,
     banner: data.banner,
+    readingTime: readingTime(content).text,
   };
 
   // Check for updated date
