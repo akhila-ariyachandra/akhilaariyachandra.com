@@ -2,6 +2,7 @@ import React from "react";
 import useSWR from "swr";
 import Link from "next/link";
 import { useSpring, animated } from "react-spring";
+import { CgSpinner } from "react-icons/cg";
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
@@ -19,7 +20,7 @@ const DashboardItem: React.FunctionComponent<Props> = ({
   link,
   url,
 }) => {
-  const { data } = useSWR(url, fetcher, {
+  const { data, isValidating } = useSWR(url, fetcher, {
     initialData: 0,
     revalidateOnMount: true,
   });
@@ -46,9 +47,15 @@ const DashboardItem: React.FunctionComponent<Props> = ({
         </a>
       )}
 
-      <animated.div className="dark:text-gray-200 text-gray-800 text-2xl font-normal">
-        {props.number.interpolate((val: number) => Math.floor(val))}
-      </animated.div>
+      <div className="flex flex-row items-center space-x-2">
+        <animated.div className="dark:text-gray-200 text-gray-800 text-2xl font-normal">
+          {props.number.interpolate((val: number) => Math.floor(val))}
+        </animated.div>
+
+        {isValidating && (
+          <CgSpinner className="dark:text-gray-200 text-gray-800 text-xl animate-spin" />
+        )}
+      </div>
     </div>
   );
 };
