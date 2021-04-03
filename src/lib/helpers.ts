@@ -42,7 +42,11 @@ export const getPeriod = (start: string, end: string) => {
   if (years === 0 && months === 0) {
     const days = endDate.diff(startDate, "day");
 
-    period = `${days} days`;
+    if (days === 1) {
+      period = `${days} day`;
+    } else {
+      period = `${days} days`;
+    }
   }
 
   return period;
