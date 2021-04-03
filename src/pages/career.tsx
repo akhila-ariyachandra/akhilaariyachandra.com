@@ -7,6 +7,7 @@ import yaml from "yaml";
 import dayjs from "dayjs";
 import type { NextPage, GetStaticProps } from "next";
 import type { Job } from "@/lib/types";
+import { getPeriod } from "@/lib/helpers";
 
 type Props = {
   careerList: Job[];
@@ -50,7 +51,10 @@ const Career: NextPage<Props> = ({ careerList }) => {
 
                 {company.overallPeriod && (
                   <p className="dark:text-gray-200 text-gray-800 font-normal truncate">
-                    {`(${company.overallPeriod})`}
+                    {`(${getPeriod(
+                      company.overallPeriod.startDate,
+                      company.overallPeriod.endDate
+                    )})`}
                   </p>
                 )}
               </div>
@@ -62,7 +66,11 @@ const Career: NextPage<Props> = ({ careerList }) => {
                   </p>
 
                   <p className="dark:text-gray-200 text-gray-800 text-base font-normal truncate">
-                    {position.period}
+                    {`${dayjs(position.startDate).format("MMMM YYYY")} - ${
+                      position.endDate
+                        ? dayjs(position.endDate).format("MMMM YYYY")
+                        : "Present"
+                    } (${getPeriod(position.startDate, position.endDate)})`}
                   </p>
                 </div>
               ))}
@@ -82,68 +90,18 @@ export const getStaticProps: GetStaticProps = async () => {
   const fileContent = yaml.parse(file);
 
   const careerList: Job[] = fileContent.map((element) => {
-    const getPeriod = (startDate, endDate) => {
-      const years = endDate.diff(startDate, "year");
-      const months = endDate.diff(startDate, "month") - years * 12;
-
-      let period = null;
-
-      if (years > 0) {
-        if (years === 1) {
-          period = "1 year";
-        } else {
-          period = `${years} years`;
-        }
-      }
-
-      if (months > 0) {
-        if (period) {
-          period += ", ";
-        } else {
-          period = "";
-        }
-
-        if (months === 1) {
-          period += "1 month";
-        } else {
-          period += `${months} months`;
-        }
-      }
-
-      if (years === 0 && months === 0) {
-        const days = endDate.diff(startDate, "day");
-
-        period = `${days} days`;
-      }
-
-      return period;
-    };
-
     const job: Job = {
       company: element.company,
       image: element.image,
       link: element.link,
-      positions: element.positions.map((position) => {
-        const period = `${dayjs(position.startDate).format("MMMM YYYY")} - ${
-          position.endDate
-            ? dayjs(position.endDate).format("MMMM YYYY")
-            : "Present"
-        } (${getPeriod(
-          dayjs(position.startDate),
-          position.endDate ? dayjs(position.endDate) : dayjs()
-        )})`;
-
-        return {
-          title: position.title,
-          period,
-        };
-      }),
+      positions: element.positions,
       overallPeriod:
         element.positions.length > 1
-          ? getPeriod(
-              dayjs(element.positions[element.positions.length - 1].startDate),
-              dayjs(element.positions[0].endDate)
-            )
+          ? {
+              startDate:
+                element.positions[element.positions.length - 1].startDate,
+              endDate: element.positions[0].endDate,
+            }
           : null,
     };
 

@@ -18,11 +18,15 @@ export type Job = {
   company?: string;
   image?: string;
   link?: string;
-  overallPeriod?: string;
+  overallPeriod?: {
+    startDate: string;
+    endDate?: string;
+  };
   positions?: [
     {
       title: string;
-      period: string;
+      startDate: string;
+      endDate?: string;
     }
   ];
 };
