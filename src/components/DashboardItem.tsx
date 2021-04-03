@@ -1,7 +1,6 @@
 import React from "react";
 import useSWR from "swr";
 import Link from "next/link";
-import { useSpring, animated } from "react-spring";
 import { CgSpinner } from "react-icons/cg";
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
@@ -24,10 +23,6 @@ const DashboardItem: React.FunctionComponent<Props> = ({
     initialData: 0,
     revalidateOnMount: true,
   });
-  const props = useSpring({
-    number: data,
-    from: { number: 0 },
-  });
 
   return (
     <div className="grid gap-2 grid-cols-1">
@@ -48,9 +43,9 @@ const DashboardItem: React.FunctionComponent<Props> = ({
       )}
 
       <div className="flex flex-row items-center space-x-2">
-        <animated.div className="dark:text-gray-200 text-gray-800 text-2xl font-normal">
-          {props.number.interpolate((val: number) => Math.floor(val))}
-        </animated.div>
+        <div className="dark:text-gray-200 text-gray-800 text-2xl font-normal">
+          {data}
+        </div>
 
         {isValidating && (
           <CgSpinner className="dark:text-gray-200 text-gray-800 text-xl animate-spin" />
