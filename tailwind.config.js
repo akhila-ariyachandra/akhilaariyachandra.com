@@ -1,5 +1,6 @@
 module.exports = {
   future: {},
+  mode: "jit",
   purge: [
     "./src/pages/**/*.tsx",
     "./src/components/**/*.{tsx,js,scss}",
