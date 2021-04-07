@@ -17,6 +17,9 @@ module.exports = withPlugins(
           dest: "public",
           runtimeCaching,
           disable: process.env.NODE_ENV === "development",
+          publicExcludes: [
+            "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
+          ],
         },
       },
     ],
