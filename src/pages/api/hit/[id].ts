@@ -1,5 +1,5 @@
 import config from "@/lib/config";
-import admin from "@/lib/firebaseAdmin";
+import admin from "@/lib/firebase";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 const RegisterHit = async (req: NextApiRequest, res: NextApiResponse) => {

@@ -1,4 +1,4 @@
-import admin from "@/lib/firebaseAdmin";
+import admin from "@/lib/firebase";
 import type { NextApiHandler } from "next";
 import { ReactionType } from "@/lib/types";
 

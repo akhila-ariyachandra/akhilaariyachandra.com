@@ -30,7 +30,7 @@ yarn format
 |               Name                | Description                                                                                  |
 | :-------------------------------: | -------------------------------------------------------------------------------------------- |
 | `NEXT_PUBLIC_ILP_PAYMENT_POINTER` | [Web Monetization](https://webmonetization.org/) Payment Pointer                             |
-|    Firebase related variables     | Check [web](./lib/firebase.ts) and [admin](./lib/firebaseAdmin.ts)                           |
+| Firebase Admin related variables  | Check [admin](./lib/firebaseAdmin.ts)                                                        |
 |   `NEXT_PUBLIC_UTTERANCES_REPO`   | The GitHub repo to store the comments from [utterances](https://utteranc.es/)                |
 |        `SPOTIFY_CLIENT_ID`        | The [Spotify](https://developer.spotify.com/) Client ID                                      |
 |      `SPOTIFY_CLIENT_SECRET`      | The [Spotify](https://developer.spotify.com/) Client Secret                                  |

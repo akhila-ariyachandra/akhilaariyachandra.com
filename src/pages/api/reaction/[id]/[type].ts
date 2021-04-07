@@ -1,4 +1,4 @@
-import admin from "@/lib/firebaseAdmin";
+import admin from "@/lib/firebase";
 import { NextApiHandler } from "next";
 
 const Reaction: NextApiHandler = async (req, res) => {

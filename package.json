@@ -30,7 +30,6 @@
     "axios": "^0.21.1",
     "dayjs": "^1.10.4",
     "feed": "^4.2.2",
-    "firebase": "^8.3.2",
     "firebase-admin": "^9.6.0",
     "gray-matter": "^4.0.2",
     "mdx-embed": "^0.0.19",
