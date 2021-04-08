@@ -35,7 +35,6 @@ yarn format
 |        `SPOTIFY_CLIENT_ID`        | The [Spotify](https://developer.spotify.com/) Client ID                                      |
 |      `SPOTIFY_CLIENT_SECRET`      | The [Spotify](https://developer.spotify.com/) Client Secret                                  |
 |      `SPOTIFY_REFRESH_TOKEN`      | The Refresh Token used to make requests ([Guide](https://leerob.io/blog/spotify-api-nextjs)) |
-|  `NEXT_PUBLIC_ADSENSE_AD_CLIENT`  | [AdSense](https://www.google.com/adsense) `data-ad-client`                                   |
 
 ## Analytics
 

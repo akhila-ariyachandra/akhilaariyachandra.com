@@ -38,11 +38,6 @@ class MyDocument extends Document {
         <body className="dark:bg-gray-900 bg-white">
           <Main />
           <NextScript />
-          <script
-            data-ad-client={process.env.NEXT_PUBLIC_ADSENSE_AD_CLIENT}
-            async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-          />
         </body>
       </Html>
     );
