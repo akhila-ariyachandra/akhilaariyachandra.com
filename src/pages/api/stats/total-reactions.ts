@@ -7,7 +7,7 @@ const TotalReactions: NextApiHandler = async (req, res) => {
   // Cache the response
   res.setHeader(
     "Cache-Control",
-    "public, s-maxage=3600, stale-while-revalidate=3600"
+    "public, s-maxage=86400, stale-while-revalidate=43200"
   );
 
   return res.status(200).send(totalReactions);
