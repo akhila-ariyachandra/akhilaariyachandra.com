@@ -6,17 +6,10 @@ import smartypants from "@silvenon/remark-smartypants";
 import a11yEmoji from "@fec/remark-a11y-emoji";
 import externalLinks from "remark-external-links";
 import slug from "remark-slug";
-import Code from "@/components/code/Code";
-import Image from "next/image";
 import type { Snippet } from "@/lib/types";
-import { createElement } from "react";
+import { mdxComponents } from "@/lib/mdx";
 
 const snippetsDirectory = path.join("content", "snippets");
-
-export const mdxComponents = {
-  pre: (props) => createElement(Code, { ...props }),
-  Image,
-};
 
 export const getSortedSnippets = async (): Promise<Snippet[]> => {
   // Get file names under /snippets

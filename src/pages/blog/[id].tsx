@@ -2,28 +2,16 @@ import React from "react";
 import hydrate from "next-mdx-remote/hydrate";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
-import SpecialBlock from "@/components/post/SpecialBlock";
 import Image from "next/image";
 import HitCounter from "@/components/post/HitCounter";
-import PostImage from "@/components/post/PostImage";
-import Code from "@/components/code/Code";
 import Reactions from "@/components/Reactions";
-import CodeSandboxWrapper from "@/components/post/CodeSandboxWrapper";
-import Iframe from "@/components/post/Iframe";
 import Comments from "@/components/Comments";
 import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import type { Post } from "@/lib/types";
 import { getAllPostIds, getPostData } from "@/lib/posts";
+import { mdxComponents } from "@/lib/mdx";
 
 import styles from "@/styles/post.module.scss";
-
-const mdxComponents = {
-  SpecialBlock,
-  pre: (props) => <Code {...props} />,
-  PostImage,
-  CodeSandboxWrapper,
-  Iframe,
-};
 
 type Props = {
   postData: Post;

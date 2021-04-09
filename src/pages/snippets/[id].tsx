@@ -1,21 +1,15 @@
 import hydrate from "next-mdx-remote/hydrate";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
-import Code from "@/components/code/Code";
 import Reactions from "@/components/Reactions";
-import Image from "next/image";
 import HitCounter from "@/components/post/HitCounter";
 import Comments from "@/components/Comments";
 import type { NextPage, GetStaticPaths, GetStaticProps } from "next";
 import type { Snippet as SnippetType } from "@/lib/types";
 import { getAllSnippetIds, getSnippetData } from "@/lib/snippets";
+import { mdxComponents } from "@/lib/mdx";
 
 import styles from "@/styles/snippet.module.scss";
-
-const mdxComponents = {
-  pre: (props) => <Code {...props} />,
-  Image,
-};
 
 type Props = {
   snippet: SnippetType;

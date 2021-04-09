@@ -7,22 +7,9 @@ import a11yEmoji from "@fec/remark-a11y-emoji";
 import externalLinks from "remark-external-links";
 import slug from "remark-slug";
 import readingTime from "reading-time";
-import SpecialBlock from "@/components/post/SpecialBlock";
-import PostImage from "@/components/post/PostImage";
-import Code from "@/components/code/Code";
-import CodeSandboxWrapper from "@/components/post/CodeSandboxWrapper";
-import Iframe from "@/components/post/Iframe";
 import type { Post } from "@/lib/types";
 import { formatDate } from "@/lib/helpers";
-import { createElement } from "react";
-
-export const mdxComponents = {
-  SpecialBlock,
-  pre: (props) => createElement(Code, { ...props }),
-  PostImage,
-  CodeSandboxWrapper,
-  Iframe,
-};
+import { mdxComponents } from "@/lib/mdx";
 
 const postsDirectory = path.join("content", "posts");
 
