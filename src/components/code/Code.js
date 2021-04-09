@@ -1,5 +1,8 @@
+import dynamic from "next/dynamic";
 import Title from "@/components/code/Title";
-import SyntaxHighlight from "@/components/code/SyntaxHighlight";
+const SyntaxHighlight = dynamic(() =>
+  import("@/components/code/SyntaxHighlight")
+);
 import styles from "@/components/code/Code.module.scss";
 
 const getParams = (className = ``) => {
