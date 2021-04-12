@@ -5,6 +5,7 @@ description: "Adding Tailwind CSS to a Next.js project"
 banner: "/blog/getting-started-with-tailwind-css-in-next-js/banner.png"
 photographer: "Markus Spiske"
 unsplash_link: "https://unsplash.com/@markusspiske?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"
+updated: "2021-04-12"
 ---
 
 [Tailwind CSS](https://tailwindcss.com/) is an awesome CSS framework. It gives us enough styling options without being too opinionated. Lately I've being using it along with [Next.js](https://nextjs.org/). In this post I'll show how to setup a Next.js project with Tailwind CSS.
@@ -14,13 +15,13 @@ unsplash_link: "https://unsplash.com/@markusspiske?utm_source=unsplash&amp;utm_m
 Start with initializing a project.
 
 ```bash
-npm init --yes
+yarn init --yes
 ```
 
 Then install the React and Next.js dependencies.
 
 ```bash
-npm install react react-dom next
+yarn add react react-dom next
 ```
 
 Next add the following scripts in `package.json`.
@@ -68,7 +69,7 @@ export default Index;
 To start the development server just run the `dev` script.
 
 ```bash
-npm run dev
+yarn dev
 ```
 
 When you [http://localhost:3000/](http://localhost:3000/) in your browser you see the following.
@@ -85,13 +86,13 @@ When you [http://localhost:3000/](http://localhost:3000/) in your browser you se
 First install Tailwind CSS as a dev dependency.
 
 ```bash
-npm install tailwindcss postcss-preset-env -D
+yarn add tailwindcss postcss autoprefixer -D
 ```
 
 Next we need to create the Tailwind the config file. We can create a minimal config file with the following command.
 
 ```bash
-npx tailwindcss init
+npx tailwindcss init -p
 ```
 
 Since Tailwind CSS has thousands of CSS classes the CSS file will end up very big.
@@ -110,40 +111,48 @@ In the `tailwind.config.js` add all the React component files in the `purge` pro
 ```javascript:title=tailwind.config.js {2}
 module.exports = {
   purge: ["./pages/**/*.js", "./src/components/**/*.js"],
+  darkMode: false,
   theme: {
     extend: {},
   },
-  variants: {},
+  variants: {
+    extend: {},
+  },
   plugins: [],
 };
 ```
 
-Next we need to create the root CSS file where we will import Tailwind CSS. In the `src` folder create the `styles` folder and it add the `index.css` file.
+Since Tailwind CSS generates a lot of classes by default, running the application in development mode can be quite slow especially when trying to use DevTools.
 
-```css:title=src/styles/index.css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+To help with this we can use the [Just-in-Time Mode](https://tailwindcss.com/docs/just-in-time-mode). To enable it we just need to add it to the `tailwind.config.js` file.
+
+```javascript:title=tailwind.config.js {2}
+module.exports = {
+  mode: "jit",
+  purge: ["./pages/**/*.js", "./src/components/**/*.js"],
+  darkMode: false,
+  theme: {
+    extend: {},
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [],
+};
 ```
 
-After that we need to import the CSS to our application. In Next.js we have to do it in the `_app.js` file. Create the `_app.js` file in the `pages` folder.
+Finally we need to import Tailwind CSS to our application. In Next.js we have to do it in the `_app.js` file.
+
+Create the `_app.js` file in the `pages` folder and directly import the CSS file.
 
 ```jsx:title=pages/_app.js
-import "../src/styles/index.css";
+import 'tailwindcss/tailwind.css'
 
 const MyApp = ({ Component, pageProps }) => {
   return <Component {...pageProps} />;
 };
 
 export default MyApp;
-```
-
-Finally we need to setup [PostCSS](https://postcss.org/) to include Tailwind CSS. In the project root create the `postcss.config.js` file.
-
-```jsx:title=postcss.config.js
-module.exports = {
-  plugins: ["tailwindcss", "postcss-preset-env"],
-};
 ```
 
 # Conclusion
@@ -195,6 +204,3 @@ export default Layout;
   height={834}
   title="Layout styling"
 />
-
-All the code in this post can be found in [GitHub](https://github.com/akhila-ariyachandra/tailwind-next-js-starter "
-tailwind-next-js-starter").
