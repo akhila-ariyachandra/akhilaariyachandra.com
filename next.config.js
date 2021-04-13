@@ -55,6 +55,13 @@ module.exports = withPlugins(
         });
       }
 
+      // Fix redirect for DEV post for https://dev.to/akhilaariyachandra/mimic-react-life-cycle-methods-with-hooks-286a
+      redirects.push({
+        source: `/mimic-react-life-cycles-methods-with-hooks`,
+        destination: `/blog/mimic-react-life-cycle-methods-with-hooks`,
+        permanent: true,
+      });
+
       return redirects;
     },
     webpack: (config, { dev, isServer }) => {
