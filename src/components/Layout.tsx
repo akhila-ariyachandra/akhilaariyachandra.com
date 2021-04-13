@@ -15,7 +15,7 @@ const LINKS = [
 
 const Layout: FunctionComponent = ({ children }) => {
   return (
-    <main className="wrapper place-content-between mx-auto min-h-screen">
+    <main className="wrapper place-content-between mx-auto min-h-full">
       <Header />
 
       {children}
