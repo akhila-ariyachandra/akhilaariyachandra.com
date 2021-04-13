@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import Link from "next/link";
+import ListContainer from "@/components/ListContainer";
 import type { NextPage, GetStaticProps } from "next";
 import type { Snippet } from "@/lib/types";
 import { getSortedSnippets } from "@/lib/snippets";
@@ -18,11 +19,7 @@ const Snippets: NextPage<Props> = ({ snippets }) => {
         image="/snippets-cover.jpg"
       />
 
-      <h1 className="mx-4 my-10 dark:text-gray-200 text-gray-800 text-4xl font-bold">
-        Code Snippets
-      </h1>
-
-      <section className="p-4 space-y-4">
+      <ListContainer title="Code Snippets">
         {snippets.map((snippet) => (
           <article key={snippet.id}>
             <Link href={`/snippets/${snippet.id}`}>
@@ -36,7 +33,7 @@ const Snippets: NextPage<Props> = ({ snippets }) => {
             </p>
           </article>
         ))}
-      </section>
+      </ListContainer>
     </Layout>
   );
 };

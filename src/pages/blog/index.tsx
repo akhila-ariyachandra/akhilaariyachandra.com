@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import PostLink from "@/components/PostLink";
+import ListContainer from "@/components/ListContainer";
 import type { NextPage, GetStaticProps } from "next";
 import type { Post } from "@/lib/types";
 import { getSortedPostsData } from "@/lib/posts";
@@ -17,15 +18,11 @@ const Blog: NextPage<Props> = ({ allPostsData }) => {
         description="A blog about Javascript, React and Web Development"
       />
 
-      <h1 className="mx-4 my-10 dark:text-gray-200 text-gray-800 text-4xl font-bold">
-        Blog
-      </h1>
-
-      <section className="grid gap-4 grid-cols-1 mx-4">
+      <ListContainer title="Blog">
         {allPostsData.map(({ id, date, title, formattedDate }) => (
           <PostLink post={{ id, date, title, formattedDate }} key={id} />
         ))}
-      </section>
+      </ListContainer>
     </Layout>
   );
 };

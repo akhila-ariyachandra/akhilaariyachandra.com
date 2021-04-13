@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import Image from "next/image";
+import ListContainer from "@/components/ListContainer";
 import fs from "fs";
 import path from "path";
 import yaml from "yaml";
@@ -18,11 +19,7 @@ const Career: NextPage<Props> = ({ careerList }) => {
     <Layout>
       <SEO title="Career" description="My work experience" />
 
-      <h1 className="mx-4 my-10 dark:text-gray-200 text-gray-800 text-4xl font-bold">
-        Career
-      </h1>
-
-      <div className="p-4 space-y-10">
+      <ListContainer title="Career">
         {careerList.map((company) => (
           <div
             key={company.company}
@@ -77,7 +74,7 @@ const Career: NextPage<Props> = ({ careerList }) => {
             </div>
           </div>
         ))}
-      </div>
+      </ListContainer>
     </Layout>
   );
 };
