@@ -33,7 +33,7 @@ const Guestbook: NextPage<Props> = ({ messages }) => {
     initialData: messages,
     revalidateOnMount: true,
   });
-  const { user } = useUser();
+  const { user, loadingUser } = useUser();
   const formik = useFormik({
     initialValues: {
       message: "",
@@ -159,6 +159,7 @@ const Guestbook: NextPage<Props> = ({ messages }) => {
               <button
                 className="text-gray-800 dark:text-gray-100 text-base font-medium bg-green-200 dark:bg-gray-700 px-6 py-2 rounded border-[1px] border-transparent"
                 onClick={() => handleLogin("github")}
+                disabled={loadingUser}
               >
                 GitHub
               </button>
@@ -166,6 +167,7 @@ const Guestbook: NextPage<Props> = ({ messages }) => {
               <button
                 className="text-gray-800 dark:text-gray-100 text-base font-medium bg-green-200 dark:bg-gray-700 px-6 py-2 rounded border-[1px] border-transparent"
                 onClick={() => handleLogin("google")}
+                disabled={loadingUser}
               >
                 Google
               </button>
