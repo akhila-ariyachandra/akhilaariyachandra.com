@@ -25,7 +25,7 @@ const DashboardItem: React.FunctionComponent<Props> = ({
   });
 
   return (
-    <div className="grid gap-2 grid-cols-1">
+    <div className="grid gap-2 grid-cols-1 place-content-center">
       {link.type === "internal" ? (
         <Link href={link.url}>
           <a className="flex flex-row dark:text-green-600 text-green-700 text-3xl font-medium">

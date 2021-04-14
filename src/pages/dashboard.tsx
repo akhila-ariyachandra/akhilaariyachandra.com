@@ -35,6 +35,18 @@ const Dashboard: NextPage<Props> = ({ mostPopularPosts }) => {
           link={{ type: "internal", url: "/blog" }}
           url="/api/stats/total-reactions"
         />
+
+        <DashboardItem
+          title="Total Views in DEV"
+          link={{ type: "external", url: "https://dev.to/akhilaariyachandra" }}
+          url="/api/stats/dev-total-views"
+        />
+
+        <DashboardItem
+          title="Total Reactions in DEV"
+          link={{ type: "external", url: "https://dev.to/akhilaariyachandra" }}
+          url="/api/stats/dev-total-reactions"
+        />
       </div>
 
       <div className="my-4 p-4">
