@@ -161,7 +161,7 @@ const Guestbook: NextPage<Props> = ({ messages }) => {
                 onChange={formik.handleChange}
                 value={formik.values.message}
                 disabled={formik.isSubmitting}
-                className="w-full rounded dark:bg-gray-700 bg-white text-base font-normal border-white dark:border-gray-700 focus:border-green-600 dark:focus:border-green-600 focus:ring-green-600"
+                className="w-full pr-[5.5rem] rounded dark:bg-gray-700 bg-white text-base font-normal border-white dark:border-gray-700 focus:border-green-600 dark:focus:border-green-600 focus:ring-green-600"
               />
 
               <button
@@ -187,7 +187,7 @@ const Guestbook: NextPage<Props> = ({ messages }) => {
             className="pt-4 flex flex-row items-center justify-between flex-nowrap space-x-2"
           >
             <div className="space-y-1 flex-1 truncate">
-              <p className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+              <p className="text-lg font-semibold text-gray-800 dark:text-gray-200 whitespace-normal">
                 {message.message}
               </p>
 
