@@ -1,4 +1,4 @@
-import admin from "@/lib/firebase";
+import admin from "@/lib/firebase-admin";
 
 export const getTotalViews = async (): Promise<number> => {
   let totalViews = 0;

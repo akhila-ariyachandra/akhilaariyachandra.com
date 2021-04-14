@@ -4,6 +4,7 @@ import SEO from "@/components/SEO";
 import DashboardItem from "@/components/DashboardItem";
 import Link from "next/link";
 import Image from "next/image";
+import Title from "@/components/Title";
 import type { NextPage, GetStaticProps } from "next";
 import { getMostPopularPosts } from "@/lib/stats";
 
@@ -20,9 +21,7 @@ const Dashboard: NextPage<Props> = ({ mostPopularPosts }) => {
     <Layout>
       <SEO title="Dashboard" />
 
-      <h1 className="mx-4 my-10 dark:text-gray-200 text-gray-800 text-4xl font-bold">
-        Dashboard
-      </h1>
+      <Title title="Dashboard" />
 
       <div className="grid gap-4 grid-cols-1 p-4 sm:grid-cols-2">
         <DashboardItem

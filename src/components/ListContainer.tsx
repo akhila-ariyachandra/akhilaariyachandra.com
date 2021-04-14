@@ -1,4 +1,5 @@
 import React from "react";
+import Title from "@/components/Title";
 
 type Props = {
   title: string;
@@ -7,9 +8,7 @@ type Props = {
 const ListContainer: React.FunctionComponent<Props> = ({ title, children }) => {
   return (
     <React.Fragment>
-      <h1 className="mx-4 my-10 dark:text-gray-200 text-gray-800 text-4xl font-bold">
-        {title}
-      </h1>
+      <Title title={title} />
 
       <section className="grid gap-4 grid-cols-1 mx-4">{children}</section>
     </React.Fragment>
