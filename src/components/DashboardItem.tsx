@@ -37,6 +37,7 @@ const DashboardItem: React.FunctionComponent<Props> = ({
           className="flex flex-row dark:text-green-600 text-green-700 text-3xl font-medium"
           target="_blank"
           rel="noopener noreferrer"
+          href={link.url}
         >
           {title}
         </a>
