@@ -84,8 +84,17 @@ const Guestbook: NextPage<Props> = ({ messages }) => {
     },
   });
 
-  const handleLogin = async () => {
-    const provider = new firebase.auth.GithubAuthProvider();
+  const handleLogin = async (type: "github" | "google") => {
+    let provider;
+
+    switch (type) {
+      case "github":
+        provider = new firebase.auth.GithubAuthProvider();
+        break;
+      case "google":
+        provider = new firebase.auth.GoogleAuthProvider();
+        break;
+    }
 
     await firebase.auth().signInWithRedirect(provider);
   };
@@ -146,12 +155,21 @@ const Guestbook: NextPage<Props> = ({ messages }) => {
 
         <div className="my-3">
           {!user ? (
-            <button
-              className="text-gray-800 dark:text-gray-100 text-base font-medium bg-green-200 dark:bg-gray-700 px-6 py-2 rounded border-[1px] border-transparent"
-              onClick={handleLogin}
-            >
-              Login
-            </button>
+            <div className="flex flex-row space-x-4">
+              <button
+                className="text-gray-800 dark:text-gray-100 text-base font-medium bg-green-200 dark:bg-gray-700 px-6 py-2 rounded border-[1px] border-transparent"
+                onClick={() => handleLogin("github")}
+              >
+                GitHub
+              </button>
+
+              <button
+                className="text-gray-800 dark:text-gray-100 text-base font-medium bg-green-200 dark:bg-gray-700 px-6 py-2 rounded border-[1px] border-transparent"
+                onClick={() => handleLogin("google")}
+              >
+                Google
+              </button>
+            </div>
           ) : (
             <form onSubmit={formik.handleSubmit} className="w-full relative">
               <input
@@ -176,7 +194,7 @@ const Guestbook: NextPage<Props> = ({ messages }) => {
         </div>
 
         <p className="text-gray-800 dark:text-gray-100 text-base">
-          Your information is only used to display your name and reply by email.
+          Your information is only used to display your name.
         </p>
       </div>
 
@@ -186,17 +204,17 @@ const Guestbook: NextPage<Props> = ({ messages }) => {
             key={message.id}
             className="pt-4 flex flex-row items-center justify-between flex-nowrap space-x-2"
           >
-            <div className="space-y-1 flex-1 truncate">
+            <div className="space-y-2 flex-1 truncate">
               <p className="text-lg font-semibold text-gray-800 dark:text-gray-200 whitespace-normal">
                 {message.message}
               </p>
 
-              <div className="flex flex-row truncate">
+              <div className="flex flex-col sm:flex-row truncate">
                 <p className="text-base font-medium text-gray-600 dark:text-gray-300 truncate">
                   {message.user.displayName}
                 </p>
 
-                <span className="mx-2 text-base font-light text-gray-400 dark:text-gray-500 truncate">
+                <span className="mx-2 text-base font-light text-gray-400 dark:text-gray-500 hidden sm:inline">
                   /
                 </span>
 

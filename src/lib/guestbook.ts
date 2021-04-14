@@ -18,9 +18,7 @@ export const getMessages = async () => {
 
   // Get user data
   for await (const element of data) {
-    const { uid, displayName, photoURL } = await admin
-      .auth()
-      .getUser(element.uid);
+    const { uid, displayName } = await admin.auth().getUser(element.uid);
 
     const { id, message, timestamp } = element;
 
@@ -28,7 +26,7 @@ export const getMessages = async () => {
       id,
       message,
       timestamp: timestamp.toDate(),
-      user: { uid, displayName, photoURL },
+      user: { uid, displayName },
     });
   }
 
