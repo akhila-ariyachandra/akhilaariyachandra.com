@@ -37,13 +37,13 @@ const Dashboard: NextPage<Props> = ({ mostPopularPosts }) => {
         />
 
         <DashboardItem
-          title="Total Views in DEV"
+          title="DEV Views"
           link={{ type: "external", url: "https://dev.to/akhilaariyachandra" }}
           url="/api/stats/dev-total-views"
         />
 
         <DashboardItem
-          title="Total Reactions in DEV"
+          title="DEV Reactions"
           link={{ type: "external", url: "https://dev.to/akhilaariyachandra" }}
           url="/api/stats/dev-total-reactions"
         />
