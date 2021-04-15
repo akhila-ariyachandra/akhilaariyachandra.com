@@ -4,6 +4,7 @@ import useSWR from "swr";
 import firebase from "@/lib/firebase";
 import axios from "axios";
 import splitbee from "@/lib/splitbee";
+import type { Comment } from "@/lib/types";
 import { useFormik } from "formik";
 import { fetcher } from "@/lib/helpers";
 import {
@@ -14,8 +15,15 @@ import {
   GoogleAuthProvider,
 } from "firebase/auth";
 
-const GuestbookInput: React.FunctionComponent = () => {
-  const { data, mutate } = useSWR("/api/guestbook", fetcher);
+type Props = {
+  comments: Comment[];
+};
+
+const GuestbookInput: React.FunctionComponent<Props> = ({ comments }) => {
+  const { data, mutate } = useSWR("/api/guestbook", fetcher, {
+    initialData: comments,
+    revalidateOnMount: true,
+  });
   const { user, loadingUser } = useUser();
 
   const formik = useFormik({
