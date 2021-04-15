@@ -1,13 +1,16 @@
 import React from "react";
 import firebase from "@/lib/firebase";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const useUser = () => {
   const [user, setUser] = React.useState(null);
   const [loadingUser, setLoadingUser] = React.useState(true);
 
   React.useEffect(() => {
+    const auth = getAuth(firebase);
+
     // Listen authenticated user
-    const unsubscriber = firebase.auth().onAuthStateChanged(async (user) => {
+    const unsubscriber = onAuthStateChanged(auth, async (user) => {
       try {
         setLoadingUser(true);
 

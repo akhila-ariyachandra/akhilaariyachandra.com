@@ -6,6 +6,13 @@ import axios from "axios";
 import splitbee from "@/lib/splitbee";
 import { useFormik } from "formik";
 import { fetcher } from "@/lib/helpers";
+import {
+  getAuth,
+  getIdToken,
+  signInWithRedirect,
+  GithubAuthProvider,
+  GoogleAuthProvider,
+} from "firebase/auth";
 
 const GuestbookInput: React.FunctionComponent = () => {
   const { data, mutate } = useSWR("/api/guestbook", fetcher);
@@ -17,8 +24,9 @@ const GuestbookInput: React.FunctionComponent = () => {
     },
     onSubmit: async ({ message }, { resetForm, setSubmitting }) => {
       try {
-        const token = await firebase.auth().currentUser.getIdToken();
-        const { uid, displayName, photoURL } = firebase.auth().currentUser;
+        const auth = getAuth(firebase);
+        const token = await getIdToken(auth.currentUser);
+        const { uid, displayName, photoURL } = auth.currentUser;
 
         // Optimistic update
         await mutate(
@@ -62,18 +70,19 @@ const GuestbookInput: React.FunctionComponent = () => {
   });
 
   const handleLogin = async (type: "github" | "google") => {
+    const auth = getAuth(firebase);
     let provider;
 
     switch (type) {
       case "github":
-        provider = new firebase.auth.GithubAuthProvider();
+        provider = new GithubAuthProvider();
         break;
       case "google":
-        provider = new firebase.auth.GoogleAuthProvider();
+        provider = new GoogleAuthProvider();
         break;
     }
 
-    await firebase.auth().signInWithRedirect(provider);
+    await signInWithRedirect(auth, provider);
   };
 
   return (

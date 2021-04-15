@@ -11,6 +11,7 @@ import Title from "@/components/Title";
 const GuestbookInput = dynamic(() => import("@/components/GuestbookInput"));
 import type { NextPage, GetStaticProps } from "next";
 import { fetcher } from "@/lib/helpers";
+import { getAuth, getIdToken } from "firebase/auth";
 import { getMessages } from "@/lib/guestbook";
 import { FaTrash } from "react-icons/fa";
 
@@ -38,7 +39,8 @@ const Guestbook: NextPage<Props> = ({ messages }) => {
 
   const handleDelete = async (id: string) => {
     try {
-      const token = await firebase.auth().currentUser.getIdToken();
+      const auth = getAuth(firebase);
+      const token = await getIdToken(auth.currentUser);
 
       // Optimistic update
       await mutate(
