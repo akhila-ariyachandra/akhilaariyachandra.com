@@ -9,7 +9,7 @@ const RegisterHit = async (req: NextApiRequest, res: NextApiResponse) => {
 
   if (!id) {
     return res.status(400).json({
-      message: "Article slug not provided",
+      comment: "Article slug not provided",
     });
   }
 

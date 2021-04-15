@@ -20,9 +20,18 @@ const GuestbookInput: React.FunctionComponent = () => {
 
   const formik = useFormik({
     initialValues: {
-      message: "",
+      comment: "",
     },
-    onSubmit: async ({ message }, { resetForm, setSubmitting }) => {
+    validate: ({ comment }) => {
+      const errors = {};
+
+      if (comment === "") {
+        errors["comment"] = "Comment cannot be empty";
+      }
+
+      return errors;
+    },
+    onSubmit: async ({ comment }, { resetForm, setSubmitting }) => {
       try {
         const auth = getAuth(firebase);
         const token = await getIdToken(auth.currentUser);
@@ -34,7 +43,7 @@ const GuestbookInput: React.FunctionComponent = () => {
             {
               id: "new",
               created: new Date(),
-              message,
+              comment,
               user: {
                 uid,
                 displayName,
@@ -53,7 +62,7 @@ const GuestbookInput: React.FunctionComponent = () => {
             token,
           },
           data: {
-            message,
+            comment,
           },
         });
 
@@ -92,7 +101,7 @@ const GuestbookInput: React.FunctionComponent = () => {
       </p>
 
       <p className="text-gray-800 dark:text-gray-100 text-lg font-medium my-1">
-        Share a message for a future visitor of my site.
+        Share a comment for a future visitor of my site.
       </p>
 
       <div className="my-3">
@@ -117,11 +126,11 @@ const GuestbookInput: React.FunctionComponent = () => {
         ) : (
           <form onSubmit={formik.handleSubmit} className="w-full relative">
             <input
-              id="message"
-              name="message"
+              id="comment"
+              name="comment"
               type="text"
               onChange={formik.handleChange}
-              value={formik.values.message}
+              value={formik.values.comment}
               disabled={formik.isSubmitting}
               className="w-full pr-[5.5rem] rounded dark:bg-gray-700 bg-white text-base font-normal border-white dark:border-gray-700 focus:border-green-600 dark:focus:border-green-600 focus:ring-green-600"
             />

@@ -1,9 +1,9 @@
 import admin from "@/lib/firebase-admin";
 
-export const getMessages = async () => {
+export const getComments = async () => {
   const db = admin.firestore();
-  const messagesRef = db.collection("messages").orderBy("timestamp", "desc");
-  const snapshot = await messagesRef.get();
+  const commentsRef = db.collection("comments").orderBy("timestamp", "desc");
+  const snapshot = await commentsRef.get();
 
   const data = [];
 
@@ -14,21 +14,21 @@ export const getMessages = async () => {
     });
   });
 
-  const messages = [];
+  const comments = [];
 
   // Get user data
   for await (const element of data) {
     const { uid, displayName } = await admin.auth().getUser(element.uid);
 
-    const { id, message, timestamp } = element;
+    const { id, comment, timestamp } = element;
 
-    messages.push({
+    comments.push({
       id,
-      message,
+      comment,
       timestamp: timestamp.toDate(),
       user: { uid, displayName },
     });
   }
 
-  return messages;
+  return comments;
 };

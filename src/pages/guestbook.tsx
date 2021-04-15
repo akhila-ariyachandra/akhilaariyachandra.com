@@ -12,14 +12,14 @@ const GuestbookInput = dynamic(() => import("@/components/GuestbookInput"));
 import type { NextPage, GetStaticProps } from "next";
 import { fetcher } from "@/lib/helpers";
 import { getAuth, getIdToken } from "firebase/auth";
-import { getMessages } from "@/lib/guestbook";
+import { getComments } from "@/lib/guestbook";
 import { FaTrash } from "react-icons/fa";
 
 type Props = {
-  messages: [
+  comments: [
     {
       id: string;
-      message: string;
+      comment: string;
       timestamp: Date;
       user: {
         uid: string;
@@ -30,9 +30,9 @@ type Props = {
   ];
 };
 
-const Guestbook: NextPage<Props> = ({ messages }) => {
+const Guestbook: NextPage<Props> = ({ comments }) => {
   const { data, mutate } = useSWR("/api/guestbook", fetcher, {
-    initialData: messages,
+    initialData: comments,
     revalidateOnMount: true,
   });
   const { user } = useUser();
@@ -44,7 +44,7 @@ const Guestbook: NextPage<Props> = ({ messages }) => {
 
       // Optimistic update
       await mutate(
-        data.filter((message) => message.id !== id),
+        data.filter((comment) => comment.id !== id),
         false
       );
 
@@ -59,9 +59,9 @@ const Guestbook: NextPage<Props> = ({ messages }) => {
         },
       });
 
-      splitbee.track("Deleted message from guestbook");
+      splitbee.track("Deleted comment from guestbook");
     } catch {
-      console.error("> Error deleting message. Please try again later.");
+      console.error("> Error deleting comment. Please try again later.");
     } finally {
       await mutate();
     }
@@ -86,19 +86,19 @@ const Guestbook: NextPage<Props> = ({ messages }) => {
       <GuestbookInput />
 
       <div className="mx-4 my-10 grid grid-cols-1 gap-4 divide-gray-200 dark:divide-gray-600 divide-y">
-        {data.map((message) => (
+        {data.map((comment) => (
           <div
-            key={message.id}
+            key={comment.id}
             className="pt-4 flex flex-row items-center justify-between flex-nowrap space-x-2"
           >
             <div className="space-y-2 flex-1 truncate">
               <p className="text-lg font-semibold text-gray-800 dark:text-gray-200 whitespace-normal">
-                {message.message}
+                {comment.comment}
               </p>
 
               <div className="flex flex-col sm:flex-row truncate">
                 <p className="text-base font-medium text-gray-600 dark:text-gray-300 truncate">
-                  {message.user.displayName}
+                  {comment.user.displayName}
                 </p>
 
                 <span className="mx-2 text-base font-light text-gray-400 dark:text-gray-500 hidden sm:inline">
@@ -106,17 +106,17 @@ const Guestbook: NextPage<Props> = ({ messages }) => {
                 </span>
 
                 <p className="text-base font-normal text-gray-500 dark:text-gray-400 truncate">{`${dayjs(
-                  message.timestamp
-                ).format("D MMM YYYY")} at ${dayjs(message.timestamp).format(
+                  comment.timestamp
+                ).format("D MMM YYYY")} at ${dayjs(comment.timestamp).format(
                   "h:mm a"
                 )}`}</p>
               </div>
             </div>
 
-            {message.user.uid === user?.uid ? (
+            {comment.user.uid === user?.uid ? (
               <button
-                onClick={() => handleDelete(message.id)}
-                aria-label="Delete message"
+                onClick={() => handleDelete(comment.id)}
+                aria-label="Delete comment"
                 className="text-red-600 p-1 flex-shrink-0"
               >
                 <FaTrash />
@@ -132,10 +132,10 @@ const Guestbook: NextPage<Props> = ({ messages }) => {
 export default Guestbook;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const messages = await getMessages();
+  const comments = await getComments();
 
   return {
-    props: { messages },
+    props: { comments },
     revalidate: 60,
   };
 };

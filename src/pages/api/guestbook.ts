@@ -1,10 +1,10 @@
 import admin, { verifyIdToken } from "@/lib/firebase-admin";
 import type { NextApiHandler } from "next";
-import { getMessages } from "@/lib/guestbook";
+import { getComments } from "@/lib/guestbook";
 
 const GuestbookHandler: NextApiHandler = async (req, res) => {
   const db = admin.firestore();
-  const messagesRef = db.collection("messages");
+  const commentsRef = db.collection("comments");
   let decodedToken: admin.auth.DecodedIdToken;
 
   if (req.method === "POST" || req.method === "DELETE") {
@@ -16,18 +16,18 @@ const GuestbookHandler: NextApiHandler = async (req, res) => {
   }
 
   if (req.method === "GET") {
-    const messages = await getMessages();
+    const comments = await getComments();
 
-    return res.status(200).json(messages);
+    return res.status(200).json(comments);
   } else if (req.method === "POST") {
-    if (!req.body.message) {
-      return res.status(400).send("Invalid message");
+    if (!req.body.comment) {
+      return res.status(400).send("Invalid comment");
     }
 
-    const messageRef = messagesRef.doc();
+    const commentRef = commentsRef.doc();
 
-    await messageRef.create({
-      message: req.body.message,
+    await commentRef.create({
+      comment: req.body.comment,
       uid: decodedToken.uid,
       timestamp: admin.firestore.FieldValue.serverTimestamp(),
     });
@@ -38,21 +38,21 @@ const GuestbookHandler: NextApiHandler = async (req, res) => {
       return res.status(400).send("Invalid ID");
     }
 
-    const messageRef = messagesRef.doc(req.body.id);
+    const commentRef = commentsRef.doc(req.body.id);
 
-    const messageDoc = await messageRef.get();
+    const commentDoc = await commentRef.get();
 
-    // The message doesn't exist
-    if (!messageDoc.exists) {
+    // The comment doesn't exist
+    if (!commentDoc.exists) {
       return res.status(404).send("Not found");
     }
 
-    // The message doesn't belong to the user
-    if (decodedToken.uid !== messageDoc.data().uid) {
+    // The comment doesn't belong to the user
+    if (decodedToken.uid !== commentDoc.data().uid) {
       return res.status(401).send("Unauthorized");
     }
 
-    await messageRef.delete();
+    await commentRef.delete();
 
     return res.status(200).send("OK");
   } else {
