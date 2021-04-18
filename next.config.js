@@ -12,6 +12,11 @@ const ContentSecurityPolicy = `
   default-src 'self';
   script-src 'self' 'unsafe-eval' 'unsafe-inline' utteranc.es;
   iframe-src *.now.sh *.vercel.app;
+  style-src 'self' 'unsafe-inline';
+  img-src * blob: data:;
+  media-src 'none';
+  connect-src *;
+  font-src 'self';
 `;
 
 const securityHeaders = [
