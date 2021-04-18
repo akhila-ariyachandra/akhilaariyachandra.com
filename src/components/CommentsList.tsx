@@ -52,27 +52,27 @@ const CommentsList: React.FunctionComponent<Props> = ({ comments }) => {
   };
 
   return (
-    <div className="mx-4 my-10 grid grid-cols-1 gap-4 divide-gray-200 dark:divide-gray-600 divide-y">
+    <div className="grid gap-4 grid-cols-1 mx-4 my-10 divide-gray-200 dark:divide-gray-600 divide-y">
       {data.map((comment) => (
         <div
           key={comment.id}
-          className="pt-4 flex flex-row items-center justify-between flex-nowrap space-x-2"
+          className="flex flex-row flex-nowrap items-center justify-between pt-4 space-x-2"
         >
-          <div className="space-y-2 flex-1 truncate">
-            <p className="text-lg font-semibold text-gray-800 dark:text-gray-200 whitespace-normal">
+          <div className="flex-1 space-y-2 truncate">
+            <p className="dark:text-gray-200 text-gray-800 whitespace-normal text-lg font-semibold">
               {comment.comment}
             </p>
 
-            <div className="flex flex-col sm:flex-row truncate">
-              <p className="text-base font-medium text-gray-600 dark:text-gray-300 truncate">
+            <div className="flex flex-col truncate sm:flex-row">
+              <p className="dark:text-gray-300 text-gray-600 text-base font-medium truncate">
                 {comment.user.displayName}
               </p>
 
-              <span className="mx-2 text-base font-light text-gray-400 dark:text-gray-500 hidden sm:inline">
+              <span className="hidden mx-2 text-gray-400 dark:text-gray-500 text-base font-light sm:inline">
                 /
               </span>
 
-              <p className="text-base font-normal text-gray-500 dark:text-gray-400 truncate">{`${dayjs(
+              <p className="dark:text-gray-400 text-gray-500 text-base font-normal truncate">{`${dayjs(
                 comment.timestamp
               ).format("D MMM YYYY")} at ${dayjs(comment.timestamp).format(
                 "h:mm a"
@@ -84,7 +84,7 @@ const CommentsList: React.FunctionComponent<Props> = ({ comments }) => {
             <button
               onClick={() => handleDelete(comment.id)}
               aria-label="Delete comment"
-              className="text-red-600 p-1 flex-shrink-0"
+              className="flex-shrink-0 p-1 text-red-600"
             >
               <FaTrash />
             </button>

@@ -103,12 +103,12 @@ const GuestbookInput: React.FunctionComponent<Props> = ({ comments }) => {
   };
 
   return (
-    <div className="mx-4 p-4 bg-green-100 dark:bg-gray-800 border-2 rounded-lg border-green-200 dark:border-gray-700">
-      <p className="text-gray-800 dark:text-gray-100 text-xl font-semibold">
+    <div className="mx-4 p-4 dark:bg-gray-800 bg-green-100 border-2 dark:border-gray-700 border-green-200 rounded-lg">
+      <p className="dark:text-gray-100 text-gray-800 text-xl font-semibold">
         Sign the Guestbook
       </p>
 
-      <p className="text-gray-800 dark:text-gray-100 text-lg font-medium my-1">
+      <p className="my-1 dark:text-gray-100 text-gray-800 text-lg font-medium">
         Share a comment for a future visitor of my site.
       </p>
 
@@ -116,7 +116,7 @@ const GuestbookInput: React.FunctionComponent<Props> = ({ comments }) => {
         {!user ? (
           <div className="flex flex-row space-x-4">
             <button
-              className="text-gray-800 dark:text-gray-100 text-base font-medium bg-green-200 dark:bg-gray-700 px-6 py-2 rounded border-[1px] border-transparent"
+              className="border-[1px] px-6 py-2 dark:text-gray-100 text-gray-800 text-base font-medium dark:bg-gray-700 bg-green-200 border-transparent rounded"
               onClick={() => handleLogin("github")}
               disabled={loadingUser}
             >
@@ -124,7 +124,7 @@ const GuestbookInput: React.FunctionComponent<Props> = ({ comments }) => {
             </button>
 
             <button
-              className="text-gray-800 dark:text-gray-100 text-base font-medium bg-green-200 dark:bg-gray-700 px-6 py-2 rounded border-[1px] border-transparent"
+              className="border-[1px] px-6 py-2 dark:text-gray-100 text-gray-800 text-base font-medium dark:bg-gray-700 bg-green-200 border-transparent rounded"
               onClick={() => handleLogin("google")}
               disabled={loadingUser}
             >
@@ -132,7 +132,7 @@ const GuestbookInput: React.FunctionComponent<Props> = ({ comments }) => {
             </button>
           </div>
         ) : (
-          <form onSubmit={formik.handleSubmit} className="w-full relative">
+          <form onSubmit={formik.handleSubmit} className="relative w-full">
             <input
               id="comment"
               name="comment"
@@ -140,12 +140,12 @@ const GuestbookInput: React.FunctionComponent<Props> = ({ comments }) => {
               onChange={formik.handleChange}
               value={formik.values.comment}
               disabled={formik.isSubmitting}
-              className="w-full pr-[5.5rem] rounded dark:bg-gray-700 bg-white text-base font-normal border-white dark:border-gray-700 focus:border-green-600 dark:focus:border-green-600 focus:ring-green-600"
+              className="pr-[5.5rem] dark:focus:border-green-600 w-full text-base font-normal dark:bg-gray-700 bg-white dark:border-gray-700 focus:border-green-600 border-white rounded focus:ring-green-600"
             />
 
             <button
               type="submit"
-              className="text-gray-800 dark:text-gray-100 text-base font-medium bg-gray-200 dark:bg-gray-600 px-6 py-1 rounded absolute top-1 bottom-1 right-1"
+              className="absolute bottom-1 right-1 top-1 px-6 py-1 dark:text-gray-100 text-gray-800 text-base font-medium bg-gray-200 dark:bg-gray-600 rounded"
               disabled={formik.isSubmitting}
             >
               Sign
@@ -154,7 +154,7 @@ const GuestbookInput: React.FunctionComponent<Props> = ({ comments }) => {
         )}
       </div>
 
-      <p className="text-gray-800 dark:text-gray-100 text-base">
+      <p className="dark:text-gray-100 text-gray-800 text-base">
         Your information is only used to display your name.
       </p>
     </div>

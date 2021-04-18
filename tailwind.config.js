@@ -1,6 +1,6 @@
 module.exports = {
   future: {},
-  mode: "jit",
+  mode: process.env.NODE_ENV ? "jit" : undefined,
   purge: [
     "./src/pages/**/*.tsx",
     "./src/components/**/*.{tsx,js,scss}",
