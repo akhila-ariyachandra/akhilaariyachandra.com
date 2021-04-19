@@ -9,7 +9,7 @@ import { animated } from "react-spring";
 import { HeaderMountedContext } from "@/context/HeaderMountedContext";
 import { FaSun, FaMoon, FaCircle } from "react-icons/fa";
 
-import styles from "@/components/Header.module.scss";
+import styles from "@/components/Layout/Header.module.scss";
 
 const Header = () => {
   const router = useRouter();

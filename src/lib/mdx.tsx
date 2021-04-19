@@ -1,8 +1,8 @@
-import SpecialBlock from "@/components/post/SpecialBlock";
-import Code from "@/components/code/Code";
-import PostImage from "@/components/post/PostImage";
-import CodeSandboxWrapper from "@/components/post/CodeSandboxWrapper";
-import Iframe from "@/components/post/Iframe";
+import SpecialBlock from "@/components/mdx/SpecialBlock";
+import Code from "@/components/mdx/Code";
+import PostImage from "@/components/mdx/PostImage";
+import CodeSandboxWrapper from "@/components/mdx/CodeSandboxWrapper";
+import Iframe from "@/components/mdx/Iframe";
 
 export const mdxComponents = {
   SpecialBlock,

@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
-import Title from "@/components/code/Title";
+import Title from "@/components/mdx/Code/Title";
 const SyntaxHighlight = dynamic(
-  () => import("@/components/code/SyntaxHighlight"),
+  () => import("@/components/mdx/Code/SyntaxHighlight"),
   {
     loading: () => (
       <div className="grid place-items-center h-12">
@@ -12,7 +12,7 @@ const SyntaxHighlight = dynamic(
 );
 import { FaCog } from "react-icons/fa";
 
-import styles from "@/components/code/Code.module.scss";
+import styles from "@/components/mdx/Code/Code.module.scss";
 
 const getParams = (className = ``) => {
   const [lang = ``, params = ``] = className.split(`:`);

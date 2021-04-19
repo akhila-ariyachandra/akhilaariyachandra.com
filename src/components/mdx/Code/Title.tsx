@@ -1,6 +1,6 @@
 import type { FunctionComponent } from "react";
 
-import styles from "@/components/code/Title.module.scss";
+import styles from "@/components/mdx/Code/Title.module.scss";
 
 type Props = {
   text: string;
