@@ -1,11 +1,12 @@
 import React from "react";
 import hydrate from "next-mdx-remote/hydrate";
+import dynamic from "next/dynamic";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import Image from "next/image";
-import HitCounter from "@/components/post/HitCounter";
-import Reactions from "@/components/Reactions";
-import Comments from "@/components/Comments";
+const HitCounter = dynamic(() => import("@/components/post/HitCounter"));
+const Reactions = dynamic(() => import("@/components/Reactions"));
+const Comments = dynamic(() => import("@/components/Comments"));
 import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import type { Post } from "@/lib/types";
 import { getAllPostIds, getPostData } from "@/lib/posts";
