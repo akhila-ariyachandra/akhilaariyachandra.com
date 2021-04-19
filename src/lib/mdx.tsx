@@ -1,11 +1,8 @@
-import dynamic from "next/dynamic";
-const SpecialBlock = dynamic(() => import("@/components/post/SpecialBlock"));
-const Code = dynamic(() => import("@/components/code/Code"));
-const PostImage = dynamic(() => import("@/components/post/PostImage"));
-const CodeSandboxWrapper = dynamic(
-  () => import("@/components/post/CodeSandboxWrapper")
-);
-const Iframe = dynamic(() => import("@/components/post/Iframe"));
+import SpecialBlock from "@/components/post/SpecialBlock";
+import Code from "@/components/code/Code";
+import PostImage from "@/components/post/PostImage";
+import CodeSandboxWrapper from "@/components/post/CodeSandboxWrapper";
+import Iframe from "@/components/post/Iframe";
 
 export const mdxComponents = {
   SpecialBlock,

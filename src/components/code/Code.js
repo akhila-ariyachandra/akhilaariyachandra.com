@@ -1,5 +1,16 @@
+import dynamic from "next/dynamic";
 import Title from "@/components/code/Title";
-import SyntaxHighlight from "@/components/code/SyntaxHighlight";
+const SyntaxHighlight = dynamic(
+  () => import("@/components/code/SyntaxHighlight"),
+  {
+    loading: () => (
+      <div className="grid place-items-center h-12">
+        <FaCog className="text-gray-100 text-lg animate-spin" />
+      </div>
+    ),
+  }
+);
+import { FaCog } from "react-icons/fa";
 
 import styles from "@/components/code/Code.module.scss";
 
