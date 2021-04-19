@@ -11,7 +11,7 @@ const path = require("path");
 const ContentSecurityPolicy = `
   default-src 'self';
   script-src 'self' 'unsafe-eval' 'unsafe-inline' utteranc.es;
-  frame-src *.now.sh *.vercel.app utteranc.es;
+  frame-src *.now.sh *.vercel.app utteranc.es codesandbox.io;
   style-src 'self' 'unsafe-inline';
   img-src * blob: data:;
   media-src 'none';
