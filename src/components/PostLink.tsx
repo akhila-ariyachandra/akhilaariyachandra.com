@@ -9,10 +9,7 @@ type Props = {
 };
 
 const PostLink: FunctionComponent<Props> = ({ post }) => {
-  const { data } = useSWR(`/api/hit/${post.id}`, fetcher, {
-    initialData: 0,
-    revalidateOnMount: true,
-  });
+  const { data } = useSWR(`/api/hit/${post.id}`, fetcher);
 
   return (
     <article className="space-y-2">
@@ -25,9 +22,13 @@ const PostLink: FunctionComponent<Props> = ({ post }) => {
       <div className="flex flex-col dark:text-gray-200 text-gray-800 text-lg font-medium sm:flex-row">
         <p>{formatDate(post.date)}</p>
 
-        <span className="hidden mx-2 sm:block">-</span>
+        {data && (
+          <>
+            <span className="hidden mx-2 sm:block">-</span>
 
-        <p>{`${data} views`}</p>
+            <p>{`${data} views`}</p>
+          </>
+        )}
       </div>
     </article>
   );
