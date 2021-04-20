@@ -19,14 +19,14 @@ const PostLink: FunctionComponent<Props> = ({ post }) => {
         </a>
       </Link>
 
-      <div className="flex flex-col dark:text-gray-200 text-gray-800 text-lg font-medium sm:flex-row">
-        <p>{formatDate(post.date)}</p>
+      <div className="flex flex-row dark:text-gray-200 text-gray-800 text-lg font-medium truncate">
+        <p className="min-w-0 truncate">{formatDate(post.date)}</p>
 
         {data && (
           <>
-            <span className="hidden mx-2 sm:block">-</span>
+            <span className="mx-2">-</span>
 
-            <p>{`${data} views`}</p>
+            <p className="min-w-0 truncate">{`${data} views`}</p>
           </>
         )}
       </div>
