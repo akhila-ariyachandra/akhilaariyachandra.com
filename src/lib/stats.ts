@@ -1,9 +1,10 @@
 import admin from "@/lib/firebase-admin";
+import { getFirestore } from "firebase-admin/firestore";
 
 export const getTotalViews = async (): Promise<number> => {
   let totalViews = 0;
 
-  const db = admin.firestore();
+  const db = getFirestore(admin);
   const pagesRef = db.collection("pages");
   const pagesSnapshot = await pagesRef.get();
 
@@ -21,7 +22,7 @@ export const getTotalViews = async (): Promise<number> => {
 export const getTotalReactions = async (): Promise<number> => {
   let totalReactions = 0;
 
-  const db = admin.firestore();
+  const db = getFirestore(admin);
   const pagesRef = db.collection("pages");
   const pagesSnapshot = await pagesRef.get();
 
@@ -52,7 +53,7 @@ export const getTotalReactions = async (): Promise<number> => {
 export const getMostPopularPosts = async () => {
   const posts: { title: string; slug: string; hits: number }[] = [];
 
-  const db = admin.firestore();
+  const db = getFirestore(admin);
   const pagesRef = db.collection("pages");
   const pagesSnapshot = await pagesRef.orderBy("hits", "desc").limit(3).get();
 

@@ -33,7 +33,7 @@
     "dayjs": "^1.10.4",
     "feed": "^4.2.2",
     "firebase": "9.0.0-beta.1",
-    "firebase-admin": "^9.6.0",
+    "firebase-admin": "^9.100.0-alpha.0",
     "formik": "^2.2.6",
     "gray-matter": "^4.0.2",
     "mdx-embed": "^0.0.19",

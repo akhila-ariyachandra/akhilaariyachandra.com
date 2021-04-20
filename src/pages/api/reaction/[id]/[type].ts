@@ -1,12 +1,13 @@
 import admin from "@/lib/firebase-admin";
 import { NextApiHandler } from "next";
+import { getFirestore } from "firebase-admin/firestore";
 
 const Reaction: NextApiHandler = async (req, res) => {
   const id = req.query.id as string;
   const type = req.query.type as string;
   const uniqueId = req.headers.uniqueid as string;
 
-  const db = admin.firestore();
+  const db = getFirestore(admin);
   const reactionRef = db
     .collection("pages")
     .doc(id)

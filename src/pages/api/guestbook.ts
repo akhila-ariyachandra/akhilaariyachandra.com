@@ -1,11 +1,13 @@
 import admin, { verifyIdToken } from "@/lib/firebase-admin";
 import type { NextApiHandler } from "next";
+import type { DecodedIdToken } from "firebase-admin/auth";
 import { getComments } from "@/lib/guestbook";
+import { getFirestore, FieldValue } from "firebase-admin/firestore";
 
 const GuestbookHandler: NextApiHandler = async (req, res) => {
-  const db = admin.firestore();
+  const db = getFirestore(admin);
   const commentsRef = db.collection("comments");
-  let decodedToken: admin.auth.DecodedIdToken;
+  let decodedToken: DecodedIdToken;
 
   if (req.method === "POST" || req.method === "DELETE") {
     try {
@@ -29,7 +31,7 @@ const GuestbookHandler: NextApiHandler = async (req, res) => {
     await commentRef.create({
       comment: req.body.comment,
       uid: decodedToken.uid,
-      timestamp: admin.firestore.FieldValue.serverTimestamp(),
+      timestamp: FieldValue.serverTimestamp(),
     });
 
     return res.status(200).send("OK");

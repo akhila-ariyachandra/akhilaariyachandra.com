@@ -1,9 +1,10 @@
 import config from "@/lib/config";
 import admin from "@/lib/firebase-admin";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { getFirestore, FieldValue } from "firebase-admin/firestore";
 
 const RegisterHit = async (req: NextApiRequest, res: NextApiResponse) => {
-  const db = admin.firestore();
+  const db = getFirestore(admin);
 
   const id = req.query.id as string;
 
@@ -38,7 +39,7 @@ const RegisterHit = async (req: NextApiRequest, res: NextApiResponse) => {
     const host = new URL(config.siteUrl);
     if (host.hostname === req.headers.host) {
       await pageRef.update({
-        hits: admin.firestore.FieldValue.increment(1),
+        hits: FieldValue.increment(1),
       });
     }
   }

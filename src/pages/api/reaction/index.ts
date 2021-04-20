@@ -1,9 +1,12 @@
 import admin from "@/lib/firebase-admin";
 import type { NextApiHandler } from "next";
 import { ReactionType } from "@/lib/types";
+import { getFirestore, FieldValue } from "firebase-admin/firestore";
 
 const Reaction: NextApiHandler = async (req, res) => {
   if (req.method === "POST") {
+    const db = getFirestore(admin);
+
     const {
       headers: { uniqueid: uniqueId },
       body: { id, type },
@@ -22,7 +25,6 @@ const Reaction: NextApiHandler = async (req, res) => {
       return res.status(400).send("Invalid Type");
     }
 
-    const db = admin.firestore();
     const reactionRef = db
       .collection("pages")
       .doc(id)
@@ -30,15 +32,15 @@ const Reaction: NextApiHandler = async (req, res) => {
       .doc(type);
     const reactionData = await reactionRef.get();
 
-    let operation: admin.firestore.FieldValue;
+    let operation: FieldValue;
 
     if (!reactionData.exists) {
-      operation = admin.firestore.FieldValue.arrayUnion(uniqueId);
+      operation = FieldValue.arrayUnion(uniqueId);
     } else {
       if (reactionData.data().uniqueIds.includes(uniqueId)) {
-        operation = admin.firestore.FieldValue.arrayRemove(uniqueId);
+        operation = FieldValue.arrayRemove(uniqueId);
       } else {
-        operation = admin.firestore.FieldValue.arrayUnion(uniqueId);
+        operation = FieldValue.arrayUnion(uniqueId);
       }
     }
 

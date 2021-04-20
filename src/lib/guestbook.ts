@@ -1,7 +1,10 @@
 import admin from "@/lib/firebase-admin";
+import { getFirestore } from "firebase-admin/firestore";
+import { getAuth } from "firebase-admin/auth";
 
 export const getComments = async () => {
-  const db = admin.firestore();
+  const db = getFirestore(admin);
+  const auth = getAuth(admin);
   const commentsRef = db.collection("comments").orderBy("timestamp", "desc");
   const snapshot = await commentsRef.get();
 
@@ -18,7 +21,7 @@ export const getComments = async () => {
 
   // Get user data
   for await (const element of data) {
-    const { uid, displayName } = await admin.auth().getUser(element.uid);
+    const { uid, displayName } = await auth.getUser(element.uid);
 
     const { id, comment, timestamp } = element;
 
