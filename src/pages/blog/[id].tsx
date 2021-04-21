@@ -1,6 +1,7 @@
 import React from "react";
 import hydrate from "next-mdx-remote/hydrate";
 import dynamic from "next/dynamic";
+import useSWR from "swr";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import Image from "next/image";
@@ -11,6 +12,7 @@ import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import type { Post } from "@/lib/types";
 import { getAllPostIds, getPostData } from "@/lib/posts";
 import { mdxComponents } from "@/lib/mdx";
+import { fetcher } from "@/lib/helpers";
 
 import styles from "@/styles/post.module.scss";
 
@@ -19,6 +21,9 @@ type Props = {
 };
 
 const BlogPost: NextPage<Props> = ({ postData }) => {
+  const { data } = useSWR(`/api/hit/${postData.id}`, fetcher, {
+    initialData: 0,
+  });
   const content = hydrate(postData.content, {
     components: mdxComponents,
   });
@@ -64,19 +69,24 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
         {postData.title}
       </h1>
 
-      <p className="my-2 px-4 text-center dark:text-gray-200 text-gray-800 text-lg font-medium">
-        {`Posted on ${postData.formattedDate}`}
-      </p>
+      <div className="flex flex-col items-center my-2 px-4 dark:text-gray-200 text-gray-800 text-lg font-medium sm:flex-row sm:justify-center">
+        <p>{`Posted on ${postData.formattedDate}`}</p>
 
-      {postData.updated ? (
-        <p className="my-2 px-4 text-center dark:text-gray-200 text-gray-800 text-lg font-medium">
-          {`Last updated on ${postData.formattedUpdated}`}
-        </p>
-      ) : null}
+        {postData.updated && (
+          <>
+            <span className="hidden sm:block sm:mx-2">&bull;</span>
+            <p>{`Last updated on ${postData.formattedUpdated}`}</p>
+          </>
+        )}
+      </div>
 
-      <p className="my-2 px-4 text-center dark:text-gray-200 text-gray-800 text-lg font-medium">
-        {postData.readingTime}
-      </p>
+      <div className="flex flex-col items-center my-2 px-4 dark:text-gray-200 text-gray-800 text-lg font-medium sm:flex-row sm:justify-center">
+        <p>{postData.readingTime}</p>
+
+        <span className="hidden sm:block sm:mx-2">&bull;</span>
+
+        <p>{`${data} views`}</p>
+      </div>
 
       <div
         className={`prose dark:prose-dark max-w-none p-4 ${styles.prose} full-bleed wrapper`}
