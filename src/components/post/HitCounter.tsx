@@ -1,21 +1,19 @@
-import useSWR from "swr";
 import axios from "axios";
+import useHits from "@/hooks/use-hits";
 import RetroHitCounter from "react-retro-hit-counter";
 import type { FunctionComponent } from "react";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { fetcher } from "@/lib/helpers";
 
 type Props = {
   id: string;
   title: string;
+  hits: number;
 };
 
-const HitCounter: FunctionComponent<Props> = ({ id, title }) => {
+const HitCounter: FunctionComponent<Props> = ({ id, title, hits }) => {
   const router = useRouter();
-  const { data, mutate } = useSWR(`/api/hit/${id}`, fetcher, {
-    initialData: 0,
-  });
+  const { data, mutate } = useHits(id, hits);
 
   useEffect(() => {
     if (router.query.id) {

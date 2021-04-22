@@ -1,15 +1,15 @@
-import useSWR from "swr";
+import useHits from "@/hooks/use-hits";
 import Link from "next/link";
 import type { FunctionComponent } from "react";
 import type { Post } from "@/lib/types";
-import { fetcher, formatDate } from "@/lib/helpers";
+import { formatDate } from "@/lib/helpers";
 
 type Props = {
   post: Post;
 };
 
 const PostLink: FunctionComponent<Props> = ({ post }) => {
-  const { data } = useSWR(`/api/hit/${post.id}`, fetcher);
+  const { data } = useHits(post.id, post.hits);
 
   return (
     <article className="space-y-2">
@@ -22,13 +22,9 @@ const PostLink: FunctionComponent<Props> = ({ post }) => {
       <div className="flex flex-row dark:text-gray-200 text-gray-800 text-lg font-medium truncate">
         <p className="min-w-0 truncate">{formatDate(post.date)}</p>
 
-        {data && (
-          <>
-            <span className="mx-2">-</span>
+        <span className="mx-2">-</span>
 
-            <p className="min-w-0 truncate">{`${data} views`}</p>
-          </>
-        )}
+        <p className="min-w-0 truncate">{`${data} views`}</p>
       </div>
     </article>
   );

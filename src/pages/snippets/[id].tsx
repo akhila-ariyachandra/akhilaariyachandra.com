@@ -41,7 +41,7 @@ const Snippet: NextPage<Props> = ({ snippet }) => {
         {content}
       </div>
 
-      <HitCounter id={snippet.id} title={snippet.title} />
+      <HitCounter id={snippet.id} title={snippet.title} hits={snippet.hits} />
 
       <Reactions />
 

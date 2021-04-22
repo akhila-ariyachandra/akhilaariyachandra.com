@@ -13,6 +13,7 @@ export type Post = {
   unsplash_link?: string;
   content?: MdxRemote.Source;
   readingTime?: string;
+  hits?: number;
 };
 
 export type Job = {
@@ -37,6 +38,7 @@ export type Snippet = {
   title: string;
   description: string;
   content?: MdxRemote.Source;
+  hits?: number;
 };
 
 export enum ReactionType {

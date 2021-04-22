@@ -8,6 +8,7 @@ import externalLinks from "remark-external-links";
 import slug from "remark-slug";
 import type { Snippet } from "@/lib/types";
 import { mdxComponents } from "@/lib/mdx";
+import { getPageHits } from "@/lib/hits";
 
 const snippetsDirectory = path.join("content", "snippets");
 
@@ -34,6 +35,9 @@ export const getSortedSnippets = async (): Promise<Snippet[]> => {
       title: data.title,
       description: data.description,
     };
+
+    // Get snippet hits
+    snippet.hits = await getPageHits(snippet.id);
 
     allSnippets.push(snippet);
   }
@@ -93,6 +97,9 @@ export const getSnippetData = async (id): Promise<Snippet> => {
     description: data.description,
     content: mdxSource,
   };
+
+  // Get snippet hits
+  post.hits = await getPageHits(post.id);
 
   return post;
 };

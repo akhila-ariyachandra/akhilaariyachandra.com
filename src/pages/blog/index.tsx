@@ -19,8 +19,8 @@ const Blog: NextPage<Props> = ({ allPostsData }) => {
       />
 
       <ListContainer title="Blog">
-        {allPostsData.map(({ id, date, title, formattedDate }) => (
-          <PostLink post={{ id, date, title, formattedDate }} key={id} />
+        {allPostsData.map(({ id, date, title, formattedDate, hits }) => (
+          <PostLink post={{ id, date, title, formattedDate, hits }} key={id} />
         ))}
       </ListContainer>
     </Layout>
@@ -31,6 +31,8 @@ export default Blog;
 
 export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = await getSortedPostsData();
+
+  console.log(allPostsData);
 
   return {
     props: {

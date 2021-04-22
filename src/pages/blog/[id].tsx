@@ -1,7 +1,7 @@
 import React from "react";
 import hydrate from "next-mdx-remote/hydrate";
 import dynamic from "next/dynamic";
-import useSWR from "swr";
+import useHits from "@/hooks/use-hits";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import Image from "next/image";
@@ -12,7 +12,6 @@ import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import type { Post } from "@/lib/types";
 import { getAllPostIds, getPostData } from "@/lib/posts";
 import { mdxComponents } from "@/lib/mdx";
-import { fetcher } from "@/lib/helpers";
 
 import styles from "@/styles/post.module.scss";
 
@@ -21,9 +20,7 @@ type Props = {
 };
 
 const BlogPost: NextPage<Props> = ({ postData }) => {
-  const { data } = useSWR(`/api/hit/${postData.id}`, fetcher, {
-    initialData: 0,
-  });
+  const { data } = useHits(postData.id, postData.hits);
   const content = hydrate(postData.content, {
     components: mdxComponents,
   });
@@ -94,7 +91,7 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
         {content}
       </div>
 
-      <HitCounter id={postData.id} title={postData.title} />
+      <HitCounter id={postData.id} title={postData.title} hits={data} />
 
       <Reactions />
 
