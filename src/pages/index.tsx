@@ -1,8 +1,13 @@
 import splitbee from "@/lib/splitbee";
 import config from "@/lib/config";
+import fs from "fs";
+import path from "path";
+import yaml from "yaml";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
-import type { NextPage } from "next";
+import Link from "next/link";
+import type { NextPage, GetStaticProps } from "next";
+import type { Job } from "@/lib/types";
 import {
   FaGithub,
   FaDev,
@@ -58,7 +63,11 @@ const SocialLink = ({ site, link }) => {
   );
 };
 
-const Index: NextPage = () => {
+type Props = {
+  currentJob: Job;
+};
+
+const Index: NextPage<Props> = ({ currentJob }) => {
   return (
     <Layout>
       <SEO />
@@ -69,7 +78,20 @@ const Index: NextPage = () => {
         </h1>
 
         <p className="dark:text-gray-200 text-gray-800 text-lg font-medium">
-          {config.description}
+          {`I am a web developer working at `}
+          <a
+            className="dark:text-green-600 text-green-700"
+            href={currentJob.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {currentJob.company}
+          </a>
+          {` as a ${currentJob.positions[0].title}. You have found my personal corner of the internet - sign my `}
+          <Link href="/guestbook">
+            <a className="dark:text-green-600 text-green-700">Guestbook</a>
+          </Link>
+          {` while you're here.`}
         </p>
 
         <div className="flex flex-row space-x-2">
@@ -93,3 +115,34 @@ const Index: NextPage = () => {
 };
 
 export default Index;
+
+export const getStaticProps: GetStaticProps = async () => {
+  const careerFile = path.join("content", "career.yaml");
+  const file = fs.readFileSync(careerFile, "utf8");
+  const fileContent = yaml.parse(file);
+
+  const careerList: Job[] = fileContent.map((element) => {
+    const job: Job = {
+      company: element.company,
+      image: element.image,
+      link: element.link,
+      positions: element.positions,
+      overallPeriod:
+        element.positions.length > 1
+          ? {
+              startDate:
+                element.positions[element.positions.length - 1].startDate,
+              endDate: element.positions[0].endDate,
+            }
+          : null,
+    };
+
+    return job;
+  });
+
+  const currentJob = careerList[0];
+
+  return {
+    props: { currentJob },
+  };
+};
