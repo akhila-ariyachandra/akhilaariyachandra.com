@@ -2,7 +2,7 @@ import React from "react";
 import splitbee from "@/lib/splitbee";
 import Link from "next/link";
 import NowPlaying from "@/components/NowPlaying";
-import { FaGithub } from "react-icons/fa";
+import { IoAnalyticsSharp } from "react-icons/io5";
 
 const LINKS = [
   { href: "/blog", title: "Blog" },
@@ -63,15 +63,16 @@ const Footer: React.FunctionComponent = () => {
         </span>
 
         <a
-          href="https://github.com/akhila-ariyachandra/akhilaariyachandra.com"
+          href="https://app.splitbee.io/public/akhilaariyachandra.com"
           target="_blank"
           rel="noopener noreferrer"
           className="dark:text-green-600 text-green-700 text-xl"
           onClick={() => {
-            splitbee.track("Open Link", { name: "GitHub Repo" });
+            splitbee.track("Open Link", { name: "Analytics" });
           }}
+          aria-label="Analytics"
         >
-          <FaGithub />
+          <IoAnalyticsSharp />
         </a>
       </div>
     </footer>
