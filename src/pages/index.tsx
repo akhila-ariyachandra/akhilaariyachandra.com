@@ -74,7 +74,7 @@ const Index: NextPage<Props> = ({ currentJob }) => {
 
       <div className="px-4 space-y-4">
         <h1 className="dark:text-gray-200 text-gray-800 text-4xl font-black">
-          {config.title}
+          {`Hi, I'm ${config.title}`}
         </h1>
 
         <p className="dark:text-gray-200 text-gray-800 text-lg font-medium">
