@@ -40,7 +40,7 @@ const Header = () => {
           onMouseEnter={trigger}
         >
           {!hasMounted ? (
-            <FaCircle />
+            <FaCircle className="invisible" />
           ) : theme === "light" ? (
             <FaMoon />
           ) : (
