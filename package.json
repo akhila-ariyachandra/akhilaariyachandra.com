@@ -56,7 +56,6 @@
     "remark-external-links": "^8.0.0",
     "remark-slug": "^6.0.0",
     "sass": "^1.32.11",
-    "sharp": "^0.28.1",
     "superjson": "^1.7.4",
     "swr": "^0.5.5",
     "yaml": "^1.10.2"
