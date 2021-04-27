@@ -1,16 +1,5 @@
-import dynamic from "next/dynamic";
 import Title from "@/components/mdx/Code/Title";
-const SyntaxHighlight = dynamic(
-  () => import("@/components/mdx/Code/SyntaxHighlight"),
-  {
-    loading: () => (
-      <div className="grid place-items-center h-12">
-        <FaCog className="text-gray-100 text-lg animate-spin" />
-      </div>
-    ),
-  }
-);
-import { FaCog } from "react-icons/fa";
+import SyntaxHighlight from "@/components/mdx/Code/Title";
 
 import styles from "@/components/mdx/Code/Code.module.scss";
 
