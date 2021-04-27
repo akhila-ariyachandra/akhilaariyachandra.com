@@ -1,5 +1,5 @@
 import Title from "@/components/mdx/Code/Title";
-import SyntaxHighlight from "@/components/mdx/Code/Title";
+import SyntaxHighlight from "@/components/mdx/Code/SyntaxHighlight";
 
 import styles from "@/components/mdx/Code/Code.module.scss";
 
