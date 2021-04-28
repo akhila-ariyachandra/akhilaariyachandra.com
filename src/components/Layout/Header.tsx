@@ -14,7 +14,7 @@ const Header: React.FunctionComponent = () => {
 
         {router.asPath !== "/" ? (
           <Link href="/">
-            <a className="dark:text-green-600 text-green-700 text-xl font-medium leading-5">
+            <a className="dark:text-green-600 text-green-700 text-xl font-bold leading-5 sm:text-2xl">
               {config.title}
             </a>
           </Link>
