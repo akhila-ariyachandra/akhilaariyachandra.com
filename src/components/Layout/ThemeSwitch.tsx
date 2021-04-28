@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useTheme } from "next-themes";
+import { HeaderMountedContext } from "@/context/HeaderMountedContext";
 
 /**
  * Based off of gatsby-theme-novela
@@ -91,11 +92,8 @@ const MoonMask = styled.div`
 `;
 
 const ThemeSwitch = (): JSX.Element => {
-  const [mounted, setMounted] = React.useState(false);
+  const mounted = React.useContext(HeaderMountedContext);
   const { theme, setTheme } = useTheme();
-
-  // After mounting, we have access to the theme
-  React.useEffect(() => setMounted(true), []);
 
   if (!mounted) {
     return <ThemeButtonPlaceholder />;
