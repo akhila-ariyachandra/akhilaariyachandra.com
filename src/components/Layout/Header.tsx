@@ -3,18 +3,12 @@ import config from "@/lib/config";
 import Link from "next/link";
 import ThemeSwitch from "@/components/Layout/ThemeSwitch";
 import { useRouter } from "next/router";
-import { useTheme } from "next-themes";
 
-import styles from "@/components/Layout/Header.module.scss";
-
-const Header = () => {
+const Header: React.FunctionComponent = () => {
   const router = useRouter();
-  const { theme, setTheme } = useTheme();
 
   return (
-    <header
-      className={`sticky top-0 z-40 full-bleed wrapper bg-white dark:bg-gray-900 bg-opacity-10 ${styles.header}`}
-    >
+    <header className="full-bleed wrapper sticky z-40 top-0 dark:bg-gray-900 bg-white bg-opacity-10 backdrop-blur-xl backdrop-filter">
       <div className="flex flex-row-reverse items-center justify-between p-4">
         <ThemeSwitch />
 
