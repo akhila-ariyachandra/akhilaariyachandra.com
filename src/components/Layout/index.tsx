@@ -1,6 +1,6 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import Header from "@/components/Layout/Header";
+const Header = dynamic(() => import("@/components/Layout/Header"));
 const Footer = dynamic(() => import("@/components/Layout/Footer"));
 
 const Layout: React.FunctionComponent = ({ children }) => {
