@@ -34,10 +34,7 @@ const Comments = () => {
         />
       </Head>
 
-      <div
-        className="full-bleed mx-auto my-6 p-2 max-w-screen-md bg-white md:rounded-lg"
-        ref={commentBox}
-      />
+      <div className="md-full-bleed my-6 p-2 bg-white" ref={commentBox} />
     </React.Fragment>
   );
 };

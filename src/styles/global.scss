@@ -42,18 +42,30 @@ body {
     grid-column: 2;
   }
 
-  .full-bleed {
+  & > .full-bleed {
     width: 100%;
     grid-column: 1 / -1;
   }
 
-  .pseudo-full-bleed {
+  & > .pseudo-full-bleed {
     width: 100%;
     grid-column: 1 / -1;
     /* constrain the width for very-large monitors */
     @apply max-w-screen-lg;
     /* center the element */
     @apply mx-auto;
+  }
+
+  & > .md-full-bleed {
+    width: 100%;
+    grid-column: 1 / -1;
+
+    @apply max-w-screen-md;
+    @apply mx-auto;
+
+    @screen md {
+      @apply rounded-lg;
+    }
   }
 }
 

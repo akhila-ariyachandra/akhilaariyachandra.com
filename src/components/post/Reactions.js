@@ -80,7 +80,7 @@ const Reaction = ({ type, emoji }) => {
 const Reactions = () => {
   return (
     <>
-      <div className="full-bleed grid gap-4 grid-cols-2 place-items-center mx-auto p-4 max-w-screen-md dark:bg-gray-800 bg-green-100 sm:grid-cols-4 md:rounded-lg">
+      <div className="md-full-bleed grid gap-4 grid-cols-2 place-items-center p-4 dark:bg-gray-800 bg-green-100 sm:grid-cols-4">
         <p
           className="col-span-full dark:text-gray-100 text-gray-800 text-lg font-medium"
           data-tip="No login required"
