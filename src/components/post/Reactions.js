@@ -3,6 +3,7 @@ import axios from "axios";
 import splitbee from "@/lib/splitbee";
 import useSWR from "swr";
 import useBoop from "@/hooks/use-boop";
+import ReactTooltip from "react-tooltip";
 import { ReactionType } from "@/lib/types";
 import { useRouter } from "next/router";
 import { animated } from "react-spring";
@@ -78,30 +79,34 @@ const Reaction = ({ type, emoji }) => {
 
 const Reactions = () => {
   return (
-    <div className="grid gap-4 grid-cols-4 place-items-center p-4">
-      <p className="col-span-full dark:text-gray-100 text-gray-800 text-lg font-medium">
-        Leave a Reaction below!!!{" "}
-        <span className="dark:text-gray-300 text-gray-600 font-normal">
-          (No login required)
-        </span>
-      </p>
+    <>
+      <div className="full-bleed grid gap-4 grid-cols-2 place-items-center mx-auto p-4 max-w-screen-md dark:bg-gray-800 bg-green-100 sm:grid-cols-4 md:rounded-lg">
+        <p
+          className="col-span-full dark:text-gray-100 text-gray-800 text-lg font-medium"
+          data-tip="No login required"
+        >
+          Leave a Reaction below
+        </p>
 
-      <Reaction type={ReactionType.PlusOne} emoji="👍" />
+        <Reaction type={ReactionType.PlusOne} emoji="👍" />
 
-      <Reaction type={ReactionType.MinusOne} emoji="👎" />
+        <Reaction type={ReactionType.MinusOne} emoji="👎" />
 
-      <Reaction type={ReactionType.Laugh} emoji="😁" />
+        <Reaction type={ReactionType.Laugh} emoji="😁" />
 
-      <Reaction type={ReactionType.Hooray} emoji="🎉" />
+        <Reaction type={ReactionType.Hooray} emoji="🎉" />
 
-      <Reaction type={ReactionType.Confused} emoji="😕" />
+        <Reaction type={ReactionType.Confused} emoji="😕" />
 
-      <Reaction type={ReactionType.Heart} emoji="❤" />
+        <Reaction type={ReactionType.Heart} emoji="❤" />
 
-      <Reaction type={ReactionType.Rocket} emoji="🚀" />
+        <Reaction type={ReactionType.Rocket} emoji="🚀" />
 
-      <Reaction type={ReactionType.Eyes} emoji="👀" />
-    </div>
+        <Reaction type={ReactionType.Eyes} emoji="👀" />
+      </div>
+
+      <ReactTooltip />
+    </>
   );
 };
 
