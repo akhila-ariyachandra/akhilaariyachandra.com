@@ -9,7 +9,6 @@ import { HeaderMountedContext } from "@/context/HeaderMountedContext";
  */
 
 const ThemeButton = styled.button`
-  opacity: 0.5;
   position: relative;
   border-radius: 5px;
   width: 42px;
@@ -18,10 +17,6 @@ const ThemeButton = styled.button`
   align-items: center;
   justify-content: center;
   transition: opacity 0.3s ease;
-
-  &:hover {
-    opacity: 1;
-  }
 `;
 
 const ThemeButtonPlaceholder = styled.div`
