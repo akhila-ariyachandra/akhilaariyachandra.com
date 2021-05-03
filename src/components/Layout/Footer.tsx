@@ -79,4 +79,4 @@ const Footer: React.FunctionComponent = () => {
   );
 };
 
-export default Footer;
+export default React.memo(Footer);
