@@ -1,14 +1,13 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import renderToString from "next-mdx-remote/render-to-string";
 import smartypants from "@silvenon/remark-smartypants";
 import a11yEmoji from "@fec/remark-a11y-emoji";
 import externalLinks from "remark-external-links";
 import slug from "remark-slug";
 import type { Snippet } from "@/lib/types";
-import { mdxComponents } from "@/lib/mdx";
 import { getPageHits } from "@/lib/hits";
+import { serialize } from "next-mdx-remote/serialize";
 
 const snippetsDirectory = path.join("content", "snippets");
 
@@ -83,8 +82,7 @@ export const getSnippetData = async (id): Promise<Snippet> => {
 
   // Get frontmatter and content
   const { content, data } = matter(source);
-  const mdxSource = await renderToString(content, {
-    components: mdxComponents,
+  const mdxSource = await serialize(content, {
     mdxOptions: {
       remarkPlugins: [smartypants, a11yEmoji, externalLinks, slug],
     },

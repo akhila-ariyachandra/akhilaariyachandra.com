@@ -1,5 +1,4 @@
 import React from "react";
-import hydrate from "next-mdx-remote/hydrate";
 import dynamic from "next/dynamic";
 import useHits from "@/hooks/use-hits";
 import Layout from "@/components/Layout";
@@ -12,6 +11,7 @@ import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import type { Post } from "@/lib/types";
 import { getAllPostIds, getPostData } from "@/lib/posts";
 import { mdxComponents } from "@/lib/mdx";
+import { MDXRemote } from "next-mdx-remote";
 
 import styles from "@/styles/post.module.scss";
 
@@ -21,9 +21,6 @@ type Props = {
 
 const BlogPost: NextPage<Props> = ({ postData }) => {
   const { data } = useHits(postData.id, postData.hits);
-  const content = hydrate(postData.content, {
-    components: mdxComponents,
-  });
 
   return (
     <Layout>
@@ -88,7 +85,7 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
       <div
         className={`prose dark:prose-dark max-w-none p-4 ${styles.prose} full-bleed wrapper`}
       >
-        {content}
+        <MDXRemote {...postData.content} components={mdxComponents} />
       </div>
 
       <HitCounter id={postData.id} title={postData.title} hits={data} />

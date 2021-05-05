@@ -4,18 +4,20 @@ import Image from "next/image";
 import fs from "fs";
 import path from "path";
 import config from "@/lib/config";
-import renderToString from "next-mdx-remote/render-to-string";
-import hydrate from "next-mdx-remote/hydrate";
+import smartypants from "@silvenon/remark-smartypants";
+import a11yEmoji from "@fec/remark-a11y-emoji";
+import externalLinks from "remark-external-links";
+import slug from "remark-slug";
+import matter from "gray-matter";
 import type { NextPage, GetStaticProps } from "next";
-import { MdxRemote } from "next-mdx-remote/types";
+import { serialize } from "next-mdx-remote/serialize";
+import { MDXRemote } from "next-mdx-remote";
 
 type Props = {
-  source: MdxRemote.Source;
+  source: any;
 };
 
 const About: NextPage<Props> = ({ source }) => {
-  const content = hydrate(source, { components: {} });
-
   return (
     <Layout>
       <SEO title="About" description="A little bit about myself" />
@@ -32,7 +34,12 @@ const About: NextPage<Props> = ({ source }) => {
         />
       </div>
 
-      <div className="prose dark:prose-dark my-4 p-4">{content}</div>
+      <div className="prose dark:prose-dark my-4 p-4">
+        <MDXRemote
+          compiledSource={source.compiledSource}
+          scope={source.scope}
+        />
+      </div>
     </Layout>
   );
 };
@@ -41,8 +48,15 @@ export default About;
 
 export const getStaticProps: GetStaticProps = async () => {
   const aboutFile = path.join("content", "about.mdx");
-  const fileContents = fs.readFileSync(aboutFile, "utf8");
-  const mdxSource = await renderToString(fileContents);
+  const fileContents: any = fs.readFileSync(aboutFile, "utf8");
+  // Get content
+  const { content, data } = matter(fileContents);
+  const mdxSource = await serialize(content, {
+    mdxOptions: {
+      remarkPlugins: [smartypants, a11yEmoji, externalLinks, slug],
+    },
+    scope: data,
+  });
 
   return {
     props: {

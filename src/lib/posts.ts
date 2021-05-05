@@ -1,7 +1,6 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import renderToString from "next-mdx-remote/render-to-string";
 import smartypants from "@silvenon/remark-smartypants";
 import a11yEmoji from "@fec/remark-a11y-emoji";
 import externalLinks from "remark-external-links";
@@ -9,8 +8,8 @@ import slug from "remark-slug";
 import readingTime from "reading-time";
 import type { Post } from "@/lib/types";
 import { formatDate } from "@/lib/helpers";
-import { mdxComponents } from "@/lib/mdx";
 import { getPageHits } from "@/lib/hits";
+import { serialize } from "next-mdx-remote/serialize";
 
 const postsDirectory = path.join("content", "posts");
 
@@ -100,8 +99,7 @@ export const getPostData = async (id): Promise<Post> => {
 
   // Get frontmatter and content
   const { content, data } = matter(source);
-  const mdxSource = await renderToString(content, {
-    components: mdxComponents,
+  const mdxSource = await serialize(content, {
     mdxOptions: {
       remarkPlugins: [smartypants, a11yEmoji, externalLinks, slug],
     },

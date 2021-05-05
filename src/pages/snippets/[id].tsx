@@ -1,4 +1,3 @@
-import hydrate from "next-mdx-remote/hydrate";
 import dynamic from "next/dynamic";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
@@ -9,6 +8,7 @@ import type { NextPage, GetStaticPaths, GetStaticProps } from "next";
 import type { Snippet as SnippetType } from "@/lib/types";
 import { getAllSnippetIds, getSnippetData } from "@/lib/snippets";
 import { mdxComponents } from "@/lib/mdx";
+import { MDXRemote } from "next-mdx-remote";
 
 import styles from "@/styles/snippet.module.scss";
 
@@ -17,10 +17,6 @@ type Props = {
 };
 
 const Snippet: NextPage<Props> = ({ snippet }) => {
-  const content = hydrate(snippet.content, {
-    components: mdxComponents,
-  });
-
   return (
     <Layout>
       <SEO
@@ -38,7 +34,7 @@ const Snippet: NextPage<Props> = ({ snippet }) => {
       </p>
 
       <div className={`prose dark:prose-dark p-4 ${styles.prose}`}>
-        {content}
+        <MDXRemote {...snippet.content} components={mdxComponents} />
       </div>
 
       <HitCounter id={snippet.id} title={snippet.title} hits={snippet.hits} />
