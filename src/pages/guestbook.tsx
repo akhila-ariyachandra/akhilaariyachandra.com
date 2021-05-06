@@ -2,9 +2,7 @@ import dynamic from "next/dynamic";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import Title from "@/components/Title";
-const GuestbookInput = dynamic(
-  () => import("@/components/guestbook/GuestbookInput")
-);
+import GuestbookInput from "@/components/guestbook/GuestbookInput";
 const CommentsList = dynamic(
   () => import("@/components/guestbook/CommentsList")
 );
