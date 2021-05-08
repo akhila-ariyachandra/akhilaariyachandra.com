@@ -86,7 +86,7 @@ const MoonMask = styled.div`
   transition: transform 0.45s ease;
 `;
 
-const ThemeSwitch = (): JSX.Element => {
+const ThemeSwitch = () => {
   const mounted = React.useContext(HeaderMountedContext);
   const { theme, setTheme } = useTheme();
 

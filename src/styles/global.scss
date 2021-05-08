@@ -35,7 +35,7 @@ body {
   display: grid;
   grid-template-columns:
     1fr
-    min(65ch, 100%)
+    min(640px, 100%)
     1fr;
 
   & > * {
