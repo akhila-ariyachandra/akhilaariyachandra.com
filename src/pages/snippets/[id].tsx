@@ -33,7 +33,7 @@ const Snippet: NextPage<Props> = ({ snippet }) => {
         {snippet.description}
       </p>
 
-      <div className={`prose dark:prose-dark p-4 ${styles.prose}`}>
+      <div className={`prose dark:prose-dark p-4 ${styles.prose} max-w-none`}>
         <MDXRemote {...snippet.content} components={mdxComponents} />
       </div>
 
