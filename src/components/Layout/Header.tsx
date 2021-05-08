@@ -9,7 +9,7 @@ const Header: React.FunctionComponent = () => {
 
   return (
     <header className="full-bleed wrapper sticky z-40 top-0 dark:bg-gray-900 bg-white bg-opacity-10 backdrop-blur-xl backdrop-filter">
-      <div className="flex flex-row-reverse items-center justify-between px-4">
+      <div className="flex flex-row-reverse items-center justify-between p-4">
         <ThemeSwitch />
 
         {router.asPath !== "/" ? (
