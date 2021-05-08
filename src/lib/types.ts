@@ -49,14 +49,3 @@ export enum ReactionType {
   Rocket = "Rocket",
   Eyes = "Eyes",
 }
-
-export type Comment = {
-  id: string;
-  comment: string;
-  timestamp: Date;
-  user: {
-    uid: string;
-    displayName: string;
-    photoURL: string;
-  };
-};

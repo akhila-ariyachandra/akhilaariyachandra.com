@@ -10,7 +10,6 @@ const LINKS = [
   { href: "/about", title: "About" },
   { href: "/snippets", title: "Snippets" },
   { href: "/dashboard", title: "Dashboard" },
-  { href: "/guestbook", title: "Guestbook" },
 ];
 
 const Footer: React.FunctionComponent = () => {
