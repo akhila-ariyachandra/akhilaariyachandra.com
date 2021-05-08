@@ -34,7 +34,7 @@ const About: NextPage<Props> = ({ source }) => {
         />
       </div>
 
-      <div className="prose dark:prose-dark my-4 p-4">
+      <div className="prose dark:prose-dark my-4 p-4 max-w-none">
         <MDXRemote
           compiledSource={source.compiledSource}
           scope={source.scope}
