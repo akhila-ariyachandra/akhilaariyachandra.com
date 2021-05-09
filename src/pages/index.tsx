@@ -5,7 +5,6 @@ import path from "path";
 import yaml from "yaml";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
-import Link from "next/link";
 import type { NextPage, GetStaticProps } from "next";
 import type { Job } from "@/lib/types";
 import {
@@ -87,11 +86,7 @@ const Index: NextPage<Props> = ({ currentJob }) => {
           >
             {currentJob.company}
           </a>
-          {` as a ${currentJob.positions[0].title}. You have found my personal corner of the internet - sign my `}
-          <Link href="/guestbook">
-            <a className="dark:text-green-600 text-green-700">Guestbook</a>
-          </Link>
-          {` while you're here.`}
+          {` as a ${currentJob.positions[0].title}. You have found my personal corner of the internet.`}
         </p>
 
         <div className="flex flex-row space-x-2">
