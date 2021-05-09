@@ -14,7 +14,7 @@ const ContentSecurityPolicy = `
   frame-src *.now.sh *.vercel.app utteranc.es codesandbox.io;
   style-src 'self' 'unsafe-inline';
   img-src * blob: data:;
-  media-src 'none';
+  media-src 'self';
   connect-src *;
   font-src 'self';
 `;
