@@ -85,7 +85,7 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
       <div
         className={`prose dark:prose-dark max-w-none p-4 ${styles.prose} full-bleed wrapper`}
       >
-        <MDXRemote {...postData.content} components={mdxComponents} />
+        <MDXRemote {...postData.content} components={mdxComponents} lazy />
       </div>
 
       <HitCounter id={postData.id} title={postData.title} hits={data} />
