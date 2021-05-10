@@ -20,6 +20,7 @@ const Video: React.FC<Props> = ({ name, width, height, title }) => {
       width={width}
       height={height}
       title={title}
+      className="mx-auto"
     >
       <source src={`${asPath}/${name}.webm`} type="video/webm" />
       <source src={`${asPath}/${name}.mp4`} type="video/mp4" />
