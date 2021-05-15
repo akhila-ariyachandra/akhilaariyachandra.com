@@ -40,9 +40,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           <QueryClientProvider client={queryClientRef.current}>
             <Hydrate state={pageProps.dehydratedState}>
               <Component {...pageProps} />
-
-              <ReactQueryDevtools />
             </Hydrate>
+
+            <ReactQueryDevtools />
           </QueryClientProvider>
         </UniqueIdProvider>
       </HeaderMounterProvider>
