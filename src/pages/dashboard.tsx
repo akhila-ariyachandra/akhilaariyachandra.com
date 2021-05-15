@@ -1,4 +1,3 @@
-import useSWR from "swr";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import DashboardItem from "@/components/dashboard/DashboardItem";
@@ -7,6 +6,7 @@ import Image from "next/image";
 import Title from "@/components/Title";
 import type { NextPage, GetStaticProps } from "next";
 import { getMostPopularPosts } from "@/lib/stats";
+import { useQuery } from "react-query";
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
@@ -15,7 +15,15 @@ type Props = {
 };
 
 const Dashboard: NextPage<Props> = ({ mostPopularPosts }) => {
-  const { data: tracksData } = useSWR("/api/spotify/top-tracks", fetcher);
+  const { data } = useQuery(
+    "topTracks",
+    () => fetcher("/api/spotify/top-tracks"),
+    {
+      placeholderData: {
+        tracks: [],
+      },
+    }
+  );
 
   return (
     <Layout>
@@ -80,7 +88,7 @@ const Dashboard: NextPage<Props> = ({ mostPopularPosts }) => {
         </p>
 
         <div className="flex flex-col divide-gray-200 dark:divide-gray-600 divide-y space-y-3">
-          {tracksData?.tracks?.map((track, index) => (
+          {data.tracks.map((track, index) => (
             <div
               key={index}
               className="flex flex-row items-center pt-3 space-x-6"

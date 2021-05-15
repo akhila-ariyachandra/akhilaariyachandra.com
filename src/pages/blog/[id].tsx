@@ -20,7 +20,7 @@ type Props = {
 };
 
 const BlogPost: NextPage<Props> = ({ postData }) => {
-  const { data } = useHits(postData.id, postData.hits);
+  const { data } = useHits(postData.id, postData.title, postData.hits);
 
   return (
     <Layout>

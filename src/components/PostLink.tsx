@@ -9,7 +9,7 @@ type Props = {
 };
 
 const PostLink: FunctionComponent<Props> = ({ post }) => {
-  const { data } = useHits(post.id, post.hits);
+  const { data } = useHits(post.id, post.title, post.hits);
 
   return (
     <article className="space-y-2">

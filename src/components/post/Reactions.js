@@ -1,12 +1,12 @@
 import React from "react";
 import axios from "axios";
 import splitbee from "@/lib/splitbee";
-import useSWR from "swr";
 import useBoop from "@/hooks/use-boop";
 import ReactTooltip from "react-tooltip";
 import { ReactionType } from "@/lib/types";
 import { useRouter } from "next/router";
 import { animated } from "react-spring";
+import { useQuery, useMutation, useQueryClient } from "react-query";
 import { UniqueIdContext } from "@/context/UniqueIdContext";
 
 const BOOP_AMOUNT = 10;
@@ -14,54 +14,78 @@ const BOOP_AMOUNT = 10;
 const Reaction = ({ type, emoji }) => {
   const uniqueId = React.useContext(UniqueIdContext);
   const router = useRouter();
+  const queryClient = useQueryClient();
+  const QUERY_KEY = ["reaction", router.query.id, type];
   const {
     data: { count, reacted },
-    mutate,
-  } = useSWR(
-    [`/api/reaction/${router.query.id}/${type}`, uniqueId],
-    (url, uniqueId) =>
+  } = useQuery(
+    QUERY_KEY,
+    () =>
       axios
-        .request({ url, headers: { uniqueid: uniqueId } })
+        .request({
+          url: `/api/reaction/${router.query.id}/${type}`,
+          headers: { uniqueid: uniqueId },
+        })
         .then(({ data }) => data),
     {
       initialData: {
         count: 0,
         reacted: false,
       },
-      revalidateOnMount: true,
+      refetchOnMount: "always",
+      enabled: !!uniqueId,
     }
   );
   const [style, trigger] = useBoop({
     y: reacted ? BOOP_AMOUNT * -1 : BOOP_AMOUNT,
   });
+  const mutation = useMutation(
+    () =>
+      axios.request({
+        url: "/api/reaction",
+        method: "POST",
+        headers: {
+          uniqueid: uniqueId,
+        },
+        data: {
+          id: router.query.id,
+          type,
+        },
+      }),
+    {
+      onMutate: async () => {
+        // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
+        await queryClient.cancelQueries(QUERY_KEY);
 
-  const handleClick = async () => {
-    // Optimistic update
-    await mutate(
-      { count: reacted ? count - 1 : count + 1, reacted: !reacted },
-      false
-    );
-    trigger();
+        // Snapshot the previous value
+        const previousReaction = queryClient.getQueryData(QUERY_KEY);
 
-    await axios.request({
-      url: "/api/reaction",
-      method: "POST",
-      headers: {
-        uniqueid: uniqueId,
+        // Optimistically update to the new value
+        queryClient.setQueryData(QUERY_KEY, ({ count, reacted }) => ({
+          count: reacted ? count - 1 : count + 1,
+          reacted: !reacted,
+        }));
+        trigger();
+
+        // Return a context object with the snapshotted value
+        return { previousReaction };
       },
-      data: {
-        id: router.query.id,
-        type,
+      // If the mutation fails, use the context returned from onMutate to roll back
+      onError: (err, newReaction, context) => {
+        queryClient.setQueryData(QUERY_KEY, context.previousReaction);
       },
-    });
-
-    splitbee.track("React", {
-      slug: router.asPath,
-      type,
-    });
-
-    await mutate();
-  };
+      // Always refetch after error or success:
+      onSettled: () => {
+        queryClient.invalidateQueries(QUERY_KEY);
+      },
+      onSuccess: () => {
+        splitbee.track("React", {
+          slug: router.asPath,
+          type,
+        });
+      },
+    }
+  );
 
   return (
     <animated.button
@@ -69,7 +93,7 @@ const Reaction = ({ type, emoji }) => {
         reacted ? "bg-gray-400 bg-opacity-30" : ""
       }`}
       style={style}
-      onClick={handleClick}
+      onClick={mutation.mutate}
       aria-label={type}
     >
       {count === 0 ? emoji : `${emoji} ${count}`}

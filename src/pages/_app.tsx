@@ -1,9 +1,13 @@
+import { useRef } from "react";
 import ProgressBar from "@badrap/bar-of-progress";
 import Router from "next/router";
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
 import { UniqueIdProvider } from "@/context/UniqueIdContext";
 import { HeaderMounterProvider } from "@/context/HeaderMountedContext";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { Hydrate } from "react-query/hydration";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 import "@/styles/global.scss";
 
@@ -19,6 +23,11 @@ Router.events.on("routeChangeComplete", progress.finish);
 Router.events.on("routeChangeError", progress.finish);
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
+  const queryClientRef = useRef<QueryClient>();
+  if (!queryClientRef.current) {
+    queryClientRef.current = new QueryClient();
+  }
+
   return (
     <ThemeProvider
       defaultTheme="dark"
@@ -28,7 +37,13 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     >
       <HeaderMounterProvider>
         <UniqueIdProvider>
-          <Component {...pageProps} />
+          <QueryClientProvider client={queryClientRef.current}>
+            <Hydrate state={pageProps.dehydratedState}>
+              <Component {...pageProps} />
+
+              <ReactQueryDevtools />
+            </Hydrate>
+          </QueryClientProvider>
         </UniqueIdProvider>
       </HeaderMounterProvider>
     </ThemeProvider>

@@ -1,10 +1,12 @@
 import React from "react";
-import useSWR from "swr";
 import { fetcher } from "@/lib/helpers";
+import { useQuery } from "react-query";
 import { FaSpotify } from "react-icons/fa";
 
 const NowPlaying: React.FunctionComponent = () => {
-  const { data } = useSWR("/api/spotify/now-playing", fetcher);
+  const { data } = useQuery("nowPlaying", () =>
+    fetcher("/api/spotify/now-playing")
+  );
 
   return (
     <div className="flex flex-row-reverse items-center w-full text-lg antialiased space-x-0 sm:flex-row sm:space-x-2">
