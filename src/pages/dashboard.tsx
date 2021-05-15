@@ -5,8 +5,15 @@ import Link from "next/link";
 import Image from "next/image";
 import Title from "@/components/Title";
 import type { NextPage, GetStaticProps } from "next";
-import { getMostPopularPosts } from "@/lib/stats";
-import { useQuery } from "react-query";
+import {
+  getMostPopularPosts,
+  getTotalViews,
+  getTotalReactions,
+  getTotalDevViews,
+  getTotalDevReactions,
+} from "@/lib/stats";
+import { QueryClient, useQuery } from "react-query";
+import { dehydrate } from "react-query/hydration";
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
@@ -130,8 +137,28 @@ export default Dashboard;
 export const getStaticProps: GetStaticProps = async () => {
   const mostPopularPosts = await getMostPopularPosts();
 
+  const queryClient = new QueryClient();
+
+  // Prefetch Dashboard item data
+  await queryClient.prefetchQuery(
+    ["dashboardItem", "/api/stats/total-views"],
+    getTotalViews
+  );
+  await queryClient.prefetchQuery(
+    ["dashboardItem", "/api/stats/total-reactions"],
+    getTotalReactions
+  );
+  await queryClient.prefetchQuery(
+    ["dashboardItem", "/api/stats/dev-total-views"],
+    getTotalDevViews
+  );
+  await queryClient.prefetchQuery(
+    ["dashboardItem", "/api/stats/dev-total-reactions"],
+    getTotalDevReactions
+  );
+
   return {
-    props: { mostPopularPosts },
+    props: { mostPopularPosts, dehydratedState: dehydrate(queryClient) },
     revalidate: 600, // Regenerate after 10 mins
   };
 };

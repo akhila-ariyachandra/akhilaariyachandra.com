@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import { useQuery } from "react-query";
-import { CgSpinner } from "react-icons/cg";
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
@@ -19,13 +18,7 @@ const DashboardItem: React.FunctionComponent<Props> = ({
   link,
   url,
 }) => {
-  const { data, isFetching } = useQuery(
-    ["dashboardItem", url],
-    () => fetcher(url),
-    {
-      placeholderData: 0,
-    }
-  );
+  const { data } = useQuery(["dashboardItem", url], () => fetcher(url));
 
   return (
     <div className="grid gap-2 grid-cols-1 place-content-center">
@@ -46,14 +39,8 @@ const DashboardItem: React.FunctionComponent<Props> = ({
         </a>
       )}
 
-      <div className="flex flex-row items-center space-x-2">
-        <div className="dark:text-gray-200 text-gray-800 text-2xl font-normal">
-          {data}
-        </div>
-
-        {isFetching && (
-          <CgSpinner className="dark:text-gray-200 text-gray-800 text-xl animate-spin" />
-        )}
+      <div className="dark:text-gray-200 text-gray-800 text-2xl font-normal">
+        {data}
       </div>
     </div>
   );
