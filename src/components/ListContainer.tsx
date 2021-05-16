@@ -10,7 +10,7 @@ const ListContainer: React.FunctionComponent<Props> = ({ title, children }) => {
     <React.Fragment>
       <Title title={title} />
 
-      <section className="grid gap-4 grid-cols-1 mx-4">{children}</section>
+      <section className="grid gap-6 grid-cols-1 mx-4">{children}</section>
     </React.Fragment>
   );
 };
