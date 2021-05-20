@@ -1,7 +1,8 @@
 import React from "react";
 import config from "@/lib/config";
+import dynamic from "next/dynamic";
 import Link from "next/link";
-import ThemeSwitch from "@/components/Layout/ThemeSwitch";
+const ThemeSwitch = dynamic(() => import("@/components/Layout/ThemeSwitch"));
 import { useRouter } from "next/router";
 
 const Header: React.FunctionComponent = () => {
