@@ -1,5 +1,8 @@
+import dynamic from "next/dynamic";
 import Title from "@/components/mdx/Code/Title";
-import SyntaxHighlight from "@/components/mdx/Code/SyntaxHighlight";
+const SyntaxHighlight = dynamic(() =>
+  import("@/components/mdx/Code/SyntaxHighlight")
+);
 
 import styles from "@/components/mdx/Code/Code.module.scss";
 
