@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Page {
+  id        String     @id
+  title     String     @unique
+  slug      String     @unique
+  hits      Int?       @default(0)
+  reactions Reaction[]
+
+  @@map("Pages")
+}
+
+model Reaction {
+  id     String
+  page   Page   @relation(fields: [pageId], references: [id])
+  pageId String
+  type   String
+
+  @@id([id, pageId, type])
+  @@map("Reactions")
+}

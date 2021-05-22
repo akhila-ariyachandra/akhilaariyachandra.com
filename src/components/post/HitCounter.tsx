@@ -2,15 +2,11 @@ import useHits from "@/hooks/use-hits";
 import RetroHitCounter from "react-retro-hit-counter";
 import type { FunctionComponent } from "react";
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 
-type Props = {
-  id: string;
-  title: string;
-  hits: number;
-};
-
-const HitCounter: FunctionComponent<Props> = ({ id, title, hits }) => {
-  const { data, increment } = useHits(id, title, hits);
+const HitCounter: FunctionComponent = () => {
+  const router = useRouter();
+  const { data, increment } = useHits(router.query.id as string);
 
   useEffect(() => {
     increment();

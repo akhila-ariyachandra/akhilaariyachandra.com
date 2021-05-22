@@ -36,7 +36,22 @@ yarn format
 |      `SPOTIFY_CLIENT_SECRET`      | The [Spotify](https://developer.spotify.com/) Client Secret                                                                 |
 |      `SPOTIFY_REFRESH_TOKEN`      | The Refresh Token used to make requests ([Guide](https://leerob.io/blog/spotify-api-nextjs))                                |
 |           `DEV_API_KEY`           | The [API Key](https://docs.forem.com/api/#section/Authentication/api_key) needed for [DEV API](https://docs.forem.com/api/) |
+|          `DATABASE_URL`           | The PostgreSQL database URL                                                                                                 |
 
 ## Analytics
 
 This site uses [Splitbee](https://splitbee.io/).
+
+## [Prisma](https://www.prisma.io/)
+
+### Create a migration
+
+```shell
+yarn prisma:migrate
+```
+
+### Generate Prisma Client
+
+```shell
+yarn prisma:generate
+```

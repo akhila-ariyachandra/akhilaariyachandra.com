@@ -1,23 +1,20 @@
 import axios from "axios";
 import { fetcher } from "@/lib/helpers";
 import { useQuery, useMutation } from "react-query";
-import { useRouter } from "next/router";
 
-const useHits = (id: string, title: string, initialHits: number = 0) => {
-  const router = useRouter();
+const useHits = (id: string) => {
   const { data, refetch } = useQuery(
     ["pageHits", id],
-    () => fetcher(`/api/hit/${id}`),
+    () => fetcher(`/api/hits/${id}`),
     {
-      placeholderData: initialHits,
+      placeholderData: 0,
     }
   );
   const mutation = useMutation(
     () =>
       axios.request({
-        url: `/api/hit/${id}`,
+        url: `/api/hits/${id}`,
         method: "POST",
-        data: { title, slug: router.asPath },
       }),
     {
       onSuccess: () => refetch(),

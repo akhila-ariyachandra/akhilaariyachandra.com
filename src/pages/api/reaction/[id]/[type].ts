@@ -1,33 +1,66 @@
-import admin from "@/lib/firebase-admin";
+import prisma from "@/prisma";
 import { NextApiHandler } from "next";
-import { getFirestore } from "firebase-admin/firestore";
 
 const Reaction: NextApiHandler = async (req, res) => {
   const id = req.query.id as string;
   const type = req.query.type as string;
-  const uniqueId = req.headers.uniqueid as string;
+  const uid = req.headers.uid as string;
 
-  const db = getFirestore(admin);
-  const reactionRef = db
-    .collection("pages")
-    .doc(id)
-    .collection("reactions")
-    .doc(type);
-  const reactionData = await reactionRef.get();
-
-  if (!reactionData.exists) {
-    return res.status(200).send({
-      count: 0,
-      reacted: false,
+  if (req.method === "POST") {
+    const reaction = await prisma.reaction.findUnique({
+      where: {
+        id_pageId_type: {
+          id: uid,
+          type,
+          pageId: id,
+        },
+      },
     });
-  } else {
-    const reacted: boolean = uniqueId
-      ? reactionData.data().uniqueIds.includes(uniqueId)
-      : false;
 
-    return res.status(200).send({
-      count: reactionData.data().uniqueIds.length,
-      reacted,
+    if (!reaction) {
+      await prisma.reaction.create({
+        data: {
+          id: uid,
+          type,
+          pageId: id,
+        },
+      });
+
+      return res.status(200).send("Reacted");
+    } else {
+      await prisma.reaction.delete({
+        where: {
+          id_pageId_type: {
+            id: uid,
+            type,
+            pageId: id,
+          },
+        },
+      });
+
+      return res.status(200).send("Removed Reaction");
+    }
+  } else if (req.method === "GET") {
+    const count = await prisma.reaction.count({
+      where: {
+        pageId: id,
+        type,
+      },
+    });
+
+    const reaction = await prisma.reaction.findUnique({
+      where: {
+        id_pageId_type: {
+          id: uid,
+          type,
+          pageId: id,
+        },
+      },
+    });
+
+    return res.status(200).json({
+      count,
+      reacted: reaction ? true : false,
     });
   }
 };

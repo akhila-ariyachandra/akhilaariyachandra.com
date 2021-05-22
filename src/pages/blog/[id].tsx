@@ -11,6 +11,9 @@ import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import type { Post } from "@/lib/types";
 import { getAllPostIds, getPostData } from "@/lib/posts";
 import { mdxComponents } from "@/lib/mdx";
+import { QueryClient } from "react-query";
+import { dehydrate } from "react-query/hydration";
+import { getPageHits } from "@/lib/hits";
 import { MDXRemote } from "next-mdx-remote";
 
 import styles from "@/styles/post.module.scss";
@@ -20,7 +23,7 @@ type Props = {
 };
 
 const BlogPost: NextPage<Props> = ({ postData }) => {
-  const { data } = useHits(postData.id, postData.title, postData.hits);
+  const { data } = useHits(postData.id);
 
   return (
     <Layout>
@@ -88,7 +91,7 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
         <MDXRemote {...postData.content} components={mdxComponents} lazy />
       </div>
 
-      <HitCounter id={postData.id} title={postData.title} hits={data} />
+      <HitCounter />
 
       <Reactions />
 
@@ -109,12 +112,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const id = params.id;
+  const id = params.id as string;
   const postData = await getPostData(id);
+
+  const queryClient = new QueryClient();
+
+  // Prefetch page hits
+  await queryClient.prefetchQuery(["pageHits", id], () => getPageHits(id));
 
   return {
     props: {
       postData,
+      dehydratedState: dehydrate(queryClient),
     },
   };
 };
