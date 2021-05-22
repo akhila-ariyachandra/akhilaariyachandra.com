@@ -3,7 +3,8 @@ const path = require("path");
 const matter = require("gray-matter");
 const dayjs = require("dayjs");
 const minifyXML = require("minify-xml").minify;
-const Feed = require("feed").Feed;
+const { Feed } = require("feed");
+const { PrismaClient } = require("@prisma/client");
 
 // Generate sitemap.xml
 (() => {
@@ -51,7 +52,7 @@ const Feed = require("feed").Feed;
   const sitemapFile = path.join(process.cwd(), "public", "sitemap.xml");
   fs.writeFileSync(sitemapFile, minifyXML(content));
 
-  console.log("> Generated sitemap.xml");
+  return console.log("> Generated sitemap.xml");
 })();
 
 // Generate RSS Feed
@@ -98,5 +99,87 @@ const Feed = require("feed").Feed;
   const rssFile = path.join(process.cwd(), "public", "rss.xml");
   fs.writeFileSync(rssFile, minifyXML(content));
 
-  console.log("> Generated rss.xml");
+  return console.log("> Generated rss.xml");
+})();
+
+// Generate pages in database
+(async () => {
+  console.log("> Generating pages in database");
+
+  const pages = [];
+  const prisma = new PrismaClient();
+
+  // Get the blog posts
+  const postsDirectory = path.join("content", "posts");
+  const postFileNames = fs.readdirSync(postsDirectory);
+  for (const fileName of postFileNames) {
+    // Remove ".mdx" from file name to get id
+    const id = fileName.replace(/\.mdx$/, "");
+
+    // Read MDX file as string
+    const fullPath = path.join(postsDirectory, fileName);
+    const source = fs.readFileSync(fullPath, "utf8");
+
+    // Get frontmatter
+    const {
+      data: { title },
+    } = matter(source);
+
+    // Add to pages array
+    pages.push({
+      id,
+      title,
+      slug: `/blog/${id}`,
+    });
+  }
+
+  // Get the snippets
+  const snippetsDirectory = path.join("content", "snippets");
+  const snippetFileNames = fs.readdirSync(snippetsDirectory);
+  for (const fileName of snippetFileNames) {
+    // Remove ".mdx" from file name to get id
+    const id = fileName.replace(/\.mdx$/, "");
+
+    // Read MDX file as string
+    const fullPath = path.join(snippetsDirectory, fileName);
+    const source = fs.readFileSync(fullPath, "utf8");
+
+    // Get frontmatter
+    const {
+      data: { title },
+    } = matter(source);
+
+    // Add to pages array
+    pages.push({
+      id,
+      title,
+      slug: `/snippets/${id}`,
+    });
+  }
+
+  const promises = [];
+  // Generate pages in database
+  for (const page of pages) {
+    promises.push(
+      prisma.page.upsert({
+        where: {
+          id: page.id,
+        },
+        update: {
+          title: page.title,
+          slug: page.slug,
+        },
+        create: {
+          id: page.id,
+          title: page.title,
+          slug: page.slug,
+        },
+      })
+    );
+  }
+  await Promise.all(promises);
+
+  prisma.$disconnect();
+
+  return console.log("> Generated pages in database");
 })();

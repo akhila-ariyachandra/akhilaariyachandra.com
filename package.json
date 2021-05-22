@@ -11,8 +11,12 @@
     "analyze": "cross-env ANALYZE=true next build",
     "prebuild": "node src/scripts/pre-build.js",
     "build": "next build",
+    "vercel-build": "prisma migrate deploy && node src/scripts/pre-build.js && next build",
     "start": "next start",
-    "format": "prettier --write \"**/*.{ts,tsx,js,json,md,mdx,yaml,scss}\""
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md,mdx,yaml,scss,prisma}\"",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:generate": "prisma generate",
+    "postinstall": "prisma generate"
   },
   "prettier": {
     "endOfLine": "lf",
@@ -24,10 +28,14 @@
   "resolutions": {
     "styled-components": "^5"
   },
+  "prisma": {
+    "schema": "src/prisma/schema.prisma"
+  },
   "dependencies": {
     "@badrap/bar-of-progress": "^0.1.2",
     "@fec/remark-a11y-emoji": "^3.1.0",
     "@next/bundle-analyzer": "^10.2.0",
+    "@prisma/client": "^2.23.0",
     "@silvenon/remark-smartypants": "^1.0.0",
     "@splitbee/web": "^0.2.4",
     "axios": "^0.21.1",
@@ -63,7 +71,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.4.0",
-    "@types/node": "^15.0.2",
+    "@types/node": "^15.6.0",
     "@types/react": "^17.0.5",
     "autoprefixer": "^10.2.5",
     "babel-plugin-styled-components": "^1.12.0",
@@ -72,7 +80,9 @@
     "next-compose-plugins": "^2.2.1",
     "postcss": "^8.2.9",
     "prettier": "^2.2.1",
+    "prettier-plugin-prisma": "^0.10.1",
     "prettier-plugin-tailwind": "^2.2.10",
+    "prisma": "^2.23.0",
     "tailwindcss": "^2.1.1",
     "typescript": "^4.2.4"
   },

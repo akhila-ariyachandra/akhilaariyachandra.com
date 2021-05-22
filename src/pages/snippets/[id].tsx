@@ -8,6 +8,9 @@ import type { NextPage, GetStaticPaths, GetStaticProps } from "next";
 import type { Snippet as SnippetType } from "@/lib/types";
 import { getAllSnippetIds, getSnippetData } from "@/lib/snippets";
 import { mdxComponents } from "@/lib/mdx";
+import { QueryClient } from "react-query";
+import { dehydrate } from "react-query/hydration";
+import { getPageHits } from "@/lib/hits";
 import { MDXRemote } from "next-mdx-remote";
 
 import styles from "@/styles/snippet.module.scss";
@@ -37,7 +40,7 @@ const Snippet: NextPage<Props> = ({ snippet }) => {
         <MDXRemote {...snippet.content} components={mdxComponents} lazy />
       </div>
 
-      <HitCounter id={snippet.id} title={snippet.title} hits={snippet.hits} />
+      <HitCounter />
 
       <Reactions />
 
@@ -59,8 +62,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const id = params.id as string;
   const snippet = await getSnippetData(id);
 
+  const queryClient = new QueryClient();
+
+  // Prefetch page hits
+  await queryClient.prefetchQuery(["pageHits", id], () => getPageHits(id));
+
   return {
-    props: { snippet },
+    props: { snippet, dehydratedState: dehydrate(queryClient) },
   };
 };
 

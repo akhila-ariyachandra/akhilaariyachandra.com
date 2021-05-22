@@ -8,7 +8,6 @@ import slug from "remark-slug";
 import readingTime from "reading-time";
 import type { Post } from "@/lib/types";
 import { formatDate } from "@/lib/helpers";
-import { getPageHits } from "@/lib/hits";
 import { serialize } from "next-mdx-remote/serialize";
 
 const postsDirectory = path.join("content", "posts");
@@ -51,9 +50,6 @@ export const getSortedPostsData = async (): Promise<Post[]> => {
       post.photographer = data.photographer;
       post.unsplash_link = data.unsplash_link;
     }
-
-    // Get post hits
-    post.hits = await getPageHits(post.id);
 
     allPostsData.push(post);
   }
@@ -128,9 +124,6 @@ export const getPostData = async (id): Promise<Post> => {
     post.photographer = data.photographer;
     post.unsplash_link = data.unsplash_link;
   }
-
-  // Get post hits
-  post.hits = await getPageHits(post.id);
 
   return post;
 };

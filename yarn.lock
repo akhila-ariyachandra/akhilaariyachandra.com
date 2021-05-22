@@ -1624,6 +1624,23 @@
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.12.tgz#431ec342a7195622f86688bbda82e3166ce8cb28"
   integrity sha512-6RglhutqrGFMO1MNUXp95RBuYIuc8wTnMAV5MUhLmjTOy78ncwOw7RgeQ/HeymkKXRhZd0s2DNrM1rL7unk3MQ==
 
+"@prisma/client@^2.23.0":
+  version "2.23.0"
+  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-2.23.0.tgz#4bf16ab19b140873ba79bd159da86842b1746e0a"
+  integrity sha512-xsHdo3+wIH0hJVGfKHYTEKtifStjKH0b5t8t7hV32Fypq6+3uxhAi3F25yxuI4XSHXg21nb7Ha82lNwU/0TERA==
+  dependencies:
+    "@prisma/engines-version" "2.23.0-36.adf5e8cba3daf12d456d911d72b6e9418681b28b"
+
+"@prisma/engines-version@2.23.0-36.adf5e8cba3daf12d456d911d72b6e9418681b28b":
+  version "2.23.0-36.adf5e8cba3daf12d456d911d72b6e9418681b28b"
+  resolved "https://registry.yarnpkg.com/@prisma/engines-version/-/engines-version-2.23.0-36.adf5e8cba3daf12d456d911d72b6e9418681b28b.tgz#c813279bbea48dedad039b0bc3b044117d2dbaa1"
+  integrity sha512-VNgnOe+oPQKmy3HOtWi/Q1fvcKZUQkf1OfTD1pzrLBx9tJPejyxt1Mq54L+OOAuYvfrua6bmfojFVLh7uXuWVw==
+
+"@prisma/engines@2.23.0-36.adf5e8cba3daf12d456d911d72b6e9418681b28b":
+  version "2.23.0-36.adf5e8cba3daf12d456d911d72b6e9418681b28b"
+  resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-2.23.0-36.adf5e8cba3daf12d456d911d72b6e9418681b28b.tgz#440abe0ebef44b6e1bdaf2b4d14fcde9fe74f18c"
+  integrity sha512-Tgk3kggO5B9IT6mimJAw6HSxbFoDAuDKL3sHHSS41EnQm76j/nf4uhGZFPzOQwZWOLeT5ZLO2khr4/FCA9Nkhw==
+
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@protobufjs/aspromise/-/aspromise-1.1.2.tgz#9b8b0cc663d669a7d8f6f5d0893a14d348f30fbf"
@@ -1885,7 +1902,7 @@
   resolved "https://registry.yarnpkg.com/@types/minimist/-/minimist-1.2.1.tgz#283f669ff76d7b8260df8ab7a4262cc83d988256"
   integrity sha512-fZQQafSREFyuZcdWFAExYjBiCL7AUCdgsk80iO0q4yihYYdcIiH28CcuPTGFgLOCC8RlW49GSQxdHwZP+I7CNg==
 
-"@types/node@*", "@types/node@>=12.12.47", "@types/node@>=13.7.0", "@types/node@^15.0.2":
+"@types/node@*", "@types/node@>=12.12.47", "@types/node@>=13.7.0":
   version "15.3.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-15.3.1.tgz#23a06b87eedb524016616e886b116b8fdcb180af"
   integrity sha512-weaeiP4UF4XgF++3rpQhpIJWsCTS4QJw5gvBhQu6cFIxTwyxWIe3xbnrY/o2lTCQ0lsdb8YIUDUvLR4Vuz5rbw==
@@ -1894,6 +1911,11 @@
   version "10.17.60"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.17.60.tgz#35f3d6213daed95da7f0f73e75bcc6980e90597b"
   integrity sha512-F0KIgDJfy2nA3zMLmWGKxcH2ZVEtCZXHHdOQs2gSaQ27+lNeEfGxzkIw90aXswATX7AZ33tahPbzy6KAfUreVw==
+
+"@types/node@^15.6.0":
+  version "15.6.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-15.6.0.tgz#f0ddca5a61e52627c9dcb771a6039d44694597bc"
+  integrity sha512-gCYSfQpy+LYhOFTKAeE8BkyGqaxmlFxe+n4DKM6DR0wzw/HISUE/hAmkC/KT8Sw5PCJblqg062b3z9gucv3k0A==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -5270,6 +5292,11 @@ postcss@^8.1.6, postcss@^8.2.1, postcss@^8.2.9:
     nanoid "^3.1.23"
     source-map "^0.6.1"
 
+prettier-plugin-prisma@^0.10.1:
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-prisma/-/prettier-plugin-prisma-0.10.1.tgz#042eb5537081bf7f5605fe59a8f7cae883b3bc2a"
+  integrity sha512-4e+GmKGUtuJBbA3/xQjenSxbi19Cqf2EzVn0Gkm5qJ+y6AWr54zmSyoYKtUJtD88lB5RAe2olM/axJwyKZRyXg==
+
 prettier-plugin-tailwind@^2.2.10:
   version "2.2.10"
   resolved "https://registry.yarnpkg.com/prettier-plugin-tailwind/-/prettier-plugin-tailwind-2.2.10.tgz#b3c39617e3568d76217404efc137d93667a4125e"
@@ -5298,6 +5325,13 @@ prism-react-renderer@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/prism-react-renderer/-/prism-react-renderer-1.2.0.tgz#5ad4f90c3e447069426c8a53a0eafde60909cdf4"
   integrity sha512-GHqzxLYImx1iKN1jJURcuRoA/0ygCcNhfGw1IT8nPIMzarmKQ3Nc+JcG0gi8JXQzuh0C5ShE4npMIoqNin40hg==
+
+prisma@^2.23.0:
+  version "2.23.0"
+  resolved "https://registry.yarnpkg.com/prisma/-/prisma-2.23.0.tgz#6464cca0e085ed23b1815013a67c868eff07a7d2"
+  integrity sha512-3c/lmDy8nsPcEsfCufvCTJUEuwmAcTPbeGg9fL1qjlvS314duLUA/k2nm3n1rq4ImKqzeC5uaKfvI2IoAfwrJA==
+  dependencies:
+    "@prisma/engines" "2.23.0-36.adf5e8cba3daf12d456d911d72b6e9418681b28b"
 
 process-nextick-args@~2.0.0:
   version "2.0.1"

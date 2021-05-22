@@ -18,7 +18,7 @@ import { dehydrate } from "react-query/hydration";
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
 type Props = {
-  mostPopularPosts: { title: string; slug: string; hits: number }[];
+  mostPopularPosts: { title: string; slug: string; hits: number; id: string }[];
 };
 
 const Dashboard: NextPage<Props> = ({ mostPopularPosts }) => {
@@ -71,7 +71,7 @@ const Dashboard: NextPage<Props> = ({ mostPopularPosts }) => {
 
         <div className="grid gap-4 grid-cols-1">
           {mostPopularPosts.map((post) => (
-            <article key={post.slug}>
+            <article key={post.id}>
               <Link href={post.slug}>
                 <a className="dark:text-green-600 text-green-700 text-2xl font-medium">
                   {post.title}
@@ -140,22 +140,24 @@ export const getStaticProps: GetStaticProps = async () => {
   const queryClient = new QueryClient();
 
   // Prefetch Dashboard item data
-  await queryClient.prefetchQuery(
-    ["dashboardItem", "/api/stats/total-views"],
-    getTotalViews
-  );
-  await queryClient.prefetchQuery(
-    ["dashboardItem", "/api/stats/total-reactions"],
-    getTotalReactions
-  );
-  await queryClient.prefetchQuery(
-    ["dashboardItem", "/api/stats/dev-total-views"],
-    getTotalDevViews
-  );
-  await queryClient.prefetchQuery(
-    ["dashboardItem", "/api/stats/dev-total-reactions"],
-    getTotalDevReactions
-  );
+  await Promise.all([
+    queryClient.prefetchQuery(
+      ["dashboardItem", "/api/stats/total-views"],
+      getTotalViews
+    ),
+    queryClient.prefetchQuery(
+      ["dashboardItem", "/api/stats/total-reactions"],
+      getTotalReactions
+    ),
+    queryClient.prefetchQuery(
+      ["dashboardItem", "/api/stats/dev-total-views"],
+      getTotalDevViews
+    ),
+    queryClient.prefetchQuery(
+      ["dashboardItem", "/api/stats/dev-total-reactions"],
+      getTotalDevReactions
+    ),
+  ]);
 
   return {
     props: { mostPopularPosts, dehydratedState: dehydrate(queryClient) },

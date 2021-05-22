@@ -12,7 +12,7 @@ import { UniqueIdContext } from "@/context/UniqueIdContext";
 const BOOP_AMOUNT = 10;
 
 const Reaction = ({ type, emoji }) => {
-  const uniqueId = React.useContext(UniqueIdContext);
+  const uid = React.useContext(UniqueIdContext);
   const router = useRouter();
   const queryClient = useQueryClient();
   const QUERY_KEY = ["reaction", router.query.id, type];
@@ -24,7 +24,7 @@ const Reaction = ({ type, emoji }) => {
       axios
         .request({
           url: `/api/reaction/${router.query.id}/${type}`,
-          headers: { uniqueid: uniqueId },
+          headers: { uid },
         })
         .then(({ data }) => data),
     {
@@ -32,8 +32,7 @@ const Reaction = ({ type, emoji }) => {
         count: 0,
         reacted: false,
       },
-      refetchOnMount: "always",
-      enabled: !!uniqueId,
+      enabled: !!uid,
     }
   );
   const [style, trigger] = useBoop({
@@ -42,10 +41,10 @@ const Reaction = ({ type, emoji }) => {
   const mutation = useMutation(
     () =>
       axios.request({
-        url: "/api/reaction",
+        url: `/api/reaction/${router.query.id}/${type}`,
         method: "POST",
         headers: {
-          uniqueid: uniqueId,
+          uid,
         },
         data: {
           id: router.query.id,

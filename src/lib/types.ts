@@ -11,7 +11,6 @@ export type Post = {
   unsplash_link?: string;
   content?: any;
   readingTime?: string;
-  hits?: number;
 };
 
 export type Job = {
@@ -36,7 +35,6 @@ export type Snippet = {
   title: string;
   description: string;
   content?: any;
-  hits?: number;
 };
 
 export enum ReactionType {
