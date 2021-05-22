@@ -12,67 +12,59 @@ const LINKS = [
   { href: "/dashboard", title: "Dashboard" },
 ];
 
+const ExternalLink = ({ children, link }) => (
+  <a
+    className="dark:text-green-500 text-green-800 font-semibold"
+    href={link}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    {children}
+  </a>
+);
+
 const Footer: React.FunctionComponent = () => {
   return (
-    <footer className="flex flex-col mt-10 p-4 space-y-6">
-      <hr className="border-1 w-full border-gray-200 dark:border-gray-600" />
+    <footer className="full-bleed wrapper mt-20 dark:bg-gray-800 bg-green-200">
+      <div className="flex flex-col px-4 py-4 space-y-6">
+        <NowPlaying />
 
-      <NowPlaying />
+        <nav className="grid gap-2 grid-cols-2 sm:grid-cols-3">
+          {LINKS.map((link) => (
+            <Link href={link.href} key={link.href}>
+              <a className="dark:text-gray-300 text-green-900 text-xl font-medium">
+                {link.title}
+              </a>
+            </Link>
+          ))}
+        </nav>
 
-      <nav className="grid gap-2 grid-cols-2 sm:grid-cols-3">
-        {LINKS.map((link) => (
-          <Link href={link.href} key={link.href}>
-            <a className="dark:text-green-600 text-green-700 text-xl font-medium">
-              {link.title}
-            </a>
-          </Link>
-        ))}
-      </nav>
+        <div className="flex items-center justify-between">
+          <span className="dark:text-gray-200 text-gray-800 text-base font-medium">
+            © {new Date().getFullYear()}, Built with
+            {` `}
+            <ExternalLink link="https://nextjs.org/">Next.js</ExternalLink>
+            {", "}
+            <ExternalLink link="https://tailwindcss.com/">
+              Tailwind CSS
+            </ExternalLink>
+            {", & "}
+            <ExternalLink link="https://vercel.com/home">Vercel</ExternalLink>
+          </span>
 
-      <div className="flex items-center justify-between">
-        <span className="dark:text-gray-200 text-gray-800 text-base font-medium">
-          © {new Date().getFullYear()}, Built with
-          {` `}
           <a
-            className="dark:text-green-600 text-green-700 font-semibold"
-            href="https://nextjs.org/"
+            href="https://app.splitbee.io/public/akhilaariyachandra.com"
             target="_blank"
             rel="noopener noreferrer"
+            className="dark:text-yellow-400 text-yellow-600 text-xl"
+            onClick={() => {
+              splitbee.track("Open Link", { name: "Analytics" });
+            }}
+            aria-label="Analytics"
           >
-            Next.js
+            <IoAnalyticsSharp />
           </a>
-          {", "}
-          <a
-            className="dark:text-green-600 text-green-700 font-semibold"
-            href="https://tailwindcss.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Tailwind CSS
-          </a>
-          {", & "}
-          <a
-            className="dark:text-green-600 text-green-700 font-semibold"
-            href="https://vercel.com/home"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vercel
-          </a>
-        </span>
-
-        <a
-          href="https://app.splitbee.io/public/akhilaariyachandra.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="dark:text-green-600 text-green-700 text-xl"
-          onClick={() => {
-            splitbee.track("Open Link", { name: "Analytics" });
-          }}
-          aria-label="Analytics"
-        >
-          <IoAnalyticsSharp />
-        </a>
+        </div>
       </div>
     </footer>
   );

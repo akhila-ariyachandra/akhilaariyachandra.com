@@ -15,7 +15,7 @@ const NowPlaying: React.FunctionComponent = () => {
       <div className="inline-flex flex-col w-full max-w-full truncate sm:flex-row">
         {data?.songUrl ? (
           <a
-            className="max-w-max dark:text-green-600 text-green-700 font-medium truncate"
+            className="max-w-max dark:text-gray-100 text-green-900 font-medium truncate"
             href={data.songUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -27,10 +27,10 @@ const NowPlaying: React.FunctionComponent = () => {
             Not Playing
           </p>
         )}
-        <span className="hidden mx-2 dark:text-gray-300 text-gray-500 sm:block">
+        <span className="hidden mx-2 dark:text-gray-300 text-gray-600 sm:block">
           {" – "}
         </span>
-        <p className="max-w-max dark:text-gray-300 text-gray-500 truncate">
+        <p className="max-w-max dark:text-gray-300 text-gray-700 truncate">
           {data?.artist ?? "Spotify"}
         </p>
       </div>
