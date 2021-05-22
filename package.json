@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "next dev -p 4000",
     "analyze": "cross-env ANALYZE=true next build",
-    "prebuild": "node src/scripts/pre-build.js",
+    "prepare": "node src/scripts/pre-build.js",
     "build": "next build",
     "vercel-build": "prisma migrate deploy && node src/scripts/pre-build.js && next build",
     "start": "next start",
