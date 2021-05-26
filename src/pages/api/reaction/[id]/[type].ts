@@ -26,7 +26,7 @@ const Reaction: NextApiHandler = async (req, res) => {
         },
       });
 
-      return res.status(200).send("Reacted");
+      return res.status(200).send("React");
     } else {
       await prisma.reaction.delete({
         where: {
@@ -38,7 +38,7 @@ const Reaction: NextApiHandler = async (req, res) => {
         },
       });
 
-      return res.status(200).send("Removed Reaction");
+      return res.status(200).send("Remove Reaction");
     }
   } else if (req.method === "GET") {
     const count = await prisma.reaction.count({

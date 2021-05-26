@@ -77,8 +77,8 @@ const Reaction = ({ type, emoji }) => {
       onSettled: () => {
         queryClient.invalidateQueries(QUERY_KEY);
       },
-      onSuccess: () => {
-        splitbee.track("React", {
+      onSuccess: ({ data }) => {
+        splitbee.track(data, {
           slug: router.asPath,
           type,
         });
