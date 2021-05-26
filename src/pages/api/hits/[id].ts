@@ -18,7 +18,7 @@ const RegisterHit = async (req: NextApiRequest, res: NextApiResponse) => {
     });
   }
 
-  return res.status(200).send(page.hits);
+  return res.status(200).send(page.hits ?? 0);
 };
 
 export default RegisterHit;
