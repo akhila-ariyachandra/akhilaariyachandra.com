@@ -1,6 +1,6 @@
 import axios from "axios";
 import type { NextApiHandler } from "next";
-import { getTotalDevReactions } from "@/lib/stats";
+import { getTotalDevReactions } from "@/lib/dashboard";
 
 const DEVTotalReactions: NextApiHandler = async (req, res) => {
   const totalReactions = await getTotalDevReactions();

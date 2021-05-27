@@ -1,5 +1,5 @@
 import type { NextApiHandler } from "next";
-import { getTotalViews } from "@/lib/stats";
+import { getTotalViews } from "@/lib/dashboard";
 
 const TotalViews: NextApiHandler = async (req, res) => {
   const totalViews = await getTotalViews();

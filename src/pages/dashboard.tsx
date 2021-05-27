@@ -11,7 +11,7 @@ import {
   getTotalReactions,
   getTotalDevViews,
   getTotalDevReactions,
-} from "@/lib/stats";
+} from "@/lib/dashboard";
 import { QueryClient, useQuery } from "react-query";
 import { dehydrate } from "react-query/hydration";
 
@@ -42,25 +42,25 @@ const Dashboard: NextPage<Props> = ({ mostPopularPosts }) => {
         <DashboardItem
           title="Total Views"
           link={{ type: "internal", url: "/blog" }}
-          url="/api/stats/total-views"
+          url="/api/dashboard/total-views"
         />
 
         <DashboardItem
           title="Total Reactions"
           link={{ type: "internal", url: "/blog" }}
-          url="/api/stats/total-reactions"
+          url="/api/dashboard/total-reactions"
         />
 
         <DashboardItem
           title="DEV Views"
           link={{ type: "external", url: "https://dev.to/akhilaariyachandra" }}
-          url="/api/stats/dev-total-views"
+          url="/api/dashboard/dev-total-views"
         />
 
         <DashboardItem
           title="DEV Reactions"
           link={{ type: "external", url: "https://dev.to/akhilaariyachandra" }}
-          url="/api/stats/dev-total-reactions"
+          url="/api/dashboard/dev-total-reactions"
         />
       </div>
 
@@ -142,19 +142,19 @@ export const getStaticProps: GetStaticProps = async () => {
   // Prefetch Dashboard item data
   await Promise.all([
     queryClient.prefetchQuery(
-      ["dashboardItem", "/api/stats/total-views"],
+      ["dashboardItem", "/api/dashboard/total-views"],
       getTotalViews
     ),
     queryClient.prefetchQuery(
-      ["dashboardItem", "/api/stats/total-reactions"],
+      ["dashboardItem", "/api/dashboard/total-reactions"],
       getTotalReactions
     ),
     queryClient.prefetchQuery(
-      ["dashboardItem", "/api/stats/dev-total-views"],
+      ["dashboardItem", "/api/dashboard/dev-total-views"],
       getTotalDevViews
     ),
     queryClient.prefetchQuery(
-      ["dashboardItem", "/api/stats/dev-total-reactions"],
+      ["dashboardItem", "/api/dashboard/dev-total-reactions"],
       getTotalDevReactions
     ),
   ]);
