@@ -14,21 +14,23 @@ import {
 } from "@/lib/dashboard";
 import { QueryClient, useQuery } from "react-query";
 import { dehydrate } from "react-query/hydration";
+import { fetcher } from "@/lib/helpers";
 
-const fetcher = (url) => fetch(url).then((r) => r.json());
-
-type Props = {
-  mostPopularPosts: { title: string; slug: string; hits: number; id: string }[];
-};
-
-const Dashboard: NextPage<Props> = ({ mostPopularPosts }) => {
-  const { data } = useQuery(
-    "topTracks",
+const Dashboard: NextPage = () => {
+  const { data: topTracks } = useQuery(
+    ["dashboard", "topTracks"],
     () => fetcher("/api/spotify/top-tracks"),
     {
       placeholderData: {
         tracks: [],
       },
+    }
+  );
+  const { data: mostPopularPosts } = useQuery(
+    ["dashboard", "mostPopularPosts"],
+    () => fetcher("/api/most-popular-posts"),
+    {
+      placeholderData: [],
     }
   );
 
@@ -42,24 +44,28 @@ const Dashboard: NextPage<Props> = ({ mostPopularPosts }) => {
         <DashboardItem
           title="Total Views"
           link={{ type: "internal", url: "/blog" }}
+          queryKey="totalViews"
           url="/api/dashboard/total-views"
         />
 
         <DashboardItem
           title="Total Reactions"
           link={{ type: "internal", url: "/blog" }}
+          queryKey="totalReactions"
           url="/api/dashboard/total-reactions"
         />
 
         <DashboardItem
           title="DEV Views"
           link={{ type: "external", url: "https://dev.to/akhilaariyachandra" }}
+          queryKey="devTotalViews"
           url="/api/dashboard/dev-total-views"
         />
 
         <DashboardItem
           title="DEV Reactions"
           link={{ type: "external", url: "https://dev.to/akhilaariyachandra" }}
+          queryKey="devTotalReactions"
           url="/api/dashboard/dev-total-reactions"
         />
       </div>
@@ -95,7 +101,7 @@ const Dashboard: NextPage<Props> = ({ mostPopularPosts }) => {
         </p>
 
         <div className="flex flex-col divide-gray-200 dark:divide-gray-600 divide-y space-y-3">
-          {data.tracks.map((track, index) => (
+          {topTracks.tracks.map((track, index) => (
             <div
               key={index}
               className="flex flex-row items-center pt-3 space-x-6"
@@ -135,32 +141,28 @@ const Dashboard: NextPage<Props> = ({ mostPopularPosts }) => {
 export default Dashboard;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const mostPopularPosts = await getMostPopularPosts();
-
   const queryClient = new QueryClient();
 
-  // Prefetch Dashboard item data
+  // Prefetch Dashboard data
   await Promise.all([
+    queryClient.prefetchQuery(["dashboard", "totalViews"], getTotalViews),
     queryClient.prefetchQuery(
-      ["dashboardItem", "/api/dashboard/total-views"],
-      getTotalViews
-    ),
-    queryClient.prefetchQuery(
-      ["dashboardItem", "/api/dashboard/total-reactions"],
+      ["dashboard", "totalReactions"],
       getTotalReactions
     ),
+    queryClient.prefetchQuery(["dashboard", "devTotalViews"], getTotalDevViews),
     queryClient.prefetchQuery(
-      ["dashboardItem", "/api/dashboard/dev-total-views"],
-      getTotalDevViews
+      ["dashboard", "devTotalReactions"],
+      getTotalDevReactions
     ),
     queryClient.prefetchQuery(
-      ["dashboardItem", "/api/dashboard/dev-total-reactions"],
-      getTotalDevReactions
+      ["dashboard", "mostPopularPosts"],
+      getMostPopularPosts
     ),
   ]);
 
   return {
-    props: { mostPopularPosts, dehydratedState: dehydrate(queryClient) },
-    revalidate: 600, // Regenerate after 10 mins
+    props: { dehydratedState: dehydrate(queryClient) },
+    revalidate: 86400, // Regenerate after 1 day
   };
 };
