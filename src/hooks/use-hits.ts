@@ -1,27 +1,52 @@
-import axios from "axios";
-import { fetcher } from "@/lib/helpers";
+import { useCallback } from "react";
 import { useQuery, useMutation } from "react-query";
+import { graphQLClient, gql } from "@/lib/api";
 
 const useHits = (id: string) => {
-  const { data, refetch } = useQuery(
+  const {
+    data: { getHits: hits },
+    refetch,
+  } = useQuery(
     ["pageHits", id],
-    () => fetcher(`/api/hits/${id}`),
+    () =>
+      graphQLClient.request(
+        gql`
+          query PageHits($id: ID!) {
+            getHits(id: $id)
+          }
+        `,
+        {
+          id,
+        }
+      ),
     {
-      placeholderData: 0,
+      placeholderData: {
+        getHits: 0,
+      },
     }
   );
   const mutation = useMutation(
     () =>
-      axios.request({
-        url: `/api/hits/${id}`,
-        method: "POST",
-      }),
+      graphQLClient.request(
+        gql`
+          mutation PageHits($id: ID!) {
+            incrementHits(id: $id)
+          }
+        `,
+        {
+          id,
+        }
+      ),
     {
       onSuccess: () => refetch(),
     }
   );
 
-  return { data, increment: mutation.mutate };
+  const increment = useCallback(() => {
+    mutation.mutate();
+  }, []);
+
+  return { hits, increment };
 };
 
 export default useHits;

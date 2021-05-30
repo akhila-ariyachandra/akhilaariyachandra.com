@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 
 const HitCounter: FunctionComponent = () => {
   const router = useRouter();
-  const { data, increment } = useHits(router.query.id as string);
+  const { hits, increment } = useHits(router.query.id as string);
 
   useEffect(() => {
     increment();
@@ -14,7 +14,7 @@ const HitCounter: FunctionComponent = () => {
 
   return (
     <div className="grid place-items-center m-4">
-      <RetroHitCounter hits={data} />
+      <RetroHitCounter hits={hits} />
     </div>
   );
 };

@@ -9,7 +9,7 @@ type Props = {
 };
 
 const PostLink: FunctionComponent<Props> = ({ post }) => {
-  const { data } = useHits(post.id);
+  const { hits } = useHits(post.id);
 
   return (
     <article className="space-y-2">
@@ -24,7 +24,7 @@ const PostLink: FunctionComponent<Props> = ({ post }) => {
 
         <span className="mx-2">-</span>
 
-        <p className="min-w-0 truncate">{`${data} views`}</p>
+        <p className="min-w-0 truncate">{`${hits} views`}</p>
       </div>
     </article>
   );

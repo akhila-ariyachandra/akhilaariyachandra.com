@@ -1,11 +1,27 @@
 import React from "react";
-import { fetcher } from "@/lib/helpers";
 import { useQuery } from "react-query";
+import { graphQLClient, gql } from "@/lib/api";
 import { FaSpotify } from "react-icons/fa";
 
 const NowPlaying: React.FunctionComponent = () => {
-  const { data } = useQuery("nowPlaying", () =>
-    fetcher("/api/spotify/now-playing")
+  const {
+    data: { nowPlaying },
+  } = useQuery(
+    "nowPlaying",
+    () =>
+      graphQLClient.request(gql`
+        query NowPlaying {
+          nowPlaying {
+            name
+            artist
+            album
+            songUrl
+          }
+        }
+      `),
+    {
+      placeholderData: { nowPlaying: null },
+    }
   );
 
   return (
@@ -13,14 +29,14 @@ const NowPlaying: React.FunctionComponent = () => {
       <FaSpotify color="#1DB954" />
 
       <div className="inline-flex flex-col w-full max-w-full truncate sm:flex-row">
-        {data?.songUrl ? (
+        {nowPlaying?.songUrl ? (
           <a
             className="max-w-max dark:text-gray-100 text-green-900 font-medium truncate"
-            href={data.songUrl}
+            href={nowPlaying.songUrl}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {data.title}
+            {nowPlaying.name}
           </a>
         ) : (
           <p className="dark:text-gray-200 text-gray-800 font-medium">
@@ -31,7 +47,7 @@ const NowPlaying: React.FunctionComponent = () => {
           {" – "}
         </span>
         <p className="max-w-max dark:text-gray-300 text-gray-700 truncate">
-          {data?.artist ?? "Spotify"}
+          {nowPlaying?.artist ?? "Spotify"}
         </p>
       </div>
     </div>

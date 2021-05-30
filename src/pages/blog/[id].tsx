@@ -23,7 +23,7 @@ type Props = {
 };
 
 const BlogPost: NextPage<Props> = ({ postData }) => {
-  const { data } = useHits(postData.id);
+  const { hits } = useHits(postData.id);
 
   return (
     <Layout>
@@ -82,7 +82,7 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
 
         <span className="hidden sm:block sm:mx-2">&bull;</span>
 
-        <p>{`${data} views`}</p>
+        <p>{`${hits} views`}</p>
       </div>
 
       <div
@@ -118,7 +118,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const queryClient = new QueryClient();
 
   // Prefetch page hits
-  await queryClient.prefetchQuery(["pageHits", id], () => getPageHits(id));
+  await queryClient.prefetchQuery(["pageHits", id], async () => {
+    const hits = await getPageHits(id);
+
+    return {
+      getHits: hits,
+    };
+  });
 
   return {
     props: {

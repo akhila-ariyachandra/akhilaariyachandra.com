@@ -6,8 +6,6 @@ dayjs.extend(advancedFormat);
 export const formatDate = (date: string): string =>
   dayjs(date).format("Do MMMM YYYY");
 
-export const fetcher = (url) => fetch(url).then((r) => r.json());
-
 export const getPeriod = (start: string, end: string) => {
   const startDate = dayjs(start);
   const endDate = dayjs(end);

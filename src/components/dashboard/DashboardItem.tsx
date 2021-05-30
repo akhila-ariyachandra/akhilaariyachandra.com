@@ -1,7 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import { useQuery } from "react-query";
-import { fetcher } from "@/lib/helpers";
 
 type Props = {
   title: string;
@@ -9,18 +7,14 @@ type Props = {
     url: string;
     type: "internal" | "external";
   };
-  queryKey: string;
-  url: string;
+  value: number;
 };
 
 const DashboardItem: React.FunctionComponent<Props> = ({
   title,
   link,
-  queryKey,
-  url,
+  value,
 }) => {
-  const { data } = useQuery(["dashboard", queryKey], () => fetcher(url));
-
   return (
     <div className="grid gap-2 grid-cols-1 place-content-center">
       {link.type === "internal" ? (
@@ -41,7 +35,7 @@ const DashboardItem: React.FunctionComponent<Props> = ({
       )}
 
       <div className="dark:text-gray-200 text-gray-800 text-2xl font-normal">
-        {data}
+        {value}
       </div>
     </div>
   );
