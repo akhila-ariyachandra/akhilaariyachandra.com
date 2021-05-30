@@ -4859,6 +4859,11 @@ postcss@^8.1.6, postcss@^8.2.1, postcss@^8.2.9:
     nanoid "^3.1.23"
     source-map-js "^0.6.2"
 
+preact@^10.5.13:
+  version "10.5.13"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.5.13.tgz#85f6c9197ecd736ce8e3bec044d08fd1330fa019"
+  integrity sha512-q/vlKIGNwzTLu+jCcvywgGrt+H/1P/oIRSD6mV4ln3hmlC+Aa34C7yfPI4+5bzW8pONyVXYS7SvXosy2dKKtWQ==
+
 prettier-plugin-prisma@^0.10.1:
   version "0.10.1"
   resolved "https://registry.yarnpkg.com/prettier-plugin-prisma/-/prettier-plugin-prisma-0.10.1.tgz#042eb5537081bf7f5605fe59a8f7cae883b3bc2a"
