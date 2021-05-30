@@ -25,8 +25,17 @@ const NowPlaying: React.FunctionComponent = () => {
   );
 
   return (
-    <div className="flex flex-row-reverse items-center w-full text-lg antialiased space-x-0 sm:flex-row sm:space-x-2">
-      <FaSpotify color="#1DB954" />
+    <div className="flex flex-row-reverse items-center w-full text-lg antialiased space-x-0 sm:flex-row sm:space-x-3">
+      <div className="relative">
+        <FaSpotify color="#1DB954" />
+
+        {nowPlaying && (
+          <div
+            className="absolute -right-1 -top-1 w-2 h-2 rounded-full animate-ping"
+            style={{ backgroundColor: "#1DB954" }}
+          />
+        )}
+      </div>
 
       <div className="inline-flex flex-col w-full max-w-full truncate sm:flex-row">
         {nowPlaying?.songUrl ? (
