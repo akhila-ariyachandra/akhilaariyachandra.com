@@ -26,7 +26,7 @@ const ExternalLink = ({ children, link }) => (
 const Footer: React.FunctionComponent = () => {
   return (
     <footer className="full-bleed wrapper mt-10 dark:bg-gray-800 bg-green-200">
-      <div className="flex flex-col px-4 py-4 space-y-6">
+      <div className="flex flex-col px-4 py-6 space-y-6">
         <NowPlaying />
 
         <nav className="grid gap-2 grid-cols-2 sm:grid-cols-3">
