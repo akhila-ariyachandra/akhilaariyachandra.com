@@ -6,6 +6,7 @@ import {
   getTotalDevReactions,
   getMostPopularPosts,
 } from "@/lib/dashboard";
+import "apollo-cache-control";
 
 export const PopularPost = objectType({
   name: "PopularPost",
@@ -22,27 +23,47 @@ export const DashboardQuery = extendType({
   definition: (t) => {
     t.nonNull.field("totalViews", {
       type: "Int",
-      resolve: async () => await getTotalViews(),
+      resolve: async (_root, _args, _ctx, info) => {
+        info.cacheControl.setCacheHint({ maxAge: 60 });
+
+        return await getTotalViews();
+      },
     });
 
     t.nonNull.field("totalReactions", {
       type: "Int",
-      resolve: async () => await getTotalReactions(),
+      resolve: async (_root, _args, _ctx, info) => {
+        info.cacheControl.setCacheHint({ maxAge: 43200 });
+
+        return await getTotalReactions();
+      },
     });
 
     t.nonNull.field("totalDevViews", {
       type: "Int",
-      resolve: async () => await getTotalDevViews(),
+      resolve: async (_root, _args, _ctx, info) => {
+        info.cacheControl.setCacheHint({ maxAge: 60 });
+
+        return await getTotalDevViews();
+      },
     });
 
     t.nonNull.field("totalDevReactions", {
       type: "Int",
-      resolve: async () => await getTotalDevReactions(),
+      resolve: async (_root, _args, _ctx, info) => {
+        info.cacheControl.setCacheHint({ maxAge: 60 });
+
+        return await getTotalDevReactions();
+      },
     });
 
     t.nonNull.list.field("mostPopularPosts", {
       type: "PopularPost",
-      resolve: async () => await getMostPopularPosts(),
+      resolve: async (_root, _args, _ctx, info) => {
+        info.cacheControl.setCacheHint({ maxAge: 3600 });
+
+        return await getMostPopularPosts();
+      },
     });
   },
 });
