@@ -39,13 +39,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   // Prefetch page hits
   const promises = allPostsData.map((post) =>
-    queryClient.prefetchQuery(["pageHits", post.id], async () => {
-      const hits = await getPageHits(post.id);
-
-      return {
-        getHits: hits,
-      };
-    })
+    queryClient.prefetchQuery(["pageHits", post.id], () => getPageHits(post.id))
   );
   await Promise.all(promises);
 
