@@ -29,7 +29,7 @@ const useHits = (id: string) => {
 
   const increment = useCallback(() => {
     mutation.mutate();
-  }, []);
+  }, [id]);
 
   return { hits, increment };
 };

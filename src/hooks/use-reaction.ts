@@ -70,7 +70,7 @@ const useReaction = (id: string, type: string) => {
 
   const react = useCallback(() => {
     mutation.mutate();
-  }, []);
+  }, [id, type]);
 
   return {
     count,
