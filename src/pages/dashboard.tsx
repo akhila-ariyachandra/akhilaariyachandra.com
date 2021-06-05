@@ -5,9 +5,11 @@ import DashboardItem from "@/components/dashboard/DashboardItem";
 import Link from "next/link";
 import Title from "@/components/Title";
 import TopTracks from "@/components/TopTracks";
-import type { NextPage } from "next";
-import { useQuery } from "react-query";
+import type { NextPage, GetStaticProps } from "next";
+import { useQuery, QueryClient } from "react-query";
+import { dehydrate } from "react-query/hydration";
 import { fetcher } from "@/lib/helpers";
+import { getMostPopularPosts } from "@/lib/dashboard";
 
 type PopularPost = {
   id: string;
@@ -85,3 +87,17 @@ const Dashboard: NextPage = () => {
 };
 
 export default Dashboard;
+
+export const getStaticProps: GetStaticProps = async () => {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery(
+    ["dashboard", "mostPopularPosts"],
+    getMostPopularPosts
+  );
+
+  return {
+    props: { dehydratedState: dehydrate(queryClient) },
+    revalidate: 86400,
+  };
+};
