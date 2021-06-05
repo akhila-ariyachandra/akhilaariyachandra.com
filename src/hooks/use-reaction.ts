@@ -2,7 +2,6 @@ import splitbee from "@/lib/splitbee";
 import { useContext, useCallback } from "react";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { useRouter } from "next/router";
-import { graphQLClient, gql } from "@/lib/api";
 import { UniqueIdContext } from "@/context/UniqueIdContext";
 
 const useReaction = (id: string, type: string) => {
@@ -13,35 +12,17 @@ const useReaction = (id: string, type: string) => {
   const router = useRouter();
 
   const {
-    data: {
-      getReaction: { count, reacted },
-    },
+    data: { count, reacted },
   } = useQuery(
     QUERY_KEY,
     () =>
-      graphQLClient.request(
-        gql`
-          query Reaction($id: ID!, $type: String!) {
-            getReaction(id: $id, type: $type) {
-              count
-              reacted
-            }
-          }
-        `,
-        {
-          id,
-          type,
-        },
-        {
-          uid,
-        }
-      ),
+      fetch(`/api/reaction/${id}/${type}`, {
+        headers: { uid },
+      }).then((response) => response.json()),
     {
       initialData: {
-        getReaction: {
-          count: 0,
-          reacted: false,
-        },
+        count: 0,
+        reacted: false,
       },
       enabled: !!uid,
     }
@@ -49,20 +30,10 @@ const useReaction = (id: string, type: string) => {
 
   const mutation = useMutation(
     () =>
-      graphQLClient.request(
-        gql`
-          mutation Reaction($id: ID!, $type: String!) {
-            react(id: $id, type: $type)
-          }
-        `,
-        {
-          id,
-          type,
-        },
-        {
-          uid,
-        }
-      ),
+      fetch(`/api/reaction/${id}/${type}`, {
+        method: "POST",
+        headers: { uid },
+      }).then((response) => response.json()),
     {
       onMutate: async () => {
         // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
@@ -72,15 +43,10 @@ const useReaction = (id: string, type: string) => {
         const previousReaction = queryClient.getQueryData(QUERY_KEY);
 
         // Optimistically update to the new value
-        queryClient.setQueryData(
-          QUERY_KEY,
-          ({ getReaction: { count, reacted } }) => ({
-            getReaction: {
-              count: reacted ? count - 1 : count + 1,
-              reacted: !reacted,
-            },
-          })
-        );
+        queryClient.setQueryData(QUERY_KEY, ({ count, reacted }) => ({
+          count: reacted ? count - 1 : count + 1,
+          reacted: !reacted,
+        }));
 
         // Return a context object with the snapshotted value
         return { previousReaction };
@@ -93,8 +59,8 @@ const useReaction = (id: string, type: string) => {
       onSettled: () => {
         queryClient.invalidateQueries(QUERY_KEY);
       },
-      onSuccess: ({ react }) => {
-        splitbee.track(react ? "React" : "Remove Reaction", {
+      onSuccess: (response) => {
+        splitbee.track(response, {
           slug: router.asPath,
           type,
         });

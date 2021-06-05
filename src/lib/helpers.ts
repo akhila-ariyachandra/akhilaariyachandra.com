@@ -3,6 +3,8 @@ import advancedFormat from "dayjs/plugin/advancedFormat";
 
 dayjs.extend(advancedFormat);
 
+export const fetcher = (url) => fetch(url).then((response) => response.json());
+
 export const formatDate = (date: string): string =>
   dayjs(date).format("Do MMMM YYYY");
 

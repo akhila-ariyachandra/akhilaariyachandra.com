@@ -1,27 +1,12 @@
 import React from "react";
+import type { Song } from "@/lib/types";
 import { useQuery } from "react-query";
-import { graphQLClient, gql } from "@/lib/api";
+import { fetcher } from "@/lib/helpers";
 import { FaSpotify } from "react-icons/fa";
 
 const NowPlaying: React.FunctionComponent = () => {
-  const {
-    data: { nowPlaying },
-  } = useQuery(
-    "nowPlaying",
-    () =>
-      graphQLClient.request(gql`
-        query NowPlaying {
-          nowPlaying {
-            name
-            artist
-            album
-            songUrl
-          }
-        }
-      `),
-    {
-      placeholderData: { nowPlaying: null },
-    }
+  const { data } = useQuery<Song, Error>("nowPlaying", () =>
+    fetcher("/api/spotify/now-playing")
   );
 
   return (
@@ -29,7 +14,7 @@ const NowPlaying: React.FunctionComponent = () => {
       <div className="relative">
         <FaSpotify color="#1DB954" />
 
-        {nowPlaying && (
+        {data && (
           <div
             className="absolute -right-1 -top-1 w-2 h-2 rounded-full animate-ping"
             style={{ backgroundColor: "#1DB954" }}
@@ -38,14 +23,14 @@ const NowPlaying: React.FunctionComponent = () => {
       </div>
 
       <div className="inline-flex flex-col w-full max-w-full truncate sm:flex-row">
-        {nowPlaying?.songUrl ? (
+        {data?.songUrl ? (
           <a
             className="max-w-max dark:text-gray-100 text-green-900 font-medium truncate"
-            href={nowPlaying.songUrl}
+            href={data.songUrl}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {nowPlaying.name}
+            {data.name}
           </a>
         ) : (
           <p className="dark:text-gray-200 text-gray-800 font-medium">
@@ -56,7 +41,7 @@ const NowPlaying: React.FunctionComponent = () => {
           {" – "}
         </span>
         <p className="max-w-max dark:text-gray-300 text-gray-700 truncate">
-          {nowPlaying?.artist ?? "Spotify"}
+          {data?.artist ?? "Spotify"}
         </p>
       </div>
     </div>

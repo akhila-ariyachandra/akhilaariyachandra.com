@@ -1,44 +1,29 @@
 import { useCallback } from "react";
-import { useQuery, useMutation } from "react-query";
-import { graphQLClient, gql } from "@/lib/api";
+import { useQuery, useMutation, useQueryClient } from "react-query";
+import { fetcher } from "@/lib/helpers";
 
 const useHits = (id: string) => {
-  const {
-    data: { getHits: hits },
-    refetch,
-  } = useQuery(
-    ["pageHits", id],
-    () =>
-      graphQLClient.request(
-        gql`
-          query PageHits($id: ID!) {
-            getHits(id: $id)
-          }
-        `,
-        {
-          id,
-        }
-      ),
+  const QUERY_KEY = ["pageHits", id];
+
+  const queryClient = useQueryClient();
+
+  const { data: hits } = useQuery<number, Error>(
+    QUERY_KEY,
+    () => fetcher(`/api/hit/${id}`),
     {
-      placeholderData: {
-        getHits: 0,
-      },
+      placeholderData: 0,
     }
   );
+
   const mutation = useMutation(
     () =>
-      graphQLClient.request(
-        gql`
-          mutation PageHits($id: ID!) {
-            incrementHits(id: $id)
-          }
-        `,
-        {
-          id,
-        }
+      fetch(`/api/hit/${id}`, { method: "POST" }).then((response) =>
+        response.json()
       ),
     {
-      onSuccess: () => refetch(),
+      onSettled: () => {
+        queryClient.invalidateQueries(QUERY_KEY);
+      },
     }
   );
 

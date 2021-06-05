@@ -1,28 +1,14 @@
 import Image from "next/image";
-import { FC } from "react";
+import type { Song } from "@/lib/types";
+import type { FC } from "react";
 import { useQuery } from "react-query";
-import { graphQLClient, gql } from "@/lib/api";
+import { fetcher } from "@/lib/helpers";
 
 const TopTracks: FC = () => {
-  const {
-    data: { topTracks },
-  } = useQuery(
+  const { data } = useQuery<Song[], Error>(
     "topTracks",
-    () =>
-      graphQLClient.request(gql`
-        query TopTracks {
-          topTracks {
-            name
-            artist
-            album
-            albumImage
-            songUrl
-          }
-        }
-      `),
-    {
-      placeholderData: { topTracks: [] },
-    }
+    () => fetcher("/api/spotify/top-tracks"),
+    { placeholderData: [] }
   );
 
   return (
@@ -37,9 +23,9 @@ const TopTracks: FC = () => {
       </p>
 
       <div className="flex flex-col divide-gray-200 dark:divide-gray-600 divide-y space-y-3">
-        {topTracks.map((track, index) => (
+        {data.map((track, index) => (
           <div
-            key={index}
+            key={`top-track-${index}`}
             className="flex flex-row items-center pt-3 space-x-6"
           >
             <div className="flex-shrink-0 w-20 h-20 rounded-sm overflow-hidden">

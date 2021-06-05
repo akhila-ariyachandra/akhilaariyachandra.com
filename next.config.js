@@ -76,20 +76,16 @@ module.exports = withPlugins(
       domains: ["i.scdn.co"],
     },
     headers: async () => {
-      if (process.env.NODE_ENV === "development") {
-        return [];
-      } else {
-        return [
-          {
-            source: "/",
-            headers: securityHeaders,
-          },
-          {
-            source: "/:path*",
-            headers: securityHeaders,
-          },
-        ];
-      }
+      return [
+        {
+          source: "/",
+          headers: securityHeaders,
+        },
+        {
+          source: "/:path*",
+          headers: securityHeaders,
+        },
+      ];
     },
     rewrites: async () => {
       return [

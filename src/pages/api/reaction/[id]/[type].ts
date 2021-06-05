@@ -1,0 +1,67 @@
+import prisma from "@/prisma";
+import type { NextApiHandler } from "next";
+
+const Reaction: NextApiHandler = async (req, res) => {
+  const uid = req.headers.uid as string;
+  const pageId = req.query.id as string;
+  const type = req.query.type as string;
+
+  if (req.method === "GET") {
+    const count = await prisma.reaction.count({
+      where: {
+        pageId,
+        type,
+      },
+    });
+
+    const reaction = await prisma.reaction.findUnique({
+      where: {
+        id_pageId_type: {
+          id: uid,
+          type,
+          pageId,
+        },
+      },
+    });
+
+    return res.status(200).send({ count, reacted: reaction ? true : false });
+  } else if (req.method === "POST") {
+    const reaction = await prisma.reaction.findUnique({
+      where: {
+        id_pageId_type: {
+          id: uid,
+          type,
+          pageId,
+        },
+      },
+    });
+
+    if (!reaction) {
+      await prisma.reaction.create({
+        data: {
+          id: uid,
+          type,
+          pageId,
+        },
+      });
+
+      return res.status(200).send("React");
+    } else {
+      await prisma.reaction.delete({
+        where: {
+          id_pageId_type: {
+            id: uid,
+            type,
+            pageId,
+          },
+        },
+      });
+
+      return res.status(200).send("Remove Reaction");
+    }
+  } else {
+    return res.status(404).send("Not Found");
+  }
+};
+
+export default Reaction;

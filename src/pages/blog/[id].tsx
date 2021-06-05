@@ -118,13 +118,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const queryClient = new QueryClient();
 
   // Prefetch page hits
-  await queryClient.prefetchQuery(["pageHits", id], async () => {
-    const hits = await getPageHits(id);
-
-    return {
-      getHits: hits,
-    };
-  });
+  await queryClient.prefetchQuery(["pageHits", id], () => getPageHits(id));
 
   return {
     props: {

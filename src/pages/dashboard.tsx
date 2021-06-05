@@ -1,56 +1,26 @@
+import config from "@/lib/config";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import DashboardItem from "@/components/dashboard/DashboardItem";
 import Link from "next/link";
 import Title from "@/components/Title";
 import TopTracks from "@/components/TopTracks";
-import type { NextPage, GetStaticProps } from "next";
-import {
-  getMostPopularPosts,
-  getTotalViews,
-  getTotalReactions,
-  getTotalDevViews,
-  getTotalDevReactions,
-} from "@/lib/dashboard";
-import { QueryClient, useQuery } from "react-query";
-import { dehydrate } from "react-query/hydration";
-import { graphQLClient, gql } from "@/lib/api";
+import type { NextPage } from "next";
+import { useQuery } from "react-query";
+import { fetcher } from "@/lib/helpers";
+
+type PopularPost = {
+  id: string;
+  title: string;
+  hits: string;
+  slug: string;
+};
 
 const Dashboard: NextPage = () => {
-  const {
-    data: {
-      totalViews,
-      totalReactions,
-      totalDevViews,
-      totalDevReactions,
-      mostPopularPosts,
-    },
-  } = useQuery(
-    "dashboard",
-    () =>
-      graphQLClient.request(gql`
-        query Dashboard {
-          totalViews
-          totalReactions
-          totalDevViews
-          totalDevReactions
-          mostPopularPosts {
-            id
-            title
-            hits
-            slug
-          }
-        }
-      `),
-    {
-      placeholderData: {
-        totalViews: 0,
-        totalReactions: 0,
-        totalDevViews: 0,
-        totalDevReactions: 0,
-        mostPopularPosts: [],
-      },
-    }
+  const { data } = useQuery<PopularPost[], Error>(
+    ["dashboard", "mostPopularPosts"],
+    () => fetcher("/api/dashboard/most-popular-posts"),
+    { placeholderData: [] }
   );
 
   return (
@@ -63,25 +33,29 @@ const Dashboard: NextPage = () => {
         <DashboardItem
           title="Total Views"
           link={{ type: "internal", url: "/blog" }}
-          value={totalViews}
+          queryKey="totalViews"
+          url="/api/dashboard/total-views"
         />
 
         <DashboardItem
           title="Total Reactions"
           link={{ type: "internal", url: "/blog" }}
-          value={totalReactions}
+          queryKey="totalReactions"
+          url="/api/dashboard/total-reactions"
         />
 
         <DashboardItem
-          title="DEV Views"
-          link={{ type: "external", url: "https://dev.to/akhilaariyachandra" }}
-          value={totalDevViews}
+          title="Total DEV Views"
+          link={{ type: "external", url: config.social.dev }}
+          queryKey="totalDevViews"
+          url="/api/dashboard/total-dev-views"
         />
 
         <DashboardItem
-          title="DEV Reactions"
-          link={{ type: "external", url: "https://dev.to/akhilaariyachandra" }}
-          value={totalDevReactions}
+          title="Total DEV Reactions"
+          link={{ type: "external", url: config.social.dev }}
+          queryKey="totalDevReactions"
+          url="/api/dashboard/total-dev-reactions"
         />
       </div>
 
@@ -91,7 +65,7 @@ const Dashboard: NextPage = () => {
         </h2>
 
         <div className="grid gap-4 grid-cols-1">
-          {mostPopularPosts.map((post) => (
+          {data.map((post) => (
             <article key={post.id}>
               <Link href={post.slug}>
                 <a className="dark:text-green-600 text-green-700 text-2xl font-medium">
@@ -111,37 +85,3 @@ const Dashboard: NextPage = () => {
 };
 
 export default Dashboard;
-
-export const getStaticProps: GetStaticProps = async () => {
-  const queryClient = new QueryClient();
-
-  // Prefetch Dashboard data
-  await queryClient.prefetchQuery("dashboard", async () => {
-    const [
-      totalViews,
-      totalReactions,
-      totalDevViews,
-      totalDevReactions,
-      mostPopularPosts,
-    ] = await Promise.all([
-      getTotalViews(),
-      getTotalReactions(),
-      getTotalDevViews(),
-      getTotalDevReactions(),
-      getMostPopularPosts(),
-    ]);
-
-    return {
-      totalViews,
-      totalReactions,
-      totalDevViews,
-      totalDevReactions,
-      mostPopularPosts,
-    };
-  });
-
-  return {
-    props: { dehydratedState: dehydrate(queryClient) },
-    revalidate: 86400, // Regenerate after 1 day
-  };
-};
