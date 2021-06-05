@@ -36,6 +36,7 @@ yarn format
 |      `SPOTIFY_REFRESH_TOKEN`      | The Refresh Token used to make requests ([Guide](https://leerob.io/blog/spotify-api-nextjs))                                |
 |           `DEV_API_KEY`           | The [API Key](https://docs.forem.com/api/#section/Authentication/api_key) needed for [DEV API](https://docs.forem.com/api/) |
 |          `DATABASE_URL`           | The PostgreSQL database URL                                                                                                 |
+|             REDIS_URL             | The [Redis](https://redis.io/) URL                                                                                          |
 
 ## Analytics
 

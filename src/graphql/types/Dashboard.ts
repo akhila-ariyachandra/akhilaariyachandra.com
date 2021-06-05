@@ -23,26 +23,18 @@ export const DashboardQuery = extendType({
   definition: (t) => {
     t.nonNull.field("totalViews", {
       type: "Int",
-      resolve: async (_root, _args, _ctx, info) => {
-        info.cacheControl.setCacheHint({ maxAge: 60 });
-
-        return await getTotalViews();
-      },
+      resolve: async () => await getTotalViews(),
     });
 
     t.nonNull.field("totalReactions", {
       type: "Int",
-      resolve: async (_root, _args, _ctx, info) => {
-        info.cacheControl.setCacheHint({ maxAge: 43200 });
-
-        return await getTotalReactions();
-      },
+      resolve: async () => await getTotalReactions(),
     });
 
     t.nonNull.field("totalDevViews", {
       type: "Int",
       resolve: async (_root, _args, _ctx, info) => {
-        info.cacheControl.setCacheHint({ maxAge: 60 });
+        info.cacheControl.setCacheHint({ maxAge: 86400 });
 
         return await getTotalDevViews();
       },
@@ -51,7 +43,7 @@ export const DashboardQuery = extendType({
     t.nonNull.field("totalDevReactions", {
       type: "Int",
       resolve: async (_root, _args, _ctx, info) => {
-        info.cacheControl.setCacheHint({ maxAge: 60 });
+        info.cacheControl.setCacheHint({ maxAge: 86400 });
 
         return await getTotalDevReactions();
       },
@@ -59,11 +51,7 @@ export const DashboardQuery = extendType({
 
     t.nonNull.list.field("mostPopularPosts", {
       type: "PopularPost",
-      resolve: async (_root, _args, _ctx, info) => {
-        info.cacheControl.setCacheHint({ maxAge: 3600 });
-
-        return await getMostPopularPosts();
-      },
+      resolve: async () => await getMostPopularPosts(),
     });
   },
 });

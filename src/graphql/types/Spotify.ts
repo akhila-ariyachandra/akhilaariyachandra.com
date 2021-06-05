@@ -1,5 +1,6 @@
 import { objectType, extendType } from "nexus";
 import { getNowPlaying, getTopTracks } from "@/lib/spotify";
+import "apollo-cache-control";
 
 export const Song = objectType({
   name: "Song",
@@ -17,7 +18,7 @@ export const SpotifyQuery = extendType({
   definition: (t) => {
     t.field("nowPlaying", {
       type: "Song",
-      resolve: async (_root, _args, { res }) => {
+      resolve: async (_root, _args, { res }, info) => {
         const response = await getNowPlaying();
 
         if (response.status === 204 || response.status > 400) {
@@ -35,10 +36,7 @@ export const SpotifyQuery = extendType({
         const songUrl = song.item.external_urls.spotify;
 
         // Cache the response
-        res.setHeader(
-          "Cache-Control",
-          "public, s-maxage=60, stale-while-revalidate=30"
-        );
+        info.cacheControl.setCacheHint({ maxAge: 60 });
 
         return {
           name,
@@ -52,7 +50,7 @@ export const SpotifyQuery = extendType({
 
     t.nonNull.list.field("topTracks", {
       type: "Song",
-      resolve: async (_root, _args, { res }) => {
+      resolve: async (_root, _args, { res }, info) => {
         const response = await getTopTracks();
         const { items } = response.data;
 
@@ -65,10 +63,7 @@ export const SpotifyQuery = extendType({
         }));
 
         // Cache the response
-        res.setHeader(
-          "Cache-Control",
-          "public, s-maxage=86400, stale-while-revalidate=43200"
-        );
+        info.cacheControl.setCacheHint({ maxAge: 86400 });
 
         return tracks;
       },
