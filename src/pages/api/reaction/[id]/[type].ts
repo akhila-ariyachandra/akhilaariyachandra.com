@@ -45,7 +45,9 @@ const Reaction: NextApiHandler = async (req, res) => {
         },
       });
 
-      return res.status(200).send("React");
+      return res.status(200).send({
+        message: "React",
+      });
     } else {
       await prisma.reaction.delete({
         where: {
@@ -57,11 +59,11 @@ const Reaction: NextApiHandler = async (req, res) => {
         },
       });
 
-      return res.status(200).send("Remove Reaction");
+      return res.status(200).send({ message: "Remove Reaction" });
     }
-  } else {
-    return res.status(404).send("Not Found");
   }
+
+  return;
 };
 
 export default Reaction;

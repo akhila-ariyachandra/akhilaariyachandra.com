@@ -29,10 +29,10 @@ const Hits: NextApiHandler = async (req, res) => {
       data: { hits: { increment: 1 } },
     });
 
-    return res.status(200).send("Incremented");
-  } else {
-    return res.status(404).send("Not Found");
+    return res.status(200).send({ message: "Incremented" });
   }
+
+  return;
 };
 
 export default Hits;

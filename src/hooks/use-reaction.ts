@@ -59,8 +59,8 @@ const useReaction = (id: string, type: string) => {
       onSettled: () => {
         queryClient.invalidateQueries(QUERY_KEY);
       },
-      onSuccess: (response) => {
-        splitbee.track(response, {
+      onSuccess: ({ message }) => {
+        splitbee.track(message, {
           slug: router.asPath,
           type,
         });
