@@ -14,7 +14,7 @@ const NowPlaying: React.FunctionComponent = () => {
       <div className="relative">
         <FaSpotify color="#1DB954" />
 
-        {data && (
+        {!!data?.isPlaying && (
           <div
             className="absolute -right-1 -top-1 w-2 h-2 rounded-full animate-ping"
             style={{ backgroundColor: "#1DB954" }}

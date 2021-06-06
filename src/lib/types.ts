@@ -49,6 +49,7 @@ export enum ReactionType {
 }
 
 export type Song = {
+  isPlaying: boolean;
   name: string;
   artist: string;
   album: string;

@@ -4,12 +4,17 @@ import { getNowPlaying } from "@/lib/spotify";
 const NowPlaying: NextApiHandler = async (req, res) => {
   const response = await getNowPlaying();
 
-  if (response.status === 204 || response.status > 400) {
-    return null;
+  if (
+    response.status === 204 ||
+    response.status > 400 ||
+    response?.data?.item === null
+  ) {
+    return res.status(200).json({ isPlaying: false });
   }
 
   const song = response.data;
 
+  const isPlaying = song.is_playing;
   const name = song.item.name;
   const artist = song.item.artists.map((_artist) => _artist.name).join(", ");
   const album = song.item.album.name;
@@ -21,7 +26,9 @@ const NowPlaying: NextApiHandler = async (req, res) => {
     "public, s-maxage=60, stale-while-revalidate=30"
   );
 
-  return res.status(200).send({ name, artist, album, albumImage, songUrl });
+  return res
+    .status(200)
+    .json({ isPlaying, name, artist, album, albumImage, songUrl });
 };
 
 export default NowPlaying;
