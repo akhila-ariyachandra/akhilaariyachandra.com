@@ -1,6 +1,8 @@
 import Image from "next/image";
 import type { FunctionComponent } from "react";
 
+import styles from "@/components/mdx/PostImage.module.scss";
+
 type Props = {
   src: string;
   width: number;
@@ -8,6 +10,10 @@ type Props = {
   title: string;
   unoptimized?: boolean;
   fullBleed?: boolean;
+  credit?: {
+    name: string;
+    link: string;
+  };
 };
 
 const PostImage: FunctionComponent<Props> = ({
@@ -17,6 +23,7 @@ const PostImage: FunctionComponent<Props> = ({
   title,
   unoptimized = false,
   fullBleed = true,
+  credit,
 }) => {
   return (
     <div
@@ -33,6 +40,20 @@ const PostImage: FunctionComponent<Props> = ({
         title={title}
         unoptimized={unoptimized}
       />
+
+      {credit && (
+        <p className={styles.creditLink}>
+          Credit -{" "}
+          <a
+            className="dark:text-green-500 text-green-800 font-semibold"
+            href={credit.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {credit.name}
+          </a>
+        </p>
+      )}
     </div>
   );
 };
