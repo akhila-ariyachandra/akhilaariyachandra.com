@@ -8,7 +8,10 @@ const TopTracks: FC = () => {
   const { data } = useQuery<Song[], Error>(
     "topTracks",
     () => fetcher("/api/spotify/top-tracks"),
-    { placeholderData: [] }
+    {
+      placeholderData: [],
+      staleTime: 86400000, // Don't refetch for 1 day
+    }
   );
 
   return (
