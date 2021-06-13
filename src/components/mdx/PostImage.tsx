@@ -29,7 +29,7 @@ const PostImage: FunctionComponent<Props> = ({
     <div
       className={`${
         fullBleed ? "pseudo-full-bleed" : ""
-      } grid place-items-center`}
+      } grid place-items-center my-5`}
     >
       <Image
         src={src}
