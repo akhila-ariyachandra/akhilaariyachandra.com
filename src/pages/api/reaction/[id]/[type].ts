@@ -1,10 +1,10 @@
-import prisma from "@/prisma";
+import prisma, { ReactionType } from "@/prisma";
 import type { NextApiHandler } from "next";
 
 const Reaction: NextApiHandler = async (req, res) => {
   const uid = req.headers.uid as string;
   const pageId = req.query.id as string;
-  const type = req.query.type as string;
+  const type = req.query.type as ReactionType;
 
   if (req.method === "GET") {
     const count = await prisma.reaction.count({

@@ -23,10 +23,21 @@ model Page {
 
 model Reaction {
   id     String
-  page   Page   @relation(fields: [pageId], references: [id])
+  page   Page         @relation(fields: [pageId], references: [id])
   pageId String
-  type   String
+  type   ReactionType
 
   @@id([id, pageId, type])
   @@map("Reactions")
+}
+
+enum ReactionType {
+  PlusOne
+  MinusOne
+  Laugh
+  Hooray
+  Confused
+  Heart
+  Rocket
+  Eyes
 }

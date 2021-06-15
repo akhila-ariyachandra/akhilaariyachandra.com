@@ -1,10 +1,11 @@
 import splitbee from "@/lib/splitbee";
+import type { ReactionType } from "@/prisma";
 import { useContext, useCallback } from "react";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { useRouter } from "next/router";
 import { UniqueIdContext } from "@/context/UniqueIdContext";
 
-const useReaction = (id: string, type: string) => {
+const useReaction = (id: string, type: ReactionType) => {
   const QUERY_KEY = ["reaction", id, type];
 
   const uid = useContext(UniqueIdContext);

@@ -15,7 +15,9 @@
     "start": "next start",
     "format": "prettier --write \"**/*.{ts,tsx,js,json,md,mdx,yaml,scss,prisma}\"",
     "prisma:migrate": "prisma migrate dev",
+    "prisma:migrate-create-only": "prisma migrate dev --create-only",
     "prisma:generate": "prisma generate",
+    "prisma:reset": "prisma migrate reset",
     "postinstall": "prisma generate"
   },
   "prettier": {

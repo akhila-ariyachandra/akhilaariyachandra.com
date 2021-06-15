@@ -37,17 +37,6 @@ export type Snippet = {
   content?: any;
 };
 
-export enum ReactionType {
-  PlusOne = "PlusOne",
-  MinusOne = "MinusOne",
-  Laugh = "Laugh",
-  Hooray = "Hooray",
-  Confused = "Confused",
-  Heart = "Heart",
-  Rocket = "Rocket",
-  Eyes = "Eyes",
-}
-
 export type Song = {
   isPlaying: boolean;
   name: string;

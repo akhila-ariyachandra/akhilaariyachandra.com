@@ -1,11 +1,11 @@
 import useReaction from "@/hooks/use-reaction";
 import ReactTooltip from "react-tooltip";
 import type { FC } from "react";
-import { ReactionType } from "@/lib/types";
+import type { ReactionType } from "@/prisma";
 import { useRouter } from "next/router";
 
 type ReactionProps = {
-  type: string;
+  type: ReactionType;
   emoji: string;
 };
 
@@ -40,21 +40,21 @@ const Reactions: FC = () => {
           Leave a Reaction below
         </p>
 
-        <Reaction type={ReactionType.PlusOne} emoji="👍" />
+        <Reaction type="PlusOne" emoji="👍" />
 
-        <Reaction type={ReactionType.MinusOne} emoji="👎" />
+        <Reaction type="MinusOne" emoji="👎" />
 
-        <Reaction type={ReactionType.Laugh} emoji="😁" />
+        <Reaction type="Laugh" emoji="😁" />
 
-        <Reaction type={ReactionType.Hooray} emoji="🎉" />
+        <Reaction type="Hooray" emoji="🎉" />
 
-        <Reaction type={ReactionType.Confused} emoji="😕" />
+        <Reaction type="Confused" emoji="😕" />
 
-        <Reaction type={ReactionType.Heart} emoji="❤" />
+        <Reaction type="Heart" emoji="❤" />
 
-        <Reaction type={ReactionType.Rocket} emoji="🚀" />
+        <Reaction type="Rocket" emoji="🚀" />
 
-        <Reaction type={ReactionType.Eyes} emoji="👀" />
+        <Reaction type="Eyes" emoji="👀" />
       </div>
 
       <ReactTooltip />

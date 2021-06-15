@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+export type { Page, Reaction, ReactionType } from "@prisma/client";
 
 // add prisma to the NodeJS global type
 interface CustomNodeJsGlobal extends NodeJS.Global {
