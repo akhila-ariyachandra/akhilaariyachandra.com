@@ -21,7 +21,7 @@ const TopTracks: FC = () => {
       </h2>
 
       <p className="mb-10 mt-4 dark:text-gray-300 text-gray-500 text-lg">
-        Interested to know what I'm listening to? Here are my top tracks in
+        Interested to know what I&apos;m listening to? Here are my top tracks in
         Spotify updated daily.
       </p>
 

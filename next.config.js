@@ -127,7 +127,6 @@ module.exports = withPlugins(
       return redirects;
     },
     future: {
-      webpack5: true,
       strictPostcssConfiguration: true,
     },
     webpack: (config, { dev, isServer }) => {

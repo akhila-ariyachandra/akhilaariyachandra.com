@@ -9,6 +9,7 @@ import a11yEmoji from "@fec/remark-a11y-emoji";
 import externalLinks from "remark-external-links";
 import slug from "remark-slug";
 import matter from "gray-matter";
+import coverPic from "@/images/cover-pic.jpg";
 import type { NextPage, GetStaticProps } from "next";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
@@ -24,13 +25,11 @@ const About: NextPage<Props> = ({ source }) => {
 
       <div className="pseudo-full-bleed my-4">
         <Image
-          src="/cover-pic.jpg"
+          src={coverPic}
           alt={config.title}
           title={config.title}
           className="lg:rounded-lg"
-          width={1200}
-          height={630}
-          priority
+          placeholder="blur"
         />
       </div>
 

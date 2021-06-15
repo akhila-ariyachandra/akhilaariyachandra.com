@@ -7,7 +7,7 @@ import Video from "@/components/mdx/Video";
 
 export const mdxComponents = {
   SpecialBlock,
-  pre: (props) => <Code {...props} />,
+  pre: Code,
   PostImage,
   CodeSandboxWrapper,
   Iframe,

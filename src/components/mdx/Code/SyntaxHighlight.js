@@ -64,7 +64,10 @@ const SyntaxHighlight = ({ children, title, language }) => {
                 return (
                   <div key={i} {...lineProps}>
                     {line.map((token, key) => (
-                      <span {...getTokenProps({ token, key })} />
+                      <span
+                        {...getTokenProps({ token, key })}
+                        key={`code-line-${key}`}
+                      />
                     ))}
                   </div>
                 );

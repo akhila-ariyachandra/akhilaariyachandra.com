@@ -10,7 +10,7 @@ const HitCounter: FunctionComponent = () => {
 
   useEffect(() => {
     increment();
-  }, []);
+  }, [increment]);
 
   return (
     <div className="grid place-items-center m-4">

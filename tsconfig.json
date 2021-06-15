@@ -21,7 +21,7 @@
       "@/context/*": ["src/context/*"],
       "@/hooks/*": ["src/hooks/*"],
       "@/prisma": ["src/prisma"],
-      "@/graphql/*": ["src/graphql/*"]
+      "@/images/*": ["src/images/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
