@@ -1,18 +1,18 @@
 ---
-title: Using useReducer with context
+title: Using useReducer with useContext
 date: "2021-06-19"
-description: "Sharing state in multiple components with useReducer and context"
-banner: "/blog/react-usereducer-with-context/banner.png"
+description: "Sharing state in multiple components with useReducer and useContext"
+banner: "/blog/react-usereducer-with-usecontext/banner.png"
 ---
 
-`useReducer` is a hook we can use to manage an advanced state and **Context** is used to share state between components.
+`useReducer` is a hook we can use to manage an advanced state and `useContext` is used to share state between components.
 
 If we combine both of them we can more easily manage multiple state across components without needing a separate state management library.
 
-This post will not be an introduction to `useReducer` and **Context**, so I'll include links to both of them if you want to learn about them first.
+This post will not be an introduction to `useReducer` and `useContext`, so I'll include links to both of them if you want to learn about them first.
 
 - [useReducer](https://reactjs.org/docs/hooks-reference.html#usereducer)
-- [React Context](https://reactjs.org/docs/context.html)
+- [useContext](https://reactjs.org/docs/hooks-reference.html#usecontext)
 
 # Setting up the context
 
@@ -315,6 +315,6 @@ export default function App() {
 
 All the code is available on CodeSandbox.
 
-<CodeSandboxWrapper codeSandboxId="react-usereducer-with-context-8ld7z" />
+<CodeSandboxWrapper codeSandboxId="react-usereducer-with-usecontext-8ld7z" />
 
 This is a pattern is started using more of recently. If you would like to suggest an improvement leave a comment below.

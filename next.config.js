@@ -124,6 +124,13 @@ module.exports = withPlugins(
         permanent: true,
       });
 
+      // Rename react-usereducer-with-context to react-usereducer-with-usecontext
+      redirects.push({
+        source: `/blog/react-usereducer-with-context`,
+        destination: `/blog/react-usereducer-with-usecontext`,
+        permanent: true,
+      });
+
       return redirects;
     },
     future: {
