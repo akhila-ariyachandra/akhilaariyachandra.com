@@ -4,13 +4,13 @@ import Footer from "@/components/Layout/Footer";
 
 const Layout: React.FunctionComponent = ({ children }) => {
   return (
-    <main className="wrapper place-content-between mx-auto min-h-full">
+    <div className="container flex flex-col justify-between min-h-full">
       <Header />
 
-      {children}
+      <main className="container p-4 max-w-4xl">{children}</main>
 
       <Footer />
-    </main>
+    </div>
   );
 };
 

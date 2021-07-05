@@ -1,6 +1,4 @@
 const withPlugins = require("next-compose-plugins");
-const withPWA = require("next-pwa");
-const runtimeCaching = require("next-pwa/cache");
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
@@ -57,96 +55,79 @@ const securityHeaders = [
   },
 ];
 
-module.exports = withPlugins(
-  [
-    [withBundleAnalyzer],
-    [
-      withPWA,
+module.exports = withPlugins([[withBundleAnalyzer]], {
+  images: {
+    domains: ["i.scdn.co"],
+  },
+  headers: async () => {
+    return [
       {
-        pwa: {
-          dest: "public",
-          runtimeCaching,
-          disable: process.env.NODE_ENV === "development",
-        },
+        source: "/",
+        headers: securityHeaders,
       },
-    ],
-  ],
-  {
-    images: {
-      domains: ["i.scdn.co"],
-    },
-    headers: async () => {
-      return [
-        {
-          source: "/",
-          headers: securityHeaders,
-        },
-        {
-          source: "/:path*",
-          headers: securityHeaders,
-        },
-      ];
-    },
-    rewrites: async () => {
-      return [
-        {
-          source: "/bee.js",
-          destination: "https://cdn.splitbee.io/sb.js",
-        },
-        {
-          source: "/_hive/:slug",
-          destination: "https://hive.splitbee.io/:slug",
-        },
-      ];
-    },
-    redirects: async () => {
-      const redirects = [];
+      {
+        source: "/:path*",
+        headers: securityHeaders,
+      },
+    ];
+  },
+  rewrites: async () => {
+    return [
+      {
+        source: "/bee.js",
+        destination: "https://cdn.splitbee.io/sb.js",
+      },
+      {
+        source: "/_hive/:slug",
+        destination: "https://hive.splitbee.io/:slug",
+      },
+    ];
+  },
+  redirects: async () => {
+    const redirects = [];
 
-      // Move all blog posts under /blog
-      const postsDirectory = path.join("content", "posts");
-      const fileNames = fs.readdirSync(postsDirectory);
-      const routes = fileNames.map((fileName) =>
-        fileName.replace(/\.mdx$/, "")
-      );
+    // Move all blog posts under /blog
+    const postsDirectory = path.join("content", "posts");
+    const fileNames = fs.readdirSync(postsDirectory);
+    const routes = fileNames.map((fileName) => fileName.replace(/\.mdx$/, ""));
 
-      for (const route of routes) {
-        redirects.push({
-          source: `/${route}`,
-          destination: `/blog/${route}`,
-          permanent: true,
-        });
-      }
-
-      // Fix redirect for DEV post for https://dev.to/akhilaariyachandra/mimic-react-life-cycle-methods-with-hooks-286a
+    for (const route of routes) {
       redirects.push({
-        source: `/mimic-react-life-cycles-methods-with-hooks`,
-        destination: `/blog/mimic-react-life-cycle-methods-with-hooks`,
+        source: `/${route}`,
+        destination: `/blog/${route}`,
         permanent: true,
       });
+    }
 
-      // Rename react-usereducer-with-context to react-usereducer-with-usecontext
-      redirects.push({
-        source: `/blog/react-usereducer-with-context`,
-        destination: `/blog/react-usereducer-with-usecontext`,
-        permanent: true,
+    // Fix redirect for DEV post for https://dev.to/akhilaariyachandra/mimic-react-life-cycle-methods-with-hooks-286a
+    redirects.push({
+      source: `/mimic-react-life-cycles-methods-with-hooks`,
+      destination: `/blog/mimic-react-life-cycle-methods-with-hooks`,
+      permanent: true,
+    });
+
+    // Rename react-usereducer-with-context to react-usereducer-with-usecontext
+    redirects.push({
+      source: `/blog/react-usereducer-with-context`,
+      destination: `/blog/react-usereducer-with-usecontext`,
+      permanent: true,
+    });
+
+    return redirects;
+  },
+  future: {
+    strictPostcssConfiguration: true,
+  },
+  webpack: (config, { dev, isServer }) => {
+    // Replace React with Preact only in client production build
+    if (!dev && !isServer) {
+      Object.assign(config.resolve.alias, {
+        react: "preact/compat",
+        "react-dom/test-utils": "preact/test-utils",
+        "react-dom": "preact/compat",
       });
+    }
 
-      return redirects;
-    },
-    future: {
-      strictPostcssConfiguration: true,
-    },
-    webpack: (config, { dev, isServer }) => {
-      // Replace React with Preact only in client production build
-      if (!dev && !isServer) {
-        Object.assign(config.resolve.alias, {
-          react: "preact/compat",
-          "react-dom/test-utils": "preact/test-utils",
-          "react-dom": "preact/compat",
-        });
-      }
-
-      return config;
-    },
-  }
-);
+    return config;
+  },
+});

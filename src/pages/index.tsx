@@ -1,10 +1,16 @@
+import { useState, useEffect } from "react";
 import splitbee from "@/lib/splitbee";
 import config from "@/lib/config";
 import fs from "fs";
 import path from "path";
 import yaml from "yaml";
+import profile from "@/public/profile.jpg";
+import { LIGHT_COLORS } from "@/lib/constants";
+import { shuffleArray } from "@/lib/helpers";
+import Image from "next/image";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
+import Highlight from "@/components/Highlight";
 import type { NextPage, GetStaticProps } from "next";
 import type { Job } from "@/lib/types";
 import {
@@ -16,6 +22,7 @@ import {
   FaRssSquare,
   FaSteam,
 } from "react-icons/fa";
+import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
 
 const SocialLink = ({ site, link }) => {
   let Icon = null;
@@ -67,42 +74,47 @@ type Props = {
 };
 
 const Index: NextPage<Props> = ({ currentJob }) => {
+  const [colors, setColors] = useState<string[]>([]);
+
+  useEffect(() => {
+    setColors(shuffleArray(LIGHT_COLORS));
+  }, []);
+
   return (
     <Layout>
       <SEO />
 
-      <div className="px-4 space-y-4">
-        <h1 className="dark:text-gray-200 text-gray-800 text-4xl font-black">
-          {`Hi, I'm ${config.title}`}
-        </h1>
+      <div id="about" className="flex-row items-center lg:flex">
+        <RoughNotationGroup show={true}>
+          <div className="space-y-5">
+            <h1 className="text-gray-800 text-3xl font-bold lg:text-4xl">
+              {`Hi, I'm `}
+              <Highlight color={colors[0]}>{config.title}</Highlight>
+            </h1>
 
-        <p className="dark:text-gray-200 text-gray-800 text-lg font-medium">
-          {`I am a web developer working at `}
-          <a
-            className="dark:text-green-600 text-green-700"
-            href={currentJob.link}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {currentJob.company}
-          </a>
-          {` as a ${currentJob.positions[0].title}. You have found my personal corner of the internet.`}
-        </p>
+            <p className="text-gray-700 text-lg font-medium">
+              {`I am a `}
+              <Highlight color={colors[1]}>web developer</Highlight>
+              {` working at `}
+              <Highlight color={colors[2]}>{currentJob.company}</Highlight>
+              {` as a `}
+              <Highlight color={colors[3]}>
+                {currentJob.positions[0].title}
+              </Highlight>
+              {`. You have found my personal corner of the internet.`}
+            </p>
+          </div>
+        </RoughNotationGroup>
 
-        <div className="flex flex-row space-x-2">
-          <SocialLink site="GitHub" link={config.social.github} />
-
-          <SocialLink site="DEV" link={config.social.dev} />
-
-          <SocialLink site="LinkedIn" link={config.social.linkedin} />
-
-          <SocialLink site="Twitter" link={config.social.twitter} />
-
-          <SocialLink site="Spotify" link={config.social.spotify} />
-
-          <SocialLink site="Steam" link={config.social.steam} />
-
-          <SocialLink site="RSS" link="/rss.xml" />
+        <div className="flex-shrink-0 ml-10 rounded-full overflow-hidden">
+          <Image
+            src={profile}
+            alt={config.title}
+            title={config.title}
+            placeholder="blur"
+            width={200}
+            height={200}
+          />
         </div>
       </div>
     </Layout>

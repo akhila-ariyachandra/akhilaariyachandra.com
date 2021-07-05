@@ -2,9 +2,7 @@ import { useRef } from "react";
 import ProgressBar from "@badrap/bar-of-progress";
 import Router from "next/router";
 import type { AppProps } from "next/app";
-import { ThemeProvider } from "next-themes";
 import { UniqueIdProvider } from "@/context/UniqueIdContext";
-import { HeaderMounterProvider } from "@/context/HeaderMountedContext";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Hydrate } from "react-query/hydration";
 import { ReactQueryDevtools } from "react-query/devtools";
@@ -30,24 +28,15 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   }
 
   return (
-    <ThemeProvider
-      defaultTheme="dark"
-      themes={["light", "dark"]}
-      attribute="class"
-      enableSystem={false}
-    >
-      <HeaderMounterProvider>
-        <UniqueIdProvider>
-          <QueryClientProvider client={queryClientRef.current}>
-            <Hydrate state={pageProps.dehydratedState}>
-              <Component {...pageProps} />
-            </Hydrate>
+    <UniqueIdProvider>
+      <QueryClientProvider client={queryClientRef.current}>
+        <Hydrate state={pageProps.dehydratedState}>
+          <Component {...pageProps} />
+        </Hydrate>
 
-            <ReactQueryDevtools />
-          </QueryClientProvider>
-        </UniqueIdProvider>
-      </HeaderMounterProvider>
-    </ThemeProvider>
+        <ReactQueryDevtools />
+      </QueryClientProvider>
+    </UniqueIdProvider>
   );
 };
 

@@ -1,26 +1,44 @@
 import React from "react";
 import config from "@/lib/config";
-import dynamic from "next/dynamic";
 import Link from "next/link";
-const ThemeSwitch = dynamic(() => import("@/components/Layout/ThemeSwitch"));
-import { useRouter } from "next/router";
+
+const NAV_LINKS = [
+  {
+    title: "About",
+    href: "/#about",
+  },
+  {
+    title: "Blog",
+    href: "/blog",
+  },
+  {
+    title: "Dashboard",
+    href: "/dashboard",
+  },
+];
 
 const Header: React.FunctionComponent = () => {
-  const router = useRouter();
-
   return (
-    <header className="full-bleed wrapper sticky z-40 top-0 dark:bg-gray-900 bg-white bg-opacity-10 backdrop-blur-xl backdrop-filter">
-      <div className="flex flex-row-reverse items-center justify-between p-4">
-        <ThemeSwitch />
+    <header className="container sticky z-40 top-0 flex flex-row items-center justify-between p-4 max-w-4xl dark:bg-gray-900 bg-white">
+      <Link href="/">
+        <a className="text-gray-800 hover:text-green-700 text-lg font-bold tracking-wider leading-5 lg:text-xl">
+          {config.title.toUpperCase()}
+        </a>
+      </Link>
 
-        {router.asPath !== "/" ? (
-          <Link href="/">
-            <a className="dark:text-green-600 text-green-700 text-xl font-bold leading-5 sm:text-2xl">
-              {config.title}
-            </a>
-          </Link>
-        ) : null}
-      </div>
+      <nav className="ml-auto pr-4">
+        <ul className="flex flex-row gap-4">
+          {NAV_LINKS.map((link) => (
+            <li key={link.title}>
+              <Link href={link.href}>
+                <a className="text-gray-800 hover:text-green-700 text-lg font-medium lg:text-xl">
+                  {link.title}
+                </a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </header>
   );
 };

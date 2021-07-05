@@ -21,7 +21,8 @@
       "@/context/*": ["src/context/*"],
       "@/hooks/*": ["src/hooks/*"],
       "@/prisma": ["src/prisma"],
-      "@/images/*": ["src/images/*"]
+      "@/images/*": ["src/images/*"],
+      "@/public/*": ["public/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
