@@ -84,7 +84,7 @@ const Index: NextPage<Props> = ({ currentJob }) => {
     <Layout>
       <SEO />
 
-      <div id="about" className="flex-row items-center lg:flex">
+      <div id="about" className="lg:flex lg:flex-row lg:items-center">
         <RoughNotationGroup show={true}>
           <div className="space-y-5">
             <h1 className="text-gray-800 text-3xl font-bold lg:text-4xl">
@@ -106,7 +106,10 @@ const Index: NextPage<Props> = ({ currentJob }) => {
           </div>
         </RoughNotationGroup>
 
-        <div className="flex-shrink-0 ml-10 rounded-full overflow-hidden">
+        <div
+          className="flex-shrink-0 mt-10 rounded-full overflow-hidden lg:ml-10 lg:mt-0"
+          style={{ width: 200, height: 200 }}
+        >
           <Image
             src={profile}
             alt={config.title}

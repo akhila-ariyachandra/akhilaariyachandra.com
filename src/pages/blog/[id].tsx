@@ -35,19 +35,6 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
         updated={postData.updated ? new Date(postData.updated) : undefined}
       />
 
-      <div
-        className={`my-4 pseudo-full-bleed overflow-hidden ${styles.bannerContainer}`}
-      >
-        <Image
-          src={postData.banner}
-          alt={postData.title}
-          title={postData.title}
-          width={1200}
-          height={630}
-          priority
-        />
-      </div>
-
       {postData.photographer && postData.unsplash_link ? (
         <p className="my-2 px-4 text-center dark:text-gray-200 text-gray-800 text-base font-medium">
           {"Photo by "}
@@ -83,6 +70,19 @@ const BlogPost: NextPage<Props> = ({ postData }) => {
         <span className="hidden sm:block sm:mx-2">&bull;</span>
 
         <p>{`${hits} views`}</p>
+      </div>
+
+      <div
+        className={`my-4 pseudo-full-bleed overflow-hidden ${styles.bannerContainer}`}
+      >
+        <Image
+          src={postData.banner}
+          alt={postData.title}
+          title={postData.title}
+          width={1200}
+          height={630}
+          priority
+        />
       </div>
 
       <div

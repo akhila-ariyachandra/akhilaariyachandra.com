@@ -21,8 +21,8 @@ const Header: React.FunctionComponent = () => {
   return (
     <header className="container sticky z-40 top-0 flex flex-row items-center justify-between p-4 max-w-4xl dark:bg-gray-900 bg-white">
       <Link href="/">
-        <a className="text-gray-800 hover:text-green-700 text-lg font-bold tracking-wider leading-5 lg:text-xl">
-          {config.title.toUpperCase()}
+        <a className="text-gray-800 hover:text-green-700 text-lg font-medium tracking-wider uppercase lg:text-xl">
+          {config.title}
         </a>
       </Link>
 
