@@ -1,0 +1,14 @@
+.albumContainer {
+  width: 48px;
+  height: 48px;
+
+  @apply relative;
+  @apply flex-shrink-0;
+  @apply grid;
+  @apply place-items-center;
+
+  & > span {
+    @apply rounded;
+    @apply overflow-hidden;
+  }
+}

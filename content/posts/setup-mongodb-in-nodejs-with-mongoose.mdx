@@ -1,0 +1,143 @@
+---
+title: Setup MongoDB in Node.js with Mongoose
+date: "2019-05-23"
+description: "Chances are if you’re building an application with Node, you’ll be needing to connect it to a MongoDB database. Here I’ll show you how to set it up."
+banner: "/blog/setup-mongodb-in-nodejs-with-mongoose/banner.png"
+---
+
+Chances are if you’re building an application with Node, you’ll be needing to connect it to a MongoDB database. Here I’ll show you how to set it up. This guide assumes that you have already initialized a node project.
+
+If you don’t have a database already [mLab](https://mlab.com/) is probabaly the best place to get a free one.
+
+## Setting up database connection
+
+First let’s install the mongoose dependency.
+
+```bash
+npm install mongoose --save
+```
+
+Or with yarn.
+
+```bash
+yarn add mongoose
+```
+
+Then we will create a file with the database configuration and instance as `database.js` .
+
+First let import the dependency;
+
+```javascript:title=database.js
+const mongoose = require("mongoose");
+```
+
+Then let’s store the path of the database in a variable. The path should look like the following, with _dbuser_ and _dbpassword_ being replaced with a user you have created for the database.
+
+```javascript:title=database.js
+const dbPath =
+  "mongodb://<dbuser>:<dbpassword>@ds250607.mlab.com:38485/test-db";
+```
+
+After that we’ll connect to the database.
+
+```javascript:title=database.js
+mongoose.connect(dbPath, {
+  useNewUrlParser: true,
+});
+```
+
+We’ll need to export this instance of the database to be used later.
+
+```javascript:title=database.js
+module.exports = mongoose;
+```
+
+Once the application is started, it would be better if there was an indicator showing whether the application successfully connected to the database or not. So let’s add some more code to fix that.
+
+```javascript:title=database.js
+const db = mongoose.connection;
+
+db.on("error", () => {
+  console.log("> error occurred from the database");
+});
+
+db.once("open", () => {
+  console.log("> successfully opened the database");
+});
+```
+
+In the end the database.js should look like this.
+
+```javascript:title=database.js
+const mongoose = require("mongoose");
+
+const dbPath =
+  "mongodb://<dbuser>:<dbpassword>@ds250607.mlab.com:38485/test-db";
+
+mongoose.connect(dbPath, {
+  useNewUrlParser: true,
+});
+
+const db = mongoose.connection;
+
+db.on("error", () => {
+  console.log("> error occurred from the database");
+});
+
+db.once("open", () => {
+  console.log("> successfully opened the database");
+});
+
+module.exports = mongoose;
+```
+
+## Setting up models/schema
+
+After setting up the database connection, let’s setup an entity model to save and retrieve. For this example in going with an **User** entity. It will have three fields, name, email and password. We’ll store all the models in the models folder.
+
+```javascript:title=models/userModel.js
+const mongoose = require("../database");
+
+const schema = {
+  name: { type: mongoose.SchemaTypes.String, required: true },
+  email: { type: mongoose.SchemaTypes.String, required: true },
+  password: {
+    type: mongoose.SchemaTypes.String,
+    required: true,
+    select: false,
+  },
+};
+
+const collectionName = "user"; // Name of the collection of documents
+const userSchema = mongoose.Schema(schema);
+const User = mongoose.model(collectionName, userSchema);
+
+module.exports = User;
+```
+
+A couple of notes here. The structure of the schema is defined in the schema constant. Each property should have a type field. The required field is to set whether the property is mandatory or not. In the above example all three properties are. The password property has an extra select field set to true. This is to make sure the password property is not returned by default when querying.
+
+That’s all the setup you need to start using the database. Below are some examples on how the Model can be used.
+
+```javascript
+// Create user
+User.create({
+  name: name,
+  email: email,
+  password: password,
+});
+
+// Find user by email
+User.findOne({
+  email: email,
+});
+
+// Find user by email with the password field included
+User.findOne({
+  email: email,
+}).select("+password");
+```
+
+## Wrapping up
+
+I hope you found this tutorial useful in setting up a MongoDB database for your Node application. 😊

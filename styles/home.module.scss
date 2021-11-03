@@ -1,0 +1,6 @@
+.coverContainer {
+  & > span {
+    @apply rounded-lg;
+    @apply overflow-hidden;
+  }
+}

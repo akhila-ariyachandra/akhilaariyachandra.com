@@ -1,0 +1,318 @@
+---
+title: Using useReducer with useContext
+date: "2021-06-19"
+description: "Sharing state in multiple components with useReducer and useContext"
+banner: "/blog/react-usereducer-with-usecontext/banner.png"
+---
+
+`useReducer` is a hook we can use to manage an advanced state and `useContext` is used to share state between components.
+
+If we combine both of them we can more easily manage multiple state across components without needing a separate state management library.
+
+This post will not be an introduction to `useReducer` and `useContext`, so I'll include links to both of them if you want to learn about them first.
+
+- [useReducer](https://reactjs.org/docs/hooks-reference.html#usereducer)
+- [useContext](https://reactjs.org/docs/hooks-reference.html#usecontext)
+
+# Setting up the context
+
+Let's start with creating the context.
+
+Create the `context` folder and in it the `ValueContext.jsx` file.
+
+```jsx:title=src\context\ValueContext.jsx
+import React from 'react';
+```
+
+Then define the initial state.
+
+```jsx:title=src\context\ValueContext.jsx {3-5}
+import React from 'react';
+
+const initialState = {
+  value: "Hello World!!!"
+};
+```
+
+After that we'll create the `reducer` with our actions. For example we'll set up two actions, one to set the new value and one to clear it.
+
+```jsx:title=src\context\ValueContext.jsx {7-22}
+import React from 'react';
+
+const initialState = {
+  value: "Hello World!!!"
+};
+
+const reducer = (state = initialState, action) => {
+  let { value } = state;
+
+  switch (action.type) {
+    case "SET_VALUE":
+      value = action.payload;
+      break;
+    case "CLEAR_VALUE":
+      value = "";
+      break;
+    default:
+      throw new Error("Not valid type");
+  }
+
+  return { value };
+};
+```
+
+A couple of notes about the reducer.
+
+- The default value of the `state` will the `initialState`.
+- If we want to change the value of the state, it will be passed through the `payload` field in the `action` object (as we'll see later when we try to set a new value).
+
+Next we'll need to initialize the context.
+
+```jsx:title=src\context\ValueContext.jsx {1,24-27}
+import React, { createContext } from 'react';
+
+const initialState = {
+  value: "Hello World!!!"
+};
+
+const reducer = (state = initialState, action) => {
+  let { value } = state;
+
+  switch (action.type) {
+    case "SET_VALUE":
+      value = action.payload;
+      break;
+    case "CLEAR_VALUE":
+      value = "";
+      break;
+    default:
+      throw new Error("Not valid type");
+  }
+
+  return { value };
+};
+
+export const ValueContext = createContext({
+  state: initialState,
+  dispatch: null
+});
+```
+
+We need to pass the value to be shared as the argument for `createContext`. Since we need both the value(`state`) and a way of changing it(`dispatch`), both will be passed as an object to `createContext`.
+
+After that let's create a wrapper for the root component so that the state can be shared with it's child components.
+
+```jsx:title=src\context\ValueContext.jsx {1,29-37}
+import React, { createContext, useReducer } from 'react';
+
+const initialState = {
+  value: "Hello World!!!"
+};
+
+const reducer = (state = initialState, action) => {
+  let { value } = state;
+
+  switch (action.type) {
+    case "SET_VALUE":
+      value = action.payload;
+      break;
+    case "CLEAR_VALUE":
+      value = "";
+      break;
+    default:
+      throw new Error("Not valid type");
+  }
+
+  return { value };
+};
+
+export const ValueContext = createContext({
+  state: initialState,
+  dispatch: null
+});
+
+export const ValueProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  return (
+    <ValueContext.Provider value={{ state, dispatch }}>
+      {children}
+    </ValueContext.Provider>
+  );
+};
+```
+
+The `state` and `dispatch` from `useReducer` will be given as an object to the `value` prop of `ValueContext.Provider`.
+
+To finish setting up the context, all we need to do is to wrap the root component with `ValueProvider`
+
+```jsx:title=src\context\App.js {1,6-9}
+import { ValueProvider } from "./context/ValueContext";
+import "./styles.css";
+
+export default function App() {
+  return (
+    <ValueProvider>
+      <div className="App">
+      </div>
+    </ValueProvider>
+  );
+}
+```
+
+# Using the shared state
+
+Now that we've set up the context, let's create a couple of components to see how the state will be shared.
+
+## Input component
+
+To start create `Input.jsx` in `components`.
+
+```jsx:title=src\components\Input.jsx
+import React from 'react';
+
+const Input = () => {
+  return <div></div>
+}
+
+export default Input;
+```
+
+Then import the `ValueContext` and get it's value using `useContext`.
+
+```jsx:title=src\components\Input.jsx {2,5-8}
+import React from 'react';
+import { ValueContext } from "../context/ValueContext";
+
+const Input = () => {
+  const {
+    state: { value },
+    dispatch
+  } = useContext(ValueContext);
+
+  return <div></div>
+}
+
+export default Input;
+```
+
+Next let's add an `input` and a handler for it.
+
+```jsx:title=src\components\Input.jsx {10-12,16}
+import React from 'react';
+import { ValueContext } from "../context/ValueContext";
+
+const Input = () => {
+  const {
+    state: { value },
+    dispatch
+  } = useContext(ValueContext);
+
+  const handleValue = (event) => {
+    dispatch({ type: "SET_VALUE", payload: event.target.value });
+  };
+
+  return (
+    <div>
+      <input type="text" value={value} onChange={handleValue} />
+    </div>
+  );
+}
+
+export default Input;
+```
+
+We can change the state using `dispatch`. The action `type` will be `"SET_VALUE"` (like we defined in `reducer`).
+
+To finish up the the `Input` component, let's add a button to clear the state and add it to the root component.
+
+```jsx:title=src\components\Input.jsx {14-16,21}
+import React, { useContext } from "react";
+import { ValueContext } from "../context/ValueContext";
+
+const Input = () => {
+  const {
+    state: { value },
+    dispatch
+  } = useContext(ValueContext);
+
+  const handleValue = (event) => {
+    dispatch({ type: "SET_VALUE", payload: event.target.value });
+  };
+
+  const handleClear = () => {
+    dispatch({ type: "CLEAR_VALUE" });
+  };
+
+  return (
+    <div>
+      <input type="text" value={value} onChange={handleValue} />
+      <button onClick={handleClear}>Clear</button>
+    </div>
+  );
+};
+
+export default Input;
+```
+
+```jsx:title=src\context\App.js {1,9}
+import Input from "./components/Input";
+import { ValueProvider } from "./context/ValueContext";
+import "./styles.css";
+
+export default function App() {
+  return (
+    <ValueProvider>
+      <div className="App">
+        <Input />
+      </div>
+    </ValueProvider>
+  );
+}
+```
+
+## Display component
+
+Let's create a simple so we can see the state being updated across components.
+
+```jsx:title=src\components\Display.jsx
+import React, { useContext } from "react";
+import { ValueContext } from "../context/ValueContext";
+
+const Display = () => {
+  const {
+    state: { value }
+  } = useContext(ValueContext);
+
+  return <h1>{value}</h1>;
+};
+
+export default Display;
+```
+
+Then add it to the root component.
+
+```jsx:title=src\App.js {2,10}
+import Input from "./components/Input";
+import Display from "./components/Display";
+import { ValueProvider } from "./context/ValueContext";
+import "./styles.css";
+
+export default function App() {
+  return (
+    <ValueProvider>
+      <div className="App">
+        <Display />
+
+        <Input />
+      </div>
+    </ValueProvider>
+  );
+}
+```
+
+# Conclusion
+
+All the code is available on CodeSandbox.
+
+<CodeSandboxWrapper codeSandboxId="react-usereducer-with-usecontext-8ld7z" />

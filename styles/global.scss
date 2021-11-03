@@ -1,0 +1,36 @@
+html {
+  // Force scrollbar to be on at all times
+  overflow-y: scroll;
+}
+
+// Try to use full height without "min-height: 100vh"
+html,
+body,
+#__next {
+  @apply h-full;
+}
+
+// Scrollbar width
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+// Scrollbar color and border radius
+::-webkit-scrollbar-thumb {
+  @apply bg-green-600;
+  @apply rounded-full;
+}
+
+body {
+  * {
+    @apply antialiased;
+  }
+}
+
+.bar-of-progress {
+  @apply z-50;
+}
+
+.horizontalScroll::-webkit-scrollbar {
+  @apply h-2;
+}

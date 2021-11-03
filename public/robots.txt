@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://akhilaariyachandra.com/sitemap.xml
+Host: https://akhilaariyachandra.com

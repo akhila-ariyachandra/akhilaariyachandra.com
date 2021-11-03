@@ -1,0 +1,8 @@
+.logoContainer {
+  @apply flex-shrink-0;
+
+  & > span {
+    @apply rounded-md;
+    @apply overflow-hidden;
+  }
+}

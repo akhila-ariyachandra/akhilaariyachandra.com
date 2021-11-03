@@ -1,0 +1,96 @@
+---
+title: Page Loading Progress Bar in Next.js
+date: "2020-10-27"
+description: "Implement a page loading indicator like in YouTube and GitHub in Next.js"
+banner: "/blog/page-loading-progress-bar-in-nextjs/banner.png"
+---
+
+In this post I'll show how to implement a page loading indicator like in YouTube, GitHub and this site.
+
+<Video name="example" width={600} height={504} title="Loading Example" />
+
+<SpecialBlock type="info">
+  The example above is running with the cache disabled and the "Slow 3G" preset.
+</SpecialBlock>
+
+To get started, install the `@badrap/bar-of-progress` dependency.
+
+```shell
+yarn add @badrap/bar-of-progress
+```
+
+Then create the `_app.js` file in `pages` if you haven't done so already.
+
+```jsx:title=pages/_app.js
+const MyApp = ({ Component, pageProps }) => {
+  return <Component {...pageProps} />;
+};
+
+export default MyApp;
+```
+
+Next import the `bar-of-progress` dependency into `_app.js` and declare a new progress bar.
+
+```jsx:title=pages/_app.js {1,3-8}
+import ProgressBar from "@badrap/bar-of-progress";
+
+const progress = new ProgressBar({
+  size: 2,
+  color: "#38a169",
+  className: "bar-of-progress",
+  delay: 100,
+});
+
+const MyApp = ({ Component, pageProps }) => {
+  return <Component {...pageProps} />;
+};
+
+export default MyApp;
+```
+
+We'll be using the [Next.js Router's](https://nextjs.org/docs/api-reference/next/router "next/router") [events](https://nextjs.org/docs/api-reference/next/router#routerevents "router.events") to control the progress bar.
+
+```jsx:title=pages/_app.js {2,11-13}
+import ProgressBar from "@badrap/bar-of-progress";
+import Router from "next/router";
+
+const progress = new ProgressBar({
+  size: 2,
+  color: "#38a169",
+  className: "bar-of-progress",
+  delay: 100,
+});
+
+Router.events.on("routeChangeStart", progress.start);
+Router.events.on("routeChangeComplete", progress.finish);
+Router.events.on("routeChangeError", progress.finish);
+
+const MyApp = ({ Component, pageProps }) => {
+  return <Component {...pageProps} />;
+};
+
+export default MyApp;
+```
+
+If all goes well, you should be seeing a progress bar on the top of your site while transitioning between pages.
+
+Sometimes the progress bar might be hidden behind another element, as was the case in this site.
+
+To solve it all you have to do is increase the `z-index` of the progress bar in your css.
+
+```css
+.bar-of-progress {
+  z-index: 50;
+}
+```
+
+The class name is the `className` property we gave when declaring the progress bar.
+
+```jsx {4}
+const progress = new ProgressBar({
+  size: 2,
+  color: "#38a169",
+  className: "bar-of-progress",
+  delay: 100,
+});
+```
