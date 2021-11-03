@@ -55,7 +55,7 @@ pscale branch create "Database Name" shadow
 ### Running the development branch locally
 
 ```shell
-pscale connect "Database Name" development--port 3309
+pscale connect "Database Name" development --port 3309
 ```
 
 #### Connecting to the main branch locally
