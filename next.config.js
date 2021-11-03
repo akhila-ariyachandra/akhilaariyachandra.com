@@ -1,3 +1,4 @@
+// @ts-check
 const withPlugins = require("next-compose-plugins");
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
@@ -6,7 +7,10 @@ const fs = require("fs");
 const path = require("path");
 const { withPlaiceholder } = require("@plaiceholder/next");
 
-module.exports = withPlugins([[withBundleAnalyzer], [withPlaiceholder]], {
+/**
+ * @type {import('next').NextConfig}
+ **/
+const nextConfig = {
   swcMinify: true,
   reactStrictMode: true,
   images: {
@@ -15,6 +19,9 @@ module.exports = withPlugins([[withBundleAnalyzer], [withPlaiceholder]], {
   },
   eslint: {
     dirs: ["components", "context", "hooks", "lib", "pages"],
+  },
+  future: {
+    strictPostcssConfiguration: true,
   },
   rewrites: async () => {
     return [
@@ -79,4 +86,9 @@ module.exports = withPlugins([[withBundleAnalyzer], [withPlaiceholder]], {
 
     return config;
   },
-});
+};
+
+module.exports = withPlugins(
+  [[withBundleAnalyzer], [withPlaiceholder]],
+  nextConfig
+);
