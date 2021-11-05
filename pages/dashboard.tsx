@@ -42,28 +42,28 @@ const Dashboard: NextPage = () => {
 
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2">
         <DashboardItem
-          title="Total Views"
+          title="Views"
           link={{ type: "internal", url: "/blog" }}
           queryKey="totalViews"
           url="/api/dashboard/total-views"
         />
 
         <DashboardItem
-          title="Total Reactions"
+          title="Reactions"
           link={{ type: "internal", url: "/blog" }}
           queryKey="totalReactions"
           url="/api/dashboard/total-reactions"
         />
 
         <DashboardItem
-          title="Total DEV Views"
+          title="DEV Views"
           link={{ type: "external", url: config.social.dev }}
           queryKey="totalDevViews"
           url="/api/dashboard/total-dev-views"
         />
 
         <DashboardItem
-          title="Total DEV Reactions"
+          title="DEV Reactions"
           link={{ type: "external", url: config.social.dev }}
           queryKey="totalDevReactions"
           url="/api/dashboard/total-dev-reactions"
