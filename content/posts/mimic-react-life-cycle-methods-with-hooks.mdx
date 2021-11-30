@@ -89,10 +89,10 @@ Basically all we're doing is taking the code that was inside `componentDidMount`
 
 The thing to remember with useEffect if that they run after each render. The second argument in `useEffect` is used to control when to run the effect. The argument is an array of states which to run the effect after one of them is updated. To make sure the effect only runs once, an empty array is passed as the argument.
 
-<SpecialBlock type="warn">
-  If you don't set the 2nd argument in a <strong>useEffect</strong> where the
-  state is updated, an infinite loop will occur.
-</SpecialBlock>
+<SpecialBlock
+  type="warn"
+  markdown="If you don't set the 2nd argument in a **useEffect** where the state is updated, an infinite loop will occur."
+/>
 
 While the above effect will run as is, React will show a warning saying that "An effect function must not return anything besides a function, which is used for clean-up." since our effect returns a Promise. To fix this, we'll move the data fetching code to an asynchronous function outside the effect.
 

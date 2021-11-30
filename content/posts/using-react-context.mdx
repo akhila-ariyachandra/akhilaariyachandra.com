@@ -7,29 +7,10 @@ banner: "/blog/using-react-context/banner.png"
 
 While developing a React app you might come across a situation where you need to share a value or state between components. If the state needs to be shared between two components and they have a direct parent-child relationship, we can pass the state from the parent to the child through props. Or if we want to share the state within multiple components we might look into something like Redux.
 
-<SpecialBlock type="info">
-  If you want to learn how to setup Redux in a React App, check out my{" "}
-  <a
-    className="font-medium"
-    href="https://akhilaariyachandra.com/setup-redux-in-a-react-app/"
-    title="Setup Redux in a React app"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    post here
-  </a>
-  {" . If you want to use Redux with hooks check out my "}
-  <a
-    className="font-medium"
-    href="https://akhilaariyachandra.com/use-hooks-in-react-redux/"
-    title="Use Hooks in React Redux"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    post here
-  </a>
-  .
-</SpecialBlock>
+<SpecialBlock
+  type="info"
+  markdown={`If you want to learn how to setup Redux in a React App, check out my [post here](https://akhilaariyachandra.com/setup-redux-in-a-react-app/ "Setup Redux in a React app"). If you want to use Redux with hooks check out my [post here](https://akhilaariyachandra.com/use-hooks-in-react-redux/ "Use Hooks in React Redux").`}
+/>
 
 If the state to be shared isn't complex, Redux might be overkill as it takes some effort to setup and use. For those cases we can use React Context.
 

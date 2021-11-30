@@ -40,9 +40,10 @@ const uri: string = process.env.DB_PATH;
 
 You can use packages like [dotenv](https://www.npmjs.com/package/dotenv) and [dotenv-webpack](https://www.npmjs.com/package/dotenv-webpack) to load environment variables from a **.env** file into `process.env`. If you use the [Now CLI](https://zeit.co/download) this is done automatically.
 
-<SpecialBlock type="warn">
-  Remember to not commit the <strong>.env</strong> file!
-</SpecialBlock>
+<SpecialBlock
+  type="warn"
+  markdown="Remember to not commit the **.env** file!"
+/>
 
 Then we'll declare and export the function to create the database connection.
 

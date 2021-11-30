@@ -6,21 +6,10 @@ banner: "/blog/create-a-serverless-api-with-typescript-graphql-and-mongodb/banne
 updated: "2020-12-04"
 ---
 
-<SpecialBlock type="info">
-  If you would like to use{" "}
-  <a href="https://www.prisma.io/" target="_blank" rel="noopener noreferrer">
-    Prisma
-  </a>
-  {" instead of MongoDB, check out my post "}
-  <a
-    href="/serverless-graphql-api-typescript-prisma-postgressql"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    here
-  </a>
-  .
-</SpecialBlock>
+<SpecialBlock
+  type="info"
+  markdown="If you would like to use [Prisma](https://www.prisma.io/) instead of MongoDB, check out my post [here](/serverless-graphql-api-typescript-prisma-postgressql)."
+/>
 
 In this post we'll create a GraphQL API to create, view and delete notes that we can deploy to [Vercel](https://vercel.com/home) using [Apollo Server](https://www.apollographql.com/docs/apollo-server/), TypeScript and MongoDB.
 
@@ -150,10 +139,10 @@ Since we're using serverless, we can't have a persistent connection to database 
 
 First create the `.env` file in the project root to store the MongoDB URI as `DB_PATH`.
 
-<SpecialBlock type="warn">
-  Never commit the <strong>.env</strong> file. Make sure to add it to
-  <strong>.gitignore</strong>.
-</SpecialBlock>
+<SpecialBlock
+  type="warn"
+  markdown="Next commit the **.env** file. Make sure to add it to **.gitignore**."
+/>
 
 ```:title=.env
 DB_PATH=mongodb://user:password@ds654321.mlab.com:12345/example-db

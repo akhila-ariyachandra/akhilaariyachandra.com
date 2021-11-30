@@ -94,10 +94,10 @@ DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=pub
 
 Replace the placeholder `DATABASE_URL` in your `.env` file with the URL of your own database.
 
-<SpecialBlock type="warn">
-  Remember to not commit the <strong>.env</strong> file. Add it to{" "}
-  <strong>.gitignore</strong>.
-</SpecialBlock>
+<SpecialBlock
+  type="warn"
+  markdown="Remember to not commit the **.env** file. Add it to **.gitignore**."
+/>
 
 To organize our code, first let's move the `.env` to the project root.
 
@@ -183,9 +183,10 @@ npx prisma migrate save --name init --experimental
 
 This will create a new folder called `migrations` in `src\db` to store your migration history but it won't actually create the table in your database.
 
-<SpecialBlock type="info">
-  Replace <strong>init</strong> with the name of your migration.
-</SpecialBlock>
+<SpecialBlock
+  type="info"
+  markdown="Replace **init** with the name of your migration."
+/>
 
 To finish creating the table, run the `up` command.
 

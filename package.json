@@ -68,6 +68,7 @@
     "remark-smartypants": "^2.0.0",
     "sass": "^1.44.0",
     "sharp": "^0.29.3",
+    "snarkdown": "^2.0.0",
     "yaml": "^1.10.2"
   },
   "devDependencies": {

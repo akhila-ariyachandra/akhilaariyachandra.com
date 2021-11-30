@@ -7,41 +7,10 @@ banner: "/blog/persistent-state-in-react/banner.png"
 
 Sometimes we need to preserve the state in a React app in cases where we close the browser or reload the page. In this guide I'll show you a simple custom hook to store the state in `localstorage`.
 
-<SpecialBlock type="warn">
-  This guide will not work as is in frameworks like{" "}
-  <a
-    className="font-medium"
-    href="https://nextjs.org/"
-    title="Next.js"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Next.js
-  </a>
-  {" or "}
-  <a
-    className="font-medium"
-    href="http://gatsbyjs.org/"
-    title="Gatsby"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Gatsby
-  </a>
-  {" because the components aren't first rendered in the browser and "}
-  <strong>localstorage</strong> can't be accessed. If you want to learn more
-  about how rendering differs in the browser and the server check out this{" "}
-  <a
-    className="font-medium"
-    href="https://joshwcomeau.com/react/the-perils-of-rehydration/"
-    title="The Perils of Rehydration"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    awesome post
-  </a>
-  .
-</SpecialBlock>
+<SpecialBlock
+  type="warn"
+  markdown={`This guide will not work as is in frameworks like [Next.js](https://nextjs.org/ "Next.js") or [Gatsby](http://gatsbyjs.org/ "Gatsby") because the components aren't first rendered in the browser and **localstorage** can't be accessed. If you want to learn more about how rendering differs in the browser and the server check out this [awesome post](https://joshwcomeau.com/react/the-perils-of-rehydration/ "The Perils of Rehydration").`}
+/>
 
 First create a function called `useStickyState` with the initial state (`initialState`) as an argument.
 

@@ -16,10 +16,10 @@ Often we need to use certain variables like the database path or authentication 
 
 [Next.js 9.4](https://nextjs.org/blog/next-9-4) made handling environment variables a lot more easier. All we need to do now is the create the `.env` file and Next.js will load it automatically.
 
-<SpecialBlock type="warn">
-  Never commit the <strong>.env</strong> file. Add it to the{" "}
-  <strong>.gitignore</strong> file.
-</SpecialBlock>
+<SpecialBlock
+  type="warn"
+  markdown="Next commit the **.env** file. Make sure to add it to **.gitignore**."
+/>
 
 By default the environment variables will not be included in the client JavaScript bundle. If you do want to include any variables in it it has to be prefixed with `NEXT_PUBLIC_`.
 
@@ -99,10 +99,10 @@ AUTH_SECRET=verysecret
 
 You can use the variable like this, `process.env.AUTH_SECRET`.
 
-<SpecialBlock type="warn">
-  Never commit the <strong>.env</strong> file. Add it to the{" "}
-  <strong>.gitignore</strong> file.
-</SpecialBlock>
+<SpecialBlock
+  type="warn"
+  markdown="Never commit the **.env** file. Make sure to add it to **.gitignore**."
+/>
 
 ## Deploying to [Vercel](https://vercel.com/home)
 
@@ -157,12 +157,10 @@ module.exports = {
 };
 ```
 
-<SpecialBlock type="warn">
-  Please be careful about which variables you include in the{" "}
-  <strong>env</strong> property as they will be included the client JavaScript
-  bundle, so make sure you avoid including sensitive data like a database
-  connection string or an authentication token secret.
-</SpecialBlock>
+<SpecialBlock
+  type="warn"
+  markdown="Please be careful about which variables you include in the **env** property as they will be included the client JavaScript bundle, so make sure you avoid including sensitive data like a database connection string or an authentication token secret."
+/>
 
 ## Wrapping up
 
