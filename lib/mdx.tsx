@@ -7,7 +7,7 @@ const CodeSandboxWrapper = dynamic(
 );
 import Iframe from "@/components/mdx/Iframe";
 import Video from "@/components/mdx/Video";
-const Reactions = dynamic(() => import("@/components/post/Reactions"));
+import Reactions from "@/components/post/Reactions";
 
 export const mdxComponents = {
   SpecialBlock,

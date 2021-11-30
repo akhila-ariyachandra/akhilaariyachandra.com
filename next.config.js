@@ -6,6 +6,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 const fs = require("fs");
 const path = require("path");
 const { withPlaiceholder } = require("@plaiceholder/next");
+const { withContentlayer } = require("next-contentlayer");
 
 /**
  * @type {import('next').NextConfig}
@@ -74,21 +75,9 @@ const nextConfig = {
 
     return redirects;
   },
-  webpack: (config, { dev, isServer }) => {
-    // Replace React with Preact only in client production build
-    if (!dev && !isServer) {
-      Object.assign(config.resolve.alias, {
-        react: "preact/compat",
-        "react-dom/test-utils": "preact/test-utils",
-        "react-dom": "preact/compat",
-      });
-    }
-
-    return config;
-  },
 };
 
 module.exports = withPlugins(
-  [[withBundleAnalyzer], [withPlaiceholder]],
+  [[withBundleAnalyzer], [withPlaiceholder], [withContentlayer]],
   nextConfig
 );

@@ -1,20 +1,21 @@
-import dynamic from "next/dynamic";
 import SEO from "@/components/SEO";
-const Reactions = dynamic(() => import("@/components/post/Reactions"));
-const HitCounter = dynamic(() => import("@/components/post/HitCounter"));
+import HitCounter from "@/components/post/HitCounter";
+import Reactions from "@/components/post/Reactions";
 import type { NextPage, GetStaticPaths, GetStaticProps } from "next";
-import type { Snippet as SnippetType } from "@/lib/types";
-import { getAllSnippetIds, getSnippetData } from "@/lib/snippets";
+import type { Snippet } from ".contentlayer/types";
 import { mdxComponents } from "@/lib/mdx";
-import { MDXRemote } from "next-mdx-remote";
+import { useMDXComponent } from "next-contentlayer/hooks";
+import { allSnippets } from ".contentlayer/data";
 
 import styles from "@/styles/snippet.module.scss";
 
 type Props = {
-  snippet: SnippetType;
+  snippet: Snippet;
 };
 
 const Snippet: NextPage<Props> = ({ snippet }) => {
+  const Component = useMDXComponent(snippet.body.code);
+
   return (
     <>
       <SEO
@@ -32,7 +33,7 @@ const Snippet: NextPage<Props> = ({ snippet }) => {
       </p>
 
       <div className={`prose dark:prose-dark my-6 ${styles.prose} max-w-none`}>
-        <MDXRemote {...snippet.content} components={mdxComponents} />
+        <Component components={mdxComponents} />
       </div>
 
       <HitCounter />
@@ -43,17 +44,14 @@ const Snippet: NextPage<Props> = ({ snippet }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = getAllSnippetIds();
-
   return {
-    paths,
+    paths: allSnippets.map((post) => ({ params: { id: post.id } })),
     fallback: false,
   };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const id = params.id as string;
-  const snippet = await getSnippetData(id);
+  const snippet = allSnippets.find((snippet) => snippet.id === params?.id);
 
   return {
     props: { snippet },

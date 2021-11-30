@@ -2,11 +2,14 @@ import SEO from "@/components/SEO";
 import Link from "next/link";
 import ListContainer from "@/components/ListContainer";
 import type { NextPage, GetStaticProps } from "next";
-import type { Snippet } from "@/lib/types";
-import { getSortedSnippets } from "@/lib/snippets";
+import { allSnippets } from ".contentlayer/data";
 
 type Props = {
-  snippets: Snippet[];
+  snippets: {
+    id: string;
+    title: string;
+    description: string;
+  }[];
 };
 
 const Snippets: NextPage<Props> = ({ snippets }) => {
@@ -38,7 +41,11 @@ const Snippets: NextPage<Props> = ({ snippets }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const snippets = await getSortedSnippets();
+  const snippets = allSnippets.map((post) => ({
+    id: post.id,
+    title: post.title,
+    description: post.description,
+  }));
 
   return {
     props: { snippets },

@@ -1,15 +1,19 @@
+import dayjs from "dayjs";
 import SEO from "@/components/SEO";
 import PostLink from "@/components/PostLink";
 import ListContainer from "@/components/ListContainer";
 import type { NextPage, GetStaticProps } from "next";
-import type { Post } from "@/lib/types";
 import { useQuery, useQueryClient } from "react-query";
-import { getSortedPostsData } from "@/lib/posts";
+import { allPosts } from ".contentlayer/data";
 import { fetcher } from "@/lib/helpers";
 import { PAGE_HITS_KEY } from "@/lib/constants";
 
 type Props = {
-  allPostsData: Post[];
+  posts: {
+    id: string;
+    title: string;
+    date: string;
+  }[];
 };
 
 type PageHit = {
@@ -17,13 +21,13 @@ type PageHit = {
   hits: number;
 };
 
-const Blog: NextPage<Props> = ({ allPostsData }) => {
+const Blog: NextPage<Props> = ({ posts }) => {
   const queryClient = useQueryClient();
   const { data } = useQuery<PageHit[]>(
     ["allPageHits"],
     () => fetcher("/api/hit"),
     {
-      placeholderData: allPostsData.map((post) => ({
+      placeholderData: posts.map((post) => ({
         id: post.id,
         hits: 0,
       })),
@@ -43,9 +47,9 @@ const Blog: NextPage<Props> = ({ allPostsData }) => {
       />
 
       <ListContainer title="Blog">
-        {allPostsData.map(({ id, date, title, formattedDate }) => (
+        {posts.map(({ id, date, title }) => (
           <PostLink
-            post={{ id, date, title, formattedDate }}
+            post={{ id, date, title }}
             hits={data?.find((hit) => hit.id === id)?.hits ?? 0}
             key={id}
           />
@@ -58,11 +62,23 @@ const Blog: NextPage<Props> = ({ allPostsData }) => {
 export default Blog;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const allPostsData = await getSortedPostsData();
+  const posts = allPosts
+    .map((post) => ({
+      id: post.id,
+      title: post.title,
+      date: post.date,
+    }))
+    .sort((first, second) => {
+      if (dayjs(first.date).isBefore(dayjs(second.date))) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
 
   return {
     props: {
-      allPostsData,
+      posts,
     },
   };
 };
