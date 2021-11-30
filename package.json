@@ -66,13 +66,13 @@
     "remark-external-links": "^9.0.1",
     "remark-slug": "^7.0.1",
     "remark-smartypants": "^2.0.0",
-    "sass": "^1.43.5",
+    "sass": "^1.44.0",
     "sharp": "^0.29.3",
     "yaml": "^1.10.2"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.4.1",
-    "@types/node": "^16.11.10",
+    "@types/node": "^16.11.11",
     "@types/react": "^17.0.37",
     "autoprefixer": "^10.4.0",
     "cross-env": "^7.0.3",
