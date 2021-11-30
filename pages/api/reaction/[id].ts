@@ -1,10 +1,13 @@
-import prisma, { Reaction } from "@/prisma";
 import type { NextApiHandler } from "next";
+import type { Reaction } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import { REACTION_LIMIT } from "@/lib/constants";
 
 const ReactionHandler: NextApiHandler = async (req, res) => {
   const uid = req.headers.uid as string;
   const pageId = req.query.id as string;
+
+  const prisma = new PrismaClient();
   let reaction: Reaction;
 
   if (req.method === "POST") {

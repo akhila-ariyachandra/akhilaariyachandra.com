@@ -1,8 +1,10 @@
 import type { NextApiHandler } from "next";
-import prisma from "@/prisma";
+import { PrismaClient } from "@prisma/client";
 
 const Hits: NextApiHandler = async (req, res) => {
   const id = req.query.id as string;
+
+  const prisma = new PrismaClient();
 
   if (req.method === "GET") {
     const { hits } = await prisma.page.findUnique({
