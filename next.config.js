@@ -78,6 +78,6 @@ const nextConfig = {
 };
 
 module.exports = withPlugins(
-  [[withBundleAnalyzer], [withPlaiceholder], [withContentlayer]],
+  [[withBundleAnalyzer], [withPlaiceholder], [withContentlayer()]],
   nextConfig
 );
