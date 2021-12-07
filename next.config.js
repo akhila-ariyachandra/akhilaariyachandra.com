@@ -21,9 +21,6 @@ const nextConfig = {
   eslint: {
     dirs: ["components", "context", "hooks", "lib", "pages"],
   },
-  future: {
-    strictPostcssConfiguration: true,
-  },
   rewrites: async () => {
     return [
       {
