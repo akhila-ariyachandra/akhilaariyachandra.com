@@ -1,14 +1,41 @@
+import jwt from "jsonwebtoken";
 import type { NextApiHandler } from "next";
 import type { Reaction } from "@prisma/client";
 import { PrismaClient } from "@prisma/client";
+import { parseCookies, setCookie } from "nookies";
+import { nanoid } from "nanoid";
 import { REACTION_LIMIT } from "@/lib/constants";
 
 const ReactionHandler: NextApiHandler = async (req, res) => {
-  const uid = req.headers.uid as string;
   const pageId = req.query.id as string;
 
   const prisma = new PrismaClient();
   let reaction: Reaction;
+
+  let uid: string;
+  let authToken: string;
+
+  // Check for JWT
+  const { token } = parseCookies({ req });
+  // Set JWT is not present
+  if (!token) {
+    uid = nanoid();
+    authToken = await jwt.sign({ uid }, process.env.JWT_SECRET);
+
+    setCookie({ res }, "token", authToken, {
+      maxAge: 60 * 60 * 365 * 10, // 10 years
+      path: "/",
+      httpOnly: true,
+      sameSite: "strict",
+      secure: true,
+    });
+  } else {
+    const payload = (await jwt.verify(
+      token,
+      process.env.JWT_SECRET
+    )) as jwt.JwtPayload;
+    uid = payload.uid;
+  }
 
   if (req.method === "POST") {
     const increment = parseInt(req.body.increment as string);

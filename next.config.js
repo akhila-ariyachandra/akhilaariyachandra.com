@@ -19,7 +19,7 @@ const nextConfig = {
     formats: ["image/avif", "image/webp"],
   },
   eslint: {
-    dirs: ["components", "context", "hooks", "lib", "pages"],
+    dirs: ["components", "hooks", "lib", "pages"],
   },
   rewrites: async () => {
     return [

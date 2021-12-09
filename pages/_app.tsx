@@ -4,7 +4,6 @@ import { ThemeProvider } from "next-themes";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Hydrate } from "react-query/hydration";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { UniqueIdProvider } from "@/context/UniqueIdContext";
 import ProgressBar from "@badrap/bar-of-progress";
 import Router from "next/router";
 import Layout from "@/components/Layout";
@@ -37,17 +36,15 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       attribute="class"
       enableSystem={false}
     >
-      <UniqueIdProvider>
-        <QueryClientProvider client={queryClient}>
-          <Hydrate state={pageProps.dehydratedState}>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </Hydrate>
+      <QueryClientProvider client={queryClient}>
+        <Hydrate state={pageProps.dehydratedState}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </Hydrate>
 
-          <ReactQueryDevtools />
-        </QueryClientProvider>
-      </UniqueIdProvider>
+        <ReactQueryDevtools />
+      </QueryClientProvider>
     </ThemeProvider>
   );
 };

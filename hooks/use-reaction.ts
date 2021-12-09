@@ -1,13 +1,10 @@
 import splitbee from "@/lib/splitbee";
-import { useContext } from "react";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { useRouter } from "next/router";
-import { UniqueIdContext } from "@/context/UniqueIdContext";
 
 const useReaction = (id: string) => {
   const QUERY_KEY = ["reaction", id];
 
-  const uid = useContext(UniqueIdContext);
   const queryClient = useQueryClient();
   const router = useRouter();
 
@@ -15,15 +12,11 @@ const useReaction = (id: string) => {
     data: { count, total },
   } = useQuery(
     QUERY_KEY,
-    () =>
-      fetch(`/api/reaction/${id}`, {
-        headers: { uid },
-      }).then((response) => response.json()),
+    () => fetch(`/api/reaction/${id}`).then((response) => response.json()),
     {
       initialData: {
         count: 0,
       },
-      enabled: !!uid,
     }
   );
 
@@ -31,7 +24,7 @@ const useReaction = (id: string) => {
     (increment: number) =>
       fetch(`/api/reaction/${id}`, {
         method: "POST",
-        headers: { uid, "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ increment }),
       }).then((response) => response.json()),
     {

@@ -36,6 +36,7 @@ yarn format
 |           `DEV_API_KEY`           | The [API Key](https://docs.forem.com/api/#section/Authentication/api_key) needed for [DEV API](https://docs.forem.com/api/) |
 |          `DATABASE_URL`           | The PlanetScale database URL ([Guide](https://davidparks.dev/blog/planetscale-deployment-with-prisma/))                     |
 |       `SHADOW_DATABASE_URL`       | The PlanetScale shadow database URL used for migrations                                                                     |
+|           `JWT_SECRET`            | The secret to sign the JSON Web Token                                                                                       |
 
 ## Analytics
 
