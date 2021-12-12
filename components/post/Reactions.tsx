@@ -58,7 +58,7 @@ const Reactions: FC<Props> = ({ showDescription = true }) => {
       >
         <animated.div
           style={props}
-          className="absolute left-0 top-0 h-full dark:bg-green-500 bg-green-600"
+          className="absolute left-0 top-0 h-full dark:bg-emerald-500 bg-emerald-600"
         />
 
         <div className="absolute z-10 left-0 top-0 flex items-center justify-center w-full h-full">

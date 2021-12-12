@@ -1,7 +1,6 @@
 module.exports = {
   future: {},
-  mode: "jit",
-  purge: [
+  content: [
     "./pages/**/*.tsx",
     "./components/**/*.{tsx,js,scss}",
     "./styles/**/*.scss",
@@ -22,7 +21,7 @@ module.exports = {
             fontFamily: "Sora, sans-serif",
             color: theme("colors.gray.800"),
             "strong,a,code": {
-              color: theme("colors.green.700"),
+              color: theme("colors.emerald.700"),
             },
             "h1,h2,h3,h4,h5,h6,blockquote,th": {
               color: theme("colors.gray.800"),
@@ -33,7 +32,7 @@ module.exports = {
           css: {
             color: theme("colors.gray.200"),
             "strong,a,code": {
-              color: theme("colors.green.600"),
+              color: theme("colors.emerald.600"),
             },
             "h1,h2,h3,h4,h5,h6,blockquote,th": {
               color: theme("colors.gray.200"),

@@ -81,7 +81,7 @@ const Dashboard: NextPage = () => {
           {data.map((post) => (
             <article key={post.id}>
               <Link href={post.slug}>
-                <a className="dark:text-green-600 text-green-700 font-sora text-2xl font-medium">
+                <a className="dark:text-emerald-600 text-emerald-700 font-sora text-2xl font-medium">
                   {post.title}
                 </a>
               </Link>

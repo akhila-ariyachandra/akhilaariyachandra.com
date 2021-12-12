@@ -50,7 +50,7 @@ const TopTracks: FC = () => {
                 href={track.songUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="dark:text-green-600 text-green-700 font-sora text-lg font-medium truncate"
+                className="dark:text-emerald-600 text-emerald-700 font-sora text-lg font-medium truncate"
               >
                 {track.name}
               </a>

@@ -15,7 +15,7 @@ const PostLink: FunctionComponent<Props> = ({ post, hits }) => {
   return (
     <article className="space-y-2">
       <Link href={`/blog/${post.id}`}>
-        <a className="dark:text-green-600 text-green-700 font-sora text-3xl font-bold">
+        <a className="dark:text-emerald-600 text-emerald-700 font-sora text-3xl font-bold">
           {post.title}
         </a>
       </Link>

@@ -53,7 +53,7 @@ const BlogPost: NextPage<Props> = ({ post, blurredBanner }) => {
             href={post.unsplashLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="dark:text-green-600 text-green-700"
+            className="dark:text-emerald-600 text-emerald-700"
           >
             {post.photographer}
           </a>

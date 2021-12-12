@@ -12,7 +12,7 @@ const Header: React.FunctionComponent = () => {
 
       {router.pathname !== "/" && (
         <Link href="/">
-          <a className="dark:text-green-600 text-green-700 font-sora text-xl font-bold leading-5 sm:text-2xl">
+          <a className="dark:text-emerald-600 text-emerald-700 font-sora text-xl font-bold leading-5 sm:text-2xl">
             {config.title}
           </a>
         </Link>

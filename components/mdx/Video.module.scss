@@ -1,9 +1,8 @@
 .video {
   @apply absolute;
   @apply inset-1/2;
-  @apply -translate-x-1/2;
-  @apply -translate-y-1/2;
   @apply rounded;
 
+  transform: translate(-50%, -50%);
   margin: 0 !important;
 }

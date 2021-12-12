@@ -36,7 +36,7 @@ const SocialLink = ({ site, link }) => {
 
   return (
     <a
-      className="dark:text-green-600 text-green-700 text-3xl"
+      className="dark:text-emerald-600 text-emerald-700 text-3xl"
       href={link}
       target="_blank"
       rel="noopener noreferrer"
@@ -73,7 +73,7 @@ const Index: NextPage<Props> = ({ currentJob }) => {
       <div className="mt-4 space-y-4">
         <h1 className="dark:text-gray-200 text-gray-800 font-sora text-4xl font-black">
           {`Hi, I'm `}
-          <span className="dark:text-green-600 text-green-700">
+          <span className="dark:text-emerald-600 text-emerald-700">
             {config.title}
           </span>
         </h1>
@@ -81,7 +81,7 @@ const Index: NextPage<Props> = ({ currentJob }) => {
         <p className="dark:text-gray-200 text-gray-800 font-roboto-slab text-lg font-medium">
           {`I am a web developer working at `}
           <a
-            className="dark:text-green-600 text-green-700"
+            className="dark:text-emerald-600 text-emerald-700"
             href={currentJob.link}
             target="_blank"
             rel="noopener noreferrer"
@@ -90,7 +90,7 @@ const Index: NextPage<Props> = ({ currentJob }) => {
           </a>
           {` as ${getAOrAn(currentJob.positions[0].title)} `}
           <Link href="/career">
-            <a className="dark:text-green-600 text-green-700">
+            <a className="dark:text-emerald-600 text-emerald-700">
               {currentJob.positions[0].title}
             </a>
           </Link>

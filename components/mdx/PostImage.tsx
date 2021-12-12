@@ -36,7 +36,7 @@ const PostImage: FunctionComponent<Props> = ({
         <p className={styles.creditLink}>
           Credit -{" "}
           <a
-            className="dark:text-green-500 text-green-800 font-roboto-slab font-semibold"
+            className="dark:text-emerald-500 text-emerald-800 font-roboto-slab font-semibold"
             href={credit.link}
             target="_blank"
             rel="noopener noreferrer"

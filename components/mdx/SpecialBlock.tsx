@@ -25,8 +25,8 @@ const SpecialBlock: FunctionComponent<Props> = ({ type, markdown }) => {
       Icon = FaLightbulb;
       break;
     default:
-      wrapperClass = wrapperClass + "border-green-600";
-      iconClass = iconClass + "text-green-600";
+      wrapperClass = wrapperClass + "border-emerald-600";
+      iconClass = iconClass + "text-emerald-600";
       Icon = FaStickyNote;
   }
 

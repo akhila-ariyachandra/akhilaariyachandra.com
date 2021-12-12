@@ -44,7 +44,7 @@ const NowPlaying: React.FunctionComponent = () => {
       <div className="inline-flex flex-col w-full max-w-full truncate sm:flex-row">
         {data?.songUrl ? (
           <a
-            className="max-w-max dark:text-gray-100 text-green-900 font-sora font-medium truncate"
+            className="max-w-max dark:text-gray-100 text-emerald-900 font-sora font-medium truncate"
             href={data.songUrl}
             target="_blank"
             rel="noopener noreferrer"

@@ -12,7 +12,7 @@ const LINKS = [
 
 const ExternalLink = ({ children, link }) => (
   <a
-    className="dark:text-green-500 text-green-800 font-semibold"
+    className="dark:text-emerald-500 text-emerald-800 font-semibold"
     href={link}
     target="_blank"
     rel="noopener noreferrer"
@@ -23,14 +23,14 @@ const ExternalLink = ({ children, link }) => (
 
 const Footer: React.FunctionComponent = () => {
   return (
-    <footer className="mt-10 dark:bg-gray-800 bg-green-200">
+    <footer className="mt-10 dark:bg-gray-800 bg-emerald-200">
       <div className="container flex flex-col px-4 py-6 max-w-4xl space-y-6">
         <NowPlaying />
 
         <nav className="grid gap-2 grid-cols-2 sm:grid-cols-3">
           {LINKS.map((link) => (
             <Link href={link.href} key={link.href}>
-              <a className="dark:text-gray-300 text-green-900 font-sora text-xl font-medium">
+              <a className="dark:text-gray-300 text-emerald-900 font-sora text-xl font-medium">
                 {link.title}
               </a>
             </Link>
