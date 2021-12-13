@@ -84,7 +84,7 @@
     "eslint-config-next": "^12.0.7",
     "minify-xml": "^3.3.1",
     "next-compose-plugins": "^2.2.1",
-    "postcss": "^8.4.4",
+    "postcss": "^8.4.5",
     "prettier": "^2.5.1",
     "prettier-plugin-prisma": "^3.6.0",
     "prettier-plugin-tailwind": "^2.2.12",
