@@ -9,8 +9,6 @@ import type { NextPage, GetStaticProps } from "next";
 import type { Job } from "@/lib/types";
 import { getPeriod } from "@/lib/helpers";
 
-import styles from "@/styles/career.module.scss";
-
 type Props = {
   careerList: Job[];
 };
@@ -27,13 +25,14 @@ const Career: NextPage<Props> = ({ careerList }) => {
               key={company.company}
               className="flex flex-row items-center space-x-4"
             >
-              <div className={styles.logoContainer}>
+              <div className="flex-shrink-0">
                 <Image
                   src={`/career/${company.image}`}
                   alt={company.company}
                   title={company.company}
                   width={64}
                   height={64}
+                  className="rounded-md"
                 />
               </div>
 

@@ -1,8 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
 
-import styles from "./Video.module.scss";
-
 type Props = {
   name: string;
   title: string;
@@ -15,7 +13,7 @@ const Video: React.FC<Props> = ({ name, width, height, title }) => {
 
   return (
     <div
-      className="relative my-4 w-full"
+      className="relative my-4 w-full not-prose"
       style={{ aspectRatio: `${width} / ${height}` }}
     >
       <video
@@ -26,7 +24,7 @@ const Video: React.FC<Props> = ({ name, width, height, title }) => {
         width={width}
         height={height}
         title={title}
-        className={styles.video}
+        className="absolute inset-1/2 rounded -translate-x-1/2 -translate-y-1/2"
       >
         <source src={`${asPath}/${name}.webm`} type="video/webm" />
         <source src={`${asPath}/${name}.mp4`} type="video/mp4" />

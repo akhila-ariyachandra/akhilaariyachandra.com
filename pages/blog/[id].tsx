@@ -4,15 +4,12 @@ import SEO from "@/components/SEO";
 import Image from "next/image";
 import HitCounter from "@/components/post/HitCounter";
 import Reactions from "@/components/post/Reactions";
+import MDXComponent from "@/components/post/MDXComponent";
 import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import type { Post } from ".contentlayer/types";
-import { useMDXComponent } from "next-contentlayer/hooks";
 import { allPosts } from ".contentlayer/data";
-import { mdxComponents } from "@/lib/mdx";
 import { formatDate } from "@/lib/helpers";
 import { getBlurredBanner } from "@/lib/serverHelpers";
-
-import styles from "@/styles/post.module.scss";
 
 type Props = {
   post: Post;
@@ -20,7 +17,6 @@ type Props = {
 };
 
 const BlogPost: NextPage<Props> = ({ post, blurredBanner }) => {
-  const Component = useMDXComponent(post.body.code);
   const { hits } = useHits(post.id);
 
   return (
@@ -33,18 +29,17 @@ const BlogPost: NextPage<Props> = ({ post, blurredBanner }) => {
         updated={post.updated ? new Date(post.updated) : undefined}
       />
 
-      <div className={styles.bannerContainer}>
-        <Image
-          src={post.banner}
-          alt={post.title}
-          title={post.title}
-          width={1200}
-          height={630}
-          placeholder="blur"
-          blurDataURL={blurredBanner}
-          priority
-        />
-      </div>
+      <Image
+        src={post.banner}
+        alt={post.title}
+        title={post.title}
+        width={1200}
+        height={630}
+        placeholder="blur"
+        blurDataURL={blurredBanner}
+        priority
+        className="rounded-lg"
+      />
 
       {post.photographer && post.unsplashLink ? (
         <p className="my-2 px-4 text-center dark:text-gray-200 text-gray-800 font-roboto-slab text-base font-medium">
@@ -83,9 +78,7 @@ const BlogPost: NextPage<Props> = ({ post, blurredBanner }) => {
         <p>{`${hits} views`}</p>
       </div>
 
-      <div className={`prose dark:prose-dark max-w-none my-4 ${styles.prose}`}>
-        <Component components={mdxComponents} />
-      </div>
+      <MDXComponent code={post.body.code} />
 
       <HitCounter />
 

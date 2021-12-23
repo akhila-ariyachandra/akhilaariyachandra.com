@@ -4,8 +4,6 @@ import type { FC } from "react";
 import { useQuery } from "react-query";
 import { fetcher } from "@/lib/helpers";
 
-import styles from "@/components/TopTracks.module.scss";
-
 const TopTracks: FC = () => {
   const { data } = useQuery<Song[], Error>(
     "topTracks",
@@ -33,7 +31,7 @@ const TopTracks: FC = () => {
             key={`top-track-${index}`}
             className="flex flex-row items-center pt-3 space-x-6"
           >
-            <div className={styles.albumContainer}>
+            <div className="flex-shrink-0">
               <Image
                 src={track.albumImage}
                 width={80}
@@ -42,6 +40,7 @@ const TopTracks: FC = () => {
                 title={track.album}
                 placeholder="blur"
                 blurDataURL={track.blurAlbumImage}
+                className="rounded-sm"
               />
             </div>
 

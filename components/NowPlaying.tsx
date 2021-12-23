@@ -5,8 +5,6 @@ import { useQuery } from "react-query";
 import { fetcher } from "@/lib/helpers";
 import { FaSpotify } from "react-icons/fa";
 
-import styles from "@/components/NowPlaying.module.scss";
-
 const NowPlaying: React.FunctionComponent = () => {
   const { data } = useQuery<Song, Error>(
     "nowPlaying",
@@ -18,7 +16,7 @@ const NowPlaying: React.FunctionComponent = () => {
 
   return (
     <div className="flex flex-row-reverse items-center w-full text-lg antialiased space-x-0 sm:flex-row sm:space-x-3">
-      <div className={styles.albumContainer}>
+      <div className="w-[48px] h-[48px] relative flex-shrink-0 grid place-items-center">
         {data?.albumImage ? (
           <Image
             src={data.albumImage}
@@ -28,6 +26,7 @@ const NowPlaying: React.FunctionComponent = () => {
             height={48}
             placeholder="blur"
             blurDataURL={data.blurAlbumImage}
+            className="rounded"
           />
         ) : (
           <FaSpotify color="#1DB954" />

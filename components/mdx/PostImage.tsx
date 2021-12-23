@@ -1,8 +1,6 @@
 import Image from "next/image";
 import type { FunctionComponent } from "react";
 
-import styles from "@/components/mdx/PostImage.module.scss";
-
 type Props = {
   src: string;
   width: number;
@@ -22,7 +20,7 @@ const PostImage: FunctionComponent<Props> = ({
   credit,
 }) => {
   return (
-    <div className="grid place-items-center my-5">
+    <div className="grid place-items-center my-5 not-prose">
       <Image
         src={src}
         width={width}
@@ -33,7 +31,7 @@ const PostImage: FunctionComponent<Props> = ({
       />
 
       {credit && (
-        <p className={styles.creditLink}>
+        <p className="mt-2">
           Credit -{" "}
           <a
             className="dark:text-emerald-500 text-emerald-800 font-roboto-slab font-semibold"

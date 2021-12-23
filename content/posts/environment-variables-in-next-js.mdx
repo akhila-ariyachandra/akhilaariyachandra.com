@@ -30,7 +30,7 @@ SECOND_SECRET=secondSecret
 
 In the above example `NEXT_PUBLIC_FIRST_SECRET` can be accessed but `SECOND_SECRET` can't be accessed in the client code (such as the React Components).
 
-## Deploying to [Vercel](https://vercel.com/home)
+## Deploying to Vercel
 
 To start, install, log into [Vercel](https://vercel.com/download) and link it to a project if you haven't already.
 
@@ -104,9 +104,9 @@ You can use the variable like this, `process.env.AUTH_SECRET`.
   markdown="Never commit the **.env** file. Make sure to add it to **.gitignore**."
 />
 
-## Deploying to [Vercel](https://vercel.com/home)
+## Deploying to Vercel
 
-If you are using a Git provider like Github to deploy the Application in Vercel, you can't use _.env_ file. This is the reason we set the _silent_ property when adding dotenv-webpack plugin, to prevent any errors because of the missing _.env_ file.
+If you are using a Git provider like Github to deploy the Application in [Vercel](https://vercel.com/home), you can't use _.env_ file. This is the reason we set the _silent_ property when adding dotenv-webpack plugin, to prevent any errors because of the missing _.env_ file.
 
 ```javascript:title=next.config.js {6}
 const Dotenv = require("dotenv-webpack");

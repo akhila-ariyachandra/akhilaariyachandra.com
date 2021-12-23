@@ -1,21 +1,16 @@
 import SEO from "@/components/SEO";
 import HitCounter from "@/components/post/HitCounter";
 import Reactions from "@/components/post/Reactions";
+import MDXComponent from "@/components/post/MDXComponent";
 import type { NextPage, GetStaticPaths, GetStaticProps } from "next";
 import type { Snippet } from ".contentlayer/types";
-import { mdxComponents } from "@/lib/mdx";
-import { useMDXComponent } from "next-contentlayer/hooks";
 import { allSnippets } from ".contentlayer/data";
-
-import styles from "@/styles/snippet.module.scss";
 
 type Props = {
   snippet: Snippet;
 };
 
 const Snippet: NextPage<Props> = ({ snippet }) => {
-  const Component = useMDXComponent(snippet.body.code);
-
   return (
     <>
       <SEO
@@ -32,9 +27,7 @@ const Snippet: NextPage<Props> = ({ snippet }) => {
         {snippet.description}
       </p>
 
-      <div className={`prose dark:prose-dark my-6 ${styles.prose} max-w-none`}>
-        <Component components={mdxComponents} />
-      </div>
+      <MDXComponent code={snippet.body.code} />
 
       <HitCounter />
 

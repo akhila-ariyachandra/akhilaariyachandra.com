@@ -59,16 +59,14 @@ const Index: NextPage<Props> = ({ currentJob }) => {
     <>
       <SEO />
 
-      <div className={styles.coverContainer}>
-        <Image
-          src={coverPic}
-          alt={config.title}
-          title={config.title}
-          className="cover"
-          priority
-          placeholder="blur"
-        />
-      </div>
+      <Image
+        src={coverPic}
+        alt={config.title}
+        title={config.title}
+        className="rounded-lg"
+        priority
+        placeholder="blur"
+      />
 
       <div className="mt-4 space-y-4">
         <h1 className="dark:text-gray-200 text-gray-800 font-sora text-4xl font-black">
