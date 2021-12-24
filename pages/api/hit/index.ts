@@ -1,8 +1,7 @@
 import type { NextApiHandler } from "next";
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/prisma";
 
 const Hits: NextApiHandler = async (req, res) => {
-  const prisma = new PrismaClient();
   const pages = await prisma.page.findMany({
     select: {
       id: true,

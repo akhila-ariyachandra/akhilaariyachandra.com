@@ -1,9 +1,8 @@
 import type { DEVArticle } from "@/lib/types";
-import { PrismaClient } from "@prisma/client";
 import axios from "axios";
+import prisma from "@/prisma";
 
 export const getTotalViews = async (): Promise<number> => {
-  const prisma = new PrismaClient();
   const sum = await prisma.page.aggregate({
     _sum: {
       hits: true,
@@ -14,14 +13,12 @@ export const getTotalViews = async (): Promise<number> => {
 };
 
 export const getTotalReactions = async (): Promise<number> => {
-  const prisma = new PrismaClient();
   const count = await prisma.reaction.aggregate({ _sum: { count: true } });
 
   return count?._sum?.count ?? 0;
 };
 
 export const getMostPopularPosts = async () => {
-  const prisma = new PrismaClient();
   const posts = await prisma.page.findMany({
     orderBy: {
       hits: "desc",

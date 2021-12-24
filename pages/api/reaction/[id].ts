@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
+import prisma from "@/prisma";
 import type { NextApiHandler } from "next";
 import type { Reaction } from "@prisma/client";
-import { PrismaClient } from "@prisma/client";
 import { parseCookies, setCookie } from "nookies";
 import { nanoid } from "nanoid";
 import { REACTION_LIMIT } from "@/lib/constants";
@@ -9,7 +9,6 @@ import { REACTION_LIMIT } from "@/lib/constants";
 const ReactionHandler: NextApiHandler = async (req, res) => {
   const pageId = req.query.id as string;
 
-  const prisma = new PrismaClient();
   let reaction: Reaction;
 
   let uid: string;
