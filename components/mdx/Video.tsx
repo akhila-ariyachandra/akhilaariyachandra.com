@@ -13,8 +13,8 @@ const Video: React.FC<Props> = ({ name, width, height, title }) => {
 
   return (
     <div
-      className="relative my-4 w-full not-prose"
-      style={{ aspectRatio: `${width} / ${height}` }}
+      className="relative my-4 w-full not-prose mx-auto"
+      style={{ aspectRatio: `${width} / ${height}`, maxWidth: width }}
     >
       <video
         autoPlay
