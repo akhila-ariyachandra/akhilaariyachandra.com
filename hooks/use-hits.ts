@@ -27,7 +27,7 @@ const useHits = (id: string) => {
     }
   );
 
-  return { hits, increment: mutation.mutate };
+  return { hits: hits ?? 0, increment: mutation.mutate };
 };
 
 export default useHits;
