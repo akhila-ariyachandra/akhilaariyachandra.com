@@ -1,5 +1,4 @@
 import type { NextApiHandler } from "next";
-import { getPlaiceholder } from "plaiceholder";
 import { getNowPlaying } from "@/lib/spotify";
 
 const NowPlaying: NextApiHandler = async (req, res) => {
@@ -27,8 +26,6 @@ const NowPlaying: NextApiHandler = async (req, res) => {
   const albumImage = song.item.album.images[0].url;
   const songUrl = song.item.external_urls.spotify;
 
-  const { base64 } = await getPlaiceholder(song.item.album.images[0].url);
-
   res.setHeader(
     "Cache-Control",
     "public, s-maxage=60, stale-while-revalidate=30"
@@ -41,7 +38,6 @@ const NowPlaying: NextApiHandler = async (req, res) => {
     album,
     albumImage,
     songUrl,
-    blurAlbumImage: base64,
   });
 };
 

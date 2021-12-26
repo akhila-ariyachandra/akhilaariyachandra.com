@@ -5,7 +5,6 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 });
 const fs = require("fs");
 const path = require("path");
-const { withPlaiceholder } = require("@plaiceholder/next");
 const { withContentlayer } = require("next-contentlayer");
 
 /**
@@ -75,6 +74,6 @@ const nextConfig = {
 };
 
 module.exports = withPlugins(
-  [[withBundleAnalyzer], [withPlaiceholder], [withContentlayer()]],
+  [[withBundleAnalyzer], [withContentlayer()]],
   nextConfig
 );

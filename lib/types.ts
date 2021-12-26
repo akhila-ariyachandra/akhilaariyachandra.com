@@ -21,7 +21,6 @@ export type Song = {
   artist: string;
   album: string;
   albumImage: string;
-  blurAlbumImage: string;
   songUrl: string;
 };
 

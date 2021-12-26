@@ -9,14 +9,12 @@ import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import type { Post } from ".contentlayer/types";
 import { allPosts } from ".contentlayer/data";
 import { formatDate } from "@/lib/helpers";
-import { getBlurredBanner } from "@/lib/serverHelpers";
 
 type Props = {
   post: Post;
-  blurredBanner: string;
 };
 
-const BlogPost: NextPage<Props> = ({ post, blurredBanner }) => {
+const BlogPost: NextPage<Props> = ({ post }) => {
   const { hits } = useHits(post.id);
 
   return (
@@ -35,8 +33,6 @@ const BlogPost: NextPage<Props> = ({ post, blurredBanner }) => {
         title={post.title}
         width={1200}
         height={630}
-        placeholder="blur"
-        blurDataURL={blurredBanner}
         priority
         className="rounded-lg"
       />
@@ -99,13 +95,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const post = allPosts.find((post) => post.id === params?.id);
 
-  // Get blurred banner
-  const blurredBanner = await getBlurredBanner(post.banner);
-
   return {
     props: {
       post,
-      blurredBanner,
     },
   };
 };

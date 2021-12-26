@@ -24,8 +24,6 @@ const NowPlaying: React.FunctionComponent = () => {
             title={data.album}
             width={48}
             height={48}
-            placeholder="blur"
-            blurDataURL={data.blurAlbumImage}
             className="rounded"
           />
         ) : (

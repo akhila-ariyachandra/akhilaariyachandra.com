@@ -38,8 +38,6 @@ const TopTracks: FC = () => {
                 height={80}
                 alt={track.album}
                 title={track.album}
-                placeholder="blur"
-                blurDataURL={track.blurAlbumImage}
                 className="rounded-sm"
               />
             </div>
