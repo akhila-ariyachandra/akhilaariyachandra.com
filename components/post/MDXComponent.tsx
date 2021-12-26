@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import { FC, memo } from "react";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { mdxComponents } from "@/lib/mdx";
 
@@ -16,4 +16,4 @@ const MDXComponent: FC<Props> = ({ code }) => {
   );
 };
 
-export default MDXComponent;
+export default memo(MDXComponent);
