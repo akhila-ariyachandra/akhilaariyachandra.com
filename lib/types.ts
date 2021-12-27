@@ -24,11 +24,6 @@ export type Song = {
   songUrl: string;
 };
 
-export type Year = {
-  year: string;
-  events: [{ title: string; description?: string }];
-};
-
 export type DEVArticle = {
   page_views_count: number;
   public_reactions_count: number;
