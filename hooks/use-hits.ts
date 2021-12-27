@@ -1,9 +1,9 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { fetcher } from "@/lib/helpers";
-import { PAGE_HITS_KEY } from "@/lib/constants";
+import { getPageHitsKey } from "@/lib/constants";
 
 const useHits = (id: string) => {
-  const QUERY_KEY = PAGE_HITS_KEY(id);
+  const QUERY_KEY = getPageHitsKey(id);
 
   const queryClient = useQueryClient();
 

@@ -6,7 +6,7 @@ import type { NextPage, GetStaticProps } from "next";
 import { useQuery, useQueryClient } from "react-query";
 import { allPosts } from ".contentlayer/data";
 import { fetcher } from "@/lib/helpers";
-import { PAGE_HITS_KEY } from "@/lib/constants";
+import { getPageHitsKey } from "@/lib/constants";
 
 type Props = {
   posts: {
@@ -33,7 +33,7 @@ const Blog: NextPage<Props> = ({ posts }) => {
       })),
       onSuccess: (data) => {
         data.forEach((page) => {
-          queryClient.setQueryData(PAGE_HITS_KEY(page.id), page.hits);
+          queryClient.setQueryData(getPageHitsKey(page.id), page.hits);
         });
       },
     }
