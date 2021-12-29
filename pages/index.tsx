@@ -12,8 +12,6 @@ import type { Job } from "@/lib/types";
 import { getAOrAn } from "@/lib/helpers";
 import { FaGithub, FaDev, FaTwitterSquare, FaRssSquare } from "react-icons/fa";
 
-import styles from "@/styles/home.module.scss";
-
 const SocialLink = ({ site, link }) => {
   let Icon = null;
 
