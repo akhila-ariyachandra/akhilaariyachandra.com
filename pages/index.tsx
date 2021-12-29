@@ -12,7 +12,13 @@ import type { Job } from "@/lib/types";
 import { getAOrAn } from "@/lib/helpers";
 import { FaGithub, FaDev, FaTwitterSquare, FaRssSquare } from "react-icons/fa";
 
-const SocialLink = ({ site, link }) => {
+const SocialLink = ({
+  site,
+  link,
+}: {
+  site: "GitHub" | "DEV" | "Twitter" | "RSS";
+  link: string;
+}) => {
   let Icon = null;
 
   switch (site) {
