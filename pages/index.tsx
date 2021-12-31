@@ -69,7 +69,7 @@ const Index: NextPage<Props> = ({ currentJob }) => {
         title={config.title}
         className="rounded-lg"
         priority
-        placeholder="blur"
+        placeholder="empty"
       />
 
       <div className="mt-4 space-y-4">
