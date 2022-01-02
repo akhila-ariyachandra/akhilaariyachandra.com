@@ -13,7 +13,7 @@ import "@fontsource/sora/variable.css";
 import "@fontsource/roboto-slab/400.css";
 import "@fontsource/roboto-slab/variable.css";
 import "tailwindcss/tailwind.css";
-import "@/styles/global.scss";
+import "@/styles/global.css";
 
 const progress = new ProgressBar({
   size: 4,

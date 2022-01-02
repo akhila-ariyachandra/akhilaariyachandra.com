@@ -65,7 +65,6 @@
     "remark-external-links": "^9.0.1",
     "remark-slug": "^7.0.1",
     "remark-smartypants": "^2.0.0",
-    "sass": "^1.45.1",
     "sharp": "^0.29.3",
     "snarkdown": "^2.0.0",
     "yaml": "^1.10.2"

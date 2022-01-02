@@ -1,8 +1,6 @@
 import Title from "@/components/mdx/Code/Title";
 import SyntaxHighlight from "@/components/mdx/Code/SyntaxHighlight";
 
-import styles from "@/components/mdx/Code/Code.module.scss";
-
 const getParams = (className = ``) => {
   const [lang = ``, params = ``] = className.split(`:`);
   return [lang.split(`language-`).pop().split(`{`).shift()].concat(
@@ -19,7 +17,10 @@ const Code = ({ children }) => {
   const [language, { title = `` }] = getParams(className);
 
   return (
-    <div className={styles.codeBlock}>
+    <div
+      className="rounded-md overflow-hidden my-5"
+      style={{ backgroundColor: "rgb(1, 22, 39)" }}
+    >
       <Title text={title}>{language}</Title>
 
       <SyntaxHighlight title={title} language={language}>

@@ -4,7 +4,7 @@ import LazyLoad from "react-lazyload";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import { FaCog } from "react-icons/fa";
 
-import styles from "@/components/mdx/Code/SyntaxHighlight.module.scss";
+import styles from "@/components/mdx/Code/SyntaxHighlight.module.css";
 
 const LINE_HEIGHT = 1.7142857;
 
