@@ -59,6 +59,7 @@
     "react-lazyload": "^3.2.0",
     "react-query": "^3.34.7",
     "react-retro-hit-counter": "^1.0.1",
+    "react-rough-notation": "^1.0.1",
     "react-spring": "^9.3.3",
     "react-use-measure": "^2.1.1",
     "reading-time": "^1.5.0",

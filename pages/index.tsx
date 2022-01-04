@@ -5,12 +5,13 @@ import path from "path";
 import YAML from "yaml";
 import coverPic from "@/public/cover-pic.jpg";
 import Image from "next/image";
-import Link from "next/link";
 import SEO from "@/components/SEO";
 import type { NextPage, GetStaticProps } from "next";
 import type { Job } from "@/lib/types";
+import { useState, useEffect } from "react";
 import { getAOrAn } from "@/lib/helpers";
 import { FaGithub, FaDev, FaTwitterSquare, FaRssSquare } from "react-icons/fa";
+import { HighlightGroup, Highlight } from "@/components/Highlight";
 
 const SocialLink = ({
   site,
@@ -59,6 +60,12 @@ type Props = {
 };
 
 const Index: NextPage<Props> = ({ currentJob }) => {
+  const [highlight, setHighlight] = useState(false);
+
+  useEffect(() => {
+    setHighlight(true);
+  }, []);
+
   return (
     <>
       <SEO />
@@ -72,43 +79,32 @@ const Index: NextPage<Props> = ({ currentJob }) => {
         placeholder="empty"
       />
 
-      <div className="mt-4 space-y-4">
-        <h1 className="dark:text-gray-200 text-gray-800 font-sora text-4xl font-black">
-          {`Hi, I'm `}
-          <span className="dark:text-emerald-600 text-emerald-700">
-            {config.title}
-          </span>
-        </h1>
+      <HighlightGroup>
+        <div className="mt-4 space-y-4">
+          <h1 className="dark:text-gray-200 text-gray-800 font-sora text-4xl font-black">
+            {`Hi, I'm `}
+            <Highlight>{config.title}</Highlight>
+          </h1>
 
-        <p className="dark:text-gray-200 text-gray-800 font-roboto-slab text-lg font-medium">
-          {`I am a web developer working at `}
-          <a
-            className="dark:text-emerald-600 text-emerald-700"
-            href={currentJob.link}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {currentJob.company}
-          </a>
-          {` as ${getAOrAn(currentJob.positions[0].title)} `}
-          <Link href="/career">
-            <a className="dark:text-emerald-600 text-emerald-700">
-              {currentJob.positions[0].title}
-            </a>
-          </Link>
-          {`. You have found my personal corner of the internet.`}
-        </p>
+          <p className="dark:text-gray-200 text-gray-800 font-roboto-slab text-lg font-medium">
+            {`I am a web developer working at `}
+            <Highlight>{currentJob.company}</Highlight>
+            {` as ${getAOrAn(currentJob.positions[0].title)} `}
+            <Highlight>{currentJob.positions[0].title}</Highlight>
+            {`. You have found my personal corner of the internet.`}
+          </p>
 
-        <div className="flex flex-row space-x-2">
-          <SocialLink site="GitHub" link={config.social.github} />
+          <div className="flex flex-row space-x-2">
+            <SocialLink site="GitHub" link={config.social.github} />
 
-          <SocialLink site="DEV" link={config.social.dev} />
+            <SocialLink site="DEV" link={config.social.dev} />
 
-          <SocialLink site="Twitter" link={config.social.twitter} />
+            <SocialLink site="Twitter" link={config.social.twitter} />
 
-          <SocialLink site="RSS" link="/rss.xml" />
+            <SocialLink site="RSS" link="/rss.xml" />
+          </div>
         </div>
-      </div>
+      </HighlightGroup>
     </>
   );
 };
