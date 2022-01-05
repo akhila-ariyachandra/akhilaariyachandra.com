@@ -8,7 +8,6 @@ import YAML from "yaml";
 import type { NextPage, GetStaticProps } from "next";
 import type { Job } from "@/lib/types";
 import { getPeriod } from "@/lib/helpers";
-import { HighlightGroup, Highlight } from "@/components/Highlight";
 
 type Props = {
   careerList: Job[];
@@ -16,12 +15,12 @@ type Props = {
 
 const Career: NextPage<Props> = ({ careerList }) => {
   return (
-    <HighlightGroup>
+    <>
       <SEO title="Career" description="My work experience" />
 
       <div className="mx-auto max-w-xl">
         <ListContainer title="Career">
-          {careerList.map((company, index) => (
+          {careerList.map((company) => (
             <div
               key={company.company}
               className="flex flex-row items-center space-x-4"
@@ -58,14 +57,10 @@ const Career: NextPage<Props> = ({ careerList }) => {
                   )}
                 </div>
 
-                {company.positions.map((position, subIndex) => (
+                {company.positions.map((position) => (
                   <div key={position.title} className="space-y-1 truncate">
                     <p className="dark:text-gray-200 text-gray-800 font-sora text-xl font-semibold truncate">
-                      {index === 0 && subIndex === 0 ? (
-                        <Highlight>{position.title}</Highlight>
-                      ) : (
-                        position.title
-                      )}
+                      {position.title}
                     </p>
 
                     <p className="dark:text-gray-200 text-gray-800 font-roboto-slab text-base font-normal truncate">
@@ -82,7 +77,7 @@ const Career: NextPage<Props> = ({ careerList }) => {
           ))}
         </ListContainer>
       </div>
-    </HighlightGroup>
+    </>
   );
 };
 
