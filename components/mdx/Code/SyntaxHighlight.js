@@ -48,7 +48,7 @@ const SyntaxHighlight = ({ children, title, language }) => {
                 }}
                 className="grid place-items-center"
               >
-                <FaCog className="text-gray-100 text-lg animate-spin" />
+                <FaCog className="animate-spin text-lg text-gray-100" />
               </div>
             }
           >

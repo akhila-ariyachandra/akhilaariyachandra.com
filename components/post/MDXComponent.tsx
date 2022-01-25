@@ -10,7 +10,7 @@ const MDXComponent: FC<Props> = ({ code }) => {
   const Component = useMDXComponent(code);
 
   return (
-    <div className="prose prose-gray dark:prose-invert prose-h1:mt-3.5 prose-headings:prose-a:no-underline max-w-none my-4 font-sora">
+    <div className="prose prose-gray my-4 max-w-none font-sora prose-h1:mt-3.5 prose-headings:prose-a:no-underline dark:prose-invert">
       <Component components={mdxComponents} />
     </div>
   );

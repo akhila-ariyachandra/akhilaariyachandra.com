@@ -17,7 +17,7 @@ import {
 } from "@/lib/dashboard";
 
 const Divider = () => {
-  return <hr className="h-[1px] my-12 bg-gray-200 dark:bg-gray-600" />;
+  return <hr className="my-12 h-[1px] bg-gray-200 dark:bg-gray-600" />;
 };
 
 type PopularPost = {
@@ -40,7 +40,7 @@ const Dashboard: NextPage = () => {
 
       <Title title="Dashboard" />
 
-      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <DashboardItem
           title="Views"
           link={{ type: "internal", url: "/blog" }}
@@ -73,20 +73,20 @@ const Dashboard: NextPage = () => {
       <Divider />
 
       <div className="my-10">
-        <h2 className="my-6 dark:text-gray-200 text-gray-800 font-sora text-3xl font-semibold">
+        <h2 className="my-6 font-sora text-3xl font-semibold text-gray-800 dark:text-gray-200">
           Most Popular Posts
         </h2>
 
-        <div className="grid gap-4 grid-cols-1">
+        <div className="grid grid-cols-1 gap-4">
           {data.map((post) => (
             <article key={post.id}>
               <Link href={post.slug}>
-                <a className="dark:text-emerald-600 text-emerald-700 font-sora text-2xl font-medium">
+                <a className="font-sora text-2xl font-medium text-emerald-700 dark:text-emerald-600">
                   {post.title}
                 </a>
               </Link>
 
-              <p className="mt-1 dark:text-gray-200 text-gray-800 font-roboto-slab text-lg font-normal">{`${post.hits} views`}</p>
+              <p className="mt-1 font-roboto-slab text-lg font-normal text-gray-800 dark:text-gray-200">{`${post.hits} views`}</p>
             </article>
           ))}
         </div>

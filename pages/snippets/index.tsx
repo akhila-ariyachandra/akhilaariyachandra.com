@@ -25,12 +25,12 @@ const Snippets: NextPage<Props> = ({ snippets }) => {
         {snippets.map((snippet) => (
           <article key={snippet.id} className="space-y-2">
             <Link href={`/snippets/${snippet.id}`}>
-              <a className="dark:text-emerald-600 text-emerald-700 font-sora text-3xl font-bold">
+              <a className="font-sora text-3xl font-bold text-emerald-700 dark:text-emerald-600">
                 {snippet.title}
               </a>
             </Link>
 
-            <p className="dark:text-gray-200 text-gray-800 font-roboto-slab text-lg font-medium">
+            <p className="font-roboto-slab text-lg font-medium text-gray-800 dark:text-gray-200">
               {snippet.description}
             </p>
           </article>

@@ -28,16 +28,16 @@ const DashboardItem: React.FunctionComponent<Props> = ({
   );
 
   return (
-    <div className="grid gap-2 grid-cols-1 place-content-center">
+    <div className="grid grid-cols-1 place-content-center gap-2">
       {link.type === "internal" ? (
         <Link href={link.url}>
-          <a className="flex flex-row dark:text-emerald-600 text-emerald-700 font-sora text-3xl font-medium">
+          <a className="flex flex-row font-sora text-3xl font-medium text-emerald-700 dark:text-emerald-600">
             {title}
           </a>
         </Link>
       ) : (
         <a
-          className="flex flex-row dark:text-emerald-600 text-emerald-700 font-sora text-3xl font-medium"
+          className="flex flex-row font-sora text-3xl font-medium text-emerald-700 dark:text-emerald-600"
           target="_blank"
           rel="noopener noreferrer"
           href={link.url}
@@ -46,7 +46,7 @@ const DashboardItem: React.FunctionComponent<Props> = ({
         </a>
       )}
 
-      <div className="dark:text-gray-200 text-gray-800 font-roboto-slab text-2xl font-normal">
+      <div className="font-roboto-slab text-2xl font-normal text-gray-800 dark:text-gray-200">
         {data}
       </div>
     </div>

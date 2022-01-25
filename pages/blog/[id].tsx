@@ -38,38 +38,38 @@ const BlogPost: NextPage<Props> = ({ post }) => {
       />
 
       {post.photographer && post.unsplashLink ? (
-        <p className="my-2 px-4 text-center dark:text-gray-200 text-gray-800 font-roboto-slab text-base font-medium">
+        <p className="my-2 px-4 text-center font-roboto-slab text-base font-medium text-gray-800 dark:text-gray-200">
           {"Photo by "}
           <a
             href={post.unsplashLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="dark:text-emerald-600 text-emerald-700"
+            className="text-emerald-700 dark:text-emerald-600"
           >
             {post.photographer}
           </a>
         </p>
       ) : null}
 
-      <h1 className="my-4 px-4 text-center dark:text-gray-200 text-gray-800 font-sora text-4xl font-black">
+      <h1 className="my-4 px-4 text-center font-sora text-4xl font-black text-gray-800 dark:text-gray-200">
         {post.title}
       </h1>
 
-      <div className="flex flex-col items-center my-2 px-4 dark:text-gray-200 text-gray-800 font-roboto-slab text-lg font-medium sm:flex-row sm:justify-center">
+      <div className="my-2 flex flex-col items-center px-4 font-roboto-slab text-lg font-medium text-gray-800 dark:text-gray-200 sm:flex-row sm:justify-center">
         <p>{`Posted on ${formatDate(post.date)}`}</p>
 
         {post.updated && (
           <>
-            <span className="hidden sm:block sm:mx-2">&bull;</span>
+            <span className="hidden sm:mx-2 sm:block">&bull;</span>
             <p>{`Last updated on ${formatDate(post.updated)}`}</p>
           </>
         )}
       </div>
 
-      <div className="flex flex-col items-center my-2 px-4 dark:text-gray-200 text-gray-800 font-roboto-slab text-lg font-medium sm:flex-row sm:justify-center">
+      <div className="my-2 flex flex-col items-center px-4 font-roboto-slab text-lg font-medium text-gray-800 dark:text-gray-200 sm:flex-row sm:justify-center">
         <p>{post.readingTime}</p>
 
-        <span className="hidden sm:block sm:mx-2">&bull;</span>
+        <span className="hidden sm:mx-2 sm:block">&bull;</span>
 
         <p>{`${hits} views`}</p>
       </div>

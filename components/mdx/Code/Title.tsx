@@ -6,11 +6,11 @@ type Props = {
 
 const Title: FunctionComponent<Props> = ({ text, children }) => {
   return (
-    <div className="flex flex-row items-center justify-between pl-5 bg-emerald-300 not-prose">
-      <p className="text-gray-800 font-bold min-w-0 truncate">{text}</p>
+    <div className="not-prose flex flex-row items-center justify-between bg-emerald-300 pl-5">
+      <p className="min-w-0 truncate font-bold text-gray-800">{text}</p>
 
       {children ? (
-        <div className="flex-shrink-0 px-5 py-2 text-gray-200 text-base bg-emerald-700">
+        <div className="flex-shrink-0 bg-emerald-700 px-5 py-2 text-base text-gray-200">
           {children}
         </div>
       ) : null}

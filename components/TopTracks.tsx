@@ -16,20 +16,20 @@ const TopTracks: FC = () => {
 
   return (
     <div className="my-10">
-      <h2 className="mt-6 dark:text-gray-200 text-gray-800 font-sora text-3xl font-semibold">
+      <h2 className="mt-6 font-sora text-3xl font-semibold text-gray-800 dark:text-gray-200">
         Top Tracks
       </h2>
 
-      <p className="mb-6 mt-4 dark:text-gray-300 text-gray-500 font-roboto-slab text-lg">
+      <p className="mb-6 mt-4 font-roboto-slab text-lg text-gray-500 dark:text-gray-300">
         Interested to know what I&apos;m listening to? Here are my top tracks in
         Spotify updated daily.
       </p>
 
-      <div className="flex flex-col divide-gray-200 dark:divide-gray-600 divide-y space-y-3">
+      <div className="flex flex-col space-y-3 divide-y divide-gray-200 dark:divide-gray-600">
         {data.map((track, index) => (
           <div
             key={`top-track-${index}`}
-            className="flex flex-row items-center pt-3 space-x-6"
+            className="flex flex-row items-center space-x-6 pt-3"
           >
             <div className="flex-shrink-0">
               <Image
@@ -47,12 +47,12 @@ const TopTracks: FC = () => {
                 href={track.songUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="dark:text-emerald-600 text-emerald-700 font-sora text-lg font-medium truncate"
+                className="truncate font-sora text-lg font-medium text-emerald-700 dark:text-emerald-600"
               >
                 {track.name}
               </a>
 
-              <p className="dark:text-gray-300 text-gray-500 font-roboto-slab truncate">
+              <p className="truncate font-roboto-slab text-gray-500 dark:text-gray-300">
                 {track.artist}
               </p>
             </div>
