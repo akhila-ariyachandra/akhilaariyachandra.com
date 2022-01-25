@@ -13,7 +13,7 @@ const HitCounter: FunctionComponent = () => {
   }, [increment]);
 
   return (
-    <div className="grid place-items-center m-4">
+    <div className="m-4 grid place-items-center">
       <RetroHitCounter hits={hits} />
     </div>
   );

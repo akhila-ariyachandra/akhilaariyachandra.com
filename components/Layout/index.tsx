@@ -4,10 +4,10 @@ import Footer from "@/components/Layout/Footer";
 
 const Layout: React.FunctionComponent = ({ children }) => {
   return (
-    <div className="flex flex-col justify-between mx-auto min-h-full">
+    <div className="mx-auto flex min-h-full flex-col justify-between">
       <Header />
 
-      <main className="container p-4 w-full max-w-3xl">{children}</main>
+      <main className="container w-full max-w-3xl p-4">{children}</main>
 
       <Footer />
     </div>

@@ -37,18 +37,18 @@ const Career: NextPage<Props> = ({ careerList }) => {
               </div>
 
               <div className="space-y-3 truncate">
-                <div className="flex flex-row text-xl space-x-2 truncate">
+                <div className="flex flex-row space-x-2 truncate text-xl">
                   <a
                     href={company.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="dark:text-emerald-600 text-emerald-700 font-sora font-medium truncate"
+                    className="truncate font-sora font-medium text-emerald-700 dark:text-emerald-600"
                   >
                     {company.company}
                   </a>
 
                   {company.overallPeriod && (
-                    <p className="dark:text-gray-200 text-gray-800 font-sora font-normal truncate">
+                    <p className="truncate font-sora font-normal text-gray-800 dark:text-gray-200">
                       {`(${getPeriod(
                         company.overallPeriod.startDate,
                         company.overallPeriod.endDate
@@ -59,11 +59,11 @@ const Career: NextPage<Props> = ({ careerList }) => {
 
                 {company.positions.map((position) => (
                   <div key={position.title} className="space-y-1 truncate">
-                    <p className="dark:text-gray-200 text-gray-800 font-sora text-xl font-semibold truncate">
+                    <p className="truncate font-sora text-xl font-semibold text-gray-800 dark:text-gray-200">
                       {position.title}
                     </p>
 
-                    <p className="dark:text-gray-200 text-gray-800 font-roboto-slab text-base font-normal truncate">
+                    <p className="truncate font-roboto-slab text-base font-normal text-gray-800 dark:text-gray-200">
                       {`${dayjs(position.startDate).format("MMMM YYYY")} - ${
                         position.endDate
                           ? dayjs(position.endDate).format("MMMM YYYY")

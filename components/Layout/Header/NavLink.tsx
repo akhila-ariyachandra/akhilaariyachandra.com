@@ -16,7 +16,7 @@ const NavLink: FC<{
         <a
           href={href}
           aria-label={`${label} navigation link`}
-          className={`p-2 rounded text-2xl ${
+          className={`rounded p-2 text-2xl ${
             enabled
               ? "bg-emerald-200 dark:bg-gray-800"
               : "text-gray-800 dark:text-gray-200"
@@ -31,7 +31,7 @@ const NavLink: FC<{
       </Tooltip.Trigger>
 
       <Tooltip.Content sideOffset={10}>
-        <span className="px-2 py-1 bg-yellow-200 dark:bg-emerald-800 leading-none rounded">
+        <span className="rounded bg-yellow-200 px-2 py-1 leading-none dark:bg-emerald-800">
           {label}
         </span>
       </Tooltip.Content>

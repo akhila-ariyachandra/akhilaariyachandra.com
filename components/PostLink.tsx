@@ -15,12 +15,12 @@ const PostLink: FunctionComponent<Props> = ({ post, hits }) => {
   return (
     <article className="space-y-2">
       <Link href={`/blog/${post.id}`}>
-        <a className="dark:text-emerald-600 text-emerald-700 font-sora text-3xl font-bold">
+        <a className="font-sora text-3xl font-bold text-emerald-700 dark:text-emerald-600">
           {post.title}
         </a>
       </Link>
 
-      <div className="flex flex-row dark:text-gray-200 text-gray-800 font-roboto-slab text-lg font-medium truncate">
+      <div className="flex flex-row truncate font-roboto-slab text-lg font-medium text-gray-800 dark:text-gray-200">
         <p className="min-w-0 truncate">{formatDate(post.date)}</p>
 
         <span className="mx-2">-</span>

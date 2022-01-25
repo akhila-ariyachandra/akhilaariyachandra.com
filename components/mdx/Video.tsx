@@ -13,7 +13,7 @@ const Video: React.FC<Props> = ({ name, width, height, title }) => {
 
   return (
     <div
-      className="relative my-4 w-full not-prose mx-auto"
+      className="not-prose relative my-4 mx-auto w-full"
       style={{ aspectRatio: `${width} / ${height}`, maxWidth: width }}
     >
       <video
@@ -24,7 +24,7 @@ const Video: React.FC<Props> = ({ name, width, height, title }) => {
         width={width}
         height={height}
         title={title}
-        className="absolute inset-1/2 rounded -translate-x-1/2 -translate-y-1/2"
+        className="absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 rounded"
       >
         <source src={`${asPath}/${name}.webm`} type="video/webm" />
         <source src={`${asPath}/${name}.mp4`} type="video/mp4" />

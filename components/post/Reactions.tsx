@@ -42,26 +42,26 @@ const Reactions: FC<Props> = ({ showDescription = true }) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center my-10 w-full space-y-4">
+    <div className="my-10 flex w-full flex-col items-center justify-center space-y-4">
       {showDescription && (
-        <p className="text-center dark:text-gray-200 text-gray-800 font-sora text-xl font-medium">
+        <p className="text-center font-sora text-xl font-medium text-gray-800 dark:text-gray-200">
           If you enjoyed this post please leave a like or two below!!!
         </p>
       )}
 
       <button
         ref={ref}
-        className="w-[300px] h-[50px] relative border-4 dark:border-gray-200 border-gray-700 rounded-md overflow-hidden"
+        className="relative h-[50px] w-[300px] overflow-hidden rounded-md border-4 border-gray-700 dark:border-gray-200"
         onClick={handleOnClick}
         disabled={reactionCount >= REACTION_LIMIT}
         aria-label="Like"
       >
         <animated.div
           style={props}
-          className="absolute left-0 top-0 h-full dark:bg-emerald-500 bg-emerald-600"
+          className="absolute left-0 top-0 h-full bg-emerald-600 dark:bg-emerald-500"
         />
 
-        <div className="absolute z-10 left-0 top-0 flex items-center justify-center w-full h-full">
+        <div className="absolute left-0 top-0 z-10 flex h-full w-full items-center justify-center">
           <span className="text-2xl leading-3">
             {reactionCount === 0
               ? "😔"
@@ -70,7 +70,7 @@ const Reactions: FC<Props> = ({ showDescription = true }) => {
               : "😀"}
           </span>
 
-          <span className="ml-2 px-2 dark:text-gray-200 text-gray-800 text-lg font-medium tracking-wide dark:bg-gray-900 bg-white rounded">
+          <span className="ml-2 rounded bg-white px-2 text-lg font-medium tracking-wide text-gray-800 dark:bg-gray-900 dark:text-gray-200">
             {totalCount}
           </span>
         </div>

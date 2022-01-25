@@ -19,11 +19,11 @@ const Snippet: NextPage<Props> = ({ snippet }) => {
         image="/snippets-cover.jpg"
       />
 
-      <h1 className="my-8 px-4 text-center dark:text-gray-200 text-gray-800 font-sora text-4xl font-black">
+      <h1 className="my-8 px-4 text-center font-sora text-4xl font-black text-gray-800 dark:text-gray-200">
         {snippet.title}
       </h1>
 
-      <p className="my-2 px-4 text-center dark:text-gray-200 text-gray-800 font-roboto-slab text-lg font-medium">
+      <p className="my-2 px-4 text-center font-roboto-slab text-lg font-medium text-gray-800 dark:text-gray-200">
         {snippet.description}
       </p>
 

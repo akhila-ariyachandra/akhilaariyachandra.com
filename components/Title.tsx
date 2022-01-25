@@ -6,7 +6,7 @@ type Props = {
 
 const Title: React.FunctionComponent<Props> = ({ title }) => {
   return (
-    <h1 className="my-10 dark:text-gray-200 text-gray-800 font-sora text-4xl font-bold">
+    <h1 className="my-10 font-sora text-4xl font-bold text-gray-800 dark:text-gray-200">
       {title}
     </h1>
   );

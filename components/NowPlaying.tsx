@@ -15,8 +15,8 @@ const NowPlaying: React.FunctionComponent = () => {
   );
 
   return (
-    <div className="flex flex-row-reverse items-center w-full text-lg antialiased space-x-0 sm:flex-row sm:space-x-3">
-      <div className="w-[48px] h-[48px] relative flex-shrink-0 grid place-items-center">
+    <div className="flex w-full flex-row-reverse items-center space-x-0 text-lg antialiased sm:flex-row sm:space-x-3">
+      <div className="relative grid h-[48px] w-[48px] flex-shrink-0 place-items-center">
         {data?.albumImage ? (
           <Image
             src={data.albumImage}
@@ -32,16 +32,16 @@ const NowPlaying: React.FunctionComponent = () => {
 
         {data?.isPlaying && (
           <span
-            className="absolute -right-1 -top-1 w-2 h-2 rounded-full animate-ping"
+            className="absolute -right-1 -top-1 h-2 w-2 animate-ping rounded-full"
             style={{ backgroundColor: "#1DB954" }}
           />
         )}
       </div>
 
-      <div className="inline-flex flex-col w-full max-w-full truncate sm:flex-row">
+      <div className="inline-flex w-full max-w-full flex-col truncate sm:flex-row">
         {data?.songUrl ? (
           <a
-            className="max-w-max dark:text-gray-100 text-emerald-900 font-sora font-medium truncate"
+            className="max-w-max truncate font-sora font-medium text-emerald-900 dark:text-gray-100"
             href={data.songUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -49,14 +49,14 @@ const NowPlaying: React.FunctionComponent = () => {
             {data.name}
           </a>
         ) : (
-          <p className="dark:text-gray-200 text-gray-800 font-sora font-medium">
+          <p className="font-sora font-medium text-gray-800 dark:text-gray-200">
             Not Playing
           </p>
         )}
-        <span className="hidden mx-2 dark:text-gray-300 text-gray-600 font-sora sm:block">
+        <span className="mx-2 hidden font-sora text-gray-600 dark:text-gray-300 sm:block">
           {" – "}
         </span>
-        <p className="max-w-max dark:text-gray-300 text-gray-700 font-sora truncate">
+        <p className="max-w-max truncate font-sora text-gray-700 dark:text-gray-300">
           {data?.artist ?? "Spotify"}
         </p>
       </div>

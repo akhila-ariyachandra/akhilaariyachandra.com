@@ -20,12 +20,12 @@ const PostImage: FunctionComponent<Props> = ({
   credit,
 }) => {
   return (
-    <div className="grid place-items-center my-5 not-prose">
+    <div className="not-prose my-5 grid place-items-center">
       <Image
         src={src}
         width={width}
         height={height}
-        className="rounded overflow-hidden"
+        className="overflow-hidden rounded"
         alt={title}
         title={title}
       />
@@ -34,7 +34,7 @@ const PostImage: FunctionComponent<Props> = ({
         <p className="mt-2">
           Credit -{" "}
           <a
-            className="dark:text-emerald-500 text-emerald-800 font-roboto-slab font-semibold"
+            className="font-roboto-slab font-semibold text-emerald-800 dark:text-emerald-500"
             href={credit.link}
             target="_blank"
             rel="noopener noreferrer"

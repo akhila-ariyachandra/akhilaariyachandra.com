@@ -18,7 +18,7 @@ const Code = ({ children }) => {
 
   return (
     <div
-      className="rounded-md overflow-hidden my-5"
+      className="my-5 overflow-hidden rounded-md"
       style={{ backgroundColor: "rgb(1, 22, 39)" }}
     >
       <Title text={title}>{language}</Title>

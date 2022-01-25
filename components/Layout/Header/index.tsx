@@ -39,7 +39,7 @@ const NAV_LINKS: {
 const Header: React.FunctionComponent = () => {
   return (
     <Tooltip.Provider>
-      <header className="container sticky z-40 top-0 flex flex-row items-center justify-between gap-4 p-4 w-full max-w-4xl dark:bg-gray-900 bg-white bg-opacity-75 backdrop-blur-xl backdrop-filter">
+      <header className="container sticky top-0 z-40 flex w-full max-w-4xl flex-row items-center justify-between gap-4 bg-white bg-opacity-75 p-4 backdrop-blur-xl backdrop-filter dark:bg-gray-900">
         {NAV_LINKS.map(({ label, Icon, href, activePath }) => (
           <NavLink
             key={label}

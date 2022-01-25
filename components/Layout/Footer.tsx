@@ -12,7 +12,7 @@ const LINKS = [
 
 const ExternalLink = ({ children, link }) => (
   <a
-    className="dark:text-emerald-500 text-emerald-800 font-semibold"
+    className="font-semibold text-emerald-800 dark:text-emerald-500"
     href={link}
     target="_blank"
     rel="noopener noreferrer"
@@ -23,14 +23,14 @@ const ExternalLink = ({ children, link }) => (
 
 const Footer: React.FunctionComponent = () => {
   return (
-    <footer className="mt-10 dark:bg-gray-800 bg-emerald-200">
-      <div className="container flex flex-col px-4 py-6 max-w-4xl space-y-6">
+    <footer className="mt-10 bg-emerald-200 dark:bg-gray-800">
+      <div className="container flex max-w-4xl flex-col space-y-6 px-4 py-6">
         <NowPlaying />
 
-        <nav className="grid gap-2 grid-cols-2 sm:grid-cols-3">
+        <nav className="grid grid-cols-2 gap-2 sm:grid-cols-3">
           {LINKS.map((link) => (
             <Link href={link.href} key={link.href}>
-              <a className="dark:text-gray-300 text-emerald-900 font-sora text-xl font-medium">
+              <a className="font-sora text-xl font-medium text-emerald-900 dark:text-gray-300">
                 {link.title}
               </a>
             </Link>
@@ -38,7 +38,7 @@ const Footer: React.FunctionComponent = () => {
         </nav>
 
         <div className="flex items-center justify-between">
-          <span className="dark:text-gray-200 text-gray-800 font-sora text-base font-medium">
+          <span className="font-sora text-base font-medium text-gray-800 dark:text-gray-200">
             © 2019 - {new Date().getFullYear()}, Built with
             {` `}
             <ExternalLink link="https://nextjs.org/">Next.js</ExternalLink>
@@ -58,7 +58,7 @@ const Footer: React.FunctionComponent = () => {
             href="https://app.splitbee.io/public/akhilaariyachandra.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="dark:text-yellow-400 text-yellow-600 font-sora text-xl"
+            className="font-sora text-xl text-yellow-600 dark:text-yellow-400"
             onClick={() => {
               splitbee.track("Open Link", { name: "Analytics" });
             }}

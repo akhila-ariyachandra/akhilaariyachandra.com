@@ -40,7 +40,7 @@ const SocialLink = ({
 
   return (
     <a
-      className="dark:text-emerald-600 text-emerald-700 text-3xl"
+      className="text-3xl text-emerald-700 dark:text-emerald-600"
       href={link}
       target="_blank"
       rel="noopener noreferrer"
@@ -73,17 +73,17 @@ const Index: NextPage<Props> = ({ currentJob }) => {
       />
 
       <div className="mt-4 space-y-4">
-        <h1 className="dark:text-gray-200 text-gray-800 font-sora text-4xl font-black">
+        <h1 className="font-sora text-4xl font-black text-gray-800 dark:text-gray-200">
           {`Hi, I'm `}
-          <span className="dark:text-emerald-600 text-emerald-700">
+          <span className="text-emerald-700 dark:text-emerald-600">
             {config.title}
           </span>
         </h1>
 
-        <p className="dark:text-gray-200 text-gray-800 font-roboto-slab text-lg font-medium">
+        <p className="font-roboto-slab text-lg font-medium text-gray-800 dark:text-gray-200">
           {`I am a web developer working at `}
           <a
-            className="dark:text-emerald-600 text-emerald-700"
+            className="text-emerald-700 dark:text-emerald-600"
             href={currentJob.link}
             target="_blank"
             rel="noopener noreferrer"
@@ -92,7 +92,7 @@ const Index: NextPage<Props> = ({ currentJob }) => {
           </a>
           {` as ${getAOrAn(currentJob.positions[0].title)} `}
           <Link href="/career">
-            <a className="dark:text-emerald-600 text-emerald-700">
+            <a className="text-emerald-700 dark:text-emerald-600">
               {currentJob.positions[0].title}
             </a>
           </Link>

@@ -9,7 +9,7 @@ type Props = {
 
 const Iframe: React.FunctionComponent<Props> = ({ url }) => {
   return (
-    <div className="my-4 rounded overflow-hidden">
+    <div className="my-4 overflow-hidden rounded">
       <LazyLoad height={IFRAME_HEIGHT} offset={500} once>
         <iframe
           src={url}
