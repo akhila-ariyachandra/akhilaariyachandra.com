@@ -1,23 +1,16 @@
-import React from "react";
-import LazyLoad from "react-lazyload";
-
-const IFRAME_HEIGHT = 500;
+import type { FC, IframeHTMLAttributes } from "react";
 
 type Props = {
-  url: string;
+  src: IframeHTMLAttributes<HTMLIFrameElement>["src"];
 };
 
-const Iframe: React.FunctionComponent<Props> = ({ url }) => {
+const Iframe: FC<Props> = ({ src }) => {
   return (
-    <div className="my-4 overflow-hidden rounded">
-      <LazyLoad height={IFRAME_HEIGHT} offset={500} once>
-        <iframe
-          src={url}
-          className="w-full"
-          style={{ height: IFRAME_HEIGHT }}
-        />
-      </LazyLoad>
-    </div>
+    <iframe
+      src={src}
+      className="my-4 h-[500px] w-full overflow-hidden rounded"
+      loading="lazy"
+    />
   );
 };
 
