@@ -12,7 +12,7 @@ const NavLink: FC<{
   return (
     <Link href={href}>
       <a
-        className={`text-lg font-medium ${
+        className={`font-sora text-lg font-medium ${
           enabled
             ? "text-emerald-700 dark:text-emerald-600"
             : "text-gray-800 dark:text-gray-200 "
