@@ -31,11 +31,13 @@ const NAV_LINKS: {
 const Header: React.FunctionComponent = () => {
   return (
     <header className="container sticky top-0 z-40 flex w-full max-w-4xl flex-row items-center justify-between gap-4 bg-white bg-opacity-75 p-4 backdrop-blur-xl backdrop-filter dark:bg-gray-900">
-      {NAV_LINKS.map(({ label, href, activePath }) => (
-        <NavLink key={href} href={href} activePath={activePath}>
-          {label}
-        </NavLink>
-      ))}
+      <nav className="flex flex-row flex-wrap items-center gap-2 sm:gap-4">
+        {NAV_LINKS.map(({ label, href, activePath }) => (
+          <NavLink key={href} href={href} activePath={activePath}>
+            {label}
+          </NavLink>
+        ))}
+      </nav>
 
       <span className="flex-1" />
 
