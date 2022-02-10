@@ -1,6 +1,6 @@
 import { FC, memo } from "react";
 import { useMDXComponent } from "next-contentlayer/hooks";
-import { mdxComponents } from "@/lib/mdx";
+import { mdxComponents } from "@/components/mdx";
 
 type Props = {
   code: string;

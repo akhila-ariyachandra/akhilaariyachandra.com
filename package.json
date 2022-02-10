@@ -35,7 +35,7 @@
     "@mdx-js/mdx": "^2.0.0",
     "@mdx-js/react": "^2.0.0",
     "@next/bundle-analyzer": "^12.0.10",
-    "@prisma/client": "^3.9.1",
+    "@prisma/client": "^3.9.2",
     "@radix-ui/react-dialog": "^0.1.5",
     "@react-spring/web": "^9.4.2",
     "@splitbee/web": "^0.3.0",
@@ -66,14 +66,14 @@
     "remark-external-links": "^9.0.1",
     "remark-slug": "^7.0.1",
     "remark-smartypants": "^2.0.0",
-    "sharp": "^0.30.0",
+    "sharp": "^0.30.1",
     "snarkdown": "^2.0.0",
     "yaml": "^1.10.2"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.1",
     "@types/jsonwebtoken": "^8.5.8",
-    "@types/node": "^17.0.16",
+    "@types/node": "^17.0.17",
     "@types/react": "^17.0.39",
     "autoprefixer": "^10.4.2",
     "cross-env": "^7.0.3",
@@ -85,7 +85,7 @@
     "prettier": "^2.5.1",
     "prettier-plugin-prisma": "^3.9.0",
     "prettier-plugin-tailwindcss": "^0.1.7",
-    "prisma": "^3.9.1",
+    "prisma": "^3.9.2",
     "tailwindcss": "^3.0.19",
     "typescript": "^4.5.5"
   }
