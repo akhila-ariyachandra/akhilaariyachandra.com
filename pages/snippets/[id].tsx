@@ -3,8 +3,8 @@ import HitCounter from "@/components/post/HitCounter";
 import Reactions from "@/components/post/Reactions";
 import MDXComponent from "@/components/post/MDXComponent";
 import type { NextPage, GetStaticPaths, GetStaticProps } from "next";
-import type { Snippet } from ".contentlayer/types";
-import { allSnippets } from ".contentlayer/data";
+import type { Snippet } from "contentlayer/generated";
+import { allSnippets } from "contentlayer/generated";
 
 type Props = {
   snippet: Snippet;

@@ -5,7 +5,7 @@ import PostLink from "@/components/PostLink";
 import ListContainer from "@/components/ListContainer";
 import type { NextPage, GetStaticProps } from "next";
 import { useQuery, useQueryClient, QueryClient, dehydrate } from "react-query";
-import { allPosts } from ".contentlayer/data";
+import { allPosts } from "contentlayer/generated";
 import { fetcher } from "@/lib/helpers";
 import { getPageHitsKey } from "@/lib/constants";
 

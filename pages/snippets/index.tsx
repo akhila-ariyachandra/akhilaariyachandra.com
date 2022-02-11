@@ -2,7 +2,7 @@ import SEO from "@/components/SEO";
 import Link from "next/link";
 import ListContainer from "@/components/ListContainer";
 import type { NextPage, GetStaticProps } from "next";
-import { allSnippets } from ".contentlayer/data";
+import { allSnippets } from "contentlayer/generated";
 
 type Props = {
   snippets: {
