@@ -1,12 +1,15 @@
 import dayjs from "dayjs";
+import prisma from "@/prisma";
 import SEO from "@/components/SEO";
 import PostLink from "@/components/PostLink";
 import ListContainer from "@/components/ListContainer";
 import type { NextPage, GetStaticProps } from "next";
-import { useQuery, useQueryClient } from "react-query";
-import { allPosts } from ".contentlayer/data";
+import { useQuery, useQueryClient, QueryClient, dehydrate } from "react-query";
+import { allPosts } from "contentlayer/generated";
 import { fetcher } from "@/lib/helpers";
 import { getPageHitsKey } from "@/lib/constants";
+
+const QUERY_KEY = ["allPageHits"];
 
 type Props = {
   posts: {
@@ -23,21 +26,17 @@ type PageHit = {
 
 const Blog: NextPage<Props> = ({ posts }) => {
   const queryClient = useQueryClient();
-  const { data } = useQuery<PageHit[]>(
-    ["allPageHits"],
-    () => fetcher("/api/hit"),
-    {
-      placeholderData: posts.map((post) => ({
-        id: post.id,
-        hits: 0,
-      })),
-      onSuccess: (data) => {
-        data.forEach((page) => {
-          queryClient.setQueryData(getPageHitsKey(page.id), page.hits);
-        });
-      },
-    }
-  );
+  const { data } = useQuery<PageHit[]>(QUERY_KEY, () => fetcher("/api/hit"), {
+    placeholderData: posts.map((post) => ({
+      id: post.id,
+      hits: 0,
+    })),
+    onSuccess: (data) => {
+      data.forEach((page) => {
+        queryClient.setQueryData(getPageHitsKey(page.id), page.hits);
+      });
+    },
+  });
 
   return (
     <>
@@ -76,9 +75,23 @@ export const getStaticProps: GetStaticProps = async () => {
       }
     });
 
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery(QUERY_KEY, async () => {
+    const pages = await prisma.page.findMany({
+      select: {
+        id: true,
+        hits: true,
+      },
+    });
+
+    return pages;
+  });
+
   return {
     props: {
       posts,
+      dehydratedState: dehydrate(queryClient),
     },
+    revalidate: 3600, // 1 hour
   };
 };

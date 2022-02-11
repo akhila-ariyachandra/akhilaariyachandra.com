@@ -8,3 +8,6 @@ package-lock.json
 public/sw.js
 public/workbox-*.js
 public/fallback-*.js
+
+# Contentlayer
+.contentlayer

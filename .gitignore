@@ -12,3 +12,6 @@ public/rss.xml
 public/sw.js
 public/workbox-*.js
 public/fallback-*.js
+
+# Contentlayer
+.contentlayer
