@@ -1,5 +1,6 @@
 import React from "react";
 import useHits from "@/hooks/use-hits";
+import prisma from "@/prisma";
 import SEO from "@/components/SEO";
 import Image from "next/image";
 import HitCounter from "@/components/post/HitCounter";
@@ -8,7 +9,9 @@ import MDXComponent from "@/components/post/MDXComponent";
 import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import type { Post } from ".contentlayer/types";
 import { allPosts } from ".contentlayer/data";
+import { QueryClient, dehydrate } from "react-query";
 import { formatDate } from "@/lib/helpers";
+import { getPageHitsKey } from "@/lib/constants";
 
 type Props = {
   post: Post;
@@ -93,11 +96,31 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const post = allPosts.find((post) => post.id === params?.id);
+  const id = params?.id as string;
+  const QUERY_KEY = getPageHitsKey(id);
+
+  const post = allPosts.find((post) => post.id === id);
+
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery(QUERY_KEY, async () => {
+    const { hits } = await prisma.page.findUnique({
+      where: {
+        id,
+      },
+      select: {
+        hits: true,
+      },
+      rejectOnNotFound: true,
+    });
+
+    return hits;
+  });
 
   return {
     props: {
       post,
+      dehydratedState: dehydrate(queryClient),
     },
+    revalidate: 3600, // 1 hour
   };
 };
