@@ -1,10 +1,13 @@
+import prisma from "@/prisma";
 import SEO from "@/components/SEO";
 import HitCounter from "@/components/post/HitCounter";
 import Reactions from "@/components/post/Reactions";
 import MDXComponent from "@/components/post/MDXComponent";
 import type { NextPage, GetStaticPaths, GetStaticProps } from "next";
 import type { Snippet } from "contentlayer/generated";
+import { QueryClient, dehydrate } from "react-query";
 import { allSnippets } from "contentlayer/generated";
+import { getPageHitsKey } from "@/lib/constants";
 
 type Props = {
   snippet: Snippet;
@@ -44,10 +47,29 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const snippet = allSnippets.find((snippet) => snippet.id === params?.id);
+  const id = params?.id as string;
+  const QUERY_KEY = getPageHitsKey(id);
+
+  const snippet = allSnippets.find((snippet) => snippet.id === id);
+
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery(QUERY_KEY, async () => {
+    const { hits } = await prisma.page.findUnique({
+      where: {
+        id,
+      },
+      select: {
+        hits: true,
+      },
+      rejectOnNotFound: true,
+    });
+
+    return hits;
+  });
 
   return {
-    props: { snippet },
+    props: { snippet, dehydratedState: dehydrate(queryClient) },
+    revalidate: 3600, // 1 hour
   };
 };
 
