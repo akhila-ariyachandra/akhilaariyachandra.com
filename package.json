@@ -13,7 +13,7 @@
     "analyze": "cross-env ANALYZE=true next build",
     "build": "node scripts/pre-build.js && next build",
     "start": "next start",
-    "format": "prettier --write \"**/*.{ts,tsx,js,json,md,mdx,scss,prisma,yaml}\"",
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md,mdx,scss,prisma}\"",
     "prisma:migrate": "prisma migrate dev",
     "prisma:migrate-create-only": "prisma migrate dev --create-only",
     "prisma:generate": "prisma generate",
@@ -67,8 +67,7 @@
     "remark-slug": "^7.0.1",
     "remark-smartypants": "^2.0.0",
     "sharp": "^0.30.1",
-    "snarkdown": "^2.0.0",
-    "yaml": "^1.10.2"
+    "snarkdown": "^2.0.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.2",

@@ -1,16 +1,15 @@
 import splitbee from "@/lib/splitbee";
 import config from "@/lib/config";
-import fs from "fs";
-import path from "path";
-import YAML from "yaml";
 import coverPic from "@/public/cover-pic.jpg";
+import career from "@/lib/data/career";
 import Image from "next/image";
 import Link from "next/link";
 import SEO from "@/components/SEO";
-import type { NextPage, GetStaticProps } from "next";
-import type { Job } from "@/lib/types";
+import type { NextPage } from "next";
 import { getAOrAn } from "@/lib/helpers";
 import { FaGithub, FaDev, FaTwitterSquare, FaRssSquare } from "react-icons/fa";
+
+const CURRENT_JOB = career[0];
 
 const SocialLink = ({
   site,
@@ -54,11 +53,7 @@ const SocialLink = ({
   );
 };
 
-type Props = {
-  currentJob: Job;
-};
-
-const Index: NextPage<Props> = ({ currentJob }) => {
+const Index: NextPage = () => {
   return (
     <>
       <SEO />
@@ -84,16 +79,16 @@ const Index: NextPage<Props> = ({ currentJob }) => {
           {`I am a web developer working at `}
           <a
             className="text-emerald-700 dark:text-emerald-600"
-            href={currentJob.link}
+            href={CURRENT_JOB.link}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {currentJob.company}
+            {CURRENT_JOB.company}
           </a>
-          {` as ${getAOrAn(currentJob.positions[0].title)} `}
+          {` as ${getAOrAn(CURRENT_JOB.positions[0].title)} `}
           <Link href="/career">
             <a className="text-emerald-700 dark:text-emerald-600">
-              {currentJob.positions[0].title}
+              {CURRENT_JOB.positions[0].title}
             </a>
           </Link>
           {`. You have found my personal corner of the internet.`}
@@ -114,37 +109,3 @@ const Index: NextPage<Props> = ({ currentJob }) => {
 };
 
 export default Index;
-
-export const getStaticProps: GetStaticProps = async () => {
-  // Get current job
-  const careerFile = path.join("content", "career.yaml");
-  const file = fs.readFileSync(careerFile, "utf8");
-  const fileContent = YAML.parse(file);
-
-  const careerList: Job[] = fileContent.map((element) => {
-    const job: Job = {
-      company: element.company,
-      image: element.image,
-      link: element.link,
-      positions: element.positions,
-      overallPeriod:
-        element.positions.length > 1
-          ? {
-              startDate:
-                element.positions[element.positions.length - 1].startDate,
-              endDate: element.positions[0].endDate,
-            }
-          : null,
-    };
-
-    return job;
-  });
-
-  const currentJob = careerList[0];
-
-  return {
-    props: {
-      currentJob,
-    },
-  };
-};
