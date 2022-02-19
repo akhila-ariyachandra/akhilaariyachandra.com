@@ -79,6 +79,7 @@
     "cross-env": "^7.0.3",
     "eslint": "^8.9.0",
     "eslint-config-next": "^12.1.0",
+    "eslint-config-prettier": "^8.3.0",
     "minify-xml": "^3.3.1",
     "next-compose-plugins": "^2.2.1",
     "postcss": "^8.4.6",
