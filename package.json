@@ -64,6 +64,7 @@
     "react-use-measure": "^2.1.1",
     "reading-time": "^1.5.0",
     "remark-external-links": "^9.0.1",
+    "remark-gfm": "^3.0.1",
     "remark-slug": "^7.0.1",
     "remark-smartypants": "^2.0.0",
     "sharp": "^0.30.1",

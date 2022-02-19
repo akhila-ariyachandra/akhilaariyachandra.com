@@ -2,6 +2,7 @@ import smartypants from "remark-smartypants";
 import a11yEmoji from "@fec/remark-a11y-emoji";
 import externalLinks from "remark-external-links";
 import slug from "remark-slug";
+import remarkGfm from "remark-gfm";
 import readingTime from "reading-time";
 import { defineDocumentType, makeSource } from "contentlayer/source-files";
 
@@ -77,7 +78,7 @@ const contentLayerConfig = makeSource({
   contentDirPath: "content",
   documentTypes: [Post, Snippet],
   mdx: {
-    remarkPlugins: [smartypants, a11yEmoji, externalLinks, slug],
+    remarkPlugins: [smartypants, a11yEmoji, externalLinks, slug, remarkGfm],
   },
 });
 
