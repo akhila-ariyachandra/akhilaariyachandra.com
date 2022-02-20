@@ -1,20 +1,3 @@
-export type Job = {
-  company?: string;
-  image?: string;
-  link?: string;
-  overallPeriod?: {
-    startDate: string;
-    endDate?: string;
-  };
-  positions?: [
-    {
-      title: string;
-      startDate: string;
-      endDate?: string;
-    }
-  ];
-};
-
 export type Song = {
   isPlaying?: boolean;
   name: string;

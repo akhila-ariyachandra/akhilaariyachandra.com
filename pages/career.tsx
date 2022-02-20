@@ -1,26 +1,19 @@
 import SEO from "@/components/SEO";
 import Image from "next/image";
 import ListContainer from "@/components/ListContainer";
-import fs from "fs";
-import path from "path";
 import dayjs from "dayjs";
-import YAML from "yaml";
-import type { NextPage, GetStaticProps } from "next";
-import type { Job } from "@/lib/types";
+import career from "@/lib/data/career";
+import type { NextPage } from "next";
 import { getPeriod } from "@/lib/helpers";
 
-type Props = {
-  careerList: Job[];
-};
-
-const Career: NextPage<Props> = ({ careerList }) => {
+const Career: NextPage = () => {
   return (
     <>
       <SEO title="Career" description="My work experience" />
 
       <div className="mx-auto max-w-xl">
         <ListContainer title="Career">
-          {careerList.map((company) => (
+          {career.map((company) => (
             <div
               key={company.company}
               className="flex flex-row items-center space-x-4"
@@ -82,36 +75,3 @@ const Career: NextPage<Props> = ({ careerList }) => {
 };
 
 export default Career;
-
-export const getStaticProps: GetStaticProps = async () => {
-  const careerFile = path.join("content", "career.yaml");
-  const file = fs.readFileSync(careerFile, "utf8");
-  const fileContent = YAML.parse(file);
-
-  const careerList: Job[] = [];
-
-  for (let index = 0; index < fileContent.length; index++) {
-    const element = fileContent[index];
-
-    const job: Job = {
-      company: element.company,
-      image: element.image,
-      link: element.link,
-      positions: element.positions,
-      overallPeriod:
-        element.positions.length > 1
-          ? {
-              startDate:
-                element.positions[element.positions.length - 1].startDate,
-              endDate: element.positions[0].endDate,
-            }
-          : null,
-    };
-
-    careerList.push(job);
-  }
-
-  return {
-    props: { careerList },
-  };
-};

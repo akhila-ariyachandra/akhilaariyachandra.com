@@ -13,7 +13,7 @@
     "analyze": "cross-env ANALYZE=true next build",
     "build": "node scripts/pre-build.js && next build",
     "start": "next start",
-    "format": "prettier --write \"**/*.{ts,tsx,js,json,md,mdx,scss,prisma,yaml}\"",
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md,mdx,scss,prisma}\"",
     "prisma:migrate": "prisma migrate dev",
     "prisma:migrate-create-only": "prisma migrate dev --create-only",
     "prisma:generate": "prisma generate",
@@ -52,6 +52,7 @@
     "next-themes": "^0.0.15",
     "nookies": "^2.5.2",
     "parse-numeric-range": "^1.3.0",
+    "preact": "^10.6.6",
     "prism-react-renderer": "^1.3.1",
     "querystring": "^0.2.1",
     "react": "^17.0.2",
@@ -64,11 +65,11 @@
     "react-use-measure": "^2.1.1",
     "reading-time": "^1.5.0",
     "remark-external-links": "^9.0.1",
+    "remark-gfm": "^3.0.1",
     "remark-slug": "^7.0.1",
     "remark-smartypants": "^2.0.0",
     "sharp": "^0.30.1",
-    "snarkdown": "^2.0.0",
-    "yaml": "^1.10.2"
+    "snarkdown": "^2.0.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.2",
@@ -79,6 +80,7 @@
     "cross-env": "^7.0.3",
     "eslint": "^8.9.0",
     "eslint-config-next": "^12.1.0",
+    "eslint-config-prettier": "^8.3.0",
     "minify-xml": "^3.3.1",
     "next-compose-plugins": "^2.2.1",
     "postcss": "^8.4.6",
