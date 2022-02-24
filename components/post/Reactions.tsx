@@ -44,14 +44,14 @@ const Reactions: FC<Props> = ({ showDescription = true }) => {
   return (
     <div className="my-10 flex w-full flex-col items-center justify-center space-y-4">
       {showDescription && (
-        <p className="text-center font-sora text-xl font-medium text-gray-800 dark:text-gray-200">
+        <p className="text-center font-sora text-xl font-medium text-zinc-800 dark:text-zinc-200">
           If you enjoyed this post please leave a like or two below!!!
         </p>
       )}
 
       <button
         ref={ref}
-        className="relative h-[50px] w-[300px] overflow-hidden rounded-md border-4 border-gray-700 dark:border-gray-200"
+        className="relative h-[50px] w-[300px] overflow-hidden rounded-md border-4 border-zinc-700 dark:border-zinc-200"
         onClick={handleOnClick}
         disabled={reactionCount >= REACTION_LIMIT}
         aria-label="Like"
@@ -70,7 +70,7 @@ const Reactions: FC<Props> = ({ showDescription = true }) => {
               : "😀"}
           </span>
 
-          <span className="ml-2 rounded bg-white px-2 text-lg font-medium tracking-wide text-gray-800 dark:bg-gray-900 dark:text-gray-200">
+          <span className="ml-2 rounded bg-white px-2 text-lg font-medium tracking-wide text-zinc-800 dark:bg-zinc-900 dark:text-zinc-200">
             {totalCount}
           </span>
         </div>

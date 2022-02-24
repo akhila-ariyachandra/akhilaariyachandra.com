@@ -41,7 +41,7 @@ const BlogPost: NextPage<Props> = ({ post }) => {
       />
 
       {post.photographer && post.unsplashLink ? (
-        <p className="my-2 px-4 text-center font-roboto-slab text-base font-medium text-gray-800 dark:text-gray-200">
+        <p className="my-2 px-4 text-center font-roboto-slab text-base font-medium text-zinc-800 dark:text-zinc-200">
           {"Photo by "}
           <a
             href={post.unsplashLink}
@@ -54,11 +54,11 @@ const BlogPost: NextPage<Props> = ({ post }) => {
         </p>
       ) : null}
 
-      <h1 className="my-4 px-4 text-center font-sora text-4xl font-black text-gray-800 dark:text-gray-200">
+      <h1 className="my-4 px-4 text-center font-sora text-4xl font-black text-zinc-800 dark:text-zinc-200">
         {post.title}
       </h1>
 
-      <div className="my-2 flex flex-col items-center px-4 font-roboto-slab text-lg font-medium text-gray-800 dark:text-gray-200 sm:flex-row sm:justify-center">
+      <div className="my-2 flex flex-col items-center px-4 font-roboto-slab text-lg font-medium text-zinc-800 dark:text-zinc-200 sm:flex-row sm:justify-center">
         <p>{`Posted on ${formatDate(post.date)}`}</p>
 
         {post.updated && (
@@ -69,7 +69,7 @@ const BlogPost: NextPage<Props> = ({ post }) => {
         )}
       </div>
 
-      <div className="my-2 flex flex-col items-center px-4 font-roboto-slab text-lg font-medium text-gray-800 dark:text-gray-200 sm:flex-row sm:justify-center">
+      <div className="my-2 flex flex-col items-center px-4 font-roboto-slab text-lg font-medium text-zinc-800 dark:text-zinc-200 sm:flex-row sm:justify-center">
         <p>{post.readingTime}</p>
 
         <span className="hidden sm:mx-2 sm:block">&bull;</span>

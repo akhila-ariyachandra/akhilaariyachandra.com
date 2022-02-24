@@ -30,7 +30,7 @@ const Snippets: NextPage<Props> = ({ snippets }) => {
               </a>
             </Link>
 
-            <p className="font-roboto-slab text-lg font-medium text-gray-800 dark:text-gray-200">
+            <p className="font-roboto-slab text-lg font-medium text-zinc-800 dark:text-zinc-200">
               {snippet.description}
             </p>
           </article>

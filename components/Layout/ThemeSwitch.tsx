@@ -112,7 +112,7 @@ const ThemeSwitch: FC = () => {
         type="button"
         aria-label="Toggle Dark Mode"
         onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-        className="themeButton bg-white dark:bg-gray-900"
+        className="themeButton bg-white dark:bg-zinc-900"
       >
         <div className="moonOrSun" />
         <div className="moonMask" />

@@ -41,7 +41,7 @@ const Career: NextPage = () => {
                   </a>
 
                   {company.overallPeriod && (
-                    <p className="truncate font-sora font-normal text-gray-800 dark:text-gray-200">
+                    <p className="truncate font-sora font-normal text-zinc-800 dark:text-zinc-200">
                       {`(${getPeriod(
                         company.overallPeriod.startDate,
                         company.overallPeriod.endDate
@@ -52,11 +52,11 @@ const Career: NextPage = () => {
 
                 {company.positions.map((position) => (
                   <div key={position.title} className="space-y-1 truncate">
-                    <p className="truncate font-sora text-xl font-semibold text-gray-800 dark:text-gray-200">
+                    <p className="truncate font-sora text-xl font-semibold text-zinc-800 dark:text-zinc-200">
                       {position.title}
                     </p>
 
-                    <p className="truncate font-roboto-slab text-base font-normal text-gray-800 dark:text-gray-200">
+                    <p className="truncate font-roboto-slab text-base font-normal text-zinc-800 dark:text-zinc-200">
                       {`${dayjs(position.startDate).format("MMMM YYYY")} - ${
                         position.endDate
                           ? dayjs(position.endDate).format("MMMM YYYY")

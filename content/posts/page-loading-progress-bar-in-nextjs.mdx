@@ -1,6 +1,7 @@
 ---
 title: Page Loading Progress Bar in Next.js
 date: "2020-10-27"
+updated: "2022-02-24"
 description: "Implement a page loading indicator like in YouTube and GitHub in Next.js"
 banner: "/blog/page-loading-progress-bar-in-nextjs/banner.png"
 ---
@@ -49,11 +50,11 @@ const MyApp = ({ Component, pageProps }) => {
 export default MyApp;
 ```
 
-We'll be using the [Next.js Router's](https://nextjs.org/docs/api-reference/next/router "next/router") [events](https://nextjs.org/docs/api-reference/next/router#routerevents "router.events") to control the progress bar.
+After that we need to access the `router` object with the `useRouter` [hook](https://nextjs.org/docs/api-reference/next/router#userouter "useRouter").
 
-```jsx:pages/_app.js {2,11-13}
+```jsx:pages/_app.js {2,12}
 import ProgressBar from "@badrap/bar-of-progress";
-import Router from "next/router";
+import { useRouter } from "next/router";
 
 const progress = new ProgressBar({
   size: 2,
@@ -62,11 +63,44 @@ const progress = new ProgressBar({
   delay: 100,
 });
 
-Router.events.on("routeChangeStart", progress.start);
-Router.events.on("routeChangeComplete", progress.finish);
-Router.events.on("routeChangeError", progress.finish);
+const MyApp = ({ Component, pageProps }) => {
+  const router = useRouter();
+
+  return <Component {...pageProps} />;
+};
+
+export default MyApp;
+```
+
+We'll be using the `router` object's [events](https://nextjs.org/docs/api-reference/next/router#routerevents "router.events") to control the progress bar.
+
+```jsx:pages/_app.js {3,15-25}
+import ProgressBar from "@badrap/bar-of-progress";
+import { useRouter } from "next/router";
+import { useEffect } from 'react';
+
+const progress = new ProgressBar({
+  size: 2,
+  color: "#38a169",
+  className: "bar-of-progress",
+  delay: 100,
+});
 
 const MyApp = ({ Component, pageProps }) => {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.events.on("routeChangeStart", progress.start);
+    router.events.on("routeChangeComplete", progress.finish);
+    router.events.on("routeChangeError", progress.finish);
+
+    return () => {
+      router.events.off("routeChangeStart", progress.start);
+      router.events.off("routeChangeComplete", progress.finish);
+      router.events.off("routeChangeError", progress.finish);
+    };
+  }, [router]);
+
   return <Component {...pageProps} />;
 };
 

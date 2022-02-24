@@ -37,7 +37,7 @@ const SpecialBlock: FunctionComponent<Props> = ({ type, markdown }) => {
       <Icon className={iconClass} />
 
       <div
-        className="ml-2 flex-1 font-sora text-base text-gray-800 dark:text-gray-200"
+        className="ml-2 flex-1 font-sora text-base text-zinc-800 dark:text-zinc-200"
         dangerouslySetInnerHTML={{ __html: html }}
       />
     </div>
