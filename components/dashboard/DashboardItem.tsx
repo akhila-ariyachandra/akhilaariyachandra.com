@@ -46,7 +46,7 @@ const DashboardItem: React.FunctionComponent<Props> = ({
         </a>
       )}
 
-      <div className="font-roboto-slab text-2xl font-normal text-gray-800 dark:text-gray-200">
+      <div className="font-roboto-slab text-2xl font-normal text-zinc-800 dark:text-zinc-200">
         {data}
       </div>
     </div>

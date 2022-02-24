@@ -31,7 +31,7 @@ const Document = () => {
         <meta name="theme-color" content="#38a169" />
       </Head>
 
-      <body className="bg-white dark:bg-gray-900">
+      <body className="bg-white dark:bg-zinc-900">
         <Main />
         <NextScript />
       </body>

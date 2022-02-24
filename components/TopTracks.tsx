@@ -16,16 +16,16 @@ const TopTracks: FC = () => {
 
   return (
     <div className="my-10">
-      <h2 className="mt-6 font-sora text-3xl font-semibold text-gray-800 dark:text-gray-200">
+      <h2 className="mt-6 font-sora text-3xl font-semibold text-zinc-800 dark:text-zinc-200">
         Top Tracks
       </h2>
 
-      <p className="mb-6 mt-4 font-roboto-slab text-lg text-gray-500 dark:text-gray-300">
+      <p className="mb-6 mt-4 font-roboto-slab text-lg text-zinc-500 dark:text-zinc-300">
         Interested to know what I&apos;m listening to? Here are my top tracks in
         Spotify updated daily.
       </p>
 
-      <div className="flex flex-col space-y-3 divide-y divide-gray-200 dark:divide-gray-600">
+      <div className="flex flex-col space-y-3 divide-y divide-zinc-200 dark:divide-zinc-600">
         {data.map((track, index) => (
           <div
             key={`top-track-${index}`}
@@ -52,7 +52,7 @@ const TopTracks: FC = () => {
                 {track.name}
               </a>
 
-              <p className="truncate font-roboto-slab text-gray-500 dark:text-gray-300">
+              <p className="truncate font-roboto-slab text-zinc-500 dark:text-zinc-300">
                 {track.artist}
               </p>
             </div>

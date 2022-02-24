@@ -51,7 +51,7 @@ const NavLink: FC<{
         className={`font-sora text-lg font-medium ${
           enabled
             ? "text-emerald-700 dark:text-emerald-600"
-            : "text-gray-800 dark:text-gray-200"
+            : "text-zinc-800 dark:text-zinc-200"
         }`}
       >
         {children}
@@ -77,7 +77,7 @@ const Header: FC = () => {
   }, [router]);
 
   return (
-    <header className="container sticky top-0 z-20 flex w-full max-w-4xl flex-row items-center justify-between gap-4 bg-white bg-opacity-75 p-4 backdrop-blur-xl backdrop-filter dark:bg-gray-900">
+    <header className="container sticky top-0 z-20 flex w-full max-w-4xl flex-row items-center justify-between gap-4 bg-white bg-opacity-75 p-4 backdrop-blur-xl backdrop-filter dark:bg-zinc-900">
       <nav className="hidden sm:flex sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
         {NAV_LINKS.map(({ label, href, activePath }) => (
           <NavLink key={href} href={href} activePath={activePath}>
@@ -88,7 +88,7 @@ const Header: FC = () => {
 
       <Dialog.Root open={dialogOpen}>
         <Dialog.Trigger asChild onClick={() => setDialogOpen(true)}>
-          <button className="text-2xl text-gray-800 dark:text-gray-200 sm:hidden">
+          <button className="text-2xl text-zinc-800 dark:text-zinc-200 sm:hidden">
             <MdMenu />
           </button>
         </Dialog.Trigger>
@@ -100,12 +100,12 @@ const Header: FC = () => {
               onInteractOutside={() => setDialogOpen(false)}
             >
               <Dialog.Close asChild onClick={() => setDialogOpen(false)}>
-                <button className="p-2 text-lg text-gray-800 dark:text-gray-200">
+                <button className="p-2 text-lg text-zinc-800 dark:text-zinc-200">
                   <MdClose />
                 </button>
               </Dialog.Close>
 
-              <div className="flex h-full flex-col gap-3 rounded-md bg-white py-2 px-4 dark:bg-gray-900">
+              <div className="flex h-full flex-col gap-3 rounded-md bg-white py-2 px-4 dark:bg-zinc-900">
                 {NAV_LINKS.map(({ label, href, activePath }) => (
                   <NavLink key={href} href={href} activePath={activePath}>
                     {label}

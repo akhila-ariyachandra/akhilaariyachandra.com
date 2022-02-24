@@ -17,7 +17,7 @@ import {
 } from "@/lib/dashboard";
 
 const Divider = () => {
-  return <hr className="my-12 h-[1px] bg-gray-200 dark:bg-gray-600" />;
+  return <hr className="my-12 h-[1px] bg-zinc-200 dark:bg-zinc-600" />;
 };
 
 type PopularPost = {
@@ -73,7 +73,7 @@ const Dashboard: NextPage = () => {
       <Divider />
 
       <div className="my-10">
-        <h2 className="my-6 font-sora text-3xl font-semibold text-gray-800 dark:text-gray-200">
+        <h2 className="my-6 font-sora text-3xl font-semibold text-zinc-800 dark:text-zinc-200">
           Most Popular Posts
         </h2>
 
@@ -86,7 +86,7 @@ const Dashboard: NextPage = () => {
                 </a>
               </Link>
 
-              <p className="mt-1 font-roboto-slab text-lg font-normal text-gray-800 dark:text-gray-200">{`${post.hits} views`}</p>
+              <p className="mt-1 font-roboto-slab text-lg font-normal text-zinc-800 dark:text-zinc-200">{`${post.hits} views`}</p>
             </article>
           ))}
         </div>

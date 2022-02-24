@@ -23,14 +23,14 @@ const ExternalLink = ({ children, link }) => (
 
 const Footer: React.FunctionComponent = () => {
   return (
-    <footer className="mt-10 bg-emerald-200 dark:bg-gray-800">
+    <footer className="mt-10 bg-emerald-200 dark:bg-zinc-800">
       <div className="container flex max-w-4xl flex-col space-y-6 px-4 py-6">
         <NowPlaying />
 
         <nav className="grid grid-cols-2 gap-2 sm:grid-cols-3">
           {LINKS.map((link) => (
             <Link href={link.href} key={link.href}>
-              <a className="font-sora text-xl font-medium text-emerald-900 dark:text-gray-300">
+              <a className="font-sora text-xl font-medium text-emerald-900 dark:text-zinc-300">
                 {link.title}
               </a>
             </Link>
@@ -38,7 +38,7 @@ const Footer: React.FunctionComponent = () => {
         </nav>
 
         <div className="flex items-center justify-between">
-          <span className="font-sora text-base font-medium text-gray-800 dark:text-gray-200">
+          <span className="font-sora text-base font-medium text-zinc-800 dark:text-zinc-200">
             © 2019 - {new Date().getFullYear()}, Built with
             {` `}
             <ExternalLink link="https://nextjs.org/">Next.js</ExternalLink>

@@ -41,7 +41,7 @@ const NowPlaying: React.FunctionComponent = () => {
       <div className="inline-flex w-full max-w-full flex-col truncate sm:flex-row">
         {data?.songUrl ? (
           <a
-            className="max-w-max truncate font-sora font-medium text-emerald-900 dark:text-gray-100"
+            className="max-w-max truncate font-sora font-medium text-emerald-900 dark:text-zinc-100"
             href={data.songUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -49,14 +49,14 @@ const NowPlaying: React.FunctionComponent = () => {
             {data.name}
           </a>
         ) : (
-          <p className="font-sora font-medium text-gray-800 dark:text-gray-200">
+          <p className="font-sora font-medium text-zinc-800 dark:text-zinc-200">
             Not Playing
           </p>
         )}
-        <span className="mx-2 hidden font-sora text-gray-600 dark:text-gray-300 sm:block">
+        <span className="mx-2 hidden font-sora text-zinc-600 dark:text-zinc-300 sm:block">
           {" – "}
         </span>
-        <p className="max-w-max truncate font-sora text-gray-700 dark:text-gray-300">
+        <p className="max-w-max truncate font-sora text-zinc-700 dark:text-zinc-300">
           {data?.artist ?? "Spotify"}
         </p>
       </div>

@@ -68,14 +68,14 @@ const Index: NextPage = () => {
       />
 
       <div className="mt-4 space-y-4">
-        <h1 className="font-sora text-4xl font-black text-gray-800 dark:text-gray-200">
+        <h1 className="font-sora text-4xl font-black text-zinc-800 dark:text-zinc-200">
           {`Hi, I'm `}
           <span className="text-emerald-700 dark:text-emerald-600">
             {config.title}
           </span>
         </h1>
 
-        <p className="font-roboto-slab text-lg font-medium text-gray-800 dark:text-gray-200">
+        <p className="font-roboto-slab text-lg font-medium text-zinc-800 dark:text-zinc-200">
           {`I am a web developer working at `}
           <a
             className="text-emerald-700 dark:text-emerald-600"

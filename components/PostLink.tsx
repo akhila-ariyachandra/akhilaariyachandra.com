@@ -20,7 +20,7 @@ const PostLink: FunctionComponent<Props> = ({ post, hits }) => {
         </a>
       </Link>
 
-      <div className="flex flex-row truncate font-roboto-slab text-lg font-medium text-gray-800 dark:text-gray-200">
+      <div className="flex flex-row truncate font-roboto-slab text-lg font-medium text-zinc-800 dark:text-zinc-200">
         <p className="min-w-0 truncate">{formatDate(post.date)}</p>
 
         <span className="mx-2">-</span>
