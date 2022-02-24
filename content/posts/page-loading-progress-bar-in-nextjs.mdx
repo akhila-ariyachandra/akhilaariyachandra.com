@@ -22,7 +22,7 @@ yarn add @badrap/bar-of-progress
 
 Then create the `_app.js` file in `pages` if you haven't done so already.
 
-```jsx:title=pages/_app.js
+```jsx:pages/_app.js
 const MyApp = ({ Component, pageProps }) => {
   return <Component {...pageProps} />;
 };
@@ -32,7 +32,7 @@ export default MyApp;
 
 Next import the `bar-of-progress` dependency into `_app.js` and declare a new progress bar.
 
-```jsx:title=pages/_app.js {1,3-8}
+```jsx:pages/_app.js {1,3-8}
 import ProgressBar from "@badrap/bar-of-progress";
 
 const progress = new ProgressBar({
@@ -51,7 +51,7 @@ export default MyApp;
 
 We'll be using the [Next.js Router's](https://nextjs.org/docs/api-reference/next/router "next/router") [events](https://nextjs.org/docs/api-reference/next/router#routerevents "router.events") to control the progress bar.
 
-```jsx:title=pages/_app.js {2,11-13}
+```jsx:pages/_app.js {2,11-13}
 import ProgressBar from "@badrap/bar-of-progress";
 import Router from "next/router";
 

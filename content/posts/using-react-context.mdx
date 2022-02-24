@@ -44,13 +44,13 @@ In our case, we will need to share four sets of data.
 
 To start, create the `context` folder and in it create the `UserContext.js` file.
 
-```jsx:title=src/context/UserContext.js
+```jsx:src/context/UserContext.js
 import React from "react";
 ```
 
 Next let's create and export the context with some default values.
 
-```jsx:title=src/context/UserContext.js {3-8}
+```jsx:src/context/UserContext.js {3-8}
 import React from "react";
 
 export const UserContext = React.createContext({
@@ -63,7 +63,7 @@ export const UserContext = React.createContext({
 
 After that we'll declare a Context Provider which will expose the context to its child components.
 
-```jsx:title=src/context/UserContext.js {10-12}
+```jsx:src/context/UserContext.js {10-12}
 import React from "react";
 
 export const UserContext = React.createContext({
@@ -80,7 +80,7 @@ export const UserProvider = ({ children }) => {
 
 Then let's declare the `userId`, `user` and `isFetching` states and pass them to the provider.
 
-```jsx:title=src/context/UserContext.js {11-13, 16}
+```jsx:src/context/UserContext.js {11-13, 16}
 import React from "react";
 
 export const UserContext = React.createContext({
@@ -105,7 +105,7 @@ export const UserProvider = ({ children }) => {
 
 Now we'll setup an [effect](https://reactjs.org/docs/hooks-effect.html "useEffect") to automatically update the `user` state whenever the `userId` state is changed.
 
-```jsx:title=src/context/UserContext.js {15-30,32-34}
+```jsx:src/context/UserContext.js {15-30,32-34}
 import React from "react";
 
 export const UserContext = React.createContext({
@@ -153,7 +153,7 @@ export const UserProvider = ({ children }) => {
 
 Next let's create the `Display` component. Create the `components` folder and in it add the file `Display.js`.
 
-```jsx:title=src/components/Display.js
+```jsx:src/components/Display.js
 import React from "react";
 
 const Display = () => {
@@ -165,7 +165,7 @@ export default Display;
 
 Now we can get the `user` state by from the `UserContext` with the `useContext` [hook](https://reactjs.org/docs/hooks-reference.html#usecontext).
 
-```jsx:title=src/components/Display.js {2,5}
+```jsx:src/components/Display.js {2,5}
 import React from "react";
 import { UserContext } from "../context/UserContext";
 
@@ -180,7 +180,7 @@ export default Display;
 
 To finish off the `Display` component, let's display the User data in a table.
 
-```jsx:title=src/components/Display.js {9-31}
+```jsx:src/components/Display.js {9-31}
 import React from "react";
 import { UserContext } from "../context/UserContext";
 
@@ -225,7 +225,7 @@ The `Controls` component is used to change the current `userId`.
 
 To start create the `Controls.js` file in the `components` folder.
 
-```jsx:title=src/components/Controls.js
+```jsx:src/components/Controls.js
 import React from "react";
 
 const Controls = () => {
@@ -237,7 +237,7 @@ export default Controls;
 
 After that, we can get `userId`, `setUserId` and `isFetching` from `UserContext`.
 
-```jsx:title=src/components/Controls.js {2,5}
+```jsx:src/components/Controls.js {2,5}
 import React from "react";
 import { UserContext } from "../context/UserContext";
 
@@ -252,7 +252,7 @@ export default Controls;
 
 Next we can add two buttons to change the `userId`.
 
-```jsx:title=src/components/Controls.js {9,11}
+```jsx:src/components/Controls.js {9,11}
 import React from "react";
 import { UserContext } from "../context/UserContext";
 
@@ -273,7 +273,7 @@ export default Controls;
 
 Finally we will add a check to the buttons to disable them if the app is already fetching a user or to stop `userId` from being set to value less than 1 or more than 10.
 
-```jsx:title=src/components/Controls.js {11,18}
+```jsx:src/components/Controls.js {11,18}
 import React from "react";
 import { UserContext } from "../context/UserContext";
 
@@ -306,7 +306,7 @@ export default Controls;
 
 Now all that's left to is to bring everything together in the root component.
 
-```jsx:title=src/App.js
+```jsx:src/App.js
 import React from "react";
 
 const App = () => {
@@ -318,7 +318,7 @@ export default App;
 
 Then we should wrap the root `div` in the `UserProvider` to make the context available to all components.
 
-```jsx:title=src/App.js {2,6,8}
+```jsx:src/App.js {2,6,8}
 import React from "react";
 import { UserProvider } from "./context/UserContext";
 
@@ -335,7 +335,7 @@ export default App;
 
 Finally add the `Display` and `Controls` components.
 
-```jsx:title=src/App.js {2-3,10,12}
+```jsx:src/App.js {2-3,10,12}
 import React from "react";
 import Display from "./components/Display";
 import Controls from "./components/Controls";

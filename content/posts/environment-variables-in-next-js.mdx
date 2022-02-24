@@ -23,7 +23,7 @@ Often we need to use certain variables like the database path or authentication 
 
 By default the environment variables will not be included in the client JavaScript bundle. If you do want to include any variables in it it has to be prefixed with `NEXT_PUBLIC_`.
 
-```:title=.env
+```:.env
 NEXT_PUBLIC_FIRST_SECRET=firstSecret
 SECOND_SECRET=secondSecret
 ```
@@ -60,13 +60,13 @@ Next we need to modify the Webpack configuration in Next.js. This is done throug
 
 First import the dotenv-file dependency.
 
-```javascript:title=next.config.js
+```javascript:next.config.js
 const Dotenv = require("dotenv-webpack");
 ```
 
 Next export the config object with the default Webpack config function.
 
-```javascript:title=next.config.js {3-7}
+```javascript:next.config.js {3-7}
 const Dotenv = require("dotenv-webpack");
 
 module.exports = {
@@ -78,7 +78,7 @@ module.exports = {
 
 All we need to do now is add the dotenv-plugin into the Webpack plugins array.
 
-```javascript:title=next.config.js {5-6}
+```javascript:next.config.js {5-6}
 const Dotenv = require("dotenv-webpack");
 
 module.exports = {
@@ -93,7 +93,7 @@ module.exports = {
 
 Now you can use environment variables in the application. For example, if your _.env_ file is like this,
 
-```:title=.env
+```:.env
 AUTH_SECRET=verysecret
 ```
 
@@ -108,7 +108,7 @@ You can use the variable like this, `process.env.AUTH_SECRET`.
 
 If you are using a Git provider like Github to deploy the Application in [Vercel](https://vercel.com/home), you can't use _.env_ file. This is the reason we set the _silent_ property when adding dotenv-webpack plugin, to prevent any errors because of the missing _.env_ file.
 
-```javascript:title=next.config.js {6}
+```javascript:next.config.js {6}
 const Dotenv = require("dotenv-webpack");
 
 module.exports = {
@@ -139,7 +139,7 @@ now env add
 
 Finally to make the variables available in the client JavaScript bundle, we need to add one more property to the Next.js config. Add a new property called `env` and list all the environment variables you want in the client JavaScript bundle as follows.
 
-```javascript:title=next.config.js {10-14}
+```javascript:next.config.js {10-14}
 const Dotenv = require("dotenv-webpack");
 
 module.exports = {
