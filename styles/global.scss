@@ -33,10 +33,6 @@ body * {
   @apply h-2;
 }
 
-.highlight-line {
-  @apply -ml-4 -mr-4 block border-l-4 border-solid border-emerald-600 bg-gray-800 pr-4 pl-3;
-}
-
 .rehype-code-title {
   @apply mt-2 rounded-t-md rounded-b-lg bg-emerald-300;
 
@@ -49,5 +45,22 @@ body * {
   h1 + pre {
     @apply rounded-t-none;
     margin-top: 0 !important;
+  }
+}
+
+.highlight-line {
+  @apply -ml-4 -mr-4 block border-l-4 border-solid border-emerald-600 bg-gray-800 pr-4 pl-3;
+}
+
+pre {
+  @apply overflow-x-auto;
+
+  /**
+ * Inspired by gatsby remark prism - https://www.gatsbyjs.com/plugins/gatsby-remark-prismjs/
+ * 1. Make the element just wide enough to fit its content.
+ * 2. Always fill the visible space in .code-highlight.
+ */
+  .code-highlight {
+    @apply float-left min-w-full;
   }
 }
