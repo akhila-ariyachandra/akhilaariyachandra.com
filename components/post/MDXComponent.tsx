@@ -2,6 +2,8 @@ import { FC, memo } from "react";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { mdxComponents } from "@/components/mdx";
 
+import "prism-themes/themes/prism-night-owl.css";
+
 type Props = {
   code: string;
 };

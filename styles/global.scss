@@ -32,3 +32,22 @@ body * {
 .horizontalScroll::-webkit-scrollbar {
   @apply h-2;
 }
+
+.highlight-line {
+  @apply -ml-4 -mr-4 block border-l-4 border-solid border-emerald-600 bg-gray-800 pr-4 pl-3;
+}
+
+.rehype-code-title {
+  @apply mt-2 rounded-t-md rounded-b-lg bg-emerald-300;
+
+  h1 {
+    @apply px-4 py-2 text-base font-bold text-gray-800;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  h1 + pre {
+    @apply rounded-t-none;
+    margin-top: 0 !important;
+  }
+}
