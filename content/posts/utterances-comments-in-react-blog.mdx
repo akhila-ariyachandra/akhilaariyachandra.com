@@ -169,7 +169,7 @@ const Comments: FC = () => {
 export default Comments;
 ```
 
-Finally as a bonus we can improve the loading speed of the script by [preloading](https://developer.mozilla.org/en-US/docs/Web/HTML/Link_types/preload) it. To this all we need to do is add a `<link>` tag the `<head>` tag with `rel="preload"`.
+Finally as a bonus we can improve the loading speed of the script by [preloading](https://developer.mozilla.org/en-US/docs/Web/HTML/Link_types/preload) it. All we need to do is add a `<link>` tag the `<head>` tag with `rel="preload"`.
 
 In Next.js we can do this with the [`next/head`](https://nextjs.org/docs/api-reference/next/head) component. If you're not using Next.js, you can use something like [React Helmet](https://www.npmjs.com/package/react-helmet).
 
