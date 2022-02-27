@@ -3,6 +3,7 @@ import SEO from "@/components/SEO";
 import HitCounter from "@/components/post/HitCounter";
 import Reactions from "@/components/post/Reactions";
 import MDXComponent from "@/components/post/MDXComponent";
+import Comments from "@/components/post/Comments";
 import type { NextPage, GetStaticPaths, GetStaticProps } from "next";
 import type { Snippet } from "contentlayer/generated";
 import { QueryClient, dehydrate } from "react-query";
@@ -35,6 +36,8 @@ const Snippet: NextPage<Props> = ({ snippet }) => {
       <HitCounter />
 
       <Reactions />
+
+      <Comments />
     </>
   );
 };
