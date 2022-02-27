@@ -29,6 +29,12 @@ const Document = () => {
         <meta name="application-name" content="Akhila Ariyachandra" />
         <meta name="msapplication-TileColor" content="#00a300" />
         <meta name="theme-color" content="#38a169" />
+
+        {/* Google Search Console Verification */}
+        <meta
+          name="google-site-verification"
+          content="SCtCAdftAAE0UptAZAoIYsHnG7xbuN_ofCaHgfDyjn4"
+        />
       </Head>
 
       <body className="bg-white dark:bg-zinc-900">
