@@ -1,8 +1,9 @@
 import Head from "next/head";
+import type { FC } from "react";
 import { useRef, useEffect } from "react";
 import { useTheme } from "next-themes";
 
-const Comments = () => {
+const Comments: FC = () => {
   const parentRef = useRef<HTMLDivElement>(null);
   const { theme } = useTheme();
 
