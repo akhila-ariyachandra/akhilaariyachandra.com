@@ -37,6 +37,7 @@ yarn format
 |          `DATABASE_URL`           | The PlanetScale database URL ([Guide](https://davidparks.dev/blog/planetscale-deployment-with-prisma/))                     |
 |       `SHADOW_DATABASE_URL`       | The PlanetScale shadow database URL used for migrations                                                                     |
 |           `JWT_SECRET`            | The secret to sign the JSON Web Token                                                                                       |
+|   `NEXT_PUBLIC_UTTERANCES_REPO`   | The public GitHub repository for [utterances](https://utteranc.es/)                                                         |
 
 ## Analytics
 

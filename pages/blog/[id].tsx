@@ -6,6 +6,7 @@ import Image from "next/image";
 import HitCounter from "@/components/post/HitCounter";
 import Reactions from "@/components/post/Reactions";
 import MDXComponent from "@/components/post/MDXComponent";
+import Comments from "@/components/post/Comments";
 import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import type { Post } from "contentlayer/generated";
 import { allPosts } from "contentlayer/generated";
@@ -82,6 +83,8 @@ const BlogPost: NextPage<Props> = ({ post }) => {
       <HitCounter />
 
       <Reactions />
+
+      <Comments />
     </>
   );
 };
