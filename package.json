@@ -20,13 +20,6 @@
     "prisma:reset": "prisma migrate reset",
     "postinstall": "prisma generate"
   },
-  "prettier": {
-    "endOfLine": "lf",
-    "semi": true,
-    "singleQuote": false,
-    "tabWidth": 2,
-    "trailingComma": "es5"
-  },
   "dependencies": {
     "@badrap/bar-of-progress": "^0.1.2",
     "@fec/remark-a11y-emoji": "^3.1.0",
