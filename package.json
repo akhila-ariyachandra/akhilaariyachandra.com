@@ -46,7 +46,6 @@
     "nookies": "^2.5.2",
     "preact": "^10.6.6",
     "prism-themes": "^1.9.0",
-    "querystring": "^0.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",

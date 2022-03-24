@@ -1,4 +1,3 @@
-import querystring from "querystring";
 import axios, { AxiosResponse } from "axios";
 
 const {
@@ -18,6 +17,10 @@ type AccessToken = {
 
 const getAccessToken = async (): Promise<AccessToken> => {
   try {
+    const searchParams = new URLSearchParams();
+    searchParams.append("grant_type", "refresh_token");
+    searchParams.append("refresh_token", refresh_token);
+
     const response = await axios.request<AccessToken>({
       url: TOKEN_ENDPOINT,
       method: "POST",
@@ -25,10 +28,7 @@ const getAccessToken = async (): Promise<AccessToken> => {
         Authorization: `Basic ${basic}`,
         "Content-Type": "application/x-www-form-urlencoded",
       },
-      data: querystring.stringify({
-        grant_type: "refresh_token",
-        refresh_token,
-      }),
+      data: searchParams.toString(),
     });
 
     return response.data;
