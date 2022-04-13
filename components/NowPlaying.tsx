@@ -7,7 +7,7 @@ import { FaSpotify } from "react-icons/fa";
 
 const NowPlaying: React.FunctionComponent = () => {
   const { data } = useQuery<Song, Error>(
-    "nowPlaying",
+    ["spotify", "nowPlaying"],
     () => fetcher("/api/spotify/now-playing"),
     {
       staleTime: 60000, // Don't refetch for 1 min

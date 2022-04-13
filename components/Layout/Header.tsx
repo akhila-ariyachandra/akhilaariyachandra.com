@@ -1,6 +1,6 @@
 import ThemeSwitch from "@/components/Layout/ThemeSwitch";
 import * as Dialog from "@radix-ui/react-dialog";
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { MdMenu, MdClose } from "react-icons/md";
@@ -41,6 +41,7 @@ const NAV_LINKS: {
 const NavLink: FC<{
   href: string;
   activePath: RegExp;
+  children: ReactNode;
 }> = ({ href, activePath, children }) => {
   const router = useRouter();
   const enabled = activePath.test(router.pathname);

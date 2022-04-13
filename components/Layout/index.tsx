@@ -1,8 +1,12 @@
-import React from "react";
 import Header from "@/components/Layout/Header";
 import Footer from "@/components/Layout/Footer";
+import type { FC, ReactNode } from "react";
 
-const Layout: React.FunctionComponent = ({ children }) => {
+type Props = {
+  children: ReactNode;
+};
+
+const Layout: FC<Props> = ({ children }) => {
   return (
     <div className="mx-auto flex min-h-full flex-col justify-between">
       <Header />

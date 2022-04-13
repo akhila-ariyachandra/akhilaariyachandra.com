@@ -1,17 +1,18 @@
-import React from "react";
 import Title from "@/components/Title";
+import type { FC, ReactNode } from "react";
 
 type Props = {
   title: string;
+  children: ReactNode;
 };
 
-const ListContainer: React.FunctionComponent<Props> = ({ title, children }) => {
+const ListContainer: FC<Props> = ({ title, children }) => {
   return (
-    <React.Fragment>
+    <>
       <Title title={title} />
 
       <section className="flex flex-col gap-6">{children}</section>
-    </React.Fragment>
+    </>
   );
 };
 
