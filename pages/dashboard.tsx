@@ -6,8 +6,7 @@ import Title from "@/components/Title";
 import TopTracks from "@/components/TopTracks";
 import type { NextPage, GetStaticProps } from "next";
 import type { Song } from "@/lib/types";
-import { useQuery, QueryClient } from "react-query";
-import { dehydrate } from "react-query/hydration";
+import { useQuery, QueryClient, dehydrate } from "react-query";
 import { fetcher } from "@/lib/helpers";
 import {
   getMostPopularPosts,
