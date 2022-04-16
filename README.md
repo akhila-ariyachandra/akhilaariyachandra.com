@@ -9,20 +9,20 @@ This site is built with [Next.js](https://nextjs.org/), [Tailwind CSS](https://t
 ### Running in development mode
 
 ```shell
-yarn dev
+pnpm dev
 ```
 
 ### Running in production mode
 
 ```shell
-yarn build
-yarn start
+pnpm build
+pnpm start
 ```
 
 ### Formatting the code
 
 ```shell
-yarn format
+pnpm format
 ```
 
 ## Environment Variables
@@ -83,7 +83,7 @@ pscale connect "Database Name" shadow --port 3310
 Then run Prisma Migrate.
 
 ```shell
-yarn prisma:migrate
+pnpm prisma:migrate
 ```
 
 After the migration is complete, create a deploy request to bring changes to the `main` branch.
@@ -95,5 +95,5 @@ pscale deploy-request create "Database Name" development
 ### Generate Prisma Client
 
 ```shell
-yarn prisma:generate
+pnpm prisma:generate
 ```
