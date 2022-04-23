@@ -1,11 +1,13 @@
 // @ts-check
-const withPlugins = require("next-compose-plugins");
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
+import withPlugins from "next-compose-plugins";
+import bundleAnalyzer from "@next/bundle-analyzer";
+import fs from "fs";
+import path from "path";
+import { withContentlayer } from "next-contentlayer";
+
+const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
 });
-const fs = require("fs");
-const path = require("path");
-const { withContentlayer } = require("next-contentlayer");
 
 /**
  * @type {import('next').NextConfig}
@@ -89,7 +91,7 @@ const nextConfig = {
   },
 };
 
-module.exports = withPlugins(
+export default withPlugins(
   [[withBundleAnalyzer], [withContentlayer()]],
   nextConfig
 );
