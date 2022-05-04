@@ -92,6 +92,6 @@ const nextConfig = {
 };
 
 export default withPlugins(
-  [[withBundleAnalyzer], [withContentlayer()]],
+  [[withBundleAnalyzer], [withContentlayer]],
   nextConfig
 );
