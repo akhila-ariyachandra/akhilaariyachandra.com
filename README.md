@@ -27,17 +27,18 @@ pnpm format
 
 ## Environment Variables
 
-|               Name                | Description                                                                                                                 |
-| :-------------------------------: | --------------------------------------------------------------------------------------------------------------------------- |
-| `NEXT_PUBLIC_ILP_PAYMENT_POINTER` | [Web Monetization](https://webmonetization.org/) Payment Pointer                                                            |
-|        `SPOTIFY_CLIENT_ID`        | The [Spotify](https://developer.spotify.com/) Client ID                                                                     |
-|      `SPOTIFY_CLIENT_SECRET`      | The [Spotify](https://developer.spotify.com/) Client Secret                                                                 |
-|      `SPOTIFY_REFRESH_TOKEN`      | The Refresh Token used to make requests ([Guide](https://leerob.io/blog/spotify-api-nextjs))                                |
-|           `DEV_API_KEY`           | The [API Key](https://docs.forem.com/api/#section/Authentication/api_key) needed for [DEV API](https://docs.forem.com/api/) |
-|          `DATABASE_URL`           | The PlanetScale database URL ([Guide](https://davidparks.dev/blog/planetscale-deployment-with-prisma/))                     |
-|       `SHADOW_DATABASE_URL`       | The PlanetScale shadow database URL used for migrations                                                                     |
-|           `JWT_SECRET`            | The secret to sign the JSON Web Token                                                                                       |
-|   `NEXT_PUBLIC_UTTERANCES_REPO`   | The public GitHub repository for [utterances](https://utteranc.es/)                                                         |
+|                Name                 | Description                                                                                                                 |
+| :---------------------------------: | --------------------------------------------------------------------------------------------------------------------------- |
+|  `NEXT_PUBLIC_ILP_PAYMENT_POINTER`  | [Web Monetization](https://webmonetization.org/) Payment Pointer                                                            |
+|         `SPOTIFY_CLIENT_ID`         | The [Spotify](https://developer.spotify.com/) Client ID                                                                     |
+|       `SPOTIFY_CLIENT_SECRET`       | The [Spotify](https://developer.spotify.com/) Client Secret                                                                 |
+|       `SPOTIFY_REFRESH_TOKEN`       | The Refresh Token used to make requests ([Guide](https://leerob.io/blog/spotify-api-nextjs))                                |
+|            `DEV_API_KEY`            | The [API Key](https://docs.forem.com/api/#section/Authentication/api_key) needed for [DEV API](https://docs.forem.com/api/) |
+|           `DATABASE_URL`            | The PlanetScale database URL ([Guide](https://davidparks.dev/blog/planetscale-deployment-with-prisma/))                     |
+|        `SHADOW_DATABASE_URL`        | The PlanetScale shadow database URL used for migrations                                                                     |
+|            `JWT_SECRET`             | The secret to sign the JSON Web Token                                                                                       |
+|    `NEXT_PUBLIC_UTTERANCES_REPO`    | The public GitHub repository for [utterances](https://utteranc.es/)                                                         |
+| `NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT` | Automatically installed by the [Axiom Vercel Integration](https://vercel.com/integrations/axiom)                            |
 
 ## Analytics
 
