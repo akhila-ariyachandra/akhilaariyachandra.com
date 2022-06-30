@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import Image from "next/future/image";
 import type { Song } from "@/lib/types";
 import { useQuery } from "react-query";
 import { fetcher } from "@/lib/helpers";

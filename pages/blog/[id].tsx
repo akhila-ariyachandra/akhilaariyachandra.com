@@ -2,7 +2,7 @@ import React from "react";
 import useHits from "@/hooks/use-hits";
 import prisma from "@/prisma";
 import SEO from "@/components/SEO";
-import Image from "next/image";
+import Image from "next/future/image";
 import HitCounter from "@/components/post/HitCounter";
 import Reactions from "@/components/post/Reactions";
 import MDXComponent from "@/components/post/MDXComponent";
@@ -37,7 +37,6 @@ const BlogPost: NextPage<Props> = ({ post }) => {
         title={post.title}
         width={1200}
         height={630}
-        priority
         className="rounded-lg"
       />
 
