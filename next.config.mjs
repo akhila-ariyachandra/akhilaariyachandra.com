@@ -24,6 +24,9 @@ const nextConfig = {
   },
   experimental: {
     runtime: "nodejs",
+    images: {
+      allowFutureImage: true,
+    },
   },
   rewrites: async () => {
     return [

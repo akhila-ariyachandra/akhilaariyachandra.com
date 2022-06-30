@@ -1,5 +1,5 @@
 import SEO from "@/components/SEO";
-import Image from "next/image";
+import Image from "next/future/image";
 import ListContainer from "@/components/ListContainer";
 import dayjs from "dayjs";
 import career from "@/lib/data/career";
@@ -18,16 +18,14 @@ const Career: NextPage = () => {
               key={company.company}
               className="flex flex-row items-center space-x-4"
             >
-              <div className="flex-shrink-0">
-                <Image
-                  src={`/career/${company.image}`}
-                  alt={company.company}
-                  title={company.company}
-                  width={64}
-                  height={64}
-                  className="rounded-md"
-                />
-              </div>
+              <Image
+                src={`/career/${company.image}`}
+                alt={company.company}
+                title={company.company}
+                width={64}
+                height={64}
+                className="flex-shrink-0 rounded-md"
+              />
 
               <div className="space-y-3 truncate">
                 <div className="flex flex-row space-x-2 truncate text-xl">

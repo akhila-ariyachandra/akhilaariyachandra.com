@@ -2,7 +2,7 @@ import splitbee from "@/lib/splitbee";
 import config from "@/lib/config";
 import coverPic from "@/public/cover-pic.jpg";
 import career from "@/lib/data/career";
-import Image from "next/image";
+import Image from "next/future/image";
 import Link from "next/link";
 import SEO from "@/components/SEO";
 import type { NextPage } from "next";
@@ -62,9 +62,9 @@ const Index: NextPage = () => {
         src={coverPic}
         alt={config.title}
         title={config.title}
-        className="rounded-lg"
+        className="mb-10 rounded-lg"
         priority
-        placeholder="empty"
+        placeholder="blur"
       />
 
       <div className="mt-4 space-y-4">

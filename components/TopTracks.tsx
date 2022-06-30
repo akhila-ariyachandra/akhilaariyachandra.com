@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/future/image";
 import type { FC } from "react";
 import type { Song } from "@/lib/types";
 
@@ -24,16 +24,14 @@ const TopTracks: FC<Props> = ({ tracks }) => {
             key={`top-track-${index}`}
             className="flex flex-row items-center space-x-6 pt-3"
           >
-            <div className="flex-shrink-0">
-              <Image
-                src={track.albumImage}
-                width={80}
-                height={80}
-                alt={track.album}
-                title={track.album}
-                className="rounded-sm"
-              />
-            </div>
+            <Image
+              src={track.albumImage}
+              width={80}
+              height={80}
+              alt={track.album}
+              title={track.album}
+              className="flex-shrink-0 rounded-sm"
+            />
 
             <div className="truncate">
               <a
