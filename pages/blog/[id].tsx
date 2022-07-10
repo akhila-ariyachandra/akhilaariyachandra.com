@@ -105,14 +105,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(QUERY_KEY, async () => {
-    const { hits } = await prisma.page.findUnique({
+    const { hits } = await prisma.page.findUniqueOrThrow({
       where: {
         id,
       },
       select: {
         hits: true,
       },
-      rejectOnNotFound: true,
     });
 
     return hits;
