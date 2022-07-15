@@ -1,7 +1,7 @@
 import config from "@/lib/config";
-import type { FunctionComponent } from "react";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
+import type { FunctionComponent } from "react";
 
 type Props = {
   title?: string;

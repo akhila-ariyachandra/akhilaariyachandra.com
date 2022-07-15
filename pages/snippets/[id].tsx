@@ -1,14 +1,14 @@
-import prisma from "@/prisma";
-import SEO from "@/components/SEO";
-import HitCounter from "@/components/post/HitCounter";
-import Reactions from "@/components/post/Reactions";
-import MDXComponent from "@/components/post/MDXComponent";
 import Comments from "@/components/post/Comments";
-import type { NextPage, GetStaticPaths, GetStaticProps } from "next";
-import type { Snippet } from "contentlayer/generated";
-import { QueryClient, dehydrate } from "react-query";
-import { allSnippets } from "contentlayer/generated";
+import HitCounter from "@/components/post/HitCounter";
+import MDXComponent from "@/components/post/MDXComponent";
+import Reactions from "@/components/post/Reactions";
+import SEO from "@/components/SEO";
 import { getPageHitsKey } from "@/lib/constants";
+import prisma from "@/prisma";
+import type { Snippet } from "contentlayer/generated";
+import { allSnippets } from "contentlayer/generated";
+import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { dehydrate, QueryClient } from "react-query";
 
 type Props = {
   snippet: Snippet;

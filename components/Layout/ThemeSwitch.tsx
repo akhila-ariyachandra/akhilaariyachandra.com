@@ -1,5 +1,5 @@
-import { FC, useState, useEffect } from "react";
 import { useTheme } from "next-themes";
+import { FC, useEffect, useState } from "react";
 
 /**
  * Based off of gatsby-theme-novela

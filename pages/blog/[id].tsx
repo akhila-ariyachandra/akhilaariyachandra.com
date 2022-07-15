@@ -1,18 +1,17 @@
-import React from "react";
-import useHits from "@/hooks/use-hits";
-import prisma from "@/prisma";
-import SEO from "@/components/SEO";
-import Image from "next/future/image";
-import HitCounter from "@/components/post/HitCounter";
-import Reactions from "@/components/post/Reactions";
-import MDXComponent from "@/components/post/MDXComponent";
 import Comments from "@/components/post/Comments";
-import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
+import HitCounter from "@/components/post/HitCounter";
+import MDXComponent from "@/components/post/MDXComponent";
+import Reactions from "@/components/post/Reactions";
+import SEO from "@/components/SEO";
+import useHits from "@/hooks/use-hits";
+import { getPageHitsKey } from "@/lib/constants";
+import { formatDate } from "@/lib/helpers";
+import prisma from "@/prisma";
 import type { Post } from "contentlayer/generated";
 import { allPosts } from "contentlayer/generated";
-import { QueryClient, dehydrate } from "react-query";
-import { formatDate } from "@/lib/helpers";
-import { getPageHitsKey } from "@/lib/constants";
+import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import Image from "next/future/image";
+import { dehydrate, QueryClient } from "react-query";
 
 type Props = {
   post: Post;

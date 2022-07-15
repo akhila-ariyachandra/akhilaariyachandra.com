@@ -1,5 +1,5 @@
-import type { NextApiHandler } from "next";
 import { getMostPopularPosts } from "@/lib/dashboard";
+import type { NextApiHandler } from "next";
 
 const MostPopularPosts: NextApiHandler = async (req, res) => {
   const mostPopularPosts = await getMostPopularPosts();

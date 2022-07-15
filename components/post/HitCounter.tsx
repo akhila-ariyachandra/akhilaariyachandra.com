@@ -1,8 +1,8 @@
 import useHits from "@/hooks/use-hits";
-import RetroHitCounter from "react-retro-hit-counter";
+import { useRouter } from "next/router";
 import type { FunctionComponent } from "react";
 import { useEffect } from "react";
-import { useRouter } from "next/router";
+import RetroHitCounter from "react-retro-hit-counter";
 
 const HitCounter: FunctionComponent = () => {
   const router = useRouter();

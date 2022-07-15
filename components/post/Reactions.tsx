@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
 import useReaction from "@/hooks/use-reaction";
-import useMeasure from "react-use-measure";
-import type { FC } from "react";
-import { useRouter } from "next/router";
-import { useSpring, animated } from "@react-spring/web";
 import { REACTION_LIMIT } from "@/lib/constants";
+import { animated, useSpring } from "@react-spring/web";
+import { useRouter } from "next/router";
+import type { FC } from "react";
+import { useEffect, useState } from "react";
+import useMeasure from "react-use-measure";
 
 type Props = {
   showDescription?: boolean;

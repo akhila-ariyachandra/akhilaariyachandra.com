@@ -1,7 +1,6 @@
-import React from "react";
+import { fetcher } from "@/lib/helpers";
 import Link from "next/link";
 import { useQuery } from "react-query";
-import { fetcher } from "@/lib/helpers";
 
 type Props = {
   title: string;

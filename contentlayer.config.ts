@@ -1,12 +1,12 @@
-import smartypants from "remark-smartypants";
 import a11yEmoji from "@fec/remark-a11y-emoji";
-import externalLinks from "remark-external-links";
-import rehypeSlug from "rehype-slug";
-import remarkGfm from "remark-gfm";
+import { defineDocumentType, makeSource } from "contentlayer/source-files";
+import readingTime from "reading-time";
 import rehypeCodeTitle from "rehype-code-title";
 import rehypePrism from "rehype-prism-plus";
-import readingTime from "reading-time";
-import { defineDocumentType, makeSource } from "contentlayer/source-files";
+import rehypeSlug from "rehype-slug";
+import externalLinks from "remark-external-links";
+import remarkGfm from "remark-gfm";
+import smartypants from "remark-smartypants";
 
 const Post = defineDocumentType(() => ({
   name: "Post",

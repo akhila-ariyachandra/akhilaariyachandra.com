@@ -1,6 +1,6 @@
 import type { DEVArticle } from "@/lib/types";
-import axios from "axios";
 import prisma from "@/prisma";
+import axios from "axios";
 
 export const getTotalViews = async (): Promise<number> => {
   const sum = await prisma.page.aggregate({

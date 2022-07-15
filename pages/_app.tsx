@@ -1,18 +1,18 @@
-import type { AppProps, NextWebVitalsMetric } from "next/app";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import { ThemeProvider } from "next-themes";
-import { QueryClient, QueryClientProvider, Hydrate } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
-import ProgressBar from "@badrap/bar-of-progress";
 import Layout from "@/components/Layout";
+import ProgressBar from "@badrap/bar-of-progress";
+import { ThemeProvider } from "next-themes";
+import type { AppProps, NextWebVitalsMetric } from "next/app";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
-import "@fontsource/sora/400.css";
-import "@fontsource/sora/variable.css";
+import "@/styles/global.scss";
 import "@fontsource/roboto-slab/400.css";
 import "@fontsource/roboto-slab/variable.css";
+import "@fontsource/sora/400.css";
+import "@fontsource/sora/variable.css";
 import "tailwindcss/tailwind.css";
-import "@/styles/global.scss";
 
 const progress = new ProgressBar({
   size: 4,

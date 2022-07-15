@@ -1,10 +1,10 @@
 import ThemeSwitch from "@/components/Layout/ThemeSwitch";
 import * as Dialog from "@radix-ui/react-dialog";
-import type { FC, ReactNode } from "react";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import { MdMenu, MdClose } from "react-icons/md";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import type { FC, ReactNode } from "react";
+import { useEffect, useState } from "react";
+import { MdClose, MdMenu } from "react-icons/md";
 
 const NAV_LINKS: {
   label: string;
