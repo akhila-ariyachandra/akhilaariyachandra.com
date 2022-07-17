@@ -66,11 +66,11 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.4",
     "@types/jsonwebtoken": "^8.5.8",
-    "@types/node": "^18.0.4",
+    "@types/node": "^18.0.5",
     "@types/react": "^18.0.15",
     "autoprefixer": "^10.4.7",
     "cross-env": "^7.0.3",
-    "eslint": "^8.19.0",
+    "eslint": "^8.20.0",
     "eslint-config-next": "^12.2.2",
     "eslint-config-prettier": "^8.5.0",
     "minify-xml": "^3.4.0",
