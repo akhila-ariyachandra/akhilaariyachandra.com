@@ -5,8 +5,7 @@ module.exports = {
   tabWidth: 2,
   trailingComma: "es5",
   plugins: [
-    require.resolve("prettier-plugin-prisma"),
-    require.resolve("prettier-plugin-tailwindcss"),
-    require.resolve("prettier-plugin-organize-imports"),
+    require("prettier-plugin-prisma"),
+    require("./merged-prettier-plugin"),
   ],
 };
