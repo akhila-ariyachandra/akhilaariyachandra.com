@@ -6,6 +6,6 @@ module.exports = {
   trailingComma: "es5",
   plugins: [
     require("prettier-plugin-prisma"),
-    require("./merged-prettier-plugin"),
+    require("prettier-plugin-tailwindcss"),
   ],
 };
