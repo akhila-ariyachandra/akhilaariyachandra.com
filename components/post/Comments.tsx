@@ -1,5 +1,4 @@
 import { useTheme } from "next-themes";
-import Head from "next/head";
 import type { FC } from "react";
 import { useEffect, useRef } from "react";
 
@@ -30,15 +29,7 @@ const Comments: FC = () => {
     };
   }, [theme, parentRef]);
 
-  return (
-    <>
-      <Head>
-        <link rel="preload" href="https://utteranc.es/client.js" as="script" />
-      </Head>
-
-      <div ref={parentRef} className="my-4" />
-    </>
-  );
+  return <div ref={parentRef} className="my-4" />;
 };
 
 export default Comments;
