@@ -1,10 +1,10 @@
-import jwt from "jsonwebtoken";
-import prisma from "@/prisma";
-import type { NextApiHandler } from "next";
-import type { Reaction } from "@prisma/client";
-import { parseCookies, setCookie } from "nookies";
-import { nanoid } from "nanoid";
 import { REACTION_LIMIT } from "@/lib/constants";
+import prisma from "@/prisma";
+import type { Reaction } from "@prisma/client";
+import jwt from "jsonwebtoken";
+import { nanoid } from "nanoid";
+import type { NextApiHandler } from "next";
+import { parseCookies, setCookie } from "nookies";
 
 const ReactionHandler: NextApiHandler = async (req, res) => {
   const pageId = req.query.id as string;

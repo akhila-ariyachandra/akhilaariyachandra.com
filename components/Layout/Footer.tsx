@@ -1,6 +1,6 @@
+import NowPlaying from "@/components/NowPlaying";
 import splitbee from "@/lib/splitbee";
 import Link from "next/link";
-import NowPlaying from "@/components/NowPlaying";
 import { IoAnalyticsSharp } from "react-icons/io5";
 
 const LINKS = [

@@ -1,6 +1,7 @@
 ---
 title: Making delayed network requests in React after state changes
 date: "2021-09-13"
+updated: "2022-07-21"
 description: "Using setTimeout and useEffect to delay network requests after state changes"
 banner: "/blog/making-delayed-network-requests-in-react-with-settimeout-and-useeffect/banner.png"
 photographer: "Erik Mclean"
@@ -21,7 +22,7 @@ Implementing the button and animation with [react-spring](https://react-spring.i
 
 I could either save the result everytime a visitor clicks the button incrementing the value in the database by one, or wait for a certain time after the visitor finishes clicking and save that result.
 
-Saving on every click would be the easiest but it would create problems such as race conditions, issues with the optimistic UI updates I'm handling with [React Query](https://react-query.tanstack.com/) and rate limits with any hosting provider. So my best option was the second one.
+Saving on every click would be the easiest but it would create problems such as race conditions, issues with the optimistic UI updates I'm handling with [TanStack Query](https://tanstack.com/query/v4) and rate limits with any hosting provider. So my best option was the second one.
 
 # How I implemented it
 

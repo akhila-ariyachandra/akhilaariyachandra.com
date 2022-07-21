@@ -1,13 +1,18 @@
-import dayjs from "dayjs";
-import prisma from "@/prisma";
-import SEO from "@/components/SEO";
-import PostLink from "@/components/PostLink";
 import ListContainer from "@/components/ListContainer";
-import type { NextPage, GetStaticProps } from "next";
-import { useQuery, useQueryClient, QueryClient, dehydrate } from "react-query";
-import { allPosts } from "contentlayer/generated";
-import { fetcher } from "@/lib/helpers";
+import PostLink from "@/components/PostLink";
+import SEO from "@/components/SEO";
 import { getPageHitsKey } from "@/lib/constants";
+import { fetcher } from "@/lib/helpers";
+import prisma from "@/prisma";
+import { allPosts } from "contentlayer/generated";
+import dayjs from "dayjs";
+import type { GetStaticProps, NextPage } from "next";
+import {
+  dehydrate,
+  QueryClient,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 
 const QUERY_KEY = ["allPageHits"];
 

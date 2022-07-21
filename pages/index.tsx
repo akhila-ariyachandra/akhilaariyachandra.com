@@ -1,13 +1,13 @@
-import splitbee from "@/lib/splitbee";
+import SEO from "@/components/SEO";
 import config from "@/lib/config";
-import coverPic from "@/public/cover-pic.jpg";
 import career from "@/lib/data/career";
+import { getAOrAn } from "@/lib/helpers";
+import splitbee from "@/lib/splitbee";
+import coverPic from "@/public/cover-pic.jpg";
+import type { NextPage } from "next";
 import Image from "next/future/image";
 import Link from "next/link";
-import SEO from "@/components/SEO";
-import type { NextPage } from "next";
-import { getAOrAn } from "@/lib/helpers";
-import { FaGithub, FaDev, FaTwitterSquare, FaRssSquare } from "react-icons/fa";
+import { FaDev, FaGithub, FaRssSquare, FaTwitterSquare } from "react-icons/fa";
 
 const CURRENT_JOB = career[0];
 

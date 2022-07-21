@@ -1,10 +1,10 @@
-import SEO from "@/components/SEO";
-import Image from "next/future/image";
 import ListContainer from "@/components/ListContainer";
-import dayjs from "dayjs";
+import SEO from "@/components/SEO";
 import career from "@/lib/data/career";
-import type { NextPage } from "next";
 import { getPeriod } from "@/lib/helpers";
+import dayjs from "dayjs";
+import type { NextPage } from "next";
+import Image from "next/future/image";
 
 const Career: NextPage = () => {
   return (

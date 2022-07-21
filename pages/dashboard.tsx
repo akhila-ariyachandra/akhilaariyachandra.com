@@ -1,21 +1,21 @@
-import config from "@/lib/config";
-import SEO from "@/components/SEO";
 import DashboardItem from "@/components/dashboard/DashboardItem";
-import Link from "next/link";
+import SEO from "@/components/SEO";
 import Title from "@/components/Title";
 import TopTracks from "@/components/TopTracks";
-import type { NextPage, GetStaticProps } from "next";
-import type { Song } from "@/lib/types";
-import { useQuery, QueryClient, dehydrate } from "react-query";
-import { fetcher } from "@/lib/helpers";
+import config from "@/lib/config";
 import {
   getMostPopularPosts,
-  getTotalViews,
-  getTotalReactions,
-  getTotalDevViews,
   getTotalDevReactions,
+  getTotalDevViews,
+  getTotalReactions,
+  getTotalViews,
 } from "@/lib/dashboard";
+import { fetcher } from "@/lib/helpers";
 import { getTopTracks } from "@/lib/spotify";
+import type { Song } from "@/lib/types";
+import type { GetStaticProps, NextPage } from "next";
+import Link from "next/link";
+import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
 
 const Divider = () => {
   return <hr className="my-12 h-[1px] bg-zinc-200 dark:bg-zinc-600" />;

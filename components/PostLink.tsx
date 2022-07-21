@@ -1,6 +1,6 @@
+import { formatDate } from "@/lib/helpers";
 import Link from "next/link";
 import type { FunctionComponent } from "react";
-import { formatDate } from "@/lib/helpers";
 
 type Props = {
   post: {

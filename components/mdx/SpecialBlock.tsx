@@ -1,6 +1,6 @@
-import snarkdown from "snarkdown";
 import type { FunctionComponent } from "react";
 import { FaExclamationCircle, FaLightbulb, FaStickyNote } from "react-icons/fa";
+import snarkdown from "snarkdown";
 
 type Props = {
   type?: "warn" | "info";

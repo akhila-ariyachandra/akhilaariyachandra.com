@@ -1,8 +1,8 @@
-import SEO from "@/components/SEO";
-import Link from "next/link";
 import ListContainer from "@/components/ListContainer";
-import type { NextPage, GetStaticProps } from "next";
+import SEO from "@/components/SEO";
 import { allSnippets } from "contentlayer/generated";
+import type { GetStaticProps, NextPage } from "next";
+import Link from "next/link";
 
 type Props = {
   snippets: {

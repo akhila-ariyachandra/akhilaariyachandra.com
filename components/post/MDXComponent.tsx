@@ -1,6 +1,6 @@
-import { FC, memo } from "react";
-import { useMDXComponent } from "next-contentlayer/hooks";
 import { mdxComponents } from "@/components/mdx";
+import { useMDXComponent } from "next-contentlayer/hooks";
+import { FC, memo } from "react";
 
 import "prism-themes/themes/prism-night-owl.css";
 

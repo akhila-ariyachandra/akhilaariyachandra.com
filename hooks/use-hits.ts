@@ -1,6 +1,6 @@
-import { useQuery, useMutation, useQueryClient } from "react-query";
-import { fetcher } from "@/lib/helpers";
 import { getPageHitsKey } from "@/lib/constants";
+import { fetcher } from "@/lib/helpers";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 const useHits = (id: string) => {
   const QUERY_KEY = getPageHitsKey(id);

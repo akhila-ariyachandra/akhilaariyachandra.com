@@ -1,9 +1,9 @@
-import React from "react";
-import Image from "next/future/image";
-import type { Song } from "@/lib/types";
-import { useQuery } from "react-query";
 import { fetcher } from "@/lib/helpers";
+import type { Song } from "@/lib/types";
+import Image from "next/future/image";
+import React from "react";
 import { FaSpotify } from "react-icons/fa";
+import { useQuery } from "@tanstack/react-query";
 
 const NowPlaying: React.FunctionComponent = () => {
   const { data } = useQuery<Song, Error>(

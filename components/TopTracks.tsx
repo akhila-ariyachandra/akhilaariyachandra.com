@@ -1,6 +1,6 @@
+import type { Song } from "@/lib/types";
 import Image from "next/future/image";
 import type { FC } from "react";
-import type { Song } from "@/lib/types";
 
 type Props = {
   tracks: Song[];
