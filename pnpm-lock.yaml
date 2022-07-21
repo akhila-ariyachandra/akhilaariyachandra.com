@@ -13,6 +13,8 @@ specifiers:
   '@react-spring/web': ^9.5.0
   '@splitbee/web': ^0.3.0
   '@tailwindcss/typography': ^0.5.4
+  '@tanstack/react-query': ^4.0.9
+  '@tanstack/react-query-devtools': ^4.0.8
   '@types/jsonwebtoken': ^8.5.8
   '@types/node': ^18.0.6
   '@types/react': ^18.0.15
@@ -44,7 +46,6 @@ specifiers:
   react: ^18.2.0
   react-dom: ^18.2.0
   react-icons: ^4.4.0
-  react-query: ^4.0.0
   react-retro-hit-counter: ^1.0.1
   react-spring: ^9.5.0
   react-use-measure: ^2.1.1
@@ -73,6 +74,8 @@ dependencies:
   '@radix-ui/react-dialog': 0.1.7_bb2bxwco6ptpubzwpazr52qf6i
   '@react-spring/web': 9.5.0_biqbaboplfbrettd7655fr4n2y
   '@splitbee/web': 0.3.0
+  '@tanstack/react-query': 4.0.9_biqbaboplfbrettd7655fr4n2y
+  '@tanstack/react-query-devtools': 4.0.8_react@18.2.0
   axios: 0.27.2
   contentlayer: 0.2.6
   dayjs: 1.11.4
@@ -89,7 +92,6 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.4.0_react@18.2.0
-  react-query: 4.0.0_biqbaboplfbrettd7655fr4n2y
   react-retro-hit-counter: 1.0.1_biqbaboplfbrettd7655fr4n2y
   react-spring: 9.5.0_biqbaboplfbrettd7655fr4n2y
   react-use-measure: 2.1.1_biqbaboplfbrettd7655fr4n2y
@@ -1132,8 +1134,44 @@ packages:
       tailwindcss: 3.1.6
     dev: true
 
-  /@tanstack/query-core/4.0.5:
-    resolution: {integrity: sha512-QOJ2gLbwlf8p0487pMey6vv8EF5X2ib1zINayaD7mb9/LibUtXmZ12uJgTqcnjgNY/4tWZn5qJnEk2ePG5AVGA==}
+  /@tanstack/match-sorter-utils/8.1.1:
+    resolution: {integrity: sha512-IdmEekEYxQsoLOR0XQyw3jD1GujBpRRYaGJYQUw1eOT1eUugWxdc7jomh1VQ1EKHcdwDLpLaCz/8y4KraU4T9A==}
+    engines: {node: '>=12'}
+    dependencies:
+      remove-accents: 0.4.2
+    dev: false
+
+  /@tanstack/query-core/4.0.8:
+    resolution: {integrity: sha512-NTjRc/qWlUx+76NCYiwqTYfJw2xIzSilI5w/F1QzE140dNUBlUl+72CbX0cIdJuTYGOD0W9x5xqZ+JcNAOIJ1A==}
+    dev: false
+
+  /@tanstack/react-query-devtools/4.0.8_react@18.2.0:
+    resolution: {integrity: sha512-dlr0gUyohhFnr+Mf/YyVbCTCbOq1Zk2tAfzSZcyrSNqXXN+KLypYkFm2F7mq+uqwq2I9L12gZ0kekvfbeCmxEQ==}
+    dependencies:
+      '@tanstack/match-sorter-utils': 8.1.1
+      '@types/use-sync-external-store': 0.0.3
+      use-sync-external-store: 1.2.0_react@18.2.0
+    transitivePeerDependencies:
+      - react
+    dev: false
+
+  /@tanstack/react-query/4.0.9_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-xRb4jsRU4pDlNtHqYYHNAtLiQzwscQRQeHezF/CY0yQkEloqCot0baerndjizh88CavA2iDOMvC0DUfAytNJGg==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@tanstack/query-core': 4.0.8
+      '@types/use-sync-external-store': 0.0.3
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      use-sync-external-store: 1.2.0_react@18.2.0
     dev: false
 
   /@types/acorn/4.0.6:
@@ -4852,26 +4890,6 @@ packages:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: true
 
-  /react-query/4.0.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-qiW+Yvbl+EK8iwPDJAj4qWAKceh+g8Up8jxoNxJbzhV3bNheeyHF3EyynnkDO3S+CYgSwtCUFaP8vOjB62j7xQ==}
-    deprecated: Please use @tanstack/react-query for v4+
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-native: '*'
-    peerDependenciesMeta:
-      react-dom:
-        optional: true
-      react-native:
-        optional: true
-    dependencies:
-      '@tanstack/query-core': 4.0.5
-      '@types/use-sync-external-store': 0.0.3
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-      use-sync-external-store: 1.2.0_react@18.2.0
-    dev: false
-
   /react-remove-scroll-bar/2.3.3_3hx2ussxxho4jajbwrd6gq34qe:
     resolution: {integrity: sha512-i9GMNWwpz8XpUpQ6QlevUtFjHGqnPG4Hxs+wlIJntu/xcsZVEpJcIV71K3ZkqNy2q3GfgvkD7y6t/Sv8ofYSbw==}
     engines: {node: '>=10'}
@@ -5187,6 +5205,10 @@ packages:
       retext: 8.1.0
       retext-smartypants: 5.2.0
       unist-util-visit: 4.1.0
+    dev: false
+
+  /remove-accents/0.4.2:
+    resolution: {integrity: sha1-CkPTqq4egNuRngeuJUsoXZ4ce7U=}
     dev: false
 
   /repeat-string/1.6.1:

@@ -1,6 +1,6 @@
 import splitbee from "@/lib/splitbee";
 import { useRouter } from "next/router";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 const useReaction = (id: string) => {
   const QUERY_KEY = ["reaction", id];

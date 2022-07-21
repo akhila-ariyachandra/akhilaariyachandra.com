@@ -7,7 +7,12 @@ import prisma from "@/prisma";
 import { allPosts } from "contentlayer/generated";
 import dayjs from "dayjs";
 import type { GetStaticProps, NextPage } from "next";
-import { dehydrate, QueryClient, useQuery, useQueryClient } from "react-query";
+import {
+  dehydrate,
+  QueryClient,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 
 const QUERY_KEY = ["allPageHits"];
 

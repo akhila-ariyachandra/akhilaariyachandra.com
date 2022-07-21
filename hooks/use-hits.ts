@@ -1,6 +1,6 @@
 import { getPageHitsKey } from "@/lib/constants";
 import { fetcher } from "@/lib/helpers";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 const useHits = (id: string) => {
   const QUERY_KEY = getPageHitsKey(id);

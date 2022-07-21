@@ -11,7 +11,7 @@ import type { Post } from "contentlayer/generated";
 import { allPosts } from "contentlayer/generated";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Image from "next/future/image";
-import { dehydrate, QueryClient } from "react-query";
+import { dehydrate, QueryClient } from "@tanstack/react-query";
 
 type Props = {
   post: Post;

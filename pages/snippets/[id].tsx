@@ -8,7 +8,7 @@ import prisma from "@/prisma";
 import type { Snippet } from "contentlayer/generated";
 import { allSnippets } from "contentlayer/generated";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { dehydrate, QueryClient } from "react-query";
+import { dehydrate, QueryClient } from "@tanstack/react-query";
 
 type Props = {
   snippet: Snippet;

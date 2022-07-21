@@ -4,8 +4,12 @@ import { ThemeProvider } from "next-themes";
 import type { AppProps, NextWebVitalsMetric } from "next/app";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
+import {
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import "@/styles/global.scss";
 import "@fontsource/roboto-slab/400.css";

@@ -15,7 +15,7 @@ import { getTopTracks } from "@/lib/spotify";
 import type { Song } from "@/lib/types";
 import type { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
-import { dehydrate, QueryClient, useQuery } from "react-query";
+import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
 
 const Divider = () => {
   return <hr className="my-12 h-[1px] bg-zinc-200 dark:bg-zinc-600" />;
