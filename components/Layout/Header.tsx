@@ -78,7 +78,7 @@ const Header: FC = () => {
   }, [router]);
 
   return (
-    <header className="container sticky top-0 z-20 flex w-full max-w-4xl flex-row items-center justify-between gap-4 bg-white bg-opacity-75 p-4 backdrop-blur-xl backdrop-filter dark:bg-zinc-900">
+    <header className="container flex w-full max-w-4xl flex-row items-center justify-between gap-4 bg-white bg-opacity-75 p-4 dark:bg-zinc-900">
       <nav className="hidden sm:flex sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
         {NAV_LINKS.map(({ label, href, activePath }) => (
           <NavLink key={href} href={href} activePath={activePath}>
