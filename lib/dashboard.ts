@@ -3,36 +3,13 @@ import prisma from "@/prisma";
 import axios from "axios";
 
 export const getTotalViews = async (): Promise<number> => {
-  const sum = await prisma.page.aggregate({
+  const sum = await prisma.views.aggregate({
     _sum: {
-      hits: true,
+      count: true,
     },
   });
 
-  return sum._sum.hits;
-};
-
-export const getTotalReactions = async (): Promise<number> => {
-  const count = await prisma.reaction.aggregate({ _sum: { count: true } });
-
-  return count?._sum?.count ?? 0;
-};
-
-export const getMostPopularPosts = async () => {
-  const posts = await prisma.page.findMany({
-    orderBy: {
-      hits: "desc",
-    },
-    select: {
-      id: true,
-      title: true,
-      hits: true,
-      slug: true,
-    },
-    take: 3,
-  });
-
-  return posts;
+  return sum._sum.count ?? 0;
 };
 
 export const getTotalDevViews = async (): Promise<number> => {

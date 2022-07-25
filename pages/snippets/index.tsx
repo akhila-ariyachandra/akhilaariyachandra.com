@@ -1,18 +1,18 @@
+import Link from "next/link";
 import ListContainer from "@/components/ListContainer";
 import SEO from "@/components/SEO";
-import { allSnippets } from "contentlayer/generated";
 import type { GetStaticProps, NextPage } from "next";
-import Link from "next/link";
+import { allSnippets } from "contentlayer/generated";
 
-type Props = {
+type SnippetsProps = {
   snippets: {
-    id: string;
+    slug: string;
     title: string;
     description: string;
   }[];
 };
 
-const Snippets: NextPage<Props> = ({ snippets }) => {
+const Snippets: NextPage<SnippetsProps> = ({ snippets }) => {
   return (
     <>
       <SEO
@@ -23,8 +23,8 @@ const Snippets: NextPage<Props> = ({ snippets }) => {
 
       <ListContainer title="Code Snippets">
         {snippets.map((snippet) => (
-          <article key={snippet.id} className="space-y-2">
-            <Link href={`/snippets/${snippet.id}`}>
+          <article key={snippet.slug} className="space-y-2">
+            <Link href={`/snippets/${snippet.slug}`}>
               <a className="font-sora text-3xl font-bold text-emerald-700 dark:text-emerald-600">
                 {snippet.title}
               </a>
@@ -42,7 +42,7 @@ const Snippets: NextPage<Props> = ({ snippets }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   const snippets = allSnippets.map((post) => ({
-    id: post.id,
+    slug: post.slug,
     title: post.title,
     description: post.description,
   }));

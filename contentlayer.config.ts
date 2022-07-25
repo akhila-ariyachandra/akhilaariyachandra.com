@@ -43,7 +43,7 @@ const Post = defineDocumentType(() => ({
     },
   },
   computedFields: {
-    id: {
+    slug: {
       type: "string",
       resolve: (doc) => doc._raw.sourceFileName.replace(/\.mdx$/, ""),
     },
@@ -69,7 +69,7 @@ const Snippet = defineDocumentType(() => ({
     },
   },
   computedFields: {
-    id: {
+    slug: {
       type: "string",
       resolve: (doc) => doc._raw.sourceFileName.replace(/\.mdx$/, ""),
     },

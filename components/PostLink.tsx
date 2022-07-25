@@ -1,31 +1,31 @@
-import { formatDate } from "@/lib/helpers";
+import useViews from "@/hooks/useViews.hook";
 import Link from "next/link";
-import type { FunctionComponent } from "react";
+import type { FC } from "react";
+import { formatDate } from "@/lib/helpers";
 
-type Props = {
-  post: {
-    id: string;
-    title: string;
-    date: string;
-  };
-  hits: number;
+type PostLinkProps = {
+  slug: string;
+  title: string;
+  date: string;
 };
 
-const PostLink: FunctionComponent<Props> = ({ post, hits }) => {
+const PostLink: FC<PostLinkProps> = ({ slug, title, date }) => {
+  const { views } = useViews(slug);
+
   return (
     <article className="space-y-2">
-      <Link href={`/blog/${post.id}`}>
+      <Link href={`/blog/${slug}`}>
         <a className="font-sora text-3xl font-bold text-emerald-700 dark:text-emerald-600">
-          {post.title}
+          {title}
         </a>
       </Link>
 
       <div className="flex flex-row truncate font-roboto-slab text-lg font-medium text-zinc-800 dark:text-zinc-200">
-        <p className="min-w-0 truncate">{formatDate(post.date)}</p>
+        <p className="min-w-0 truncate">{formatDate(date)}</p>
 
         <span className="mx-2">-</span>
 
-        <p className="min-w-0 truncate">{`${hits} views`}</p>
+        <p className="min-w-0 truncate">{`${views} views`}</p>
       </div>
     </article>
   );

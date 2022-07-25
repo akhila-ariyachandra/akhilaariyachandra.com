@@ -24,6 +24,7 @@ const nextConfig = {
   },
   experimental: {
     runtime: "nodejs",
+    legacyBrowsers: false,
     images: {
       allowFutureImage: true,
     },

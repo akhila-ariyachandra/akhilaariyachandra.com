@@ -1,7 +1,7 @@
 ---
 title: Making delayed network requests in React after state changes
 date: "2021-09-13"
-updated: "2022-07-21"
+updated: "2022-07-25"
 description: "Using setTimeout and useEffect to delay network requests after state changes"
 banner: "/blog/making-delayed-network-requests-in-react-with-settimeout-and-useeffect/banner.png"
 photographer: "Erik Mclean"
@@ -13,10 +13,6 @@ Recently I switched the database used in my site for page views and reactions fr
 With the change I also thought it would be a good chance to redesign the reactions section of the posts.
 
 <Video name="reactions" width={610} height={128} title="Reactions Example" />
-
-<SpecialBlock type="info" markdown="You can try it yourself. 👇🏽" />
-
-<Reactions showDescription={false} />
 
 Implementing the button and animation with [react-spring](https://react-spring.io/) was relatively easy, but I had a choice of how I wanted to make the network request to save the result.
 
@@ -76,4 +72,7 @@ So now when `reactionCount` changes, the `timeout` set for that particular value
 
 <Video name="network" width={1536} height={534} title="Network Tab Example" />
 
-You can see the code in action just below. 😊
+<SpecialBlock
+  type="info"
+  markdown="This blog no longer has reactions but the code above is still valid and can be used."
+/>

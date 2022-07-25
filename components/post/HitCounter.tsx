@@ -1,17 +1,11 @@
-import useHits from "@/hooks/use-hits";
-import { useRouter } from "next/router";
-import type { FunctionComponent } from "react";
-import { useEffect } from "react";
 import RetroHitCounter from "react-retro-hit-counter";
+import type { FC } from "react";
 
-const HitCounter: FunctionComponent = () => {
-  const router = useRouter();
-  const { hits, increment } = useHits(router.query.id as string);
+type HitCounterProps = {
+  hits?: number;
+};
 
-  useEffect(() => {
-    increment();
-  }, [increment]);
-
+const HitCounter: FC<HitCounterProps> = ({ hits = 0 }) => {
   return (
     <div className="m-4 grid place-items-center">
       <RetroHitCounter hits={hits} />

@@ -14,21 +14,15 @@ generator client {
 }
 
 model Page {
-  id       String     @id
-  title    String     @unique
-  slug     String     @unique
-  hits     Int?       @default(0)
-  Reaction Reaction[]
+  id    String @id
+  title String @unique
+  slug  String @unique
+  hits  Int?   @default(0)
 
   @@map("Pages")
 }
 
-model Reaction {
-  id     String
-  page   Page   @relation(fields: [pageId], references: [id])
-  pageId String
-  count  Int?   @default(0)
-
-  @@id([id, pageId])
-  @@map("Reactions")
+model Views {
+  slug  String @id
+  count Int    @default(1)
 }
