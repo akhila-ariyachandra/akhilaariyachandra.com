@@ -4,7 +4,6 @@ const matter = require("gray-matter");
 const dayjs = require("dayjs");
 const minifyXML = require("minify-xml").minify;
 const { Feed } = require("feed");
-const { PrismaClient } = require("@prisma/client");
 
 // Generate sitemap.xml
 (() => {

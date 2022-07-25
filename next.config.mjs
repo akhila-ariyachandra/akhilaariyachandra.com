@@ -20,10 +20,10 @@ const nextConfig = {
     formats: ["image/avif", "image/webp"],
   },
   eslint: {
-    dirs: ["components", "hooks", "lib", "pages"],
+    dirs: ["components", "lib", "pages"],
   },
   experimental: {
-    runtime: "nodejs",
+    runtime: "experimental-edge",
     legacyBrowsers: false,
     images: {
       allowFutureImage: true,

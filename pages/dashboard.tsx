@@ -3,11 +3,7 @@ import SEO from "@/components/SEO";
 import Title from "@/components/Title";
 import TopTracks from "@/components/TopTracks";
 import config from "@/lib/config";
-import {
-  getTotalDevReactions,
-  getTotalDevViews,
-  getTotalViews,
-} from "@/lib/dashboard";
+import { getTotalDevReactions, getTotalDevViews } from "@/lib/dashboard";
 import { getTopTracks } from "@/lib/spotify";
 import type { Song } from "@/lib/types";
 import type { GetStaticProps, NextPage } from "next";
@@ -25,13 +21,6 @@ const Dashboard: NextPage<DashboardProps> = ({ tracks }) => {
       <Title title="Dashboard" />
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <DashboardItem
-          title="Views"
-          link={{ type: "internal", url: "/blog" }}
-          queryKey="totalViews"
-          url="/api/dashboard/total-views"
-        />
-
         <DashboardItem
           title="DEV Views"
           link={{ type: "external", url: config.social.dev }}
@@ -60,10 +49,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const queryClient = new QueryClient();
 
   const prefetchPromises = [];
-
-  prefetchPromises.push(
-    queryClient.prefetchQuery(["dashboard", "totalViews"], getTotalViews)
-  );
   prefetchPromises.push(
     queryClient.prefetchQuery(["dashboard", "totalDevViews"], getTotalDevViews)
   );

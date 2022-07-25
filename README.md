@@ -33,64 +33,7 @@ pnpm format
 | `SPOTIFY_CLIENT_SECRET` | The [Spotify](https://developer.spotify.com/) Client Secret                                                                 |
 | `SPOTIFY_REFRESH_TOKEN` | The Refresh Token used to make requests ([Guide](https://leerob.io/blog/spotify-api-nextjs))                                |
 |      `DEV_API_KEY`      | The [API Key](https://docs.forem.com/api/#section/Authentication/api_key) needed for [DEV API](https://docs.forem.com/api/) |
-|     `DATABASE_URL`      | The PlanetScale database URL ([Guide](https://davidparks.dev/blog/planetscale-deployment-with-prisma/))                     |
-|  `SHADOW_DATABASE_URL`  | The PlanetScale shadow database URL used for migrations                                                                     |
 
 ## Analytics
 
 This site uses [Splitbee](https://splitbee.io/).
-
-## [PlanetScale](https://planetscale.com/)
-
-Use [this guide](https://davidparks.dev/blog/planetscale-deployment-with-prisma/) to setup PlanetScale.
-
-### Creating development and shadow branches
-
-```shell
-pscale branch create "Database Name" development
-pscale branch create "Database Name" shadow
-```
-
-### Running the development branch locally
-
-```shell
-pscale connect "Database Name" development --port 3309
-```
-
-#### Connecting to the main branch locally
-
-```shell
-pscale connect "Database Name" development --port 3309
-```
-
-## [Prisma](https://www.prisma.io/)
-
-### Create a migration
-
-Run the `development` and `shadow` branches locally in separate terminals.
-
-```shell
-pscale connect "Database Name" development --port 3309
-```
-
-```shell
-pscale connect "Database Name" shadow --port 3310
-```
-
-Then run Prisma Migrate.
-
-```shell
-pnpm prisma:migrate
-```
-
-After the migration is complete, create a deploy request to bring changes to the `main` branch.
-
-```shell
-pscale deploy-request create "Database Name" development
-```
-
-### Generate Prisma Client
-
-```shell
-pnpm prisma:generate
-```

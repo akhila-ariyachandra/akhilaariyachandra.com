@@ -1,10 +1,7 @@
-import useViews from "@/hooks/useViews.hook";
-import HitCounter from "@/components/post/HitCounter";
 import MDXComponent from "@/components/post/MDXComponent";
 import SEO from "@/components/SEO";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import type { Snippet } from "contentlayer/generated";
-import { useEffect } from "react";
 import { allSnippets } from "contentlayer/generated";
 
 type SnippetProps = {
@@ -12,13 +9,6 @@ type SnippetProps = {
 };
 
 const Snippet: NextPage<SnippetProps> = ({ snippet }) => {
-  const { views, increment } = useViews(snippet.slug);
-
-  useEffect(() => {
-    // Will increase twice in development due to React Strict mode
-    increment();
-  }, [increment]);
-
   return (
     <>
       <SEO
@@ -36,8 +26,6 @@ const Snippet: NextPage<SnippetProps> = ({ snippet }) => {
       </p>
 
       <MDXComponent code={snippet.body.code} />
-
-      <HitCounter hits={views} />
     </>
   );
 };

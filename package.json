@@ -12,14 +12,8 @@
     "lint": "next lint",
     "analyze": "cross-env ANALYZE=true next build",
     "build": "node scripts/pre-build.js && next build",
-    "vercel-build": "prisma generate && prisma migrate deploy && node scripts/pre-build.js && next build",
     "start": "next start",
-    "format": "prettier --write \"**/*.{ts,tsx,js,json,md,mdx,scss,prisma}\"",
-    "prisma:migrate": "prisma migrate dev",
-    "prisma:migrate-create-only": "prisma migrate dev --create-only",
-    "prisma:generate": "prisma generate",
-    "prisma:reset": "prisma migrate reset",
-    "postinstall": "prisma generate"
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md,mdx,scss}\""
   },
   "dependencies": {
     "@badrap/bar-of-progress": "^0.2.1",
@@ -29,9 +23,7 @@
     "@mdx-js/mdx": "^2.1.2",
     "@mdx-js/react": "^2.1.2",
     "@next/bundle-analyzer": "^12.2.3",
-    "@prisma/client": "^4.1.0",
     "@radix-ui/react-dialog": "^1.0.0",
-    "@react-spring/web": "^9.5.1",
     "@splitbee/web": "^0.3.0",
     "@tanstack/react-query": "^4.0.10",
     "@tanstack/react-query-devtools": "^4.0.10",
@@ -44,12 +36,10 @@
     "next-contentlayer": "^0.2.6",
     "next-seo": "^5.5.0",
     "next-themes": "^0.2.0",
-    "nextjs-cors": "^2.1.1",
     "prism-themes": "^1.9.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
-    "react-retro-hit-counter": "^1.0.1",
     "reading-time": "^1.5.0",
     "rehype-code-title": "^1.0.0",
     "rehype-prism-plus": "^1.4.2",
@@ -74,9 +64,7 @@
     "next-compose-plugins": "^2.2.1",
     "postcss": "^8.4.14",
     "prettier": "^2.7.1",
-    "prettier-plugin-prisma": "^4.1.0",
     "prettier-plugin-tailwindcss": "^0.1.12",
-    "prisma": "^4.1.0",
     "tailwindcss": "^3.1.6",
     "typescript": "^4.7.4"
   }
