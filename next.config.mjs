@@ -20,10 +20,9 @@ const nextConfig = {
     formats: ["image/avif", "image/webp"],
   },
   eslint: {
-    dirs: ["components", "lib", "pages"],
+    dirs: ["components", "lib", "pages", "hooks"],
   },
   experimental: {
-    runtime: "experimental-edge",
     legacyBrowsers: false,
     images: {
       allowFutureImage: true,
@@ -82,14 +81,14 @@ const nextConfig = {
   },
   webpack: (config, { dev, isServer }) => {
     // Replace React with Preact only in client production build
-    /* if (!dev && !isServer) {
+    if (!dev && !isServer) {
       Object.assign(config.resolve.alias, {
         "react/jsx-runtime.js": "preact/compat/jsx-runtime",
         react: "preact/compat",
         "react-dom/test-utils": "preact/test-utils",
         "react-dom": "preact/compat",
       });
-    } */
+    }
 
     return config;
   },
