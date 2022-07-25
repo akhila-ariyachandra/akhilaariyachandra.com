@@ -4,7 +4,7 @@ import PostImage from "@/components/mdx/PostImage";
 import SpecialBlock from "@/components/mdx/SpecialBlock";
 import Video from "@/components/mdx/Video";
 
-export const mdxComponents = {
+export const MDXComponents = {
   SpecialBlock,
   PostImage,
   CodeSandboxWrapper,
