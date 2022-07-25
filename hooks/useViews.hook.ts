@@ -12,11 +12,16 @@ const useViews = (slug: string) => {
 
   const mutation = useMutation(
     () =>
-      fetch(`/api/views/${slug}`, { method: "POST" }).then((res) => res.json()),
+      fetch(`/api/views/${slug}`, { method: "POST" }).then((response) =>
+        response.json()
+      ),
     {
       mutationKey: [...KEY, "increment"],
-      onSettled: async () => {
-        await queryClient.invalidateQueries(KEY);
+      onSuccess: async (data) => {
+        // First cancel any ongoing queries
+        await queryClient.cancelQueries(KEY);
+        // Then manually set the query data with the response for the mutation
+        await queryClient.setQueryData(KEY, data);
       },
     }
   );
