@@ -46,10 +46,6 @@ const Footer: React.FunctionComponent = () => {
             <ExternalLink link="https://tailwindcss.com/">
               Tailwind CSS
             </ExternalLink>
-            {", "}
-            <ExternalLink link="https://planetscale.com/">
-              PlanetScale
-            </ExternalLink>
             {", & "}
             <ExternalLink link="https://vercel.com/home">Vercel</ExternalLink>
           </span>
