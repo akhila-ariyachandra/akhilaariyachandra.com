@@ -1,7 +1,7 @@
 import Layout from "@/components/Layout";
 import ProgressBar from "@badrap/bar-of-progress";
 import { ThemeProvider } from "next-themes";
-import type { AppProps, NextWebVitalsMetric } from "next/app";
+import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import {
@@ -62,22 +62,3 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 };
 
 export default MyApp;
-
-export const reportWebVitals = (metric: NextWebVitalsMetric) => {
-  const url = process.env.NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT;
-
-  if (!url) {
-    return;
-  }
-
-  const body = JSON.stringify({
-    route: window.__NEXT_DATA__.page,
-    ...metric,
-  });
-
-  if (navigator.sendBeacon) {
-    navigator.sendBeacon(url, body);
-  } else {
-    fetch(url, { body, method: "POST", keepalive: true });
-  }
-};

@@ -1,25 +1,16 @@
-import Comments from "@/components/post/Comments";
-import HitCounter from "@/components/post/HitCounter";
-import MDXComponent from "@/components/post/MDXComponent";
-import Reactions from "@/components/post/Reactions";
-import SEO from "@/components/SEO";
-import useHits from "@/hooks/use-hits";
-import { getPageHitsKey } from "@/lib/constants";
-import { formatDate } from "@/lib/helpers";
-import prisma from "@/prisma";
-import type { Post } from "contentlayer/generated";
-import { allPosts } from "contentlayer/generated";
-import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Image from "next/future/image";
-import { dehydrate, QueryClient } from "@tanstack/react-query";
+import MDXComponent from "@/components/post/MDXComponent";
+import SEO from "@/components/SEO";
+import type { Post } from "contentlayer/generated";
+import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { allPosts } from "contentlayer/generated";
+import { formatDate } from "@/lib/helpers";
 
 type Props = {
   post: Post;
 };
 
 const BlogPost: NextPage<Props> = ({ post }) => {
-  const { hits } = useHits(post.id);
-
   return (
     <>
       <SEO
@@ -69,20 +60,10 @@ const BlogPost: NextPage<Props> = ({ post }) => {
       </div>
 
       <div className="my-2 flex flex-col items-center px-4 font-roboto-slab text-lg font-medium text-zinc-800 dark:text-zinc-200 sm:flex-row sm:justify-center">
-        <p>{post.readingTime}</p>
-
-        <span className="hidden sm:mx-2 sm:block">&bull;</span>
-
-        <p>{`${hits} views`}</p>
+        {post.readingTime}
       </div>
 
       <MDXComponent code={post.body.code} />
-
-      <HitCounter />
-
-      <Reactions />
-
-      <Comments />
     </>
   );
 };
@@ -91,36 +72,19 @@ export default BlogPost;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: allPosts.map((post) => ({ params: { id: post.id } })),
+    paths: allPosts.map((post) => ({ params: { slug: post.slug } })),
     fallback: false,
   };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const id = params?.id as string;
-  const QUERY_KEY = getPageHitsKey(id);
+  const slug = params?.slug.toString();
 
-  const post = allPosts.find((post) => post.id === id);
-
-  const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(QUERY_KEY, async () => {
-    const { hits } = await prisma.page.findUniqueOrThrow({
-      where: {
-        id,
-      },
-      select: {
-        hits: true,
-      },
-    });
-
-    return hits;
-  });
+  const post = allPosts.find((post) => post.slug === slug);
 
   return {
     props: {
       post,
-      dehydratedState: dehydrate(queryClient),
     },
-    revalidate: 3600, // 1 hour
   };
 };

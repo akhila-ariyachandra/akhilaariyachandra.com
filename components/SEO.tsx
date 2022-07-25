@@ -46,12 +46,6 @@ const SEO: FunctionComponent<Props> = ({
         cardType: "summary_large_image",
         handle: config.author.twitter,
       }}
-      additionalMetaTags={[
-        {
-          name: "monetization",
-          content: process.env.NEXT_PUBLIC_ILP_PAYMENT_POINTER,
-        },
-      ]}
     />
   );
 };

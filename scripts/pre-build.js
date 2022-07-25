@@ -4,7 +4,6 @@ const matter = require("gray-matter");
 const dayjs = require("dayjs");
 const minifyXML = require("minify-xml").minify;
 const { Feed } = require("feed");
-const { PrismaClient } = require("@prisma/client");
 
 // Generate sitemap.xml
 (() => {
@@ -99,94 +98,4 @@ const { PrismaClient } = require("@prisma/client");
   fs.writeFileSync(rssFile, minifyXML(content));
 
   return console.log("> Generated rss.xml");
-})();
-
-// Generate pages in database
-(async () => {
-  try {
-    console.log("> Generating pages in database");
-
-    const pages = [];
-    const prisma = new PrismaClient();
-
-    // Get the blog posts
-    const postsDirectory = path.join("content", "posts");
-    const postFileNames = fs.readdirSync(postsDirectory);
-    for (const fileName of postFileNames) {
-      // Remove ".mdx" from file name to get id
-      const id = fileName.replace(/\.mdx$/, "");
-
-      // Read MDX file as string
-      const fullPath = path.join(postsDirectory, fileName);
-      const source = fs.readFileSync(fullPath, "utf8");
-
-      // Get frontmatter
-      const {
-        data: { title },
-      } = matter(source);
-
-      // Add to pages array
-      pages.push({
-        id,
-        title,
-        slug: `/blog/${id}`,
-      });
-    }
-
-    // Get the snippets
-    const snippetsDirectory = path.join("content", "snippets");
-    const snippetFileNames = fs.readdirSync(snippetsDirectory);
-    for (const fileName of snippetFileNames) {
-      // Remove ".mdx" from file name to get id
-      const id = fileName.replace(/\.mdx$/, "");
-
-      // Read MDX file as string
-      const fullPath = path.join(snippetsDirectory, fileName);
-      const source = fs.readFileSync(fullPath, "utf8");
-
-      // Get frontmatter
-      const {
-        data: { title },
-      } = matter(source);
-
-      // Add to pages array
-      pages.push({
-        id,
-        title,
-        slug: `/snippets/${id}`,
-      });
-    }
-
-    await prisma.$connect();
-
-    const promises = [];
-    // Generate pages in database
-    for (const page of pages) {
-      promises.push(
-        prisma.page.upsert({
-          where: {
-            id: page.id,
-          },
-          update: {
-            title: page.title,
-            slug: page.slug,
-          },
-          create: {
-            id: page.id,
-            title: page.title,
-            slug: page.slug,
-          },
-        })
-      );
-    }
-    await Promise.allSettled(promises);
-
-    await prisma.$disconnect();
-
-    console.log("> Generated pages in database");
-  } catch (error) {
-    console.error("> Error generating pages: ", error);
-  } finally {
-    return process.exit();
-  }
 })();
