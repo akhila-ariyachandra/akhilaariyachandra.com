@@ -47,6 +47,8 @@ const Footer: React.FunctionComponent = () => {
               Tailwind CSS
             </ExternalLink>
             {", "}
+            <ExternalLink link="https://www.prisma.io/">Prisma</ExternalLink>
+            {", "}
             <ExternalLink link="https://planetscale.com/">
               PlanetScale
             </ExternalLink>

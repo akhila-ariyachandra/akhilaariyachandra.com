@@ -4,5 +4,8 @@ module.exports = {
   singleQuote: false,
   tabWidth: 2,
   trailingComma: "es5",
-  plugins: [require.resolve("prettier-plugin-tailwindcss")],
+  plugins: [
+    require.resolve("prettier-plugin-tailwindcss"),
+    require.resolve("prettier-plugin-prisma"),
+  ],
 };

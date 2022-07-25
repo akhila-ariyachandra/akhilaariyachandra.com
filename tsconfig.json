@@ -21,7 +21,8 @@
       "@/styles/*": ["styles/*"],
       "@/context/*": ["context/*"],
       "@/public/*": ["public/*"],
-      "@/prisma": ["prisma"]
+      "@/prisma": ["prisma"],
+      "@/hooks/*": ["hooks/*"]
     },
     "incremental": true
   },
