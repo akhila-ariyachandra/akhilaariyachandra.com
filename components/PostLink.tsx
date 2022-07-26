@@ -1,7 +1,9 @@
 import dynamic from "next/dynamic";
 import useViews from "@/hooks/useViews.hook";
 import Link from "next/link";
-const CustomTooltip = dynamic(() => import("@/components/CustomTooltip"));
+const CustomTooltip = dynamic(() => import("@/components/CustomTooltip"), {
+  suspense: true,
+});
 import type { FC } from "react";
 import { Suspense } from "react";
 import { formatDate } from "@/lib/helpers";
