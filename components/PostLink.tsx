@@ -1,6 +1,9 @@
+import dynamic from "next/dynamic";
 import useViews from "@/hooks/useViews.hook";
 import Link from "next/link";
+const CustomTooltip = dynamic(() => import("@/components/CustomTooltip"));
 import type { FC } from "react";
+import { Suspense } from "react";
 import { formatDate } from "@/lib/helpers";
 
 type PostLinkProps = {
@@ -25,7 +28,11 @@ const PostLink: FC<PostLinkProps> = ({ slug, title, date }) => {
 
         <span>-</span>
 
-        <p className="min-w-0 truncate">{count} views</p>
+        <Suspense fallback={<p className="min-w-0 truncate">{count} views</p>}>
+          <CustomTooltip message="Views since 25th July, 2022" asChild>
+            <p className="min-w-0 cursor-pointer truncate">{count} views</p>
+          </CustomTooltip>
+        </Suspense>
       </div>
     </article>
   );
