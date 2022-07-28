@@ -1,7 +1,6 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@badrap/bar-of-progress': 0.2.1
   '@fec/remark-a11y-emoji': 3.1.0
   '@fontsource/roboto-slab': 4.5.8
   '@fontsource/sora': 4.5.8
@@ -56,7 +55,6 @@ specifiers:
   typescript: 4.7.4
 
 dependencies:
-  '@badrap/bar-of-progress': 0.2.1
   '@fec/remark-a11y-emoji': 3.1.0
   '@fontsource/roboto-slab': 4.5.8
   '@fontsource/sora': 4.5.8
@@ -148,10 +146,6 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.13.9
-
-  /@badrap/bar-of-progress/0.2.1:
-    resolution: {integrity: sha512-+vqWaMkHnCcoKDo0dRhMpY40Lt2+Li2/vo0IArrbYWKTLeHatEGLJRX23iUl6quxwxVqrflJPCr8F0Sak+hujg==}
-    dev: false
 
   /@contentlayer/cli/0.2.6:
     resolution: {integrity: sha512-+vml9srC+Y3pwi6vqDcqYSX7A2it6vwV5WZVe3hQfjx/TAGgA5sYwPHjbjdMiMWyqaI0keA3AQIkO03yAH97xw==}
