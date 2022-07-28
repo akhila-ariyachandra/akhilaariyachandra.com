@@ -1,14 +1,8 @@
-import dynamic from "next/dynamic";
-import useViews from "@/hooks/useViews.hook";
 import Image from "next/future/image";
 import MDXComponent from "@/components/post/MDXComponent";
 import SEO from "@/components/SEO";
-const CustomTooltip = dynamic(() => import("@/components/CustomTooltip"), {
-  suspense: true,
-});
 import type { Post } from "contentlayer/generated";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { useEffect, Suspense } from "react";
 import { allPosts } from "contentlayer/generated";
 import { formatDate } from "@/lib/helpers";
 
@@ -17,13 +11,6 @@ type Props = {
 };
 
 const BlogPost: NextPage<Props> = ({ post }) => {
-  const { count, increment } = useViews(post.slug);
-
-  useEffect(() => {
-    // Will increment twice in development mode due to React Strict Mode
-    increment();
-  }, [increment]);
-
   return (
     <>
       <SEO
@@ -72,15 +59,8 @@ const BlogPost: NextPage<Props> = ({ post }) => {
         )}
       </div>
 
-      <div className="my-2 flex flex-col items-center px-4 font-roboto-slab text-lg font-medium text-zinc-800 dark:text-zinc-200 sm:flex-row sm:justify-center">
+      <div className="my-2 px-4 text-center font-roboto-slab text-lg font-medium text-zinc-800 dark:text-zinc-200">
         <p>{post.readingTime}</p>
-        <span className="hidden sm:mx-2 sm:block">&bull;</span>
-
-        <Suspense fallback={<p>{`${count} views`}</p>}>
-          <CustomTooltip message="Views since 25th July, 2022" asChild>
-            <p className="cursor-pointer">{`${count} views`}</p>
-          </CustomTooltip>
-        </Suspense>
       </div>
 
       <MDXComponent code={post.body.code} />

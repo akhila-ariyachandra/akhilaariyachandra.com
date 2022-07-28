@@ -13,21 +13,16 @@
     "analyze": "cross-env ANALYZE=true next build",
     "build": "node scripts/pre-build.js && next build",
     "start": "next start",
-    "format": "prettier --write \"**/*.{ts,tsx,js,json,md,mdx,scss,prisma}\"",
-    "prisma:db-push": "prisma db push",
-    "postinstall": "prisma generate"
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md,mdx,scss}\""
   },
   "dependencies": {
-    "@badrap/bar-of-progress": "0.2.1",
     "@fec/remark-a11y-emoji": "3.1.0",
     "@fontsource/roboto-slab": "4.5.8",
     "@fontsource/sora": "4.5.8",
     "@mdx-js/mdx": "2.1.2",
     "@mdx-js/react": "2.1.2",
     "@next/bundle-analyzer": "12.2.3",
-    "@prisma/client": "4.1.0",
     "@radix-ui/react-dialog": "1.0.0",
-    "@radix-ui/react-tooltip": "1.0.0",
     "@splitbee/web": "0.3.0",
     "@tanstack/react-query": "4.0.10",
     "@tanstack/react-query-devtools": "4.0.10",
@@ -57,7 +52,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "0.5.4",
-    "@types/node": "18.6.1",
+    "@types/node": "18.6.2",
     "@types/react": "18.0.15",
     "autoprefixer": "10.4.7",
     "cross-env": "7.0.3",
@@ -68,9 +63,7 @@
     "next-compose-plugins": "2.2.1",
     "postcss": "8.4.14",
     "prettier": "2.7.1",
-    "prettier-plugin-prisma": "4.1.0",
-    "prettier-plugin-tailwindcss": "0.1.12",
-    "prisma": "4.1.0",
+    "prettier-plugin-tailwindcss": "0.1.13",
     "tailwindcss": "3.1.6",
     "typescript": "4.7.4"
   }

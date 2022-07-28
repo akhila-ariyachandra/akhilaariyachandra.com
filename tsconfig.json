@@ -20,9 +20,7 @@
       "@/lib/*": ["lib/*"],
       "@/styles/*": ["styles/*"],
       "@/context/*": ["context/*"],
-      "@/public/*": ["public/*"],
-      "@/prisma": ["prisma"],
-      "@/hooks/*": ["hooks/*"]
+      "@/public/*": ["public/*"]
     },
     "incremental": true
   },

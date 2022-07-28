@@ -24,6 +24,7 @@ const nextConfig = {
   },
   experimental: {
     legacyBrowsers: false,
+    runtime: "experimental-edge",
     images: {
       allowFutureImage: true,
     },
