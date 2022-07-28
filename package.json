@@ -13,9 +13,7 @@
     "analyze": "cross-env ANALYZE=true next build",
     "build": "node scripts/pre-build.js && next build",
     "start": "next start",
-    "format": "prettier --write \"**/*.{ts,tsx,js,json,md,mdx,scss,prisma}\"",
-    "prisma:db-push": "prisma db push",
-    "postinstall": "prisma generate"
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md,mdx,scss}\""
   },
   "dependencies": {
     "@fec/remark-a11y-emoji": "3.1.0",
@@ -24,9 +22,7 @@
     "@mdx-js/mdx": "2.1.2",
     "@mdx-js/react": "2.1.2",
     "@next/bundle-analyzer": "12.2.3",
-    "@prisma/client": "4.1.0",
     "@radix-ui/react-dialog": "1.0.0",
-    "@radix-ui/react-tooltip": "1.0.0",
     "@splitbee/web": "0.3.0",
     "@tanstack/react-query": "4.0.10",
     "@tanstack/react-query-devtools": "4.0.10",
@@ -67,9 +63,7 @@
     "next-compose-plugins": "2.2.1",
     "postcss": "8.4.14",
     "prettier": "2.7.1",
-    "prettier-plugin-prisma": "4.1.0",
     "prettier-plugin-tailwindcss": "0.1.13",
-    "prisma": "4.1.0",
     "tailwindcss": "3.1.6",
     "typescript": "4.7.4"
   }

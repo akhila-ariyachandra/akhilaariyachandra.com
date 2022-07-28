@@ -3,7 +3,6 @@
     "dbaeumer.vscode-eslint",
     "wix.vscode-import-cost",
     "esbenp.prettier-vscode",
-    "prisma.prisma",
     "bradlc.vscode-tailwindcss"
   ]
 }
