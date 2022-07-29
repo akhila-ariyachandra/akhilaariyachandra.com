@@ -15,6 +15,7 @@ specifiers:
   '@types/react': 18.0.15
   autoprefixer: 10.4.7
   axios: 0.27.2
+  classnames: 2.3.1
   contentlayer: 0.2.6
   dayjs: 1.11.4
   eslint: 8.20.0
@@ -58,6 +59,7 @@ dependencies:
   '@tanstack/react-query': 4.0.10_biqbaboplfbrettd7655fr4n2y
   '@tanstack/react-query-devtools': 4.0.10_react@18.2.0
   axios: 0.27.2
+  classnames: 2.3.1
   contentlayer: 0.2.6
   dayjs: 1.11.4
   feed: 4.2.2
@@ -1516,6 +1518,10 @@ packages:
 
   /chownr/1.1.4:
     resolution: {integrity: sha512-jJ0bqzaylmJtVnNgzTeSOs8DPavpbYgEr/b0YL8/2GO3xJEhInFmhKMUnEJQjZumK7KXGFhUy89PrsJWlakBVg==}
+    dev: false
+
+  /classnames/2.3.1:
+    resolution: {integrity: sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==}
     dev: false
 
   /clipanion/3.2.0-rc.11:
