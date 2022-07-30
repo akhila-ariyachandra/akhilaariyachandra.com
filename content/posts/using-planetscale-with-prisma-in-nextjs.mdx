@@ -68,7 +68,7 @@ DATABASE_URL="mysql://root@127.0.0.1:3309/akhilaariyachandra-com"
 
 Next let's take a look at the `schema.prisma` file. The first change we need to make is to set the `provider` to `mysql`.
 
-```:prism/schema.prisma {9}
+```:prisma/schema.prisma {9}
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
@@ -86,7 +86,7 @@ Another change we need to make is to how foreign keys are handled in our databas
 
 If you have a foreign key in your model, it is important to create an index on that field using the `@@index` [argument](https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#index) to prevent perfomance issues as PlanetScale will not automatically create an index on that field because it doesn't maintain it as a foreign key.
 
-```:prism/schema.prisma {6,12}
+```:prisma/schema.prisma {6,12}
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
@@ -105,7 +105,7 @@ datasource db {
 
 Now we have to create a model for our database. For this post I'll be creating a model for a basic page view counter.
 
-```:prism/schema.prisma {15-21}
+```:prisma/schema.prisma {15-21}
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
