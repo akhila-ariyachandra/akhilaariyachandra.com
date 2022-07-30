@@ -60,3 +60,8 @@ pre {
     @apply float-left min-w-full;
   }
 }
+
+// Improve contrast in comments in code blocks
+span.token.comment {
+  @apply text-gray-400;
+}

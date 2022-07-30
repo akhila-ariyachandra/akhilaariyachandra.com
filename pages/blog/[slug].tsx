@@ -28,6 +28,7 @@ const BlogPost: NextPage<Props> = ({ post }) => {
         width={1200}
         height={630}
         className="rounded-lg"
+        priority
       />
 
       {post.photographer && post.unsplashLink ? (

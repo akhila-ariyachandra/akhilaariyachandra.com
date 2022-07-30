@@ -69,7 +69,10 @@ const Header: FC = () => {
 
       <Suspense
         fallback={
-          <button className="text-2xl text-zinc-800 dark:text-zinc-200 sm:hidden">
+          <button
+            className="text-2xl text-zinc-800 dark:text-zinc-200 sm:hidden"
+            aria-label="Mobile navigation dialog button"
+          >
             <MdMenu />
           </button>
         }
@@ -79,7 +82,10 @@ const Header: FC = () => {
           setDialogOpen={setDialogOpen}
           navLinks={NAV_LINKS}
           trigger={
-            <button className="text-2xl text-zinc-800 dark:text-zinc-200 sm:hidden">
+            <button
+              className="text-2xl text-zinc-800 dark:text-zinc-200 sm:hidden"
+              aria-label="Mobile navigation dialog button"
+            >
               <MdMenu />
             </button>
           }
