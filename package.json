@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "next dev",
     "lint": "next lint",
-    "build": "node scripts/pre-build.js && next build",
+    "build": "next build",
     "start": "next start",
     "format": "prettier --write \"**/*.{ts,tsx,js,json,md,mdx,scss}\""
   },
@@ -28,10 +28,8 @@
     "contentlayer": "0.2.6",
     "dayjs": "1.11.4",
     "feed": "4.2.2",
-    "gray-matter": "4.0.3",
     "next": "12.2.3",
     "next-contentlayer": "0.2.6",
-    "next-seo": "5.5.0",
     "next-themes": "0.2.0",
     "prism-themes": "1.9.0",
     "react": "18.2.0",
@@ -56,7 +54,6 @@
     "eslint": "8.21.0",
     "eslint-config-next": "12.2.3",
     "eslint-config-prettier": "8.5.0",
-    "minify-xml": "3.4.0",
     "postcss": "8.4.14",
     "prettier": "2.7.1",
     "prettier-plugin-tailwindcss": "0.1.13",

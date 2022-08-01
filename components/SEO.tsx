@@ -1,7 +1,7 @@
 import config from "@/lib/config";
-import { NextSeo } from "next-seo";
+import Head from "next/head";
 import { useRouter } from "next/router";
-import type { FunctionComponent } from "react";
+import type { FC } from "react";
 
 type Props = {
   title?: string;
@@ -11,7 +11,7 @@ type Props = {
   updated?: Date;
 };
 
-const SEO: FunctionComponent<Props> = ({
+const SEO: FC<Props> = ({
   title = config.title,
   description = config.description,
   image = "/cover-pic.jpg",
@@ -20,33 +20,39 @@ const SEO: FunctionComponent<Props> = ({
 }) => {
   const router = useRouter();
 
-  const titleTemplate = router.asPath === "/" ? "%s" : `%s | ${config.title}`;
-
-  const ogArticle = {};
-  if (date) {
-    ogArticle["publishedTime"] = date;
-    if (updated) {
-      ogArticle["modifiedTime"] = updated;
-    }
-    ogArticle["authors"] = [config.author.name];
-  }
+  const formattedTitle =
+    router.asPath === "/" ? title : `${title} | ${config.title}`;
 
   return (
-    <NextSeo
-      title={title}
-      titleTemplate={titleTemplate}
-      description={description}
-      canonical={`${config.siteUrl}${router.asPath}`}
-      openGraph={{
-        type: date ? "article" : "website",
-        images: [{ url: `${config.siteUrl}${image}` }],
-        article: ogArticle,
-      }}
-      twitter={{
-        cardType: "summary_large_image",
-        handle: config.author.twitter,
-      }}
-    />
+    <Head>
+      <title>{formattedTitle}</title>
+      <meta property="og:title" content={formattedTitle} />
+
+      <meta name="description" content={description} />
+      <meta property="og:description" content={description} />
+
+      <link rel="canonical" href={`${config.siteUrl}${router.asPath}`} />
+
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:creator" content={config.author.twitter} />
+
+      <meta property="og:type" content={date ? "article" : "website"} />
+      <meta property="og:image" content={`${config.siteUrl}${image}`} />
+
+      {/* Add article data if date prop has been passed i.e. blog posts */}
+      {!!date && (
+        <>
+          <meta property="article:author" content={config.author.name} />
+          <meta property="article:published_time" content={date.toString()} />
+          {!!updated && (
+            <meta
+              property="article:modified_time"
+              content={updated.toString()}
+            />
+          )}
+        </>
+      )}
+    </Head>
   );
 };
 

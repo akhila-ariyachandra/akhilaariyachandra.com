@@ -1,10 +1,10 @@
-import Footer from "@/components/Layout/Footer";
-import Header from "@/components/Layout/Header";
+import Footer from "./Footer";
+import Header from "./Header";
 import type { FC, ReactNode } from "react";
 
-type Props = {
+interface Props {
   children: ReactNode;
-};
+}
 
 const Layout: FC<Props> = ({ children }) => {
   return (
