@@ -18,7 +18,7 @@ const MDXComponent: FC<Props> = ({ code }) => {
     <div
       className={classNames(
         "prose prose-gray my-4 max-w-none font-sora prose-h1:mt-3.5 prose-headings:prose-a:no-underline dark:prose-invert",
-        styles.noLanguageCode
+        styles.customProse
       )}
     >
       <Component components={MDXComponents} />
