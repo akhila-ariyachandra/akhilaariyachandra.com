@@ -2,7 +2,7 @@ import { Head, Html, Main, NextScript } from "next/document";
 
 const Document = () => {
   return (
-    <Html lang="en" className="scroll-smooth">
+    <Html lang="en" className="overflow-y-scroll scroll-smooth">
       <Head>
         <meta charSet="UTF-8" />
 
@@ -37,7 +37,7 @@ const Document = () => {
         />
       </Head>
 
-      <body className="bg-white dark:bg-zinc-900">
+      <body className="bg-white transition-colors duration-200 dark:bg-zinc-900">
         <Main />
         <NextScript />
       </body>
