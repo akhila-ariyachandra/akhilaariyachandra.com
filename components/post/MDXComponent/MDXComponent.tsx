@@ -1,8 +1,12 @@
 import classNames from "classnames";
+import CodeSandboxWrapper from "./CodeSandboxWrapper";
+import Iframe from "./Iframe";
+import PostImage from "./PostImage";
+import SpecialBlock from "./SpecialBlock";
+import Video from "./Video";
 import type { FC } from "react";
 import { memo } from "react";
 import { useMDXComponent } from "next-contentlayer/hooks";
-import { MDXComponents } from "@/components/mdx";
 
 import "prism-themes/themes/prism-night-owl.css";
 import styles from "./MDXComponent.module.scss";
@@ -21,7 +25,15 @@ const MDXComponent: FC<Props> = ({ code }) => {
         styles.customProse
       )}
     >
-      <Component components={MDXComponents} />
+      <Component
+        components={{
+          SpecialBlock,
+          PostImage,
+          CodeSandboxWrapper,
+          Iframe,
+          Video,
+        }}
+      />
     </div>
   );
 };

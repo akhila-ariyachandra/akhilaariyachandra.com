@@ -1,5 +1,4 @@
 // @ts-check
-
 import fs from "fs";
 import path from "path";
 import { withContentlayer } from "next-contentlayer";
@@ -33,6 +32,14 @@ const nextConfig = {
       {
         source: "/_hive/:slug",
         destination: "https://hive.splitbee.io/:slug",
+      },
+      {
+        source: "/sitemap.xml",
+        destination: "/api/sitemap.xml",
+      },
+      {
+        source: "/rss.xml",
+        destination: "/api/rss.xml",
       },
     ];
   },
