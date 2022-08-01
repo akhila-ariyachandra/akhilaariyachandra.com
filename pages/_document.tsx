@@ -37,7 +37,7 @@ const Document = () => {
         />
       </Head>
 
-      <body className="bg-white dark:bg-zinc-900">
+      <body className="bg-white transition-colors duration-200 dark:bg-zinc-900">
         <Main />
         <NextScript />
       </body>

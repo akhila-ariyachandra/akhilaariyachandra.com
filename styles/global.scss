@@ -21,10 +21,6 @@ body,
   @apply rounded-full;
 }
 
-body * {
-  @apply antialiased;
-}
-
 .horizontalScroll::-webkit-scrollbar {
   @apply h-2;
 }
