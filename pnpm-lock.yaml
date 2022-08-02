@@ -4,8 +4,6 @@ specifiers:
   '@fec/remark-a11y-emoji': 3.1.0
   '@fontsource/roboto-slab': 4.5.8
   '@fontsource/sora': 4.5.8
-  '@mdx-js/mdx': 2.1.2
-  '@mdx-js/react': 2.1.2
   '@next/bundle-analyzer': 12.2.3
   '@radix-ui/react-dialog': 1.0.0
   '@splitbee/web': 0.3.0
@@ -51,8 +49,6 @@ dependencies:
   '@fec/remark-a11y-emoji': 3.1.0
   '@fontsource/roboto-slab': 4.5.8
   '@fontsource/sora': 4.5.8
-  '@mdx-js/mdx': 2.1.2
-  '@mdx-js/react': 2.1.2_react@18.2.0
   '@next/bundle-analyzer': 12.2.3
   '@radix-ui/react-dialog': 1.0.0_bb2bxwco6ptpubzwpazr52qf6i
   '@splitbee/web': 0.3.0
@@ -417,16 +413,6 @@ packages:
       vfile: 5.3.4
     transitivePeerDependencies:
       - supports-color
-    dev: false
-
-  /@mdx-js/react/2.1.2_react@18.2.0:
-    resolution: {integrity: sha512-52e3DTJBrjsw3U51ZCdZ3N1IBaqnbzLIngCSXpKtiYiGr7PIqp3/P/+kym0MPTwBL/y9ZBmCieD8FyrXuEDrRw==}
-    peerDependencies:
-      react: '>=16'
-    dependencies:
-      '@types/mdx': 2.0.2
-      '@types/react': 18.0.15
-      react: 18.2.0
     dev: false
 
   /@next/bundle-analyzer/12.2.3:
