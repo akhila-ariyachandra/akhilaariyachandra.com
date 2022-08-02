@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import NavLink from "./NavLink";
-import ThemeSwitch from "@/components/Layout/ThemeSwitch";
-const NavDialog = dynamic(() => import("@/components/Layout/NavDialog"), {
+import ThemeSwitch from "./ThemeSwitch";
+const NavDialog = dynamic(() => import("./NavDialog"), {
   suspense: true,
 });
 import type { FC } from "react";
