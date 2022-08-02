@@ -5,7 +5,6 @@ import PostImage from "./PostImage";
 import SpecialBlock from "./SpecialBlock";
 import Video from "./Video";
 import type { FC } from "react";
-import { memo } from "react";
 import { useMDXComponent } from "next-contentlayer/hooks";
 
 import "prism-themes/themes/prism-night-owl.css";
@@ -38,4 +37,4 @@ const MDXComponent: FC<Props> = ({ code }) => {
   );
 };
 
-export default memo(MDXComponent);
+export default MDXComponent;
