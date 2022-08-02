@@ -1,7 +1,12 @@
 // @ts-check
 import fs from "fs";
 import path from "path";
+import bundleAnalyzer from "@next/bundle-analyzer";
 import { withContentlayer } from "next-contentlayer";
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+});
 
 /**
  * @type {import('next').NextConfig}
@@ -84,4 +89,4 @@ const nextConfig = {
   },
 };
 
-export default withContentlayer(nextConfig);
+export default withBundleAnalyzer(withContentlayer(nextConfig));
