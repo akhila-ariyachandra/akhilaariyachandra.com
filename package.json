@@ -46,7 +46,7 @@
     "remark-external-links": "9.0.1",
     "remark-gfm": "3.0.1",
     "remark-smartypants": "2.0.0",
-    "sass": "1.54.0",
+    "sass": "1.54.2",
     "sharp": "0.30.7",
     "snarkdown": "2.0.0"
   },
