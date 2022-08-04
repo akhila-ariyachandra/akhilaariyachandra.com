@@ -3,11 +3,9 @@ import SEO from "@/components/SEO";
 import Title from "@/components/Title";
 import TopTracks from "@/components/TopTracks";
 import config from "@/lib/config";
-import { getTotalDevReactions, getTotalDevViews } from "@/lib/dashboard";
 import { getTopTracks } from "@/lib/spotify";
 import type { Song } from "@/lib/types";
 import type { GetStaticProps, NextPage } from "next";
-import { dehydrate, QueryClient } from "@tanstack/react-query";
 
 type DashboardProps = {
   tracks: Song[];
@@ -21,6 +19,13 @@ const Dashboard: NextPage<DashboardProps> = ({ tracks }) => {
       <Title title="Dashboard" />
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <DashboardItem
+          title="Total Views"
+          link={{ type: "internal", url: "/blog" }}
+          queryKey="totalViews"
+          url="/api/views"
+        />
+
         <DashboardItem
           title="DEV Views"
           link={{ type: "external", url: config.social.dev }}
@@ -46,21 +51,6 @@ const Dashboard: NextPage<DashboardProps> = ({ tracks }) => {
 export default Dashboard;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const queryClient = new QueryClient();
-
-  const prefetchPromises = [];
-  prefetchPromises.push(
-    queryClient.prefetchQuery(["dashboard", "totalDevViews"], getTotalDevViews)
-  );
-  prefetchPromises.push(
-    queryClient.prefetchQuery(
-      ["dashboard", "totalDevReactions"],
-      getTotalDevReactions
-    )
-  );
-
-  await Promise.all(prefetchPromises);
-
   // Get Spotify top tracks
   const response = await getTopTracks();
   const { items } = response.data;
@@ -79,7 +69,7 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 
   return {
-    props: { dehydratedState: dehydrate(queryClient), tracks },
+    props: { tracks },
     revalidate: 86400,
   };
 };

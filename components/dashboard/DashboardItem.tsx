@@ -1,8 +1,14 @@
-import { fetcher } from "@/lib/helpers";
+import classNames from "classnames";
 import Link from "next/link";
+import type { FC } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { fetcher } from "@/lib/helpers";
 
-type Props = {
+interface APIResponse {
+  count: number;
+}
+
+interface DashboardItemProps {
   title: string;
   link: {
     url: string;
@@ -10,24 +16,30 @@ type Props = {
   };
   queryKey: string;
   url: string;
-};
+}
 
-const DashboardItem: React.FunctionComponent<Props> = ({
+const DashboardItem: FC<DashboardItemProps> = ({
   title,
   link,
   queryKey,
   url,
 }) => {
-  const { data } = useQuery<number, Error>(
+  const { data } = useQuery<APIResponse, Error>(
     ["dashboard", queryKey],
     () => fetcher(url),
     {
-      placeholderData: 0,
+      placeholderData: { count: 0 },
     }
   );
 
   return (
-    <div className="grid grid-cols-1 place-content-center gap-2">
+    <div
+      className={classNames(
+        "grid-cols-1",
+        "grid place-content-center gap-2",
+        "rounded-md border-2 border-zinc-600 p-2 dark:border-zinc-300"
+      )}
+    >
       {link.type === "internal" ? (
         <Link href={link.url}>
           <a className="flex flex-row font-sora text-3xl font-medium text-emerald-700 dark:text-emerald-600">
@@ -46,7 +58,7 @@ const DashboardItem: React.FunctionComponent<Props> = ({
       )}
 
       <div className="font-roboto-slab text-2xl font-normal text-zinc-800 dark:text-zinc-200">
-        {data}
+        {data?.count}
       </div>
     </div>
   );
