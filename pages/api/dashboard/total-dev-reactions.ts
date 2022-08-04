@@ -9,7 +9,7 @@ const TotalDevReactions: NextApiHandler = async (req, res) => {
     "public, s-maxage=86400, stale-while-revalidate=43200"
   );
 
-  return res.status(200).send(totalDevReactions);
+  return res.status(200).json({ count: totalDevReactions });
 };
 
 export default TotalDevReactions;
