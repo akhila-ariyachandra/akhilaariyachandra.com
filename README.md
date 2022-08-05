@@ -45,6 +45,12 @@ pnpm format
 pscale connect akhilaariyachandra-com development --port 3309
 ```
 
+### Making database schema changes
+
+```shell
+pnpm prisma:db-push
+```
+
 ### Creating a deploy request
 
 ```shell
