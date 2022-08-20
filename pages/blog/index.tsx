@@ -1,11 +1,9 @@
-import dayjs from "dayjs";
 import ListContainer from "@/components/ListContainer";
 import PostLink from "@/components/PostLink";
 import SEO from "@/components/SEO";
-import type { GetStaticProps, NextPage } from "next";
-import { dehydrate, QueryClient } from "@tanstack/react-query";
 import { allPosts } from "contentlayer/generated";
-import { getViews } from "@/lib/server/views";
+import dayjs from "dayjs";
+import type { GetStaticProps, NextPage } from "next";
 
 type BlogProps = {
   posts: {
@@ -49,16 +47,9 @@ export const getStaticProps: GetStaticProps = async () => {
       }
     });
 
-  // Prefetch the post views
-  const queryClient = new QueryClient();
-  const promises = posts.map(({ slug }) => getViews(slug));
-  await Promise.all(promises);
-
   return {
     props: {
       posts,
-      dehydratedState: dehydrate(queryClient),
     },
-    revalidate: 3600,
   };
 };
