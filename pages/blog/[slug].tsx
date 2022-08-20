@@ -7,6 +7,8 @@ import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { useEffect } from "react";
 import { allPosts } from "contentlayer/generated";
 import { formatDate } from "@/lib/helpers";
+import { getViews } from "@/lib/server/views";
+import { dehydrate, QueryClient } from "@tanstack/react-query";
 
 type Props = {
   post: Post;
@@ -96,9 +98,18 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const post = allPosts.find((post) => post.slug === slug);
 
+  // Prefetch the post views
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery(
+    ["views", slug],
+    async () => await getViews(slug)
+  );
+
   return {
     props: {
       post,
+      dehydratedState: dehydrate(queryClient),
     },
+    revalidate: 3600,
   };
 };

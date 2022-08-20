@@ -1,24 +1,12 @@
 import prisma from "@/prisma";
 import type { NextApiHandler } from "next";
+import { getViews } from "@/lib/server/views";
 
 const ViewsHandler: NextApiHandler = async (req, res) => {
   const slug = req.query.slug.toString();
 
   if (req.method === "GET") {
-    try {
-      const views = await prisma.views.findUniqueOrThrow({
-        where: {
-          slug,
-        },
-      });
-
-      return res.status(200).json(views);
-    } catch {
-      return res.status(200).json({
-        slug,
-        count: 0,
-      });
-    }
+    return await getViews(slug);
   } else if (req.method === "POST") {
     const views = await prisma.views.upsert({
       create: {
