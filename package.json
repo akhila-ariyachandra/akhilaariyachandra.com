@@ -18,6 +18,7 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@badrap/bar-of-progress": "0.2.1",
     "@fec/remark-a11y-emoji": "3.1.0",
     "@fontsource/roboto-slab": "4.5.9",
     "@fontsource/sora": "4.5.9",
