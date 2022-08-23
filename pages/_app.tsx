@@ -1,7 +1,9 @@
+import ProgressBar from "@badrap/bar-of-progress";
 import Layout from "@/components/Layout";
-import { ThemeProvider } from "next-themes";
 import type { AppProps } from "next/app";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { ThemeProvider } from "next-themes";
 import {
   Hydrate,
   QueryClient,
@@ -16,8 +18,28 @@ import "@fontsource/sora/400.css";
 import "@fontsource/sora/variable.css";
 import "tailwindcss/tailwind.css";
 
+const progress = new ProgressBar({
+  size: 2,
+  color: "#10b981",
+  className: "bar-of-progress",
+  delay: 100,
+});
+
 const MyApp = ({ Component, pageProps }: AppProps) => {
+  const router = useRouter();
   const [queryClient] = useState(() => new QueryClient());
+
+  useEffect(() => {
+    router.events.on("routeChangeStart", progress.start);
+    router.events.on("routeChangeComplete", progress.finish);
+    router.events.on("routeChangeError", progress.finish);
+
+    return () => {
+      router.events.off("routeChangeStart", progress.start);
+      router.events.off("routeChangeComplete", progress.finish);
+      router.events.off("routeChangeError", progress.finish);
+    };
+  }, [router]);
 
   return (
     <ThemeProvider
