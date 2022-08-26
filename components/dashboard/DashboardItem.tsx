@@ -41,10 +41,11 @@ const DashboardItem: FC<DashboardItemProps> = ({
       )}
     >
       {link.type === "internal" ? (
-        <Link href={link.url}>
-          <a className="flex flex-row font-sora text-3xl font-medium text-emerald-700 dark:text-emerald-600">
-            {title}
-          </a>
+        <Link
+          href={link.url}
+          className="flex flex-row font-sora text-3xl font-medium text-emerald-700 dark:text-emerald-600"
+        >
+          {title}
         </Link>
       ) : (
         <a

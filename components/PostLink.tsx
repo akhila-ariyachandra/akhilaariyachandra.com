@@ -14,10 +14,11 @@ const PostLink: FC<PostLinkProps> = ({ slug, title, date }) => {
 
   return (
     <article className="space-y-2">
-      <Link href={`/blog/${slug}`}>
-        <a className="font-sora text-3xl font-bold text-emerald-700 dark:text-emerald-600">
-          {title}
-        </a>
+      <Link
+        href={`/blog/${slug}`}
+        className="font-sora text-3xl font-bold text-emerald-700 dark:text-emerald-600"
+      >
+        {title}
       </Link>
 
       <div className="font-roboto-slab text-lg font-medium text-zinc-800 dark:text-zinc-200">

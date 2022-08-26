@@ -24,10 +24,11 @@ const Snippets: NextPage<SnippetsProps> = ({ snippets }) => {
       <ListContainer title="Code Snippets">
         {snippets.map((snippet) => (
           <article key={snippet.slug} className="space-y-2">
-            <Link href={`/snippets/${snippet.slug}`}>
-              <a className="font-sora text-3xl font-bold text-emerald-700 dark:text-emerald-600">
-                {snippet.title}
-              </a>
+            <Link
+              href={`/snippets/${snippet.slug}`}
+              className="font-sora text-3xl font-bold text-emerald-700 dark:text-emerald-600"
+            >
+              {snippet.title}
             </Link>
 
             <p className="font-roboto-slab text-lg font-medium text-zinc-800 dark:text-zinc-200">
