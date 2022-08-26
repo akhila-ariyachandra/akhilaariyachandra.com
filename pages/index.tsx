@@ -86,10 +86,11 @@ const Index: NextPage = () => {
             {CURRENT_JOB.company}
           </a>
           {` as ${getAOrAn(CURRENT_JOB.positions[0].title)} `}
-          <Link href="/career">
-            <a className="text-emerald-700 dark:text-emerald-600">
-              {CURRENT_JOB.positions[0].title}
-            </a>
+          <Link
+            href="/career"
+            className="text-emerald-700 dark:text-emerald-600"
+          >
+            {CURRENT_JOB.positions[0].title}
           </Link>
           {`. You have found my personal corner of the internet.`}
         </p>

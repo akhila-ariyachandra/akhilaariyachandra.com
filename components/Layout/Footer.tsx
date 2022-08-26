@@ -29,10 +29,12 @@ const Footer: React.FunctionComponent = () => {
 
         <nav className="grid grid-cols-2 gap-2 sm:grid-cols-3">
           {LINKS.map((link) => (
-            <Link href={link.href} key={link.href}>
-              <a className="font-sora text-xl font-medium text-emerald-900 dark:text-zinc-300">
-                {link.title}
-              </a>
+            <Link
+              href={link.href}
+              key={link.href}
+              className="font-sora text-xl font-medium text-emerald-900 dark:text-zinc-300"
+            >
+              {link.title}
             </Link>
           ))}
         </nav>
