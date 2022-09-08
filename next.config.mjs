@@ -23,10 +23,8 @@ const nextConfig = {
   },
   experimental: {
     legacyBrowsers: false,
-    images: {
-      allowFutureImage: true,
-    },
     newNextLinkBehavior: true,
+    fallbackNodePolyfills: false,
   },
   rewrites: async () => {
     return [

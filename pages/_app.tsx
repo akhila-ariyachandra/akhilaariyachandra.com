@@ -8,6 +8,7 @@ import {
   Hydrate,
   QueryClient,
   QueryClientProvider,
+  dehydrate,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
@@ -25,7 +26,13 @@ const progress = new ProgressBar({
   delay: 100,
 });
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+interface MyAppProps extends AppProps {
+  pageProps: {
+    dehydratedState: ReturnType<typeof dehydrate>;
+  };
+}
+
+const MyApp = ({ Component, pageProps }: MyAppProps) => {
   const router = useRouter();
   const [queryClient] = useState(() => new QueryClient());
 
