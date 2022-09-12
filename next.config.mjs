@@ -24,7 +24,6 @@ const nextConfig = {
   experimental: {
     legacyBrowsers: false,
     newNextLinkBehavior: true,
-    fallbackNodePolyfills: false,
   },
   rewrites: async () => {
     return [
