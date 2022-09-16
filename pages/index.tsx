@@ -10,6 +10,13 @@ import { about, type About, career, type Job } from "contentlayer/generated";
 import { getPeriod } from "@/lib/helpers";
 import { FaDev, FaGithub, FaRssSquare, FaTwitterSquare } from "react-icons/fa";
 
+const SocialIcons = {
+  GitHub: FaGithub,
+  DEV: FaDev,
+  Twitter: FaTwitterSquare,
+  RSS: FaRssSquare,
+};
+
 const SocialLink = ({
   site,
   link,
@@ -17,24 +24,7 @@ const SocialLink = ({
   site: "GitHub" | "DEV" | "Twitter" | "RSS";
   link: string;
 }) => {
-  let Icon = null;
-
-  switch (site) {
-    case "GitHub":
-      Icon = FaGithub;
-      break;
-    case "DEV":
-      Icon = FaDev;
-      break;
-    case "Twitter":
-      Icon = FaTwitterSquare;
-      break;
-    case "RSS":
-      Icon = FaRssSquare;
-      break;
-    default:
-      Icon = null;
-  }
+  const Icon = SocialIcons[site];
 
   return (
     <a
