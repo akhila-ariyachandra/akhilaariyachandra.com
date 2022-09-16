@@ -7,7 +7,7 @@ import SEO from "@/components/SEO";
 import MDXComponent from "@/components/MDXComponent";
 import type { NextPage, GetStaticProps } from "next";
 import { about, type About, career, type Job } from "contentlayer/generated";
-import { getAOrAn, getPeriod } from "@/lib/helpers";
+import { getPeriod } from "@/lib/helpers";
 import { FaDev, FaGithub, FaRssSquare, FaTwitterSquare } from "react-icons/fa";
 
 const SocialLink = ({
