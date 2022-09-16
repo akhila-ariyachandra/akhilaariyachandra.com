@@ -80,6 +80,13 @@ const Snippet = defineDocumentType(() => ({
   },
 }));
 
+const About = defineDocumentType(() => ({
+  name: "About",
+  filePathPattern: "about.mdx",
+  contentType: "mdx",
+  isSingleton: true,
+}));
+
 const Career = defineDocumentType(() => ({
   name: "Career",
   filePathPattern: "career.yaml",
@@ -142,7 +149,7 @@ const Career = defineDocumentType(() => ({
 
 const contentLayerConfig = makeSource({
   contentDirPath: "content",
-  documentTypes: [Post, Snippet, Career],
+  documentTypes: [Post, Snippet, About, Career],
   mdx: {
     remarkPlugins: [smartypants, a11yEmoji, externalLinks, remarkGfm],
     rehypePlugins: [rehypeSlug, rehypeCodeTitle, rehypePrism],

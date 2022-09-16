@@ -4,8 +4,9 @@ import splitbee from "@/lib/splitbee";
 import coverPic from "@/public/cover-pic.jpg";
 import Image from "next/future/image";
 import SEO from "@/components/SEO";
+import MDXComponent from "@/components/MDXComponent";
 import type { NextPage, GetStaticProps } from "next";
-import { career, type Job } from "contentlayer/generated";
+import { about, type About, career, type Job } from "contentlayer/generated";
 import { getAOrAn, getPeriod } from "@/lib/helpers";
 import { FaDev, FaGithub, FaRssSquare, FaTwitterSquare } from "react-icons/fa";
 
@@ -56,18 +57,18 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
+      about,
       jobs,
     },
   };
 };
 
 interface IndexPageProps {
+  about: About;
   jobs: Job[];
 }
 
-const IndexPage: NextPage<IndexPageProps> = ({ jobs }) => {
-  const currentJob = jobs[0];
-
+const IndexPage: NextPage<IndexPageProps> = ({ about, jobs }) => {
   return (
     <>
       <SEO />
@@ -81,7 +82,7 @@ const IndexPage: NextPage<IndexPageProps> = ({ jobs }) => {
         placeholder="blur"
       />
 
-      <div className="mt-4 space-y-4">
+      <div className="mt-4 space-y-6">
         <h1 className="font-sora text-4xl font-black text-zinc-800 dark:text-zinc-200">
           {`Hi, I'm `}
           <span className="text-emerald-700 dark:text-emerald-600">
@@ -89,22 +90,7 @@ const IndexPage: NextPage<IndexPageProps> = ({ jobs }) => {
           </span>
         </h1>
 
-        <p className="font-roboto-slab text-lg font-medium text-zinc-800 dark:text-zinc-200">
-          {`I am a web developer working at `}
-          <a
-            className="text-emerald-700 dark:text-emerald-600"
-            href={currentJob.company.link}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {currentJob.company.name}
-          </a>
-          {` as ${getAOrAn(currentJob.position)} `}
-          <span className="text-emerald-700 dark:text-emerald-600">
-            {currentJob.position}
-          </span>
-          {`. You have found my personal corner of the internet.`}
-        </p>
+        <MDXComponent code={about.body.code} />
 
         <div className="flex flex-row space-x-2">
           <SocialLink site="GitHub" link={config.social.github} />

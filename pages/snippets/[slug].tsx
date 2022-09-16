@@ -1,4 +1,4 @@
-import MDXComponent from "@/components/post/MDXComponent";
+import MDXComponent from "@/components/MDXComponent";
 import SEO from "@/components/SEO";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import type { Snippet } from "contentlayer/generated";
