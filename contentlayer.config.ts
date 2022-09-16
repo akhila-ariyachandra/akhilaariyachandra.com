@@ -1,5 +1,9 @@
 import a11yEmoji from "@fec/remark-a11y-emoji";
-import { defineDocumentType, makeSource } from "contentlayer/source-files";
+import {
+  defineDocumentType,
+  defineNestedType,
+  makeSource,
+} from "contentlayer/source-files";
 import readingTime from "reading-time";
 import rehypeCodeTitle from "rehype-code-title";
 import rehypePrism from "rehype-prism-plus";
@@ -76,9 +80,69 @@ const Snippet = defineDocumentType(() => ({
   },
 }));
 
+const Career = defineDocumentType(() => ({
+  name: "Career",
+  filePathPattern: "career.yaml",
+  isSingleton: true,
+  contentType: "data",
+  fields: {
+    jobs: {
+      type: "list",
+      of: defineNestedType(() => ({
+        name: "Job",
+        fields: {
+          position: {
+            type: "string",
+            required: true,
+          },
+          company: {
+            type: "nested",
+            of: defineNestedType(() => ({
+              name: "Company",
+              fields: {
+                name: {
+                  type: "string",
+                  required: true,
+                },
+                logo: {
+                  type: "string",
+                  required: true,
+                },
+                link: {
+                  type: "string",
+                  required: true,
+                },
+              },
+            })),
+            required: true,
+          },
+          period: {
+            type: "nested",
+            of: defineNestedType(() => ({
+              name: "Period",
+              fields: {
+                start: {
+                  type: "date",
+                  required: true,
+                },
+                end: {
+                  type: "date",
+                  required: false,
+                },
+              },
+            })),
+            required: true,
+          },
+        },
+      })),
+      required: true,
+    },
+  },
+}));
+
 const contentLayerConfig = makeSource({
   contentDirPath: "content",
-  documentTypes: [Post, Snippet],
+  documentTypes: [Post, Snippet, Career],
   mdx: {
     remarkPlugins: [smartypants, a11yEmoji, externalLinks, remarkGfm],
     rehypePlugins: [rehypeSlug, rehypeCodeTitle, rehypePrism],

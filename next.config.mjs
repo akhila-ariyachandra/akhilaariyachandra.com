@@ -82,6 +82,13 @@ const nextConfig = {
       permanent: true,
     });
 
+    // Move information in /career to /
+    redirects.push({
+      source: `/career`,
+      destination: `/`,
+      permanent: true,
+    });
+
     return redirects;
   },
 };

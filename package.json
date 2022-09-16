@@ -12,7 +12,7 @@
     "build": "next build",
     "analyze": "cross-env ANALYZE=true next build",
     "start": "next start",
-    "format": "prettier --write \"**/*.{ts,tsx,js,json,md,mdx,scss,prisma}\"",
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md,mdx,scss,prisma,yaml}\"",
     "prisma:db-push": "prisma db push",
     "prisma:generate": "prisma generate",
     "postinstall": "prisma generate"

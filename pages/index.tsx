@@ -1,15 +1,13 @@
-import SEO from "@/components/SEO";
+import dayjs from "dayjs";
 import config from "@/lib/config";
-import career from "@/lib/data/career";
-import { getAOrAn } from "@/lib/helpers";
 import splitbee from "@/lib/splitbee";
 import coverPic from "@/public/cover-pic.jpg";
-import type { NextPage } from "next";
 import Image from "next/future/image";
-import Link from "next/link";
+import SEO from "@/components/SEO";
+import type { NextPage, GetStaticProps } from "next";
+import { career, type Job } from "contentlayer/generated";
+import { getAOrAn, getPeriod } from "@/lib/helpers";
 import { FaDev, FaGithub, FaRssSquare, FaTwitterSquare } from "react-icons/fa";
-
-const CURRENT_JOB = career[0];
 
 const SocialLink = ({
   site,
@@ -53,7 +51,23 @@ const SocialLink = ({
   );
 };
 
-const Index: NextPage = () => {
+export const getStaticProps: GetStaticProps = async () => {
+  const jobs = career.jobs;
+
+  return {
+    props: {
+      jobs,
+    },
+  };
+};
+
+interface IndexPageProps {
+  jobs: Job[];
+}
+
+const IndexPage: NextPage<IndexPageProps> = ({ jobs }) => {
+  const currentJob = jobs[0];
+
   return (
     <>
       <SEO />
@@ -79,19 +93,16 @@ const Index: NextPage = () => {
           {`I am a web developer working at `}
           <a
             className="text-emerald-700 dark:text-emerald-600"
-            href={CURRENT_JOB.link}
+            href={currentJob.company.link}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {CURRENT_JOB.company}
+            {currentJob.company.name}
           </a>
-          {` as ${getAOrAn(CURRENT_JOB.positions[0].title)} `}
-          <Link
-            href="/career"
-            className="text-emerald-700 dark:text-emerald-600"
-          >
-            {CURRENT_JOB.positions[0].title}
-          </Link>
+          {` as ${getAOrAn(currentJob.position)} `}
+          <span className="text-emerald-700 dark:text-emerald-600">
+            {currentJob.position}
+          </span>
           {`. You have found my personal corner of the internet.`}
         </p>
 
@@ -105,8 +116,62 @@ const Index: NextPage = () => {
           <SocialLink site="RSS" link="/rss.xml" />
         </div>
       </div>
+
+      <hr className="my-12 h-[1px] bg-zinc-200 dark:bg-zinc-600" />
+
+      <section>
+        <h2 className="font-sora text-4xl font-bold text-zinc-800 dark:text-zinc-200">
+          Career
+        </h2>
+
+        <div className="my-8 flex flex-col gap-6">
+          {jobs.map((job) => (
+            <article
+              key={`${job.position}-${job.period.start.toString()}`}
+              className="flex flex-row items-center gap-4"
+            >
+              <Image
+                src={`/career/${job.company.logo}`}
+                alt={`${job.company.name} logo`}
+                title={job.company.name}
+                width={64}
+                height={64}
+                className="flex-shrink-0 rounded-md"
+              />
+
+              <div className="break-words">
+                <h3 className="font-sora text-xl font-semibold text-zinc-800 dark:text-zinc-200">
+                  {job.position}
+                </h3>
+
+                <a
+                  href={job.company.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block font-sora text-lg font-medium text-emerald-700 dark:text-emerald-600"
+                >
+                  {job.company.name}
+                </a>
+
+                <div className="font-roboto-slab text-base font-normal text-zinc-800 dark:text-zinc-200">
+                  <span>
+                    {`${dayjs(job.period.start).format("MMMM YYYY")} - ${
+                      job.period.end
+                        ? dayjs(job.period.end).format("MMMM YYYY")
+                        : "Present"
+                    }`}
+                  </span>
+                  <span className="font-light text-zinc-600 dark:text-zinc-400">
+                    {` (${getPeriod(job.period.start, job.period.end)})`}
+                  </span>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
     </>
   );
 };
 
-export default Index;
+export default IndexPage;

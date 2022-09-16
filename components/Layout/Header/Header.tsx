@@ -32,11 +32,6 @@ const NAV_LINKS: {
     activePath: /^\/snippets*/,
   },
   {
-    label: "Career",
-    href: "/career",
-    activePath: /^\/career$/,
-  },
-  {
     label: "Dashboard",
     href: "/dashboard",
     activePath: /^\/dashboard$/,
