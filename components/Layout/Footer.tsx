@@ -5,7 +5,6 @@ import { IoAnalyticsSharp } from "react-icons/io5";
 
 const LINKS = [
   { href: "/blog", title: "Blog" },
-  { href: "/career", title: "Career" },
   { href: "/snippets", title: "Snippets" },
   { href: "/dashboard", title: "Dashboard" },
 ];

@@ -24,7 +24,6 @@ const nextConfig = {
   experimental: {
     legacyBrowsers: false,
     newNextLinkBehavior: true,
-    fallbackNodePolyfills: false,
   },
   rewrites: async () => {
     return [
@@ -79,6 +78,13 @@ const nextConfig = {
     // Move information in /about to /
     redirects.push({
       source: `/about`,
+      destination: `/`,
+      permanent: true,
+    });
+
+    // Move information in /career to /
+    redirects.push({
+      source: `/career`,
       destination: `/`,
       permanent: true,
     });

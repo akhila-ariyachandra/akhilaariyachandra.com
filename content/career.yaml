@@ -1,0 +1,40 @@
+jobs:
+  - position: Senior Software Engineer
+    company:
+      name: Villvay
+      logo: villvay.png
+      link: https://villvay.com/
+    period:
+      start: 2021-04-02
+  - position: Software Engineer
+    company:
+      name: IFS Sri Lanka
+      logo: ifs.png
+      link: https://www.ifs.com/lk/
+    period:
+      start: 2019-03-18
+      end: 2021-04-01
+  - position: Software Engineer
+    company:
+      name: Villvay
+      logo: villvay.png
+      link: https://villvay.com/
+    period:
+      start: 2018-07-15
+      end: 2019-03-15
+  - position: Associate Software Engineer
+    company:
+      name: Villvay
+      logo: villvay.png
+      link: https://villvay.com/
+    period:
+      start: 2018-01-15
+      end: 2018-07-15
+  - position: Intern Software Engineer
+    company:
+      name: SriLankan Airlines
+      logo: srilankan.png
+      link: https://www.srilankan.com/en_uk/lk
+    period:
+      start: 2016-06-05
+      end: 2016-12-05
