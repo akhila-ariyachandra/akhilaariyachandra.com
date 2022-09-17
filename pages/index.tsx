@@ -1,10 +1,10 @@
 import dayjs from "dayjs";
 import config from "@/lib/config";
-import splitbee from "@/lib/splitbee";
 import coverPic from "@/public/cover-pic.jpg";
 import Image from "next/future/image";
 import SEO from "@/components/SEO";
 import MDXComponent from "@/components/MDXComponent";
+import type { FC } from "react";
 import type { NextPage, GetStaticProps } from "next";
 import { about, type About, career, type Job } from "contentlayer/generated";
 import { getPeriod } from "@/lib/helpers";
@@ -17,13 +17,12 @@ const SocialIcons = {
   RSS: FaRssSquare,
 };
 
-const SocialLink = ({
-  site,
-  link,
-}: {
-  site: "GitHub" | "DEV" | "Twitter" | "RSS";
+interface SocialIconsProps {
+  site: keyof typeof SocialIcons;
   link: string;
-}) => {
+}
+
+const SocialLink: FC<SocialIconsProps> = ({ site, link }) => {
   const Icon = SocialIcons[site];
 
   return (
@@ -33,9 +32,6 @@ const SocialLink = ({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={site}
-      onClick={() => {
-        splitbee.track("Open Social Link", { name: site });
-      }}
     >
       <Icon />
     </a>
