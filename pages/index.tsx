@@ -1,40 +1,29 @@
 import dayjs from "dayjs";
 import config from "@/lib/config";
-import splitbee from "@/lib/splitbee";
 import coverPic from "@/public/cover-pic.jpg";
 import Image from "next/future/image";
 import SEO from "@/components/SEO";
 import MDXComponent from "@/components/MDXComponent";
+import type { FC } from "react";
 import type { NextPage, GetStaticProps } from "next";
 import { about, type About, career, type Job } from "contentlayer/generated";
-import { getAOrAn, getPeriod } from "@/lib/helpers";
+import { getPeriod } from "@/lib/helpers";
 import { FaDev, FaGithub, FaRssSquare, FaTwitterSquare } from "react-icons/fa";
 
-const SocialLink = ({
-  site,
-  link,
-}: {
-  site: "GitHub" | "DEV" | "Twitter" | "RSS";
-  link: string;
-}) => {
-  let Icon = null;
+const SocialIcons = {
+  GitHub: FaGithub,
+  DEV: FaDev,
+  Twitter: FaTwitterSquare,
+  RSS: FaRssSquare,
+};
 
-  switch (site) {
-    case "GitHub":
-      Icon = FaGithub;
-      break;
-    case "DEV":
-      Icon = FaDev;
-      break;
-    case "Twitter":
-      Icon = FaTwitterSquare;
-      break;
-    case "RSS":
-      Icon = FaRssSquare;
-      break;
-    default:
-      Icon = null;
-  }
+interface SocialIconsProps {
+  site: keyof typeof SocialIcons;
+  link: string;
+}
+
+const SocialLink: FC<SocialIconsProps> = ({ site, link }) => {
+  const Icon = SocialIcons[site];
 
   return (
     <a
@@ -43,9 +32,6 @@ const SocialLink = ({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={site}
-      onClick={() => {
-        splitbee.track("Open Social Link", { name: site });
-      }}
     >
       <Icon />
     </a>
