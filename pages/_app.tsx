@@ -17,7 +17,6 @@ import "@fontsource/roboto-slab/400.css";
 import "@fontsource/roboto-slab/variable.css";
 import "@fontsource/sora/400.css";
 import "@fontsource/sora/variable.css";
-import "tailwindcss/tailwind.css";
 
 const progress = new ProgressBar({
   size: 2,

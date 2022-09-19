@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Try to use full height without "min-height: 100vh" */
 html,
 body,
@@ -12,6 +16,5 @@ body,
 
 /* Scrollbar color and border radius */
 ::-webkit-scrollbar-thumb {
-  @apply bg-emerald-600;
-  @apply rounded-full;
+  @apply rounded-full bg-emerald-600;
 }
