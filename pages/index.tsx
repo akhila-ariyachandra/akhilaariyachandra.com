@@ -1,12 +1,21 @@
 import dayjs from "dayjs";
 import config from "@/lib/config";
+import prisma from "@/prisma";
 import coverPic from "@/public/cover-pic.jpg";
 import Image from "next/future/image";
 import SEO from "@/components/SEO";
 import MDXComponent from "@/components/MDXComponent";
+import PostLink from "@/components/PostLink";
 import type { FC } from "react";
 import type { NextPage, GetStaticProps } from "next";
-import { about, type About, career, type Job } from "contentlayer/generated";
+import {
+  about,
+  type About,
+  career,
+  type Job,
+  allPosts,
+  type Post,
+} from "contentlayer/generated";
 import { getPeriod } from "@/lib/helpers";
 import { FaDev, FaGithub, FaRssSquare, FaTwitterSquare } from "react-icons/fa";
 
@@ -41,20 +50,34 @@ const SocialLink: FC<SocialIconsProps> = ({ site, link }) => {
 export const getStaticProps: GetStaticProps = async () => {
   const jobs = career.jobs;
 
+  // Get most popular posts
+  const views = await prisma.views.findMany({
+    orderBy: {
+      count: "desc",
+    },
+    take: 3,
+  });
+  const posts = views.map((view) =>
+    allPosts.find((post) => post.slug === view.slug)
+  );
+
   return {
     props: {
       about,
       jobs,
+      posts,
     },
+    revalidate: 3600, // 1 hour
   };
 };
 
 interface IndexPageProps {
   about: About;
   jobs: Job[];
+  posts: Post[];
 }
 
-const IndexPage: NextPage<IndexPageProps> = ({ about, jobs }) => {
+const IndexPage: NextPage<IndexPageProps> = ({ about, jobs, posts }) => {
   return (
     <>
       <SEO />
@@ -88,6 +111,25 @@ const IndexPage: NextPage<IndexPageProps> = ({ about, jobs }) => {
           <SocialLink site="RSS" link="/rss.xml" />
         </div>
       </div>
+
+      <hr className="my-12 h-[1px] bg-zinc-200 dark:bg-zinc-600" />
+
+      <section>
+        <h2 className="font-sora text-4xl font-bold text-zinc-800 dark:text-zinc-200">
+          Most Popular Posts
+        </h2>
+
+        <div className="my-8 flex flex-col gap-6">
+          {posts.map((post) => (
+            <PostLink
+              key={post.slug}
+              title={post.title}
+              slug={post.slug}
+              date={post.date}
+            />
+          ))}
+        </div>
+      </section>
 
       <hr className="my-12 h-[1px] bg-zinc-200 dark:bg-zinc-600" />
 
