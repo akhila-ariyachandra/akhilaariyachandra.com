@@ -11,6 +11,7 @@ import {
   dehydrate,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Analytics } from "@vercel/analytics/react";
 
 import "@/styles/global.scss";
 import "@fontsource/roboto-slab/400.css";
@@ -58,6 +59,8 @@ const MyApp = ({ Component, pageProps }: MyAppProps) => {
         <Hydrate state={pageProps.dehydratedState}>
           <Layout>
             <Component {...pageProps} />
+
+            <Analytics />
           </Layout>
         </Hydrate>
 
