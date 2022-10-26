@@ -1,6 +1,6 @@
 import { fetcher } from "@/lib/helpers";
 import type { Song } from "@/lib/types";
-import Image from "next/future/image";
+import Image from "next/image";
 import React from "react";
 import { FaSpotify } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
