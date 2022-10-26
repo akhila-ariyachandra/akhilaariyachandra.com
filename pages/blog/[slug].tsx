@@ -1,5 +1,5 @@
 import useViews from "@/hooks/useViews.hook";
-import Image from "next/future/image";
+import Image from "next/image";
 import MDXComponent from "@/components/MDXComponent";
 import SEO from "@/components/SEO";
 import type { Post } from "contentlayer/generated";

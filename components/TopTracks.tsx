@@ -1,5 +1,5 @@
 import type { Song } from "@/lib/types";
-import Image from "next/future/image";
+import Image from "next/image";
 import type { FC } from "react";
 
 type Props = {

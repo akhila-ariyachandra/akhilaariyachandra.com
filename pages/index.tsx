@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import config from "@/lib/config";
 import prisma from "@/prisma";
 import coverPic from "@/public/cover-pic.jpg";
-import Image from "next/future/image";
+import Image from "next/image";
 import SEO from "@/components/SEO";
 import MDXComponent from "@/components/MDXComponent";
 import PostLink from "@/components/PostLink";
