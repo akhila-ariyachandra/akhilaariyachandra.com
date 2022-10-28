@@ -14,7 +14,7 @@ import smartypants from "remark-smartypants";
 
 const Post = defineDocumentType(() => ({
   name: "Post",
-  filePathPattern: "posts/*.mdx",
+  filePathPattern: "posts/**/*.mdx",
   contentType: "mdx",
   fields: {
     title: {
@@ -37,6 +37,10 @@ const Post = defineDocumentType(() => ({
       type: "string",
       required: true,
     },
+    coverImage: {
+      type: "image",
+      required: true,
+    },
     photographer: {
       type: "string",
       required: false,
@@ -49,7 +53,8 @@ const Post = defineDocumentType(() => ({
   computedFields: {
     slug: {
       type: "string",
-      resolve: (doc) => doc._raw.sourceFileName.replace(/\.mdx$/, ""),
+      resolve: (doc) =>
+        doc._id.replace(/^posts\//, "").replace(/\/index\.mdx$/, ""),
     },
     readingTime: {
       type: "string",

@@ -1,0 +1,688 @@
+---
+title: Creating a serverless GraphQL API with TypeScript and Prisma
+date: "2020-12-06"
+description: "Let's create a Serverless GraphQL API and deploy it using Vercel"
+banner: "/blog/serverless-graphql-api-typescript-prisma-postgressql/banner.jpg"
+coverImage: "./banner.jpg"
+photographer: "Anas Alshanti"
+unsplashLink: "https://unsplash.com/s/photos/coding?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"
+---
+
+In this post we'll create a GraphQL API to create, view and delete notes that we can deploy to [Vercel](https://vercel.com/home) using [Apollo Server](https://www.apollographql.com/docs/apollo-server/), TypeScript and MongoDB.
+
+# Initial Setup
+
+First [Vercel](https://vercel.com/download) will need be downloaded, installed and logged into.
+
+```shell
+yarn global add vercel
+vercel login
+```
+
+The nice thing about using **Vercel** for development is that we don't have to worry about manually configuring TypeScript.
+
+Then create a folder, initialize a project in it and install `typescript` as a dev dependency.
+
+```shell
+mkdir serverless-api-graphql-prisma
+cd serverless-api-graphql-prisma
+yarn init --yes
+yarn add typescript -D
+```
+
+# Setup the Database
+
+We will be using [Prisma](https://www.prisma.io/) to connect to and work with our database. In this example we'll be using PostgreSQL.
+
+If you need a database without installing one locally, [Railway](https://railway.app/) has free tier.
+
+Once you have the database set up, keep note of its URL.
+
+# Setup Prisma
+
+First install the dependencies.
+
+```shell
+yarn add @prisma/cli ts-node @types/node -D
+```
+
+Then create `tsconfig.json` with the following configuration.
+
+```json:tsconfig.json
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "outDir": "dist",
+    "strict": true,
+    "lib": ["esnext"],
+    "esModuleInterop": true
+  }
+}
+```
+
+Next let's create the [Prisma schema](https://www.prisma.io/docs/concepts/components/prisma-schema) file by running the `prisma init` command.
+
+```shell
+npx prisma init
+```
+
+This will create the `prisma` folder in the project root and in it the `schema.prisma` and `.env` files.
+
+```:prisma\schema.prisma
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+```
+
+```
+# prisma\.env
+# Environment variables declared in this file are automatically made available to Prisma.
+# See the documentation for more detail: https://pris.ly/d/prisma-schema#using-environment-variables
+
+# Prisma supports the native connection string format for PostgreSQL, MySQL and SQLite.
+# See the documentation for all the connection string options: https://pris.ly/d/connection-strings
+
+DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=public"
+```
+
+Replace the placeholder `DATABASE_URL` in your `.env` file with the URL of your own database.
+
+<SpecialBlock
+  type="warn"
+  markdown="Remember to not commit the **.env** file. Add it to **.gitignore**."
+/>
+
+To organize our code, first let's move the `.env` to the project root.
+
+```:.env
+# Environment variables declared in this file are automatically made available to Prisma.
+# See the documentation for more detail: https://pris.ly/d/prisma-schema#using-environment-variables
+
+# Prisma supports the native connection string format for PostgreSQL, MySQL and SQLite.
+# See the documentation for all the connection string options: https://pris.ly/d/connection-strings
+
+DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=public"
+```
+
+Then move the `schema.prisma` file to `src\db\schema.prisma`.
+
+```:src\db\schema.prisma
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+```
+
+We also need to modify Prisma to read the schema from its new path by adding the path in `package.json`.
+
+```json:package.json {7-9}
+{
+  "name": "serverless-api-graphql-prisma",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Akhila Ariyachandra <akhila_ariyachandra@live.com>",
+  "license": "MIT",
+  "prisma": {
+    "schema": "src/db/schema.prisma"
+  },
+  "devDependencies": {
+    "@prisma/cli": "^2.12.1",
+    "@types/node": "^14.14.10",
+    "ts-node": "^9.1.0",
+    "typescript": "^4.1.2"
+  }
+}
+```
+
+Now we need to add the model for Notes. All models are "declared" in the `schema.prisma` file.
+
+```:src\db\schema.prisma {13-18}
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Note {
+  id      Int      @id @default(autoincrement())
+  date    DateTime @default(now())
+  title   String
+  content String
+}
+```
+
+## Creating the database tables
+
+We will be using [Prisma Migrate](https://www.prisma.io/docs/concepts/components/prisma-migrate) to create the database tables using the models in your schema file.
+
+First enter the following command.
+
+```shell
+npx prisma migrate save --name init --experimental
+```
+
+This will create a new folder called `migrations` in `src\db` to store your migration history but it won't actually create the table in your database.
+
+<SpecialBlock
+  type="info"
+  markdown="Replace **init** with the name of your migration."
+/>
+
+To finish creating the table, run the `up` command.
+
+```shell
+npx prisma migrate up --experimental
+```
+
+## Install and Generate the Prisma Client
+
+```shell
+yarn add @prisma/client
+npx prisma generate
+```
+
+When you generate the Prisma Client it will create types for all the database models to use in our code. In our case it'll create one for **Note**.
+
+# Setup the GraphQL API
+
+First let's install the dependencies.
+
+```shell
+yarn add apollo-server-micro graphql graphql-iso-date
+yarn add @types/graphql-iso-date -D
+```
+
+Next create the folder `api` in the project root and in it create the file `graphql.ts`. **Vercel** will expose the serverless function in the file as the endpoint **/api/graphql**. The GraphQL function will be created using [Apollo Server](https://www.apollographql.com/docs/apollo-server/). Since we're doing a serverless version we'll be using [apollo-server-micro](https://www.npmjs.com/package/apollo-server-micro).
+
+Then import `ApolloServer` from `apollo-server-micro`.
+
+```typescript:api/graphql.ts
+import { ApolloServer } from "apollo-server-micro";
+```
+
+After that import the GraphQL Schemas and Resolvers. We'll create these later.
+
+```typescript:api/graphql.ts {3-4}
+import { ApolloServer } from "apollo-server-micro";
+
+import typeDefs from "../src/graphql/schema";
+import resolvers from "../src/graphql/resolvers";
+```
+
+Then initialize the Apollo Server and export it.
+
+```typescript:api/graphql.ts {6-9,11}
+import { ApolloServer } from "apollo-server-micro";
+
+import typeDefs from "../src/graphql/schema";
+import resolvers from "../src/graphql/resolvers";
+
+const apolloServer = new ApolloServer({
+  typeDefs,
+  resolvers,
+});
+
+export default apolloServer.createHandler({ path: "/api/graphql" });
+```
+
+To finish configuring we'll set the `introspection` and `playground` options.
+
+```typescript:api/graphql.ts {9,10}
+import { ApolloServer } from "apollo-server-micro";
+
+import typeDefs from "../src/graphql/schema";
+import resolvers from "../src/graphql/resolvers";
+
+const apolloServer = new ApolloServer({
+  typeDefs,
+  resolvers,
+  playground: true,
+  introspection: true,
+});
+
+export default apolloServer.createHandler({ path: "/api/graphql" });
+```
+
+## Setup the GraphQL Schema
+
+In the `src` folder create the `graphql` folder and in it create the `schema` folder.
+
+GraphQL doesn't have a type for date and time so we'll need a schema for those types. Create `custom.ts` in the `schema` folder.
+
+```typescript:src/graphql/schema/custom.ts
+import { gql } from "apollo-server-micro";
+
+export default gql`
+  scalar Date
+  scalar Time
+  scalar DateTime
+`;
+```
+
+Next we'll setup the schema for Note.
+
+First create the Note schema file, `note.ts` in the `schema` folder.
+
+```typescript:src/graphql/schema/note.ts
+import { gql } from "apollo-server-micro";
+
+export default gql``;
+```
+
+Then add the Note type.
+
+```typescript:src/graphql/schema/note.ts {3-10}
+import { gql } from "apollo-server-micro";
+
+export default gql`
+  type Note {
+    id: ID!
+    title: String!
+    content: String!
+    date: DateTime!
+  }
+`;
+```
+
+After that add two Queries, one to get all Notes and one to get a specific Note.
+
+```typescript:src/graphql/schema/note.ts {4-7}
+import { gql } from "apollo-server-micro";
+
+export default gql`
+  extend type Query {
+    getAllNotes: [Note!]
+    getNote(id: ID!): Note
+  }
+
+  type Note {
+    id: ID!
+    title: String!
+    content: String!
+    date: DateTime!
+  }
+`;
+```
+
+Next add two Mutations to create new Notes and delete existing ones.
+
+```typescript:src/graphql/schema/note.ts {9-12}
+import { gql } from "apollo-server-micro";
+
+export default gql`
+  extend type Query {
+    getAllNotes: [Note!]
+    getNote(id: ID!): Note
+  }
+
+  extend type Mutation {
+    saveNote(title: String!, content: String!): Note!
+    deleteNote(id: ID!): Note
+  }
+
+  type Note {
+    id: ID!
+    title: String!
+    content: String!
+    date: DateTime!
+  }
+`;
+```
+
+> Note that we add the keyword `extend` to the Query and Mutation type in the two schemas. This is because we'll be joining all the schemas into one later.
+
+Finally we'll need a schema a join all the others schemas together. Create `index.ts` in the `schema` folder and declare and export the Link Schema in an array.
+
+```typescript:src/graphql/schema/index.ts
+import { gql } from "apollo-server-micro";
+
+const linkSchema = gql`
+  type Query {
+    _: Boolean
+  }
+
+  type Mutation {
+    _: Boolean
+  }
+
+  type Subscription {
+    _: Boolean
+  }
+`;
+
+export default [linkSchema];
+```
+
+Then import the other Schemas and add them to the array.
+
+```typescript:src/graphql/schema/index.ts {3-4,20}
+import { gql } from "apollo-server-micro";
+
+import noteSchema from "./note";
+import customSchema from "./custom";
+
+const linkSchema = gql`
+  type Query {
+    _: Boolean
+  }
+
+  type Mutation {
+    _: Boolean
+  }
+
+  type Subscription {
+    _: Boolean
+  }
+`;
+
+export default [linkSchema, noteSchema, customSchema];
+```
+
+## Setup the resolvers
+
+Since we added a custom type for dates and times in our schema, the first resolver we'll add is for those types. Create a folder called `resolvers` in the `graphql` folder and in it create `custom.ts`.
+
+```typescript:src/graphql/resolvers/custom.ts
+import { GraphQLDate, GraphQLTime, GraphQLDateTime } from "graphql-iso-date";
+
+export default {
+  Date: GraphQLDate,
+  Time: GraphQLTime,
+  DateTime: GraphQLDateTime,
+};
+```
+
+Next we'll start working on the resolver for Notes.
+
+Start by creating `note.ts` in `graphql`, importing the required dependencies and exporting an empty object which is going to be our resolver.
+
+```typescript:src/graphql/resolvers/note.ts
+import { ApolloError } from "apollo-server-micro";
+import { PrismaClient, Note } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+export default {};
+```
+
+> Notice the `Note` type from `@prisma/client` this comes from generating the Prisma Client from earlier.
+
+Then define an object for the Queries.
+
+```typescript:src/graphql/resolvers/note.ts {7}
+import { ApolloError } from "apollo-server-micro";
+import { PrismaClient, Note } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+export default {
+  Query: {},
+};
+```
+
+When defining the function for each of the queries (or mutations or fields) there are three important parameters.
+
+- `parent` - If you a resolving a field of an object this parameter will contain it. We won't be needing it in this post.
+- `args` - The arguments passed to the query or mutation.
+- `context` - The context object created when setting up the API. We won't be needing it in this post.
+
+First let's write the resolver for `getAllNotes`. Start by declaring the function.
+
+```typescript:src/graphql/resolvers/note.ts {7}
+import { ApolloError } from "apollo-server-micro";
+import { PrismaClient, Note } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+export default {
+  Query: {
+    getAllNotes: async (): Promise<Note[]> => {},
+  },
+};
+```
+
+Then add the code to get all the notes.
+
+```typescript:src/graphql/resolvers/note.ts {9-17}
+import { ApolloError } from "apollo-server-micro";
+import { PrismaClient, Note } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+export default {
+  Query: {
+    getAllNotes: async (): Promise<Note[]> => {
+      try {
+        const notes = await prisma.note.findMany();
+
+        return notes;
+      } catch (error) {
+        console.error("> getAllNotes error: ", error);
+
+        throw new ApolloError("Error retrieving all notes");
+      }
+    },
+  },
+};
+```
+
+After that let's add the resolver for `getNote`.
+
+```typescript:src/graphql/resolvers/note.ts {20-37}
+import { ApolloError } from "apollo-server-micro";
+import { PrismaClient, Note } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+export default {
+  Query: {
+    getAllNotes: async (): Promise<Note[]> => {
+      try {
+        const notes = await prisma.note.findMany();
+
+        return notes;
+      } catch (error) {
+        console.error("> getAllNotes error: ", error);
+
+        throw new ApolloError("Error retrieving all notes");
+      }
+    },
+
+    getNote: async (
+      parent: any,
+      { id }: { id: Note["id"] }
+    ): Promise<Note | null> => {
+      try {
+        const note = await prisma.note.findUnique({
+          where: {
+            id,
+          },
+        });
+
+        return note;
+      } catch (error) {
+        console.error("> getNote error: ", error);
+
+        throw new ApolloError("Error retrieving note");
+      }
+    },
+  },
+};
+```
+
+We can retrieve the `id` argument from the second parameter.
+
+Let's finish of the Note resolvers by adding the resolvers for the mutations.
+
+```typescript:src/graphql/resolvers/note.ts {40-79}
+import { ApolloError } from "apollo-server-micro";
+import { PrismaClient, Note } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+export default {
+  Query: {
+    getAllNotes: async (): Promise<Note[]> => {
+      try {
+        const notes = await prisma.note.findMany();
+
+        return notes;
+      } catch (error) {
+        console.error("> getAllNotes error: ", error);
+
+        throw new ApolloError("Error retrieving all notes");
+      }
+    },
+
+    getNote: async (
+      parent: any,
+      { id }: { id: Note["id"] }
+    ): Promise<Note | null> => {
+      try {
+        const note = await prisma.note.findUnique({
+          where: {
+            id,
+          },
+        });
+
+        return note;
+      } catch (error) {
+        console.error("> getNote error: ", error);
+
+        throw new ApolloError("Error retrieving note");
+      }
+    },
+  },
+
+  Mutation: {
+    saveNote: async (
+      parent: any,
+      { title, content }: { title: Note["title"]; content: Note["content"] }
+    ): Promise<Note> => {
+      try {
+        const note = await prisma.note.create({
+          data: {
+            title,
+            content,
+          },
+        });
+
+        return note;
+      } catch (error) {
+        console.error("> saveNote error: ", error);
+
+        throw new ApolloError("Error creating note");
+      }
+    },
+
+    deleteNote: async (
+      parent: any,
+      { id }: { id: Note["id"] }
+    ): Promise<Note> => {
+      try {
+        const note = await prisma.note.delete({
+          where: {
+            id,
+          },
+        });
+
+        return note;
+      } catch (error) {
+        console.error("> getNote error: ", error);
+
+        throw new ApolloError("Error retrieving all notes");
+      }
+    },
+  },
+};
+```
+
+Now we have to connect all the resolvers together using an `index.ts` file created in the `resolvers` folder.
+
+```typescript:src/graphql/resolvers/index.ts
+import noteResolver from "./note";
+import customResolver from "./custom";
+
+export default [noteResolver, customResolver];
+```
+
+# Running the API locally
+
+To run the project locally first you need to link it to a **Vercel** project.
+
+```shell
+vercel link
+```
+
+Then run `vercel dev` to start the API locally.
+
+```shell
+vercel dev
+```
+
+If you visit `http://localhost:3000/api/graphql` you can see the GraphQL Playground.
+
+# Deploying to Vercel
+
+First we need to upload the database path as an [Environment Variable](https://vercel.com/blog/environment-variables-ui).
+
+```shell
+vercel env add
+```
+
+Name the variable `DB_PATH` and make sure you make to available for all three environments (**Production**, **Preview** and **Development**).
+
+Then all that's left to do is to deploy to [Vercel](https://vercel.com/home).
+
+```shell
+vercel
+```
+
+The GraphQL Playground should be visible in the `/api/graphql` route of the URL returned.
+
+# Wrapping Up
+
+I made a sample deployment which you can check out below or [here](https://serverless-api-graphql-prisma.vercel.app/api/graphql). The source code is available on [GitHub](https://github.com/akhila-ariyachandra/serverless-api-graphql-prisma).
+
+<Iframe src="https://serverless-api-graphql-prisma.vercel.app/api/graphql" />
+
+If you want a more detailed explanation into GraphQL and making a server for it, you can check out the excellent guide that I learnt from [here](https://www.robinwieruch.de/graphql-apollo-server-tutorial).
+
+# Bonus: Using it in [Next.js](https://nextjs.org/)
+
+You can create a GraphQL API endpoint in your Next.js project by putting the `graphql.ts` inside the `api` folder in the `pages` folder.
+
+The only extra step you need to do is to add this bit of code to the end of the `graphql.ts` file.
+
+```typescript:pages/api/graphql.ts {5-9}
+// ...
+
+export default apolloServer.createHandler({ path: "/api/graphql" });
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+```

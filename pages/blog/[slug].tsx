@@ -38,6 +38,8 @@ const BlogPost: NextPage<Props> = ({ post }) => {
         height={630}
         className="rounded-lg"
         priority
+        placeholder="blur"
+        blurDataURL={post.coverImage.blurhashDataUrl}
       />
 
       {post.photographer && post.unsplashLink ? (
