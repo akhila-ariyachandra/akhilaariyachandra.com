@@ -1,0 +1,195 @@
+---
+title: Using MongoDB in a Serverless app
+date: "2019-12-30"
+description: "How to connect to a MongoDB database when you cannot use a persistent connection to the database"
+banner: "/blog/using-mongodb-in-a-serverless-app/banner.png"
+coverImage: "./banner.png"
+---
+
+If you have been developing an API in Node setting up a connection to a MongoDB database is relatively straight forward. Check out my [previous post](https://akhilaariyachandra.com/setup-mongodb-in-nodejs-with-mongoose) if you need a refresher.
+
+When considering serverless we can't think about a server running constantly which has a persistent connection to the database. Serverless apps run as functions which are destroyed at the end of the invocation. So we'll have to create a new connection (or reuse an old one) every time the serverless function is called.
+
+## Setting up the Database connection
+
+Since we cannot use a persistent database connection, we'll have to create a function to create the connection when needed.
+
+Start by installing **mongoose**.
+
+```shell
+npm install mongoose
+npm install @types/mongoose -D
+```
+
+Then let's start defining a function to create the database connection. First create `index.ts` in `src/database` and import the mongoose dependencies.
+
+```typescript:src/database/index.ts
+import { Connection, createConnection } from "mongoose";
+```
+
+After that let's create a variable to cache the connection so that we can try to cut down on the number of connection we make to the database.
+
+```typescript:src/database/index.ts
+let conn: Connection = null;
+```
+
+Next get the MongoDB connection URI.
+
+```typescript:src/database/index.ts
+const uri: string = process.env.DB_PATH;
+```
+
+You can use packages like [dotenv](https://www.npmjs.com/package/dotenv) and [dotenv-webpack](https://www.npmjs.com/package/dotenv-webpack) to load environment variables from a **.env** file into `process.env`. If you use the [Now CLI](https://zeit.co/download) this is done automatically.
+
+<SpecialBlock
+  type="warn"
+  markdown="Remember to not commit the **.env** file!"
+/>
+
+Then we'll declare and export the function to create the database connection.
+
+```typescript:src/database/index.ts
+export const getConnection = async (): Promise<Connection> => {
+  if (conn == null) {
+    conn = await createConnection(uri, {
+      bufferCommands: false,
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    });
+  }
+
+  return conn;
+};
+```
+
+Finally the file should look like this.
+
+```typescript:src/database/index.ts
+import { Connection, createConnection } from "mongoose";
+
+let conn: Connection = null;
+
+const uri: string = process.env.DB_PATH;
+
+export const getConnection = async (): Promise<Connection> => {
+  if (conn == null) {
+    conn = await createConnection(uri, {
+      bufferCommands: false,
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    });
+  }
+
+  return conn;
+};
+```
+
+All we're doing in the function is checking if there is a cached connection. If there is a cached connection the function returns it. If there isn't one, a new connection is created, cached and returned.
+
+## Defining a Model
+
+For this example, let's create a Note model.
+
+First create the file `note.ts` in `src/database/models` and import the dependencies.
+
+```typescript:src/database/models/note.ts
+import {
+  Document,
+  SchemaDefinition,
+  SchemaTypes,
+  Schema,
+  Connection,
+  Model,
+} from "mongoose";
+```
+
+Then declare an interface for Note type.
+
+```typescript:src/database/models/note.ts
+export interface INote extends Document {
+  title: string;
+  content: string;
+  date: Date;
+}
+```
+
+After that define the schema for the Note model.
+
+```typescript:src/database/models/note.ts
+const schema: SchemaDefinition = {
+  title: { type: SchemaTypes.String, required: true },
+  content: { type: SchemaTypes.String, required: true },
+  date: { type: SchemaTypes.Date, required: true },
+};
+
+const collectionName: string = "note";
+const noteSchema: Schema = new Schema(schema);
+```
+
+To define the model we need the database connection. Since the connection has to created for each serverless function invocation, we'll also need to create the model for each invocation as well. So just like we declared a function to create the database connection, we'll declare and export a function to create the model as well.
+
+```typescript:src/database/models/note.ts
+const Note = (conn: Connection): Model<INote> =>
+  conn.model(collectionName, noteSchema);
+
+export default Note;
+```
+
+Finally the file should look like this.
+
+```typescript:src/database/models/note.ts
+import {
+  Document,
+  SchemaDefinition,
+  SchemaTypes,
+  Schema,
+  Connection,
+  Model,
+} from "mongoose";
+
+export interface INote extends Document {
+  title: string;
+  content: string;
+  date: Date;
+}
+
+const schema: SchemaDefinition = {
+  title: { type: SchemaTypes.String, required: true },
+  content: { type: SchemaTypes.String, required: true },
+  date: { type: SchemaTypes.Date, required: true },
+};
+
+const collectionName: string = "note";
+const noteSchema: Schema = new Schema(schema);
+
+const Note = (conn: Connection): Model<INote> =>
+  conn.model(collectionName, noteSchema);
+
+export default Note;
+```
+
+## Using the Model
+
+To create the connection just call the `getConnection` function.
+
+```typescript
+const dbConn = await getConnection();
+```
+
+Then to create the Note model just pass the connection to the function used to create the model.
+
+```typescript
+const Note: mongoose.Model<INote> = NoteModel(dbConn);
+```
+
+After that the model can be used as normal, for example to find a Note by its _id_.
+
+```typescript
+const note = await Note.findById(id).exec();
+```
+
+## Wrapping Up
+
+I hope you found this post useful. Please be sure to share if you did!
