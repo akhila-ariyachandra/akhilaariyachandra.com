@@ -90,6 +90,15 @@ const nextConfig = {
 
     return redirects;
   },
+  webpack: (config) => {
+    // Hide warnings from Contentlayer
+    // https://github.com/contentlayerdev/contentlayer/issues/313#issuecomment-1279678289
+    config.infrastructureLogging = {
+      level: "error",
+    };
+
+    return config;
+  },
 };
 
 export default withBundleAnalyzer(withContentlayer(nextConfig));
