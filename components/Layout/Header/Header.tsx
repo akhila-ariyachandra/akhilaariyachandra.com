@@ -1,8 +1,6 @@
 import dynamic from "next/dynamic";
 import NavLink from "./NavLink";
-const ThemeSwitch = dynamic(() => import("./ThemeSwitch"), {
-  suspense: true,
-});
+import ThemeSwitch from "./ThemeSwitch";
 const NavDialog = dynamic(() => import("./NavDialog"), {
   suspense: true,
 });
@@ -91,9 +89,7 @@ const Header: FC = () => {
 
       <span className="flex-1" />
 
-      <Suspense fallback={<div className="h-[42px] w-[42px]" />}>
-        <ThemeSwitch />
-      </Suspense>
+      <ThemeSwitch />
     </header>
   );
 };
