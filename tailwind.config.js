@@ -13,8 +13,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sora: ["Sora", "sans-serif"],
-        "roboto-slab": ["Roboto Slab", "serif"],
+        sora: "var(--sora-font)",
+        "roboto-slab": "var(--roboto-slab-font)",
       },
     },
   },

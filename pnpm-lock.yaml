@@ -3,9 +3,8 @@ lockfileVersion: 5.4
 specifiers:
   '@badrap/bar-of-progress': 0.2.2
   '@fec/remark-a11y-emoji': 3.1.0
-  '@fontsource/roboto-slab': 4.5.9
-  '@fontsource/sora': 4.5.10
   '@next/bundle-analyzer': 13.0.0
+  '@next/font': 13.0.0
   '@prisma/client': 4.5.0
   '@radix-ui/react-dialog': 1.0.2
   '@splitbee/web': 0.3.0
@@ -53,9 +52,8 @@ specifiers:
 dependencies:
   '@badrap/bar-of-progress': 0.2.2
   '@fec/remark-a11y-emoji': 3.1.0
-  '@fontsource/roboto-slab': 4.5.9
-  '@fontsource/sora': 4.5.10
   '@next/bundle-analyzer': 13.0.0
+  '@next/font': 13.0.0
   '@prisma/client': 4.5.0_prisma@4.5.0
   '@radix-ui/react-dialog': 1.0.2_knhnagtyfncgg2hpin7s37uixq
   '@splitbee/web': 0.3.0
@@ -346,14 +344,6 @@ packages:
       unist-util-visit: 2.0.3
     dev: false
 
-  /@fontsource/roboto-slab/4.5.9:
-    resolution: {integrity: sha512-NTb8uSQSYqN5duI1EPZSigqrOeWkddQxixR1PhUemIXIIrmn+A3EoWOzcBlO0ZabTvHaoUSQo5bh9JOYMknjzQ==}
-    dev: false
-
-  /@fontsource/sora/4.5.10:
-    resolution: {integrity: sha512-hArmXtMRBOXtvY7DzSr+v0hGvRSrpYXMNOLJK/U0AJjhdS23kir+13ZV79CjwMhwsm8dfIV+YWVGDWEvlUic/w==}
-    dev: false
-
   /@grpc/grpc-js/1.7.3:
     resolution: {integrity: sha512-H9l79u4kJ2PVSxUNA08HMYAnUBLj9v6KjYQ7SQ71hOZcEXhShE/y5iQCesP8+6/Ik/7i2O0a10bPquIcYfufog==}
     engines: {node: ^8.13.0 || >=10.10.0}
@@ -469,6 +459,10 @@ packages:
     dependencies:
       glob: 7.1.7
     dev: true
+
+  /@next/font/13.0.0:
+    resolution: {integrity: sha512-r5dYkgMD1Qmoip1OhJSrqCSQdZ4eshkQPfe1hhQiKbZoXIbViJksPRLC6GVOgEQE6W4+CXuAXR6IYBy5M6Rixg==}
+    dev: false
 
   /@next/swc-android-arm-eabi/13.0.0:
     resolution: {integrity: sha512-+DUQkYF93gxFjWY+CYWE1QDX6gTgnUiWf+W4UqZjM1Jcef8U97fS6xYh+i+8rH4MM0AXHm7OSakvfOMzmjU6VA==}

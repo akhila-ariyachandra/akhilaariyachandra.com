@@ -1,5 +1,6 @@
 import ProgressBar from "@badrap/bar-of-progress";
 import Layout from "@/components/Layout";
+import Fonts from "@/components/Fonts";
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
@@ -14,10 +15,6 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Analytics } from "@vercel/analytics/react";
 
 import "@/styles/global.scss";
-import "@fontsource/roboto-slab/400.css";
-import "@fontsource/roboto-slab/variable.css";
-import "@fontsource/sora/400.css";
-import "@fontsource/sora/variable.css";
 
 const progress = new ProgressBar({
   size: 2,
@@ -61,6 +58,8 @@ const MyApp = ({ Component, pageProps }: MyAppProps) => {
             <Component {...pageProps} />
 
             <Analytics />
+
+            <Fonts />
           </Layout>
         </Hydrate>
 

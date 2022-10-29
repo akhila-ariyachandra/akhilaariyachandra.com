@@ -20,9 +20,8 @@
   "dependencies": {
     "@badrap/bar-of-progress": "0.2.2",
     "@fec/remark-a11y-emoji": "3.1.0",
-    "@fontsource/roboto-slab": "4.5.9",
-    "@fontsource/sora": "4.5.10",
     "@next/bundle-analyzer": "13.0.0",
+    "@next/font": "13.0.0",
     "@prisma/client": "4.5.0",
     "@radix-ui/react-dialog": "1.0.2",
     "@splitbee/web": "0.3.0",
