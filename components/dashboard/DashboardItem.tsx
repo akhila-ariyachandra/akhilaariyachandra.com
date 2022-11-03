@@ -24,13 +24,11 @@ const DashboardItem: FC<DashboardItemProps> = ({
   queryKey,
   url,
 }) => {
-  const { data } = useQuery<APIResponse, Error>(
-    ["dashboard", queryKey],
-    () => fetcher(url),
-    {
-      placeholderData: { count: 0 },
-    }
-  );
+  const { data } = useQuery<APIResponse>({
+    queryKey: ["dashboard", queryKey, url],
+    queryFn: () => fetcher(url),
+    placeholderData: { count: 0 },
+  });
 
   return (
     <div

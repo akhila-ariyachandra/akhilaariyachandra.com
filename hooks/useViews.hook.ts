@@ -9,16 +9,15 @@ const useViews = (slug: string) => {
   const KEY = ["views", slug];
   const queryClient = useQueryClient();
 
-  const { data } = useQuery(
-    KEY,
-    (): Promise<View> => fetch(`/api/views/${slug}`).then((res) => res.json()),
-    {
-      placeholderData: {
-        slug,
-        count: 0,
-      },
-    }
-  );
+  const { data } = useQuery({
+    queryKey: KEY,
+    queryFn: () =>
+      fetch(`/api/views/${slug}`).then((res) => res.json() as Promise<View>),
+    placeholderData: {
+      slug,
+      count: 0,
+    },
+  });
 
   const mutation = useMutation(
     (): Promise<View> =>

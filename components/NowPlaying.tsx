@@ -6,13 +6,11 @@ import { FaSpotify } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 
 const NowPlaying: React.FunctionComponent = () => {
-  const { data } = useQuery<Song, Error>(
-    ["spotify", "nowPlaying"],
-    () => fetcher("/api/spotify/now-playing"),
-    {
-      staleTime: 60000, // Don't refetch for 1 min
-    }
-  );
+  const { data } = useQuery<Song>({
+    queryKey: ["spotify", "nowPlaying"],
+    queryFn: () => fetcher("/api/spotify/now-playing"),
+    staleTime: 60000, // Don't refetch for 1 min
+  });
 
   return (
     <div className="flex w-full flex-row-reverse items-center space-x-0 text-lg antialiased sm:flex-row sm:space-x-3">
