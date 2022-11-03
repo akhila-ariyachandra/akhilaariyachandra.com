@@ -5,12 +5,7 @@ import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { ThemeProvider } from "next-themes";
-import {
-  Hydrate,
-  QueryClient,
-  QueryClientProvider,
-  dehydrate,
-} from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -23,13 +18,7 @@ const progress = new ProgressBar({
   delay: 100,
 });
 
-interface MyAppProps extends AppProps {
-  pageProps: {
-    dehydratedState: ReturnType<typeof dehydrate>;
-  };
-}
-
-const MyApp = ({ Component, pageProps }: MyAppProps) => {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
   const [queryClient] = useState(() => new QueryClient());
 
@@ -46,26 +35,24 @@ const MyApp = ({ Component, pageProps }: MyAppProps) => {
   }, [router]);
 
   return (
-    <ThemeProvider
-      defaultTheme="dark"
-      themes={["light", "dark"]}
-      attribute="class"
-      enableSystem={false}
-    >
-      <QueryClientProvider client={queryClient}>
-        <Hydrate state={pageProps.dehydratedState}>
-          <Layout>
-            <Component {...pageProps} />
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider
+        defaultTheme="dark"
+        themes={["light", "dark"]}
+        attribute="class"
+        enableSystem={false}
+      >
+        <Layout>
+          <Component {...pageProps} />
 
-            <Analytics />
+          <Analytics />
 
-            <Fonts />
-          </Layout>
-        </Hydrate>
+          <Fonts />
+        </Layout>
+      </ThemeProvider>
 
-        <ReactQueryDevtools />
-      </QueryClientProvider>
-    </ThemeProvider>
+      <ReactQueryDevtools />
+    </QueryClientProvider>
   );
 };
 
