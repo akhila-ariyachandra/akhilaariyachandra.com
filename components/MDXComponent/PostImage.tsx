@@ -1,3 +1,4 @@
+import clsx from "classnames";
 import Image from "next/image";
 import type { FunctionComponent } from "react";
 
@@ -25,23 +26,23 @@ const PostImage: FunctionComponent<Props> = ({
         src={src}
         width={width}
         height={height}
-        className="overflow-hidden rounded"
+        className={clsx("overflow-hidden", credit ? "rounded-t" : "rounded")}
         alt={title}
         title={title}
       />
 
       {credit && (
-        <p className="mt-2">
+        <div className="w-full rounded-b bg-zinc-100 py-1 text-center font-sora dark:bg-zinc-800">
           Credit -{" "}
           <a
-            className="font-roboto-slab font-semibold text-emerald-800 dark:text-emerald-500"
+            className="font-semibold text-emerald-800 dark:text-emerald-500"
             href={credit.link}
             target="_blank"
             rel="noopener noreferrer"
           >
             {credit.name}
           </a>
-        </p>
+        </div>
       )}
     </div>
   );
