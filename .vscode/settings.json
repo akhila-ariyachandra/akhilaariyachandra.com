@@ -1,5 +1,6 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "cSpell.words": ["Contentlayer"]
+  "cSpell.words": ["Contentlayer"],
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }
