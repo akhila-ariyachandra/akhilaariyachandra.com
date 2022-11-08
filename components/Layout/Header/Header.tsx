@@ -1,13 +1,10 @@
-import dynamic from "next/dynamic";
 import NavLink from "./NavLink";
 import ThemeSwitch from "./ThemeSwitch";
-const NavDialog = dynamic(() => import("./NavDialog"), {
-  suspense: true,
-});
-import type { FC } from "react";
+import { type FC, lazy } from "react";
 import { useEffect, useState, Suspense } from "react";
 import { useRouter } from "next/router";
 import { MdMenu } from "react-icons/md";
+const NavDialog = lazy(() => import("./NavDialog"));
 
 const NAV_LINKS: {
   label: string;
