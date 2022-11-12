@@ -1,13 +1,13 @@
-import type { FunctionComponent } from "react";
+import type { FC } from "react";
 import { FaExclamationCircle, FaLightbulb, FaStickyNote } from "react-icons/fa";
 import snarkdown from "snarkdown";
 
-type Props = {
+interface SpecialBlockProps {
   type?: "warn" | "info";
   markdown: string;
-};
+}
 
-const SpecialBlock: FunctionComponent<Props> = ({ type, markdown }) => {
+const SpecialBlock: FC<SpecialBlockProps> = ({ type, markdown }) => {
   let wrapperClass =
     "text-base my-4 mx-auto p-4 border-2 rounded-md flex items-start w-full max-w-xl ";
   let iconClass = "text-2xl ";

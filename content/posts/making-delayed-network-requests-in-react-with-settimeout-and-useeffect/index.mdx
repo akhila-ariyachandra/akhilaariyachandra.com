@@ -13,7 +13,12 @@ Recently I switched the database used in my site for page views and reactions fr
 
 With the change I also thought it would be a good chance to redesign the reactions section of the posts.
 
-<Video name="reactions" width={610} height={128} title="Reactions Example" />
+<Video
+  path="/blog/making-delayed-network-requests-in-react-with-settimeout-and-useeffect/reactions"
+  width={610}
+  height={128}
+  title="Reactions Example"
+/>
 
 Implementing the button and animation with [react-spring](https://react-spring.io/) was relatively easy, but I had a choice of how I wanted to make the network request to save the result.
 
@@ -71,7 +76,12 @@ useEffect(() => {
 
 So now when `reactionCount` changes, the `timeout` set for that particular value of `reactionCount` is cleared and a new `timeout` is set.
 
-<Video name="network" width={1536} height={534} title="Network Tab Example" />
+<Video
+  path="/blog/making-delayed-network-requests-in-react-with-settimeout-and-useeffect/network"
+  width={1536}
+  height={534}
+  title="Network Tab Example"
+/>
 
 <SpecialBlock
   type="info"
