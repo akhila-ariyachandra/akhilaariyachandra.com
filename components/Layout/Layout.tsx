@@ -8,7 +8,7 @@ interface LayoutProps {
 
 const Layout: FC<LayoutProps> = ({ children }) => {
   return (
-    <div>
+    <div className="flex h-full flex-col justify-between gap-4">
       <Header />
 
       <main className="container w-full max-w-3xl p-4">{children}</main>

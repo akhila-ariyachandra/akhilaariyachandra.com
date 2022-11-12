@@ -12,7 +12,7 @@ interface RootLayoutProps {
 
 const RootLayout: FC<RootLayoutProps> = ({ children }) => {
   return (
-    <html lang="en" className="overflow-y-scroll scroll-smooth">
+    <html lang="en" className="h-full overflow-y-scroll scroll-smooth">
       <head>
         <meta charSet="UTF-8" />
 
@@ -47,7 +47,7 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
         />
       </head>
 
-      <body className="bg-white antialiased transition-colors duration-200 dark:bg-zinc-900">
+      <body className="h-full bg-white antialiased transition-colors duration-200 dark:bg-zinc-900">
         <Providers>
           <Layout>{children}</Layout>
         </Providers>
