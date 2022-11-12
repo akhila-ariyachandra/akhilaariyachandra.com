@@ -1,12 +1,36 @@
 import Image from "next/image";
-import type { FC } from "react";
 import type { Song } from "@/lib/types";
+import { getTopTracks } from "@/lib/spotify";
 
-interface TopTracksProps {
-  tracks: Song[];
+const getTopTenTracks = async () => {
+  const { items } = await getTopTracks(86400);
+  const tracks: Song[] = [];
+  const length = items.length >= 10 ? 10 : items.length;
+  for (let index = 0; index < length; index++) {
+    const track = items[index];
+
+    tracks.push({
+      name: track.name,
+      artist: track.artists.map((_artist) => _artist.name).join(", "),
+      album: track.album.name,
+      albumImage: track.album.images[0].url,
+      songUrl: track.external_urls.spotify,
+    });
+  }
+
+  return tracks;
+};
+
+/**
+ * https://gist.github.com/cramforce/b5e3f0b103f841d2e5e429b1d5ac4ded
+ */
+function asyncComponent<T, R>(fn: (arg: T) => Promise<R>): (arg: T) => R {
+  return fn as (arg: T) => R;
 }
 
-const TopTracks: FC<TopTracksProps> = ({ tracks }) => {
+const TopTracks = asyncComponent(async () => {
+  const tracks = await getTopTenTracks();
+
   return (
     <div className="my-10">
       <h2 className="mt-6 font-sora text-3xl font-semibold text-zinc-800 dark:text-zinc-200">
@@ -52,6 +76,6 @@ const TopTracks: FC<TopTracksProps> = ({ tracks }) => {
       </div>
     </div>
   );
-};
+});
 
 export default TopTracks;

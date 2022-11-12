@@ -1,13 +1,13 @@
 import type { DEVArticle } from "@/lib/types";
-import axios from "axios";
 
 export const getTotalDevViews = async (): Promise<number> => {
-  const { data } = await axios.request<DEVArticle[]>({
-    url: "https://dev.to/api/articles/me/published",
+  const response = await fetch("https://dev.to/api/articles/me/published", {
     headers: {
       "api-key": process.env.DEV_API_KEY,
     },
   });
+
+  const data = (await response.json()) as DEVArticle[];
 
   const totalViews = data.reduce(
     (accumulator, currentValue) => accumulator + currentValue.page_views_count,
@@ -18,12 +18,13 @@ export const getTotalDevViews = async (): Promise<number> => {
 };
 
 export const getTotalDevReactions = async (): Promise<number> => {
-  const { data } = await axios.request<DEVArticle[]>({
-    url: "https://dev.to/api/articles/me/published",
+  const response = await fetch("https://dev.to/api/articles/me/published", {
     headers: {
       "api-key": process.env.DEV_API_KEY,
     },
   });
+
+  const data = (await response.json()) as DEVArticle[];
 
   const totalReactions = data.reduce(
     (accumulator, currentValue) =>
