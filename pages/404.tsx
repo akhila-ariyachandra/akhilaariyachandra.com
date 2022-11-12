@@ -1,15 +1,17 @@
+import Head from "next/head";
 import SEO from "@/components/SEO";
 import type { NextPage } from "next";
 
 /**
- * DO NOT USE!!!
- * This is just to store the code until the Global Error Page is supported.
+ * This is temporary until the Global Error Page is supported.
  * https://beta.nextjs.org/docs/app-directory-roadmap
  */
 const NotFound: NextPage = () => {
   return (
     <>
-      <SEO title="404: Not Found" />
+      <Head>
+        <SEO title="404: Not Found" />
+      </Head>
 
       <div className="p-4">
         <h1 className="font-sora text-3xl font-semibold text-zinc-800 dark:text-zinc-200">
