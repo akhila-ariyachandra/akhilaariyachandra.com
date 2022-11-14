@@ -4,6 +4,9 @@ import Title from "@/components/Title";
 import TopTracks from "./top-tracks";
 import type { FC } from "react";
 
+// https://beta.nextjs.org/docs/api-reference/segment-config
+export const revalidate = 86400;
+
 const DashboardPage: FC = () => {
   return (
     <>
