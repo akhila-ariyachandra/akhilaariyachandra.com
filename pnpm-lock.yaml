@@ -7,9 +7,9 @@ specifiers:
   '@prisma/client': 4.6.1
   '@splitbee/web': 0.3.0
   '@tailwindcss/typography': 0.5.8
-  '@tanstack/eslint-plugin-query': 4.14.7
-  '@tanstack/react-query': 4.14.6
-  '@tanstack/react-query-devtools': 4.14.6
+  '@tanstack/eslint-plugin-query': 4.15.1
+  '@tanstack/react-query': 4.16.1
+  '@tanstack/react-query-devtools': 4.16.1
   '@types/node': 18.11.9
   '@types/react': 18.0.25
   '@vercel/analytics': ^0.1.4
@@ -44,7 +44,7 @@ specifiers:
   sass: 1.56.1
   sharp: 0.31.2
   snarkdown: 2.0.0
-  tailwindcss: 3.2.3
+  tailwindcss: 3.2.4
   typescript: 4.8.4
 
 dependencies:
@@ -53,8 +53,8 @@ dependencies:
   '@next/font': 13.0.3
   '@prisma/client': 4.6.1_prisma@4.6.1
   '@splitbee/web': 0.3.0
-  '@tanstack/react-query': 4.14.6_biqbaboplfbrettd7655fr4n2y
-  '@tanstack/react-query-devtools': 4.14.6_shujuikkfktcni5nskojfartz4
+  '@tanstack/react-query': 4.16.1_biqbaboplfbrettd7655fr4n2y
+  '@tanstack/react-query-devtools': 4.16.1_makdk7ivkz7rbnnozofqroz2qy
   '@vercel/analytics': 0.1.4_react@18.2.0
   classnames: 2.3.2
   contentlayer: 0.2.9
@@ -79,8 +79,8 @@ dependencies:
   snarkdown: 2.0.0
 
 devDependencies:
-  '@tailwindcss/typography': 0.5.8_tailwindcss@3.2.3
-  '@tanstack/eslint-plugin-query': 4.14.7
+  '@tailwindcss/typography': 0.5.8_tailwindcss@3.2.4
+  '@tanstack/eslint-plugin-query': 4.15.1
   '@types/node': 18.11.9
   '@types/react': 18.0.25
   autoprefixer: 10.4.13_postcss@8.4.19
@@ -93,7 +93,7 @@ devDependencies:
   prettier-plugin-prisma: 4.4.0_prettier@2.7.1
   prettier-plugin-tailwindcss: 0.1.13_prettier@2.7.1
   prisma: 4.6.1
-  tailwindcss: 3.2.3_postcss@8.4.19
+  tailwindcss: 3.2.4_postcss@8.4.19
   typescript: 4.8.4
 
 packages:
@@ -102,7 +102,7 @@ packages:
     resolution: {integrity: sha512-CGulbEDcg/ND1Im7fUNRZdGXmX2MTWVVZacQi/6DiKE5HNwZ3aVTm5PV4lO8HHz0B2h8WQyvKKjbX5XgTtydsg==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      core-js-pure: 3.26.0
+      core-js-pure: 3.26.1
       regenerator-runtime: 0.13.10
     dev: true
 
@@ -173,7 +173,7 @@ packages:
       gray-matter: 4.0.3
       imagescript: 1.2.9
       micromatch: 4.0.5
-      ts-pattern: 4.0.5
+      ts-pattern: 4.0.6
       unified: 10.1.2
       yaml: 1.10.2
       zod: 3.19.1
@@ -211,7 +211,7 @@ packages:
       hash-wasm: 4.9.0
       inflection: 1.13.4
       oo-ascii-tree: 1.71.0
-      ts-pattern: 4.0.5
+      ts-pattern: 4.0.6
       type-fest: 3.2.0
     dev: false
 
@@ -839,7 +839,7 @@ packages:
       tslib: 2.4.1
     dev: false
 
-  /@tailwindcss/typography/0.5.8_tailwindcss@3.2.3:
+  /@tailwindcss/typography/0.5.8_tailwindcss@3.2.4:
     resolution: {integrity: sha512-xGQEp8KXN8Sd8m6R4xYmwxghmswrd0cPnNI2Lc6fmrC3OojysTBJJGSIVwPV56q4t6THFUK3HJ0EaWwpglSxWw==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
@@ -848,41 +848,41 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.2.3_postcss@8.4.19
+      tailwindcss: 3.2.4_postcss@8.4.19
     dev: true
 
-  /@tanstack/eslint-plugin-query/4.14.7:
-    resolution: {integrity: sha512-RolrtjlR7d3JYE6u8zexkbRZyLBsax1B8P7dbA71cvzSkgR81m/2czWvtCmkytCJWKMhCZGedPzlLrL5qngAVw==}
+  /@tanstack/eslint-plugin-query/4.15.1:
+    resolution: {integrity: sha512-SMj7OsOkutuJQ9LQLIoXxW5u0kx84V7RICmJEcjpKNkHsBd31QttJvtG1hLx9GXb3ZuFLZ0Y1dOD/D9b/GIzTg==}
     dev: true
 
-  /@tanstack/match-sorter-utils/8.5.14:
-    resolution: {integrity: sha512-lVNhzTcOJ2bZ4IU+PeCPQ36vowBHvviJb2ZfdRFX5uhy7G0jM8N34zAMbmS5ZmVH8D2B7oU82OWo0e/5ZFzQrw==}
+  /@tanstack/match-sorter-utils/8.1.1:
+    resolution: {integrity: sha512-IdmEekEYxQsoLOR0XQyw3jD1GujBpRRYaGJYQUw1eOT1eUugWxdc7jomh1VQ1EKHcdwDLpLaCz/8y4KraU4T9A==}
     engines: {node: '>=12'}
     dependencies:
       remove-accents: 0.4.2
     dev: false
 
-  /@tanstack/query-core/4.14.5:
-    resolution: {integrity: sha512-Su1AyrPb6xnm7wXTvpN5tt+B7LViYSh9k04vvuc6+eMVH0HkE9ktZTXibRrTvV83BI1KP5MG7v/k90ne/4zQzw==}
+  /@tanstack/query-core/4.15.1:
+    resolution: {integrity: sha512-+UfqJsNbPIVo0a9ANW0ZxtjiMfGLaaoIaL9vZeVycvmBuWywJGtSi7fgPVMCPdZQFOzMsaXaOsDtSKQD5xLRVQ==}
     dev: false
 
-  /@tanstack/react-query-devtools/4.14.6_shujuikkfktcni5nskojfartz4:
-    resolution: {integrity: sha512-sniduBwiMYl2bkC/9dTlpZQQqMQdJeiubl/UUUZkD4qH/OOVFK5EiHxvBxNXYPY6S0q8QmmI/0KOsk4a+Eoq3w==}
+  /@tanstack/react-query-devtools/4.16.1_makdk7ivkz7rbnnozofqroz2qy:
+    resolution: {integrity: sha512-VrDYLmG+OOcvGSZL5avG4R8jhqeMFP7pzW2sh2BWEV9UfI+aocG+CW8y8ygacxuKy48m8Tyo/xfe8H1z9BGb+g==}
     peerDependencies:
-      '@tanstack/react-query': 4.14.6
+      '@tanstack/react-query': 4.16.1
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      '@tanstack/match-sorter-utils': 8.5.14
-      '@tanstack/react-query': 4.14.6_biqbaboplfbrettd7655fr4n2y
+      '@tanstack/match-sorter-utils': 8.1.1
+      '@tanstack/react-query': 4.16.1_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       superjson: 1.11.0
       use-sync-external-store: 1.2.0_react@18.2.0
     dev: false
 
-  /@tanstack/react-query/4.14.6_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-ubx49AeV0SXfbt4mZmb0JlJa1PRXynGm+uorJhM50HVDppt/SjcOUNK5kptEWBRzTjKVS9KhpoMkKKJ/ZzuBFQ==}
+  /@tanstack/react-query/4.16.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-PDE9u49wSDykPazlCoLFevUpceLjQ0Mm8i6038HgtTEKb/aoVnUZdlUP7C392ds3Cd75+EGlHU7qpEX06R7d9Q==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -893,7 +893,7 @@ packages:
       react-native:
         optional: true
     dependencies:
-      '@tanstack/query-core': 4.14.5
+      '@tanstack/query-core': 4.15.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       use-sync-external-store: 1.2.0_react@18.2.0
@@ -1402,8 +1402,8 @@ packages:
     resolution: {integrity: sha512-GHuDRO12Sypu2cV70d1dkA2EUmXHgntrzbpvOB+Qy+49ypNfGgFQIC2fhhXbnyrJRynDCAARsT7Ou0M6hirpfw==}
     dev: false
 
-  /comma-separated-tokens/2.0.2:
-    resolution: {integrity: sha512-G5yTt3KQN4Yn7Yk4ed73hlZ1evrFKXeUW3086p3PRFNp7m2vIjI6Pg+Kgb+oyzhd9F2qdcoj67+y3SdxL5XWsg==}
+  /comma-separated-tokens/2.0.3:
+    resolution: {integrity: sha512-Fu4hJdvzeylCfQPp9SGWidpzrMs7tTrlu6Vb8XGaRGck8QSNZJJp538Wrb60Lax4fPwR64ViY468OIUTbRlGZg==}
     dev: false
 
   /commander/6.2.1:
@@ -1450,8 +1450,8 @@ packages:
       is-what: 4.1.7
     dev: false
 
-  /core-js-pure/3.26.0:
-    resolution: {integrity: sha512-LiN6fylpVBVwT8twhhluD9TzXmZQQsr2I2eIKtWNbZI1XMfBT7CV18itaN6RA7EtQd/SDdRx/wzvAShX2HvhQA==}
+  /core-js-pure/3.26.1:
+    resolution: {integrity: sha512-VVXcDpp/xJ21KdULRq/lXdLzQAtX7+37LzpyfFM973il0tWSsDEoyzG38G14AjTpK9VTfiNM9jnFauq/CpaWGQ==}
     requiresBuild: true
     dev: true
 
@@ -2589,14 +2589,14 @@ packages:
       '@types/estree-jsx': 1.0.0
       '@types/hast': 2.3.4
       '@types/unist': 2.0.6
-      comma-separated-tokens: 2.0.2
+      comma-separated-tokens: 2.0.3
       estree-util-attach-comments: 2.1.0
       estree-util-is-identifier-name: 2.0.1
       hast-util-whitespace: 2.0.0
       mdast-util-mdx-expression: 1.3.1
       mdast-util-mdxjs-esm: 1.3.0
       property-information: 6.1.1
-      space-separated-tokens: 2.0.1
+      space-separated-tokens: 2.0.2
       style-to-object: 0.3.0
       unist-util-position: 4.0.3
       zwitch: 2.0.2
@@ -2609,12 +2609,12 @@ packages:
     dependencies:
       '@types/hast': 2.3.4
       ccount: 2.0.1
-      comma-separated-tokens: 2.0.2
+      comma-separated-tokens: 2.0.3
       hast-util-is-element: 2.1.2
       hast-util-whitespace: 2.0.0
       html-void-elements: 2.0.1
       property-information: 6.1.1
-      space-separated-tokens: 2.0.1
+      space-separated-tokens: 2.0.2
       stringify-entities: 4.0.3
       unist-util-is: 5.1.1
     dev: false
@@ -2643,10 +2643,10 @@ packages:
     resolution: {integrity: sha512-uBjaTTLN0MkCZxY/R2fWUOcu7FRtUVzKRO5P/RAfgsu3yFiMB1JWCO4AjeVkgHxAira1f2UecHK5WfS9QurlWA==}
     dependencies:
       '@types/hast': 2.3.4
-      comma-separated-tokens: 2.0.2
+      comma-separated-tokens: 2.0.3
       hast-util-parse-selector: 3.1.0
       property-information: 6.1.1
-      space-separated-tokens: 2.0.1
+      space-separated-tokens: 2.0.2
     dev: false
 
   /html-void-elements/2.0.1:
@@ -4316,7 +4316,7 @@ packages:
       extend: 3.0.2
       is-absolute-url: 4.0.1
       mdast-util-definitions: 5.1.1
-      space-separated-tokens: 2.0.1
+      space-separated-tokens: 2.0.2
       unified: 10.1.2
       unist-util-visit: 4.1.1
     dev: false
@@ -4630,8 +4630,8 @@ packages:
     resolution: {integrity: sha512-q/JSVd1Lptzhf5bkYm4ob4iWPjx0KiRe3sRFBNrVqbJkFaBm5vbbowy1mymoPNLRa52+oadOhJ+K49wsSeSjTA==}
     dev: false
 
-  /space-separated-tokens/2.0.1:
-    resolution: {integrity: sha512-ekwEbFp5aqSPKaqeY1PGrlGQxPNaq+Cnx4+bE2D8sciBQrHpbwoBbawqTN2+6jPs9IdWxxiUcN0K2pkczD3zmw==}
+  /space-separated-tokens/2.0.2:
+    resolution: {integrity: sha512-PEGlAwrG8yXGXRjW32fGbg66JAlOAwbObuqVoJpv/mRgoWDQfgH1wDPvtzWyUSNAXBGSk8h755YDbbcEy3SH2Q==}
     dev: false
 
   /sprintf-js/1.0.3:
@@ -4755,8 +4755,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  /tailwindcss/3.2.3_postcss@8.4.19:
-    resolution: {integrity: sha512-Xt9D4PK4zuuQCEB8bwK9JUCKmTgUwyac/6b0/42Vqhgl6YJkep+Wf5wq+5uXYfmrupdAD0YY2NY1hyZp1HjRrg==}
+  /tailwindcss/3.2.4_postcss@8.4.19:
+    resolution: {integrity: sha512-AhwtHCKMtR71JgeYDaswmZXhPcW9iuI9Sp2LvZPo9upDZ7231ZJ7eA9RaURbhpXGVlrjX4cFNlB4ieTetEb7hQ==}
     engines: {node: '>=12.13.0'}
     hasBin: true
     peerDependencies:
@@ -4836,8 +4836,8 @@ packages:
     resolution: {integrity: sha512-AqTiAOLcj85xS7vQ8QkAV41hPDIJ71XJB4RCUrzo/1GM2CQwhkJGaf9Hgr7BOugMRpgGUrqRg/DrBDl4H40+8g==}
     dev: false
 
-  /ts-pattern/4.0.5:
-    resolution: {integrity: sha512-Bq44KCEt7JVaNLa148mBCJkcQf4l7jtLEBDuDdeuLynWDA+1a60P4D0rMkqSM9mOKLQbIWUddE9h3XKyKwBeqA==}
+  /ts-pattern/4.0.6:
+    resolution: {integrity: sha512-sFHQYD4KoysBi7e7a2mzDPvRBeqA4w+vEyRE+P5MU9VLq8eEYxgKCgD9RNEAT+itGRWUTYN+hry94GDPLb1/Yw==}
     dev: false
 
   /tsconfig-paths/3.14.1:
