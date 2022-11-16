@@ -36,8 +36,8 @@ const Header: FC = () => {
   const pathname = usePathname();
 
   return (
-    <header className="container flex w-full max-w-3xl flex-row items-center justify-between gap-4 p-4">
-      <nav className="hidden sm:flex sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+    <header className="container flex w-full max-w-3xl flex-row items-center justify-between gap-8 p-4">
+      <nav className="flex flex-row flex-wrap items-center gap-4">
         {NAV_LINKS.map(({ label, href, activePath }) => (
           <Link
             key={href}
