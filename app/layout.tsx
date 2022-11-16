@@ -1,10 +1,22 @@
+import clsx from "classnames";
 import Providers from "./providers";
 import Analytics from "./analytics";
-import Fonts from "./fonts";
 import Layout from "@/components/Layout";
 import type { ReactNode, FC } from "react";
+import { Sora, Roboto_Slab as RobotoSlab } from "@next/font/google";
 
 import "./global.scss";
+
+const sora = Sora({
+  display: "swap",
+  subsets: ["latin"],
+  variable: "--font-sora",
+});
+const robotoSlab = RobotoSlab({
+  display: "swap",
+  subsets: ["latin"],
+  variable: "--font-roboto-slab",
+});
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -12,7 +24,14 @@ interface RootLayoutProps {
 
 const RootLayout: FC<RootLayoutProps> = ({ children }) => {
   return (
-    <html lang="en" className="h-full overflow-y-scroll scroll-smooth">
+    <html
+      lang="en"
+      className={clsx(
+        "h-full overflow-y-scroll scroll-smooth",
+        sora.variable,
+        robotoSlab.variable
+      )}
+    >
       <head>
         <meta charSet="UTF-8" />
 
@@ -53,8 +72,6 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
         </Providers>
 
         <Analytics />
-
-        <Fonts />
       </body>
     </html>
   );

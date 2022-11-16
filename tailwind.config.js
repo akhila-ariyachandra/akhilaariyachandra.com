@@ -14,8 +14,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sora: "var(--sora-font)",
-        "roboto-slab": "var(--roboto-slab-font)",
+        sora: "var(--font-sora)",
+        "roboto-slab": "var(--font-roboto-slab)",
       },
     },
   },
