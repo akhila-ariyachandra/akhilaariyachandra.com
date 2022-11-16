@@ -41,12 +41,10 @@ const NowPlaying: NextApiHandler = async (req, res) => {
       songUrl,
     });
   } catch {
-    return res
-      .status(500)
-      .json({
-        isPlaying: false,
-        message: "Error getting Now Playing from Spotify",
-      });
+    return res.status(500).json({
+      isPlaying: false,
+      message: "Error getting Now Playing from Spotify",
+    });
   }
 };
 
