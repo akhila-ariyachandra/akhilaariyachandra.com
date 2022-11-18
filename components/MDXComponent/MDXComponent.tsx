@@ -1,5 +1,3 @@
-"use import";
-
 import classNames from "classnames";
 import CodeSandboxWrapper from "./CodeSandboxWrapper";
 import Iframe from "./Iframe";
