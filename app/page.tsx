@@ -7,7 +7,7 @@ import MDXComponent from "@/components/MDXComponent";
 import PostLink from "@/components/PostLink";
 import type { FC } from "react";
 import { about, career, allPosts } from "contentlayer/generated";
-import { getPeriod } from "@/lib/helpers";
+import { getPeriod, formatDate } from "@/lib/helpers";
 import { FaDev, FaGithub, FaRssSquare, FaTwitterSquare } from "react-icons/fa";
 
 // https://beta.nextjs.org/docs/api-reference/segment-config
@@ -105,7 +105,7 @@ const HomePage = async () => {
               key={post.slug}
               title={post.title}
               slug={post.slug}
-              date={post.date}
+              date={formatDate(post.date)}
             />
           ))}
         </div>

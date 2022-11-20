@@ -3,11 +3,14 @@
 import useViews from "@/hooks/useViews.hook";
 import Link from "next/link";
 import type { FC } from "react";
-import { formatDate } from "@/lib/helpers";
 
 interface PostLinkProps {
   slug: string;
   title: string;
+  /**
+   * Format date before passing as a prop because this component should not
+   * import `day.js` to avoid increasing the bundle size
+   */
   date: string;
 }
 
@@ -24,7 +27,7 @@ const PostLink: FC<PostLinkProps> = ({ slug, title, date }) => {
       </Link>
 
       <div className="font-roboto-slab text-lg font-medium text-zinc-800 dark:text-zinc-200">
-        {formatDate(date)}
+        {date}
 
         <span className="mx-2">&bull;</span>
 
