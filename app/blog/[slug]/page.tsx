@@ -2,6 +2,7 @@ import Image from "next/image";
 import BlogPostViews from "./views";
 import MDXComponent from "@/components/MDXComponent";
 import type { FC } from "react";
+import { notFound } from "next/navigation";
 import { allPosts } from "contentlayer/generated";
 import { formatDate } from "@/lib/helpers";
 
@@ -25,6 +26,10 @@ const BlogPostPage: FC<BlogPostPageProps> = ({ params }) => {
   const slug = params?.slug.toString();
 
   const post = allPosts.find((post) => post.slug === slug);
+
+  if (!post) {
+    notFound();
+  }
 
   return (
     <>
