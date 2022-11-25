@@ -2,6 +2,7 @@
 module.exports = {
   future: {},
   content: [
+    "./app/**/*.{js,ts,jsx,tsx,scss}",
     "./pages/**/*.tsx",
     "./components/**/*.{tsx,module.scss}",
     "./styles/**/*.scss",
@@ -13,8 +14,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sora: "var(--sora-font)",
-        "roboto-slab": "var(--roboto-slab-font)",
+        sora: "var(--font-sora)",
+        "roboto-slab": "var(--font-roboto-slab)",
       },
     },
   },

@@ -1,10 +1,10 @@
 import type { FC, IframeHTMLAttributes } from "react";
 
-type Props = {
+interface IframeProps {
   src: IframeHTMLAttributes<HTMLIFrameElement>["src"];
-};
+}
 
-const Iframe: FC<Props> = ({ src }) => {
+const Iframe: FC<IframeProps> = ({ src }) => {
   return (
     <iframe
       src={src}

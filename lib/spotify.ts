@@ -1,5 +1,3 @@
-import axios, { AxiosResponse } from "axios";
-
 const {
   SPOTIFY_CLIENT_ID: client_id,
   SPOTIFY_CLIENT_SECRET: client_secret,
@@ -15,26 +13,26 @@ type AccessToken = {
   access_token: string;
 };
 
-const getAccessToken = async (): Promise<AccessToken> => {
-  try {
-    const searchParams = new URLSearchParams();
-    searchParams.append("grant_type", "refresh_token");
-    searchParams.append("refresh_token", refresh_token);
+const getAccessToken = async (revalidate = 1) => {
+  const searchParams = new URLSearchParams();
+  searchParams.append("grant_type", "refresh_token");
+  searchParams.append("refresh_token", refresh_token);
 
-    const response = await axios.request<AccessToken>({
-      url: TOKEN_ENDPOINT,
-      method: "POST",
-      headers: {
-        Authorization: `Basic ${basic}`,
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      data: searchParams.toString(),
-    });
+  const response = await fetch(TOKEN_ENDPOINT, {
+    method: "POST",
+    headers: {
+      Authorization: `Basic ${basic}`,
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: searchParams.toString(),
+    next: {
+      revalidate,
+    },
+  });
 
-    return response.data;
-  } catch (error) {
-    console.log("> getAccessToken error: ", error);
-  }
+  const accessToken = (await response.json()) as AccessToken;
+
+  return accessToken;
 };
 
 type Song = {
@@ -56,21 +54,21 @@ type Song = {
   };
 };
 
-export const getNowPlaying = async (): Promise<AxiosResponse<Song>> => {
-  try {
-    const { access_token } = await getAccessToken();
+export const getNowPlaying = async () => {
+  const { access_token } = await getAccessToken();
 
-    const response = await axios.request<Song>({
-      url: NOW_PLAYING_ENDPOINT,
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-      },
-    });
+  const response = await fetch(NOW_PLAYING_ENDPOINT, {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+  });
 
-    return response;
-  } catch (error) {
-    console.log("> getNowPlaying error: ", error);
-  }
+  const song = (await response.json()) as Song;
+
+  return {
+    status: response.status,
+    data: song,
+  };
 };
 
 type TopTracks = {
@@ -89,22 +87,19 @@ type TopTracks = {
   }[];
 };
 
-export const getTopTracks = async (): Promise<AxiosResponse<TopTracks>> => {
-  try {
-    const { access_token } = await getAccessToken();
+export const getTopTracks = async (revalidate = 1) => {
+  const { access_token } = await getAccessToken(revalidate);
 
-    const response = await axios.request<TopTracks>({
-      url: TOP_TRACKS_ENDPOINT,
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-      },
-      params: {
-        limit: 10,
-      },
-    });
+  const response = await fetch(`${TOP_TRACKS_ENDPOINT}?limit=10`, {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+    next: {
+      revalidate,
+    },
+  });
 
-    return response;
-  } catch (error) {
-    console.log("> access_token error: ", error);
-  }
+  const tracks = (await response.json()) as TopTracks;
+
+  return tracks;
 };

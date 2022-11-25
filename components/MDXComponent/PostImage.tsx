@@ -1,8 +1,8 @@
 import clsx from "classnames";
 import Image from "next/image";
-import type { FunctionComponent } from "react";
+import type { FC } from "react";
 
-type Props = {
+interface PostImageProps {
   src: string;
   width: number;
   height: number;
@@ -11,9 +11,9 @@ type Props = {
     name: string;
     link: string;
   };
-};
+}
 
-const PostImage: FunctionComponent<Props> = ({
+const PostImage: FC<PostImageProps> = ({
   src,
   width,
   height,

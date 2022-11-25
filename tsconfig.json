@@ -18,19 +18,23 @@
       "contentlayer/generated": ["./.contentlayer/generated"],
       "@/components/*": ["components/*"],
       "@/lib/*": ["lib/*"],
-      "@/styles/*": ["styles/*"],
-      "@/context/*": ["context/*"],
       "@/public/*": ["public/*"],
       "@/prisma": ["prisma"],
       "@/hooks/*": ["hooks/*"]
     },
-    "incremental": true
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".contentlayer/generated"
+    ".contentlayer/generated",
+    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }

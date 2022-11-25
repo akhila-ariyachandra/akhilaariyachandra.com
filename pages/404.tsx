@@ -1,25 +1,8 @@
-import SEO from "@/components/SEO";
-import type { NextPage } from "next";
+import NotFound from "@/components/NotFound";
+import { type FC } from "react";
 
-const NotFound: NextPage = () => {
-  return (
-    <>
-      <SEO title="404: Not Found" />
-
-      <div className="p-4">
-        <h1 className="font-sora text-3xl font-semibold text-zinc-800 dark:text-zinc-200">
-          Not Found
-        </h1>
-
-        <p className="font-base font-roboto-slab text-lg text-zinc-800 dark:text-zinc-200">
-          You just hit a route that doesn&#39;t exist... the sadness.{" "}
-          <span role="img" aria-label="Sad Emoji">
-            😢
-          </span>
-        </p>
-      </div>
-    </>
-  );
+const NotFoundPage: FC = () => {
+  return <NotFound />;
 };
 
-export default NotFound;
+export default NotFoundPage;

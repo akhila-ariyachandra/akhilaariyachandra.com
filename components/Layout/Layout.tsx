@@ -1,15 +1,14 @@
-import classNames from "classnames";
-import Footer from "./Footer";
 import Header from "./Header";
+import Footer from "./Footer";
 import type { FC, ReactNode } from "react";
 
-interface Props {
+interface LayoutProps {
   children: ReactNode;
 }
 
-const Layout: FC<Props> = ({ children }) => {
+const Layout: FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="mx-auto flex min-h-full flex-col justify-between">
+    <div className="flex h-full flex-col justify-between gap-4">
       <Header />
 
       <main className="container w-full max-w-3xl p-4">{children}</main>

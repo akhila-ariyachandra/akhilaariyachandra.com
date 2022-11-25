@@ -10,11 +10,11 @@ import { useMDXComponent } from "next-contentlayer/hooks";
 import "prism-themes/themes/prism-night-owl.css";
 import styles from "./MDXComponent.module.scss";
 
-type Props = {
+interface MDXComponentProps {
   code: string;
-};
+}
 
-const MDXComponent: FC<Props> = ({ code }) => {
+const MDXComponent: FC<MDXComponentProps> = ({ code }) => {
   const Component = useMDXComponent(code);
 
   return (
