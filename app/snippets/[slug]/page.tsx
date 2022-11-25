@@ -3,7 +3,7 @@ import type { FC } from "react";
 import { allSnippets } from "contentlayer/generated";
 
 // https://beta.nextjs.org/docs/api-reference/segment-config
-export const dynamicParams = false;
+// export const dynamicParams = false;
 
 // https://beta.nextjs.org/docs/api-reference/generate-static-params
 export const generateStaticParams = async () => {

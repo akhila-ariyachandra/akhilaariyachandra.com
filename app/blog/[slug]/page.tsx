@@ -6,7 +6,7 @@ import { allPosts } from "contentlayer/generated";
 import { formatDate } from "@/lib/helpers";
 
 // https://beta.nextjs.org/docs/api-reference/segment-config
-export const dynamicParams = false;
+// export const dynamicParams = false;
 
 // https://beta.nextjs.org/docs/api-reference/generate-static-params
 export const generateStaticParams = async () => {
