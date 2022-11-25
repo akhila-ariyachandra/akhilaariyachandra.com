@@ -1,12 +1,10 @@
-import React from "react";
+import type { FC } from "react";
 
-type Props = {
+interface CodeSandboxWrapperProps {
   codeSandboxId: string;
-};
+}
 
-const CodeSandboxWrapper: React.FunctionComponent<Props> = ({
-  codeSandboxId,
-}) => {
+const CodeSandboxWrapper: FC<CodeSandboxWrapperProps> = ({ codeSandboxId }) => {
   const idWords = codeSandboxId.split("-");
   const title = idWords.slice(0, idWords.length - 1).join("-");
 

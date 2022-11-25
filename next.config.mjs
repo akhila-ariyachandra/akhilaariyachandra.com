@@ -18,11 +18,10 @@ const nextConfig = {
     formats: ["image/avif", "image/webp"],
   },
   eslint: {
-    dirs: ["components", "lib", "pages", "hooks"],
+    dirs: ["app", "components", "lib", "pages", "hooks"],
   },
   experimental: {
-    legacyBrowsers: false,
-    newNextLinkBehavior: true,
+    appDir: true,
   },
   rewrites: async () => {
     return [
