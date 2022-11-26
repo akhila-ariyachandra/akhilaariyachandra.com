@@ -3,6 +3,7 @@
 import config from "@/lib/config";
 import type { FC } from "react";
 import { usePathname } from "next/navigation";
+import { NextSeo } from "next-seo";
 
 interface SEOProps {
   title?: string;
@@ -21,37 +22,33 @@ const SEO: FC<SEOProps> = ({
 }) => {
   const pathname = usePathname();
 
-  const formattedTitle =
-    pathname === "/" ? title : `${title} | ${config.title}`;
+  const titleTemplate = pathname === "/" ? "%s" : `%s | ${config.title}`;
 
   return (
-    <>
-      <title>{formattedTitle}</title>
-      <meta property="og:title" content={formattedTitle} />
-
-      <meta name="description" content={description} />
-      <meta property="og:description" content={description} />
-
-      <link rel="canonical" href={`${config.siteUrl}${pathname}`} />
-
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:creator" content={config.author.twitter} />
-
-      <meta property="og:type" content={date ? "article" : "website"} />
-      <meta property="og:image" content={`${config.siteUrl}${image}`} />
-
-      {/* Add article data if date prop has been passed i.e. blog posts */}
-      {!!date && (
-        <>
-          <meta property="article:author" content={config.author.name} />
-          <meta property="article:published_time" content={date} />
-
-          {!!updated && (
-            <meta property="article:modified_time" content={updated} />
-          )}
-        </>
-      )}
-    </>
+    <NextSeo
+      title={title}
+      titleTemplate={titleTemplate}
+      description={description}
+      canonical={`${config.siteUrl}${pathname}`}
+      twitter={{
+        cardType: "summary_large_image",
+        handle: config.author.twitter,
+      }}
+      openGraph={{
+        type: date ? "article" : "website",
+        images: [
+          { url: `${config.siteUrl}${image}`, width: 1200, height: 630 },
+        ],
+        article: !!date
+          ? {
+              authors: [config.author.name],
+              publishedTime: date,
+              modifiedTime: updated ?? undefined,
+            }
+          : undefined,
+      }}
+      useAppDir
+    />
   );
 };
 
