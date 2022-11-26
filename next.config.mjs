@@ -8,6 +8,8 @@ const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
 });
 
+console.log("test");
+
 /**
  * @type {import('next').NextConfig}
  **/
