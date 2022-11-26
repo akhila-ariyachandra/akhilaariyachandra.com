@@ -9,7 +9,7 @@ interface SpecialBlockProps {
 
 const SpecialBlock: FC<SpecialBlockProps> = ({ type, markdown }) => {
   let wrapperClass =
-    "text-base my-4 mx-auto p-4 border-2 rounded-md flex items-start w-full max-w-xl ";
+    "text-sm sm:text-base my-4 mx-auto p-4 border-2 rounded-md flex items-start w-full max-w-xl ";
   let iconClass = "text-2xl ";
   let Icon = null;
 
@@ -37,7 +37,7 @@ const SpecialBlock: FC<SpecialBlockProps> = ({ type, markdown }) => {
       <Icon className={iconClass} />
 
       <div
-        className="ml-2 flex-1 font-sora text-base text-zinc-800 dark:text-zinc-200"
+        className="ml-2 flex-1 font-sora text-sm text-zinc-800 dark:text-zinc-200 sm:text-base"
         dangerouslySetInnerHTML={{ __html: html }}
       />
     </div>

@@ -6,7 +6,7 @@ interface TitleProps {
 
 const Title: FC<TitleProps> = ({ title }) => {
   return (
-    <h1 className="my-10 font-sora text-4xl font-bold text-zinc-800 dark:text-zinc-200">
+    <h1 className="my-10 font-sora text-3xl font-bold text-zinc-800 dark:text-zinc-200 sm:text-4xl">
       {title}
     </h1>
   );

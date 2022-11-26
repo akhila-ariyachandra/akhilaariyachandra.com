@@ -15,7 +15,7 @@ const NowPlaying: FC = () => {
   });
 
   return (
-    <div className="flex w-full flex-row-reverse items-center space-x-0 text-lg antialiased sm:flex-row sm:space-x-3">
+    <div className="flex w-full flex-row-reverse items-center space-x-0 text-base antialiased sm:flex-row sm:space-x-3 sm:text-lg">
       <div className="relative grid h-[48px] w-[48px] flex-shrink-0 place-items-center">
         {data?.albumImage ? (
           <Image

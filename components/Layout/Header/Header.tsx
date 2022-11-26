@@ -1,5 +1,6 @@
 "use client";
 
+import clsx from "classnames";
 import Link from "next/link";
 import ThemeSwitch from "./ThemeSwitch";
 import type { FC } from "react";
@@ -42,11 +43,12 @@ const Header: FC = () => {
           <Link
             key={href}
             href={href}
-            className={`font-sora text-lg font-medium ${
+            className={clsx(
+              "font-sora text-base font-medium sm:text-lg",
               activePath.test(pathname)
                 ? "text-emerald-700 dark:text-emerald-600"
                 : "text-zinc-800 dark:text-zinc-200"
-            }`}
+            )}
           >
             {label}
           </Link>

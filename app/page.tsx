@@ -72,7 +72,7 @@ const HomePage = async () => {
       />
 
       <div className="mt-4 space-y-6">
-        <h1 className="font-sora text-4xl font-black text-zinc-800 dark:text-zinc-200">
+        <h1 className="font-sora text-3xl font-black text-zinc-800 dark:text-zinc-200 sm:text-4xl">
           {`Hi, I'm `}
           <span className="text-emerald-700 dark:text-emerald-600">
             {config.title}
@@ -95,7 +95,7 @@ const HomePage = async () => {
       <hr className="my-12 h-[1px] bg-zinc-200 dark:bg-zinc-600" />
 
       <section>
-        <h2 className="font-sora text-4xl font-bold text-zinc-800 dark:text-zinc-200">
+        <h2 className="font-sora text-3xl font-bold text-zinc-800 dark:text-zinc-200 sm:text-4xl">
           Most Popular Posts
         </h2>
 
@@ -114,7 +114,7 @@ const HomePage = async () => {
       <hr className="my-12 h-[1px] bg-zinc-200 dark:bg-zinc-600" />
 
       <section>
-        <h2 className="font-sora text-4xl font-bold text-zinc-800 dark:text-zinc-200">
+        <h2 className="font-sora text-3xl font-bold text-zinc-800 dark:text-zinc-200 sm:text-4xl">
           Career
         </h2>
 
@@ -134,7 +134,7 @@ const HomePage = async () => {
               />
 
               <div className="break-words">
-                <h3 className="font-sora text-xl font-semibold text-zinc-800 dark:text-zinc-200">
+                <h3 className="font-sora text-lg font-semibold text-zinc-800 dark:text-zinc-200 sm:text-xl">
                   {job.position}
                 </h3>
 
@@ -142,12 +142,12 @@ const HomePage = async () => {
                   href={job.company.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block font-sora text-lg font-medium text-emerald-700 dark:text-emerald-600"
+                  className="block font-sora text-base font-medium text-emerald-700 dark:text-emerald-600 sm:text-lg"
                 >
                   {job.company.name}
                 </a>
 
-                <div className="font-roboto-slab text-base font-normal text-zinc-800 dark:text-zinc-200">
+                <div className="font-roboto-slab text-sm font-normal text-zinc-800 dark:text-zinc-200 sm:text-base">
                   <span>
                     {`${dayjs(job.period.start).format("MMMM YYYY")} - ${
                       job.period.end
