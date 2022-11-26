@@ -46,7 +46,7 @@ const BlogPostPage: FC<BlogPostPageProps> = ({ params }) => {
       />
 
       {post.photographer && post.unsplashLink ? (
-        <p className="my-2 px-4 text-center font-roboto-slab text-base font-medium text-zinc-800 dark:text-zinc-200">
+        <p className="my-2 px-4 text-center font-roboto-slab text-sm font-medium text-zinc-800 dark:text-zinc-200 sm:text-base">
           {"Photo by "}
           <a
             href={post.unsplashLink}
@@ -59,11 +59,11 @@ const BlogPostPage: FC<BlogPostPageProps> = ({ params }) => {
         </p>
       ) : null}
 
-      <h1 className="my-4 px-4 text-center font-sora text-4xl font-black text-zinc-800 dark:text-zinc-200">
+      <h1 className="my-4 px-4 text-center font-sora text-3xl font-black text-zinc-800 dark:text-zinc-200 sm:text-4xl">
         {post.title}
       </h1>
 
-      <div className="my-2 flex flex-col items-center px-4 font-roboto-slab text-lg font-medium text-zinc-800 dark:text-zinc-200 sm:flex-row sm:justify-center">
+      <div className="my-2 flex flex-col items-center px-4 font-roboto-slab text-base font-medium text-zinc-800 dark:text-zinc-200 sm:flex-row sm:justify-center sm:text-lg">
         <p>{`Posted on ${formatDate(post.date)}`}</p>
 
         {post.updated && (
@@ -74,7 +74,7 @@ const BlogPostPage: FC<BlogPostPageProps> = ({ params }) => {
         )}
       </div>
 
-      <div className="my-2 flex flex-col items-center px-4 font-roboto-slab text-lg font-medium text-zinc-800 dark:text-zinc-200 sm:flex-row sm:justify-center">
+      <div className="my-2 flex flex-col items-center px-4 font-roboto-slab text-base font-medium text-zinc-800 dark:text-zinc-200 sm:flex-row sm:justify-center sm:text-lg">
         <p>{post.readingTime}</p>
 
         <span className="hidden sm:mx-2 sm:block">&bull;</span>

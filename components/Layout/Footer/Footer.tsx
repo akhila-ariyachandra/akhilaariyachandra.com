@@ -36,7 +36,7 @@ const Footer: FC = () => {
             <Link
               href={link.href}
               key={link.href}
-              className="font-sora text-xl font-medium text-emerald-900 dark:text-zinc-300"
+              className="font-sora text-lg font-medium text-emerald-900 dark:text-zinc-300 sm:text-xl"
             >
               {link.title}
             </Link>
@@ -44,7 +44,7 @@ const Footer: FC = () => {
         </nav>
 
         <div className="flex items-center justify-between">
-          <span className="font-sora text-base font-medium text-zinc-800 dark:text-zinc-200">
+          <span className="font-sora text-sm font-medium text-zinc-800 dark:text-zinc-200 sm:text-base">
             © 2019 - {new Date().getFullYear()}, Built with
             {` `}
             <ExternalLink link="https://nextjs.org/">Next.js</ExternalLink>
@@ -66,7 +66,7 @@ const Footer: FC = () => {
             href="https://app.splitbee.io/public/akhilaariyachandra.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-sora text-xl text-yellow-600 dark:text-yellow-400"
+            className="font-sora text-lg text-yellow-600 dark:text-yellow-400 sm:text-xl"
             aria-label="Analytics"
           >
             <IoAnalyticsSharp />

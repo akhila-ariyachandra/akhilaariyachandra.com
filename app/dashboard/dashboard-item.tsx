@@ -43,13 +43,13 @@ const DashboardItem: FC<DashboardItemProps> = ({
       {link.type === "internal" ? (
         <Link
           href={link.url}
-          className="flex flex-row font-sora text-3xl font-medium text-emerald-700 dark:text-emerald-600"
+          className="flex flex-row font-sora text-2xl font-medium text-emerald-700 dark:text-emerald-600 sm:text-3xl"
         >
           {title}
         </Link>
       ) : (
         <a
-          className="flex flex-row font-sora text-3xl font-medium text-emerald-700 dark:text-emerald-600"
+          className="flex flex-row font-sora text-2xl font-medium text-emerald-700 dark:text-emerald-600 sm:text-3xl"
           target="_blank"
           rel="noopener noreferrer"
           href={link.url}
@@ -58,7 +58,7 @@ const DashboardItem: FC<DashboardItemProps> = ({
         </a>
       )}
 
-      <div className="font-roboto-slab text-2xl font-normal text-zinc-800 dark:text-zinc-200">
+      <div className="font-roboto-slab text-xl font-normal text-zinc-800 dark:text-zinc-200 sm:text-2xl">
         {data?.count}
       </div>
     </div>
