@@ -24,6 +24,7 @@ specifiers:
   feed: 4.2.2
   next: 13.0.5
   next-contentlayer: 0.2.9
+  next-seo: 5.14.1
   next-themes: 0.2.1
   postcss: 8.4.19
   prettier: 2.8.0
@@ -62,6 +63,7 @@ dependencies:
   feed: 4.2.2
   next: 13.0.5_m5sxuueb27gk6ddc5gums6vtgq
   next-contentlayer: 0.2.9_7iuvftg57tblwyxclfkwku5xo4
+  next-seo: 5.14.1_7iuvftg57tblwyxclfkwku5xo4
   next-themes: 0.2.1_7iuvftg57tblwyxclfkwku5xo4
   prism-themes: 1.9.0
   react: 18.2.0
@@ -3732,6 +3734,18 @@ packages:
       - '@effect-ts/otel-node'
       - markdown-wasm
       - supports-color
+    dev: false
+
+  /next-seo/5.14.1_7iuvftg57tblwyxclfkwku5xo4:
+    resolution: {integrity: sha512-NiJeQbxYP3z+EMp52q8k3Q+OfX2+Yv2WehERDj98r2wjXxL+woKpRBdsSVYolTD0Hm8IWs42SzaISE93RoQdOw==}
+    peerDependencies:
+      next: ^8.1.1-canary.54 || >=9.0.0
+      react: '>=16.0.0'
+      react-dom: '>=16.0.0'
+    dependencies:
+      next: 13.0.5_m5sxuueb27gk6ddc5gums6vtgq
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /next-themes/0.2.1_7iuvftg57tblwyxclfkwku5xo4:
