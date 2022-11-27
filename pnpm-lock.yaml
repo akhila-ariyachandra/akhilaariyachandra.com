@@ -5,7 +5,6 @@ specifiers:
   '@next/bundle-analyzer': 13.0.5
   '@next/font': 13.0.5
   '@prisma/client': 4.6.1
-  '@splitbee/web': 0.3.0
   '@tailwindcss/typography': 0.5.8
   '@tanstack/eslint-plugin-query': 4.15.1
   '@tanstack/react-query': 4.17.1
@@ -53,7 +52,6 @@ dependencies:
   '@next/bundle-analyzer': 13.0.5
   '@next/font': 13.0.5
   '@prisma/client': 4.6.1_prisma@4.6.1
-  '@splitbee/web': 0.3.0
   '@tanstack/react-query': 4.17.1_biqbaboplfbrettd7655fr4n2y
   '@tanstack/react-query-devtools': 4.17.1_pqamaizvnjqcfyw5nbjnulkdty
   '@vercel/analytics': 0.1.5_react@18.2.0
@@ -842,10 +840,6 @@ packages:
   /@rushstack/eslint-patch/1.2.0:
     resolution: {integrity: sha512-sXo/qW2/pAcmT43VoRKOJbDOfV3cYpq3szSVfIThQXNt+E4DfKj361vaAt3c88U5tPUxzEswam7GW48PJqtKAg==}
     dev: true
-
-  /@splitbee/web/0.3.0:
-    resolution: {integrity: sha512-jNPDKg0GQGa4jCaBc6JQsv0NHmBA80WCwZE49nFyhcbo32WF0GyqXeice7ZApy7OUHI16bAUAzm4MOQw3gvxfQ==}
-    dev: false
 
   /@swc/helpers/0.4.14:
     resolution: {integrity: sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==}

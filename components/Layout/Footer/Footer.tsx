@@ -43,34 +43,22 @@ const Footer: FC = () => {
           ))}
         </nav>
 
-        <div className="flex items-center justify-between">
-          <span className="font-sora text-sm font-medium text-zinc-800 dark:text-zinc-200 sm:text-base">
-            © 2019 - {new Date().getFullYear()}, Built with
-            {` `}
-            <ExternalLink link="https://nextjs.org/">Next.js</ExternalLink>
-            {", "}
-            <ExternalLink link="https://tailwindcss.com/">
-              Tailwind CSS
-            </ExternalLink>
-            {", "}
-            <ExternalLink link="https://planetscale.com/">
-              PlanetScale
-            </ExternalLink>
-            {", "}
-            <ExternalLink link="https://www.prisma.io/">Prisma</ExternalLink>
-            {", & "}
-            <ExternalLink link="https://vercel.com/home">Vercel</ExternalLink>
-          </span>
-
-          <a
-            href="https://app.splitbee.io/public/akhilaariyachandra.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-sora text-lg text-yellow-600 dark:text-yellow-400 sm:text-xl"
-            aria-label="Analytics"
-          >
-            <IoAnalyticsSharp />
-          </a>
+        <div className="font-sora text-sm font-medium text-zinc-800 dark:text-zinc-200 sm:text-base">
+          © 2019 - {new Date().getFullYear()}, Built with
+          {` `}
+          <ExternalLink link="https://nextjs.org/">Next.js</ExternalLink>
+          {", "}
+          <ExternalLink link="https://tailwindcss.com/">
+            Tailwind CSS
+          </ExternalLink>
+          {", "}
+          <ExternalLink link="https://planetscale.com/">
+            PlanetScale
+          </ExternalLink>
+          {", "}
+          <ExternalLink link="https://www.prisma.io/">Prisma</ExternalLink>
+          {", & "}
+          <ExternalLink link="https://vercel.com/home">Vercel</ExternalLink>
         </div>
       </div>
     </footer>
