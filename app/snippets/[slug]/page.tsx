@@ -1,9 +1,10 @@
 import MDXComponent from "@/components/MDXComponent";
 import type { FC } from "react";
+import { notFound } from "next/navigation";
 import { allSnippets } from "contentlayer/generated";
 
 // https://beta.nextjs.org/docs/api-reference/segment-config
-export const dynamicParams = false;
+// export const dynamicParams = false;
 
 // https://beta.nextjs.org/docs/api-reference/generate-static-params
 export const generateStaticParams = async () => {
@@ -22,6 +23,10 @@ const SnippetsPostPage: FC<SnippetsPostPageProps> = ({ params }) => {
   const slug = params?.slug.toString();
 
   const snippet = allSnippets.find((snippet) => snippet.slug === slug);
+
+  if (!snippet) {
+    notFound();
+  }
 
   return (
     <>

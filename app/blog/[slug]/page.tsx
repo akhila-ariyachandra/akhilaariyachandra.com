@@ -2,11 +2,12 @@ import Image from "next/image";
 import BlogPostViews from "./views";
 import MDXComponent from "@/components/MDXComponent";
 import type { FC } from "react";
+import { notFound } from "next/navigation";
 import { allPosts } from "contentlayer/generated";
 import { formatDate } from "@/lib/helpers";
 
 // https://beta.nextjs.org/docs/api-reference/segment-config
-export const dynamicParams = false;
+// export const dynamicParams = false;
 
 // https://beta.nextjs.org/docs/api-reference/generate-static-params
 export const generateStaticParams = async () => {
@@ -25,6 +26,10 @@ const BlogPostPage: FC<BlogPostPageProps> = ({ params }) => {
   const slug = params?.slug.toString();
 
   const post = allPosts.find((post) => post.slug === slug);
+
+  if (!post) {
+    notFound();
+  }
 
   return (
     <>
