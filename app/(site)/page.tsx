@@ -5,8 +5,11 @@ import coverPic from "@/public/cover-pic.jpg";
 import Image from "next/image";
 import MDXComponent from "@/components/MDXComponent";
 import PostLink from "@/components/PostLink";
+import sanityClient, { urlFor } from "@/lib/sanity-client";
 import type { FC } from "react";
-import { about, career, allPosts } from "contentlayer/generated";
+import type { Job } from "@/lib/types";
+import { groq } from "next-sanity";
+import { about, allPosts } from "contentlayer/generated";
 import { getPeriod, formatDate } from "@/lib/helpers";
 import { FaDev, FaGithub, FaRssSquare, FaTwitterSquare } from "react-icons/fa";
 
@@ -56,8 +59,17 @@ const getMostPopularPosts = async () => {
   return posts;
 };
 
+const getJobs = async () => {
+  return await sanityClient.fetch<Job[]>(groq`
+    *[_type == "job"] | order(period.start desc) {
+      ...,
+      company ->
+    }
+  `);
+};
+
 const HomePage = async () => {
-  const jobs = career.jobs;
+  const jobs = await getJobs();
   const posts = await getMostPopularPosts();
 
   return (
@@ -120,12 +132,9 @@ const HomePage = async () => {
 
         <div className="my-8 flex flex-col gap-6">
           {jobs.map((job) => (
-            <article
-              key={`${job.position}-${job.period.start.toString()}`}
-              className="flex flex-row items-center gap-4"
-            >
+            <article key={job._id} className="flex flex-row items-center gap-4">
               <Image
-                src={`/career/${job.company.logo}`}
+                src={urlFor(job.company.logo).url()}
                 alt={`${job.company.name} logo`}
                 title={job.company.name}
                 width={64}
@@ -156,7 +165,10 @@ const HomePage = async () => {
                     }`}
                   </span>
                   <span className="font-light text-zinc-600 dark:text-zinc-400">
-                    {` (${getPeriod(job.period.start, job.period.end)})`}
+                    {` (${getPeriod(
+                      job.period.start.toString(),
+                      job.period.end?.toString()
+                    )})`}
                   </span>
                 </div>
               </div>

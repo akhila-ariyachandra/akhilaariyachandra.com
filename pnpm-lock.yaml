@@ -5,6 +5,7 @@ specifiers:
   '@next/bundle-analyzer': 13.0.6
   '@next/font': 13.0.6
   '@prisma/client': 4.7.1
+  '@sanity/image-url': 1.0.1
   '@sanity/vision': 3.0.6
   '@tailwindcss/typography': 0.5.8
   '@tanstack/eslint-plugin-query': 4.15.1
@@ -56,6 +57,7 @@ dependencies:
   '@next/bundle-analyzer': 13.0.6
   '@next/font': 13.0.6
   '@prisma/client': 4.7.1_prisma@4.7.1
+  '@sanity/image-url': 1.0.1
   '@sanity/vision': 3.0.6_2zpt4ilzykmne4yndyzrqd4gdm
   '@tanstack/react-query': 4.19.0_biqbaboplfbrettd7655fr4n2y
   '@tanstack/react-query-devtools': 4.19.0_budcsmmktl2xfbndofa5sinodm

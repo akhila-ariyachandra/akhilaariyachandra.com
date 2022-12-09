@@ -14,7 +14,7 @@ const withBundleAnalyzer = bundleAnalyzer({
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["i.scdn.co"],
+    domains: ["i.scdn.co", "cdn.sanity.io"],
     formats: ["image/avif", "image/webp"],
   },
   eslint: {
