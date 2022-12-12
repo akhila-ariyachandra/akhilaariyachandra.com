@@ -3,6 +3,7 @@ next-env.d.ts
 .vercel
 pnpm-lock.yaml
 .eslint.json
+.vscode
 
 # Contentlayer
 .contentlayer
