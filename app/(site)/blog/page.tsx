@@ -5,6 +5,9 @@ import type { FC } from "react";
 import { allPosts } from "contentlayer/generated";
 import { formatDate } from "@/lib/helpers";
 
+// https://beta.nextjs.org/docs/api-reference/segment-config
+export const dynamic = "force-static";
+
 const BlogPage: FC = () => {
   const posts = allPosts
     .map((post) => ({
