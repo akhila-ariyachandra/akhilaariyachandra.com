@@ -15,6 +15,7 @@ import { FaDev, FaGithub, FaRssSquare, FaTwitterSquare } from "react-icons/fa";
 
 // https://beta.nextjs.org/docs/api-reference/segment-config
 export const revalidate = 3600;
+export const fetchCache = "force-cache";
 
 const SocialIcons = {
   GitHub: FaGithub,
