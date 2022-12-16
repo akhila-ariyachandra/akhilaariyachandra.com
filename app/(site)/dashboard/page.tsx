@@ -5,7 +5,8 @@ import TopTracks from "./top-tracks";
 import type { FC } from "react";
 
 // https://beta.nextjs.org/docs/api-reference/segment-config
-export const revalidate = 86400;
+export const revalidate = 86400,
+  dynamic = "force-static";
 
 const DashboardPage: FC = () => {
   return (
