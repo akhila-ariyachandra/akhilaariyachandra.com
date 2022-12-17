@@ -3,9 +3,6 @@ import ListContainer from "@/components/ListContainer";
 import type { FC } from "react";
 import { allSnippets } from "contentlayer/generated";
 
-// https://beta.nextjs.org/docs/api-reference/segment-config
-export const dynamic = "force-static";
-
 const SnippetsPage: FC = () => {
   const snippets = allSnippets.map((post) => ({
     slug: post.slug,
