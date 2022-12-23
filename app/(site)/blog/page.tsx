@@ -3,7 +3,6 @@ import ListContainer from "@/components/ListContainer";
 import PostLink from "@/components/PostLink";
 import type { FC } from "react";
 import { allPosts } from "contentlayer/generated";
-import { formatDate } from "@/lib/helpers";
 
 const BlogPage: FC = () => {
   const posts = allPosts
@@ -23,12 +22,7 @@ const BlogPage: FC = () => {
   return (
     <ListContainer title="Blog">
       {posts.map(({ slug, date, title }) => (
-        <PostLink
-          slug={slug}
-          title={title}
-          date={formatDate(date)}
-          key={slug}
-        />
+        <PostLink slug={slug} title={title} date={date} key={slug} />
       ))}
     </ListContainer>
   );

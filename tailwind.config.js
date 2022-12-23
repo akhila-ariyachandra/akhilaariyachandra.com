@@ -5,7 +5,6 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,scss}",
     "./pages/**/*.tsx",
     "./components/**/*.{tsx,module.scss}",
-    "./styles/**/*.scss",
   ],
   darkMode: "class",
   theme: {

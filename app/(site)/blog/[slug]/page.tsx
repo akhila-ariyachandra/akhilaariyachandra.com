@@ -1,4 +1,6 @@
+import dayjs from "dayjs";
 import Image from "next/image";
+import Balancer from "react-wrap-balancer";
 import BlogPostViews from "./views";
 import MDXComponent from "@/components/MDXComponent";
 import type { FC } from "react";
@@ -55,16 +57,26 @@ const BlogPostPage: FC<BlogPostPageProps> = ({ params }) => {
       ) : null}
 
       <h1 className="my-4 px-4 text-center font-sora text-3xl font-black text-zinc-800 dark:text-zinc-200 sm:text-4xl">
-        {post.title}
+        <Balancer>{post.title}</Balancer>
       </h1>
 
       <div className="my-2 flex flex-col items-center px-4 font-roboto-slab text-base font-medium text-zinc-800 dark:text-zinc-200 sm:flex-row sm:justify-center sm:text-lg">
-        <p>{`Posted on ${formatDate(post.date)}`}</p>
+        <p>
+          Posted on{" "}
+          <time dateTime={dayjs(post.date).toISOString()}>
+            {formatDate(post.date)}
+          </time>
+        </p>
 
         {post.updated && (
           <>
             <span className="hidden sm:mx-2 sm:block">&bull;</span>
-            <p>{`Last updated on ${formatDate(post.updated)}`}</p>
+            <p>
+              Last updated on{" "}
+              <time dateTime={dayjs(post.updated).toISOString()}>
+                {formatDate(post.updated)}
+              </time>
+            </p>
           </>
         )}
       </div>

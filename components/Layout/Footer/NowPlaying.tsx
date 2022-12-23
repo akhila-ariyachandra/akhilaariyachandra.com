@@ -4,13 +4,15 @@ import Image from "next/image";
 import type { FC } from "react";
 import type { Song } from "@/lib/types";
 import { useQuery } from "@tanstack/react-query";
-import { fetcher } from "@/lib/helpers";
 import { FaSpotify } from "react-icons/fa";
 
 const NowPlaying: FC = () => {
   const { data } = useQuery<Song>({
     queryKey: ["spotify", "nowPlaying"],
-    queryFn: () => fetcher("/api/spotify/now-playing"),
+    queryFn: () =>
+      fetch("/api/spotify/now-playing", { cache: "no-store" }).then((res) =>
+        res.json()
+      ),
     staleTime: 60000, // Don't refetch for 1 min
   });
 

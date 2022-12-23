@@ -117,7 +117,7 @@ const HomePage = async () => {
               key={post.slug}
               title={post.title}
               slug={post.slug}
-              date={formatDate(post.date)}
+              date={post.date}
             />
           ))}
         </div>
