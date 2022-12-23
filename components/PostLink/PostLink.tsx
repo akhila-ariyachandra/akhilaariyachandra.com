@@ -1,16 +1,14 @@
 "use client";
 
+import dayjs from "dayjs";
 import useViews from "@/hooks/useViews.hook";
 import Link from "next/link";
 import type { FC } from "react";
+import { formatDate } from "@/lib/helpers";
 
 interface PostLinkProps {
   slug: string;
   title: string;
-  /**
-   * Format date before passing as a prop because this component should not
-   * import `day.js` to avoid increasing the bundle size
-   */
   date: string;
 }
 
@@ -27,7 +25,7 @@ const PostLink: FC<PostLinkProps> = ({ slug, title, date }) => {
       </Link>
 
       <div className="font-roboto-slab text-base font-medium text-zinc-800 dark:text-zinc-200 sm:text-lg">
-        {date}
+        <time dateTime={dayjs(date).toISOString()}>{formatDate(date)}</time>
 
         <span className="mx-2">&bull;</span>
 
