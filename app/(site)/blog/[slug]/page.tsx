@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Balancer from "react-wrap-balancer";
 import BlogPostViews from "./views";
 import MDXComponent from "@/components/MDXComponent";
 import type { FC } from "react";
@@ -55,7 +56,7 @@ const BlogPostPage: FC<BlogPostPageProps> = ({ params }) => {
       ) : null}
 
       <h1 className="my-4 px-4 text-center font-sora text-3xl font-black text-zinc-800 dark:text-zinc-200 sm:text-4xl">
-        {post.title}
+        <Balancer>{post.title}</Balancer>
       </h1>
 
       <div className="my-2 flex flex-col items-center px-4 font-roboto-slab text-base font-medium text-zinc-800 dark:text-zinc-200 sm:flex-row sm:justify-center sm:text-lg">

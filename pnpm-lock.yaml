@@ -39,6 +39,7 @@ specifiers:
   react-dom: 18.2.0
   react-icons: 4.7.1
   react-is: 18.2.0
+  react-wrap-balancer: 0.2.3
   reading-time: 1.5.0
   rehype-code-title: 1.0.0
   rehype-prism-plus: 1.5.0
@@ -79,6 +80,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.7.1_react@18.2.0
   react-is: 18.2.0
+  react-wrap-balancer: 0.2.3_react@18.2.0
   reading-time: 1.5.0
   rehype-code-title: 1.0.0
   rehype-prism-plus: 1.5.0
@@ -7241,6 +7243,14 @@ packages:
     resolution: {integrity: sha512-ywYLSjNkxKHiZOqNlso9PZByNEY+FTyh3C+7uuziK0xFXu9xzdyfHwg4S9iyiRRoPCR4k2LqaBBsWVmSBwCWYQ==}
     dependencies:
       prop-types: 15.8.1
+    dev: false
+
+  /react-wrap-balancer/0.2.3_react@18.2.0:
+    resolution: {integrity: sha512-PWwo0+bMtRSsK2sDUl1NAtufz+vuB91AekruNurHsgHhxJx38RK4+vgzPN5jzGH0nufvwMxhtZXBjYRe+hFYCw==}
+    peerDependencies:
+      react: ^18.0.0
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react/18.2.0:
