@@ -3,7 +3,6 @@ import advancedFormat from "dayjs/plugin/advancedFormat";
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
-import { markdownSchema } from "sanity-plugin-markdown";
 
 dayjs.extend(advancedFormat);
 
@@ -14,7 +13,7 @@ export default defineConfig({
   basePath: "/studio",
   projectId,
   dataset,
-  plugins: [deskTool(), visionTool(), markdownSchema()],
+  plugins: [deskTool(), visionTool()],
   title: "akhilaariyachandra.com",
   schema: {
     types: [
