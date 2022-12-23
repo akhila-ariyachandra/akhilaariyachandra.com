@@ -14,7 +14,9 @@ const useViews = (slug: string) => {
   const { data } = useQuery({
     queryKey: KEY,
     queryFn: () =>
-      fetch(`/api/views/${slug}`).then((res) => res.json() as Promise<View>),
+      fetch(`/api/views/${slug}`, { cache: "no-store" }).then(
+        (res) => res.json() as Promise<View>
+      ),
     placeholderData: {
       slug,
       count: 0,

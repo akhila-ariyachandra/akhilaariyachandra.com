@@ -4,7 +4,6 @@ import classNames from "classnames";
 import Link from "next/link";
 import type { FC } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { fetcher } from "@/lib/helpers";
 
 interface APIResponse {
   count: number;
@@ -28,7 +27,7 @@ const DashboardItem: FC<DashboardItemProps> = ({
 }) => {
   const { data } = useQuery<APIResponse>({
     queryKey: ["dashboard", queryKey, url],
-    queryFn: () => fetcher(url),
+    queryFn: () => fetch(url, { cache: "no-store" }).then((res) => res.json()),
     placeholderData: { count: 0 },
   });
 
