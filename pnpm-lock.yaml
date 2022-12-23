@@ -6,6 +6,7 @@ specifiers:
   '@next/font': 13.0.7
   '@prisma/client': 4.8.0
   '@sanity/image-url': 1.0.1
+  '@sanity/ui': 1.0.4
   '@sanity/vision': 3.1.1
   '@tailwindcss/typography': 0.5.8
   '@tanstack/eslint-plugin-query': 4.20.2
@@ -37,6 +38,7 @@ specifiers:
   react: 18.2.0
   react-dom: 18.2.0
   react-icons: 4.7.1
+  react-is: 18.2.0
   reading-time: 1.5.0
   rehype-code-title: 1.0.0
   rehype-prism-plus: 1.5.0
@@ -58,7 +60,8 @@ dependencies:
   '@next/font': 13.0.7
   '@prisma/client': 4.8.0_prisma@4.8.0
   '@sanity/image-url': 1.0.1
-  '@sanity/vision': 3.1.1_2zpt4ilzykmne4yndyzrqd4gdm
+  '@sanity/ui': 1.0.4_23mhwjhnzfjwvdn7ol54k26zom
+  '@sanity/vision': 3.1.1_23mhwjhnzfjwvdn7ol54k26zom
   '@tanstack/react-query': 4.20.4_biqbaboplfbrettd7655fr4n2y
   '@tanstack/react-query-devtools': 4.20.4_fu3ixcwltlssi3ozitelgaebme
   '@vercel/analytics': 0.1.6_react@18.2.0
@@ -68,13 +71,14 @@ dependencies:
   feed: 4.2.2
   next: 13.0.6_3duxcpitbtplz62feflag7fwby
   next-contentlayer: 0.2.9_6jx7hpii6hgsrmhxgqrmo3277u
-  next-sanity: 3.1.5_rwbpe6w533ggvv3pysscjsp2mi
+  next-sanity: 3.1.5_sgonbn4yi66gfuwr45llqdah2q
   next-seo: 5.15.0_6jx7hpii6hgsrmhxgqrmo3277u
   next-themes: 0.2.1_6jx7hpii6hgsrmhxgqrmo3277u
   prism-themes: 1.9.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.7.1_react@18.2.0
+  react-is: 18.2.0
   reading-time: 1.5.0
   rehype-code-title: 1.0.0
   rehype-prism-plus: 1.5.0
@@ -86,7 +90,7 @@ dependencies:
   sass: 1.57.1
   sharp: 0.31.3
   snarkdown: 2.0.0
-  styled-components: 5.3.6_biqbaboplfbrettd7655fr4n2y
+  styled-components: 5.3.6_7i5myeigehqah43i5u7wbekgba
 
 devDependencies:
   '@tailwindcss/typography': 0.5.8_tailwindcss@3.2.4
@@ -1058,7 +1062,7 @@ packages:
       '@motionone/types': 10.15.1
       '@motionone/utils': 10.15.1
       hey-listen: 1.0.8
-      tslib: 2.4.0
+      tslib: 2.4.1
     dev: false
 
   /@motionone/easing/10.15.1:
@@ -1731,7 +1735,7 @@ packages:
       react: 18.2.0
       rxjs: 6.6.7
       slate: 0.81.1
-      styled-components: 5.3.6_biqbaboplfbrettd7655fr4n2y
+      styled-components: 5.3.6_7i5myeigehqah43i5u7wbekgba
     transitivePeerDependencies:
       - react-dom
       - supports-color
@@ -1861,27 +1865,7 @@ packages:
       react-dom: 18.2.0_react@18.2.0
       react-is: 18.2.0
       react-refractor: 2.1.7_react@18.2.0
-      styled-components: 5.3.6_biqbaboplfbrettd7655fr4n2y
-    dev: false
-
-  /@sanity/ui/1.0.4_2zpt4ilzykmne4yndyzrqd4gdm:
-    resolution: {integrity: sha512-Nl0gJSV/U/XYYvbhUBjWwX2oVriLuzuvX520ZBRkEhRqLa6H3kihdHxDJAS9m3OSxNtR0uMS5asaqw5QBb1yoQ==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      react: ^18
-      react-dom: ^18
-      react-is: ^18
-      styled-components: ^5.2
-    dependencies:
-      '@floating-ui/react-dom': 1.0.1_biqbaboplfbrettd7655fr4n2y
-      '@sanity/color': 2.1.20
-      '@sanity/icons': 2.1.0_react@18.2.0
-      csstype: 3.1.1
-      framer-motion: 7.10.3_biqbaboplfbrettd7655fr4n2y
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-      react-refractor: 2.1.7_react@18.2.0
-      styled-components: 5.3.6_biqbaboplfbrettd7655fr4n2y
+      styled-components: 5.3.6_7i5myeigehqah43i5u7wbekgba
     dev: false
 
   /@sanity/util/3.1.1:
@@ -1916,7 +1900,7 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/vision/3.1.1_2zpt4ilzykmne4yndyzrqd4gdm:
+  /@sanity/vision/3.1.1_23mhwjhnzfjwvdn7ol54k26zom:
     resolution: {integrity: sha512-pbpbbEkIOd6K87tTi+9dd3Ps2scdEXbnkonERIxhtFnVptIeaTlgimikQCWmbxG17PsHOKyB8XLLhPFH42h5TA==}
     peerDependencies:
       react: ^18
@@ -1934,14 +1918,14 @@ packages:
       '@rexxars/react-split-pane': 0.1.93_biqbaboplfbrettd7655fr4n2y
       '@sanity/color': 2.1.20
       '@sanity/icons': 2.1.0_react@18.2.0
-      '@sanity/ui': 1.0.4_2zpt4ilzykmne4yndyzrqd4gdm
+      '@sanity/ui': 1.0.4_23mhwjhnzfjwvdn7ol54k26zom
       '@uiw/react-codemirror': 4.19.4_ertk66s3cw4coawuuzxizjd23e
       hashlru: 2.3.0
       is-hotkey: 0.1.8
       json5: 1.0.1
       lodash: 4.17.21
       react: 18.2.0
-      styled-components: 5.3.6_biqbaboplfbrettd7655fr4n2y
+      styled-components: 5.3.6_7i5myeigehqah43i5u7wbekgba
     transitivePeerDependencies:
       - react-dom
       - react-is
@@ -2567,7 +2551,7 @@ packages:
       babel-plugin-syntax-jsx: 6.18.0
       lodash: 4.17.21
       picomatch: 2.3.1
-      styled-components: 5.3.6_biqbaboplfbrettd7655fr4n2y
+      styled-components: 5.3.6_7i5myeigehqah43i5u7wbekgba
     dev: false
 
   /babel-plugin-syntax-jsx/6.18.0:
@@ -6323,7 +6307,7 @@ packages:
       - supports-color
     dev: false
 
-  /next-sanity/3.1.5_rwbpe6w533ggvv3pysscjsp2mi:
+  /next-sanity/3.1.5_sgonbn4yi66gfuwr45llqdah2q:
     resolution: {integrity: sha512-8tE3f9HROj8NpkACejJvCFf/K8P18K+6jeuAxjakYn1f3Et9B+gChcfMaP4s+yCuLiKlNJ1Nmb3Wr4r5VFj0tA==}
     engines: {node: '>=16'}
     peerDependencies:
@@ -6348,12 +6332,13 @@ packages:
     dependencies:
       '@sanity/client': 3.4.1
       '@sanity/preview-kit': 1.2.11_react@18.2.0
+      '@sanity/ui': 1.0.4_23mhwjhnzfjwvdn7ol54k26zom
       '@sanity/webhook': 2.0.0
       groq: 2.33.2
       next: 13.0.6_3duxcpitbtplz62feflag7fwby
       react: 18.2.0
       sanity: 3.1.1_2jcmbfnxmrdlbwxkymgb2ubb2a
-      styled-components: 5.3.6_biqbaboplfbrettd7655fr4n2y
+      styled-components: 5.3.6_7i5myeigehqah43i5u7wbekgba
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -7771,7 +7756,7 @@ packages:
       semver: 7.3.8
       shallow-equals: 1.0.0
       speakingurl: 14.0.1
-      styled-components: 5.3.6_biqbaboplfbrettd7655fr4n2y
+      styled-components: 5.3.6_7i5myeigehqah43i5u7wbekgba
       tar-fs: 2.1.1
       ts-md5: 1.3.1
       use-device-pixel-ratio: 1.1.2_react@18.2.0
@@ -8151,7 +8136,7 @@ packages:
       tslib: 2.4.1
     dev: false
 
-  /styled-components/5.3.6_biqbaboplfbrettd7655fr4n2y:
+  /styled-components/5.3.6_7i5myeigehqah43i5u7wbekgba:
     resolution: {integrity: sha512-hGTZquGAaTqhGWldX7hhfzjnIYBZ0IXQXkCYdvF1Sq3DsUaLx6+NTHC5Jj1ooM2F68sBiVz3lvhfwQs/S3l6qg==}
     engines: {node: '>=10'}
     requiresBuild: true
@@ -8170,6 +8155,7 @@ packages:
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      react-is: 18.2.0
       shallowequal: 1.1.0
       supports-color: 5.5.0
     dev: false
