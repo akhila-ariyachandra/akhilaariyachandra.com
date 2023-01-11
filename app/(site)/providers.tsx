@@ -4,6 +4,7 @@ import { type ReactNode, type FC, useState } from "react";
 import { ThemeProvider } from "next-themes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Provider as BalancerProvider } from "react-wrap-balancer";
 
 interface ProvidersProps {
   children: ReactNode;
@@ -20,7 +21,7 @@ const Providers: FC<ProvidersProps> = ({ children }) => {
         attribute="class"
         enableSystem={false}
       >
-        {children}
+        <BalancerProvider>{children}</BalancerProvider>
       </ThemeProvider>
 
       <ReactQueryDevtools />
