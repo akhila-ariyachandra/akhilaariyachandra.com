@@ -1,13 +1,16 @@
 import { type FC } from "react";
 
 interface VideoProps {
-  path: string;
+  paths: {
+    webm: string;
+    mp4: string;
+  };
   title: string;
   height: number;
   width: number;
 }
 
-const Video: FC<VideoProps> = ({ path, width, height, title }) => {
+const Video: FC<VideoProps> = ({ paths, width, height, title }) => {
   return (
     <div
       className="not-prose relative my-4 mx-auto w-full"
@@ -23,8 +26,8 @@ const Video: FC<VideoProps> = ({ path, width, height, title }) => {
         title={title}
         className="absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 rounded"
       >
-        <source src={`${path}.webm`} type="video/webm" />
-        <source src={`${path}.mp4`} type="video/mp4" />
+        <source src={paths.webm} type="video/webm" />
+        <source src={paths.mp4} type="video/mp4" />
       </video>
     </div>
   );

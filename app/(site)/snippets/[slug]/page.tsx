@@ -1,5 +1,4 @@
 import Balancer from "react-wrap-balancer";
-import MDXComponent from "@/components/MDXComponent";
 import type { FC } from "react";
 import { allSnippets } from "contentlayer/generated";
 
@@ -30,8 +29,6 @@ const SnippetsPostPage: FC<SnippetsPostPageProps> = ({ params }) => {
       <p className="my-2 px-4 text-center font-roboto-slab text-base font-medium text-zinc-800 dark:text-zinc-200 sm:text-lg">
         {snippet.description}
       </p>
-
-      <MDXComponent code={snippet.body.code} />
     </>
   );
 };

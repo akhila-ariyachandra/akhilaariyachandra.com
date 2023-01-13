@@ -20,7 +20,8 @@
       "@/lib/*": ["lib/*"],
       "@/public/*": ["public/*"],
       "@/prisma": ["prisma"],
-      "@/hooks/*": ["hooks/*"]
+      "@/hooks/*": ["hooks/*"],
+      "@/utils/*": ["utils/*"]
     },
     "incremental": true,
     "plugins": [

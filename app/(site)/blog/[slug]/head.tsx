@@ -1,6 +1,6 @@
 import SEO from "@/components/SEO";
-import type { FC } from "react";
-import { allPosts } from "contentlayer/generated";
+import { urlFor } from "@/lib/sanity-client";
+import { getBlogPost } from "@/utils/sanity";
 
 interface BlogPostHeadProps {
   params: {
@@ -8,16 +8,16 @@ interface BlogPostHeadProps {
   };
 }
 
-const BlogPostHead: FC<BlogPostHeadProps> = ({ params }) => {
+const BlogPostHead = async ({ params }: BlogPostHeadProps) => {
   const slug = params?.slug.toString();
 
-  const post = allPosts.find((post) => post.slug === slug);
+  const post = await getBlogPost(slug);
 
   return (
     <SEO
       title={post.title}
       description={post.description}
-      image={post.banner}
+      image={urlFor(post.banner).url()}
       date={post.date}
       updated={post.updated}
     />

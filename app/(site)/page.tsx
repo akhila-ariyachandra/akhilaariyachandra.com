@@ -9,8 +9,9 @@ import sanityClient, { urlFor } from "@/lib/sanity-client";
 import type { FC } from "react";
 import type { Job } from "@/lib/types";
 import { groq } from "next-sanity";
-import { about, allPosts } from "contentlayer/generated";
-import { getPeriod, formatDate } from "@/lib/helpers";
+import { about } from "contentlayer/generated";
+import { getPeriod } from "@/lib/helpers";
+import { getBlogPosts } from "@/utils/sanity";
 import { FaDev, FaGithub, FaRssSquare, FaTwitterSquare } from "react-icons/fa";
 
 // https://beta.nextjs.org/docs/api-reference/segment-config
@@ -52,8 +53,9 @@ const getMostPopularPosts = async () => {
     },
     take: 3,
   });
+  const blogPosts = await getBlogPosts();
   const posts = views.map((view) =>
-    allPosts.find((post) => post.slug === view.slug)
+    blogPosts.find((post) => post.slug.current === view.slug)
   );
 
   return posts;
@@ -91,7 +93,7 @@ const HomePage = async () => {
           </span>
         </h1>
 
-        <MDXComponent code={about.body.code} />
+        {/* <MDXComponent code={about.body.code} /> */}
 
         <div className="flex flex-row space-x-2">
           <SocialLink site="GitHub" link={config.social.github} />
@@ -114,9 +116,9 @@ const HomePage = async () => {
         <div className="my-8 flex flex-col gap-6">
           {posts.map((post) => (
             <PostLink
-              key={post.slug}
+              key={post.slug.current}
               title={post.title}
-              slug={post.slug}
+              slug={post.slug.current}
               date={post.date}
             />
           ))}

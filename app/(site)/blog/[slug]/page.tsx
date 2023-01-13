@@ -1,19 +1,30 @@
 import dayjs from "dayjs";
+import readingTime from "reading-time";
+import a11yEmoji from "@fec/remark-a11y-emoji";
+import rehypeCodeTitle from "rehype-code-title";
+import rehypePrism from "rehype-prism-plus";
+import rehypeSlug from "rehype-slug";
+import externalLinks from "remark-external-links";
+import remarkGfm from "remark-gfm";
+import smartypants from "remark-smartypants";
 import Image from "next/image";
 import Balancer from "react-wrap-balancer";
 import BlogPostViews from "./views";
 import MDXComponent from "@/components/MDXComponent";
-import type { FC } from "react";
-import { allPosts } from "contentlayer/generated";
+import { serialize } from "next-mdx-remote/serialize";
 import { formatDate } from "@/lib/helpers";
+import { getBlogPosts, getBlogPost } from "@/utils/sanity";
+import { urlFor } from "@/lib/sanity-client";
 
 // https://beta.nextjs.org/docs/api-reference/segment-config
 export const dynamicParams = false;
 
 // https://beta.nextjs.org/docs/api-reference/generate-static-params
 export const generateStaticParams = async () => {
-  return allPosts.map((post) => ({
-    slug: post.slug,
+  const blogPosts = await getBlogPosts();
+
+  return blogPosts.map((post) => ({
+    slug: post.slug.current,
   }));
 };
 
@@ -23,35 +34,40 @@ interface BlogPostPageProps {
   };
 }
 
-const BlogPostPage: FC<BlogPostPageProps> = ({ params }) => {
+const BlogPostPage = async ({ params }: BlogPostPageProps) => {
   const slug = params?.slug.toString();
 
-  const post = allPosts.find((post) => post.slug === slug);
+  const post = await getBlogPost(slug);
+
+  const mdxSource = await serialize(post.content, {
+    mdxOptions: {
+      remarkPlugins: [smartypants, a11yEmoji, externalLinks, remarkGfm],
+      rehypePlugins: [rehypeSlug, rehypeCodeTitle, rehypePrism],
+    },
+  });
 
   return (
     <>
       <Image
-        src={post.banner}
+        src={urlFor(post.banner).url()}
         alt={post.title}
         title={post.title}
         width={1200}
         height={630}
         className="rounded-lg"
         priority
-        placeholder="blur"
-        blurDataURL={post.coverImage.blurhashDataUrl}
       />
 
-      {post.photographer && post.unsplashLink ? (
+      {post.unsplash?.photographer && post.unsplash?.link ? (
         <p className="my-2 px-4 text-center font-roboto-slab text-sm font-medium text-zinc-800 dark:text-zinc-200 sm:text-base">
           {"Photo by "}
           <a
-            href={post.unsplashLink}
+            href={post.unsplash.link}
             target="_blank"
             rel="noopener noreferrer"
             className="text-emerald-700 dark:text-emerald-600"
           >
-            {post.photographer}
+            {post.unsplash.photographer}
           </a>
         </p>
       ) : null}
@@ -82,14 +98,14 @@ const BlogPostPage: FC<BlogPostPageProps> = ({ params }) => {
       </div>
 
       <div className="my-2 flex flex-col items-center px-4 font-roboto-slab text-base font-medium text-zinc-800 dark:text-zinc-200 sm:flex-row sm:justify-center sm:text-lg">
-        <p>{post.readingTime}</p>
+        <p>{readingTime(post.content).text}</p>
 
         <span className="hidden sm:mx-2 sm:block">&bull;</span>
 
-        <BlogPostViews slug={post.slug} />
+        <BlogPostViews slug={post.slug.current} />
       </div>
 
-      <MDXComponent code={post.body.code} />
+      <MDXComponent source={mdxSource} />
     </>
   );
 };
