@@ -13,6 +13,11 @@ const SnippetsPostHead = async ({ params }: SnippetsPostHeadProps) => {
 
   const codeSnippet = await getCodeSnippet(slug);
 
+  if (!codeSnippet) {
+    // Don't render if snippet doesn't exist
+    return null;
+  }
+
   return (
     <SEO
       title={codeSnippet.title}

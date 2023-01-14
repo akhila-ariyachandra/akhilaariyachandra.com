@@ -15,7 +15,6 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "contentlayer/generated": ["./.contentlayer/generated"],
       "@/components/*": ["components/*"],
       "@/lib/*": ["lib/*"],
       "@/public/*": ["public/*"],
@@ -30,12 +29,6 @@
       }
     ]
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".contentlayer/generated",
-    ".next/types/**/*.ts"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

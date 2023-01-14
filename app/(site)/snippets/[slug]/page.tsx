@@ -8,11 +8,16 @@ import smartypants from "remark-smartypants";
 import Balancer from "react-wrap-balancer";
 import MDXComponent from "@/components/MDXComponent";
 import { serialize } from "next-mdx-remote/serialize";
+import { notFound } from "next/navigation";
 import { getCodeSnippets, getCodeSnippet } from "@/utils/sanity";
+
+// https://beta.nextjs.org/docs/api-reference/segment-config
+export const revalidate = 300;
 
 // https://beta.nextjs.org/docs/api-reference/generate-static-params
 export const generateStaticParams = async () => {
   const codeSnippets = await getCodeSnippets();
+
   return codeSnippets.map((snippet) => ({
     slug: snippet.slug.current,
   }));
@@ -28,6 +33,11 @@ const SnippetsPostPage = async ({ params }: SnippetsPostPageProps) => {
   const slug = params?.slug.toString();
 
   const snippet = await getCodeSnippet(slug);
+
+  if (!snippet) {
+    // Redirect to 404 if post doesn't exist
+    notFound();
+  }
 
   const mdxSource = await serialize(snippet.content, {
     mdxOptions: {

@@ -12,12 +12,13 @@ import Balancer from "react-wrap-balancer";
 import BlogPostViews from "./views";
 import MDXComponent from "@/components/MDXComponent";
 import { serialize } from "next-mdx-remote/serialize";
+import { notFound } from "next/navigation";
 import { formatDate } from "@/lib/helpers";
 import { getBlogPosts, getBlogPost } from "@/utils/sanity";
 import { urlFor } from "@/lib/sanity-client";
 
 // https://beta.nextjs.org/docs/api-reference/segment-config
-export const dynamicParams = false;
+export const revalidate = 300;
 
 // https://beta.nextjs.org/docs/api-reference/generate-static-params
 export const generateStaticParams = async () => {
@@ -38,6 +39,11 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
   const slug = params?.slug.toString();
 
   const post = await getBlogPost(slug);
+
+  if (!post) {
+    // Redirect to 404 if post doesn't exist
+    notFound();
+  }
 
   const mdxSource = await serialize(post.content, {
     mdxOptions: {

@@ -9,10 +9,20 @@ import sanityClient, { urlFor } from "@/lib/sanity-client";
 import type { FC } from "react";
 import type { Job } from "@/lib/types";
 import { groq } from "next-sanity";
-import { about } from "contentlayer/generated";
+import { serialize } from "next-mdx-remote/serialize";
 import { getPeriod } from "@/lib/helpers";
 import { getBlogPosts } from "@/utils/sanity";
 import { FaDev, FaGithub, FaRssSquare, FaTwitterSquare } from "react-icons/fa";
+
+const about = `
+I'm a full stack web developer with a focus on creating front ends with [React](https://reactjs.org/).
+
+My current interests in the JavaScript space are on awesome meta frameworks like [Next.js](https://nextjs.org/) and [Astro](https://astro.build/).
+
+Even though I focus most of my time on front end work, technologies like [Prisma](https://www.prisma.io/) and [PlanetScale](https://planetscale.com/) keep me interested in backend work too.
+
+I'm always on the lookout for learning and adopting bleeding edge technologies and libraries in the Web/Javascript ecosystem.
+`;
 
 // https://beta.nextjs.org/docs/api-reference/segment-config
 export const revalidate = 3600;
@@ -74,6 +84,8 @@ const HomePage = async () => {
   const jobs = await getJobs();
   const posts = await getMostPopularPosts();
 
+  const mdxSource = await serialize(about);
+
   return (
     <>
       <Image
@@ -93,7 +105,7 @@ const HomePage = async () => {
           </span>
         </h1>
 
-        {/* <MDXComponent code={about.body.code} /> */}
+        <MDXComponent source={mdxSource} />
 
         <div className="flex flex-row space-x-2">
           <SocialLink site="GitHub" link={config.social.github} />

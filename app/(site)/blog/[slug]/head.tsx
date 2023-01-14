@@ -13,6 +13,11 @@ const BlogPostHead = async ({ params }: BlogPostHeadProps) => {
 
   const post = await getBlogPost(slug);
 
+  if (!post) {
+    // Don't render if post doesn't exist
+    return null;
+  }
+
   return (
     <SEO
       title={post.title}
