@@ -16,7 +16,7 @@ interface SEOProps {
 const SEO: FC<SEOProps> = ({
   title = config.title,
   description = config.description,
-  image = "/cover-pic.jpg",
+  image = `${config.siteUrl}/cover-pic.jpg`,
   date,
   updated,
 }) => {
@@ -36,9 +36,7 @@ const SEO: FC<SEOProps> = ({
       }}
       openGraph={{
         type: date ? "article" : "website",
-        images: [
-          { url: `${config.siteUrl}${image}`, width: 1200, height: 630 },
-        ],
+        images: [{ url: image, width: 1200, height: 630 }],
         article: !!date
           ? {
               authors: [config.author.name],

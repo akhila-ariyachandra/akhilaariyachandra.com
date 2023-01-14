@@ -1,3 +1,4 @@
+import config from "@/lib/config";
 import SEO from "@/components/SEO";
 import { getCodeSnippet } from "@/utils/sanity";
 
@@ -16,7 +17,7 @@ const SnippetsPostHead = async ({ params }: SnippetsPostHeadProps) => {
     <SEO
       title={codeSnippet.title}
       description={codeSnippet.description}
-      image="/snippets-cover.jpg"
+      image={`${config.siteUrl}/snippets-cover.jpg`}
     />
   );
 };
