@@ -1,9 +1,9 @@
-import { allSnippets } from "contentlayer/generated";
-import { getBlogPosts } from "@/utils/sanity";
+import { getBlogPosts, getCodeSnippets } from "@/utils/sanity";
 import type { NextApiHandler } from "next";
 
 const SitemapHandler: NextApiHandler = async (req, res) => {
   const blogPosts = await getBlogPosts();
+  const codeSnippets = await getCodeSnippets();
 
   // Function to generate url entry
   const getEntry = (route = "") => {
@@ -22,7 +22,7 @@ const SitemapHandler: NextApiHandler = async (req, res) => {
     "snippets",
     "dashboard",
     ...blogPosts.map((post) => `blog/${post.slug.current}`),
-    ...allSnippets.map((snippet) => `snippets/${snippet.slug}`),
+    ...codeSnippets.map((snippet) => `snippets/${snippet.slug.current}`),
   ];
 
   let content = `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">`;
