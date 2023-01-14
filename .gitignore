@@ -3,6 +3,3 @@ node_modules
 .env
 .vercel
 *.log
-
-# Contentlayer
-.contentlayer

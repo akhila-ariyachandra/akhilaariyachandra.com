@@ -42,3 +42,30 @@ export interface Job extends SanityDocument {
   };
   company: Employer;
 }
+
+export interface BlogPost extends SanityDocument {
+  banner: SanityMedia;
+  content: string;
+  date: string;
+  updated?: string;
+  description: string;
+  slug: {
+    _type: "slug";
+    current: string;
+  };
+  title: string;
+  unsplash?: {
+    photographer: string;
+    link: string;
+  };
+}
+
+export interface CodeSnippet extends SanityDocument {
+  title: string;
+  slug: {
+    _type: "slug";
+    current: string;
+  };
+  description: string;
+  content: string;
+}

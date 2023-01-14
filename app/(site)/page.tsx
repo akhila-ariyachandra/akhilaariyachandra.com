@@ -9,9 +9,20 @@ import sanityClient, { urlFor } from "@/lib/sanity-client";
 import type { FC } from "react";
 import type { Job } from "@/lib/types";
 import { groq } from "next-sanity";
-import { about, allPosts } from "contentlayer/generated";
-import { getPeriod, formatDate } from "@/lib/helpers";
+import { serialize } from "next-mdx-remote/serialize";
+import { getPeriod } from "@/lib/helpers";
+import { getBlogPosts } from "@/utils/sanity";
 import { FaDev, FaGithub, FaRssSquare, FaTwitterSquare } from "react-icons/fa";
+
+const about = `
+I'm a full stack web developer with a focus on creating front ends with [React](https://reactjs.org/).
+
+My current interests in the JavaScript space are on awesome meta frameworks like [Next.js](https://nextjs.org/) and [Astro](https://astro.build/).
+
+Even though I focus most of my time on front end work, technologies like [Prisma](https://www.prisma.io/) and [PlanetScale](https://planetscale.com/) keep me interested in backend work too.
+
+I'm always on the lookout for learning and adopting bleeding edge technologies and libraries in the Web/Javascript ecosystem.
+`;
 
 // https://beta.nextjs.org/docs/api-reference/segment-config
 export const revalidate = 3600;
@@ -52,8 +63,9 @@ const getMostPopularPosts = async () => {
     },
     take: 3,
   });
+  const blogPosts = await getBlogPosts();
   const posts = views.map((view) =>
-    allPosts.find((post) => post.slug === view.slug)
+    blogPosts.find((post) => post.slug.current === view.slug)
   );
 
   return posts;
@@ -71,6 +83,8 @@ const getJobs = async () => {
 const HomePage = async () => {
   const jobs = await getJobs();
   const posts = await getMostPopularPosts();
+
+  const mdxSource = await serialize(about);
 
   return (
     <>
@@ -91,7 +105,7 @@ const HomePage = async () => {
           </span>
         </h1>
 
-        <MDXComponent code={about.body.code} />
+        <MDXComponent source={mdxSource} />
 
         <div className="flex flex-row space-x-2">
           <SocialLink site="GitHub" link={config.social.github} />
@@ -114,9 +128,9 @@ const HomePage = async () => {
         <div className="my-8 flex flex-col gap-6">
           {posts.map((post) => (
             <PostLink
-              key={post.slug}
+              key={post.slug.current}
               title={post.title}
-              slug={post.slug}
+              slug={post.slug.current}
               date={post.date}
             />
           ))}

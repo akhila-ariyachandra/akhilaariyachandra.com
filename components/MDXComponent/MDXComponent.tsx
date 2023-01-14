@@ -1,3 +1,5 @@
+"use client";
+
 import classNames from "classnames";
 import CodeSandboxWrapper from "./CodeSandboxWrapper";
 import Iframe from "./Iframe";
@@ -5,18 +7,17 @@ import PostImage from "./PostImage";
 import SpecialBlock from "./SpecialBlock";
 import Video from "./Video";
 import type { FC } from "react";
-import { useMDXComponent } from "next-contentlayer/hooks";
+import type { MDXRemoteSerializeResult } from "next-mdx-remote";
+import { MDXRemote } from "next-mdx-remote";
 
 import "prism-themes/themes/prism-night-owl.css";
 import styles from "./MDXComponent.module.scss";
 
 interface MDXComponentProps {
-  code: string;
+  source: MDXRemoteSerializeResult;
 }
 
-const MDXComponent: FC<MDXComponentProps> = ({ code }) => {
-  const Component = useMDXComponent(code);
-
+const MDXComponent: FC<MDXComponentProps> = ({ source }) => {
   return (
     <div
       className={classNames(
@@ -27,7 +28,8 @@ const MDXComponent: FC<MDXComponentProps> = ({ code }) => {
         styles.customProse
       )}
     >
-      <Component
+      <MDXRemote
+        {...source}
         components={{
           SpecialBlock,
           PostImage,

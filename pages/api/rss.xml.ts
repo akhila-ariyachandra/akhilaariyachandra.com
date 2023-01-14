@@ -1,9 +1,12 @@
 import dayjs from "dayjs";
 import type { NextApiHandler } from "next";
 import { Feed } from "feed";
-import { allPosts } from "contentlayer/generated";
+import { getBlogPosts } from "@/utils/sanity";
+import { urlFor } from "@/lib/sanity-client";
 
 const RSSHandler: NextApiHandler = async (req, res) => {
+  const blogPosts = await getBlogPosts();
+
   const feed = new Feed({
     title: "Akhila Ariyachandra's Blog RSS",
     description: "The RSS feed for my blog",
@@ -18,21 +21,21 @@ const RSSHandler: NextApiHandler = async (req, res) => {
     },
   });
 
-  for (const post of allPosts) {
+  for (const post of blogPosts) {
     feed.addItem({
       title: post.title,
-      id: `https://akhilaariyachandra.com/blog/${post.slug}`,
-      link: `https://akhilaariyachandra.com/blog/${post.slug}`,
+      id: `https://akhilaariyachandra.com/blog/${post.slug.current}`,
+      link: `https://akhilaariyachandra.com/blog/${post.slug.current}`,
       description: post.description,
       date: dayjs(post.date).toDate(),
-      image: `https://akhilaariyachandra.com${post.banner}`,
+      image: `https://akhilaariyachandra.com${urlFor(post.banner).url()}`,
     });
   }
 
   const content = feed.rss2();
 
   res.setHeader("Content-Type", "application/xml");
-  res.setHeader("Cache-Control", "s-maxage=86400, stale-while-revalidate");
+  res.setHeader("Cache-Control", "s-maxage=3600, stale-while-revalidate");
   res.status(200).send(content);
 };
 

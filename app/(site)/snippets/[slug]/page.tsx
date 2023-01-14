@@ -1,12 +1,25 @@
+import a11yEmoji from "@fec/remark-a11y-emoji";
+import rehypeCodeTitle from "rehype-code-title";
+import rehypePrism from "rehype-prism-plus";
+import rehypeSlug from "rehype-slug";
+import externalLinks from "remark-external-links";
+import remarkGfm from "remark-gfm";
+import smartypants from "remark-smartypants";
 import Balancer from "react-wrap-balancer";
 import MDXComponent from "@/components/MDXComponent";
-import type { FC } from "react";
-import { allSnippets } from "contentlayer/generated";
+import { serialize } from "next-mdx-remote/serialize";
+import { notFound } from "next/navigation";
+import { getCodeSnippets, getCodeSnippet } from "@/utils/sanity";
+
+// https://beta.nextjs.org/docs/api-reference/segment-config
+export const revalidate = 300;
 
 // https://beta.nextjs.org/docs/api-reference/generate-static-params
 export const generateStaticParams = async () => {
-  return allSnippets.map((snippet) => ({
-    slug: snippet.slug,
+  const codeSnippets = await getCodeSnippets();
+
+  return codeSnippets.map((snippet) => ({
+    slug: snippet.slug.current,
   }));
 };
 
@@ -16,10 +29,22 @@ interface SnippetsPostPageProps {
   };
 }
 
-const SnippetsPostPage: FC<SnippetsPostPageProps> = ({ params }) => {
+const SnippetsPostPage = async ({ params }: SnippetsPostPageProps) => {
   const slug = params?.slug.toString();
 
-  const snippet = allSnippets.find((snippet) => snippet.slug === slug);
+  const snippet = await getCodeSnippet(slug);
+
+  if (!snippet) {
+    // Redirect to 404 if post doesn't exist
+    notFound();
+  }
+
+  const mdxSource = await serialize(snippet.content, {
+    mdxOptions: {
+      remarkPlugins: [smartypants, a11yEmoji, externalLinks, remarkGfm],
+      rehypePlugins: [rehypeSlug, rehypeCodeTitle, rehypePrism],
+    },
+  });
 
   return (
     <>
@@ -31,7 +56,7 @@ const SnippetsPostPage: FC<SnippetsPostPageProps> = ({ params }) => {
         {snippet.description}
       </p>
 
-      <MDXComponent code={snippet.body.code} />
+      <MDXComponent source={mdxSource} />
     </>
   );
 };

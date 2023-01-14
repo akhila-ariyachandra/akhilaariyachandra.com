@@ -1,3 +1,4 @@
+import config from "@/lib/config";
 import SEO from "@/components/SEO";
 import type { FC } from "react";
 
@@ -6,7 +7,7 @@ const SnippetsHead: FC = () => {
     <SEO
       title="Code Snippets"
       description="A few pieces of code I've found useful"
-      image="/snippets-cover.jpg"
+      image={`${config.siteUrl}/snippets-cover.jpg`}
     />
   );
 };

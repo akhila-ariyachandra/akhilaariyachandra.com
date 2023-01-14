@@ -1,28 +1,22 @@
-import dayjs from "dayjs";
 import ListContainer from "@/components/ListContainer";
 import PostLink from "@/components/PostLink";
-import type { FC } from "react";
-import { allPosts } from "contentlayer/generated";
+import { getBlogPosts } from "@/utils/sanity";
 
-const BlogPage: FC = () => {
-  const posts = allPosts
-    .map((post) => ({
-      slug: post.slug,
-      title: post.title,
-      date: post.date,
-    }))
-    .sort((first, second) => {
-      if (dayjs(first.date).isBefore(dayjs(second.date))) {
-        return 1;
-      } else {
-        return -1;
-      }
-    });
+// https://beta.nextjs.org/docs/api-reference/segment-config
+export const revalidate = 300;
+
+const BlogPage = async () => {
+  const blogPosts = await getBlogPosts();
 
   return (
     <ListContainer title="Blog">
-      {posts.map(({ slug, date, title }) => (
-        <PostLink slug={slug} title={title} date={date} key={slug} />
+      {blogPosts.map(({ slug, date, title }) => (
+        <PostLink
+          slug={slug.current}
+          title={title}
+          date={date}
+          key={slug.current}
+        />
       ))}
     </ListContainer>
   );

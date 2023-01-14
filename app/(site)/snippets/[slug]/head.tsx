@@ -1,6 +1,6 @@
+import config from "@/lib/config";
 import SEO from "@/components/SEO";
-import type { FC } from "react";
-import { allSnippets } from "contentlayer/generated";
+import { getCodeSnippet } from "@/utils/sanity";
 
 interface SnippetsPostHeadProps {
   params: {
@@ -8,16 +8,21 @@ interface SnippetsPostHeadProps {
   };
 }
 
-const SnippetsPostHead: FC<SnippetsPostHeadProps> = ({ params }) => {
+const SnippetsPostHead = async ({ params }: SnippetsPostHeadProps) => {
   const slug = params?.slug.toString();
 
-  const snippet = allSnippets.find((snippet) => snippet.slug === slug);
+  const codeSnippet = await getCodeSnippet(slug);
+
+  if (!codeSnippet) {
+    // Don't render if snippet doesn't exist
+    return null;
+  }
 
   return (
     <SEO
-      title={snippet.title}
-      description={snippet.description}
-      image="/snippets-cover.jpg"
+      title={codeSnippet.title}
+      description={codeSnippet.description}
+      image={`${config.siteUrl}/snippets-cover.jpg`}
     />
   );
 };

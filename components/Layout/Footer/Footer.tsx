@@ -1,7 +1,6 @@
 import NowPlaying from "./NowPlaying";
 import Link from "next/link";
 import type { FC, ReactNode } from "react";
-import { IoAnalyticsSharp } from "react-icons/io5";
 
 const LINKS = [
   { href: "/blog", title: "Blog" },
@@ -51,6 +50,8 @@ const Footer: FC = () => {
           <ExternalLink link="https://tailwindcss.com/">
             Tailwind CSS
           </ExternalLink>
+          {", "}
+          <ExternalLink link="https://www.sanity.io/">Sanity</ExternalLink>
           {", "}
           <ExternalLink link="https://planetscale.com/">
             PlanetScale

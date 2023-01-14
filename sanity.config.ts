@@ -1,8 +1,11 @@
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
+import slugify from "slugify";
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
+import { markdownSchema } from "sanity-plugin-markdown";
+import { media } from "sanity-plugin-media";
 
 dayjs.extend(advancedFormat);
 
@@ -13,7 +16,7 @@ export default defineConfig({
   basePath: "/studio",
   projectId,
   dataset,
-  plugins: [deskTool(), visionTool()],
+  plugins: [deskTool(), visionTool(), markdownSchema(), media()],
   title: "akhilaariyachandra.com",
   schema: {
     types: [
@@ -93,6 +96,117 @@ export default defineConfig({
             };
           },
         },
+      },
+      {
+        name: "blog",
+        type: "document",
+        title: "Blog Posts",
+        fields: [
+          {
+            name: "title",
+            type: "string",
+            title: "Title",
+          },
+          {
+            name: "slug",
+            type: "slug",
+            title: "Slug",
+            options: {
+              source: "title",
+              slugify: (input) => slugify(input, { lower: true, trim: true }),
+            },
+          },
+          {
+            name: "date",
+            type: "date",
+            title: "Date",
+          },
+          {
+            name: "updated",
+            type: "date",
+            title: "Updated",
+          },
+          {
+            name: "description",
+            type: "string",
+            title: "Description",
+          },
+          {
+            name: "banner",
+            type: "image",
+            title: "Banner",
+            options: {
+              hotspot: true,
+            },
+          },
+          {
+            name: "unsplash",
+            type: "object",
+            title: "Unsplash",
+            fields: [
+              {
+                name: "photographer",
+                type: "string",
+                title: "Photographer",
+              },
+              {
+                name: "link",
+                type: "url",
+                title: "Link",
+              },
+            ],
+          },
+          {
+            name: "content",
+            type: "markdown",
+            title: "Content",
+          },
+        ],
+        preview: {
+          select: {
+            title: "title",
+            date: "date",
+            banner: "banner",
+          },
+          prepare: ({ title, date, banner }) => {
+            return {
+              title,
+              subtitle: dayjs(date).format("Do MMMM YYYY"),
+              media: banner,
+            };
+          },
+        },
+      },
+      {
+        name: "snippet",
+        type: "document",
+        title: "Code Snippets",
+        fields: [
+          {
+            name: "title",
+            type: "string",
+            title: "Title",
+          },
+          {
+            name: "slug",
+            type: "slug",
+            title: "Slug",
+            options: {
+              source: "title",
+              slugify: (input) => slugify(input, { lower: true, trim: true }),
+            },
+          },
+          {
+            name: "description",
+            type: "string",
+            title: "Description",
+          },
+          {
+            name: "content",
+            type: "markdown",
+            title: "Content",
+          },
+        ],
       },
     ],
   },
