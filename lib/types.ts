@@ -59,3 +59,13 @@ export interface BlogPost extends SanityDocument {
     link: string;
   };
 }
+
+export interface CodeSnippet extends SanityDocument {
+  title: string;
+  slug: {
+    _type: "slug";
+    current: string;
+  };
+  description: string;
+  content: string;
+}

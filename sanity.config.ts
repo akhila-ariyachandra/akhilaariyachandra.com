@@ -177,6 +177,37 @@ export default defineConfig({
           },
         },
       },
+      {
+        name: "snippet",
+        type: "document",
+        title: "Code Snippets",
+        fields: [
+          {
+            name: "title",
+            type: "string",
+            title: "Title",
+          },
+          {
+            name: "slug",
+            type: "slug",
+            title: "Slug",
+            options: {
+              source: "title",
+              slugify: (input) => slugify(input, { lower: true, trim: true }),
+            },
+          },
+          {
+            name: "description",
+            type: "string",
+            title: "Description",
+          },
+          {
+            name: "content",
+            type: "markdown",
+            title: "Content",
+          },
+        ],
+      },
     ],
   },
 });

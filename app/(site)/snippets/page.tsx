@@ -1,21 +1,16 @@
 import Link from "next/link";
 import ListContainer from "@/components/ListContainer";
-import type { FC } from "react";
-import { allSnippets } from "contentlayer/generated";
+import { getCodeSnippets } from "@/utils/sanity";
 
-const SnippetsPage: FC = () => {
-  const snippets = allSnippets.map((post) => ({
-    slug: post.slug,
-    title: post.title,
-    description: post.description,
-  }));
+const SnippetsPage = async () => {
+  const snippets = await getCodeSnippets();
 
   return (
     <ListContainer title="Code Snippets">
       {snippets.map((snippet) => (
-        <article key={snippet.slug} className="space-y-2">
+        <article key={snippet.slug.current} className="space-y-2">
           <Link
-            href={`/snippets/${snippet.slug}`}
+            href={`/snippets/${snippet.slug.current}`}
             className="font-sora text-2xl font-bold text-emerald-700 dark:text-emerald-600 sm:text-3xl"
           >
             {snippet.title}

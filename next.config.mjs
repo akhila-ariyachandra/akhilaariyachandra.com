@@ -15,7 +15,7 @@ const nextConfig = {
     formats: ["image/avif", "image/webp"],
   },
   eslint: {
-    dirs: ["app", "components", "lib", "pages", "hooks"],
+    dirs: ["app", "components", "lib", "pages", "hooks", "utils"],
   },
   experimental: {
     appDir: true,

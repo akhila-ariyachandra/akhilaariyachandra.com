@@ -7,28 +7,6 @@ import externalLinks from "remark-external-links";
 import remarkGfm from "remark-gfm";
 import smartypants from "remark-smartypants";
 
-const Snippet = defineDocumentType(() => ({
-  name: "Snippet",
-  filePathPattern: "snippets/*.mdx",
-  contentType: "mdx",
-  fields: {
-    title: {
-      type: "string",
-      required: true,
-    },
-    description: {
-      type: "string",
-      required: true,
-    },
-  },
-  computedFields: {
-    slug: {
-      type: "string",
-      resolve: (doc) => doc._raw.sourceFileName.replace(/\.mdx$/, ""),
-    },
-  },
-}));
-
 const About = defineDocumentType(() => ({
   name: "About",
   filePathPattern: "about.mdx",
@@ -38,7 +16,7 @@ const About = defineDocumentType(() => ({
 
 const contentLayerConfig = makeSource({
   contentDirPath: "content",
-  documentTypes: [Snippet, About],
+  documentTypes: [About],
   mdx: {
     remarkPlugins: [smartypants, a11yEmoji, externalLinks, remarkGfm],
     rehypePlugins: [rehypeSlug, rehypeCodeTitle, rehypePrism],

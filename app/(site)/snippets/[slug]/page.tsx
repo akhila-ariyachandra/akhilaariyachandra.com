@@ -1,11 +1,20 @@
+import a11yEmoji from "@fec/remark-a11y-emoji";
+import rehypeCodeTitle from "rehype-code-title";
+import rehypePrism from "rehype-prism-plus";
+import rehypeSlug from "rehype-slug";
+import externalLinks from "remark-external-links";
+import remarkGfm from "remark-gfm";
+import smartypants from "remark-smartypants";
 import Balancer from "react-wrap-balancer";
-import type { FC } from "react";
-import { allSnippets } from "contentlayer/generated";
+import MDXComponent from "@/components/MDXComponent";
+import { serialize } from "next-mdx-remote/serialize";
+import { getCodeSnippets, getCodeSnippet } from "@/utils/sanity";
 
 // https://beta.nextjs.org/docs/api-reference/generate-static-params
 export const generateStaticParams = async () => {
-  return allSnippets.map((snippet) => ({
-    slug: snippet.slug,
+  const codeSnippets = await getCodeSnippets();
+  return codeSnippets.map((snippet) => ({
+    slug: snippet.slug.current,
   }));
 };
 
@@ -15,10 +24,17 @@ interface SnippetsPostPageProps {
   };
 }
 
-const SnippetsPostPage: FC<SnippetsPostPageProps> = ({ params }) => {
+const SnippetsPostPage = async ({ params }: SnippetsPostPageProps) => {
   const slug = params?.slug.toString();
 
-  const snippet = allSnippets.find((snippet) => snippet.slug === slug);
+  const snippet = await getCodeSnippet(slug);
+
+  const mdxSource = await serialize(snippet.content, {
+    mdxOptions: {
+      remarkPlugins: [smartypants, a11yEmoji, externalLinks, remarkGfm],
+      rehypePlugins: [rehypeSlug, rehypeCodeTitle, rehypePrism],
+    },
+  });
 
   return (
     <>
@@ -29,6 +45,8 @@ const SnippetsPostPage: FC<SnippetsPostPageProps> = ({ params }) => {
       <p className="my-2 px-4 text-center font-roboto-slab text-base font-medium text-zinc-800 dark:text-zinc-200 sm:text-lg">
         {snippet.description}
       </p>
+
+      <MDXComponent source={mdxSource} />
     </>
   );
 };
