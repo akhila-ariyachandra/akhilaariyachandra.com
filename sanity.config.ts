@@ -6,6 +6,8 @@ import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
 import { markdownSchema } from "sanity-plugin-markdown";
 import { media } from "sanity-plugin-media";
+import { FaPenFancy, FaCode, FaSuitcase } from "react-icons/fa";
+import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 
 dayjs.extend(advancedFormat);
 
@@ -24,16 +26,19 @@ export default defineConfig({
         name: "employer",
         type: "document",
         title: "Employer",
+        icon: HiOutlineBuildingOffice2,
         fields: [
           {
             name: "name",
             type: "string",
             title: "Name",
+            validation: (rule) => rule.required(),
           },
           {
             name: "link",
             type: "url",
             title: "Link",
+            validation: (rule) => rule.required().unique(),
           },
           {
             name: "logo",
@@ -42,6 +47,7 @@ export default defineConfig({
             options: {
               hotspot: true,
             },
+            validation: (rule) => rule.required(),
           },
         ],
       },
@@ -49,17 +55,20 @@ export default defineConfig({
         name: "job",
         type: "document",
         title: "Job",
+        icon: FaSuitcase,
         fields: [
           {
             name: "position",
             type: "string",
             title: "Position",
+            validation: (rule) => rule.required(),
           },
           {
             name: "company",
             type: "reference",
             title: "Company",
             to: [{ type: "employer" }],
+            validation: (rule) => rule.required(),
           },
           {
             name: "period",
@@ -70,11 +79,14 @@ export default defineConfig({
                 name: "start",
                 type: "date",
                 title: "Start",
+                validation: (rule) => rule.required(),
               },
               {
                 name: "end",
                 type: "date",
                 title: "End",
+                validation: (rule) =>
+                  rule.greaterThan(rule.valueOfField("date")),
               },
             ],
           },
@@ -101,11 +113,13 @@ export default defineConfig({
         name: "blog",
         type: "document",
         title: "Blog Posts",
+        icon: FaPenFancy,
         fields: [
           {
             name: "title",
             type: "string",
             title: "Title",
+            validation: (rule) => rule.required(),
           },
           {
             name: "slug",
@@ -115,21 +129,25 @@ export default defineConfig({
               source: "title",
               slugify: (input) => slugify(input, { lower: true, trim: true }),
             },
+            validation: (rule) => rule.required().unique(),
           },
           {
             name: "date",
             type: "date",
             title: "Date",
+            validation: (rule) => rule.required(),
           },
           {
             name: "updated",
             type: "date",
             title: "Updated",
+            validation: (rule) => rule.greaterThan(rule.valueOfField("date")),
           },
           {
             name: "description",
             type: "string",
             title: "Description",
+            validation: (rule) => rule.required(),
           },
           {
             name: "banner",
@@ -138,6 +156,7 @@ export default defineConfig({
             options: {
               hotspot: true,
             },
+            validation: (rule) => rule.required(),
           },
           {
             name: "unsplash",
@@ -160,6 +179,7 @@ export default defineConfig({
             name: "content",
             type: "markdown",
             title: "Content",
+            validation: (rule) => rule.required(),
           },
         ],
         preview: {
@@ -181,11 +201,13 @@ export default defineConfig({
         name: "snippet",
         type: "document",
         title: "Code Snippets",
+        icon: FaCode,
         fields: [
           {
             name: "title",
             type: "string",
             title: "Title",
+            validation: (rule) => rule.required(),
           },
           {
             name: "slug",
@@ -195,16 +217,19 @@ export default defineConfig({
               source: "title",
               slugify: (input) => slugify(input, { lower: true, trim: true }),
             },
+            validation: (rule) => rule.required().unique(),
           },
           {
             name: "description",
             type: "string",
             title: "Description",
+            validation: (rule) => rule.required(),
           },
           {
             name: "content",
             type: "markdown",
             title: "Content",
+            validation: (rule) => rule.required(),
           },
         ],
       },
