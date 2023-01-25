@@ -4,7 +4,7 @@ import slugify from "slugify";
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
-import { markdownSchema } from "sanity-plugin-markdown";
+// import { markdownSchema } from "sanity-plugin-markdown";
 import { media } from "sanity-plugin-media";
 import { FaPenFancy, FaCode, FaSuitcase } from "react-icons/fa";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
@@ -18,7 +18,12 @@ export default defineConfig({
   basePath: "/studio",
   projectId,
   dataset,
-  plugins: [deskTool(), visionTool(), markdownSchema(), media()],
+  plugins: [
+    deskTool(),
+    visionTool(),
+    media(),
+    // markdownSchema(),
+  ],
   title: "akhilaariyachandra.com",
   schema: {
     types: [
@@ -177,7 +182,7 @@ export default defineConfig({
           },
           {
             name: "content",
-            type: "markdown",
+            type: "text",
             title: "Content",
             validation: (rule) => rule.required(),
           },
@@ -227,7 +232,7 @@ export default defineConfig({
           },
           {
             name: "content",
-            type: "markdown",
+            type: "text",
             title: "Content",
             validation: (rule) => rule.required(),
           },
