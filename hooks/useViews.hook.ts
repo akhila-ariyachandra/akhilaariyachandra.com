@@ -23,23 +23,21 @@ const useViews = (slug: string) => {
     },
   });
 
-  const mutation = useMutation(
-    (): Promise<View> =>
+  const mutation = useMutation({
+    mutationFn: (): Promise<View> =>
       fetch(`/api/views/${slug}`, { method: "POST" }).then((res) => res.json()),
-    {
-      onMutate: async () => {
-        await queryClient.cancelQueries(KEY);
-      },
-      onSuccess: (data) => {
-        // Set Query data from the POST response without making another GET request
-        queryClient.setQueryData(KEY, data);
-      },
-      onError: async () => {
-        // Refetch query if there is an error
-        await queryClient.invalidateQueries(KEY);
-      },
-    }
-  );
+    onMutate: async () => {
+      await queryClient.cancelQueries(KEY);
+    },
+    onSuccess: (data) => {
+      // Set Query data from the POST response without making another GET request
+      queryClient.setQueryData(KEY, data);
+    },
+    onError: async () => {
+      // Refetch query if there is an error
+      await queryClient.invalidateQueries(KEY);
+    },
+  });
 
   return {
     count: data?.count,
