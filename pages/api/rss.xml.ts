@@ -1,12 +1,9 @@
 import dayjs from "dayjs";
 import type { NextApiHandler } from "next";
 import { Feed } from "feed";
-import { getBlogPosts } from "@/utils/sanity";
-import { urlFor } from "@/lib/sanity-client";
+import { allPosts } from "contentlayer/generated";
 
 const RSSHandler: NextApiHandler = async (req, res) => {
-  const blogPosts = await getBlogPosts();
-
   const feed = new Feed({
     title: "Akhila Ariyachandra's Blog RSS",
     description: "The RSS feed for my blog",
@@ -21,14 +18,14 @@ const RSSHandler: NextApiHandler = async (req, res) => {
     },
   });
 
-  for (const post of blogPosts) {
+  for (const post of allPosts) {
     feed.addItem({
       title: post.title,
-      id: `https://akhilaariyachandra.com/blog/${post.slug.current}`,
-      link: `https://akhilaariyachandra.com/blog/${post.slug.current}`,
+      id: `https://akhilaariyachandra.com/blog/${post.slug}`,
+      link: `https://akhilaariyachandra.com/blog/${post.slug}`,
       description: post.description,
-      date: dayjs(post.date).toDate(),
-      image: `https://akhilaariyachandra.com${urlFor(post.banner).url()}`,
+      date: dayjs(post.posted).toDate(),
+      image: `https://akhilaariyachandra.com${post.banner}`,
     });
   }
 

@@ -6,15 +6,13 @@ This site is built with [Next.js](https://nextjs.org/), [Tailwind CSS](https://t
 
 ## Environment Variables
 
-|              Name               | Description                                                                                                             |
-| :-----------------------------: | ----------------------------------------------------------------------------------------------------------------------- |
-|       `SPOTIFY_CLIENT_ID`       | [Spotify](https://developer.spotify.com/) Client ID                                                                     |
-|     `SPOTIFY_CLIENT_SECRET`     | [Spotify](https://developer.spotify.com/) Client Secret                                                                 |
-|     `SPOTIFY_REFRESH_TOKEN`     | Refresh Token used to make requests ([Guide](https://leerob.io/blog/spotify-api-nextjs))                                |
-|          `DEV_API_KEY`          | [API Key](https://docs.forem.com/api/#section/Authentication/api_key) needed for [DEV API](https://docs.forem.com/api/) |
-|         `DATABASE_URL`          | [PlanetScale](https://planetscale.com/) database url                                                                    |
-| `NEXT_PUBLIC_SANITY_PROJECT_ID` | [Sanity](https://www.sanity.io/) Project ID                                                                             |
-|  `NEXT_PUBLIC_SANITY_DATASET`   | [Sanity](https://www.sanity.io/) [dataset](https://www.sanity.io/docs/datasets)                                         |
+|          Name           | Description                                                                                                             |
+| :---------------------: | ----------------------------------------------------------------------------------------------------------------------- |
+|   `SPOTIFY_CLIENT_ID`   | [Spotify](https://developer.spotify.com/) Client ID                                                                     |
+| `SPOTIFY_CLIENT_SECRET` | [Spotify](https://developer.spotify.com/) Client Secret                                                                 |
+| `SPOTIFY_REFRESH_TOKEN` | Refresh Token used to make requests ([Guide](https://leerob.io/blog/spotify-api-nextjs))                                |
+|      `DEV_API_KEY`      | [API Key](https://docs.forem.com/api/#section/Authentication/api_key) needed for [DEV API](https://docs.forem.com/api/) |
+|     `DATABASE_URL`      | [PlanetScale](https://planetscale.com/) database url                                                                    |
 
 ## Actions
 

@@ -1,13 +1,15 @@
-import type { FC } from "react";
+import clsx from "classnames";
+import type { FC, ReactNode } from "react";
 import { FaExclamationCircle, FaLightbulb, FaStickyNote } from "react-icons/fa";
-import snarkdown from "snarkdown";
+
+import styles from "./SpecialBlock.module.scss";
 
 interface SpecialBlockProps {
   type?: "warn" | "info";
-  markdown: string;
+  children: ReactNode;
 }
 
-const SpecialBlock: FC<SpecialBlockProps> = ({ type, markdown }) => {
+const SpecialBlock: FC<SpecialBlockProps> = ({ type, children }) => {
   let wrapperClass =
     "text-sm sm:text-base my-4 mx-auto p-4 border-2 rounded-md flex items-start w-full max-w-xl ";
   let iconClass = "text-2xl ";
@@ -30,16 +32,13 @@ const SpecialBlock: FC<SpecialBlockProps> = ({ type, markdown }) => {
       Icon = FaStickyNote;
   }
 
-  const html = snarkdown(markdown);
-
   return (
-    <div className={wrapperClass}>
+    <div className={clsx(styles.wrapper, wrapperClass)}>
       <Icon className={iconClass} />
 
-      <div
-        className="ml-2 flex-1 font-sora text-sm text-zinc-800 dark:text-zinc-200 sm:text-base"
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
+      <div className="ml-2 flex-1 font-sora text-sm text-zinc-800 dark:text-zinc-200 sm:text-base">
+        {children}
+      </div>
     </div>
   );
 };

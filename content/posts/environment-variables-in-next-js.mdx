@@ -1,0 +1,169 @@
+---
+title: "Environment Variables in Next.js"
+posted: "2020-03-06"
+updated: "2020-05-17"
+description: "A guide to working with Environment Variables in Next.js"
+banner: "/posts/environment-variables-in-next-js/banner.png"
+---
+
+> Updated on 18th May, 2020 to reflect the how [Next.js v9.4+](https://nextjs.org/blog/next-9-4#new-environment-variables-support "New Environment Variables Support") handles the `.env` file.
+
+> Updated on 23rd April, 2020 to reflect the changes on how Vercel handles [Environment Variables](https://vercel.com/blog/environment-variables-ui).
+
+Often we need to use certain variables like the database path or authentication secrets without committing them to the repo.
+
+## For Next.js v9.4 and above
+
+[Next.js 9.4](https://nextjs.org/blog/next-9-4) made handling environment variables a lot more easier. All we need to do now is the create the `.env` file and Next.js will load it automatically.
+
+<SpecialBlock type="warn">
+  Next commit the **.env** file. Make sure to add it to **.gitignore**.
+</SpecialBlock>
+
+By default the environment variables will not be included in the client JavaScript bundle. If you do want to include any variables in it it has to be prefixed with `NEXT_PUBLIC_`.
+
+```:.env
+NEXT_PUBLIC_FIRST_SECRET=firstSecret
+SECOND_SECRET=secondSecret
+```
+
+In the above example `NEXT_PUBLIC_FIRST_SECRET` can be accessed but `SECOND_SECRET` can't be accessed in the client code (such as the React Components).
+
+### Deploying to Vercel
+
+To start, install, log into [Vercel](https://vercel.com/download) and link it to a project if you haven't already.
+
+```shell
+npm i -g now
+now login
+now
+```
+
+Then use the following command to set the Environment Variables in the deployment environment.
+
+```shell
+now env add
+```
+
+## For Next.js v9.3 and below
+
+Since [Next.js](https://nextjs.org/ "Next.js") uses [Webpack](https://webpack.js.org/ "Webpack") we can use the [dotenv-webpack](https://www.npmjs.com/package/dotenv-webpack) dependency to load variable from a _.env_ file to our Next.js application.
+
+Let's start by installing dotenv-webpack as a dev dependency.
+
+```shell
+npm install dotenv-webpack -D
+```
+
+Next we need to modify the Webpack configuration in Next.js. This is done through the `next.config.js` file.
+
+First import the dotenv-file dependency.
+
+```javascript:next.config.js
+const Dotenv = require("dotenv-webpack");
+```
+
+Next export the config object with the default Webpack config function.
+
+```javascript:next.config.js {3-7}
+const Dotenv = require("dotenv-webpack");
+
+module.exports = {
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    return config;
+  },
+};
+```
+
+All we need to do now is add the dotenv-plugin into the Webpack plugins array.
+
+```javascript:next.config.js {5-6}
+const Dotenv = require("dotenv-webpack");
+
+module.exports = {
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    // Add the new plugin to the existing webpack plugins
+    config.plugins.push(new Dotenv({ silent: true }));
+
+    return config;
+  },
+};
+```
+
+Now you can use environment variables in the application. For example, if your _.env_ file is like this,
+
+```:.env
+AUTH_SECRET=verysecret
+```
+
+You can use the variable like this, `process.env.AUTH_SECRET`.
+
+<SpecialBlock type="warn">
+  Never commit the **.env** file. Make sure to add it to **.gitignore**.
+</SpecialBlock>
+
+### Deploying to Vercel
+
+If you are using a Git provider like Github to deploy the Application in [Vercel](https://vercel.com/home), you can't use _.env_ file. This is the reason we set the _silent_ property when adding dotenv-webpack plugin, to prevent any errors because of the missing _.env_ file.
+
+```javascript:next.config.js {6}
+const Dotenv = require("dotenv-webpack");
+
+module.exports = {
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    // Add the new plugin to the existing webpack plugins
+    config.plugins.push(new Dotenv({ silent: true }));
+
+    return config;
+  },
+};
+```
+
+Instead of the _.env_ file we will use the [Environment Variables UI](https://vercel.com/blog/environment-variables-ui) available in Vercel.
+
+To start, install, log into the [Vercel CLI](https://vercel.com/download) and link it to a project if you haven't already.
+
+```shell
+npm i -g now
+now login
+now
+```
+
+Then use the following command to set the Environment Variables in the deployment environment.
+
+```shell
+now env add
+```
+
+Finally to make the variables available in the client JavaScript bundle, we need to add one more property to the Next.js config. Add a new property called `env` and list all the environment variables you want in the client JavaScript bundle as follows.
+
+```javascript:next.config.js {10-14}
+const Dotenv = require("dotenv-webpack");
+
+module.exports = {
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    // Add the new plugin to the existing webpack plugins
+    config.plugins.push(new Dotenv({ silent: true }));
+
+    return config;
+  },
+  // Have to list all the environment variables used here to make it available
+  // in the client JavaScript bundle
+  env: {
+    AUTH_SECRET: process.env.AUTH_SECRET,
+  },
+};
+```
+
+<SpecialBlock type="warn">
+  Please be careful about which variables you include in the **env** property as
+  they will be included the client JavaScript bundle, so make sure you avoid
+  including sensitive data like a database connection string or an
+  authentication token secret.
+</SpecialBlock>
+
+## Wrapping up
+
+You can find an example of the implementation [here](https://github.com/akhila-ariyachandra/next-env-test).
+
+I hope you found this guide helpful. 😊
