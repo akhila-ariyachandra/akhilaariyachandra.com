@@ -16,7 +16,7 @@ type AccessToken = {
 const getAccessToken = async (revalidate = 1) => {
   const searchParams = new URLSearchParams();
   searchParams.append("grant_type", "refresh_token");
-  searchParams.append("refresh_token", refresh_token);
+  searchParams.append("refresh_token", refresh_token as string);
 
   const response = await fetch(TOKEN_ENDPOINT, {
     method: "POST",
@@ -60,6 +60,9 @@ export const getNowPlaying = async () => {
   const response = await fetch(NOW_PLAYING_ENDPOINT, {
     headers: {
       Authorization: `Bearer ${access_token}`,
+    },
+    next: {
+      revalidate: 60000,
     },
   });
 

@@ -1,4 +1,5 @@
 import clsx from "classnames";
+import config from "@/lib/config";
 import Providers from "./providers";
 import Analytics from "./analytics";
 import Layout from "@/components/Layout";
@@ -17,6 +18,26 @@ const robotoSlab = RobotoSlab({
   subsets: ["latin"],
   variable: "--font-roboto-slab",
 });
+
+export const metadata = {
+  title: config.title,
+  description: config.description,
+  openGraph: {
+    url: config.siteUrl,
+    type: "website",
+    images: [
+      {
+        url: `${config.siteUrl}/cover-pic.jpg`,
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    creator: config.author.twitter,
+  },
+};
 
 interface RootLayoutProps {
   children: ReactNode;

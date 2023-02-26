@@ -1,6 +1,21 @@
+import config from "@/lib/config";
 import Link from "next/link";
 import ListContainer from "@/components/ListContainer";
 import { allSnippets } from "contentlayer/generated";
+
+export const metadata = {
+  title: "Code Snippets",
+  description: "A few pieces of code I've found useful",
+  openGraph: {
+    images: [
+      {
+        url: `${config.siteUrl}/snippets-cover.jpg`,
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+};
 
 const SnippetsPage = async () => {
   return (

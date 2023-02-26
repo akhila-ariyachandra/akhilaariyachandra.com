@@ -1,9 +1,12 @@
 import dayjs from "dayjs";
 import Image from "next/image";
+import config from "@/lib/config";
 import Balancer from "react-wrap-balancer";
 import BlogPostViews from "./views";
 import MDXComponent from "@/components/MDXComponent";
 import type { FC } from "react";
+import type { Metadata } from "next/types";
+import { notFound } from "next/navigation";
 import { formatDate } from "@/lib/helpers";
 import { allPosts } from "contentlayer/generated";
 
@@ -20,10 +23,43 @@ interface BlogPostPageProps {
   };
 }
 
+export const generateMetadata = ({ params }: BlogPostPageProps) => {
+  const slug = params?.slug.toString();
+
+  const post = allPosts.find((post) => post.slug === slug);
+
+  if (!post) {
+    notFound();
+  }
+
+  return {
+    title: post.title,
+    description: post.description,
+    openGraph: {
+      url: config.siteUrl,
+      type: "article",
+      images: [
+        {
+          url: `${config.siteUrl}${post.banner}`,
+          width: 1200,
+          height: 630,
+        },
+      ],
+      authors: [config.author.name],
+      publishedTime: post.posted,
+      modifiedTime: post.updated ? post.updated : undefined,
+    },
+  } satisfies Metadata;
+};
+
 const BlogPostPage: FC<BlogPostPageProps> = ({ params }) => {
   const slug = params?.slug.toString();
 
   const post = allPosts.find((post) => post.slug === slug);
+
+  if (!post) {
+    notFound();
+  }
 
   return (
     <>

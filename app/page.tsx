@@ -8,7 +8,7 @@ import PostLink from "@/components/PostLink";
 import type { FC } from "react";
 import { getPeriod } from "@/lib/helpers";
 import { FaDev, FaGithub, FaRssSquare, FaTwitterSquare } from "react-icons/fa";
-import { about, allPosts, career } from ".contentlayer/generated";
+import { about, allPosts, career, type Post } from ".contentlayer/generated";
 
 const SocialIcons = {
   GitHub: FaGithub,
@@ -50,7 +50,7 @@ const getMostPopularPosts = async () => {
     allPosts.find((post) => post.slug === view.slug)
   );
 
-  return posts;
+  return posts as Post[];
 };
 
 const HomePage = async () => {
@@ -96,7 +96,7 @@ const HomePage = async () => {
         </h2>
 
         <div className="my-8 flex flex-col gap-6">
-          {posts.map((post) => (
+          {posts.filter(Boolean).map((post) => (
             <PostLink
               key={post.slug}
               title={post.title}
@@ -151,7 +151,7 @@ const HomePage = async () => {
                   <span className="font-light text-zinc-600 dark:text-zinc-400">
                     {` (${getPeriod(
                       job.period.start.toString(),
-                      job.period.end?.toString()
+                      job.period.end ? job.period.end.toString() : undefined
                     )})`}
                   </span>
                 </div>

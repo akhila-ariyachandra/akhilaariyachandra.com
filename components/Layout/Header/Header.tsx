@@ -45,7 +45,7 @@ const Header: FC = () => {
             href={href}
             className={clsx(
               "font-sora text-base font-medium sm:text-lg",
-              activePath.test(pathname)
+              pathname && activePath.test(pathname)
                 ? "text-emerald-700 dark:text-emerald-600"
                 : "text-zinc-800 dark:text-zinc-200"
             )}
