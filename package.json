@@ -27,7 +27,6 @@
     "classnames": "2.3.2",
     "contentlayer": "0.3.0",
     "dayjs": "1.11.7",
-    "easymde": "^2.18.0",
     "feed": "4.2.2",
     "next": "13.2.1",
     "next-contentlayer": "0.3.0",
@@ -37,7 +36,6 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "4.7.1",
-    "react-is": "18.2.0",
     "react-wrap-balancer": "0.4.0",
     "reading-time": "1.5.0",
     "rehype-code-title": "1.0.0",
@@ -47,8 +45,7 @@
     "remark-gfm": "3.0.1",
     "remark-smartypants": "2.0.0",
     "sass": "1.58.3",
-    "sharp": "0.31.3",
-    "styled-components": "5.3.6"
+    "sharp": "0.31.3"
   },
   "devDependencies": {
     "@tailwindcss/typography": "0.5.9",
