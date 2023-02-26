@@ -1,7 +1,7 @@
+import { NextResponse } from "next/server";
 import { getNowPlaying } from "@/lib/spotify";
-import type { NextApiHandler } from "next";
 
-const NowPlaying: NextApiHandler = async (req, res) => {
+export const GET = async () => {
   try {
     const response = await getNowPlaying();
 
@@ -10,14 +10,14 @@ const NowPlaying: NextApiHandler = async (req, res) => {
       response.status > 400 ||
       response?.data?.item === null
     ) {
-      return res.status(200).json({ isPlaying: false });
+      return NextResponse.json({ isPlaying: false });
     }
 
     const song = response.data;
 
     // Don't show song if it is paused
     if (song.is_playing === false) {
-      return res.status(200).json({ isPlaying: false });
+      return NextResponse.json({ isPlaying: false });
     }
 
     const isPlaying = song.is_playing;
@@ -27,12 +27,7 @@ const NowPlaying: NextApiHandler = async (req, res) => {
     const albumImage = song.item.album.images[0].url;
     const songUrl = song.item.external_urls.spotify;
 
-    res.setHeader(
-      "Cache-Control",
-      "public, s-maxage=60, stale-while-revalidate=30"
-    );
-
-    return res.status(200).json({
+    return NextResponse.json({
       isPlaying,
       name,
       artist,
@@ -41,11 +36,12 @@ const NowPlaying: NextApiHandler = async (req, res) => {
       songUrl,
     });
   } catch {
-    return res.status(500).json({
-      isPlaying: false,
-      message: "Error getting Now Playing from Spotify",
-    });
+    return NextResponse.json(
+      {
+        isPlaying: false,
+        message: "Error getting Now Playing from Spotify",
+      },
+      { status: 500 }
+    );
   }
 };
-
-export default NowPlaying;

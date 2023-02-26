@@ -1,5 +1,7 @@
+import config from "@/lib/config";
 import Balancer from "react-wrap-balancer";
 import MDXComponent from "@/components/MDXComponent";
+import type { Metadata } from "next/types";
 import { notFound } from "next/navigation";
 import { allSnippets } from "contentlayer/generated";
 
@@ -15,6 +17,30 @@ interface SnippetsPostPageProps {
     slug: string;
   };
 }
+
+export const generateMetadata = ({ params }: SnippetsPostPageProps) => {
+  const slug = params?.slug.toString();
+
+  const snippet = allSnippets.find((snippet) => snippet.slug === slug);
+
+  if (!snippet) {
+    notFound();
+  }
+
+  return {
+    title: snippet.title,
+    description: snippet.description,
+    openGraph: {
+      images: [
+        {
+          url: `${config.siteUrl}/snippets-cover.jpg`,
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+  } satisfies Metadata;
+};
 
 const SnippetsPostPage = async ({ params }: SnippetsPostPageProps) => {
   const slug = params?.slug.toString();

@@ -1,9 +1,9 @@
 import dayjs from "dayjs";
-import type { NextApiHandler } from "next";
+import { NextResponse } from "next/server";
 import { Feed } from "feed";
 import { allPosts } from "contentlayer/generated";
 
-const RSSHandler: NextApiHandler = async (req, res) => {
+export const GET = async () => {
   const feed = new Feed({
     title: "Akhila Ariyachandra's Blog RSS",
     description: "The RSS feed for my blog",
@@ -31,9 +31,9 @@ const RSSHandler: NextApiHandler = async (req, res) => {
 
   const content = feed.rss2();
 
-  res.setHeader("Content-Type", "application/xml");
-  res.setHeader("Cache-Control", "s-maxage=3600, stale-while-revalidate");
-  res.status(200).send(content);
+  return new NextResponse(content, {
+    headers: {
+      "Content-Type": "application/xml",
+    },
+  });
 };
-
-export default RSSHandler;

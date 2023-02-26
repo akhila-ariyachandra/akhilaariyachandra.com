@@ -1,5 +1,6 @@
 import clsx from "classnames";
 import type { FC, ReactNode } from "react";
+import type { IconType } from "react-icons/lib";
 import { FaExclamationCircle, FaLightbulb, FaStickyNote } from "react-icons/fa";
 
 import styles from "./SpecialBlock.module.scss";
@@ -13,7 +14,7 @@ const SpecialBlock: FC<SpecialBlockProps> = ({ type, children }) => {
   let wrapperClass =
     "text-sm sm:text-base my-4 mx-auto p-4 border-2 rounded-md flex items-start w-full max-w-xl ";
   let iconClass = "text-2xl ";
-  let Icon = null;
+  let Icon: IconType | null = null;
 
   switch (type) {
     case "warn":

@@ -6,14 +6,14 @@ dayjs.extend(advancedFormat);
 export const formatDate = (date: string): string =>
   dayjs(date).format("Do MMMM YYYY");
 
-export const getPeriod = (start: string, end: string) => {
+export const getPeriod = (start: string, end?: string) => {
   const startDate = dayjs(start);
   const endDate = dayjs(end);
 
   const years = endDate.diff(startDate, "year");
   const months = endDate.diff(startDate, "month") - years * 12;
 
-  let period = null;
+  let period = "";
 
   if (years > 0) {
     if (years === 1) {

@@ -20,18 +20,6 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-  rewrites: async () => {
-    return [
-      {
-        source: "/sitemap.xml",
-        destination: "/api/sitemap.xml",
-      },
-      {
-        source: "/rss.xml",
-        destination: "/api/rss.xml",
-      },
-    ];
-  },
 };
 
 module.exports = withBundleAnalyzer(withContentlayer(nextConfig));

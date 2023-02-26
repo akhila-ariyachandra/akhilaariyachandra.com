@@ -14,7 +14,7 @@ const useViews = (slug: string) => {
   const { data } = useQuery({
     queryKey: KEY,
     queryFn: () =>
-      fetch(`/api/views/${slug}`, { cache: "no-store" }).then(
+      fetch(`/views/${slug}`, { cache: "no-store" }).then(
         (res) => res.json() as Promise<View>
       ),
     placeholderData: {
@@ -25,7 +25,7 @@ const useViews = (slug: string) => {
 
   const mutation = useMutation({
     mutationFn: (): Promise<View> =>
-      fetch(`/api/views/${slug}`, { method: "POST" }).then((res) => res.json()),
+      fetch(`/views/${slug}`, { method: "POST" }).then((res) => res.json()),
     onMutate: async () => {
       await queryClient.cancelQueries(KEY);
     },

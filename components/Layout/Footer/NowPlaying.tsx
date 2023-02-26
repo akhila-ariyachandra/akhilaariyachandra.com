@@ -10,10 +10,9 @@ const NowPlaying: FC = () => {
   const { data } = useQuery<Song>({
     queryKey: ["spotify", "nowPlaying"],
     queryFn: () =>
-      fetch("/api/spotify/now-playing", { cache: "no-store" }).then((res) =>
+      fetch("/spotify/now-playing", { cache: "no-store" }).then((res) =>
         res.json()
       ),
-    staleTime: 60000, // Don't refetch for 1 min
   });
 
   return (

@@ -4,6 +4,11 @@ import PostLink from "@/components/PostLink";
 import type { FC } from "react";
 import { allPosts } from "contentlayer/generated";
 
+export const metadata = {
+  title: "Blog",
+  description: "A blog about Javascript, React and Web Development",
+};
+
 const BlogPage: FC = () => {
   return (
     <ListContainer title="Blog">

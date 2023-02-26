@@ -1,7 +1,7 @@
-import type { NextApiHandler } from "next";
+import { NextResponse } from "next/server";
 import { allPosts, allSnippets } from "contentlayer/generated";
 
-const SitemapHandler: NextApiHandler = async (req, res) => {
+export const GET = async () => {
   // Function to generate url entry
   const getEntry = (route = "") => {
     return `
@@ -28,9 +28,9 @@ const SitemapHandler: NextApiHandler = async (req, res) => {
   });
   content += `</urlset>`;
 
-  res.setHeader("Content-Type", "application/xml");
-  res.setHeader("Cache-Control", "s-maxage=3600, stale-while-revalidate");
-  res.status(200).send(content);
+  return new NextResponse(content, {
+    headers: {
+      "Content-Type": "application/xml",
+    },
+  });
 };
-
-export default SitemapHandler;
