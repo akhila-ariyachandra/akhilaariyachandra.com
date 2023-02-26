@@ -4,7 +4,7 @@ import Providers from "./providers";
 import Analytics from "./analytics";
 import Layout from "@/components/Layout";
 import type { ReactNode, FC } from "react";
-import { Sora, Roboto_Slab as RobotoSlab } from "@next/font/google";
+import { Sora, Roboto_Slab as RobotoSlab } from "next/font/google";
 
 import "./global.scss";
 
