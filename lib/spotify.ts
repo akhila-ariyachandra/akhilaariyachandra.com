@@ -13,7 +13,7 @@ type AccessToken = {
   access_token: string;
 };
 
-const getAccessToken = async (revalidate = 1) => {
+const getAccessToken = async () => {
   const searchParams = new URLSearchParams();
   searchParams.append("grant_type", "refresh_token");
   searchParams.append("refresh_token", refresh_token as string);
@@ -26,7 +26,7 @@ const getAccessToken = async (revalidate = 1) => {
     },
     body: searchParams.toString(),
     next: {
-      revalidate,
+      revalidate: 3600,
     },
   });
 
@@ -62,7 +62,7 @@ export const getNowPlaying = async () => {
       Authorization: `Bearer ${access_token}`,
     },
     next: {
-      revalidate: 60000,
+      revalidate: 60,
     },
   });
 
@@ -90,15 +90,15 @@ type TopTracks = {
   }[];
 };
 
-export const getTopTracks = async (revalidate = 1) => {
-  const { access_token } = await getAccessToken(revalidate);
+export const getTopTracks = async () => {
+  const { access_token } = await getAccessToken();
 
   const response = await fetch(`${TOP_TRACKS_ENDPOINT}?limit=10`, {
     headers: {
       Authorization: `Bearer ${access_token}`,
     },
     next: {
-      revalidate,
+      revalidate: 86400,
     },
   });
 

@@ -3,7 +3,7 @@ import type { Song } from "@/lib/types";
 import { getTopTracks } from "@/lib/spotify";
 
 const getTopTenTracks = async () => {
-  const { items } = await getTopTracks(86400);
+  const { items } = await getTopTracks();
   const tracks: Song[] = [];
   const length = items.length >= 10 ? 10 : items.length;
   for (let index = 0; index < length; index++) {
