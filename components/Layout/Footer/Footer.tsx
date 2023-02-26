@@ -51,7 +51,9 @@ const Footer: FC = () => {
             Tailwind CSS
           </ExternalLink>
           {", "}
-          <ExternalLink link="https://www.sanity.io/">Sanity</ExternalLink>
+          <ExternalLink link="https://www.contentlayer.dev/">
+            Contentlayer
+          </ExternalLink>
           {", "}
           <ExternalLink link="https://planetscale.com/">
             PlanetScale

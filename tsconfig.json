@@ -20,7 +20,7 @@
       "@/public/*": ["public/*"],
       "@/prisma": ["prisma"],
       "@/hooks/*": ["hooks/*"],
-      "@/utils/*": ["utils/*"]
+      "contentlayer/generated": ["./.contentlayer/generated"]
     },
     "incremental": true,
     "plugins": [
@@ -29,6 +29,12 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".contentlayer/generated"
+  ],
   "exclude": ["node_modules"]
 }
