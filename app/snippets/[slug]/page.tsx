@@ -1,7 +1,7 @@
 import config from "@/lib/config";
 import Balancer from "react-wrap-balancer";
 import MDXComponent from "@/components/MDXComponent";
-import type { Metadata } from "next/types";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { allSnippets } from "contentlayer/generated";
 

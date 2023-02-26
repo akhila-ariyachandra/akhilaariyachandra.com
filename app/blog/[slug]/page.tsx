@@ -5,7 +5,7 @@ import Balancer from "react-wrap-balancer";
 import BlogPostViews from "./views";
 import MDXComponent from "@/components/MDXComponent";
 import type { FC } from "react";
-import type { Metadata } from "next/types";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { formatDate } from "@/lib/helpers";
 import { allPosts } from "contentlayer/generated";
