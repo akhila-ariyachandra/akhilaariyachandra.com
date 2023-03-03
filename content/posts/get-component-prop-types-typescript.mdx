@@ -1,0 +1,49 @@
+---
+title: "Get the type of a prop in a React component in TypeScript"
+posted: "2023-03-03"
+description: "Use React's built-in helper to get the types of the props in a component in TypeScript"
+banner: "/posts/get-component-prop-types-typescript/banner.png"
+---
+
+**tldr:** Just use the `ComponentProps` type in React to extract the type of prop of a component.
+
+```tsx {2,4}
+import CustomComponent from "component-library";
+import type { ComponentProps } from "react";
+
+type PropType = ComponentProps<typeof CustomComponent>["propName"];
+```
+
+<hr />
+
+While upgrading this site to [Next.js 13.2](https://nextjs.org/blog/next-13-2), I enabled the new [Statically Typed Links](https://nextjs.org/blog/next-13-2#statically-typed-links). But doing this broke some my custom components where the `href` had to be passed as a prop, as the `string` type wasn't enough as the type for the `href` prop in the [Next.js Link](https://nextjs.org/docs/api-reference/next/link) component became `UrlObject | __next_route_internal_types__.RouteImpl<UrlObject | __next_route_internal_types__.RouteImpl<unknown>>`.
+
+So I had to find a way to get exact type the prop in the component, since Next.js didn't export the type directly. That's when I came across the `ComponentProps` type in the React package which can be used to get the types of all the props in a component.
+
+```tsx
+import Link from "next/link";
+import type { ComponentProps } from "react";
+
+type HrefType = ComponentProps<typeof Link>["href"]; // UrlObject | __next_route_internal_types__.RouteImpl<unknown>
+```
+
+Then it was simple as using that type in my custom components. For example, in my `DashboardItem` component, this is how I defined the props.
+
+```tsx {5}
+interface DashboardItemProps {
+  title: string;
+  link:
+    | {
+        url: ComponentProps<typeof Link>["href"];
+        type: "internal";
+      }
+    | {
+        url: string;
+        type: "external";
+      };
+  queryKey: string;
+  url: string;
+}
+```
+
+You can find the [commit](https://github.com/akhila-ariyachandra/akhilaariyachandra.com/commit/6a80f2be975827ac3e1f233871ce63111b2a4c80) on how I did it in my site [here](https://github.com/akhila-ariyachandra/akhilaariyachandra.com/commit/6a80f2be975827ac3e1f233871ce63111b2a4c80).
