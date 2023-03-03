@@ -23,6 +23,8 @@ export const metadata = {
   title: config.title,
   description: config.description,
   openGraph: {
+    title: config.title,
+    description: config.description,
     url: config.siteUrl,
     type: "website",
     images: [

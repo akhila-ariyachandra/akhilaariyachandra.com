@@ -8,6 +8,9 @@ export const metadata = {
   title: "Code Snippets",
   description: "A few pieces of code I've found useful",
   openGraph: {
+    title: "Code Snippets",
+    description: "A few pieces of code I've found useful",
+    url: `${config.siteUrl}/snippets`,
     images: [
       {
         url: `${config.siteUrl}/snippets-cover.jpg`,

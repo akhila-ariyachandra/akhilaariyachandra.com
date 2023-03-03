@@ -31,6 +31,9 @@ export const generateMetadata = ({ params }: SnippetsPostPageProps) => {
     title: snippet.title,
     description: snippet.description,
     openGraph: {
+      title: snippet.title,
+      description: snippet.description,
+      url: `${config.siteUrl}/snippets/${snippet.slug}`,
       images: [
         {
           url: `${config.siteUrl}/snippets-cover.jpg`,

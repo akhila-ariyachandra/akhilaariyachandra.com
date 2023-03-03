@@ -36,7 +36,9 @@ export const generateMetadata = ({ params }: BlogPostPageProps) => {
     title: post.title,
     description: post.description,
     openGraph: {
-      url: config.siteUrl,
+      title: post.title,
+      description: post.description,
+      url: `${config.siteUrl}/blog/${post.slug}`,
       type: "article",
       images: [
         {
