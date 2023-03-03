@@ -6,6 +6,10 @@ import type { FC } from "react";
 
 export const metadata = {
   title: "Dashboard",
+  openGraph: {
+    title: "Dashboard",
+    url: `${config.siteUrl}/dashboard`,
+  },
 };
 
 const DashboardPage: FC = () => {

@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import config from "@/lib/config";
 import ListContainer from "@/components/ListContainer";
 import PostLink from "@/components/PostLink";
 import type { FC } from "react";
@@ -7,6 +8,11 @@ import { allPosts } from "contentlayer/generated";
 export const metadata = {
   title: "Blog",
   description: "A blog about Javascript, React and Web Development",
+  openGraph: {
+    title: "Blog",
+    description: "A blog about Javascript, React and Web Development",
+    url: `${config.siteUrl}/blog`,
+  },
 };
 
 const BlogPage: FC = () => {
