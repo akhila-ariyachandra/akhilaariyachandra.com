@@ -1,8 +1,11 @@
 import NowPlaying from "./NowPlaying";
 import Link from "next/link";
-import type { FC, ReactNode } from "react";
+import type { FC, ReactNode, ComponentProps } from "react";
 
-const LINKS = [
+const LINKS: {
+  href: ComponentProps<typeof Link>["href"];
+  title: string;
+}[] = [
   { href: "/blog", title: "Blog" },
   { href: "/snippets", title: "Snippets" },
   { href: "/dashboard", title: "Dashboard" },
@@ -34,7 +37,7 @@ const Footer: FC = () => {
           {LINKS.map((link) => (
             <Link
               href={link.href}
-              key={link.href}
+              key={link.title}
               className="font-sora text-lg font-medium text-emerald-900 dark:text-zinc-300 sm:text-xl"
             >
               {link.title}

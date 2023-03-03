@@ -2,7 +2,7 @@
 
 import classNames from "classnames";
 import Link from "next/link";
-import type { FC } from "react";
+import type { FC, ComponentProps } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 interface APIResponse {
@@ -11,10 +11,15 @@ interface APIResponse {
 
 interface DashboardItemProps {
   title: string;
-  link: {
-    url: string;
-    type: "internal" | "external";
-  };
+  link:
+    | {
+        url: ComponentProps<typeof Link>["href"];
+        type: "internal";
+      }
+    | {
+        url: string;
+        type: "external";
+      };
   queryKey: string;
   url: string;
 }

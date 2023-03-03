@@ -3,7 +3,6 @@ module.exports = {
   future: {},
   content: [
     "./app/**/*.{js,ts,jsx,tsx,scss}",
-    "./pages/**/*.tsx",
     "./components/**/*.{tsx,module.scss}",
   ],
   darkMode: "class",

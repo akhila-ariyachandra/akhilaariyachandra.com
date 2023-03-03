@@ -3,12 +3,12 @@
 import clsx from "classnames";
 import Link from "next/link";
 import ThemeSwitch from "./ThemeSwitch";
-import type { FC } from "react";
+import type { FC, ComponentProps } from "react";
 import { usePathname } from "next/navigation";
 
 const NAV_LINKS: {
   label: string;
-  href: string;
+  href: ComponentProps<typeof Link>["href"];
   activePath: RegExp;
 }[] = [
   {
@@ -41,7 +41,7 @@ const Header: FC = () => {
       <nav className="flex flex-row flex-wrap items-center gap-4">
         {NAV_LINKS.map(({ label, href, activePath }) => (
           <Link
-            key={href}
+            key={label}
             href={href}
             className={clsx(
               "font-sora text-base font-medium sm:text-lg",
