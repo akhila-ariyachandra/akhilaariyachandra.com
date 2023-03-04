@@ -15,6 +15,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,js,json,md,mdx,scss,prisma,yaml}\"",
     "prisma:db-push": "prisma db push",
     "prisma:generate": "prisma generate",
+    "prisma:studio": "prisma studio",
     "postinstall": "prisma generate"
   },
   "dependencies": {
