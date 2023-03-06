@@ -1,5 +1,5 @@
 import prisma from "@/prisma";
-import { NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
@@ -9,7 +9,7 @@ interface Options {
   };
 }
 
-export const GET = async (request: Request, { params }: Options) => {
+export const GET = async (request: NextRequest, { params }: Options) => {
   const slug = params.slug;
 
   try {
@@ -33,7 +33,7 @@ export const GET = async (request: Request, { params }: Options) => {
   }
 };
 
-export const POST = async (request: Request, { params }: Options) => {
+export const POST = async (request: NextRequest, { params }: Options) => {
   const slug = params.slug;
 
   const views = await prisma.views.upsert({
