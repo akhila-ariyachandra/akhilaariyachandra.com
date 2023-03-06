@@ -16,8 +16,9 @@ export const middleware = async (request: NextRequest) => {
   // Limit blog post views increment
   if (request.method === "POST") {
     const ip = request.ip ?? "localhost:3000";
+    const slug = request.nextUrl.pathname.replace("/views/", "");
 
-    const { success } = await ratelimit.limit(ip);
+    const { success } = await ratelimit.limit(`${ip}_${slug}`);
 
     if (!success) {
       return NextResponse.json(
