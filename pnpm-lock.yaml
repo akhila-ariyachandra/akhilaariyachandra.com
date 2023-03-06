@@ -10,8 +10,6 @@ specifiers:
   '@tanstack/react-query-devtools': 4.24.12
   '@types/node': 18.14.5
   '@types/react': 18.0.28
-  '@upstash/ratelimit': 0.3.9
-  '@upstash/redis': 1.20.1
   '@vercel/analytics': 0.1.11
   autoprefixer: 10.4.13
   classnames: 2.3.2
@@ -53,8 +51,6 @@ dependencies:
   '@prisma/client': 4.11.0_prisma@4.11.0
   '@tanstack/react-query': 4.24.10_biqbaboplfbrettd7655fr4n2y
   '@tanstack/react-query-devtools': 4.24.12_636dldj5wfr5vkyyqzs5k363kq
-  '@upstash/ratelimit': 0.3.9
-  '@upstash/redis': 1.20.1
   '@vercel/analytics': 0.1.11_react@18.2.0
   classnames: 2.3.2
   contentlayer: 0.3.0
@@ -1244,32 +1240,6 @@ packages:
       '@typescript-eslint/types': 5.54.0
       eslint-visitor-keys: 3.3.0
     dev: true
-
-  /@upstash/core-analytics/0.0.6:
-    resolution: {integrity: sha512-cpPSR0XJAJs4Ddz9nq3tINlPS5aLfWVCqhhtHnXt4p7qr5+/Znlt1Es736poB/9rnl1hAHrOsOvVj46NEXcVqA==}
-    engines: {node: '>=16.0.0'}
-    dependencies:
-      '@upstash/redis': 1.20.1
-    transitivePeerDependencies:
-      - encoding
-    dev: false
-
-  /@upstash/ratelimit/0.3.9:
-    resolution: {integrity: sha512-bowxM/beAw3AMKeVObN0V10a0aeno/wmjf/BY1ydPwl6V8JRcCjMfTqkmFI2N+M9LekMALspM5tC+tJcuuyYEg==}
-    dependencies:
-      '@upstash/core-analytics': 0.0.6
-      '@upstash/redis': 1.20.1
-    transitivePeerDependencies:
-      - encoding
-    dev: false
-
-  /@upstash/redis/1.20.1:
-    resolution: {integrity: sha512-mYwV8uvQROJnq5aOxmQH3KDa0E8+DRdU0zJ/VGQV84HrhQQNy0IsLFFTo97WEhZAlHcJnVbrbwqUK9disWqx/w==}
-    dependencies:
-      isomorphic-fetch: 3.0.0
-    transitivePeerDependencies:
-      - encoding
-    dev: false
 
   /@vercel/analytics/0.1.11_react@18.2.0:
     resolution: {integrity: sha512-mj5CPR02y0BRs1tN3oZcBNAX9a8NxsIUl9vElDPcqxnMfP0RbRc9fI9Ud7+QDg/1Izvt5uMumsr+6YsmVHcyuw==}
@@ -3138,15 +3108,6 @@ packages:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
     dev: true
 
-  /isomorphic-fetch/3.0.0:
-    resolution: {integrity: sha512-qvUtwJ3j6qwsF3jLxkZ72qCgjMysPzDfeV240JHiGZsANBYd+EEuu35v7dfrJ9Up0Ak07D7GGSkGhCHTqg/5wA==}
-    dependencies:
-      node-fetch: 2.6.9
-      whatwg-fetch: 3.6.2
-    transitivePeerDependencies:
-      - encoding
-    dev: false
-
   /js-sdsl/4.3.0:
     resolution: {integrity: sha512-mifzlm2+5nZ+lEcLJMoBK0/IH/bDg8XnJfd/Wq6IP+xoCjLZsTOnV2QpxlVbX9bMnkl5PdEjNtBJ9Cj1NjifhQ==}
     dev: true
@@ -4020,18 +3981,6 @@ packages:
   /node-domexception/1.0.0:
     resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}
     engines: {node: '>=10.5.0'}
-    dev: false
-
-  /node-fetch/2.6.9:
-    resolution: {integrity: sha512-DJm/CJkZkRjKKj4Zi4BsKVZh3ValV5IR5s7LVZnW+6YMh0W1BfNA8XSs6DLMGYlId5F3KnA70uu2qepcR08Qqg==}
-    engines: {node: 4.x || >=6.0.0}
-    peerDependencies:
-      encoding: ^0.1.0
-    peerDependenciesMeta:
-      encoding:
-        optional: true
-    dependencies:
-      whatwg-url: 5.0.0
     dev: false
 
   /node-fetch/3.3.0:
@@ -5228,10 +5177,6 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
-  /tr46/0.0.3:
-    resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
-    dev: false
-
   /trim-lines/3.0.1:
     resolution: {integrity: sha512-kRj8B+YHZCc9kQYdWfJB2/oUl9rA99qbowYYBtr4ui4mZyAQ2JpvVBd/6U2YloATfqBhBTSMhTpgBHtU0Mf3Rg==}
     dev: false
@@ -5502,10 +5447,6 @@ packages:
     engines: {node: '>= 8'}
     dev: false
 
-  /webidl-conversions/3.0.1:
-    resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
-    dev: false
-
   /webpack-bundle-analyzer/4.7.0:
     resolution: {integrity: sha512-j9b8ynpJS4K+zfO5GGwsAcQX4ZHpWV+yRiHDiL+bE0XHJ8NiPYLTNVQdlFYWxtpg9lfAQNlwJg16J9AJtFSXRg==}
     engines: {node: '>= 10.13.0'}
@@ -5523,17 +5464,6 @@ packages:
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
-    dev: false
-
-  /whatwg-fetch/3.6.2:
-    resolution: {integrity: sha512-bJlen0FcuU/0EMLrdbJ7zOnW6ITZLrZMIarMUVmdKtsGvZna8vxKYaexICWPfZ8qwf9fzNq+UEIZrnSaApt6RA==}
-    dev: false
-
-  /whatwg-url/5.0.0:
-    resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}
-    dependencies:
-      tr46: 0.0.3
-      webidl-conversions: 3.0.1
     dev: false
 
   /which-boxed-primitive/1.0.2:
