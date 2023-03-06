@@ -25,7 +25,15 @@ const useViews = (slug: string) => {
 
   const mutation = useMutation({
     mutationFn: (): Promise<View> =>
-      fetch(`/views/${slug}`, { method: "POST" }).then((res) => res.json()),
+      fetch(`/views/${slug}`, { method: "POST" }).then(async (res) => {
+        const data = await res.json();
+
+        if (!res.ok) {
+          throw new Error(data);
+        }
+
+        return data;
+      }),
     onMutate: async () => {
       await queryClient.cancelQueries(KEY);
     },
