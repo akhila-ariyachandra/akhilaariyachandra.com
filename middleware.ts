@@ -15,10 +15,7 @@ export const config = {
 export const middleware = async (request: NextRequest) => {
   // Limit blog post views increment
   if (request.method === "POST") {
-    const ip =
-      request.headers["x-real-ip"] ??
-      request.headers["x-forwarded-for"] ??
-      "localhost:3000";
+    const ip = request.ip ?? "localhost:3000";
 
     const { success } = await ratelimit.limit(ip);
 
