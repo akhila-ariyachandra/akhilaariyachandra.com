@@ -6,13 +6,15 @@ This site is built with [Next.js](https://nextjs.org/), [Tailwind CSS](https://t
 
 ## Environment Variables
 
-|          Name           | Description                                                                                                             |
-| :---------------------: | ----------------------------------------------------------------------------------------------------------------------- |
-|   `SPOTIFY_CLIENT_ID`   | [Spotify](https://developer.spotify.com/) Client ID                                                                     |
-| `SPOTIFY_CLIENT_SECRET` | [Spotify](https://developer.spotify.com/) Client Secret                                                                 |
-| `SPOTIFY_REFRESH_TOKEN` | Refresh Token used to make requests ([Guide](https://leerob.io/blog/spotify-api-nextjs))                                |
-|      `DEV_API_KEY`      | [API Key](https://docs.forem.com/api/#section/Authentication/api_key) needed for [DEV API](https://docs.forem.com/api/) |
-|     `DATABASE_URL`      | [PlanetScale](https://planetscale.com/) database url                                                                    |
+|            Name            | Description                                                                                                             |
+| :------------------------: | ----------------------------------------------------------------------------------------------------------------------- |
+|    `SPOTIFY_CLIENT_ID`     | [Spotify](https://developer.spotify.com/) Client ID                                                                     |
+|  `SPOTIFY_CLIENT_SECRET`   | [Spotify](https://developer.spotify.com/) Client Secret                                                                 |
+|  `SPOTIFY_REFRESH_TOKEN`   | Refresh Token used to make requests ([Guide](https://leerob.io/blog/spotify-api-nextjs))                                |
+|       `DEV_API_KEY`        | [API Key](https://docs.forem.com/api/#section/Authentication/api_key) needed for [DEV API](https://docs.forem.com/api/) |
+|       `DATABASE_URL`       | [PlanetScale](https://planetscale.com/) database url                                                                    |
+|  `UPSTASH_REDIS_REST_URL`  | [Upstash](https://upstash.com/)                                                                                         |
+| `UPSTASH_REDIS_REST_TOKEN` | [Upstash](https://upstash.com/)                                                                                         |
 
 ## Actions
 
