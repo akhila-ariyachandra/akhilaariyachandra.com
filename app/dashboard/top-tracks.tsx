@@ -5,7 +5,7 @@ import { getTopTracks } from "@/lib/spotify";
 const getTopTenTracks = async () => {
   const { items } = await getTopTracks();
   const tracks: Song[] = [];
-  const length = items.length >= 10 ? 10 : items.length;
+  const length = items?.length >= 10 ? 10 : items?.length;
   for (let index = 0; index < length; index++) {
     const track = items[index];
 
