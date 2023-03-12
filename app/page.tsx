@@ -1,14 +1,17 @@
 import dayjs from "dayjs";
 import config from "@/lib/config";
-import prisma from "@/prisma";
 import coverPic from "@/public/cover-pic.jpg";
 import Image from "next/image";
 import MDXComponent from "@/components/MDXComponent";
 import PostLink from "@/components/PostLink";
 import type { FC } from "react";
+import { desc } from "drizzle-orm/expressions";
 import { getPeriod } from "@/lib/helpers";
 import { FaDev, FaGithub, FaRssSquare, FaTwitterSquare } from "react-icons/fa";
 import { about, allPosts, career, type Post } from ".contentlayer/generated";
+import { db, views } from "@/db/schema";
+
+export const revalidate = 86400;
 
 const SocialIcons = {
   GitHub: FaGithub,
@@ -39,14 +42,13 @@ const SocialLink: FC<SocialIconsProps> = ({ site, link }) => {
 };
 
 const getMostPopularPosts = async () => {
-  // Get most popular posts
-  const views = await prisma.views.findMany({
-    orderBy: {
-      count: "desc",
-    },
-    take: 3,
-  });
-  const posts = views.map((view) =>
+  const topViews = await db
+    .select()
+    .from(views)
+    .orderBy(desc(views.count))
+    .limit(3);
+
+  const posts = topViews.map((view) =>
     allPosts.find((post) => post.slug === view.slug)
   );
 
@@ -96,7 +98,7 @@ const HomePage = async () => {
         </h2>
 
         <div className="my-8 flex flex-col gap-6">
-          {posts.filter(Boolean).map((post) => (
+          {posts.map((post) => (
             <PostLink
               key={post.slug}
               title={post.title}
@@ -116,7 +118,10 @@ const HomePage = async () => {
 
         <div className="my-8 flex flex-col gap-6">
           {career.jobs.map((job) => (
-            <article key={job._id} className="flex flex-row items-center gap-4">
+            <article
+              key={`${job.position} - ${job.company.name}`}
+              className="flex flex-row items-center gap-4"
+            >
               <Image
                 src={job.company.logo}
                 alt={`${job.company.name} logo`}

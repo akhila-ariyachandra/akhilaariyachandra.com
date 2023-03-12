@@ -14,7 +14,7 @@ export const config = {
 
 export const middleware = async (request: NextRequest) => {
   // Limit blog post views increment
-  if (request.method === "POST") {
+  /* if (request.method === "POST") {
     const ip = request.ip ?? "localhost:3000";
     const slug = request.nextUrl.pathname.replace("/views/", "");
 
@@ -28,7 +28,7 @@ export const middleware = async (request: NextRequest) => {
         { status: 429 }
       );
     }
-  }
+  } */
 
   return NextResponse.next();
 };

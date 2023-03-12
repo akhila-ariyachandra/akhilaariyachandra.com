@@ -62,7 +62,9 @@ const Footer: FC = () => {
             PlanetScale
           </ExternalLink>
           {", "}
-          <ExternalLink link="https://www.prisma.io/">Prisma</ExternalLink>
+          <ExternalLink link="https://github.com/drizzle-team/drizzle-orm">
+            Drizzle ORM
+          </ExternalLink>
           {", & "}
           <ExternalLink link="https://vercel.com/home">Vercel</ExternalLink>
         </div>
