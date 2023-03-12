@@ -48,7 +48,6 @@ export const POST = async (request: NextRequest, { params }: Options) => {
   const slug = params.slug;
 
   let view = await getView(slug);
-  console.log("> view: ", view);
 
   if (!view) {
     await db.insert(views).values({ slug });
