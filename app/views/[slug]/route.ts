@@ -1,7 +1,12 @@
-import prisma from "@/prisma";
 import { type NextRequest, NextResponse } from "next/server";
+import { eq } from "drizzle-orm/expressions";
+import { db, views } from "@/db/schema";
 
 export const dynamic = "force-dynamic";
+
+export const config = {
+  runtime: "edge",
+};
 
 interface Options {
   params: {
@@ -9,18 +14,22 @@ interface Options {
   };
 }
 
+const getView = async (slug: string) => {
+  const result = await db.select().from(views).where(eq(views.slug, slug));
+
+  if (result.length === 0) {
+    return null;
+  }
+
+  return result[0];
+};
+
 export const GET = async (request: NextRequest, { params }: Options) => {
   const slug = params.slug;
 
-  try {
-    const views = await prisma.views.findUniqueOrThrow({
-      where: {
-        slug,
-      },
-    });
+  const view = await getView(slug);
 
-    return NextResponse.json(views);
-  } catch {
+  if (!view) {
     return NextResponse.json(
       {
         slug,
@@ -31,24 +40,26 @@ export const GET = async (request: NextRequest, { params }: Options) => {
       }
     );
   }
+
+  return NextResponse.json(view);
 };
 
 export const POST = async (request: NextRequest, { params }: Options) => {
   const slug = params.slug;
 
-  const views = await prisma.views.upsert({
-    create: {
-      slug,
-    },
-    update: {
-      count: {
-        increment: 1,
-      },
-    },
-    where: {
-      slug,
-    },
-  });
+  let view = await getView(slug);
+  console.log("> view: ", view);
 
-  return NextResponse.json(views);
+  if (!view) {
+    await db.insert(views).values({ slug });
+  } else {
+    await db
+      .update(views)
+      .set({ count: view.count + 1 })
+      .where(eq(views.slug, slug));
+  }
+
+  view = await getView(slug);
+
+  return NextResponse.json(view);
 };
