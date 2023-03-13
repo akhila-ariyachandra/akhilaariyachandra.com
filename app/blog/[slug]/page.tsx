@@ -1,20 +1,14 @@
 import dayjs from "dayjs";
-import getQueryClient from "@/lib/getQueryClient";
 import Image from "next/image";
 import config from "@/lib/config";
 import Balancer from "react-wrap-balancer";
 import BlogPostViews from "./views";
 import MDXComponent from "@/components/MDXComponent";
-import HydrateWrapper from "@/components/HydrateWrapper";
+import type { FC } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { dehydrate } from "@tanstack/react-query";
-import { eq } from "drizzle-orm/expressions";
 import { formatDate } from "@/lib/helpers";
 import { allPosts } from "contentlayer/generated";
-import { db, views } from "@/db/schema";
-
-export const revalidate = 3600; // 1 hour
 
 // https://beta.nextjs.org/docs/api-reference/generate-static-params
 export const generateStaticParams = () => {
@@ -60,7 +54,7 @@ export const generateMetadata = ({ params }: BlogPostPageProps) => {
   } satisfies Metadata;
 };
 
-const BlogPostPage = async ({ params }: BlogPostPageProps) => {
+const BlogPostPage: FC<BlogPostPageProps> = ({ params }) => {
   const slug = params?.slug.toString();
 
   const post = allPosts.find((post) => post.slug === slug);
@@ -69,21 +63,8 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
     notFound();
   }
 
-  const queryClient = getQueryClient();
-
-  const result = await db.select().from(views).where(eq(views.slug, slug));
-  if (result?.length > 0) {
-    await queryClient.prefetchQuery({
-      // eslint-disable-next-line @tanstack/query/exhaustive-deps
-      queryKey: ["views", result[0].slug],
-      queryFn: () => result[0],
-    });
-  }
-
-  const dehydratedState = dehydrate(queryClient);
-
   return (
-    <HydrateWrapper state={dehydratedState}>
+    <>
       <Image
         src={post.banner}
         alt={post.title}
@@ -142,7 +123,7 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
       </div>
 
       <MDXComponent code={post.body.code} />
-    </HydrateWrapper>
+    </>
   );
 };
 
