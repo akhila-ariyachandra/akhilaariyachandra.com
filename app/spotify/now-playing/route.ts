@@ -8,7 +8,8 @@ export const GET = async () => {
     if (
       response.status === 204 ||
       response.status > 400 ||
-      response?.data?.item === null
+      response?.data?.item === null ||
+      !response.data
     ) {
       return NextResponse.json({ isPlaying: false });
     }

@@ -66,12 +66,24 @@ export const getNowPlaying = async () => {
     },
   });
 
-  const song = (await response.json()) as Song;
+  if (response.status === 204) {
+    return {
+      status: response.status,
+    };
+  }
 
-  return {
-    status: response.status,
-    data: song,
-  };
+  try {
+    const song = (await response.json()) as Song;
+
+    return {
+      status: response.status,
+      data: song,
+    };
+  } catch {
+    return {
+      status: response.status,
+    };
+  }
 };
 
 type TopTracks = {
