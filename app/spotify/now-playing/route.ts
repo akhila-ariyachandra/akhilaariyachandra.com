@@ -5,8 +5,6 @@ export const GET = async () => {
   try {
     const response = await getNowPlaying();
 
-    console.log("> response: ", response);
-
     if (
       response.status === 204 ||
       response.status > 400 ||
