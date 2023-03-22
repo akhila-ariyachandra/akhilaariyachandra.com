@@ -1,6 +1,5 @@
 const bundleAnalyzer = require("@next/bundle-analyzer");
 const { withContentlayer } = require("next-contentlayer");
-const { withAxiom } = require("next-axiom");
 
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
@@ -24,4 +23,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withAxiom(withBundleAnalyzer(withContentlayer(nextConfig)));
+module.exports = withBundleAnalyzer(withContentlayer(nextConfig));
