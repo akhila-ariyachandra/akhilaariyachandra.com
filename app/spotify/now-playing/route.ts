@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { log } from "next-axiom";
 import { getNowPlaying } from "@/lib/spotify";
 
+export const revalidate = 60;
+
 export const GET = async () => {
   try {
     const response = await getNowPlaying();
