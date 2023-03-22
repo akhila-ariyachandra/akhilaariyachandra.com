@@ -25,6 +25,7 @@ specifiers:
   eslint-config-prettier: 8.7.0
   feed: 4.2.2
   next: 13.2.4
+  next-axiom: 0.17.0
   next-contentlayer: 0.3.0
   next-themes: 0.2.1
   postcss: 8.4.21
@@ -62,6 +63,7 @@ dependencies:
   drizzle-orm: 0.21.1_yjazpptyy5hkedviejakk766iq
   feed: 4.2.2
   next: 13.2.4_dpxg4zawgzznnxdt7it3f5d76m
+  next-axiom: 0.17.0_next@13.2.4
   next-contentlayer: 0.3.0_ld2jel3hspngo3u5lti2kgl2sq
   next-themes: 0.2.1_ld2jel3hspngo3u5lti2kgl2sq
   prism-themes: 1.9.0
@@ -4365,6 +4367,16 @@ packages:
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
+
+  /next-axiom/0.17.0_next@13.2.4:
+    resolution: {integrity: sha512-qFdnH50SvRjJUAmNjGIYLcRc4tO/U4R1h9WUuniiwaucXAH5KhL06m7TT3WWD2U1HbulwSfC0R+NlPASOx1XlQ==}
+    engines: {node: '>=15'}
+    peerDependencies:
+      next: ^12.1.4 || ^13
+    dependencies:
+      next: 13.2.4_dpxg4zawgzznnxdt7it3f5d76m
+      whatwg-fetch: 3.6.2
+    dev: false
 
   /next-contentlayer/0.3.0_ld2jel3hspngo3u5lti2kgl2sq:
     resolution: {integrity: sha512-vt+RaD3nIgZ6oXadtZH19a1mpxvGEoiifdtmXqBSz4rHMRcMA1YZCuSWyj+P9uX7MDmIL6JT6QSp+hvTBMaxiw==}
