@@ -2,7 +2,9 @@ import { NextResponse } from "next/server";
 import { log } from "next-axiom";
 import { getNowPlaying } from "@/lib/spotify";
 
-export const revalidate = 60;
+export const config = {
+  runtime: "edge",
+};
 
 export const GET = async () => {
   try {
