@@ -1,5 +1,3 @@
-import { log } from "next-axiom";
-
 const {
   SPOTIFY_CLIENT_ID: client_id,
   SPOTIFY_CLIENT_SECRET: client_secret,
@@ -82,8 +80,6 @@ export const getNowPlaying = async () => {
       data: song,
     };
   } catch {
-    log.error("Error fetching now playing");
-
     return {
       status: response.status,
     };

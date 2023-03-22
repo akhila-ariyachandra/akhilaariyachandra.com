@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { log } from "next-axiom";
 import { getNowPlaying } from "@/lib/spotify";
 
 export const config = {
@@ -9,8 +8,6 @@ export const config = {
 export const GET = async () => {
   try {
     const response = await getNowPlaying();
-
-    log.debug("Currently playing: ", response);
 
     if (
       response.status === 204 ||
