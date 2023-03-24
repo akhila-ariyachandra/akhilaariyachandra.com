@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { eq } from "drizzle-orm/expressions";
 import { db, views } from "@/db/schema";
+import { allPosts } from ".contentlayer/generated";
 
 export const dynamic = "force-dynamic";
 
@@ -46,6 +47,12 @@ export const GET = async (request: NextRequest, { params }: Options) => {
 
 export const POST = async (request: NextRequest, { params }: Options) => {
   const slug = params.slug;
+
+  const post = allPosts.find((item) => item.slug === slug);
+
+  if (!post) {
+    return new NextResponse("Not found", { status: 404 });
+  }
 
   let view = await getView(slug);
 

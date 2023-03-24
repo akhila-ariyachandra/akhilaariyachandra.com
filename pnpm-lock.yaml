@@ -6,9 +6,9 @@ specifiers:
   '@planetscale/database': 1.6.0
   '@tailwindcss/typography': 0.5.9
   '@tanstack/eslint-plugin-query': 4.27.0
-  '@tanstack/react-query': 4.27.0
-  '@tanstack/react-query-devtools': 4.27.0
-  '@types/node': 18.15.3
+  '@tanstack/react-query': 4.28.0
+  '@tanstack/react-query-devtools': 4.28.0
+  '@types/node': 18.15.6
   '@types/react': 18.0.28
   '@upstash/ratelimit': 0.4.0
   '@upstash/redis': 1.20.1
@@ -22,13 +22,13 @@ specifiers:
   drizzle-orm: 0.21.1
   eslint: 8.36.0
   eslint-config-next: 13.2.4
-  eslint-config-prettier: 8.7.0
+  eslint-config-prettier: 8.8.0
   feed: 4.2.2
   next: 13.2.4
   next-contentlayer: 0.3.0
   next-themes: 0.2.1
   postcss: 8.4.21
-  prettier: 2.8.4
+  prettier: 2.8.6
   prettier-plugin-tailwindcss: 0.2.5
   prism-themes: 1.9.0
   react: 18.2.0
@@ -42,7 +42,7 @@ specifiers:
   remark-external-links: 9.0.1
   remark-gfm: 3.0.1
   remark-smartypants: 2.0.0
-  sass: 1.59.3
+  sass: 1.60.0
   sharp: 0.31.3
   tailwindcss: 3.2.7
   typescript: 5.0.2
@@ -51,8 +51,8 @@ dependencies:
   '@fec/remark-a11y-emoji': 3.1.0
   '@next/bundle-analyzer': 13.2.4
   '@planetscale/database': 1.6.0
-  '@tanstack/react-query': 4.27.0_biqbaboplfbrettd7655fr4n2y
-  '@tanstack/react-query-devtools': 4.27.0_afol4acuzfd3u4ta37ddqdpntu
+  '@tanstack/react-query': 4.28.0_biqbaboplfbrettd7655fr4n2y
+  '@tanstack/react-query-devtools': 4.28.0_q4teel2yjbizrm4naiaqcdpjum
   '@upstash/ratelimit': 0.4.0_@upstash+redis@1.20.1
   '@upstash/redis': 1.20.1
   '@vercel/analytics': 0.1.11_react@18.2.0
@@ -61,7 +61,7 @@ dependencies:
   dayjs: 1.11.7
   drizzle-orm: 0.21.1_yjazpptyy5hkedviejakk766iq
   feed: 4.2.2
-  next: 13.2.4_dpxg4zawgzznnxdt7it3f5d76m
+  next: 13.2.4_5y7qh6ykubtj2qr2evk3di7hpa
   next-contentlayer: 0.3.0_ld2jel3hspngo3u5lti2kgl2sq
   next-themes: 0.2.1_ld2jel3hspngo3u5lti2kgl2sq
   prism-themes: 1.9.0
@@ -76,23 +76,23 @@ dependencies:
   remark-external-links: 9.0.1
   remark-gfm: 3.0.1
   remark-smartypants: 2.0.0
-  sass: 1.59.3
+  sass: 1.60.0
   sharp: 0.31.3
 
 devDependencies:
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.7
   '@tanstack/eslint-plugin-query': 4.27.0
-  '@types/node': 18.15.3
+  '@types/node': 18.15.6
   '@types/react': 18.0.28
   autoprefixer: 10.4.14_postcss@8.4.21
   cross-env: 7.0.3
   drizzle-kit: 0.17.0
   eslint: 8.36.0
   eslint-config-next: 13.2.4_j4766f7ecgqbon3u7zlxn5zszu
-  eslint-config-prettier: 8.7.0_eslint@8.36.0
+  eslint-config-prettier: 8.8.0_eslint@8.36.0
   postcss: 8.4.21
-  prettier: 2.8.4
-  prettier-plugin-tailwindcss: 0.2.5_prettier@2.8.4
+  prettier: 2.8.6
+  prettier-plugin-tailwindcss: 0.2.5_prettier@2.8.6
   tailwindcss: 3.2.7_postcss@8.4.21
   typescript: 5.0.2
 
@@ -563,7 +563,7 @@ packages:
     engines: {node: ^8.13.0 || >=10.10.0}
     dependencies:
       '@grpc/proto-loader': 0.7.5
-      '@types/node': 18.15.3
+      '@types/node': 18.15.6
     dev: false
 
   /@grpc/proto-loader/0.6.13:
@@ -1071,23 +1071,23 @@ packages:
     resolution: {integrity: sha512-sm+QncWaPmM73IPwFlmWSKPqjdTXZeFf/7aEmWh00z7yl2FjqophPt0dE1EHW9P1giMC5rMviv7OUbSDmWzXXA==}
     dev: false
 
-  /@tanstack/react-query-devtools/4.27.0_afol4acuzfd3u4ta37ddqdpntu:
-    resolution: {integrity: sha512-DWtW1V2hG+I92ixr7uS3z70IMa4Yz4xwDiqyd7Af+qXGSD0cbcsnvBMyIcU20KaXW6PY1OdceX/SBkiioQUjCA==}
+  /@tanstack/react-query-devtools/4.28.0_q4teel2yjbizrm4naiaqcdpjum:
+    resolution: {integrity: sha512-1SnoMw1CWn8FdPEIHvlAzmMBX3heXJo11fyBtt+FzYAHj5yFC8P67Kpgi0HpLkY7SLnd6QK/7qFkpeH4AQbgZg==}
     peerDependencies:
-      '@tanstack/react-query': 4.27.0
+      '@tanstack/react-query': 4.28.0
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       '@tanstack/match-sorter-utils': 8.7.6
-      '@tanstack/react-query': 4.27.0_biqbaboplfbrettd7655fr4n2y
+      '@tanstack/react-query': 4.28.0_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       superjson: 1.12.2
       use-sync-external-store: 1.2.0_react@18.2.0
     dev: false
 
-  /@tanstack/react-query/4.27.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-9S49LTFenWbxVHx0iR6qUXP+MKL5kwz/mV9pzfNXvdIM1R0vT+hiecCCL+ox/tD2glAQ51JHHMffQaRuH7wYRA==}
+  /@tanstack/react-query/4.28.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-8cGBV5300RHlvYdS4ea+G1JcZIt5CIuprXYFnsWggkmGoC0b5JaqG0fIX3qwDL9PTNkKvG76NGThIWbpXivMrQ==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -1160,8 +1160,8 @@ packages:
       '@types/unist': 2.0.6
     dev: false
 
-  /@types/node/18.15.3:
-    resolution: {integrity: sha512-p6ua9zBxz5otCmbpb5D3U4B5Nanw6Pk3PPyX05xnxbB/fRv71N7CPmORg7uAD5P70T0xmx1pzAx/FUfa5X+3cw==}
+  /@types/node/18.15.6:
+    resolution: {integrity: sha512-YErOafCZpK4g+Rp3Q/PBgZNAsWKGunQTm9FA3/Pbcm0VCriTEzcrutQ/SxSc0rytAp0NoFWue669jmKhEtd0sA==}
 
   /@types/parse5/6.0.3:
     resolution: {integrity: sha512-SuT16Q1K51EAVPz1K29DJ/sXjhSQ0zjvsypYJ6tlwVsRV9jwW5Adq2ch8Dq8kDBCkYnELS7N7VNCSB5nC56t/g==}
@@ -2428,8 +2428,8 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-config-prettier/8.7.0_eslint@8.36.0:
-    resolution: {integrity: sha512-HHVXLSlVUhMSmyW4ZzEuvjpwqamgmlfkutD53cYXLikh4pt/modINRcCIApJ84czDxM4GZInwUrromsDdTImTA==}
+  /eslint-config-prettier/8.8.0_eslint@8.36.0:
+    resolution: {integrity: sha512-wLbQiFre3tdGgpDv67NQKnJuTlcUVYHas3k+DZCc2U2BadthoEY4B7hLPvAxaqdyOGCzuLfii2fqGph10va7oA==}
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
@@ -4375,7 +4375,7 @@ packages:
     dependencies:
       '@contentlayer/core': 0.3.0
       '@contentlayer/utils': 0.3.0
-      next: 13.2.4_dpxg4zawgzznnxdt7it3f5d76m
+      next: 13.2.4_5y7qh6ykubtj2qr2evk3di7hpa
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     transitivePeerDependencies:
@@ -4391,7 +4391,7 @@ packages:
       react: '*'
       react-dom: '*'
     dependencies:
-      next: 13.2.4_dpxg4zawgzznnxdt7it3f5d76m
+      next: 13.2.4_5y7qh6ykubtj2qr2evk3di7hpa
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
@@ -4400,7 +4400,7 @@ packages:
     resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==}
     dev: true
 
-  /next/13.2.4_dpxg4zawgzznnxdt7it3f5d76m:
+  /next/13.2.4_5y7qh6ykubtj2qr2evk3di7hpa:
     resolution: {integrity: sha512-g1I30317cThkEpvzfXujf0O4wtaQHtDCLhlivwlTJ885Ld+eOgcz7r3TGQzeU+cSRoNHtD8tsJgzxVdYojFssw==}
     engines: {node: '>=14.6.0'}
     hasBin: true
@@ -4427,7 +4427,7 @@ packages:
       postcss: 8.4.14
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      sass: 1.59.3
+      sass: 1.60.0
       styled-jsx: 5.1.1_react@18.2.0
     optionalDependencies:
       '@next/swc-android-arm-eabi': 13.2.4
@@ -4829,7 +4829,7 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-tailwindcss/0.2.5_prettier@2.8.4:
+  /prettier-plugin-tailwindcss/0.2.5_prettier@2.8.6:
     resolution: {integrity: sha512-vZ/iKieyCx0WTxHbkf5E1rBlv/ybFk8WTT4hL5W2jlVxum2Zbe0jMUpuQdDrpa4z2vnPiJ5KIWCqL/kd16fKYg==}
     engines: {node: '>=12.17.0'}
     peerDependencies:
@@ -4881,11 +4881,11 @@ packages:
       prettier-plugin-twig-melody:
         optional: true
     dependencies:
-      prettier: 2.8.4
+      prettier: 2.8.6
     dev: true
 
-  /prettier/2.8.4:
-    resolution: {integrity: sha512-vIS4Rlc2FNh0BySk3Wkd6xmwxB0FpOndW5fisM5H8hsZSxU2VWVB5CWIkIjWvrHjIhxk2g3bfMKM87zNTrZddw==}
+  /prettier/2.8.6:
+    resolution: {integrity: sha512-mtuzdiBbHwPEgl7NxWlqOkithPyp4VN93V7VeHVWBF+ad3I5avc0RVDT4oImXQy9H/AqxA2NSQH8pSxHW6FYbQ==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
@@ -4928,7 +4928,7 @@ packages:
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
       '@types/long': 4.0.2
-      '@types/node': 18.15.3
+      '@types/node': 18.15.6
       long: 4.0.0
     dev: false
 
@@ -4947,7 +4947,7 @@ packages:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
-      '@types/node': 18.15.3
+      '@types/node': 18.15.6
       long: 5.2.1
     dev: false
 
@@ -5297,8 +5297,8 @@ packages:
       is-regex: 1.1.4
     dev: true
 
-  /sass/1.59.3:
-    resolution: {integrity: sha512-QCq98N3hX1jfTCoUAsF3eyGuXLsY7BCnCEg9qAact94Yc21npG2/mVOqoDvE0fCbWDqiM4WlcJQla0gWG2YlxQ==}
+  /sass/1.60.0:
+    resolution: {integrity: sha512-updbwW6fNb5gGm8qMXzVO7V4sWf7LMXnMly/JEyfbfERbVH46Fn6q02BX7/eHTdKpE7d+oTkMMQpFWNUMfFbgQ==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
