@@ -4,3 +4,4 @@ next-env.d.ts
 pnpm-lock.yaml
 .eslint.json
 .vscode
+.contentlayer
