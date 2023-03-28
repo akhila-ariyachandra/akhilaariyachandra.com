@@ -7,7 +7,7 @@
 
   // Style the title of code blocks
   div[class="rehype-code-title"] {
-    @apply mt-2 rounded-t-md rounded-b-lg bg-emerald-300;
+    @apply mt-2 rounded-b-lg rounded-t-md bg-emerald-300;
 
     h1 {
       @apply px-4 py-2 text-base font-bold text-zinc-800;
@@ -23,7 +23,7 @@
 
   // Highlighting the lines
   span[class*="highlight-line"] {
-    @apply -ml-4 -mr-4 block border-l-4 border-solid border-emerald-600 bg-gray-800 pr-4 pl-3;
+    @apply -ml-4 -mr-4 block border-l-4 border-solid border-emerald-600 bg-gray-800 pl-3 pr-4;
   }
 
   // Fix the width of the line highlight when there is horizontal scrolling

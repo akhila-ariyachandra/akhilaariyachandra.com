@@ -13,7 +13,7 @@ interface VideoProps {
 const Video: FC<VideoProps> = ({ paths, width, height, title }) => {
   return (
     <div
-      className="not-prose relative my-4 mx-auto w-full"
+      className="not-prose relative mx-auto my-4 w-full"
       style={{ aspectRatio: `${width} / ${height}`, maxWidth: width }}
     >
       <video
