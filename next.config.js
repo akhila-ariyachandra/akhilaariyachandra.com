@@ -1,4 +1,6 @@
 const bundleAnalyzer = require("@next/bundle-analyzer");
+const path = require("path");
+const fs = require("fs");
 const { withContentlayer } = require("next-contentlayer");
 
 const withBundleAnalyzer = bundleAnalyzer({
@@ -20,6 +22,23 @@ const nextConfig = {
   experimental: {
     appDir: true,
     typedRoutes: true,
+  },
+  redirects: async () => {
+    // Redirect all old blog post links
+    const directoryPath = path.join(__dirname, "content", "posts");
+    const files = await fs.readdirSync(directoryPath);
+
+    return [
+      ...files.map((file) => {
+        const slug = file.replace(".mdx", "");
+
+        return {
+          source: `/${slug}`,
+          destination: `/blog/${slug}`,
+          permanent: true,
+        };
+      }),
+    ];
   },
 };
 
