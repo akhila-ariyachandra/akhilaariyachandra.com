@@ -44,6 +44,7 @@
     "remark-gfm": "3.0.1",
     "remark-smartypants": "2.0.0",
     "sass": "1.60.0",
+    "server-only": "0.0.1",
     "sharp": "0.32.0"
   },
   "devDependencies": {

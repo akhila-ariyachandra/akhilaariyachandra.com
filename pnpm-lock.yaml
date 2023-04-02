@@ -43,6 +43,7 @@ specifiers:
   remark-gfm: 3.0.1
   remark-smartypants: 2.0.0
   sass: 1.60.0
+  server-only: 0.0.1
   sharp: 0.32.0
   tailwindcss: 3.3.0
   typescript: 5.0.2
@@ -77,6 +78,7 @@ dependencies:
   remark-gfm: 3.0.1
   remark-smartypants: 2.0.0
   sass: 1.60.0
+  server-only: 0.0.1
   sharp: 0.32.0
 
 devDependencies:
@@ -5337,6 +5339,10 @@ packages:
     hasBin: true
     dependencies:
       lru-cache: 6.0.0
+
+  /server-only/0.0.1:
+    resolution: {integrity: sha512-qepMx2JxAa5jjfzxG79yPPq+8BuFToHd1hm7kI+Z4zAq1ftQiP7HcxMhDDItrbtwVeLg/cY2JnKnrcFkmiswNA==}
+    dev: false
 
   /sharp/0.32.0:
     resolution: {integrity: sha512-yLAypVcqj1toSAqRSwbs86nEzfyZVDYqjuUX8grhFpeij0DDNagKJXELS/auegDBRDg1XBtELdOGfo2X1cCpeA==}
