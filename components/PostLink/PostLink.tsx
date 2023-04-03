@@ -1,9 +1,7 @@
-"use client";
-
 import dayjs from "dayjs";
-import useViews from "@/hooks/useViews.hook";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
+import ViewsCounter from "@/components/ViewsCounter";
 import type { FC } from "react";
 import { formatDate } from "@/lib/helpers";
 
@@ -14,8 +12,6 @@ interface PostLinkProps {
 }
 
 const PostLink: FC<PostLinkProps> = ({ slug, title, date }) => {
-  const { count } = useViews(slug);
-
   return (
     <article className="space-y-2">
       <Link
@@ -30,7 +26,10 @@ const PostLink: FC<PostLinkProps> = ({ slug, title, date }) => {
 
         <span className="mx-2">&bull;</span>
 
-        {`${count} views`}
+        <span>
+          <ViewsCounter slug={slug} />
+          {` views`}
+        </span>
       </div>
     </article>
   );

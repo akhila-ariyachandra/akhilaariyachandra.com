@@ -1,3 +1,5 @@
+"server-only";
+
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 
@@ -48,20 +50,4 @@ export const getPeriod = (start: string, end?: string) => {
   }
 
   return period;
-};
-
-export const getAOrAn = (word: string): string => {
-  const firstLetter = word.charAt(0).toLowerCase();
-
-  if (
-    firstLetter === "a" ||
-    firstLetter === "e" ||
-    firstLetter === "i" ||
-    firstLetter === "o" ||
-    firstLetter === "u"
-  ) {
-    return "an";
-  } else {
-    return "a";
-  }
 };
