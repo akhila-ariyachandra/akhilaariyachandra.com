@@ -41,7 +41,8 @@ const BlogPostViews: FC<BlogPostViewsProps> = ({ slug }) => {
   useEffect(() => {
     // Will run twice in development mode due to React Strict mode
     mutation.mutate();
-  }, [mutation]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <p>
