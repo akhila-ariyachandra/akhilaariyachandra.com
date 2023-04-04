@@ -22,7 +22,7 @@ export const middleware = async (
   event: NextFetchEvent
 ) => {
   // Limit blog post views increment
-  if (request.method === "POST") {
+  /* if (request.method === "POST") {
     const ip = request.ip ?? "127.0.0.1";
     const slug = request.nextUrl.pathname.replace("/views/", "");
 
@@ -46,7 +46,7 @@ export const middleware = async (
     res.headers.set("X-RateLimit-Reset", reset.toString());
 
     return res;
-  }
+  } */
 
   return NextResponse.next();
 };
