@@ -8,8 +8,8 @@ const sitemap = () => {
       : post.posted.split("T")[0],
   }));
 
-  const snippets = allSnippets.map((post) => ({
-    url: `https://akhilaariyachandra.com/blog/${post.slug}`,
+  const snippets = allSnippets.map((snippet) => ({
+    url: `https://akhilaariyachandra.com/snippets/${snippet.slug}`,
     lastModified: new Date().toISOString().split("T")[0],
   }));
 
