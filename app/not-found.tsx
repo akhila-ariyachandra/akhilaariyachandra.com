@@ -1,5 +1,9 @@
 import type { FC } from "react";
 
+export const metadata = {
+  title: "404: Not Found",
+};
+
 const NotFound: FC = () => {
   return (
     <div className="p-4">
