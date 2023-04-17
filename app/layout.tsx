@@ -39,6 +39,9 @@ export const metadata = {
     card: "summary_large_image",
     creator: config.author.twitter,
   },
+  other: {
+    "google-site-verification": "SCtCAdftAAE0UptAZAoIYsHnG7xbuN_ofCaHgfDyjn4", // Google Search Console Verification
+  },
 };
 
 interface RootLayoutProps {
@@ -55,41 +58,6 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
         robotoSlab.variable
       )}
     >
-      <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-touch-icon.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon-16x16.png"
-        />
-        <link rel="manifest" href="/site.webmanifest" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#2f855a" />
-        <meta name="apple-mobile-web-app-title" content="Akhila Ariyachandra" />
-        <meta name="application-name" content="Akhila Ariyachandra" />
-        <meta name="msapplication-TileColor" content="#00a300" />
-        <meta name="theme-color" content="#38a169" />
-
-        {/* Google Search Console Verification */}
-        <meta
-          name="google-site-verification"
-          content="SCtCAdftAAE0UptAZAoIYsHnG7xbuN_ofCaHgfDyjn4"
-        />
-      </head>
-
       <body className="h-full bg-white antialiased transition-colors duration-200 dark:bg-zinc-900">
         <Providers>
           <Layout>{children}</Layout>
