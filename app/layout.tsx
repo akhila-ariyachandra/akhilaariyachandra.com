@@ -42,6 +42,7 @@ export const metadata = {
   other: {
     "google-site-verification": "SCtCAdftAAE0UptAZAoIYsHnG7xbuN_ofCaHgfDyjn4", // Google Search Console Verification
   },
+  manifest: "manifest.webmanifest",
 };
 
 interface RootLayoutProps {
