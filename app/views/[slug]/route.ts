@@ -5,10 +5,6 @@ import { allPosts } from ".contentlayer/generated";
 
 export const dynamic = "force-dynamic";
 
-export const config = {
-  runtime: "edge",
-};
-
 interface Options {
   params: {
     slug: string;
