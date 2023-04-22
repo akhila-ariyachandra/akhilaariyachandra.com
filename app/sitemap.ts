@@ -1,6 +1,7 @@
+import type { MetadataRoute } from "next";
 import { allPosts, allSnippets } from "@/.contentlayer/generated";
 
-const sitemap = () => {
+const sitemap = (): MetadataRoute.Sitemap => {
   const posts = allPosts.map((post) => ({
     url: `https://akhilaariyachandra.com/blog/${post.slug}`,
     lastModified: post.updated

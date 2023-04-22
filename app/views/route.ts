@@ -4,10 +4,6 @@ import { sql } from "drizzle-orm/sql";
 
 export const dynamic = "force-dynamic";
 
-export const config = {
-  runtime: "edge",
-};
-
 export const GET = async () => {
   const result = await db
     .select({
