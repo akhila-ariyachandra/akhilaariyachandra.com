@@ -5,7 +5,7 @@ import Image from "next/image";
 import MDXComponent from "@/components/MDXComponent";
 import PostLink from "@/components/PostLink";
 import type { FC } from "react";
-import { desc } from "drizzle-orm/expressions";
+import { desc } from "drizzle-orm";
 import { getPeriod } from "@/lib/helpers";
 import { FaDev, FaGithub, FaRssSquare, FaTwitterSquare } from "react-icons/fa";
 import { about, allPosts, career, type Post } from ".contentlayer/generated";

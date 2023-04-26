@@ -1,10 +1,10 @@
 "use client";
 
-import clsx from "classnames";
 import Link from "next/link";
 import ThemeSwitch from "./ThemeSwitch";
 import type { FC, ComponentProps } from "react";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 
 const NAV_LINKS: {
   label: string;
@@ -38,18 +38,22 @@ const Header: FC = () => {
 
   return (
     <header className="container flex w-full max-w-3xl flex-row items-center justify-between gap-8 p-4 sm:min-h-[74px]">
-      <nav className="flex flex-row flex-wrap items-center gap-4">
+      <nav className="flex flex-row flex-wrap items-center gap-1">
         {NAV_LINKS.map(({ label, href, activePath }) => (
           <Link
             key={label}
             href={href}
-            className={clsx(
-              "font-sora text-base font-medium sm:text-lg",
-              pathname && activePath.test(pathname)
-                ? "text-emerald-700 dark:text-emerald-600"
-                : "text-zinc-800 dark:text-zinc-200"
-            )}
+            className="relative px-3 py-1 font-sora text-base font-medium leading-none text-zinc-800 dark:text-zinc-200 sm:text-lg"
           >
+            {!!pathname && activePath.test(pathname) && (
+              <motion.span
+                layoutId="bubble"
+                className="absolute inset-0 z-10 bg-zinc-800 mix-blend-difference dark:bg-zinc-200"
+                style={{ borderRadius: 9999 }}
+                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+              />
+            )}
+
             {label}
           </Link>
         ))}

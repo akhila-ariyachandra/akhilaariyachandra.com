@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { eq } from "drizzle-orm/expressions";
+import { eq } from "drizzle-orm";
 import { db, views } from "@/db/schema";
 import { allPosts } from ".contentlayer/generated";
 
