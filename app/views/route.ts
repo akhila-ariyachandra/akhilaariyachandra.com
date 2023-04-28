@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { db, views } from "@/db/schema";
 import { sql } from "drizzle-orm";
 
-export const dynamic = "force-dynamic";
+export const runtime = "edge";
 
 export const GET = async () => {
   const result = await db

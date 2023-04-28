@@ -3,7 +3,7 @@ import { eq } from "drizzle-orm";
 import { db, views } from "@/db/schema";
 import { allPosts } from ".contentlayer/generated";
 
-export const dynamic = "force-dynamic";
+export const runtime = "edge";
 
 interface Options {
   params: {
