@@ -11,7 +11,6 @@ import { FaDev, FaGithub, FaRssSquare, FaTwitterSquare } from "react-icons/fa";
 import { about, allPosts, career, type Post } from ".contentlayer/generated";
 import { db, views } from "@/db/schema";
 
-export const dynamic = "force-static";
 export const revalidate = 86400;
 
 const SocialIcons = {
