@@ -1,9 +1,9 @@
 import readingTime from "reading-time";
 import a11yEmoji from "@fec/remark-a11y-emoji";
-import rehypeCodeTitle from "rehype-code-title";
+import rehypeCodeTitles from "rehype-code-titles";
 import rehypePrism from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
-import externalLinks from "remark-external-links";
+import externalLinks from "rehype-external-links";
 import remarkGfm from "remark-gfm";
 import smartypants from "remark-smartypants";
 import {
@@ -157,7 +157,7 @@ export default makeSource({
   contentDirPath: "content",
   documentTypes: [Post, About, Snippet, Career],
   mdx: {
-    remarkPlugins: [smartypants, a11yEmoji, externalLinks, remarkGfm],
-    rehypePlugins: [rehypeSlug, rehypeCodeTitle, rehypePrism],
+    remarkPlugins: [smartypants, a11yEmoji, remarkGfm],
+    rehypePlugins: [rehypeSlug, rehypeCodeTitles, rehypePrism, externalLinks],
   },
 });
