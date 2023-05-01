@@ -3,13 +3,12 @@ import config from "@/lib/config";
 import coverPic from "@/public/cover-pic.jpg";
 import Image from "next/image";
 import MDXComponent from "@/components/MDXComponent";
-import PostLink from "@/components/PostLink";
-import type { FC } from "react";
-import { desc } from "drizzle-orm";
+import LoadingPostLink from "@/components/LoadingPostLink/LoadingPostLink";
+import MostPopularPosts from "./MostPopularPosts";
+import { type FC, Suspense } from "react";
 import { getPeriod } from "@/lib/helpers";
 import { FaDev, FaGithub, FaRssSquare, FaTwitterSquare } from "react-icons/fa";
-import { about, allPosts, career, type Post } from ".contentlayer/generated";
-import { db, views } from "@/db/schema";
+import { about, career } from ".contentlayer/generated";
 
 export const revalidate = 86400;
 
@@ -41,23 +40,7 @@ const SocialLink: FC<SocialIconsProps> = ({ site, link }) => {
   );
 };
 
-const getMostPopularPosts = async () => {
-  const topViews = await db
-    .select()
-    .from(views)
-    .orderBy(desc(views.count))
-    .limit(3);
-
-  const posts = topViews.map((view) =>
-    allPosts.find((post) => post.slug === view.slug)
-  );
-
-  return posts as Post[];
-};
-
-const HomePage = async () => {
-  const posts = await getMostPopularPosts();
-
+const HomePage: FC = () => {
   return (
     <>
       <Image
@@ -96,16 +79,21 @@ const HomePage = async () => {
         <h2 className="font-sora text-3xl font-bold text-zinc-800 dark:text-zinc-200 sm:text-4xl">
           Most Popular Posts
         </h2>
-
         <div className="my-8 flex flex-col gap-6">
-          {posts.map((post) => (
-            <PostLink
-              key={post.slug}
-              title={post.title}
-              slug={post.slug}
-              date={post.posted}
-            />
-          ))}
+          <Suspense
+            fallback={
+              <>
+                <LoadingPostLink />
+
+                <LoadingPostLink />
+
+                <LoadingPostLink />
+              </>
+            }
+          >
+            {/* @ts-expect-error Async Server Component */}
+            <MostPopularPosts />
+          </Suspense>
         </div>
       </section>
 

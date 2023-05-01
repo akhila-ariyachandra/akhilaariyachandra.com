@@ -64,6 +64,9 @@ dependencies:
   react-icons:
     specifier: 4.8.0
     version: 4.8.0(react@18.2.0)
+  react-loading-skeleton:
+    specifier: 3.2.1
+    version: 3.2.1(react@18.2.0)
   react-wrap-balancer:
     specifier: 0.4.1
     version: 0.4.1(react@18.2.0)
@@ -5143,6 +5146,14 @@ packages:
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: true
+
+  /react-loading-skeleton@3.2.1(react@18.2.0):
+    resolution: {integrity: sha512-e1KwEOuBa1REXWoseELIJXlsqWTCHL5IQnqhVhI33WmnuTK7LK1DXl4mmcOLsWVcwqXeOATU9VFJEjz2ytZSng==}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /react-wrap-balancer@0.4.1(react@18.2.0):
     resolution: {integrity: sha512-KbIwnnCBCxj5u4yr76NXKKriM94VL33LtO9bE0sedCp4yqdGYJD8TGU+2zlPxkguH5xxKxdapBtMYdMAODk/QQ==}
