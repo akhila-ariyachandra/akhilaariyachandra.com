@@ -11,8 +11,3 @@ export type Song = {
   albumImage: string;
   songUrl: string;
 };
-
-export type DEVArticle = {
-  page_views_count: number;
-  public_reactions_count: number;
-};

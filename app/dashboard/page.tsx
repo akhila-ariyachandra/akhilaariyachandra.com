@@ -1,8 +1,13 @@
 import config from "@/lib/config";
-import DashboardItem from "./dashboard-item";
+import DashboardItem from "./DashboardItem";
+import TotalViews from "./TotalViews";
 import Title from "@/components/Title";
 import TopTracks from "./top-tracks";
-import type { FC } from "react";
+
+interface DEVArticle {
+  page_views_count: number;
+  public_reactions_count: number;
+}
 
 export const metadata = {
   title: "Dashboard",
@@ -12,31 +17,44 @@ export const metadata = {
   },
 };
 
-const DashboardPage: FC = () => {
+const DashboardPage = async () => {
+  const response = await fetch("https://dev.to/api/articles/me/published", {
+    headers: {
+      "api-key": process.env.DEV_API_KEY as string,
+    },
+    next: {
+      revalidate: 86400,
+    },
+  });
+  const data = (await response.json()) as DEVArticle[];
+
+  const totalViews = data.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.page_views_count,
+    0
+  );
+  const totalReactions = data.reduce(
+    (accumulator, currentValue) =>
+      accumulator + currentValue.public_reactions_count,
+    0
+  );
+
   return (
     <>
       <Title title="Dashboard" />
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <DashboardItem
-          title="Total Views"
-          link={{ type: "internal", url: "/blog" }}
-          queryKey="totalViews"
-          url="/views"
-        />
+        <TotalViews />
 
         <DashboardItem
           title="DEV Views"
           link={{ type: "external", url: config.social.dev }}
-          queryKey="totalDevViews"
-          url="/dashboard/total-dev-views"
+          value={totalViews}
         />
 
         <DashboardItem
           title="DEV Reactions"
           link={{ type: "external", url: config.social.dev }}
-          queryKey="totalDevReactions"
-          url="/dashboard/total-dev-reactions"
+          value={totalReactions}
         />
       </div>
 
