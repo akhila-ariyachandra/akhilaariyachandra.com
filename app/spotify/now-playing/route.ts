@@ -1,4 +1,3 @@
-import { log } from "next-axiom";
 import { NextResponse } from "next/server";
 import { getNowPlaying } from "@/lib/spotify";
 
@@ -6,8 +5,6 @@ export const runtime = "edge";
 
 export const GET = async () => {
   const response = await getNowPlaying();
-
-  log.debug("response", response);
 
   if (
     !response ||

@@ -49,9 +49,6 @@ dependencies:
   next:
     specifier: 13.4.1
     version: 13.4.1(react-dom@18.2.0)(react@18.2.0)(sass@1.62.1)
-  next-axiom:
-    specifier: 0.17.0
-    version: 0.17.0(next@13.4.1)
   next-contentlayer:
     specifier: 0.3.2
     version: 0.3.2(next@13.4.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.4)
@@ -4666,16 +4663,6 @@ packages:
   /natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
-
-  /next-axiom@0.17.0(next@13.4.1):
-    resolution: {integrity: sha512-qFdnH50SvRjJUAmNjGIYLcRc4tO/U4R1h9WUuniiwaucXAH5KhL06m7TT3WWD2U1HbulwSfC0R+NlPASOx1XlQ==}
-    engines: {node: '>=15'}
-    peerDependencies:
-      next: ^12.1.4 || ^13
-    dependencies:
-      next: 13.4.1(react-dom@18.2.0)(react@18.2.0)(sass@1.62.1)
-      whatwg-fetch: 3.6.2
-    dev: false
 
   /next-contentlayer@0.3.2(next@13.4.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.4):
     resolution: {integrity: sha512-pihb/VtBq30eV+WpaWakWVtA1DWKzfXeaL7l/vR4MvrTO8UtZaX9H6wY0oSOqrmy674BRjXiQ03PbEOE5D6/iA==}
