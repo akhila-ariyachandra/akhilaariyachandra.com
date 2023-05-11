@@ -1,5 +1,6 @@
 "use client";
 
+import ky from "ky";
 import type { FC } from "react";
 import type { View } from "@/lib/types";
 import { useQuery } from "@tanstack/react-query";
@@ -11,10 +12,7 @@ interface ViewsCounterProps {
 const ViewsCounter: FC<ViewsCounterProps> = ({ slug }) => {
   const { data } = useQuery({
     queryKey: ["views", slug],
-    queryFn: () =>
-      fetch(`/views/${slug}`, { cache: "no-store" }).then(
-        (res) => res.json() as Promise<View>
-      ),
+    queryFn: () => ky.get(`/views/${slug}`, { cache: "no-store" }).json<View>(),
     placeholderData: {
       slug,
       count: 0,

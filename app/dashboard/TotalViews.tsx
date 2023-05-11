@@ -1,4 +1,5 @@
 "use client";
+import ky from "ky";
 import DashboardItem from "./DashboardItem";
 import type { FC } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -8,10 +9,9 @@ interface APIResponse {
 }
 
 const TotalViews: FC = () => {
-  const { data } = useQuery<APIResponse>({
+  const { data } = useQuery({
     queryKey: ["total-views"],
-    queryFn: () =>
-      fetch("/views", { cache: "no-store" }).then((res) => res.json()),
+    queryFn: () => ky.get("/views", { cache: "no-store" }).json<APIResponse>(),
     placeholderData: { count: 0 },
   });
 

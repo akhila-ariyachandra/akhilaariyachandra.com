@@ -1,5 +1,6 @@
 "use client";
 
+import ky from "ky";
 import ViewsCounter from "@/components/ViewsCounter/ViewsCounter";
 import type { View } from "@/lib/types";
 import { type FC, useEffect } from "react";
@@ -15,16 +16,7 @@ const BlogPostViews: FC<BlogPostViewsProps> = ({ slug }) => {
   const queryKey = ["views", slug];
 
   const mutation = useMutation({
-    mutationFn: (): Promise<View> =>
-      fetch(`/views/${slug}`, { method: "POST" }).then(async (res) => {
-        const data = await res.json();
-
-        if (!res.ok) {
-          throw new Error(data);
-        }
-
-        return data;
-      }),
+    mutationFn: () => ky.post(`/views/${slug}`).json<View>(),
     onMutate: async () => {
       await queryClient.cancelQueries(queryKey);
     },

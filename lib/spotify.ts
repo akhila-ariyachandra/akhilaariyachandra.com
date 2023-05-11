@@ -1,5 +1,7 @@
 import "server-only";
 
+import ky, { HTTPError } from "ky";
+
 const {
   SPOTIFY_CLIENT_ID: client_id,
   SPOTIFY_CLIENT_SECRET: client_secret,
@@ -20,19 +22,18 @@ const getAccessToken = async () => {
   searchParams.append("grant_type", "refresh_token");
   searchParams.append("refresh_token", refresh_token as string);
 
-  const response = await fetch(TOKEN_ENDPOINT, {
-    method: "POST",
-    headers: {
-      Authorization: `Basic ${basic}`,
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: searchParams.toString(),
-    next: {
-      revalidate: 3600,
-    },
-  });
-
-  const accessToken = (await response.json()) as AccessToken;
+  const accessToken = await ky
+    .post(TOKEN_ENDPOINT, {
+      headers: {
+        Authorization: `Basic ${basic}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: searchParams.toString(),
+      next: {
+        revalidate: 3600,
+      },
+    })
+    .json<AccessToken>();
 
   return accessToken;
 };
@@ -59,32 +60,34 @@ type Song = {
 export const getNowPlaying = async () => {
   const { access_token } = await getAccessToken();
 
-  const response = await fetch(NOW_PLAYING_ENDPOINT, {
-    headers: {
-      Authorization: `Bearer ${access_token}`,
-    },
-    next: {
-      revalidate: 60,
-    },
-  });
-
-  if (response.status === 204) {
-    return {
-      status: response.status,
-    };
-  }
-
   try {
-    const song = (await response.json()) as Song;
+    const response = await ky.get(NOW_PLAYING_ENDPOINT, {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+      next: {
+        revalidate: 60,
+      },
+    });
+
+    if (response.status === 204) {
+      return {
+        status: response.status,
+      };
+    }
+
+    const song = await response.json<Song>();
 
     return {
       status: response.status,
       data: song,
     };
-  } catch {
-    return {
-      status: response.status,
-    };
+  } catch (error) {
+    if (error instanceof HTTPError) {
+      return {
+        status: error.response.status,
+      };
+    }
   }
 };
 
@@ -107,16 +110,19 @@ type TopTracks = {
 export const getTopTracks = async () => {
   const { access_token } = await getAccessToken();
 
-  const response = await fetch(`${TOP_TRACKS_ENDPOINT}?limit=10`, {
-    headers: {
-      Authorization: `Bearer ${access_token}`,
-    },
-    next: {
-      revalidate: 86400,
-    },
-  });
-
-  const tracks = (await response.json()) as TopTracks;
+  const tracks = await ky
+    .get(TOP_TRACKS_ENDPOINT, {
+      searchParams: {
+        limit: 10,
+      },
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+      next: {
+        revalidate: 86400,
+      },
+    })
+    .json<TopTracks>();
 
   return tracks;
 };

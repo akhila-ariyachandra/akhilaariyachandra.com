@@ -1,5 +1,6 @@
 "use client";
 
+import ky from "ky";
 import Image from "next/image";
 import type { FC } from "react";
 import type { Song } from "@/lib/types";
@@ -7,12 +8,10 @@ import { useQuery } from "@tanstack/react-query";
 import { FaSpotify } from "react-icons/fa";
 
 const NowPlaying: FC = () => {
-  const { data } = useQuery<Song>({
+  const { data } = useQuery({
     queryKey: ["spotify", "nowPlaying"],
     queryFn: () =>
-      fetch("/spotify/now-playing", { cache: "no-store" }).then((res) =>
-        res.json()
-      ),
+      ky.get("/spotify/now-playing", { cache: "no-store" }).json<Song>(),
   });
 
   return (
