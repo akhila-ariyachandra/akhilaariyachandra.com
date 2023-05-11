@@ -29,7 +29,6 @@
     "drizzle-orm": "0.25.4",
     "feed": "4.2.2",
     "framer-motion": "10.12.8",
-    "ky": "0.33.3",
     "next": "13.4.1",
     "next-contentlayer": "0.3.2",
     "next-themes": "0.2.1",
