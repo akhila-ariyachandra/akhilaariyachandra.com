@@ -20,8 +20,7 @@ const nextConfig = {
     dirs: ["app", "components", "lib"],
   },
   experimental: {
-    appDir: true,
-    // typedRoutes: true,
+    typedRoutes: true,
   },
   redirects: async () => {
     // Redirect all old blog post links
