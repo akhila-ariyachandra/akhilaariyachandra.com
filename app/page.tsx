@@ -3,9 +3,7 @@ import config from "@/lib/config";
 import coverPic from "@/public/cover-pic.jpg";
 import Image from "next/image";
 import MDXComponent from "@/components/MDXComponent";
-import LoadingPostLink from "@/components/LoadingPostLink/LoadingPostLink";
 import MostPopularPosts from "./MostPopularPosts";
-import { Suspense } from "react";
 import { getPeriod } from "@/lib/helpers";
 import { FaDev, FaGithub, FaRssSquare, FaTwitterSquare } from "react-icons/fa";
 import { about, career } from ".contentlayer/generated";
@@ -80,19 +78,7 @@ const HomePage = () => {
           Most Popular Posts
         </h2>
         <div className="my-8 flex flex-col gap-6">
-          <Suspense
-            fallback={
-              <>
-                <LoadingPostLink />
-
-                <LoadingPostLink />
-
-                <LoadingPostLink />
-              </>
-            }
-          >
-            <MostPopularPosts />
-          </Suspense>
+          <MostPopularPosts />
         </div>
       </section>
 
