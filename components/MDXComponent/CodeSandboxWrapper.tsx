@@ -1,10 +1,8 @@
-import type { FC } from "react";
-
 interface CodeSandboxWrapperProps {
   codeSandboxId: string;
 }
 
-const CodeSandboxWrapper: FC<CodeSandboxWrapperProps> = ({ codeSandboxId }) => {
+const CodeSandboxWrapper = ({ codeSandboxId }: CodeSandboxWrapperProps) => {
   const idWords = codeSandboxId.split("-");
   const title = idWords.slice(0, idWords.length - 1).join("-");
 

@@ -4,7 +4,6 @@ import Iframe from "./Iframe";
 import PostImage from "./PostImage";
 import SpecialBlock from "./SpecialBlock";
 import Video from "./Video";
-import type { FC } from "react";
 import { getMDXComponent } from "next-contentlayer/hooks";
 
 import "prism-themes/themes/prism-night-owl.css";
@@ -14,7 +13,7 @@ interface MDXComponentProps {
   code: string;
 }
 
-const MDXComponent: FC<MDXComponentProps> = ({ code }) => {
+const MDXComponent = ({ code }: MDXComponentProps) => {
   const Content = getMDXComponent(code);
 
   return (

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { FC, ComponentProps } from "react";
+import type { ComponentProps } from "react";
 
 interface DashboardItemProps {
   title: string;
@@ -15,7 +15,7 @@ interface DashboardItemProps {
   value?: number;
 }
 
-const DashboardItem: FC<DashboardItemProps> = ({ link, title, value = 0 }) => {
+const DashboardItem = ({ link, title, value = 0 }: DashboardItemProps) => {
   return (
     <div className="rounded-md border-2 border-zinc-600 p-2 dark:border-zinc-300">
       {link.type === "internal" ? (

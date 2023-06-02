@@ -1,12 +1,12 @@
 import Header from "./Header";
 import Footer from "./Footer";
-import type { FC, ReactNode } from "react";
+import type { ReactNode } from "react";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
-const Layout: FC<LayoutProps> = ({ children }) => {
+const Layout = ({ children }: LayoutProps) => {
   return (
     <div className="flex h-full flex-col justify-between gap-4">
       <Header />

@@ -1,10 +1,8 @@
-import type { FC } from "react";
-
 export const metadata = {
   title: "404: Not Found",
 };
 
-const NotFound: FC = () => {
+const NotFound = () => {
   return (
     <div className="p-4">
       <h1 className="font-sora text-3xl font-semibold text-zinc-800 dark:text-zinc-200">

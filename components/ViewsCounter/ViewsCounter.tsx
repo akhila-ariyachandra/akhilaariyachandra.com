@@ -1,6 +1,5 @@
 "use client";
 
-import type { FC } from "react";
 import type { View } from "@/lib/types";
 import { useQuery } from "@tanstack/react-query";
 
@@ -8,7 +7,7 @@ interface ViewsCounterProps {
   slug: string;
 }
 
-const ViewsCounter: FC<ViewsCounterProps> = ({ slug }) => {
+const ViewsCounter = ({ slug }: ViewsCounterProps) => {
   const { data } = useQuery({
     queryKey: ["views", slug],
     queryFn: () =>

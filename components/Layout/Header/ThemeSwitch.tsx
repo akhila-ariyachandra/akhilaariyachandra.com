@@ -1,14 +1,14 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 /**
  * Based off of gatsby-theme-novela
  * https://github.com/narative/gatsby-theme-novela/blob/master/%40narative/gatsby-theme-novela/src/components/Navigation/Navigation.Header.tsx
  */
 
-const ThemeSwitch: FC = () => {
+const ThemeSwitch = () => {
   const [hasMounted, setIsMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 

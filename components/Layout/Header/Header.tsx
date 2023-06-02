@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import ThemeSwitch from "./ThemeSwitch";
-import type { FC, ComponentProps } from "react";
+import type { ComponentProps } from "react";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 
@@ -33,7 +33,7 @@ const NAV_LINKS: {
   },
 ];
 
-const Header: FC = () => {
+const Header = () => {
   const pathname = usePathname();
 
   return (

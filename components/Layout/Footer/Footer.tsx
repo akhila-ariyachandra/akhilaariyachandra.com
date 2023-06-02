@@ -1,6 +1,6 @@
 import NowPlaying from "./NowPlaying";
 import Link from "next/link";
-import type { FC, ReactNode, ComponentProps } from "react";
+import type { ReactNode, ComponentProps } from "react";
 
 const LINKS: {
   href: ComponentProps<typeof Link>["href"];
@@ -16,7 +16,7 @@ interface ExternalLinkProps {
   link: string;
 }
 
-const ExternalLink: FC<ExternalLinkProps> = ({ children, link }) => (
+const ExternalLink = ({ children, link }: ExternalLinkProps) => (
   <a
     className="font-semibold text-emerald-800 dark:text-emerald-500"
     href={link}
@@ -27,7 +27,7 @@ const ExternalLink: FC<ExternalLinkProps> = ({ children, link }) => (
   </a>
 );
 
-const Footer: FC = () => {
+const Footer = () => {
   return (
     <footer className="mt-10 bg-emerald-200 dark:bg-zinc-800">
       <div className="container flex max-w-3xl flex-col space-y-6 px-4 py-6">

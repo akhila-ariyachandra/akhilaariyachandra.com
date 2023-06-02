@@ -4,7 +4,6 @@ import config from "@/lib/config";
 import Balancer from "react-wrap-balancer";
 import BlogPostViews from "./views";
 import MDXComponent from "@/components/MDXComponent";
-import type { FC } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { formatDate } from "@/lib/helpers";
@@ -54,7 +53,7 @@ export const generateMetadata = ({ params }: BlogPostPageProps) => {
   } satisfies Metadata;
 };
 
-const BlogPostPage: FC<BlogPostPageProps> = ({ params }) => {
+const BlogPostPage = ({ params }: BlogPostPageProps) => {
   const slug = params?.slug.toString();
 
   const post = allPosts.find((post) => post.slug === slug);

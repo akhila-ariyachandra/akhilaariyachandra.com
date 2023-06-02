@@ -3,9 +3,7 @@ import config from "@/lib/config";
 import coverPic from "@/public/cover-pic.jpg";
 import Image from "next/image";
 import MDXComponent from "@/components/MDXComponent";
-import LoadingPostLink from "@/components/LoadingPostLink/LoadingPostLink";
 import MostPopularPosts from "./MostPopularPosts";
-import { type FC, Suspense } from "react";
 import { getPeriod } from "@/lib/helpers";
 import { FaDev, FaGithub, FaRssSquare, FaTwitterSquare } from "react-icons/fa";
 import { about, career } from ".contentlayer/generated";
@@ -24,7 +22,7 @@ interface SocialIconsProps {
   link: string;
 }
 
-const SocialLink: FC<SocialIconsProps> = ({ site, link }) => {
+const SocialLink = ({ site, link }: SocialIconsProps) => {
   const Icon = SocialIcons[site];
 
   return (
@@ -40,7 +38,7 @@ const SocialLink: FC<SocialIconsProps> = ({ site, link }) => {
   );
 };
 
-const HomePage: FC = () => {
+const HomePage = () => {
   return (
     <>
       <Image
@@ -80,20 +78,7 @@ const HomePage: FC = () => {
           Most Popular Posts
         </h2>
         <div className="my-8 flex flex-col gap-6">
-          <Suspense
-            fallback={
-              <>
-                <LoadingPostLink />
-
-                <LoadingPostLink />
-
-                <LoadingPostLink />
-              </>
-            }
-          >
-            {/* @ts-expect-error Async Server Component */}
-            <MostPopularPosts />
-          </Suspense>
+          <MostPopularPosts />
         </div>
       </section>
 
