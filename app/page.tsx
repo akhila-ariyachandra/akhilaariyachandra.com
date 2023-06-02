@@ -91,7 +91,6 @@ const HomePage: FC = () => {
               </>
             }
           >
-            {/* @ts-expect-error Async Server Component */}
             <MostPopularPosts />
           </Suspense>
         </div>

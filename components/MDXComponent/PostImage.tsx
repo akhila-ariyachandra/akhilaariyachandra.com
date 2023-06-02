@@ -1,6 +1,5 @@
 import clsx from "classnames";
 import Image from "next/image";
-import type { FC } from "react";
 
 interface PostImageProps {
   src: string;
@@ -13,13 +12,7 @@ interface PostImageProps {
   };
 }
 
-const PostImage: FC<PostImageProps> = ({
-  src,
-  width,
-  height,
-  title,
-  credit,
-}) => {
+const PostImage = ({ src, width, height, title, credit }: PostImageProps) => {
   return (
     <div className="not-prose my-5 grid place-items-center">
       <Image

@@ -1,5 +1,3 @@
-import { type FC } from "react";
-
 interface VideoProps {
   paths: {
     webm: string;
@@ -10,7 +8,7 @@ interface VideoProps {
   width: number;
 }
 
-const Video: FC<VideoProps> = ({ paths, width, height, title }) => {
+const Video = ({ paths, width, height, title }: VideoProps) => {
   return (
     <div
       className="not-prose relative mx-auto my-4 w-full"
