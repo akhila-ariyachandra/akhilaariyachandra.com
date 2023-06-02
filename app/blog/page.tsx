@@ -2,7 +2,6 @@ import dayjs from "dayjs";
 import config from "@/lib/config";
 import ListContainer from "@/components/ListContainer";
 import PostLink from "@/components/PostLink";
-import type { FC } from "react";
 import { allPosts } from "contentlayer/generated";
 
 export const metadata = {
@@ -15,7 +14,7 @@ export const metadata = {
   },
 };
 
-const BlogPage: FC = () => {
+const BlogPage = () => {
   return (
     <ListContainer title="Blog">
       {allPosts

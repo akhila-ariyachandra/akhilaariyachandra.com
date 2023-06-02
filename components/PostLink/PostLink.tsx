@@ -2,7 +2,6 @@ import dayjs from "dayjs";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import ViewsCounter from "@/components/ViewsCounter";
-import type { FC } from "react";
 import { formatDate } from "@/lib/helpers";
 
 interface PostLinkProps {
@@ -11,7 +10,7 @@ interface PostLinkProps {
   date: string;
 }
 
-const PostLink: FC<PostLinkProps> = ({ slug, title, date }) => {
+const PostLink = ({ slug, title, date }: PostLinkProps) => {
   return (
     <article className="space-y-2">
       <Link

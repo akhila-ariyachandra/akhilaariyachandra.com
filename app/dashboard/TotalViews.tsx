@@ -1,13 +1,12 @@
 "use client";
 import DashboardItem from "./DashboardItem";
-import type { FC } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 interface APIResponse {
   count: number;
 }
 
-const TotalViews: FC = () => {
+const TotalViews = () => {
   const { data } = useQuery<APIResponse>({
     queryKey: ["total-views"],
     queryFn: () =>

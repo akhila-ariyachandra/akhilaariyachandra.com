@@ -5,7 +5,7 @@ import Image from "next/image";
 import MDXComponent from "@/components/MDXComponent";
 import LoadingPostLink from "@/components/LoadingPostLink/LoadingPostLink";
 import MostPopularPosts from "./MostPopularPosts";
-import { type FC, Suspense } from "react";
+import { Suspense } from "react";
 import { getPeriod } from "@/lib/helpers";
 import { FaDev, FaGithub, FaRssSquare, FaTwitterSquare } from "react-icons/fa";
 import { about, career } from ".contentlayer/generated";
@@ -24,7 +24,7 @@ interface SocialIconsProps {
   link: string;
 }
 
-const SocialLink: FC<SocialIconsProps> = ({ site, link }) => {
+const SocialLink = ({ site, link }: SocialIconsProps) => {
   const Icon = SocialIcons[site];
 
   return (
@@ -40,7 +40,7 @@ const SocialLink: FC<SocialIconsProps> = ({ site, link }) => {
   );
 };
 
-const HomePage: FC = () => {
+const HomePage = () => {
   return (
     <>
       <Image

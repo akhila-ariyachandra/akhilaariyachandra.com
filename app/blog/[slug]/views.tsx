@@ -2,14 +2,14 @@
 
 import ViewsCounter from "@/components/ViewsCounter/ViewsCounter";
 import type { View } from "@/lib/types";
-import { type FC, useEffect } from "react";
+import { useEffect } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface BlogPostViewsProps {
   slug: string;
 }
 
-const BlogPostViews: FC<BlogPostViewsProps> = ({ slug }) => {
+const BlogPostViews = ({ slug }: BlogPostViewsProps) => {
   const queryClient = useQueryClient();
 
   const queryKey = ["views", slug];

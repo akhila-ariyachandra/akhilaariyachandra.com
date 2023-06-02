@@ -1,12 +1,12 @@
 import Title from "@/components/Title";
-import type { FC, ReactNode } from "react";
+import type { ReactNode } from "react";
 
 interface ListContainerProps {
   title: string;
   children: ReactNode;
 }
 
-const ListContainer: FC<ListContainerProps> = ({ title, children }) => {
+const ListContainer = ({ title, children }: ListContainerProps) => {
   return (
     <>
       <Title title={title} />

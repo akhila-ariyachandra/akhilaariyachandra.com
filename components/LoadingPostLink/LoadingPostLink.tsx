@@ -1,9 +1,8 @@
 import Skeleton from "react-loading-skeleton";
-import type { FC } from "react";
 
 import "react-loading-skeleton/dist/skeleton.css";
 
-const LoadingPostLink: FC = () => {
+const LoadingPostLink = () => {
   return (
     <div className="space-y-2">
       <div className="block font-sora text-2xl font-bold text-emerald-700 dark:text-emerald-600 sm:text-3xl">

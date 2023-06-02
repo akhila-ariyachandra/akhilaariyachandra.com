@@ -3,7 +3,7 @@ import config from "@/lib/config";
 import Providers from "./providers";
 import Analytics from "./analytics";
 import Layout from "@/components/Layout";
-import type { ReactNode, FC } from "react";
+import type { ReactNode } from "react";
 import { Sora, Roboto_Slab as RobotoSlab } from "next/font/google";
 
 import "./global.scss";
@@ -49,7 +49,7 @@ interface RootLayoutProps {
   children: ReactNode;
 }
 
-const RootLayout: FC<RootLayoutProps> = ({ children }) => {
+const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html
       lang="en"
