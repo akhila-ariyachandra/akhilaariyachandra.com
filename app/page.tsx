@@ -1,7 +1,8 @@
 import dayjs from "dayjs";
 import config from "@/lib/config";
-import coverPic from "@/public/cover-pic.jpg";
+import profilePic from "@/assets/profile_pic.jpg";
 import Image from "next/image";
+import Balancer from "react-wrap-balancer";
 import MDXComponent from "@/components/MDXComponent";
 import MostPopularPosts from "./MostPopularPosts";
 import { getPeriod } from "@/lib/helpers";
@@ -41,21 +42,23 @@ const SocialLink = ({ site, link }: SocialIconsProps) => {
 const HomePage = () => {
   return (
     <>
-      <Image
-        src={coverPic}
-        alt={config.title}
-        title={config.title}
-        className="mb-10 rounded-lg"
-        priority
-        placeholder="blur"
-      />
-
       <div className="mt-4 space-y-6">
+        <Image
+          src={profilePic}
+          alt={config.title}
+          title={config.title}
+          className="h-40 w-40 rounded-lg sm:h-48 sm:w-48 md:float-left md:mr-6"
+          priority
+          placeholder="blur"
+        />
+
         <h1 className="font-sora text-3xl font-black text-zinc-800 dark:text-zinc-200 sm:text-4xl">
-          {`Hi, I'm `}
-          <span className="text-emerald-700 dark:text-emerald-600">
-            {config.title}
-          </span>
+          <Balancer>
+            {`Hi, I'm `}
+            <span className="text-emerald-700 dark:text-emerald-600">
+              {config.title}
+            </span>
+          </Balancer>
         </h1>
 
         <MDXComponent code={about.body.code} />
