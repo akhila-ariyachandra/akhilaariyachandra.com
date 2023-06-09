@@ -15,15 +15,15 @@ const BlogPostViews = ({ slug }: BlogPostViewsProps) => {
   const queryKey = ["views", slug];
 
   const mutation = useMutation({
-    mutationFn: (): Promise<View> =>
+    mutationFn: () =>
       fetch(`/views/${slug}`, { method: "POST" }).then(async (res) => {
         const data = await res.json();
 
         if (!res.ok) {
-          throw new Error(data);
+          throw new Error("Error incrementing views");
         }
 
-        return data;
+        return data as View;
       }),
     onMutate: async () => {
       await queryClient.cancelQueries(queryKey);
