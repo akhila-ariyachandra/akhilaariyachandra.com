@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import config from "@/lib/config";
-import profilePic from "@/assets/profile_pic.jpg";
+import profilePic from "@/public/profile_pic.jpg";
 import Image from "next/image";
 import Balancer from "react-wrap-balancer";
 import MDXComponent from "@/components/MDXComponent";
