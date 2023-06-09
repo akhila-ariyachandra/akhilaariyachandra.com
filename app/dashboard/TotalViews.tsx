@@ -7,10 +7,12 @@ interface APIResponse {
 }
 
 const TotalViews = () => {
-  const { data } = useQuery<APIResponse>({
+  const { data } = useQuery({
     queryKey: ["total-views"],
     queryFn: () =>
-      fetch("/views", { cache: "no-store" }).then((res) => res.json()),
+      fetch("/views", { cache: "no-store" })
+        .then((res) => res.json())
+        .then((data) => data as APIResponse),
     placeholderData: { count: 0 },
   });
 

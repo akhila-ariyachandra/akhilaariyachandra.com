@@ -6,12 +6,12 @@ import { useQuery } from "@tanstack/react-query";
 import { FaSpotify } from "react-icons/fa";
 
 const NowPlaying = () => {
-  const { data } = useQuery<Song>({
+  const { data } = useQuery({
     queryKey: ["spotify", "nowPlaying"],
     queryFn: () =>
-      fetch("/spotify/now-playing", { cache: "no-store" }).then((res) =>
-        res.json()
-      ),
+      fetch("/spotify/now-playing", { cache: "no-store" })
+        .then((res) => res.json())
+        .then((data) => data as Song),
   });
 
   return (
