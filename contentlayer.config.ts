@@ -158,6 +158,11 @@ export default makeSource({
   documentTypes: [Post, About, Snippet, Career],
   mdx: {
     remarkPlugins: [smartypants, a11yEmoji, remarkGfm],
-    rehypePlugins: [rehypeSlug, rehypeCodeTitles, rehypePrism, externalLinks],
+    rehypePlugins: [
+      rehypeSlug,
+      rehypeCodeTitles,
+      rehypePrism,
+      [externalLinks, { target: "_blank", rel: ["noopener", "noreferrer"] }],
+    ],
   },
 });
