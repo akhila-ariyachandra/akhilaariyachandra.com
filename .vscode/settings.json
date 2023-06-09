@@ -9,5 +9,8 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "files.associations": {
     "*.mdx": "markdown"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
   }
 }
