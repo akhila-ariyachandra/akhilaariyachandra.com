@@ -107,7 +107,11 @@ type TopTracks = {
 export const getTopTracks = async () => {
   const { access_token } = await getAccessToken();
 
-  const response = await fetch(`${TOP_TRACKS_ENDPOINT}?limit=10`, {
+  const url = new URL(TOP_TRACKS_ENDPOINT);
+  url.searchParams.set("limit", "10");
+  url.searchParams.set("time_range", "short_term");
+
+  const response = await fetch(url.toString(), {
     headers: {
       Authorization: `Bearer ${access_token}`,
     },
