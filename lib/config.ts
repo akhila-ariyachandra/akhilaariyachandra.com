@@ -10,8 +10,7 @@ const config = {
     github: `https://github.com/akhila-ariyachandra`,
     dev: `https://dev.to/akhilaariyachandra`,
     twitter: `https://twitter.com/heshan_1010`,
-    cv: "https://resume.io/r/ivBMtgAHg",
   },
-} as const;
+};
 
 export default config;
