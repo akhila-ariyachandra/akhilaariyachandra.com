@@ -7,6 +7,7 @@ import MDXComponent from "@/components/MDXComponent";
 import MostPopularPosts from "./MostPopularPosts";
 import { getPeriod } from "@/lib/helpers";
 import { FaDev, FaGithub, FaRssSquare, FaTwitterSquare } from "react-icons/fa";
+import { TiDocumentText } from "react-icons/ti";
 import { about, career } from ".contentlayer/generated";
 
 export const revalidate = 86400;
@@ -16,6 +17,7 @@ const SocialIcons = {
   DEV: FaDev,
   Twitter: FaTwitterSquare,
   RSS: FaRssSquare,
+  CV: TiDocumentText,
 };
 
 interface SocialIconsProps {
@@ -64,6 +66,8 @@ const HomePage = () => {
         <MDXComponent code={about.body.code} />
 
         <div className="flex flex-row space-x-2">
+          <SocialLink site="CV" link={config.social.cv} />
+
           <SocialLink site="GitHub" link={config.social.github} />
 
           <SocialLink site="DEV" link={config.social.dev} />
