@@ -33,7 +33,7 @@ const Footer = () => {
       <div className="container flex max-w-3xl flex-col space-y-6 px-4 py-6">
         <NowPlaying />
 
-        <nav className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+        <nav className="grid grid-cols-2 justify-items-start gap-2 sm:grid-cols-3">
           {LINKS.map((link) => (
             <Link
               href={link.href}
