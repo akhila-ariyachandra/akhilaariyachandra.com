@@ -10,7 +10,7 @@ interface DEVArticle {
 }
 
 export const metadata = {
-  title: "Dashboard",
+  title: `Dashboard | ${config.title}`,
   openGraph: {
     title: "Dashboard",
     url: `${config.siteUrl}/dashboard`,
