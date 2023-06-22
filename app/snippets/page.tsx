@@ -5,7 +5,7 @@ import ListContainer from "@/components/ListContainer";
 import { allSnippets } from "contentlayer/generated";
 
 export const metadata = {
-  title: "Code Snippets",
+  title: `Code Snippets | ${config.title}`,
   description: "A few pieces of code I've found useful",
   openGraph: {
     title: "Code Snippets",

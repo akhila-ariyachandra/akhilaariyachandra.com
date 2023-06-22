@@ -32,7 +32,7 @@ export const generateMetadata = ({ params }: BlogPostPageProps) => {
   }
 
   return {
-    title: post.title,
+    title: `${post.title} | ${config.title}`,
     description: post.description,
     openGraph: {
       title: post.title,

@@ -5,7 +5,7 @@ import PostLink from "@/components/PostLink";
 import { allPosts } from "contentlayer/generated";
 
 export const metadata = {
-  title: "Blog",
+  title: `Blog | ${config.title}`,
   description: "A blog about Javascript, React and Web Development",
   openGraph: {
     title: "Blog",
