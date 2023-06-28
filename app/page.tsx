@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import config from "@/lib/config";
-import profilePic from "@/public/profile_pic.jpg";
+import profilePic from "@/public/profile_pic.png";
 import Image from "next/image";
 import Balancer from "react-wrap-balancer";
 import MDXComponent from "@/components/MDXComponent";
@@ -48,6 +48,8 @@ const HomePage = () => {
           alt={config.title}
           title={config.title}
           className="h-40 w-40 rounded-lg sm:h-48 sm:w-48 md:float-left md:mr-6"
+          width={192}
+          height={192}
           priority
           placeholder="blur"
         />
