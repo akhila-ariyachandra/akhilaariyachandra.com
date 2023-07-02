@@ -37,7 +37,7 @@ const SpecialBlock = ({ type, children }: SpecialBlockProps) => {
     <div className={clsx(styles.wrapper, wrapperClass)}>
       <Icon className={iconClass} />
 
-      <div className="ml-2 flex-1 font-sora text-sm text-zinc-800 dark:text-zinc-200 sm:text-base">
+      <div className="ml-2 flex-1 font-display text-sm text-zinc-800 dark:text-zinc-200 sm:text-base">
         {children}
       </div>
     </div>

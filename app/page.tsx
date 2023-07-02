@@ -54,7 +54,7 @@ const HomePage = () => {
           placeholder="blur"
         />
 
-        <h1 className="font-sora text-3xl font-black text-zinc-800 dark:text-zinc-200 sm:text-4xl">
+        <h1 className="font-display text-3xl font-black text-zinc-800 dark:text-zinc-200 sm:text-4xl">
           <Balancer>
             {`Hi, I'm `}
             <span className="text-emerald-700 dark:text-emerald-600">
@@ -79,7 +79,7 @@ const HomePage = () => {
       <hr className="my-12 h-[1px] bg-zinc-200 dark:bg-zinc-600" />
 
       <section>
-        <h2 className="font-sora text-3xl font-bold text-zinc-800 dark:text-zinc-200 sm:text-4xl">
+        <h2 className="font-display text-3xl font-bold text-zinc-800 dark:text-zinc-200 sm:text-4xl">
           Most Popular Posts
         </h2>
         <div className="my-8 flex flex-col gap-6">
@@ -90,7 +90,7 @@ const HomePage = () => {
       <hr className="my-12 h-[1px] bg-zinc-200 dark:bg-zinc-600" />
 
       <section>
-        <h2 className="font-sora text-3xl font-bold text-zinc-800 dark:text-zinc-200 sm:text-4xl">
+        <h2 className="font-display text-3xl font-bold text-zinc-800 dark:text-zinc-200 sm:text-4xl">
           Career
         </h2>
 
@@ -110,7 +110,7 @@ const HomePage = () => {
               />
 
               <div className="break-words">
-                <h3 className="font-sora text-lg font-semibold text-zinc-800 dark:text-zinc-200 sm:text-xl">
+                <h3 className="font-display text-lg font-semibold text-zinc-800 dark:text-zinc-200 sm:text-xl">
                   {job.position}
                 </h3>
 
@@ -118,12 +118,12 @@ const HomePage = () => {
                   href={job.company.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block font-sora text-base font-medium text-emerald-700 dark:text-emerald-600 sm:text-lg"
+                  className="block font-display text-base font-medium text-emerald-700 dark:text-emerald-600 sm:text-lg"
                 >
                   {job.company.name}
                 </a>
 
-                <div className="font-roboto-slab text-sm font-normal text-zinc-800 dark:text-zinc-200 sm:text-base">
+                <div className="text-sm font-normal text-zinc-800 dark:text-zinc-200 sm:text-base">
                   <span>
                     {`${dayjs(job.period.start).format("MMMM YYYY")} - ${
                       job.period.end

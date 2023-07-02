@@ -38,14 +38,14 @@ const Footer = () => {
             <Link
               href={link.href}
               key={link.title}
-              className="font-sora text-lg font-medium text-emerald-900 dark:text-zinc-300 sm:text-xl"
+              className="font-display text-lg font-medium text-emerald-900 dark:text-zinc-300 sm:text-xl"
             >
               {link.title}
             </Link>
           ))}
         </nav>
 
-        <div className="font-sora text-sm font-medium text-zinc-800 dark:text-zinc-200 sm:text-base">
+        <div className="font-display text-sm font-medium text-zinc-800 dark:text-zinc-200 sm:text-base">
           © 2019 - {new Date().getFullYear()}, Built with
           {` `}
           <ExternalLink link="https://nextjs.org/">Next.js</ExternalLink>

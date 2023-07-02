@@ -41,7 +41,7 @@ const NowPlaying = () => {
       <div className="inline-flex w-full max-w-full flex-col truncate sm:flex-row">
         {data?.songUrl ? (
           <a
-            className="max-w-max truncate font-sora font-medium text-emerald-900 dark:text-zinc-100"
+            className="max-w-max truncate font-display font-medium text-emerald-900 dark:text-zinc-100"
             href={data.songUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -49,14 +49,14 @@ const NowPlaying = () => {
             {data.name}
           </a>
         ) : (
-          <p className="font-sora font-medium text-zinc-800 dark:text-zinc-200">
+          <p className="font-display font-medium text-zinc-800 dark:text-zinc-200">
             Not Playing
           </p>
         )}
-        <span className="mx-2 hidden font-sora text-zinc-600 dark:text-zinc-300 sm:block">
+        <span className="mx-2 hidden font-display text-zinc-600 dark:text-zinc-300 sm:block">
           {" – "}
         </span>
-        <p className="max-w-max truncate font-sora text-zinc-700 dark:text-zinc-300">
+        <p className="max-w-max truncate font-display text-zinc-700 dark:text-zinc-300">
           {data?.artist ?? "Spotify"}
         </p>
       </div>

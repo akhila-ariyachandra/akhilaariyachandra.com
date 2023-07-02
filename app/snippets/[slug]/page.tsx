@@ -57,11 +57,11 @@ const SnippetsPostPage = async ({ params }: SnippetsPostPageProps) => {
 
   return (
     <>
-      <h1 className="my-8 px-4 text-center font-sora text-3xl font-black text-zinc-800 dark:text-zinc-200 sm:text-4xl">
+      <h1 className="my-8 px-4 text-center font-display text-3xl font-black text-zinc-800 dark:text-zinc-200 sm:text-4xl">
         <Balancer>{snippet.title}</Balancer>
       </h1>
 
-      <p className="my-2 px-4 text-center font-roboto-slab text-base font-medium text-zinc-800 dark:text-zinc-200 sm:text-lg">
+      <p className="my-2 px-4 text-center text-base font-medium text-zinc-800 dark:text-zinc-200 sm:text-lg">
         {snippet.description}
       </p>
 

@@ -8,15 +8,15 @@ import { Sora, Roboto_Slab as RobotoSlab } from "next/font/google";
 
 import "./global.scss";
 
-const sora = Sora({
+const display = Sora({
   display: "swap",
   subsets: ["latin"],
-  variable: "--font-sora",
+  variable: "--font-display",
 });
-const robotoSlab = RobotoSlab({
+const body = RobotoSlab({
   display: "swap",
   subsets: ["latin"],
-  variable: "--font-roboto-slab",
+  variable: "--font-body",
 });
 
 export const metadata = {
@@ -55,11 +55,11 @@ const RootLayout = ({ children }: RootLayoutProps) => {
       lang="en"
       className={clsx(
         "h-full overflow-y-scroll scroll-smooth",
-        sora.variable,
-        robotoSlab.variable
+        display.variable,
+        body.variable
       )}
     >
-      <body className="h-full bg-white antialiased transition-colors duration-200 dark:bg-zinc-900">
+      <body className="h-full bg-white font-body antialiased transition-colors duration-200 dark:bg-zinc-900">
         <Providers>
           <Layout>{children}</Layout>
         </Providers>
