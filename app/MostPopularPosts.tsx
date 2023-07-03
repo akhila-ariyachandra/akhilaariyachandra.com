@@ -1,7 +1,8 @@
 import PostLink from "@/components/PostLink";
 import { desc } from "drizzle-orm";
 import { allPosts, type Post } from ".contentlayer/generated";
-import { db, views } from "@/db/schema";
+import { db } from "@/db/connection";
+import { views } from "@/db/schema";
 
 const getMostPopularPosts = async () => {
   const topViews = await db
