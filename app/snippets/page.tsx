@@ -28,12 +28,12 @@ const SnippetsPage = async () => {
         <article key={snippet.slug} className="space-y-2">
           <Link
             href={`/snippets/${snippet.slug}`}
-            className="block font-sora text-2xl font-bold text-emerald-700 dark:text-emerald-600 sm:text-3xl"
+            className="block font-display text-2xl font-bold text-emerald-700 dark:text-emerald-600 sm:text-3xl"
           >
             <Balancer>{snippet.title}</Balancer>
           </Link>
 
-          <p className="font-roboto-slab text-base font-medium text-zinc-800 dark:text-zinc-200 sm:text-lg">
+          <p className="text-base font-medium text-zinc-800 dark:text-zinc-200 sm:text-lg">
             {snippet.description}
           </p>
         </article>

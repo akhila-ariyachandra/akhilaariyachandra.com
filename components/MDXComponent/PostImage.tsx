@@ -25,7 +25,7 @@ const PostImage = ({ src, width, height, title, credit }: PostImageProps) => {
       />
 
       {credit && (
-        <div className="w-full rounded-b bg-zinc-100 py-1 text-center font-sora text-sm dark:bg-zinc-800 sm:text-base">
+        <div className="w-full rounded-b bg-zinc-100 py-1 text-center font-display text-sm dark:bg-zinc-800 sm:text-base">
           Credit -{" "}
           <a
             className="font-semibold text-emerald-800 dark:text-emerald-500"

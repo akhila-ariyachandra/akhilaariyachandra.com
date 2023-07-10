@@ -43,7 +43,7 @@ const Header = () => {
           <Link
             key={label}
             href={href}
-            className="relative px-3 py-1 font-sora text-base font-medium leading-none text-zinc-800 dark:text-zinc-200 sm:text-lg"
+            className="relative px-3 py-1 font-display text-base font-medium leading-none text-zinc-800 dark:text-zinc-200 sm:text-lg"
           >
             {!!pathname && activePath.test(pathname) && (
               <motion.span

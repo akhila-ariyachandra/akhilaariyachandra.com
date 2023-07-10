@@ -19,7 +19,7 @@ const MDXComponent = ({ code }: MDXComponentProps) => {
   return (
     <div
       className={classNames(
-        "prose prose-sm prose-gray my-4 max-w-none font-sora dark:prose-invert sm:prose-base prose-h1:mt-3.5 prose-a:text-emerald-700 prose-headings:prose-a:no-underline prose-a:dark:text-emerald-600",
+        "prose prose-sm prose-gray my-4 max-w-none font-display dark:prose-invert sm:prose-base prose-h1:mt-3.5 prose-a:text-emerald-700 prose-headings:prose-a:no-underline prose-a:dark:text-emerald-600",
         styles.customProse
       )}
     >

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { db, views } from "@/db/schema";
+import { db } from "@/db/connection";
+import { views } from "@/db/schema";
 import { sql } from "drizzle-orm";
 
 export const runtime = "edge";
