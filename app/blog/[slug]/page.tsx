@@ -6,7 +6,7 @@ import BlogPostViews from "./views";
 import MDXComponent from "@/components/MDXComponent";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { formatDate } from "@/lib/helpers";
+import { formatDate } from "@/lib/server-helpers";
 import { allPosts } from "contentlayer/generated";
 
 // https://beta.nextjs.org/docs/api-reference/generate-static-params

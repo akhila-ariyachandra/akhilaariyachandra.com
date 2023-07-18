@@ -1,53 +1,16 @@
-import "server-only";
-
-import dayjs from "dayjs";
-import advancedFormat from "dayjs/plugin/advancedFormat";
-
-dayjs.extend(advancedFormat);
-
-export const formatDate = (date: string): string =>
-  dayjs(date).format("Do MMMM YYYY");
-
-export const getPeriod = (start: string, end?: string) => {
-  const startDate = dayjs(start);
-  const endDate = dayjs(end);
-
-  const years = endDate.diff(startDate, "year");
-  const months = endDate.diff(startDate, "month") - years * 12;
-
-  let period = "";
-
-  if (years > 0) {
-    if (years === 1) {
-      period = "1 year";
-    } else {
-      period = `${years} years`;
-    }
+/**
+ * Since API requests from the server must contain absolute URLs,
+ * this function gets the proper base URL if called from the server
+ * @returns {string} Base URL
+ */
+export const getBaseURL = () => {
+  if (typeof window !== "undefined") {
+    return "";
   }
 
-  if (months > 0) {
-    if (period) {
-      period += ", ";
-    } else {
-      period = "";
-    }
-
-    if (months === 1) {
-      period += "1 month";
-    } else {
-      period += `${months} months`;
-    }
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
   }
 
-  if (years === 0 && months === 0) {
-    const days = endDate.diff(startDate, "day");
-
-    if (days === 1) {
-      period = `${days} day`;
-    } else {
-      period = `${days} days`;
-    }
-  }
-
-  return period;
+  return "http://localhost:3000";
 };

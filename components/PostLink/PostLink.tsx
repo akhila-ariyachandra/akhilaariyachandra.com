@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import ViewsCounter from "@/components/ViewsCounter";
-import { formatDate } from "@/lib/helpers";
+import { formatDate } from "@/lib/server-helpers";
 
 interface PostLinkProps {
   slug: string;
