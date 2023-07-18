@@ -1,6 +1,6 @@
 "use client";
 
-import ViewsCounter from "@/components/ViewsCounter/ViewsCounter";
+import ViewsCounter from "@/components/ViewsCounter";
 import type { View } from "@/lib/types";
 import { useEffect } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -26,7 +26,7 @@ const BlogPostViews = ({ slug }: BlogPostViewsProps) => {
         return data as View;
       }),
     onMutate: async () => {
-      await queryClient.cancelQueries(queryKey);
+      await queryClient.cancelQueries({ queryKey });
     },
     onSuccess: (data) => {
       // Set Query data from the POST response without making another GET request
@@ -34,7 +34,7 @@ const BlogPostViews = ({ slug }: BlogPostViewsProps) => {
     },
     onError: async () => {
       // Refetch query if there is an error
-      await queryClient.invalidateQueries(queryKey);
+      await queryClient.invalidateQueries({ queryKey });
     },
   });
 

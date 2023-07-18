@@ -5,7 +5,7 @@ import Image from "next/image";
 import Balancer from "react-wrap-balancer";
 import MDXComponent from "@/components/MDXComponent";
 import MostPopularPosts from "./MostPopularPosts";
-import { getPeriod } from "@/lib/helpers";
+import { getPeriod } from "@/lib/server-helpers";
 import { FaDev, FaGithub, FaRssSquare, FaTwitterSquare } from "react-icons/fa";
 import { about, career } from ".contentlayer/generated";
 

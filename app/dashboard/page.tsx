@@ -3,6 +3,7 @@ import DashboardItem from "./DashboardItem";
 import TotalViews from "./TotalViews";
 import Title from "@/components/Title";
 import TopTracks from "./top-tracks";
+import { Suspense } from "react";
 
 interface DEVArticle {
   page_views_count: number;
@@ -43,7 +44,22 @@ const DashboardPage = async () => {
       <Title title="Dashboard" />
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <TotalViews />
+        <Suspense
+          fallback={
+            <DashboardItem
+              title="Total Views"
+              link={{ type: "internal", url: "/blog" }}
+              value={0}
+            />
+          }
+        >
+          <TotalViews
+            dashboardItemProps={{
+              title: "Total Views",
+              link: { type: "internal", url: "/blog" },
+            }}
+          />
+        </Suspense>
 
         <DashboardItem
           title="DEV Views"
