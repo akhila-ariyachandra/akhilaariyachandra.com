@@ -16,7 +16,7 @@ const BlogPostViews = ({ slug }: BlogPostViewsProps) => {
 
   const mutation = useMutation({
     mutationFn: () =>
-      fetch(`/views/${slug}`, { method: "POST" }).then(async (res) => {
+      fetch(`/api/views/${slug}`, { method: "POST" }).then(async (res) => {
         const data = await res.json();
 
         if (!res.ok) {

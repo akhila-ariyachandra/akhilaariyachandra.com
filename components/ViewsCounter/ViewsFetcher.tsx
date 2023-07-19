@@ -12,7 +12,7 @@ const ViewsFetcher = ({ slug }: ViewsFetcherProps) => {
   const { data } = useQuery({
     queryKey: ["views", slug],
     queryFn: () =>
-      fetch(`${getBaseURL()}/views/${slug}`, { cache: "no-store" }).then(
+      fetch(`${getBaseURL()}/api/views/${slug}`, { cache: "no-store" }).then(
         (res) => res.json() as Promise<View>
       ),
     placeholderData: {

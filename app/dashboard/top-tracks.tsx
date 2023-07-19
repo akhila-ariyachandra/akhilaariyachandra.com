@@ -21,14 +21,7 @@ const getTopTenTracks = async () => {
   return tracks;
 };
 
-/**
- * https://gist.github.com/cramforce/b5e3f0b103f841d2e5e429b1d5ac4ded
- */
-function asyncComponent<T, R>(fn: (arg: T) => Promise<R>): (arg: T) => R {
-  return fn as (arg: T) => R;
-}
-
-const TopTracks = asyncComponent(async () => {
+const TopTracks = async () => {
   const tracks = await getTopTenTracks();
 
   return (
@@ -76,6 +69,6 @@ const TopTracks = asyncComponent(async () => {
       </div>
     </div>
   );
-});
+};
 
 export default TopTracks;
