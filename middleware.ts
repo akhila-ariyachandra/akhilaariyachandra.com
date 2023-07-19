@@ -14,7 +14,7 @@ const ratelimit = new Ratelimit({
 });
 
 export const config = {
-  matcher: "/views/:slug*",
+  matcher: "/api/views/:slug*",
 };
 
 export const middleware = async (
@@ -24,7 +24,7 @@ export const middleware = async (
   // Limit blog post views increment
   if (request.method === "POST") {
     const ip = request.ip ?? "127.0.0.1";
-    const slug = request.nextUrl.pathname.replace("/views/", "");
+    const slug = request.nextUrl.pathname.replace("/api/views/", "");
 
     const { success, pending, limit, reset, remaining } = await ratelimit.limit(
       `${ip}_${slug}`,

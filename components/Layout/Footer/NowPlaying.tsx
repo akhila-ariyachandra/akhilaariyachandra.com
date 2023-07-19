@@ -9,7 +9,7 @@ const NowPlaying = () => {
   const { data } = useQuery({
     queryKey: ["spotify", "nowPlaying"],
     queryFn: () =>
-      fetch("/spotify/now-playing", { cache: "no-store" })
+      fetch("/api/spotify/now-playing", { cache: "no-store" })
         .then((res) => res.json())
         .then((data) => data as Song),
   });

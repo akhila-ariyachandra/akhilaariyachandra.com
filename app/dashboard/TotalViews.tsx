@@ -20,7 +20,7 @@ const TotalViews = ({ dashboardItemProps }: TotalViewsProps) => {
   const { data } = useQuery({
     queryKey: ["total-views"],
     queryFn: () =>
-      fetch(`${getBaseURL()}/views`, { cache: "no-store" })
+      fetch(`${getBaseURL()}/api/views`, { cache: "no-store" })
         .then((res) => res.json())
         .then((data) => data as APIResponse),
     placeholderData: { count: 0 },
