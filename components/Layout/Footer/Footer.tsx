@@ -1,9 +1,10 @@
 import NowPlaying from "./NowPlaying";
 import Link from "next/link";
-import type { ReactNode, ComponentProps } from "react";
+import type { ReactNode } from "react";
+import type { Route } from "next";
 
 const LINKS: {
-  href: ComponentProps<typeof Link>["href"];
+  href: Route;
   title: string;
 }[] = [
   { href: "/blog", title: "Blog" },

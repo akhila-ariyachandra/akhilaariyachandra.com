@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import ThemeSwitch from "./ThemeSwitch";
-import type { ComponentProps } from "react";
+import type { Route } from "next";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 
 const NAV_LINKS: {
   label: string;
-  href: ComponentProps<typeof Link>["href"];
+  href: Route;
   activePath: RegExp;
 }[] = [
   {
