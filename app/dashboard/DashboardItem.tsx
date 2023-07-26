@@ -1,11 +1,11 @@
 import Link from "next/link";
-import type { ComponentProps } from "react";
+import type { Route } from "next";
 
 interface DashboardItemProps {
   title: string;
   link:
     | {
-        url: ComponentProps<typeof Link>["href"];
+        url: Route;
         type: "internal";
       }
     | {
