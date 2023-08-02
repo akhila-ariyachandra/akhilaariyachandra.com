@@ -1,5 +1,5 @@
-import clsx from "classnames";
 import Image from "next/image";
+import { cn } from "@/lib/helpers";
 
 interface PostImageProps {
   src: string;
@@ -19,7 +19,7 @@ const PostImage = ({ src, width, height, title, credit }: PostImageProps) => {
         src={src}
         width={width}
         height={height}
-        className={clsx("overflow-hidden", credit ? "rounded-t" : "rounded")}
+        className={cn("overflow-hidden", credit ? "rounded-t" : "rounded")}
         alt={title}
         title={title}
       />

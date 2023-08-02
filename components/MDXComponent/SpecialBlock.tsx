@@ -1,6 +1,6 @@
-import clsx from "classnames";
 import type { ReactNode } from "react";
 import type { IconType } from "react-icons/lib";
+import { cn } from "@/lib/helpers";
 import { FaExclamationCircle, FaLightbulb, FaStickyNote } from "react-icons/fa";
 
 import styles from "./SpecialBlock.module.scss";
@@ -34,7 +34,7 @@ const SpecialBlock = ({ type, children }: SpecialBlockProps) => {
   }
 
   return (
-    <div className={clsx(styles.wrapper, wrapperClass)}>
+    <div className={cn(styles.wrapper, wrapperClass)}>
       <Icon className={iconClass} />
 
       <div className="ml-2 flex-1 font-display text-sm text-zinc-800 dark:text-zinc-200 sm:text-base">

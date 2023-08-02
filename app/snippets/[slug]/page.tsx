@@ -62,7 +62,7 @@ const SnippetsPostPage = async ({ params }: SnippetsPostPageProps) => {
       </h1>
 
       <p className="my-2 px-4 text-center text-base font-medium text-zinc-800 dark:text-zinc-200 sm:text-lg">
-        {snippet.description}
+        <Balancer>{snippet.description}</Balancer>
       </p>
 
       <MDXComponent code={snippet.body.code} />
