@@ -1,10 +1,10 @@
-import classNames from "classnames";
 import CodeSandboxWrapper from "./CodeSandboxWrapper";
 import Iframe from "./Iframe";
 import PostImage from "./PostImage";
 import SpecialBlock from "./SpecialBlock";
 import Video from "./Video";
 import { getMDXComponent } from "next-contentlayer/hooks";
+import { cn } from "@/lib/helpers";
 
 import "prism-themes/themes/prism-night-owl.css";
 import styles from "./MDXComponent.module.scss";
@@ -18,7 +18,7 @@ const MDXComponent = ({ code }: MDXComponentProps) => {
 
   return (
     <div
-      className={classNames(
+      className={cn(
         "prose prose-sm prose-gray my-4 max-w-none font-display dark:prose-invert sm:prose-base prose-h1:mt-3.5 prose-a:text-emerald-700 prose-headings:prose-a:no-underline prose-a:dark:text-emerald-600",
         styles.customProse
       )}

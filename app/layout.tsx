@@ -1,10 +1,10 @@
-import clsx from "classnames";
 import config from "@/lib/config";
 import Providers from "./providers";
 import Analytics from "./analytics";
 import Layout from "@/components/Layout";
 import type { ReactNode } from "react";
 import { Sora, Roboto_Slab as RobotoSlab } from "next/font/google";
+import { cn } from "@/lib/helpers";
 
 import "./global.scss";
 
@@ -53,7 +53,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html
       lang="en"
-      className={clsx(
+      className={cn(
         "h-full overflow-y-scroll scroll-smooth",
         display.variable,
         body.variable
