@@ -1,0 +1,15 @@
+---
+title: Using 'clsx' or 'classnames' with 'tailwind-merge'
+description: A function that allows the conditional classnames from 'clsx' or 'classnames' to be passed into 'tailwind-merge'
+---
+
+Combining [clsx](https://www.npmjs.com/package/clsx) or [classnames](https://www.npmjs.com/package/classnames) with [tailwind-merge](https://www.npmjs.com/package/tailwind-merge) allows us to conditionally join [Tailwind CSS](https://tailwindcss.com/) classes in `classNames` together without style conflicts. Inspired by [shadcn/ui](https://ui.shadcn.com/).
+
+```typescript {4-6}
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+function cn(...args: ClassValue[]) {
+  return twMerge(clsx(args));
+}
+```
