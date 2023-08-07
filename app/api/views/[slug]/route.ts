@@ -4,7 +4,7 @@ import { db } from "@/db/connection";
 import { views } from "@/db/schema";
 import { allPosts } from ".contentlayer/generated";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 interface Options {
   params: {
