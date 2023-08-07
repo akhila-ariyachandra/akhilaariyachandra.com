@@ -25,7 +25,7 @@ yarn add backpack-core -D
 
 Then add the following scripts to `package.json`.
 
-```json:package.json
+```json package.json
 {
   "scripts": {
     "dev": "backpack",
@@ -50,7 +50,7 @@ yarn add mongoose
 
 After that create a folder with the name **'src'** in the project,create a file named `database.js` and insert the following code in it.
 
-```javascript:src/database.js
+```javascript src/database.js
 // Import the dependency
 import mongoose from "mongoose";
 
@@ -84,7 +84,7 @@ Once we're done setting up the database, we need to create a model to perform **
 
 First create a folder with the name **'models'** in **'src'**. Then create a file called `noteModel.js` in it and add the following code.
 
-```javascript:src/models/noteModel.js
+```javascript src/models/noteModel.js
 // Import the database instance
 import mongoose from "../database";
 
@@ -114,7 +114,7 @@ yarn add express body-parser cors
 
 After the dependencies have finished installing create the file `index.js` in **'src'** with the code
 
-```javascript:src/index.js
+```javascript src/index.js
 // Import the dependencies
 import express from "express";
 import bodyParser from "body-parser";
@@ -160,7 +160,7 @@ Let's stop the server with **Ctrl+C** and continue adding the routes in the API.
 
 Our first route will be one to create new notes.
 
-```javascript:src/index.js
+```javascript src/index.js
 // Route to save a new note - POST method
 app.post("/note", async (req, res) => {
   try {
@@ -182,7 +182,7 @@ app.post("/note", async (req, res) => {
 
 The next route will be to get the entire list of notes.
 
-```javascript:src/index.js
+```javascript src/index.js
 // Route to get all the notes - GET method
 app.get("/note", async (req, res) => {
   try {
@@ -201,7 +201,7 @@ app.get("/note", async (req, res) => {
 
 We'll need a route to get a single note based on the ID.
 
-```javascript:src/index.js
+```javascript src/index.js
 // Route to get one note based on the ID - GET method
 app.get("/note/:id", async (req, res) => {
   try {
@@ -223,7 +223,7 @@ app.get("/note/:id", async (req, res) => {
 
 The second to last route will be to update a note.
 
-```javascript:src/index.js
+```javascript src/index.js
 // Route to update a note - PUT method
 app.put("/note/:id", async (req, res) => {
   try {
@@ -248,7 +248,7 @@ app.put("/note/:id", async (req, res) => {
 
 Our final route will be to delete a note.
 
-```javascript:src/index.js
+```javascript src/index.js
 // Route to delete a note - DELETE method
 app.delete("/note/:id", async (req, res) => {
   try {
@@ -270,7 +270,7 @@ app.delete("/note/:id", async (req, res) => {
 
 Finally `index.js` should look like this.
 
-```javascript:src/index.js
+```javascript src/index.js
 // Import the dependencies
 import express from "express";
 import bodyParser from "body-parser";

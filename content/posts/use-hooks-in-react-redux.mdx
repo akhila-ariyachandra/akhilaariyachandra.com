@@ -18,7 +18,7 @@ Before we start refactoring let's check out the two hooks we are going to use.
 
 First lets remove the props, `connect()` Higher Order Component and `mapStateToProps` and `mapDispatchToProps`.
 
-```jsx:src/components/Controls.js
+```jsx src/components/Controls.js
 const Controls = () => {
   return (
     <div>
@@ -44,37 +44,37 @@ export default Controls;
 
 Then we need to import the two hooks from **react-redux**.
 
-```javascript:src/components/Controls.js
+```javascript src/components/Controls.js
 import { useSelector, useDispatch } from "react-redux";
 ```
 
 To get the redux state, we need to use `useSelector`. `useSelector` needs a function as an argument where the redux state is the parameter and the return object is the state we need, similar to `mapStateToProps`. So use `useSelector` to declare the user inside the component.
 
-```javascript:src/components/Controls.js
+```javascript src/components/Controls.js
 const user = useSelector((state) => ({ user: state.user }));
 ```
 
 The above line of code can be shortened to the following.
 
-```javascript:src/components/Controls.js
+```javascript src/components/Controls.js
 const user = useSelector((state) => state.user);
 ```
 
 To call the redux actions, we need to declare the dispatch function in the component using the `useDispatch` hook. After that we can call out redux actions inside the dispatch function like we did in the `getUser` action.
 
-```javascript:src/components/Controls.js
+```javascript src/components/Controls.js
 const dispatch = useDispatch();
 ```
 
 Just change all actions to run inside the `dispatch` function like this.
 
-```javascript:src/components/Controls.js
+```javascript src/components/Controls.js
 dispatch(setUserId(user.userId - 1));
 ```
 
 In the end the Controls component should look like this.
 
-```jsx:src/components/Controls.js
+```jsx src/components/Controls.js
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setUserId } from "../redux/user/actions";
@@ -112,31 +112,31 @@ We need to refactor the Display component the same way we did the Controls compo
 - Remove all the `connect()` Higher Order Component related code.
 - Import `useSelector` and `useDispatch`.
 
-```javascript:src/components/Display.js
+```javascript src/components/Display.js
 import { useSelector, useDispatch } from "react-redux";
 ```
 
 - Declare the user state using `useSelector`.
 
-```javascript:src/components/Display.js
+```javascript src/components/Display.js
 const user = useSelector((state) => state.user);
 ```
 
 - Declare the dispatch function using `useDispatch`.
 
-```javascript:src/components/Display.js
+```javascript src/components/Display.js
 const dispatch = useDispatch();
 ```
 
 - Change all Redux action to be called inside the `dispatch` function.
 
-```javascript:src/components/Display.js
+```javascript src/components/Display.js
 dispatch(getUser(user.userId));
 ```
 
 In the end the code for the Display component should look like this.
 
-```jsx:src/components/Display.js
+```jsx src/components/Display.js
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "../redux/user/actions";

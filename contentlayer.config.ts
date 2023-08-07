@@ -1,7 +1,5 @@
 import readingTime from "reading-time";
 import a11yEmoji from "@fec/remark-a11y-emoji";
-import rehypeCodeTitles from "rehype-code-titles";
-import rehypePrism from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
 import externalLinks from "rehype-external-links";
 import remarkGfm from "remark-gfm";
@@ -11,6 +9,7 @@ import {
   defineNestedType,
   makeSource,
 } from "contentlayer/source-files";
+import { remarkCodeHike } from "@code-hike/mdx";
 
 export const Post = defineDocumentType(() => ({
   name: "Post",
@@ -157,11 +156,14 @@ export default makeSource({
   contentDirPath: "content",
   documentTypes: [Post, About, Snippet, Career],
   mdx: {
-    remarkPlugins: [smartypants, a11yEmoji, remarkGfm],
+    remarkPlugins: [
+      smartypants,
+      a11yEmoji,
+      remarkGfm,
+      [remarkCodeHike, { theme: "material-ocean", showCopyButton: true }],
+    ],
     rehypePlugins: [
       rehypeSlug,
-      rehypeCodeTitles,
-      rehypePrism,
       [externalLinks, { target: "_blank", rel: ["noopener", "noreferrer"] }],
     ],
   },
