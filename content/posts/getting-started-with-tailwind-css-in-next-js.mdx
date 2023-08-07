@@ -1,7 +1,7 @@
 ---
 title: "Getting started with Tailwind CSS in Next.js"
 posted: "2020-06-27"
-updated: "2021-04-12"
+updated: "2023-08-17"
 description: "Adding Tailwind CSS to a Next.js project"
 banner: "/posts/getting-started-with-tailwind-css-in-next-js/banner.png"
 unsplash:
@@ -27,7 +27,7 @@ yarn add react react-dom next
 
 Next add the following scripts in `package.json`.
 
-```json:package.json
+```json package.json
 {
   "scripts": {
     "dev": "next",
@@ -39,7 +39,7 @@ Next add the following scripts in `package.json`.
 
 After that let's create a layout component to wrap all our components in all the pages. Create the `src` folder. In it create another folder called `components` and in it create `Layout.js`.
 
-```jsx:src/components/Layout.js
+```jsx src/components/Layout.js
 const Layout = ({ children }) => {
   return (
     <div>
@@ -53,7 +53,7 @@ export default Layout;
 
 Next let's create the index page in out application. In the project root create the `pages` folder and in it create `index.js`.
 
-```jsx:pages/index.js
+```jsx pages/index.js
 import Layout from "../src/components/Layout";
 
 const Index = () => {
@@ -105,32 +105,17 @@ Since Tailwind CSS has thousands of CSS classes the CSS file will end up very bi
   title="Tailwind CSS size"
 />
 
-Since we will will rarely use the all classes, we should specify which classes to include the final CSS file. Fortunately Tailwind CSS has a built in [PurgeCSS](https://purgecss.com/) tool which can be used to remove all unused classes.
+Since we will will rarely use the all classes, we should specify which classes to include the final CSS file. Fortunately Tailwind CSS has a built in tool which can be used to remove all unused classes.
 
-In the `tailwind.config.js` add all the React component files in the `purge` property. In our case we will add all files in the `pages` and `components` folders.
+In the `tailwind.config.js` add all the React component files in the `content` property. In our case we will add all files in the `pages` (and/or the `app`) and `components` folders.
 
-```javascript:tailwind.config.js {2}
+```javascript tailwind.config.js focus=2:6
 module.exports = {
-  purge: ["./pages/**/*.js", "./src/components/**/*.js"],
-  darkMode: false,
-  theme: {
-    extend: {},
-  },
-  variants: {
-    extend: {},
-  },
-  plugins: [],
-};
-```
-
-Since Tailwind CSS generates a lot of classes by default, running the application in development mode can be quite slow especially when trying to use DevTools.
-
-To help with this we can use the [Just-in-Time Mode](https://tailwindcss.com/docs/just-in-time-mode). To enable it we just need to add it to the `tailwind.config.js` file.
-
-```javascript:tailwind.config.js {2}
-module.exports = {
-  mode: "jit",
-  purge: ["./pages/**/*.js", "./src/components/**/*.js"],
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx,scss}",
+    "./app/**/*.{js,ts,jsx,tsx,scss}",
+    "./components/**/*.{tsx,module.scss}",
+  ],
   darkMode: false,
   theme: {
     extend: {},
@@ -146,8 +131,8 @@ Finally we need to import Tailwind CSS to our application. In Next.js we have to
 
 Create the `_app.js` file in the `pages` folder and directly import the CSS file.
 
-```jsx:pages/_app.js
-import 'tailwindcss/tailwind.css'
+```jsx pages/_app.js
+import "tailwindcss/tailwind.css";
 
 const MyApp = ({ Component, pageProps }) => {
   return <Component {...pageProps} />;
@@ -162,7 +147,7 @@ That's all you need to do to start using Tailwind CSS in your Next.js project. Y
 
 For example, we can style the title in the index page like this.
 
-```jsx:pages/index.js {6}
+```jsx pages/index.js focus=6[11:51]
 import Layout from "../src/components/Layout";
 
 const Index = () => {
@@ -187,7 +172,7 @@ export default Index;
 
 We can center all the content by adding some classes to the `Layout` component.
 
-```jsx:pages/index.js {4}
+```jsx pages/index.js focus=4[13:41]
 const Layout = ({ children }) => {
   return (
     <div>

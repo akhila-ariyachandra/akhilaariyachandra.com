@@ -15,6 +15,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,js,json,md,mdx,scss,yaml}\""
   },
   "dependencies": {
+    "@code-hike/mdx": "0.9.0",
     "@fec/remark-a11y-emoji": "3.1.0",
     "@next/bundle-analyzer": "13.4.13",
     "@planetscale/database": "1.10.0",
@@ -33,15 +34,12 @@
     "next": "13.4.13",
     "next-contentlayer": "0.3.4",
     "next-themes": "0.2.1",
-    "prism-themes": "1.9.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "4.10.1",
     "react-wrap-balancer": "1.0.0",
     "reading-time": "1.5.0",
-    "rehype-code-titles": "1.2.0",
     "rehype-external-links": "2.1.0",
-    "rehype-prism-plus": "1.6.3",
     "rehype-slug": "5.1.0",
     "remark-gfm": "3.0.1",
     "remark-smartypants": "2.0.0",

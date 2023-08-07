@@ -7,7 +7,7 @@ banner: "/posts/get-component-prop-types-typescript/banner.png"
 
 **tldr:** Just use the `ComponentProps` type in React to extract the type of prop of a component.
 
-```tsx {2,4}
+```tsx mark=2:4
 import CustomComponent from "component-library";
 import type { ComponentProps } from "react";
 
@@ -29,7 +29,7 @@ type HrefType = ComponentProps<typeof Link>["href"]; // UrlObject | __next_route
 
 Then it was simple as using that type in my custom components. For example, in my `DashboardItem` component, this is how I defined the props.
 
-```tsx {5}
+```tsx mark=5
 interface DashboardItemProps {
   title: string;
   link:

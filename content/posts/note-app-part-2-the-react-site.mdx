@@ -33,7 +33,7 @@ yarn add sass -D
 
 Let's create an instance of `axios` so that we don't have to enter the base URL for all network requests. In the `src` folder create another folder `services` and in that folder create the `api.js` file and add the following code.
 
-```javascript:src/services/api.js
+```javascript src/services/api.js
 import axios from "axios";
 
 const api = axios.create({
@@ -45,7 +45,7 @@ export default api;
 
 We'll also need to change the font and title of the app. In `index.html` add the link to the **Rubik** font files and a new title. Add these between `<head>` and `</head>`.
 
-```html:src/index.html
+```html src/index.html
 <link
   href="https://fonts.googleapis.com/css?family=Rubik&display=swap"
   rel="stylesheet"
@@ -56,8 +56,8 @@ We'll also need to change the font and title of the app. In `index.html` add the
 
 In the end `src/index.html` should look like this.
 
-```html:src/index.html
-<!DOCTYPE html>
+```html src/index.html
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -88,13 +88,13 @@ First first we need to figure out how we're going to store the notes list. We co
 
 In `src/App.js` change the React import to
 
-```jsx:src/App.js
+```jsx src/App.js
 import React, { useReducer } from "react";
 ```
 
 Then let's declare the initial state and reducer
 
-```jsx:src/App.js
+```jsx src/App.js
 const initialState = {
   notesList: [],
 };
@@ -122,21 +122,21 @@ Initially we going to hold an empty array in the state. The reducer will have th
 
 To add the state to `App`
 
-```jsx:src/App.js
+```jsx src/App.js
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 ```
 
 Next we need to load the list of notes when the app loads. We can do with the `useEffect` hook. We'll need to import `useEffect` and the `axios` instance we created earlier.
 
-```jsx:src/App.js
+```jsx src/App.js
 import React, { useReducer, useEffect } from "react";
 import api from "./services/api";
 ```
 
 Add the following code before the `return` in `App`.
 
-```jsx:src/App.js
+```jsx src/App.js
 const getAllNotes = async () => {
   try {
     const response = await api.request({ url: "/note" });
@@ -156,7 +156,7 @@ All we're doing here is fetching the notes list as soon as the component mounts 
 
 Now that we're loading the notes we need to display them. In `return`, add the following
 
-```jsx:src/App.js
+```jsx src/App.js
 <main>
   <h1>Notes App</h1>
 
@@ -175,13 +175,13 @@ We have no notes to load to load at the moment so let's add a footer to the page
 
 First we need to import `formik` which going to make handling the forms much easier.
 
-```jsx:src/App.js
+```jsx src/App.js
 import { Formik } from "formik";
 ```
 
 Then let's add the UI and logic to create new note. Add this just after the `<main>` tag.
 
-```jsx:src/App.js
+```jsx src/App.js
 <footer>
   <Formik
     initialValues={{ title: "", content: "" }}
@@ -267,13 +267,13 @@ Then let's add the UI and logic to create new note. Add this just after the `<ma
 
 Also we'll need some separation from `main` and `footer` so add this between them.
 
-```jsx:src/App.js
+```jsx src/App.js
 <hr />
 ```
 
 Finally we need to be able to delete created notes, so we'll add a delete button to each note. First we need to add the delete function before the `return`.
 
-```jsx:src/App.js
+```jsx src/App.js
 const removeNote = async (id) => {
   try {
     const response = await api.request({
@@ -290,13 +290,13 @@ const removeNote = async (id) => {
 
 We'll need an icon for the delete note, so we'll import one from `react-icons`.
 
-```jsx:src/App.js
+```jsx src/App.js
 import { FaTrash } from "react-icons/fa";
 ```
 
 Then change the note component.
 
-```jsx:src/App.js
+```jsx src/App.js
 <div key={note._id} className="note">
   <div className="container">
     <h2>{note.title}</h2>
@@ -311,7 +311,7 @@ Then change the note component.
 
 As the final part of the app let's add some styling. Create `App.scss` in `src` with the following code.
 
-```scss:src/App.scss
+```scss src/App.scss
 body {
   font-family: "Rubik", sans-serif;
   max-width: 800px;
@@ -373,13 +373,13 @@ footer > form {
 
 Then import that in `App.js`.
 
-```jsx:src/App.js
+```jsx src/App.js
 import "./App.scss";
 ```
 
 Finally your `App.js` should look like this.
 
-```jsx:src/App.js
+```jsx src/App.js
 import React, { useReducer, useEffect } from "react";
 import api from "./services/api";
 import { Formik } from "formik";
