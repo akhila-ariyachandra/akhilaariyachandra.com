@@ -88,9 +88,15 @@ const ThemeSwitch = () => {
           position: absolute;
           top: 50%;
           left: 50%;
-          box-shadow: 0 -23px 0 ${color}, 0 23px 0 ${color}, 23px 0 0 ${color},
-            -23px 0 0 ${color}, 15px 15px 0 ${color}, -15px 15px 0 ${color},
-            15px -15px 0 ${color}, -15px -15px 0 ${color};
+          box-shadow:
+            0 -23px 0 ${color},
+            0 23px 0 ${color},
+            23px 0 0 ${color},
+            -23px 0 0 ${color},
+            15px 15px 0 ${color},
+            -15px 15px 0 ${color},
+            15px -15px 0 ${color},
+            -15px -15px 0 ${color};
           transform: scale(${isDark ? 1 : 0});
           transition: all 0.35s ease;
         }
