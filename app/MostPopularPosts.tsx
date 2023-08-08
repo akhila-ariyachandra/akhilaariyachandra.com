@@ -11,9 +11,9 @@ const getMostPopularPosts = async () => {
     .orderBy(desc(views.count))
     .limit(3);
 
-  const posts = topViews.map((view) =>
-    allPosts.find((post) => post.slug === view.slug)
-  );
+  const topViewSlugs = topViews.map((item) => item.slug);
+
+  const posts = allPosts.filter((post) => topViewSlugs.includes(post.slug));
 
   return posts as Post[];
 };
