@@ -2,7 +2,7 @@
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-This site is built with [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), [PlanetScale](https://planetscale.com/), [Drizzle ORM](https://github.com/drizzle-team/drizzle-orm), & [Vercel](https://vercel.com/home).
+This site is built with [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), [TanStack Query](https://tanstack.com/query/latest), [PlanetScale](https://planetscale.com/), [Drizzle ORM](https://github.com/drizzle-team/drizzle-orm), & [Vercel](https://vercel.com/home).
 
 ## Environment Variables
 
