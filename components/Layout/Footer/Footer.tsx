@@ -55,6 +55,10 @@ const Footer = () => {
             Tailwind CSS
           </ExternalLink>
           {", "}
+          <ExternalLink link="https://tanstack.com/query/latest">
+            TanStack Query
+          </ExternalLink>
+          {", "}
           <ExternalLink link="https://www.contentlayer.dev/">
             Contentlayer
           </ExternalLink>
