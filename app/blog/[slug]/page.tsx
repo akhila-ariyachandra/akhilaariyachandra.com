@@ -5,9 +5,12 @@ import Balancer from "react-wrap-balancer";
 import BlogPostViews from "./views";
 import MDXComponent from "@/components/MDXComponent";
 import type { Metadata } from "next";
+import { lazy, Suspense } from "react";
 import { notFound } from "next/navigation";
 import { formatDate } from "@/lib/server-helpers";
 import { allPosts } from "contentlayer/generated";
+
+const ScrollProgress = lazy(() => import("./ScrollProgress"));
 
 // https://beta.nextjs.org/docs/api-reference/generate-static-params
 export const generateStaticParams = () => {
@@ -64,6 +67,10 @@ const BlogPostPage = ({ params }: BlogPostPageProps) => {
 
   return (
     <>
+      <Suspense fallback={null}>
+        <ScrollProgress />
+      </Suspense>
+
       <Image
         src={post.banner}
         alt={post.title}
