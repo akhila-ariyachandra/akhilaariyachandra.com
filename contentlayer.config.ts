@@ -93,68 +93,58 @@ export const About = defineDocumentType(() => ({
   isSingleton: true,
 }));
 
-export const Career = defineDocumentType(() => ({
-  name: "Career",
-  filePathPattern: "career.yaml",
-  contentType: "data",
-  isSingleton: true,
+export const Job = defineDocumentType(() => ({
+  name: "Job",
+  filePathPattern: "jobs/*.mdx",
+  contentType: "mdx",
   fields: {
-    jobs: {
-      type: "list",
+    position: {
+      type: "string",
+      required: true,
+    },
+    company: {
+      type: "nested",
+      required: true,
       of: defineNestedType(() => ({
-        name: "Job",
+        name: "Company",
         fields: {
-          position: {
+          name: {
             type: "string",
             required: true,
           },
-          company: {
-            type: "nested",
+          link: {
+            type: "string",
             required: true,
-            of: defineNestedType(() => ({
-              name: "Company",
-              fields: {
-                name: {
-                  type: "string",
-                  required: true,
-                },
-                link: {
-                  type: "string",
-                  required: true,
-                },
-                logo: {
-                  type: "string",
-                  required: true,
-                },
-              },
-            })),
           },
-          period: {
-            type: "nested",
+          logo: {
+            type: "string",
             required: true,
-            of: defineNestedType(() => ({
-              name: "Period",
-              fields: {
-                start: {
-                  type: "date",
-                  required: true,
-                },
-                end: {
-                  type: "date",
-                },
-              },
-            })),
           },
         },
       })),
+    },
+    period: {
+      type: "nested",
       required: true,
+      of: defineNestedType(() => ({
+        name: "Period",
+        fields: {
+          start: {
+            type: "date",
+            required: true,
+          },
+          end: {
+            type: "date",
+          },
+        },
+      })),
     },
   },
 }));
 
 export default makeSource({
   contentDirPath: "content",
-  documentTypes: [Post, About, Snippet, Career],
+  documentTypes: [Post, About, Snippet, Job],
   mdx: {
     remarkPlugins: [
       smartypants,
