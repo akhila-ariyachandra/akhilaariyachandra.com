@@ -7,7 +7,7 @@ import MDXComponent from "@/components/MDXComponent";
 import MostPopularPosts from "./MostPopularPosts";
 import { getPeriod } from "@/lib/server-helpers";
 import { FaDev, FaGithub, FaRssSquare, FaTwitterSquare } from "react-icons/fa";
-import { about, career } from ".contentlayer/generated";
+import { about, allJobs } from ".contentlayer/generated";
 
 export const revalidate = 86400;
 
@@ -91,56 +91,61 @@ const HomePage = () => {
 
       <section>
         <h2 className="font-display text-3xl font-bold text-zinc-800 dark:text-zinc-200 sm:text-4xl">
-          Career
+          Resume
         </h2>
 
         <div className="my-8 flex flex-col gap-6">
-          {career.jobs.map((job) => (
-            <article
-              key={`${job.position} - ${job.company.name}`}
-              className="flex flex-row items-center gap-4"
-            >
-              <Image
-                src={job.company.logo}
-                alt={`${job.company.name} logo`}
-                title={job.company.name}
-                width={64}
-                height={64}
-                className="flex-shrink-0 rounded-md"
-              />
+          {allJobs
+            .sort((a, b) =>
+              dayjs(a.period.start).isBefore(b.period.start) ? 1 : -1
+            )
+            .map((job) => (
+              <article key={`${job.position} - ${job.company.name}`}>
+                <div className="flex flex-row items-center gap-4">
+                  <Image
+                    src={job.company.logo}
+                    alt={`${job.company.name} logo`}
+                    title={job.company.name}
+                    width={64}
+                    height={64}
+                    className="flex-shrink-0 rounded-md"
+                  />
 
-              <div className="break-words">
-                <h3 className="font-display text-lg font-semibold text-zinc-800 dark:text-zinc-200 sm:text-xl">
-                  {job.position}
-                </h3>
+                  <div className="break-words">
+                    <h3 className="font-display text-lg font-semibold text-zinc-800 dark:text-zinc-200 sm:text-xl">
+                      {job.position}
+                    </h3>
 
-                <a
-                  href={job.company.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block font-display text-base font-medium text-emerald-700 dark:text-emerald-600 sm:text-lg"
-                >
-                  {job.company.name}
-                </a>
+                    <a
+                      href={job.company.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block font-display text-base font-medium text-emerald-700 dark:text-emerald-600 sm:text-lg"
+                    >
+                      {job.company.name}
+                    </a>
 
-                <div className="text-sm font-normal text-zinc-800 dark:text-zinc-200 sm:text-base">
-                  <span>
-                    {`${dayjs(job.period.start).format("MMMM YYYY")} - ${
-                      job.period.end
-                        ? dayjs(job.period.end).format("MMMM YYYY")
-                        : "Present"
-                    }`}
-                  </span>
-                  <span className="font-light text-zinc-600 dark:text-zinc-400">
-                    {` (${getPeriod(
-                      job.period.start.toString(),
-                      job.period.end ? job.period.end.toString() : undefined
-                    )})`}
-                  </span>
+                    <div className="text-sm font-normal text-zinc-800 dark:text-zinc-200 sm:text-base">
+                      <span>
+                        {`${dayjs(job.period.start).format("MMMM YYYY")} - ${
+                          job.period.end
+                            ? dayjs(job.period.end).format("MMMM YYYY")
+                            : "Present"
+                        }`}
+                      </span>
+                      <span className="font-light text-zinc-600 dark:text-zinc-400">
+                        {` (${getPeriod(
+                          job.period.start.toString(),
+                          job.period.end ? job.period.end.toString() : undefined
+                        )})`}
+                      </span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
+
+                <MDXComponent code={job.body.code} />
+              </article>
+            ))}
         </div>
       </section>
     </>
