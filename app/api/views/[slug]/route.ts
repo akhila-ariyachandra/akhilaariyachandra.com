@@ -1,10 +1,19 @@
 import { type NextRequest, NextResponse } from "next/server";
+import { Redis } from "@upstash/redis";
+import { Ratelimit } from "@upstash/ratelimit";
 import { eq } from "drizzle-orm";
 import { db } from "@/db/connection";
 import { views } from "@/db/schema";
 import { allPosts } from ".contentlayer/generated";
 
 export const runtime = "nodejs";
+
+const ratelimit = new Ratelimit({
+  redis: Redis.fromEnv(),
+  limiter: Ratelimit.cachedFixedWindow(1, "1 m"),
+  analytics: true,
+  ephemeralCache: new Map(),
+});
 
 interface Options {
   params: {
@@ -43,12 +52,34 @@ export const GET = async (request: NextRequest, { params }: Options) => {
 };
 
 export const POST = async (request: NextRequest, { params }: Options) => {
+  const ip = request.ip ?? "127.0.0.1";
   const slug = params.slug;
 
   const post = allPosts.find((item) => item.slug === slug);
 
   if (!post) {
     return new NextResponse("Not found", { status: 404 });
+  }
+
+  // Check rate limit
+  const { success, limit, reset, remaining } = await ratelimit.limit(
+    `${ip}_${slug}`,
+    request
+  );
+  if (!success) {
+    return NextResponse.json(
+      {
+        error: "Too many requests",
+      },
+      {
+        status: 429,
+        headers: {
+          "X-RateLimit-Limit": limit.toString(),
+          "X-RateLimit-Remaining": remaining.toString(),
+          "X-RateLimit-Reset": reset.toString(),
+        },
+      }
+    );
   }
 
   let view = await getView(slug);
