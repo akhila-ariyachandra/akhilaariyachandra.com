@@ -2,7 +2,7 @@
 
 import DashboardItem from "./DashboardItem";
 import type { ComponentProps } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { getBaseURL } from "@/lib/helpers";
 
 type TotalViewsProps = {
@@ -17,14 +17,12 @@ type APIResponse = {
 };
 
 const TotalViews = ({ dashboardItemProps }: TotalViewsProps) => {
-  const { data } = useQuery({
+  const { data } = useSuspenseQuery({
     queryKey: ["total-views"],
     queryFn: () =>
       fetch(`${getBaseURL()}/api/views`, { cache: "no-store" })
         .then((res) => res.json())
         .then((data) => data as APIResponse),
-    placeholderData: { count: 0 },
-    suspense: true,
   });
 
   return <DashboardItem {...dashboardItemProps} value={data?.count} />;

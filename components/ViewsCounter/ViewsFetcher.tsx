@@ -1,7 +1,7 @@
 "use client";
 
 import type { View } from "@/lib/types";
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { getBaseURL } from "@/lib/helpers";
 
 interface ViewsFetcherProps {
@@ -9,17 +9,12 @@ interface ViewsFetcherProps {
 }
 
 const ViewsFetcher = ({ slug }: ViewsFetcherProps) => {
-  const { data } = useQuery({
+  const { data } = useSuspenseQuery({
     queryKey: ["views", slug],
     queryFn: () =>
       fetch(`${getBaseURL()}/api/views/${slug}`, { cache: "no-store" }).then(
         (res) => res.json() as Promise<View>
       ),
-    placeholderData: {
-      slug,
-      count: 0,
-    },
-    suspense: true,
   });
 
   return <>{data?.count}</>;

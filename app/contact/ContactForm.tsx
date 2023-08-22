@@ -69,7 +69,7 @@ const ContactForm = () => {
             "rounded bg-white font-body text-zinc-900 disabled:bg-zinc-200 disabled:text-zinc-800 dark:bg-zinc-900 dark:text-zinc-100 disabled:dark:bg-zinc-800 disabled:dark:text-zinc-200",
             "focus:border-emerald-700 focus:ring-emerald-700 dark:focus:border-emerald-600 dark:focus:ring-emerald-600"
           )}
-          disabled={contactMutation.isLoading}
+          disabled={contactMutation.isPending}
         />
       </div>
 
@@ -90,14 +90,14 @@ const ContactForm = () => {
             "focus:border-emerald-700 focus:ring-emerald-700 dark:focus:border-emerald-600 dark:focus:ring-emerald-600"
           )}
           rows={10}
-          disabled={contactMutation.isLoading}
+          disabled={contactMutation.isPending}
         />
       </div>
 
       <button
         type="submit"
         className="rounded bg-zinc-800 px-3 py-1 font-display text-base font-medium leading-none text-zinc-200 disabled:bg-zinc-600 dark:bg-zinc-200 dark:text-zinc-800 disabled:dark:bg-zinc-400 sm:px-4 sm:py-2 sm:text-lg"
-        disabled={contactMutation.isLoading}
+        disabled={contactMutation.isPending}
       >
         Send
       </button>
