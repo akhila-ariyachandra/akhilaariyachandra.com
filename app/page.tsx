@@ -2,11 +2,13 @@ import dayjs from "dayjs";
 import config from "@/lib/config";
 import profilePic from "@/public/profile_pic.png";
 import Image from "next/image";
+import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import MDXComponent from "@/components/MDXComponent";
 import MostPopularPosts from "./MostPopularPosts";
 import { getPeriod } from "@/lib/server-helpers";
 import { FaDev, FaGithub, FaRssSquare, FaTwitterSquare } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 import { about, allJobs } from ".contentlayer/generated";
 
 export const revalidate = 86400;
@@ -74,6 +76,14 @@ const HomePage = () => {
 
           <SocialLink site="RSS" link="/rss.xml" />
         </div>
+
+        <Link
+          href="/contact"
+          className="flex max-w-max flex-row items-center gap-2 rounded bg-emerald-700 px-2 py-1 text-base text-zinc-100 dark:bg-emerald-600 dark:text-zinc-900 sm:px-3 sm:py-2 sm:text-lg"
+        >
+          <MdEmail />
+          <span className="leading-none">Reach me</span>
+        </Link>
       </div>
 
       <hr className="my-12 h-[1px] bg-zinc-200 dark:bg-zinc-600" />

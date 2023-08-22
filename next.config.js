@@ -19,9 +19,9 @@ const nextConfig = {
   eslint: {
     dirs: ["app", "components", "lib"],
   },
-  experimental: {
+  /* experimental: {
     typedRoutes: true,
-  },
+  }, */
   redirects: async () => {
     // Redirect all old blog post links
     const directoryPath = path.join(__dirname, "content", "posts");

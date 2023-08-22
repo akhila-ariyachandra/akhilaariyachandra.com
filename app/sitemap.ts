@@ -14,10 +14,12 @@ const sitemap = (): MetadataRoute.Sitemap => {
     lastModified: new Date().toISOString().split("T")[0],
   }));
 
-  const routes = ["", "/blog", "/snippets", "/dashboard"].map((route) => ({
-    url: `https://akhilaariyachandra.com${route}`,
-    lastModified: new Date().toISOString().split("T")[0],
-  }));
+  const routes = ["", "/blog", "/snippets", "/dashboard", "/contact"].map(
+    (route) => ({
+      url: `https://akhilaariyachandra.com${route}`,
+      lastModified: new Date().toISOString().split("T")[0],
+    })
+  );
 
   return [...routes, ...posts, ...snippets];
 };

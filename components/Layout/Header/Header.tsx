@@ -31,6 +31,11 @@ const NAV_LINKS: {
     href: "/dashboard",
     activePath: /^\/dashboard$/,
   },
+  {
+    label: "Contact",
+    href: "/contact",
+    activePath: /^\/contact$/,
+  },
 ];
 
 const Header = () => {
