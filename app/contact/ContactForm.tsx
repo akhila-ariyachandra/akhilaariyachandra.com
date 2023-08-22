@@ -85,7 +85,8 @@ const ContactForm = () => {
           {...register("content")}
           id={contentId}
           className={cn(
-            "resize-none rounded bg-white font-body text-zinc-900 disabled:bg-zinc-200 disabled:text-zinc-800 dark:bg-zinc-900 dark:text-zinc-100 disabled:dark:bg-zinc-800 disabled:dark:text-zinc-200",
+            "resize-none",
+            "rounded bg-white font-body text-zinc-900 disabled:bg-zinc-200 disabled:text-zinc-800 dark:bg-zinc-900 dark:text-zinc-100 disabled:dark:bg-zinc-800 disabled:dark:text-zinc-200",
             "focus:border-emerald-700 focus:ring-emerald-700 dark:focus:border-emerald-600 dark:focus:ring-emerald-600"
           )}
           rows={10}
