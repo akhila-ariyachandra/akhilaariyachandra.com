@@ -10,7 +10,6 @@ const LINKS: {
   { href: "/blog", title: "Blog" },
   { href: "/snippets", title: "Snippets" },
   { href: "/dashboard", title: "Dashboard" },
-  { href: "/contact", title: "Contact" },
 ];
 
 interface ExternalLinkProps {
