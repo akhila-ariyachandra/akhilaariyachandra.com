@@ -3,7 +3,7 @@ import { Redis } from "@upstash/redis";
 import { Ratelimit } from "@upstash/ratelimit";
 import { eq } from "drizzle-orm";
 import { db } from "@/db/connection";
-import { views } from "@/db/schema";
+import { views, posts } from "@/db/schema";
 import { allPosts } from ".contentlayer/generated";
 
 export const runtime = "nodejs";
@@ -31,6 +31,28 @@ const getView = async (slug: string) => {
   return result[0];
 };
 
+const getPost = async (slug: string) => {
+  const result = await db.select().from(posts).where(eq(posts.slug, slug));
+
+  if (result.length === 0) {
+    return null;
+  }
+
+  return result[0];
+};
+
+const migrateData = async (slug: string, views: number) => {
+  const post = await getPost(slug);
+  if (!post) {
+    await db.insert(posts).values({ slug, views });
+  } else {
+    await db
+      .update(posts)
+      .set({ views: post.views })
+      .where(eq(posts.slug, slug));
+  }
+};
+
 export const GET = async (request: NextRequest, { params }: Options) => {
   const slug = params.slug;
 
@@ -47,6 +69,9 @@ export const GET = async (request: NextRequest, { params }: Options) => {
       }
     );
   }
+
+  // Migrate data
+  await migrateData(slug, view?.count ?? 0);
 
   return NextResponse.json(view);
 };
@@ -94,6 +119,9 @@ export const POST = async (request: NextRequest, { params }: Options) => {
   }
 
   view = await getView(slug);
+
+  // Migrate data
+  await migrateData(slug, view?.count ?? 0);
 
   return NextResponse.json(view);
 };
