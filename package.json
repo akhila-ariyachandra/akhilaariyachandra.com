@@ -14,8 +14,7 @@
     "start": "next start",
     "format": "prettier --write \"**/*.{ts,tsx,js,json,md,mdx,scss,yaml}\"",
     "drizzle:push": "dotenv drizzle-kit push:mysql",
-    "drizzle:studio": "dotenv drizzle-kit studio",
-    "email:dev": "email dev"
+    "drizzle:studio": "dotenv drizzle-kit studio"
   },
   "dependencies": {
     "@code-hike/mdx": "0.9.0",
