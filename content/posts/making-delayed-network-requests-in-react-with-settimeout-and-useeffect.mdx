@@ -3,10 +3,6 @@ title: "Making delayed network requests in React after state changes"
 posted: "2021-09-13"
 updated: "2022-07-25"
 description: "Using setTimeout and useEffect to delay network requests after state changes"
-banner: "/posts/making-delayed-network-requests-in-react-with-settimeout-and-useeffect/banner.png"
-unsplash:
-  photographer: Erik Mclean
-  link: https://unsplash.com/@introspectivedsgn?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 ---
 
 Recently I switched the database used in my site for page views and reactions from PostgreSQL to [PlanetScale](https://planetscale.com/).
@@ -29,7 +25,7 @@ I could either save the result everytime a visitor clicks the button incrementin
 
 Saving on every click would be the easiest but it would create problems such as race conditions, issues with the optimistic UI updates I'm handling with [TanStack Query](https://tanstack.com/query/v4) and rate limits with any hosting provider. So my best option was the second one.
 
-# How I implemented it
+## How I implemented it
 
 In my case I started with a state to store the reaction count.
 

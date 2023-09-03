@@ -1,34 +1,18 @@
 import { type NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { Redis } from "@upstash/redis";
 import { Ratelimit } from "@upstash/ratelimit";
 import { eq } from "drizzle-orm";
 import { db } from "@/db/connection";
-import { views, posts } from "@/db/schema";
+import { posts } from "@/db/schema";
 import { allPosts } from ".contentlayer/generated";
 
-export const runtime = "nodejs";
+export const runtime = "edge";
 
-const ratelimit = new Ratelimit({
-  redis: Redis.fromEnv(),
-  limiter: Ratelimit.cachedFixedWindow(1, "1 m"),
-  analytics: true,
-  ephemeralCache: new Map(),
-});
-
-interface Options {
+type Options = {
   params: {
     slug: string;
   };
-}
-
-const getView = async (slug: string) => {
-  const result = await db.select().from(views).where(eq(views.slug, slug));
-
-  if (result.length === 0) {
-    return null;
-  }
-
-  return result[0];
 };
 
 const getPost = async (slug: string) => {
@@ -41,52 +25,30 @@ const getPost = async (slug: string) => {
   return result[0];
 };
 
-const migrateData = async (slug: string, views: number) => {
-  const post = await getPost(slug);
-  if (!post) {
-    await db.insert(posts).values({ slug, views });
-  } else {
-    await db
-      .update(posts)
-      .set({ views: post.views })
-      .where(eq(posts.slug, slug));
-  }
-};
-
-export const GET = async (request: NextRequest, { params }: Options) => {
-  const slug = params.slug;
-
-  const view = await getView(slug);
-
-  if (!view) {
-    return NextResponse.json(
-      {
-        slug,
-        count: 0,
-      },
-      {
-        status: 400,
-      }
-    );
-  }
-
-  // Migrate data
-  await migrateData(slug, view?.count ?? 0);
-
-  return NextResponse.json(view);
-};
+const ratelimit = new Ratelimit({
+  redis: Redis.fromEnv(),
+  limiter: Ratelimit.cachedFixedWindow(1, "1 m"),
+  analytics: true,
+  ephemeralCache: new Map(),
+});
 
 export const POST = async (request: NextRequest, { params }: Options) => {
   const ip = request.ip ?? "127.0.0.1";
   const slug = params.slug;
 
-  const post = allPosts.find((item) => item.slug === slug);
-
-  if (!post) {
-    return new NextResponse("Not found", { status: 404 });
+  // Check if blog post exists
+  if (!allPosts.map((post) => post.slug).includes(slug)) {
+    return NextResponse.json(
+      {
+        error: "Not found",
+      },
+      {
+        status: 401,
+      }
+    );
   }
 
-  // Check rate limit
+  /// Check rate limit
   const { success, limit, reset, remaining } = await ratelimit.limit(
     `${ip}_${slug}`,
     request
@@ -107,21 +69,20 @@ export const POST = async (request: NextRequest, { params }: Options) => {
     );
   }
 
-  let view = await getView(slug);
-
-  if (!view) {
-    await db.insert(views).values({ slug });
+  // Increment database value
+  let post = await getPost(slug);
+  if (!post) {
+    await db.insert(posts).values({ slug, views: 1 });
   } else {
     await db
-      .update(views)
-      .set({ count: view.count + 1 })
-      .where(eq(views.slug, slug));
+      .update(posts)
+      .set({ views: post.views + 1 })
+      .where(eq(posts.slug, slug));
   }
 
-  view = await getView(slug);
+  // Revalidate paths
+  revalidatePath("/blog");
+  revalidatePath(`/blog/${slug}`);
 
-  // Migrate data
-  await migrateData(slug, view?.count ?? 0);
-
-  return NextResponse.json(view);
+  return NextResponse.json({ message: "Incremented" });
 };

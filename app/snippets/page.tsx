@@ -1,44 +1,30 @@
-import config from "@/lib/config";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
-import ListContainer from "@/components/ListContainer";
-import { allSnippets } from "contentlayer/generated";
+import Title from "@/components/Title";
+import { allSnippets } from ".contentlayer/generated";
 
-export const metadata = {
-  title: `Code Snippets | ${config.title}`,
-  description: "A few pieces of code I've found useful",
-  openGraph: {
-    title: "Code Snippets",
-    description: "A few pieces of code I've found useful",
-    url: `${config.siteUrl}/snippets`,
-    images: [
-      {
-        url: `${config.siteUrl}/snippets-cover.jpg`,
-        width: 1200,
-        height: 630,
-      },
-    ],
-  },
-};
-
-const SnippetsPage = async () => {
+const SnippetsPage = () => {
   return (
-    <ListContainer title="Code Snippets">
-      {allSnippets.map((snippet) => (
-        <article key={snippet.slug} className="space-y-2">
-          <Link
-            href={`/snippets/${snippet.slug}`}
-            className="block font-display text-2xl font-bold text-emerald-700 dark:text-emerald-600 sm:text-3xl"
-          >
-            <Balancer>{snippet.title}</Balancer>
-          </Link>
+    <>
+      <Title>Snippets</Title>
 
-          <p className="text-base font-medium text-zinc-800 dark:text-zinc-200 sm:text-lg">
-            {snippet.description}
-          </p>
-        </article>
-      ))}
-    </ListContainer>
+      <ul className="space-y-2 sm:space-y-3">
+        {allSnippets.map((snippet) => (
+          <li key={snippet.slug}>
+            <Link
+              href={`/snippets/${snippet.slug}`}
+              className="font-display text-xl font-medium text-green-700 sm:text-2xl"
+            >
+              <Balancer>{snippet.title}</Balancer>
+            </Link>
+
+            <div className="text-sm text-zinc-600 sm:text-base">
+              {snippet.description}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 };
 

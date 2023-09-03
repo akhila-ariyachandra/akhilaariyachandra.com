@@ -1,11 +1,14 @@
-interface TitleProps {
-  title: string;
-}
+import Balancer from "react-wrap-balancer";
+import type { ReactNode } from "react";
 
-const Title = ({ title }: TitleProps) => {
+type TitleProps = {
+  children: ReactNode;
+};
+
+const Title = ({ children }: TitleProps) => {
   return (
-    <h1 className="my-10 font-display text-3xl font-bold text-zinc-800 dark:text-zinc-200 sm:text-4xl">
-      {title}
+    <h1 className="my-4 font-display text-2xl font-bold text-zinc-800 sm:my-5 sm:text-3xl">
+      <Balancer>{children}</Balancer>
     </h1>
   );
 };
