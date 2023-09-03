@@ -20,7 +20,7 @@
     "contentlayer": "0.3.4",
     "dayjs": "1.11.9",
     "drizzle-orm": "0.28.5",
-    "next": "13.4.19",
+    "next": "13.4.20-canary.15",
     "next-contentlayer": "0.3.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",

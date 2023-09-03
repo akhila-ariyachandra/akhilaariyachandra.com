@@ -1,7 +1,5 @@
-import { redirect } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { allPosts } from ".contentlayer/generated";
-
-export const dynamicParams = false;
 
 // https://beta.nextjs.org/docs/api-reference/generate-static-params
 export const generateStaticParams = () => {
@@ -17,8 +15,14 @@ type OldBlogPostPageProps = {
 };
 
 const OldBlogPostPage = ({ params }: OldBlogPostPageProps) => {
+  const post = allPosts.find((post) => post.slug === params.slug);
+
+  if (!post) {
+    notFound();
+  }
+
   // Redirect all old blog post links
-  redirect(`/blog/${params.slug}`);
+  permanentRedirect(`/blog/${params.slug}`);
 };
 
 export default OldBlogPostPage;
