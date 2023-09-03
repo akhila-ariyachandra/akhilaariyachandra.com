@@ -7,7 +7,7 @@ type TitleProps = {
 
 const Title = ({ children }: TitleProps) => {
   return (
-    <h1 className="my-4 font-display text-2xl font-bold text-zinc-800 sm:my-5 sm:text-3xl">
+    <h1 className="mb-4 font-display text-2xl font-bold text-zinc-800 sm:mb-5 sm:text-3xl">
       <Balancer>{children}</Balancer>
     </h1>
   );

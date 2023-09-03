@@ -13,7 +13,7 @@ const SnippetsPage = () => {
           <li key={snippet.slug}>
             <Link
               href={`/snippets/${snippet.slug}`}
-              className="font-display text-xl font-medium text-green-700 sm:text-2xl"
+              className="font-display text-xl font-medium text-green-700 hover:underline sm:text-2xl"
             >
               <Balancer>{snippet.title}</Balancer>
             </Link>

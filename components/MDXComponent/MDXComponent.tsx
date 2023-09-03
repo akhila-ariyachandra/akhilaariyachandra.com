@@ -10,7 +10,8 @@ const MDXComponent = ({ code }: MDXComponentProps) => {
     <div
       className={cn(
         "prose prose-sm prose-zinc max-w-none sm:prose-base", // Base styles
-        "prose-headings:font-display" // Headings
+        "prose-headings:font-display", // Headings
+        "prose-a:font-medium prose-a:text-green-700" // Links
       )}
     >
       <ContentDisplay code={code} />
