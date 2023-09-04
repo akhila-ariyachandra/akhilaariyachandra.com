@@ -54,8 +54,8 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
                 <NavLink
                   key={link.href}
                   href={link.href}
-                  className="sm:text-2xl"
-                  activeClassName=""
+                  className="font-medium text-zinc-700 hover:underline sm:text-lg"
+                  activeClassName="font-medium sm:text-lg underline text-green-700"
                 >
                   {link.label}
                 </NavLink>

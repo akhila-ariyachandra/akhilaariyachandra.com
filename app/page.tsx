@@ -1,7 +1,52 @@
+import dayjs from "dayjs";
 import profilePic from "@/public/profile-pic.png";
 import Image from "next/image";
 import MDXComponent from "@/components/MDXComponent";
-import { about } from ".contentlayer/generated";
+import { about, allJobs } from ".contentlayer/generated";
+
+const getPeriod = (start: string, end?: string) => {
+  const startDate = dayjs(start);
+  const endDate = dayjs(end);
+
+  const years = endDate.diff(startDate, "year");
+  const months = endDate.diff(startDate, "month") - years * 12;
+
+  let period = "";
+
+  if (years > 0) {
+    if (years === 1) {
+      period = "1 year";
+    } else {
+      period = `${years} years`;
+    }
+  }
+
+  if (months > 0) {
+    if (period) {
+      period += ", ";
+    } else {
+      period = "";
+    }
+
+    if (months === 1) {
+      period += "1 month";
+    } else {
+      period += `${months} months`;
+    }
+  }
+
+  if (years === 0 && months === 0) {
+    const days = endDate.diff(startDate, "day");
+
+    if (days === 1) {
+      period = `${days} day`;
+    } else {
+      period = `${days} days`;
+    }
+  }
+
+  return period;
+};
 
 const HomePage = () => {
   return (
@@ -21,6 +66,67 @@ const HomePage = () => {
       </h1>
 
       <MDXComponent code={about.body.code} />
+
+      <hr className="my-3 sm:my-4" />
+
+      <section>
+        <h2 className="mb-4 font-display text-xl font-bold text-zinc-800 sm:mb-5 sm:text-2xl">
+          My Career
+        </h2>
+
+        <div className="space-y-3 sm:space-y-4">
+          {allJobs
+            .sort((a, b) =>
+              dayjs(a.period.start).isBefore(b.period.start) ? 1 : -1,
+            )
+            .map((job) => (
+              <div key={job._id}>
+                <div className="mb-1 flex flex-row items-center gap-1 sm:mb-2 sm:gap-2">
+                  <Image
+                    src={job.company.logo}
+                    width={64}
+                    height={64}
+                    alt={`The company logo of ${job.company.name}`}
+                    className="shrink-0 rounded-sm sm:rounded"
+                  />
+
+                  <div className="break-words">
+                    <h3 className="text-lg sm:text-xl">{job.position}</h3>
+
+                    <a
+                      href={job.company.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-base sm:text-lg"
+                    >
+                      {job.company.name}
+                    </a>
+
+                    <div className="text-sm sm:text-base">
+                      <span>
+                        {`${dayjs(job.period.start).format("MMMM YYYY")} - ${
+                          job.period.end
+                            ? dayjs(job.period.end).format("MMMM YYYY")
+                            : "Present"
+                        }`}
+                      </span>
+                      <span>
+                        {` (${getPeriod(
+                          job.period.start.toString(),
+                          job.period.end
+                            ? job.period.end.toString()
+                            : undefined,
+                        )})`}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <MDXComponent code={job.body.code} />
+              </div>
+            ))}
+        </div>
+      </section>
     </>
   );
 };

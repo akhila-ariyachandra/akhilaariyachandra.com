@@ -3,7 +3,11 @@ import rehypeSlug from "rehype-slug";
 import externalLinks from "rehype-external-links";
 import remarkGfm from "remark-gfm";
 import smartypants from "remark-smartypants";
-import { defineDocumentType, makeSource } from "contentlayer/source-files";
+import {
+  defineDocumentType,
+  makeSource,
+  defineNestedType,
+} from "contentlayer/source-files";
 import { remarkCodeHike } from "@code-hike/mdx";
 
 export const About = defineDocumentType(() => ({
@@ -60,9 +64,58 @@ export const Snippet = defineDocumentType(() => ({
   },
 }));
 
+export const Job = defineDocumentType(() => ({
+  name: "Job",
+  filePathPattern: "jobs/*.mdx",
+  contentType: "mdx",
+  fields: {
+    position: {
+      type: "string",
+      required: true,
+    },
+    company: {
+      type: "nested",
+      required: true,
+      of: defineNestedType(() => ({
+        name: "Company",
+        fields: {
+          name: {
+            type: "string",
+            required: true,
+          },
+          link: {
+            type: "string",
+            required: true,
+          },
+          logo: {
+            type: "string",
+            required: true,
+          },
+        },
+      })),
+    },
+    period: {
+      type: "nested",
+      required: true,
+      of: defineNestedType(() => ({
+        name: "Period",
+        fields: {
+          start: {
+            type: "date",
+            required: true,
+          },
+          end: {
+            type: "date",
+          },
+        },
+      })),
+    },
+  },
+}));
+
 export default makeSource({
   contentDirPath: "content",
-  documentTypes: [About, Post, Snippet],
+  documentTypes: [About, Post, Snippet, Job],
   mdx: {
     remarkPlugins: [
       smartypants,

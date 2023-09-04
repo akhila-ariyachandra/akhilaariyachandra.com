@@ -12,6 +12,7 @@ const NavLink = ({
   className,
   activeClassName,
   children,
+  href,
   ...delegated
 }: NavLinkProps) => {
   const pathname = usePathname();
@@ -19,12 +20,14 @@ const NavLink = ({
   return (
     <Link
       className={
-        pathname === "/" ||
-        pathname.startsWith("/blog") ||
-        pathname.startsWith("/snippets")
+        (pathname === "/" && href === "/") ||
+        (pathname.startsWith("/blog") && href.toString().startsWith("/blog")) ||
+        (pathname.startsWith("/snippets") &&
+          href.toString().startsWith("/snippets"))
           ? activeClassName
           : className
       }
+      href={href}
       {...delegated}
     >
       {children}
