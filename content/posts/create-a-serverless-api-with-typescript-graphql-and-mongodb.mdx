@@ -2,14 +2,13 @@
 title: "Create a serverless API with TypeScript, GraphQL and MongoDB"
 posted: "2019-11-20"
 updated: "2020-12-04"
-description: "Let's create a Serverless GraphQL API and deploy it using Vercel"
 ---
 
-<SpecialBlock type="info">
+<Callout type="info">
   If you would like to use [Prisma](https://www.prisma.io/) instead of MongoDB,
   check out my post
   [here](/serverless-graphql-api-typescript-prisma-postgressql).
-</SpecialBlock>
+</Callout>
 
 In this post we'll create a GraphQL API to create, view and delete notes that we can deploy to [Vercel](https://vercel.com/home) using [Apollo Server](https://www.apollographql.com/docs/apollo-server/), TypeScript and MongoDB.
 
@@ -139,9 +138,9 @@ Since we're using serverless, we can't have a persistent connection to database 
 
 First create the `.env` file in the project root to store the MongoDB URI as `DB_PATH`.
 
-<SpecialBlock type="warn">
+<Callout type="warn">
   Next commit the **.env** file. Make sure to add it to **.gitignore**.
-</SpecialBlock>
+</Callout>
 
 ```text .env
 DB_PATH=mongodb://user:password@ds654321.mlab.com:12345/example-db
@@ -515,7 +514,7 @@ export default {
     getAllNotes: async (
       parent,
       args,
-      { dbConn }: { dbConn: mongoose.Connection }
+      { dbConn }: { dbConn: mongoose.Connection },
     ): Promise<INote[]> => {
       const Note: mongoose.Model<INote> = NoteModel(dbConn);
 
@@ -548,7 +547,7 @@ export default {
     getAllNotes: async (
       parent,
       args,
-      { dbConn }: { dbConn: mongoose.Connection }
+      { dbConn }: { dbConn: mongoose.Connection },
     ): Promise<INote[]> => {
       const Note: mongoose.Model<INote> = NoteModel(dbConn);
 
@@ -568,7 +567,7 @@ export default {
     getNote: async (
       parent,
       { _id }: { _id: INote["_id"] },
-      { dbConn }: { dbConn: mongoose.Connection }
+      { dbConn }: { dbConn: mongoose.Connection },
     ): Promise<INote> => {
       const Note: mongoose.Model<INote> = NoteModel(dbConn);
 
@@ -601,7 +600,7 @@ export default {
     getAllNotes: async (
       parent,
       args,
-      { dbConn }: { dbConn: mongoose.Connection }
+      { dbConn }: { dbConn: mongoose.Connection },
     ): Promise<INote[]> => {
       const Note: mongoose.Model<INote> = NoteModel(dbConn);
 
@@ -621,7 +620,7 @@ export default {
     getNote: async (
       parent,
       { _id }: { _id: INote["_id"] },
-      { dbConn }: { dbConn: mongoose.Connection }
+      { dbConn }: { dbConn: mongoose.Connection },
     ): Promise<INote> => {
       const Note: mongoose.Model<INote> = NoteModel(dbConn);
 
@@ -641,7 +640,7 @@ export default {
     saveNote: async (
       parent,
       { title, content }: { title: INote["title"]; content: INote["content"] },
-      { dbConn }: { dbConn: mongoose.Connection }
+      { dbConn }: { dbConn: mongoose.Connection },
     ): Promise<INote> => {
       const Note: mongoose.Model<INote> = NoteModel(dbConn);
 
@@ -663,7 +662,7 @@ export default {
     deleteNote: async (
       parent,
       { _id }: { _id: INote["_id"] },
-      { dbConn }: { dbConn: mongoose.Connection }
+      { dbConn }: { dbConn: mongoose.Connection },
     ): Promise<INote> => {
       const Note: mongoose.Model<INote> = NoteModel(dbConn);
 

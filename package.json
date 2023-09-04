@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "drizzle:push": "dotenv drizzle-kit push:mysql",
-    "drizzle:studio": "dotenv drizzle-kit studio"
+    "drizzle:studio": "dotenv drizzle-kit studio",
+    "format": "prettier --write \"**/*.{ts,tsx,js,md,mdx,css}\""
   },
   "dependencies": {
     "@code-hike/mdx": "0.9.0",
@@ -24,6 +25,7 @@
     "next-contentlayer": "0.3.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "4.10.1",
     "react-wrap-balancer": "1.1.0",
     "rehype-external-links": "2.1.0",
     "rehype-slug": "6.0.0",

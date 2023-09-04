@@ -49,9 +49,14 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
       <body className="flex h-full flex-col font-content">
         <Provider>
           <header className="container max-w-4xl p-3 sm:p-4">
-            <nav className="flex flex-row items-center gap-2">
+            <nav className="flex flex-row items-center gap-2 sm:gap-3">
               {links.map((link) => (
-                <NavLink key={link.href} href={link.href}>
+                <NavLink
+                  key={link.href}
+                  href={link.href}
+                  className="sm:text-2xl"
+                  activeClassName=""
+                >
                   {link.label}
                 </NavLink>
               ))}

@@ -1,13 +1,13 @@
-interface CodeSandboxWrapperProps {
+type CodeSandboxWrapperProps = {
   codeSandboxId: string;
-}
+};
 
 const CodeSandboxWrapper = ({ codeSandboxId }: CodeSandboxWrapperProps) => {
   const idWords = codeSandboxId.split("-");
   const title = idWords.slice(0, idWords.length - 1).join("-");
 
   return (
-    <div className="h-[500px]">
+    <div className="my-4 h-[500px] overflow-hidden rounded sm:my-5 sm:rounded-md">
       <iframe
         src={`https://codesandbox.io/embed/${codeSandboxId}?autoresize=1&fontsize=14&hidenavigation=1&theme=dark`}
         title={title}

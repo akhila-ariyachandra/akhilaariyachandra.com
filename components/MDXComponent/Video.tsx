@@ -11,7 +11,7 @@ interface VideoProps {
 const Video = ({ paths, width, height, title }: VideoProps) => {
   return (
     <div
-      className="not-prose relative mx-auto w-full"
+      className="not-prose relative mx-auto my-6 w-full overflow-hidden rounded sm:my-8 sm:rounded-md"
       style={{ aspectRatio: `${width} / ${height}`, maxWidth: width }}
     >
       <video

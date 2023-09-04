@@ -2,7 +2,6 @@
 title: "Making delayed network requests in React after state changes"
 posted: "2021-09-13"
 updated: "2022-07-25"
-description: "Using setTimeout and useEffect to delay network requests after state changes"
 ---
 
 Recently I switched the database used in my site for page views and reactions from PostgreSQL to [PlanetScale](https://planetscale.com/).
@@ -85,7 +84,7 @@ So now when `reactionCount` changes, the `timeout` set for that particular value
   title="Network Tab Example"
 />
 
-<SpecialBlock type="info">
+<Callout type="info">
   This blog no longer has reactions but the code above is still valid and can be
   used.
-</SpecialBlock>
+</Callout>
