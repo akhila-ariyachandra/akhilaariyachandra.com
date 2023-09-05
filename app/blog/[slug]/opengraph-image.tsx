@@ -6,9 +6,6 @@ import { allPosts } from ".contentlayer/generated";
 
 dayjs.extend(advancedFormat);
 
-// Route segment config
-export const runtime = "edge";
-
 // Image metadata
 export const size = {
   width: 1200,
