@@ -26,13 +26,31 @@ export const GET = async (request: NextRequest) => {
     });
 
     const [
+      oswaldRegularFont,
+      oswaldLightFont,
       oswaldBoldFont,
+      sourceCodeProExtraLightFont,
+      sourceCodeProLightFont,
       sourceCodeProRegularFont,
       sourceCodeProMediumFont,
       sourceCodeProSemiBoldFont,
+      sourceCodeProBoldFont,
+      sourceCodeProBlackFont,
     ] = await Promise.all([
+      fetch(new URL("./Oswald-Regular.ttf", import.meta.url)).then((res) =>
+        res.arrayBuffer(),
+      ),
+      await fetch(new URL("./Oswald-Light.ttf", import.meta.url)).then((res) =>
+        res.arrayBuffer(),
+      ),
       await fetch(new URL("./Oswald-Bold.ttf", import.meta.url)).then((res) =>
         res.arrayBuffer(),
+      ),
+      await fetch(
+        new URL("./SourceCodePro-ExtraLight.ttf", import.meta.url),
+      ).then((res) => res.arrayBuffer()),
+      await fetch(new URL("./SourceCodePro-Light.ttf", import.meta.url)).then(
+        (res) => res.arrayBuffer(),
       ),
       await fetch(new URL("./SourceCodePro-Regular.ttf", import.meta.url)).then(
         (res) => res.arrayBuffer(),
@@ -43,6 +61,12 @@ export const GET = async (request: NextRequest) => {
       await fetch(
         new URL("./SourceCodePro-Semibold.ttf", import.meta.url),
       ).then((res) => res.arrayBuffer()),
+      await fetch(new URL("./SourceCodePro-Bold.ttf", import.meta.url)).then(
+        (res) => res.arrayBuffer(),
+      ),
+      await fetch(new URL("./SourceCodePro-Black.ttf", import.meta.url)).then(
+        (res) => res.arrayBuffer(),
+      ),
     ]);
 
     return new ImageResponse(
@@ -91,9 +115,29 @@ export const GET = async (request: NextRequest) => {
         height: 630,
         fonts: [
           {
+            name: "Oswald",
+            data: oswaldRegularFont,
+            style: "normal",
+          },
+          {
+            name: "Oswald Light",
+            data: oswaldLightFont,
+            style: "normal",
+          },
+          {
             name: "Oswald Bold",
             data: oswaldBoldFont,
             style: "normal",
+          },
+          {
+            name: "Source Code Pro Extra Light",
+            data: sourceCodeProExtraLightFont,
+            weight: 200,
+          },
+          {
+            name: "Source Code Pro Light",
+            data: sourceCodeProLightFont,
+            weight: 300,
           },
           {
             name: "Source Code Pro",
@@ -109,6 +153,16 @@ export const GET = async (request: NextRequest) => {
             name: "Source Code Pro Semi Bold",
             data: sourceCodeProSemiBoldFont,
             weight: 600,
+          },
+          {
+            name: "Source Code Pro Bold",
+            data: sourceCodeProBoldFont,
+            weight: 700,
+          },
+          {
+            name: "Source Code Pro Black",
+            data: sourceCodeProBlackFont,
+            weight: 900,
           },
         ],
       },
