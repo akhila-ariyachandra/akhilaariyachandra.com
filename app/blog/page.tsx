@@ -6,6 +6,7 @@ import Views from "@/components/Views";
 import Title from "@/components/Title";
 import type { Metadata } from "next";
 import { allPosts } from ".contentlayer/generated";
+import { getOgImageUrl } from "@/lib/helpers";
 
 dayjs.extend(advancedFormat);
 
@@ -17,6 +18,11 @@ export const metadata: Metadata = {
     description: "My personal blog",
     url: "https://akhilaariyachandra.com/blog",
     type: "website",
+    images: {
+      url: getOgImageUrl("Personal Blog", "Akhila Ariyachandra"),
+      width: 1200,
+      height: 630,
+    },
   },
 };
 
