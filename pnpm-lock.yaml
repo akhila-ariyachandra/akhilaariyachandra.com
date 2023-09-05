@@ -5,9 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@code-hike/mdx':
-    specifier: 0.9.0
-    version: 0.9.0(react@18.2.0)
   '@fec/remark-a11y-emoji':
     specifier: 3.1.0
     version: 3.1.0
@@ -142,22 +139,6 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.14.0
-
-  /@code-hike/lighter@0.7.0:
-    resolution: {integrity: sha512-64O07rIORKQLB+5T/GKAmKcD9sC0N9yHFJXa0Hs+0Aee1G+I4bSXxTccuDFP6c/G/3h5Pk7yv7PoX9/SpzaeiQ==}
-    dev: false
-
-  /@code-hike/mdx@0.9.0(react@18.2.0):
-    resolution: {integrity: sha512-0wg68ZCjVWAkWT4gBUZJ8Mwktjen/XeWyqBQCrhA2IZSbZZnMYsEI6JJEFb/nZoNI3comB3JdxPLykZRq3qT2A==}
-    peerDependencies:
-      react: ^16.8.3 || ^17 || ^18
-    dependencies:
-      '@code-hike/lighter': 0.7.0
-      node-fetch: 2.7.0
-      react: 18.2.0
-    transitivePeerDependencies:
-      - encoding
-    dev: false
 
   /@contentlayer/cli@0.3.4(esbuild@0.19.2):
     resolution: {integrity: sha512-vNDwgLuhYNu+m70NZ3XK9kexKNguuxPXg7Yvzj3B34cEilQjjzSrcTY/i+AIQm9V7uT5GGshx9ukzPf+SmoszQ==}
