@@ -8,7 +8,7 @@ import {
   makeSource,
   defineNestedType,
 } from "contentlayer/source-files";
-import { remarkCodeHike } from "@code-hike/mdx";
+/* import { remarkCodeHike } from "@code-hike/mdx"; */
 
 export const About = defineDocumentType(() => ({
   name: "About",
@@ -121,7 +121,7 @@ export default makeSource({
       smartypants,
       a11yEmoji,
       remarkGfm,
-      [remarkCodeHike, { theme: "material-ocean", showCopyButton: true }],
+      /* [remarkCodeHike, { theme: "material-ocean", showCopyButton: true }], */
     ],
     rehypePlugins: [
       rehypeSlug,
