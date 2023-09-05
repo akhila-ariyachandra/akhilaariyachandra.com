@@ -3,7 +3,18 @@
 import "server-only";
 
 import { ImageResponse } from "next/server";
-import { getBaseURL } from "@/lib/helpers";
+
+export const getBaseURL = () => {
+  if (typeof window !== "undefined") {
+    return "";
+  }
+
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+
+  return "http://localhost:3000";
+};
 
 export const getOpenGraphImage = async (
   title: string,
