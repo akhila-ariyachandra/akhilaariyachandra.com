@@ -1,5 +1,6 @@
 import Title from "@/components/Title";
 import MDXComponent from "@/components/MDXComponent";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { allSnippets } from ".contentlayer/generated";
 
@@ -13,6 +14,27 @@ export const generateStaticParams = () => {
 type SnippetPageProps = {
   params: {
     slug: string;
+  };
+};
+
+export const generateMetadata = async ({
+  params,
+}: SnippetPageProps): Promise<Metadata> => {
+  const snippet = allSnippets.find((snippet) => snippet.slug === params.slug);
+
+  if (!snippet) {
+    notFound();
+  }
+
+  return {
+    title: `${snippet.title} | Akhila Ariyachandra`,
+    description: "A code snippet",
+    openGraph: {
+      title: `${snippet.title} | Akhila Ariyachandra`,
+      description: "A code snippet",
+      url: `https://akhilaariyachandra.com/snippet/${snippet.slug}`,
+      type: "article",
+    },
   };
 };
 

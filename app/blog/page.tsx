@@ -4,9 +4,21 @@ import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import Views from "@/components/Views";
 import Title from "@/components/Title";
+import type { Metadata } from "next";
 import { allPosts } from ".contentlayer/generated";
 
 dayjs.extend(advancedFormat);
+
+export const metadata: Metadata = {
+  title: "Blog | Akhila Ariyachandra",
+  description: "My personal blog",
+  openGraph: {
+    title: "Blog | Akhila Ariyachandra",
+    description: "My personal blog",
+    url: "https://akhilaariyachandra.com/blog",
+    type: "website",
+  },
+};
 
 const BlogPage = () => {
   return (

@@ -91,26 +91,28 @@ const HomePage = () => {
                   />
 
                   <div className="break-words">
-                    <h3 className="text-lg sm:text-xl">{job.position}</h3>
+                    <h3 className="font-display text-lg font-semibold leading-tight text-zinc-700 sm:text-xl sm:leading-snug">
+                      {job.position}
+                    </h3>
 
                     <a
                       href={job.company.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-base sm:text-lg"
+                      className="text-base font-medium leading-tight text-green-700 hover:underline sm:text-lg sm:leading-snug"
                     >
                       {job.company.name}
                     </a>
 
-                    <div className="text-sm sm:text-base">
-                      <span>
+                    <div className="text-sm leading-tight sm:text-base sm:leading-snug">
+                      <span className="text-zinc-600">
                         {`${dayjs(job.period.start).format("MMMM YYYY")} - ${
                           job.period.end
                             ? dayjs(job.period.end).format("MMMM YYYY")
                             : "Present"
                         }`}
                       </span>
-                      <span>
+                      <span className="font-light text-zinc-500">
                         {` (${getPeriod(
                           job.period.start.toString(),
                           job.period.end

@@ -4,6 +4,7 @@ import Title from "@/components/Title";
 import Views from "@/components/Views";
 import MDXComponent from "@/components/MDXComponent";
 import ViewsIncrement from "./ViewsIncrement";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { allPosts } from ".contentlayer/generated";
 
@@ -19,6 +20,27 @@ export const generateStaticParams = () => {
 type BlogPostPageProps = {
   params: {
     slug: string;
+  };
+};
+
+export const generateMetadata = async ({
+  params,
+}: BlogPostPageProps): Promise<Metadata> => {
+  const post = allPosts.find((post) => post.slug === params.slug);
+
+  if (!post) {
+    notFound();
+  }
+
+  return {
+    title: `${post.title} | Akhila Ariyachandra`,
+    description: "A post on my blog",
+    openGraph: {
+      title: `${post.title} | Akhila Ariyachandra`,
+      description: "A post on my blog",
+      url: `https://akhilaariyachandra.com/blog/${post.slug}`,
+      type: "article",
+    },
   };
 };
 

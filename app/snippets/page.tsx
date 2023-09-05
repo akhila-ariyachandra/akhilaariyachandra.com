@@ -1,7 +1,19 @@
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import Title from "@/components/Title";
+import type { Metadata } from "next";
 import { allSnippets } from ".contentlayer/generated";
+
+export const metadata: Metadata = {
+  title: "Code Snippets | Akhila Ariyachandra",
+  description: "Some code snippets that I use",
+  openGraph: {
+    title: "Code Snippets | Akhila Ariyachandra",
+    description: "Some code snippets that I use",
+    url: "https://akhilaariyachandra.com/snippets",
+    type: "website",
+  },
+};
 
 const SnippetsPage = () => {
   return (

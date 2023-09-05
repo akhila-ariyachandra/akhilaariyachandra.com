@@ -17,7 +17,7 @@ const Callout = ({ type = "default", children }: CalloutProps) => {
         styles.wrapper, // CSS Module
         type === "warn" && "bg-red-200", // Warning
         type === "info" && "bg-yellow-200", // Info
-        type === "default" && "bg-zinc-200" // Default
+        type === "default" && "bg-zinc-200", // Default
       )}
     >
       <div
@@ -25,7 +25,7 @@ const Callout = ({ type = "default", children }: CalloutProps) => {
           "shrink-0 text-xl sm:text-2xl", // Base styles
           type === "warn" && "text-red-600", // Warning
           type === "info" && "text-yellow-600", // Info
-          type === "default" && "text-zinc-600" // Default // Info
+          type === "default" && "text-zinc-600", // Default // Info
         )}
       >
         {type === "warn" && <IoWarning />}
