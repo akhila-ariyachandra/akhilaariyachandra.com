@@ -4,7 +4,7 @@ import Providers from "./Provider";
 import type { ReactNode } from "react";
 import type { Metadata, Route } from "next";
 import { Oswald, Source_Code_Pro as SourceCodePro } from "next/font/google";
-import { cn } from "@/lib/helpers";
+import { cn, getOgImageUrl } from "@/lib/helpers";
 
 import "./globals.css";
 
@@ -28,6 +28,11 @@ export const metadata: Metadata = {
     description: "Web Developer",
     url: "https://akhilaariyachandra.com",
     type: "website",
+    images: {
+      url: getOgImageUrl("Akhila Ariyachandra", "Web Developer"),
+      width: 1200,
+      height: 630,
+    },
   },
   twitter: {
     card: "summary_large_image",

@@ -3,6 +3,7 @@ import Balancer from "react-wrap-balancer";
 import Title from "@/components/Title";
 import type { Metadata } from "next";
 import { allSnippets } from ".contentlayer/generated";
+import { getOgImageUrl } from "@/lib/helpers";
 
 export const metadata: Metadata = {
   title: "Code Snippets | Akhila Ariyachandra",
@@ -12,6 +13,11 @@ export const metadata: Metadata = {
     description: "Some code snippets that I use",
     url: "https://akhilaariyachandra.com/snippets",
     type: "website",
+    images: {
+      url: getOgImageUrl("Code Snippets", "Akhila Ariyachandra"),
+      width: 1200,
+      height: 630,
+    },
   },
 };
 
