@@ -1,5 +1,8 @@
+import a11yEmoji from "@fec/remark-a11y-emoji";
+import rehypeSlug from "rehype-slug";
 import externalLinks from "rehype-external-links";
 import remarkGfm from "remark-gfm";
+import smartypants from "remark-smartypants";
 import {
   defineDocumentType,
   makeSource,
@@ -115,10 +118,13 @@ export default makeSource({
   documentTypes: [About, Post, Snippet, Job],
   mdx: {
     remarkPlugins: [
+      smartypants,
+      a11yEmoji,
       remarkGfm,
       [remarkCodeHike, { theme: "material-ocean", showCopyButton: true }],
     ],
     rehypePlugins: [
+      rehypeSlug,
       [externalLinks, { target: "_blank", rel: ["noopener", "noreferrer"] }],
     ],
   },
