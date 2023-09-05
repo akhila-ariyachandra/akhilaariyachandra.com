@@ -1,5 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
+import "server-only";
+
 import { ImageResponse } from "next/server";
 
 export const getBaseURL = () => {
