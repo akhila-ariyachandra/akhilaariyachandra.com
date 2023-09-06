@@ -1,34 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# [akhilaariyachandra.com](https://akhilaariyachandra.com/)
 
-## Getting Started
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-First, run the development server:
+This site is built with [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), [Contentlayer](https://www.contentlayer.dev), [PlanetScale](https://planetscale.com/), [Drizzle ORM](https://github.com/drizzle-team/drizzle-orm), & [Vercel](https://vercel.com/home).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
+## Environment Variables
+
+|            Name            | Description                                                                                                                                                                                                                                                                                                                               |
+| :------------------------: | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|      `DATABASE_HOST`       | Host for [PlanetScale serverless driver for JavaScript](https://planetscale.com/docs/tutorials/planetscale-serverless-driver)                                                                                                                                                                                                             |
+|    `DATABASE_USERNAME`     | Username for [PlanetScale serverless driver for JavaScript](https://planetscale.com/docs/tutorials/planetscale-serverless-driver)                                                                                                                                                                                                         |
+|    `DATABASE_PASSWORD`     | Password for [PlanetScale serverless driver for JavaScript](https://planetscale.com/docs/tutorials/planetscale-serverless-driver)                                                                                                                                                                                                         |
+|       `DATABASE_URL`       | [PlanetScale](https://planetscale.com/) database connection URL. Used only for schema changes. Only used for schema changes with [Drizzle Kit](https://orm.drizzle.team/kit-docs/overview). Replace `?sslaccept=strict` with `?ssl={"rejectUnauthorized":true}` in string ([link](https://orm.drizzle.team/kit-docs/conf#push-and-pull)). |
+|  `UPSTASH_REDIS_REST_URL`  | [Upstash](https://upstash.com/)                                                                                                                                                                                                                                                                                                           |
+| `UPSTASH_REDIS_REST_TOKEN` | [Upstash](https://upstash.com/)                                                                                                                                                                                                                                                                                                           |
+
+## Actions
+
+### Running in development mode
+
+```shell
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Running in production mode
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```shell
+pnpm build
+pnpm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Formatting the code
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```shell
+pnpm format
+```
