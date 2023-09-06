@@ -20,7 +20,7 @@ const PostImage = ({ src, width, height, title, credit }: PostImageProps) => {
         height={height}
         alt={title}
         title={title}
-        className="rounded sm:rounded-md"
+        className="mx-auto rounded sm:rounded-md"
       />
 
       {credit && (
