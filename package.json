@@ -11,8 +11,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "drizzle:push": "dotenv drizzle-kit push:mysql",
-    "drizzle:studio": "dotenv drizzle-kit studio",
+    "drizzle:push": "dotenv -e .env.local drizzle-kit push:mysql",
+    "drizzle:studio": "dotenv -e .env.local drizzle-kit studio",
     "format": "prettier --write \"**/*.{ts,tsx,js,md,mdx,css}\""
   },
   "dependencies": {
