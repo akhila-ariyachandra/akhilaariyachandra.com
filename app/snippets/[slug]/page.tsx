@@ -1,5 +1,6 @@
 import Title from "@/components/Title";
 import MDXComponent from "@/components/MDXComponent";
+import DonateButton from "@/components/DonateButton";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { allSnippets } from ".contentlayer/generated";
@@ -56,6 +57,8 @@ const SnippetPage = ({ params }: SnippetPageProps) => {
       </p>
 
       <MDXComponent code={snippet.body.code} />
+
+      <DonateButton />
     </>
   );
 };

@@ -4,6 +4,7 @@ import Title from "@/components/Title";
 import Views from "@/components/Views";
 import MDXComponent from "@/components/MDXComponent";
 import ViewsIncrement from "./ViewsIncrement";
+import DonateButton from "@/components/DonateButton";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { allPosts } from ".contentlayer/generated";
@@ -79,6 +80,8 @@ const BlogPostPage = ({ params }: BlogPostPageProps) => {
       <ViewsIncrement slug={params.slug} />
 
       <MDXComponent code={post.body.code} />
+
+      <DonateButton />
     </>
   );
 };

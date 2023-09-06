@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Title from "@/components/Title";
-import type { Metadata, Route } from "next";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "404 | Akhila Ariyachandra",
