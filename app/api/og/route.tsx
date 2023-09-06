@@ -10,7 +10,7 @@ const queryParamSchema = z.object({
   subtitle: z.string(),
   content: z.string().nullable(),
   width: z.enum(["1200"]),
-  height: z.enum(["630", "627"]),
+  height: z.enum(["600", "627", "630"]),
 });
 
 export const runtime = "edge";
