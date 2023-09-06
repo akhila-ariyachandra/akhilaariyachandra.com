@@ -32,7 +32,7 @@ export const generateMetadata = async ({
     description: "A code snippet",
     openGraph: {
       title: `${snippet.title} | Akhila Ariyachandra`,
-      description: "A code snippet",
+      description: snippet.description,
       url: `https://akhilaariyachandra.com/snippet/${snippet.slug}`,
       type: "article",
       images: getOgImages(snippet.title, "Akhila Ariyachandra", "Code Snippet"),
