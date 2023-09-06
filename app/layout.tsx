@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Script from "next/script";
 import NavLink from "./NavLink";
 import Providers from "./Provider";
 import type { ReactNode } from "react";
@@ -93,13 +92,6 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
         </Providers>
 
         <Analytics />
-
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9764216594022086"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
       </body>
     </html>
   );
