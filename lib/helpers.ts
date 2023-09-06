@@ -35,6 +35,16 @@ export const getOgImages = (
 
   const images = [];
 
+  // Twitter 1200x600
+  const twitterUrl = new URL(url);
+  twitterUrl.searchParams.set("width", "1200");
+  twitterUrl.searchParams.set("height", "600");
+  images.push({
+    url: twitterUrl.toString(),
+    width: 1200,
+    height: 600,
+  });
+
   // LinkedIn 1200x627
   const linkedInUrl = new URL(url);
   linkedInUrl.searchParams.set("width", "1200");
@@ -53,16 +63,6 @@ export const getOgImages = (
     url: baseUrl.toString(),
     width: 1200,
     height: 630,
-  });
-
-  // Twitter 1200x675
-  const twitterUrl = new URL(url);
-  twitterUrl.searchParams.set("width", "1200");
-  twitterUrl.searchParams.set("height", "675");
-  images.push({
-    url: twitterUrl.toString(),
-    width: 1200,
-    height: 675,
   });
 
   return images;
