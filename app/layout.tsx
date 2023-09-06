@@ -1,10 +1,10 @@
 import Link from "next/link";
 import NavLink from "./NavLink";
-import Providers from "./Provider";
 import type { ReactNode } from "react";
 import type { Metadata, Route } from "next";
 import { Oswald, Source_Code_Pro as SourceCodePro } from "next/font/google";
 import { cn, getOgImages } from "@/lib/helpers";
+import { Provider } from "react-wrap-balancer";
 import { Analytics } from "@vercel/analytics/react";
 
 import "./globals.css";
@@ -62,7 +62,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
       className={cn(display.variable, content.variable, "h-full scroll-smooth")}
     >
       <body className="flex h-full flex-col bg-white font-content antialiased dark:bg-zinc-950">
-        <Providers>
+        <Provider>
           <header className="container max-w-4xl p-3 sm:p-4">
             <nav className="flex flex-row items-center gap-2 sm:gap-3">
               {links.map((link) => (
@@ -89,7 +89,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
               akhilaariyachandra.com
             </Link>
           </footer>
-        </Providers>
+        </Provider>
 
         <Analytics />
       </body>
