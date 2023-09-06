@@ -1,7 +1,6 @@
 import Image from "next/image";
-import { cn } from "@/lib/helpers";
 
-interface PostImageProps {
+type PostImageProps = {
   src: string;
   width: number;
   height: number;
@@ -10,28 +9,28 @@ interface PostImageProps {
     name: string;
     link: string;
   };
-}
+};
 
 const PostImage = ({ src, width, height, title, credit }: PostImageProps) => {
   return (
-    <div className="not-prose my-5 grid place-items-center">
+    <div className="not-prose my-6 sm:my-8">
       <Image
         src={src}
         width={width}
         height={height}
-        className={cn("overflow-hidden", credit ? "rounded-t" : "rounded")}
         alt={title}
         title={title}
+        className="rounded sm:rounded-md"
       />
 
       {credit && (
-        <div className="w-full rounded-b bg-zinc-100 py-1 text-center font-display text-sm dark:bg-zinc-800 sm:text-base">
+        <div className="mt-2 text-center text-sm text-zinc-700 dark:text-zinc-300 sm:mt-3 sm:text-base">
           Credit -{" "}
           <a
-            className="font-semibold text-emerald-800 dark:text-emerald-500"
             href={credit.link}
             target="_blank"
             rel="noopener noreferrer"
+            className="font-medium text-green-700 hover:underline dark:text-green-500"
           >
             {credit.name}
           </a>

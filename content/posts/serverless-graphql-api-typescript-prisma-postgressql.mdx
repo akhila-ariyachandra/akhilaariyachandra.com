@@ -1,11 +1,6 @@
 ---
 title: "Creating a serverless GraphQL API with TypeScript and Prisma"
 posted: "2020-12-06"
-description: Let's create a Serverless GraphQL API and deploy it using Vercel
-banner: "/posts/serverless-graphql-api-typescript-prisma-postgressql/banner.jpg"
-unsplash:
-  photographer: Anas Alshanti
-  link: https://unsplash.com/s/photos/coding?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText
 ---
 
 In this post we'll create a GraphQL API to create, view and delete notes that we can deploy to [Vercel](https://vercel.com/home) using [Apollo Server](https://www.apollographql.com/docs/apollo-server/), TypeScript and MongoDB.
@@ -98,9 +93,9 @@ DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=pub
 
 Replace the placeholder `DATABASE_URL` in your `.env` file with the URL of your own database.
 
-<SpecialBlock type="warn">
+<Callout type="warn">
   Remember to not commit the **.env** file. Add it to **.gitignore**.
-</SpecialBlock>
+</Callout>
 
 To organize our code, first let's move the `.env` to the project root.
 
@@ -186,9 +181,7 @@ npx prisma migrate save --name init --experimental
 
 This will create a new folder called `migrations` in `src\db` to store your migration history but it won't actually create the table in your database.
 
-<SpecialBlock type="info">
-  Replace **init** with the name of your migration.
-</SpecialBlock>
+<Callout type="info">Replace **init** with the name of your migration.</Callout>
 
 To finish creating the table, run the `up` command.
 
@@ -512,7 +505,7 @@ export default {
 
     getNote: async (
       parent: any,
-      { id }: { id: Note["id"] }
+      { id }: { id: Note["id"] },
     ): Promise<Note | null> => {
       try {
         const note = await prisma.note.findUnique({
@@ -558,7 +551,7 @@ export default {
 
     getNote: async (
       parent: any,
-      { id }: { id: Note["id"] }
+      { id }: { id: Note["id"] },
     ): Promise<Note | null> => {
       try {
         const note = await prisma.note.findUnique({
@@ -579,7 +572,7 @@ export default {
   Mutation: {
     saveNote: async (
       parent: any,
-      { title, content }: { title: Note["title"]; content: Note["content"] }
+      { title, content }: { title: Note["title"]; content: Note["content"] },
     ): Promise<Note> => {
       try {
         const note = await prisma.note.create({
@@ -599,7 +592,7 @@ export default {
 
     deleteNote: async (
       parent: any,
-      { id }: { id: Note["id"] }
+      { id }: { id: Note["id"] },
     ): Promise<Note> => {
       try {
         const note = await prisma.note.delete({

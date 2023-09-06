@@ -11,7 +11,7 @@ interface VideoProps {
 const Video = ({ paths, width, height, title }: VideoProps) => {
   return (
     <div
-      className="not-prose relative mx-auto my-4 w-full"
+      className="not-prose relative mx-auto my-6 w-full overflow-hidden rounded sm:my-8 sm:rounded-md"
       style={{ aspectRatio: `${width} / ${height}`, maxWidth: width }}
     >
       <video
@@ -22,7 +22,7 @@ const Video = ({ paths, width, height, title }: VideoProps) => {
         width={width}
         height={height}
         title={title}
-        className="absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 rounded"
+        className="absolute inset-1/2 -translate-x-1/2 -translate-y-1/2"
       >
         <source src={paths.webm} type="video/webm" />
         <source src={paths.mp4} type="video/mp4" />

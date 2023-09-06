@@ -2,8 +2,6 @@
 title: "Adding utterances to your React Blog"
 posted: "2022-02-27"
 updated: "2022-07-25"
-description: "How to add utterances to your React blog with support for theme switching"
-banner: "/posts/utterances-comments-in-react-blog/banner.png"
 ---
 
 In this post I'll go through how I added comments to my blog using [utterances](https://utteranc.es/), which uses GitHub issues to store the comments so it's really easy to setup.
@@ -74,9 +72,9 @@ const Comments: FC = () => {
 export default Comments;
 ```
 
-<SpecialBlock type="info">
+<Callout type="info">
   Replace the value for *repo* with your own repository.
-</SpecialBlock>
+</Callout>
 
 All we're doing here is creating a `<script>` tag and adding it to the `<div>` container.
 
@@ -145,7 +143,7 @@ const Comments: FC = () => {
     script.setAttribute("issue-term", "pathname");
     script.setAttribute(
       "theme",
-      theme === "dark" ? "github-dark" : "github-light"
+      theme === "dark" ? "github-dark" : "github-light",
     );
     script.setAttribute("crossorigin", "anonymous");
     script.setAttribute("async", "true");
@@ -192,7 +190,7 @@ const Comments: FC = () => {
     script.setAttribute("issue-term", "pathname");
     script.setAttribute(
       "theme",
-      theme === "dark" ? "github-dark" : "github-light"
+      theme === "dark" ? "github-dark" : "github-light",
     );
     script.setAttribute("crossorigin", "anonymous");
     script.setAttribute("async", "true");
@@ -220,7 +218,7 @@ const Comments: FC = () => {
 export default Comments;
 ```
 
-<SpecialBlock type="info">
+<Callout type="info">
   This blog no longer has comments but the code above is still valid and can be
   used.
-</SpecialBlock>
+</Callout>

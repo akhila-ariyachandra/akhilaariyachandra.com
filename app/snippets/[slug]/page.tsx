@@ -1,9 +1,9 @@
-import config from "@/lib/config";
-import Balancer from "react-wrap-balancer";
+import Title from "@/components/Title";
 import MDXComponent from "@/components/MDXComponent";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { allSnippets } from "contentlayer/generated";
+import { allSnippets } from ".contentlayer/generated";
+import { getOgImages } from "@/lib/helpers";
 
 // https://beta.nextjs.org/docs/api-reference/generate-static-params
 export const generateStaticParams = () => {
@@ -12,57 +12,47 @@ export const generateStaticParams = () => {
   }));
 };
 
-interface SnippetsPostPageProps {
+type SnippetPageProps = {
   params: {
     slug: string;
   };
-}
+};
 
-export const generateMetadata = ({ params }: SnippetsPostPageProps) => {
-  const slug = params?.slug.toString();
-
-  const snippet = allSnippets.find((snippet) => snippet.slug === slug);
+export const generateMetadata = async ({
+  params,
+}: SnippetPageProps): Promise<Metadata> => {
+  const snippet = allSnippets.find((snippet) => snippet.slug === params.slug);
 
   if (!snippet) {
     notFound();
   }
 
   return {
-    title: `${snippet.title} | ${config.title}`,
-    description: snippet.description,
+    title: `${snippet.title} | Akhila Ariyachandra`,
+    description: "A code snippet",
     openGraph: {
-      title: snippet.title,
+      title: `${snippet.title} | Akhila Ariyachandra`,
       description: snippet.description,
-      url: `${config.siteUrl}/snippets/${snippet.slug}`,
-      images: [
-        {
-          url: `${config.siteUrl}/snippets-cover.jpg`,
-          width: 1200,
-          height: 630,
-        },
-      ],
+      url: `https://akhilaariyachandra.com/snippet/${snippet.slug}`,
+      type: "article",
+      images: getOgImages(snippet.title, "Akhila Ariyachandra", "Code Snippet"),
     },
-  } satisfies Metadata;
+  };
 };
 
-const SnippetsPostPage = async ({ params }: SnippetsPostPageProps) => {
-  const slug = params?.slug.toString();
-
-  const snippet = allSnippets.find((snippet) => snippet.slug === slug);
+const SnippetPage = ({ params }: SnippetPageProps) => {
+  const snippet = allSnippets.find((snippet) => snippet.slug === params.slug);
 
   if (!snippet) {
-    // Redirect to 404 if post doesn't exist
     notFound();
   }
 
   return (
     <>
-      <h1 className="my-8 px-4 text-center font-display text-3xl font-black text-zinc-800 dark:text-zinc-200 sm:text-4xl">
-        <Balancer>{snippet.title}</Balancer>
-      </h1>
+      <Title>{snippet.title}</Title>
 
-      <p className="my-2 px-4 text-center text-base font-medium text-zinc-800 dark:text-zinc-200 sm:text-lg">
-        <Balancer>{snippet.description}</Balancer>
+      <p className="text-sm text-zinc-600 dark:text-zinc-400 sm:text-base">
+        {snippet.description}
       </p>
 
       <MDXComponent code={snippet.body.code} />
@@ -70,4 +60,4 @@ const SnippetsPostPage = async ({ params }: SnippetsPostPageProps) => {
   );
 };
 
-export default SnippetsPostPage;
+export default SnippetPage;

@@ -1,21 +1,27 @@
-export const metadata = {
-  title: "404: Not Found",
+import Link from "next/link";
+import Title from "@/components/Title";
+import type { Metadata, Route } from "next";
+
+export const metadata: Metadata = {
+  title: "404 | Akhila Ariyachandra",
+  description: "Not Found",
 };
 
 const NotFound = () => {
   return (
-    <div className="p-4">
-      <h1 className="font-display text-3xl font-semibold text-zinc-800 dark:text-zinc-200">
-        Not Found
-      </h1>
+    <>
+      <Title>Not Found</Title>
 
-      <p className="font-base text-lg text-zinc-800 dark:text-zinc-200">
-        You just hit a route that doesn&#39;t exist... the sadness.{" "}
-        <span role="img" aria-label="Sad Emoji">
-          😢
-        </span>
+      <p className="text-sm text-zinc-700 dark:text-zinc-300 sm:text-base">
+        {"You have reached a route that does't exist. "}
+        <Link
+          href="/"
+          className="font-medium text-green-700 hover:underline dark:text-green-500"
+        >
+          Return Home
+        </Link>
       </p>
-    </div>
+    </>
   );
 };
 
