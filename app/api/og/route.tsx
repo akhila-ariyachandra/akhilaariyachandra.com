@@ -8,7 +8,9 @@ import { getBaseURL } from "@/lib/helpers";
 const queryParamSchema = z.object({
   title: z.string(),
   subtitle: z.string(),
-  content: z.string().optional().nullable(),
+  content: z.string().nullable(),
+  width: z.enum(["1200"]),
+  height: z.enum(["630", "627"]),
 });
 
 export const runtime = "edge";
@@ -17,12 +19,16 @@ export const GET = async (request: NextRequest) => {
   const title = request.nextUrl.searchParams.get("title");
   const subtitle = request.nextUrl.searchParams.get("subtitle");
   const content = request.nextUrl.searchParams.get("content");
+  const width = request.nextUrl.searchParams.get("width");
+  const height = request.nextUrl.searchParams.get("height");
 
   try {
     const data = await queryParamSchema.parseAsync({
       title,
       subtitle,
       content,
+      width,
+      height,
     });
 
     const [
@@ -87,8 +93,8 @@ export const GET = async (request: NextRequest) => {
         </div>
       ),
       {
-        width: 1200,
-        height: 630,
+        width: parseInt(data.width),
+        height: parseInt(data.height),
         fonts: [
           {
             name: "Oswald Bold",
