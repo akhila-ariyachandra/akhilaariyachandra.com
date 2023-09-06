@@ -93,13 +93,6 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
         </Providers>
 
         <Analytics />
-
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9764216594022086"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
       </body>
     </html>
   );
