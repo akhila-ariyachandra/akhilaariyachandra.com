@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Script from "next/script";
 import NavLink from "./NavLink";
 import Providers from "./Provider";
 import type { ReactNode } from "react";
