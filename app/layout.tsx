@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import type { Metadata, Route } from "next";
 import { Oswald, Source_Code_Pro as SourceCodePro } from "next/font/google";
 import { cn, getOgImages } from "@/lib/helpers";
+import { Analytics } from "@vercel/analytics/react";
 
 import "./globals.css";
 
@@ -89,6 +90,8 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
             </Link>
           </footer>
         </Providers>
+
+        <Analytics />
       </body>
     </html>
   );
