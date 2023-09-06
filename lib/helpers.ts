@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { nanoid } from "nanoid";
 
 export const cn = (...args: ClassValue[]) => {
   return twMerge(clsx(args));
@@ -24,6 +25,7 @@ export const getOgImages = (
 ) => {
   const url = new URL(`${getBaseURL()}/api/og`);
 
+  url.searchParams.set("random-id", nanoid());
   url.searchParams.set("title", title);
   url.searchParams.set("subtitle", subtitle);
 
@@ -33,16 +35,6 @@ export const getOgImages = (
 
   const images = [];
 
-  // Base/Facebook 1200x630
-  const baseUrl = new URL(url);
-  baseUrl.searchParams.set("width", "1200");
-  baseUrl.searchParams.set("height", "630");
-  images.push({
-    url: baseUrl.toString(),
-    width: 1200,
-    height: 630,
-  });
-
   // LinkedIn 1200x627
   const linkedInUrl = new URL(url);
   linkedInUrl.searchParams.set("width", "1200");
@@ -51,6 +43,16 @@ export const getOgImages = (
     url: linkedInUrl.toString(),
     width: 1200,
     height: 627,
+  });
+
+  // Base/Facebook 1200x630
+  const baseUrl = new URL(url);
+  baseUrl.searchParams.set("width", "1200");
+  baseUrl.searchParams.set("height", "630");
+  images.push({
+    url: baseUrl.toString(),
+    width: 1200,
+    height: 630,
   });
 
   // Twitter 1200x675
