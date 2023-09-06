@@ -69,7 +69,7 @@ const HomePage = () => {
 
       <MDXComponent code={about.body.code} />
 
-      <hr className="my-3 sm:my-4" />
+      <hr className="my-7 sm:my-8" />
 
       <section>
         <h2 className="mb-4 font-display text-xl font-bold text-zinc-800 dark:text-zinc-200 sm:mb-5 sm:text-2xl">

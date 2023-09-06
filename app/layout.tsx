@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Script from "next/script";
 import NavLink from "./NavLink";
 import Providers from "./Provider";
 import type { ReactNode } from "react";
@@ -59,9 +60,9 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html
       lang="en"
-      className={cn(display.variable, content.variable, "h-full")}
+      className={cn(display.variable, content.variable, "h-full scroll-smooth")}
     >
-      <body className="flex h-full flex-col bg-white font-content dark:bg-zinc-950">
+      <body className="flex h-full flex-col bg-white font-content antialiased dark:bg-zinc-950">
         <Providers>
           <header className="container max-w-4xl p-3 sm:p-4">
             <nav className="flex flex-row items-center gap-2 sm:gap-3">
@@ -70,7 +71,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
                   key={link.href}
                   href={link.href}
                   className="font-medium text-zinc-700 hover:underline dark:text-zinc-300 sm:text-lg"
-                  activeClassName="font-medium sm:text-lg underline text-green-700 dark:text-green-500"
+                  activeClassName="font-medium sm:text-lg underline text-green-700 dark:text-green-500 underline-offset-2 hover:underline-offset-1"
                 >
                   {link.label}
                 </NavLink>
@@ -92,6 +93,13 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
         </Providers>
 
         <Analytics />
+
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9764216594022086"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
