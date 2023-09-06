@@ -60,7 +60,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
       lang="en"
       className={cn(display.variable, content.variable, "h-full")}
     >
-      <body className="flex h-full flex-col font-content">
+      <body className="flex h-full flex-col bg-white font-content dark:bg-zinc-950">
         <Providers>
           <header className="container max-w-4xl p-3 sm:p-4">
             <nav className="flex flex-row items-center gap-2 sm:gap-3">
@@ -68,8 +68,8 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
                 <NavLink
                   key={link.href}
                   href={link.href}
-                  className="font-medium text-zinc-700 hover:underline sm:text-lg"
-                  activeClassName="font-medium sm:text-lg underline text-green-700"
+                  className="font-medium text-zinc-700 hover:underline dark:text-zinc-300 sm:text-lg"
+                  activeClassName="font-medium sm:text-lg underline text-green-700 dark:text-green-500"
                 >
                   {link.label}
                 </NavLink>
@@ -79,11 +79,11 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
 
           <main className="container max-w-4xl p-3 sm:p-4">{children}</main>
 
-          <footer className="container mt-auto max-w-4xl p-3 text-sm text-zinc-700 sm:p-4 sm:text-base">
+          <footer className="container mt-auto max-w-4xl p-3 text-sm text-zinc-700 dark:text-zinc-300 sm:p-4 sm:text-base">
             © 2019 - {new Date().getFullYear()},{" "}
             <Link
               href="/"
-              className="font-medium text-green-700 hover:underline"
+              className="font-medium text-green-700 hover:underline dark:text-green-500"
             >
               akhilaariyachandra.com
             </Link>

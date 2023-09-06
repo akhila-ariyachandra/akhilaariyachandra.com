@@ -60,9 +60,11 @@ const HomePage = () => {
         placeholder="blur"
       />
 
-      <h1 className="mb-4 font-display text-3xl text-zinc-600 sm:mb-5 sm:text-4xl">
+      <h1 className="mb-4 font-display text-3xl text-zinc-600 dark:text-zinc-300 sm:mb-5 sm:text-4xl">
         Hi, I&apos;m{" "}
-        <span className="font-black text-green-700">Akhila Ariyachandra</span>
+        <span className="font-black text-green-700 dark:text-green-500">
+          Akhila Ariyachandra
+        </span>
       </h1>
 
       <MDXComponent code={about.body.code} />
@@ -70,7 +72,7 @@ const HomePage = () => {
       <hr className="my-3 sm:my-4" />
 
       <section>
-        <h2 className="mb-4 font-display text-xl font-bold text-zinc-800 sm:mb-5 sm:text-2xl">
+        <h2 className="mb-4 font-display text-xl font-bold text-zinc-800 dark:text-zinc-200 sm:mb-5 sm:text-2xl">
           My Career
         </h2>
 
@@ -91,7 +93,7 @@ const HomePage = () => {
                   />
 
                   <div className="break-words">
-                    <h3 className="font-display text-lg font-semibold leading-tight text-zinc-700 sm:text-xl sm:leading-snug">
+                    <h3 className="font-display text-lg font-semibold leading-tight text-zinc-700 dark:text-zinc-300 sm:text-xl sm:leading-snug">
                       {job.position}
                     </h3>
 
@@ -99,20 +101,20 @@ const HomePage = () => {
                       href={job.company.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-base font-medium leading-tight text-green-700 hover:underline sm:text-lg sm:leading-snug"
+                      className="text-base font-medium leading-tight text-green-700 hover:underline dark:text-green-500 sm:text-lg sm:leading-snug"
                     >
                       {job.company.name}
                     </a>
 
                     <div className="text-sm leading-tight sm:text-base sm:leading-snug">
-                      <span className="text-zinc-600">
+                      <span className="text-zinc-600 dark:text-zinc-400">
                         {`${dayjs(job.period.start).format("MMMM YYYY")} - ${
                           job.period.end
                             ? dayjs(job.period.end).format("MMMM YYYY")
                             : "Present"
                         }`}
                       </span>
-                      <span className="font-light text-zinc-500">
+                      <span className="font-light text-zinc-500 dark:text-zinc-400">
                         {` (${getPeriod(
                           job.period.start.toString(),
                           job.period.end

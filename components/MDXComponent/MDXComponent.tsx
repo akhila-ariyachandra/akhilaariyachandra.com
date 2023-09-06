@@ -22,9 +22,9 @@ const MDXComponent = ({ code }: MDXComponentProps) => {
   return (
     <div
       className={cn(
-        "prose prose-sm prose-zinc max-w-none sm:prose-base", // Base styles
+        "prose prose-sm prose-zinc max-w-none dark:prose-invert sm:prose-base", // Base styles
         "prose-headings:font-display", // Headings
-        "prose-a:font-medium prose-a:text-green-700", // Links
+        "prose-a:font-medium prose-a:text-green-700 prose-a:no-underline hover:prose-a:underline dark:prose-a:text-green-500", // Links
       )}
     >
       <Component
