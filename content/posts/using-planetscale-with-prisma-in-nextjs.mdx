@@ -2,8 +2,6 @@
 title: "Using PlanetScale with Prisma in Next.js"
 posted: "2022-07-29"
 updated: "2022-12-01"
-description: "Quickly setup PlanetScale with Prisma in a Next.js project"
-banner: "/posts/using-planetscale-with-prisma-in-nextjs/banner.png"
 ---
 
 While looking for a serverless database solution, [PlanetScale](https://planetscale.com/) is an awesome option. With awesome features like unlimited connection and non-blocking schema changes, it's an awesome tool to use in our projects together with [Prisma](https://www.prisma.io/).
@@ -62,9 +60,9 @@ Then will create the `.env` file with the `DATABASE_URL` variable and the `schem
 DATABASE_URL="mysql://root@127.0.0.1:3309/akhilaariyachandra-com"
 ```
 
-<SpecialBlock type="info">
+<Callout type="info">
   Make sure you replace `akhilaariyachandra-com` with the name of your database.
-</SpecialBlock>
+</Callout>
 
 Next let's take a look at the `schema.prisma` file. The first change we need to make is to set the `provider` to `mysql`.
 

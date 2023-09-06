@@ -1,4 +1,3 @@
-import readingTime from "reading-time";
 import a11yEmoji from "@fec/remark-a11y-emoji";
 import rehypeSlug from "rehype-slug";
 import externalLinks from "rehype-external-links";
@@ -6,10 +5,17 @@ import remarkGfm from "remark-gfm";
 import smartypants from "remark-smartypants";
 import {
   defineDocumentType,
-  defineNestedType,
   makeSource,
+  defineNestedType,
 } from "contentlayer/source-files";
 import { remarkCodeHike } from "@code-hike/mdx";
+
+export const About = defineDocumentType(() => ({
+  name: "About",
+  filePathPattern: "about.mdx",
+  contentType: "mdx",
+  isSingleton: true,
+}));
 
 export const Post = defineDocumentType(() => ({
   name: "Post",
@@ -27,39 +33,11 @@ export const Post = defineDocumentType(() => ({
     updated: {
       type: "date",
     },
-    description: {
-      type: "string",
-      required: true,
-    },
-    banner: {
-      type: "string",
-      required: true,
-    },
-    unsplash: {
-      type: "nested",
-      of: defineNestedType(() => ({
-        name: "Unsplash",
-        fields: {
-          photographer: {
-            type: "string",
-            required: true,
-          },
-          link: {
-            type: "string",
-            required: true,
-          },
-        },
-      })),
-    },
   },
   computedFields: {
     slug: {
       type: "string",
       resolve: (post) => post._raw.sourceFileName.replace(".mdx", ""),
-    },
-    readingTime: {
-      type: "string",
-      resolve: (post) => readingTime(post.body.raw).text,
     },
   },
 }));
@@ -84,13 +62,6 @@ export const Snippet = defineDocumentType(() => ({
       resolve: (post) => post._raw.sourceFileName.replace(".mdx", ""),
     },
   },
-}));
-
-export const About = defineDocumentType(() => ({
-  name: "About",
-  filePathPattern: "about.mdx",
-  contentType: "mdx",
-  isSingleton: true,
 }));
 
 export const Job = defineDocumentType(() => ({
@@ -144,7 +115,7 @@ export const Job = defineDocumentType(() => ({
 
 export default makeSource({
   contentDirPath: "content",
-  documentTypes: [Post, About, Snippet, Job],
+  documentTypes: [About, Post, Snippet, Job],
   mdx: {
     remarkPlugins: [
       smartypants,
