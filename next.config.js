@@ -8,6 +8,9 @@ const nextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  experimental: {
+    typedRoutes: true,
+  },
   redirects: async () => {
     const directoryPath = path.join(__dirname, "content", "posts");
 
