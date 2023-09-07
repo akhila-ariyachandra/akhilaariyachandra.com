@@ -76,7 +76,7 @@ export const POST = async (request: NextRequest, { params }: Options) => {
 
   // Revalidate pages
   revalidatePath("/blog");
-  revalidatePath(`/blog/${slug}`);
+  revalidatePath("/blog/[slug]");
 
   return NextResponse.json({ message: "Incremented" });
 };
