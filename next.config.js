@@ -8,6 +8,9 @@ const nextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  eslint: {
+    dirs: ["app", "components", "db", "lib"],
+  },
   redirects: async () => {
     const redirects = [];
 
