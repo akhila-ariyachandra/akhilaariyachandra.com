@@ -61,7 +61,12 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
       lang="en"
       className={cn(display.variable, content.variable, "h-full scroll-smooth")}
     >
-      <body className="flex h-full flex-col bg-white font-content antialiased dark:bg-zinc-950">
+      <body
+        className={cn(
+          "flex h-full flex-col overflow-y-scroll bg-white font-content antialiased dark:bg-zinc-950",
+          "scrollbar-thin scrollbar-thumb-green-700 dark:scrollbar-thumb-green-500",
+        )}
+      >
         <Provider>
           <header className="container max-w-4xl p-3 sm:p-4">
             <nav className="flex flex-row items-center gap-2 sm:gap-3">
