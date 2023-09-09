@@ -11,6 +11,9 @@ const nextConfig = {
   eslint: {
     dirs: ["app", "components", "db", "lib"],
   },
+  experimental: {
+    typedRoutes: true,
+  },
   redirects: async () => {
     const redirects = [];
 
