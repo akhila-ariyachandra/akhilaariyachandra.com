@@ -1,6 +1,5 @@
 import Link from "next/link";
 import NavLink from "./NavLink";
-import Providers from "./providers";
 import type { ReactNode } from "react";
 import type { Metadata, Route } from "next";
 import { Oswald, Source_Code_Pro as SourceCodePro } from "next/font/google";
@@ -68,38 +67,36 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
           "scrollbar-thin scrollbar-thumb-green-700 dark:scrollbar-thumb-green-500",
         )}
       >
-        <Providers>
-          <Provider>
-            <header className="container max-w-4xl p-3 sm:p-4">
-              <nav className="flex flex-row items-center gap-2 sm:gap-3">
-                {links.map((link) => (
-                  <NavLink
-                    key={link.href}
-                    href={link.href}
-                    className="font-medium text-zinc-700 hover:underline dark:text-zinc-300 sm:text-lg"
-                    activeClassName="font-medium sm:text-lg underline text-green-700 dark:text-green-500 underline-offset-2 hover:underline-offset-1"
-                  >
-                    {link.label}
-                  </NavLink>
-                ))}
-              </nav>
-            </header>
+        <Provider>
+          <header className="container max-w-4xl p-3 sm:p-4">
+            <nav className="flex flex-row items-center gap-2 sm:gap-3">
+              {links.map((link) => (
+                <NavLink
+                  key={link.href}
+                  href={link.href}
+                  className="font-medium text-zinc-700 hover:underline dark:text-zinc-300 sm:text-lg"
+                  activeClassName="font-medium sm:text-lg underline text-green-700 dark:text-green-500 underline-offset-2 hover:underline-offset-1"
+                >
+                  {link.label}
+                </NavLink>
+              ))}
+            </nav>
+          </header>
 
-            <main className="container max-w-4xl p-3 sm:p-4">{children}</main>
+          <main className="container max-w-4xl p-3 sm:p-4">{children}</main>
 
-            <footer className="container mt-auto max-w-4xl p-3 text-sm text-zinc-700 dark:text-zinc-300 sm:p-4 sm:text-base">
-              © 2019 - {new Date().getFullYear()},{" "}
-              <Link
-                href="/"
-                className="font-medium text-green-700 hover:underline dark:text-green-500"
-              >
-                akhilaariyachandra.com
-              </Link>
-            </footer>
-          </Provider>
+          <footer className="container mt-auto max-w-4xl p-3 text-sm text-zinc-700 dark:text-zinc-300 sm:p-4 sm:text-base">
+            © 2019 - {new Date().getFullYear()},{" "}
+            <Link
+              href="/"
+              className="font-medium text-green-700 hover:underline dark:text-green-500"
+            >
+              akhilaariyachandra.com
+            </Link>
+          </footer>
+        </Provider>
 
-          <Analytics />
-        </Providers>
+        <Analytics />
       </body>
     </html>
   );
