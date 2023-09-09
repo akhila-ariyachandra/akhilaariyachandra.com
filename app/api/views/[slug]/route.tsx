@@ -33,14 +33,14 @@ export const POST = async (request: NextRequest, { params }: Options) => {
       },
       {
         status: 404,
-      }
+      },
     );
   }
 
   // Check rate limit
   const { success, limit, reset, remaining } = await ratelimit.limit(
     `${ip}_${slug}`,
-    request
+    request,
   );
   if (!success) {
     return NextResponse.json(
@@ -54,7 +54,7 @@ export const POST = async (request: NextRequest, { params }: Options) => {
           "X-RateLimit-Remaining": remaining.toString(),
           "X-RateLimit-Reset": reset.toString(),
         },
-      }
+      },
     );
   }
 
