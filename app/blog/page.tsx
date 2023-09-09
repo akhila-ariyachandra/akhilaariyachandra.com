@@ -48,7 +48,10 @@ const BlogPage = () => {
                   {" - "}
                 </span>
 
-                <Views slug={post.slug} />
+                <span>
+                  <Views slug={post.slug} />
+                  {" views"}
+                </span>
               </div>
             </li>
           ))}

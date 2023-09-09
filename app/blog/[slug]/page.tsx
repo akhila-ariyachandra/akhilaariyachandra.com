@@ -71,7 +71,10 @@ const BlogPostPage = ({ params }: BlogPostPageProps) => {
           {" - "}
         </span>
 
-        <Views slug={post.slug} />
+        <span>
+          <Views slug={post.slug} />
+          {" views"}
+        </span>
       </div>
 
       <ViewsIncrement slug={params.slug} />
