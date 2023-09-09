@@ -19,6 +19,9 @@
     "@code-hike/mdx": "0.9.0",
     "@fec/remark-a11y-emoji": "3.1.0",
     "@planetscale/database": "1.11.0",
+    "@tanstack/react-query": "5.0.0-beta.23",
+    "@tanstack/react-query-devtools": "5.0.0-beta.23",
+    "@tanstack/react-query-next-experimental": "5.0.0-beta.23",
     "@upstash/ratelimit": "0.4.4",
     "@upstash/redis": "1.22.0",
     "@vercel/analytics": "1.0.2",
@@ -44,6 +47,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "0.5.10",
+    "@tanstack/eslint-plugin-query": "5.0.0-beta.20",
     "@total-typescript/ts-reset": "0.5.1",
     "@types/node": "20.5.9",
     "@types/react": "18.2.21",

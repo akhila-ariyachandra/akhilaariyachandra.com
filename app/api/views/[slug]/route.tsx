@@ -15,6 +15,28 @@ type Options = {
   };
 };
 
+export const GET = async (request: NextRequest, { params }: Options) => {
+  const slug = params.slug;
+
+  if (!allPosts.map((post) => post.slug).includes(slug)) {
+    return NextResponse.json(
+      {
+        error: "Not found",
+      },
+      {
+        status: 404,
+      },
+    );
+  }
+
+  const result = await db.select().from(posts).where(eq(posts.slug, slug));
+
+  return NextResponse.json({
+    slug,
+    views: result.length === 0 ? 0 : result[0].views,
+  });
+};
+
 const ratelimit = new Ratelimit({
   redis: Redis.fromEnv(),
   limiter: Ratelimit.cachedFixedWindow(1, "1 m"),
