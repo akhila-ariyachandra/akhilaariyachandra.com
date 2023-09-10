@@ -33,9 +33,12 @@ export const generateMetadata = async ({
     openGraph: {
       title: `${snippet.title} | Akhila Ariyachandra`,
       description: snippet.description,
-      url: `https://akhilaariyachandra.com/snippet/${snippet.slug}`,
+      url: `/snippets/${snippet.slug}`,
       type: "article",
       images: getOgImages(snippet.title, "Akhila Ariyachandra", "Code Snippet"),
+    },
+    alternates: {
+      canonical: `/snippets/${snippet.slug}`,
     },
   };
 };

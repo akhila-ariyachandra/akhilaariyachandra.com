@@ -24,10 +24,11 @@ const content = SourceCodePro({
 export const metadata: Metadata = {
   title: "Akhila Ariyachandra",
   description: "Web Developer",
+  metadataBase: new URL("https://akhilaariyachandra.com"),
   openGraph: {
     title: "Akhila Ariyachandra",
     description: "Web Developer",
-    url: "https://akhilaariyachandra.com",
+    url: "/",
     type: "website",
     images: getOgImages("Akhila Ariyachandra", "Web Developer"),
   },
@@ -37,6 +38,9 @@ export const metadata: Metadata = {
   },
   other: {
     "google-site-verification": "SCtCAdftAAE0UptAZAoIYsHnG7xbuN_ofCaHgfDyjn4", // Google Search Console Verification
+  },
+  alternates: {
+    canonical: "/",
   },
 };
 

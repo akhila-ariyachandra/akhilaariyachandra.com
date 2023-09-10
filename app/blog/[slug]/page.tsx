@@ -39,13 +39,16 @@ export const generateMetadata = async ({
     openGraph: {
       title: `${post.title} | Akhila Ariyachandra`,
       description: "A post on my blog",
-      url: `https://akhilaariyachandra.com/blog/${post.slug}`,
+      url: `/blog/${post.slug}`,
       type: "article",
       images: getOgImages(
         post.title,
         "Akhila Ariyachandra",
         dayjs(post.posted).format("Do MMMM YYYY"),
       ),
+    },
+    alternates: {
+      canonical: `/blog/${post.slug}`,
     },
   };
 };
