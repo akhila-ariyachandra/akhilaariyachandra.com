@@ -16,9 +16,12 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Blog | Akhila Ariyachandra",
     description: "My personal blog",
-    url: "https://akhilaariyachandra.com/blog",
+    url: "/blog",
     type: "website",
     images: getOgImages("Personal Blog", "Akhila Ariyachandra"),
+  },
+  alternates: {
+    canonical: "/blog",
   },
 };
 
