@@ -1,0 +1,291 @@
+---
+title: "Don't sync state, derive it"
+posted: 2023-09-10
+---
+
+Take a look at the code below and see if you notice anything that could have been done better, even though the title of this blog post kinda gives it away.
+
+```jsx
+import { useState, useEffect } from "react";
+
+const Profile = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [fullName, setFullName] = useState("");
+
+  useEffect(() => {
+    setFullName(`${firstName} ${lastName}`);
+  }, [firstName, lastName]);
+
+  const handleFirstNameChange = (e) => {
+    setFirstName(e.target.value);
+  };
+
+  const handleLastNameChange = (e) => {
+    setLastName(e.target.value);
+  };
+
+  return (
+    <div>
+      <div>Full name: {fullName}</div>
+
+      <div>
+        <label htmlFor="firstName">First name: </label>
+        <input
+          id="firstName"
+          value={firstName}
+          onChange={handleFirstNameChange}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="lastName">Last name: </label>
+        <input id="lastName" value={lastName} onChange={handleLastNameChange} />
+      </div>
+    </div>
+  );
+};
+
+export default Profile;
+```
+
+Using `useEffect` to set a state from other states (i.e. syncing state) is just adding unnecessary complexity to the code. It maybe easy to spot in this example, but in a real world application where the component may contain a lot more code, it may not be easy to find the flow on how `fullName` is updated. Also we are introducing additional rerenders to the component because `fullName` is set after the component rerenders for `firstName` or `lastName`.
+
+You might think to set `fullName` in change handlers for the inputs.
+
+```jsx focus=1,10,15
+import { useState } from "react";
+
+const Profile = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [fullName, setFullName] = useState("");
+
+  const handleFirstNameChange = (e) => {
+    setFirstName(e.target.value);
+    setFullName(`${e.target.value} ${lastName}`);
+  };
+
+  const handleLastNameChange = (e) => {
+    setLastName(e.target.value);
+    setFullName(`${firstName} ${e.target.value}`);
+  };
+
+  return (
+    <div>
+      <div>Full name: {fullName}</div>
+
+      <div>
+        <label htmlFor="firstName">First name: </label>
+        <input
+          id="firstName"
+          value={firstName}
+          onChange={handleFirstNameChange}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="lastName">Last name: </label>
+        <input id="lastName" value={lastName} onChange={handleLastNameChange} />
+      </div>
+    </div>
+  );
+};
+
+export default Profile;
+```
+
+In a way this make sense because you are setting the `fullName` exactly where `firstName` and `lastName`, but if the number of states `fullName` depends on changes, there more places that need to be updated.
+
+```jsx focus=5,11,14:17,21,37:44
+import { useState } from "react";
+
+const Profile = () => {
+  const [firstName, setFirstName] = useState("");
+  const [middleName, setMiddleName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [fullName, setFullName] = useState("");
+
+  const handleFirstNameChange = (e) => {
+    setFirstName(e.target.value);
+    setFullName(`${e.target.value} ${middleName} ${lastName}`);
+  };
+
+  const handleMiddleNameChange = (e) => {
+    setMiddleName(e.target.value);
+    setFullName(`${firstName} ${e.target.value} ${lastName}`);
+  };
+
+  const handleLastNameChange = (e) => {
+    setLastName(e.target.value);
+    setFullName(`${firstName} ${middleName} ${e.target.value}`);
+  };
+
+  return (
+    <div>
+      <div>Full name: {fullName}</div>
+
+      <div>
+        <label htmlFor="firstName">First name: </label>
+        <input
+          id="firstName"
+          value={firstName}
+          onChange={handleFirstNameChange}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="middleName">Middle name: </label>
+        <input
+          id="middleName"
+          value={middleName}
+          onChange={handleMiddleNameChange}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="lastName">Last name: </label>
+        <input id="lastName" value={lastName} onChange={handleLastNameChange} />
+      </div>
+    </div>
+  );
+};
+
+export default Profile;
+```
+
+There's a simpler way to get `fullName` though. Notice that we never set `fullName` on its own. It always set only when `firstName` or `lastName` changes. So it does not make sense to have `fullName` as a React state. Instead just have it as an a normal variable.
+
+```jsx focus=7
+import { useState } from "react";
+
+const Profile = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
+  const fullName = `${firstName} ${lastName}`;
+
+  const handleFirstNameChange = (e) => {
+    setFirstName(e.target.value);
+  };
+
+  const handleLastNameChange = (e) => {
+    setLastName(e.target.value);
+  };
+
+  return (
+    <div>
+      <div>Full name: {fullName}</div>
+
+      <div>
+        <label htmlFor="firstName">First name: </label>
+        <input
+          id="firstName"
+          value={firstName}
+          onChange={handleFirstNameChange}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="lastName">Last name: </label>
+        <input id="lastName" value={lastName} onChange={handleLastNameChange} />
+      </div>
+    </div>
+  );
+};
+
+export default Profile;
+```
+
+Doing this gives one less reason to use `useEffect` in your components and potentially introduce [footguns](https://www.youtube.com/watch?v=FzI7faHqM0M) into your project. You can see a comparison of the before and after of the component below.
+
+<CH.Code>
+
+```jsx OldProfile.jsx focus=1,4:6,8:10
+import { useState, useEffect } from "react";
+
+const Profile = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [fullName, setFullName] = useState("");
+
+  useEffect(() => {
+    setFullName(`${firstName} ${lastName}`);
+  }, [firstName, lastName]);
+
+  const handleFirstNameChange = (e) => {
+    setFirstName(e.target.value);
+  };
+
+  const handleLastNameChange = (e) => {
+    setLastName(e.target.value);
+  };
+
+  return (
+    <div>
+      <div>Full name: {fullName}</div>
+
+      <div>
+        <label htmlFor="firstName">First name: </label>
+        <input
+          id="firstName"
+          value={firstName}
+          onChange={handleFirstNameChange}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="lastName">Last name: </label>
+        <input id="lastName" value={lastName} onChange={handleLastNameChange} />
+      </div>
+    </div>
+  );
+};
+
+export default Profile;
+```
+
+```jsx NewProfile.jsx focus=1,4:5,7
+import { useState } from "react";
+
+const Profile = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
+  const fullName = `${firstName} ${lastName}`;
+
+  const handleFirstNameChange = (e) => {
+    setFirstName(e.target.value);
+  };
+
+  const handleLastNameChange = (e) => {
+    setLastName(e.target.value);
+  };
+
+  return (
+    <div>
+      <div>Full name: {fullName}</div>
+
+      <div>
+        <label htmlFor="firstName">First name: </label>
+        <input
+          id="firstName"
+          value={firstName}
+          onChange={handleFirstNameChange}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="lastName">Last name: </label>
+        <input id="lastName" value={lastName} onChange={handleLastNameChange} />
+      </div>
+    </div>
+  );
+};
+
+export default Profile;
+```
+
+</CH.Code>
+
+Deriving states might not make sense right away (I was also guilty of using `useEffect` to sync state earlier 😅), but it makes reading and maintaining code a lot code easier. When looking at a component with lots of `useEffect`s used to set state, it becomes hard to keep track of where the states are being set and all the `useEffect`s that are changing them. Deriving the state into a `const` (or `let`) variable makes it easier to reason about as there becomes only one place where the state it "set"/derived.
