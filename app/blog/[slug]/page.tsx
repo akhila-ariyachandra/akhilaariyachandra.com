@@ -11,6 +11,8 @@ import { getOgImages } from "@/lib/helpers";
 
 dayjs.extend(advancedFormat);
 
+export const revalidate = 3600; // Revalidate after 1 hour
+
 // https://beta.nextjs.org/docs/api-reference/generate-static-params
 export const generateStaticParams = () => {
   return allPosts.map((post) => ({
