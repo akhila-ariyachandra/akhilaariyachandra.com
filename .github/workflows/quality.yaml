@@ -1,9 +1,10 @@
-name: Prettier quality check
+name: Code Quality checks
 on:
   pull_request:
     branches: [main]
 jobs:
-  check:
+  prettier:
+    name: Prettier
     runs-on: ubuntu-22.04
     strategy:
       matrix:
