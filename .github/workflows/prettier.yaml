@@ -1,10 +1,9 @@
 name: Prettier quality check
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+    branches: [main]
 jobs:
-  build:
+  check:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
