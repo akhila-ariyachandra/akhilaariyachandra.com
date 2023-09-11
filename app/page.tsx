@@ -5,7 +5,7 @@ import MDXComponent from "@/components/MDXComponent";
 import { about, allJobs } from ".contentlayer/generated";
 
 const getPeriod = (start: string, end?: string) => {
-  const startDate = dayjs(start);
+const startDate = dayjs(start);
   const endDate = dayjs(end);
 
   const years = endDate.diff(startDate, "year");
