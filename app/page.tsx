@@ -72,11 +72,11 @@ const HomePage = () => {
       <hr className="my-7 sm:my-8" />
 
       <section>
-        <h2 className="mb-4 font-display text-xl font-bold text-zinc-800 dark:text-zinc-200 sm:mb-5 sm:text-2xl">
+        <h2 className="mb-6 font-display text-xl font-bold text-zinc-800 dark:text-zinc-200 sm:mb-7 sm:text-2xl">
           My Career
         </h2>
 
-        <div className="space-y-3 sm:space-y-4">
+        <div className="space-y-5 sm:space-y-6">
           {allJobs
             .sort((a, b) =>
               dayjs(a.period.start).isBefore(b.period.start) ? 1 : -1,

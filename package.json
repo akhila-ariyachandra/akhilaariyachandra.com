@@ -13,7 +13,8 @@
     "lint": "next lint",
     "drizzle:push": "dotenv -e .env.local drizzle-kit push:mysql",
     "drizzle:studio": "dotenv -e .env.local drizzle-kit studio",
-    "format": "prettier --write \"**/*.{ts,tsx,js,md,mdx,css}\""
+    "prettier:format": "prettier --write \"**/*.{ts,tsx,js,md,mdx,css,yaml}\"",
+    "prettier:check:ci": "prettier --check \"**/*.{ts,tsx,js,md,mdx,css,yaml}\""
   },
   "dependencies": {
     "@code-hike/mdx": "0.9.0",
