@@ -1,11 +1,11 @@
 ---
 title: Prettier in GitHub Actions
-posted: 2023-09-11
+posted: 2023-09-12
 ---
 
-[Prettier](https://prettier.io/) is an awesome opinionated code formatted. It is used to set a standard code format across a JavaScript project which developers can easily follow.
+[Prettier](https://prettier.io/) is an awesome opinionated code formatted. It is used to set a consistent code style across a project which developers can easily follow.
 
-Usually while working on the code base, developers might have an action like "Format on Save" enabled so that the files are automatically formatted using Prettier (along with the [Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)) when they are saved. They might even commit those settings to the project like in Visual Studio Code workspace settings so that other developers are automatically doing it too.
+Usually while working on the code base, developers might have a setting like "Format on Save" enabled so that the files are automatically formatted using Prettier (along with the [Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)) when they are saved. They might even commit those settings to the project like in the Visual Studio Code workspace settings so that other developers are automatically doing it too.
 
 ```json .vscode\settings.json
 {
@@ -14,7 +14,7 @@ Usually while working on the code base, developers might have an action like "Fo
 }
 ```
 
-But for some reason a developer might not format the code before committing it (not configured properly, extension not installed, using a different IDE etc...) and a manual review of the pull request might not catch this before it is merged to a deployment branch. As a safeguard, they should be a check to make sure that unformatted code is prevented from being merged into certain branches. We can do this by running Prettier using [GitHub Actions](https://github.com/features/actions), and preventing the merge until the action completes successfully.
+But for some reason a developer might not format the code before committing it (not configured properly, extension not installed, using a different IDE etc...) and a manual review of the pull request might not catch this before it is merged to a deployment branch. As a safeguard, there should be a check to make sure that unformatted code is prevented from being merged into certain branches. We can do this by running Prettier using [GitHub Actions](https://github.com/features/actions), and preventing the merge until the action completes successfully.
 
 <Callout type="info">
   I will be using [pnpm](https://pnpm.io/) as the package manager in this post
@@ -24,7 +24,7 @@ But for some reason a developer might not format the code before committing it (
 
 ## Setting up Prettier in your project
 
-Start by installing `prettier` as a dev dependency (with the `-D` flag). We will get why installing it as a dev dependency makes sense later.
+Start by installing `prettier` as a dev dependency (with the `-D` flag). We will get into why installing it as a dev dependency makes sense later.
 
 ```shell
 pnpm install prettier -E -D
@@ -88,7 +88,7 @@ on:
 
 After that we can specify the `job` to run.
 
-```yaml .github\workflows\quality.yaml focus=5:23
+```yaml .github\workflows\quality.yaml focus=5:23 mark=12:23
 name: Code Quality checks
 on:
   pull_request:
@@ -114,7 +114,7 @@ jobs:
         run: pnpm install -D
 ```
 
-There is quite a bit happening here so let's go through the steps. First we checkout our code with the [`actions/checkout@v3`](https://github.com/actions/checkout/tree/v3/) action. Then we set pnpm as the package manager with the [`pnpm/action-setup@v2`](https://github.com/pnpm/action-setup/tree/v2/) action. Next Node.js is setup with [`actions/setup-node@v3`](https://github.com/actions/setup-node/tree/v3/). Finally we install the dependencies with `pnpm install -D`. It does not make sense to install all the dependencies just to check the code with Prettier hence we are only installing the dev dependencies (which Prettier is in as [we specified in the install earlier](#setting-up-prettier-in-your-project)).
+There is quite a bit happening here so let's go through the `steps`. First we checkout our code with the [`actions/checkout@v3`](https://github.com/actions/checkout/tree/v3/) action. Then we set pnpm as the package manager with the [`pnpm/action-setup@v2`](https://github.com/pnpm/action-setup/tree/v2/) action. Next Node.js is setup with [`actions/setup-node@v3`](https://github.com/actions/setup-node/tree/v3/). Finally we install the dependencies with `pnpm install -D`. It does not make sense to install all the dependencies just to check the code with Prettier hence we are only installing the dev dependencies (which Prettier is in as [we specified in the install earlier](#setting-up-prettier-in-your-project)).
 
 All that is left to do is to run the Prettier check in the action through the script.
 
@@ -149,3 +149,27 @@ jobs:
 Now the action will run whenever there in pull request created to the `main` branch.
 
 ## Protecting the repo branches
+
+At the moment, the action would not stop the pull request from being merged if there are unformatted files. So we need to add a status check to the "Branch protection rule".
+
+Go to your branch settings in GitHub under `Settings > Branches`. Edit the rule for the `main` branch by checking "Require status checks to pass before merging" and adding the "Prettier" check under "Status checks that are required.".
+
+<PostImage
+  src="/posts/prettier-in-github-actions/settings.png"
+  title="A picture of the branch protection rules"
+  width={1110}
+  height={1043}
+/>
+
+Now pull requests will be blocked until the "Prettier" check run successfully.
+
+<PostImage
+  src="/posts/prettier-in-github-actions/successful_check.png"
+  title="A picture a successful check in the pull request"
+  width={914}
+  height={310}
+/>
+
+## Conclusion
+
+Now your branches should be protected against code that is not properly formatted. You can also setup other checks such as ESLint with a similar configuration. You can check out the code checks that I run in my portfolio [here](https://github.com/akhila-ariyachandra/akhilaariyachandra.com/tree/main/.github/workflows).
