@@ -3,6 +3,7 @@ import advancedFormat from "dayjs/plugin/advancedFormat";
 import Title from "@/components/Title";
 import Views from "@/components/Views";
 import MDXComponent from "@/components/MDXComponent";
+import ViewsIncrement from "./ViewsIncrement";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { allPosts } from ".contentlayer/generated";
@@ -74,8 +75,13 @@ const BlogPostPage = ({ params }: BlogPostPageProps) => {
           {" - "}
         </span>
 
-        <Views slug={post.slug} incrementOnMount />
+        <span>
+          <Views slug={post.slug} />
+          {" views"}
+        </span>
       </div>
+
+      <ViewsIncrement slug={params.slug} />
 
       <MDXComponent code={post.body.code} />
     </>

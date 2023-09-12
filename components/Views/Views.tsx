@@ -1,58 +1,19 @@
-"use client";
-
-import { type Post } from "@/db/schema";
-import { useEffect } from "react";
-import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
+import { eq } from "drizzle-orm";
+import { db } from "@/db/connection";
+import { posts } from "@/db/schema";
 
 type ViewsProps = {
   slug: string;
-  incrementOnMount?: boolean;
 };
 
-const Views = ({ slug, incrementOnMount = false }: ViewsProps) => {
-  const queryClient = useQueryClient();
-  const { data } = useQuery({
-    queryKey: ["views", slug],
-    queryFn: () =>
-      fetch(`/api/views/${slug}`, { cache: "no-cache" }).then(
-        (res) => res.json() as Promise<Post>,
-      ),
-    placeholderData: {
-      slug,
-      views: 0,
-    },
-  });
+const Views = async ({ slug }: ViewsProps) => {
+  const result = await db.select().from(posts).where(eq(posts.slug, slug));
 
-  const mutation = useMutation({
-    mutationFn: async () => {
-      const response = await fetch(`/api/views/${slug}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        cache: "no-cache",
-      });
-      const data = (await response.json()) as Post;
+  if (result.length === 0) {
+    return 0;
+  }
 
-      if (!response.ok) {
-        throw new Error("Error incrementing post views");
-      }
-
-      return data;
-    },
-    onSuccess: (data) => {
-      queryClient.setQueryData(["views", slug], data);
-    },
-  });
-
-  useEffect(() => {
-    if (incrementOnMount) {
-      mutation.mutate();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  return <span>{`${data?.views} views`}</span>;
+  return result[0].views;
 };
 
 export default Views;
