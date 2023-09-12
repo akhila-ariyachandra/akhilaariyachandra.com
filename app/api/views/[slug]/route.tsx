@@ -15,42 +15,6 @@ type Options = {
   };
 };
 
-const getPost = async (slug: string) => {
-  const result = await db.select().from(posts).where(eq(posts.slug, slug));
-
-  if (result.length === 0) {
-    return null;
-  }
-
-  return result[0];
-};
-
-export const GET = async (request: NextRequest, { params }: Options) => {
-  const slug = params.slug;
-
-  if (!allPosts.map((post) => post.slug).includes(slug)) {
-    return NextResponse.json(
-      {
-        error: "Not found",
-      },
-      {
-        status: 404,
-      },
-    );
-  }
-
-  const post = await getPost(slug);
-
-  if (!post) {
-    return NextResponse.json({
-      slug,
-      views: 0,
-    });
-  }
-
-  return NextResponse.json(post);
-};
-
 const ratelimit = new Ratelimit({
   redis: Redis.fromEnv(),
   limiter: Ratelimit.cachedFixedWindow(1, "1 m"),
@@ -94,9 +58,9 @@ export const POST = async (request: NextRequest, { params }: Options) => {
     );
   }
 
-  let post = await getPost(slug);
+  const result = await db.select().from(posts).where(eq(posts.slug, slug));
 
-  if (!post) {
+  if (result.length === 0) {
     // Create new record
     await db.insert(posts).values({
       slug,
@@ -106,11 +70,13 @@ export const POST = async (request: NextRequest, { params }: Options) => {
     // Update record
     await db
       .update(posts)
-      .set({ views: post.views + 1 })
+      .set({ views: result[0].views + 1 })
       .where(eq(posts.slug, slug));
   }
 
-  post = await getPost(slug);
+  // Revalidate pages
+  revalidatePath("/blog");
+  revalidatePath("/blog/[slug]");
 
-  return NextResponse.json(post);
+  return NextResponse.json({ message: "Incremented" });
 };

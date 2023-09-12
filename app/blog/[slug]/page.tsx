@@ -3,6 +3,7 @@ import advancedFormat from "dayjs/plugin/advancedFormat";
 import Title from "@/components/Title";
 import Views from "@/components/Views";
 import MDXComponent from "@/components/MDXComponent";
+import ViewsIncrement from "./ViewsIncrement";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { allPosts } from ".contentlayer/generated";
@@ -10,6 +11,7 @@ import { getOgImages } from "@/lib/helpers";
 
 dayjs.extend(advancedFormat);
 
+export const dynamic = "force-static";
 export const revalidate = 3600; // Revalidate after 1 hour
 
 // https://beta.nextjs.org/docs/api-reference/generate-static-params
@@ -74,8 +76,10 @@ const BlogPostPage = ({ params }: BlogPostPageProps) => {
           {" - "}
         </span>
 
-        <Views slug={post.slug} incrementOnMount />
+        <Views slug={post.slug} />
       </div>
+
+      <ViewsIncrement slug={params.slug} />
 
       <MDXComponent code={post.body.code} />
     </>

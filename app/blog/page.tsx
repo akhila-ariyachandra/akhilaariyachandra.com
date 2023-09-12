@@ -10,6 +10,7 @@ import { getOgImages } from "@/lib/helpers";
 
 dayjs.extend(advancedFormat);
 
+export const dynamic = "force-static";
 export const revalidate = 3600; // Revalidate after 1 hour
 
 export const metadata: Metadata = {
