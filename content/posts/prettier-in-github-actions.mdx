@@ -77,22 +77,28 @@ Next let's configure the GitHub Action. Create the `quality.yaml` file in the `.
 name: Code Quality checks
 ```
 
-Then we need to specify when to run the action. For our case, we need to run it when a pull request is created to the `main` branch. You can also add any other branches you want to protect here as well.
+Then we need to specify when to run the action. For our case, we need to run it when a pull request is created to the `main` branch. You can also add any other branches you want to protect here as well. We will also be using [concurrency](https://docs.github.com/en/actions/using-jobs/using-concurrency) to make sure that the action reruns after the pull request has been updated.
 
-```yaml .github\workflows\quality.yaml focus=2:4
+```yaml .github\workflows\quality.yaml focus=2:7
 name: Code Quality checks
 on:
   pull_request:
     branches: [main]
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 ```
 
 After that we can specify the `job` to run.
 
-```yaml .github\workflows\quality.yaml focus=5:23 mark=12:23
+```yaml .github\workflows\quality.yaml focus=8:26 mark=15:26
 name: Code Quality checks
 on:
   pull_request:
     branches: [main]
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   prettier:
     name: Prettier
@@ -118,11 +124,14 @@ There is quite a bit happening here so let's go through the `steps`. First we ch
 
 All that is left to do is to run the Prettier check in the action through the script.
 
-```yaml .github\workflows\quality.yaml focus=24:25
+```yaml .github\workflows\quality.yaml focus=27:28
 name: Code Quality checks
 on:
   pull_request:
     branches: [main]
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   prettier:
     name: Prettier

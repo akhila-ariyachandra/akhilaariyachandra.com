@@ -33,5 +33,5 @@ pnpm start
 ### Formatting the code
 
 ```shell
-pnpm format
+pnpm prettier:format
 ```
