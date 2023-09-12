@@ -1,0 +1,175 @@
+---
+title: Prettier in GitHub Actions
+posted: 2023-09-12
+---
+
+[Prettier](https://prettier.io/) is an awesome opinionated code formatted. It is used to set a consistent code style across a project which developers can easily follow.
+
+Usually while working on the code base, developers might have a setting like "Format on Save" enabled so that the files are automatically formatted using Prettier (along with the [Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)) when they are saved. They might even commit those settings to the project like in the Visual Studio Code workspace settings so that other developers are automatically doing it too.
+
+```json .vscode\settings.json
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true
+}
+```
+
+But for some reason a developer might not format the code before committing it (not configured properly, extension not installed, using a different IDE etc...) and a manual review of the pull request might not catch this before it is merged to a deployment branch. As a safeguard, there should be a check to make sure that unformatted code is prevented from being merged into certain branches. We can do this by running Prettier using [GitHub Actions](https://github.com/features/actions), and preventing the merge until the action completes successfully.
+
+<Callout type="info">
+  I will be using [pnpm](https://pnpm.io/) as the package manager in this post
+  but feel free to swap out any pnpm related sections of the code for the
+  package manager of your choice.
+</Callout>
+
+## Setting up Prettier in your project
+
+Start by installing `prettier` as a dev dependency (with the `-D` flag). We will get into why installing it as a dev dependency makes sense later.
+
+```shell
+pnpm install prettier -E -D
+```
+
+Then add a script to your `pacakage.json` file that makes formatting all you files in one go easier.
+
+```json package.json mark=3
+{
+  "scripts": {
+    "prettier:format": "prettier --write \"**/*.{ts,tsx,js,md,mdx,css,yaml}\""
+  }
+}
+```
+
+After that add any files and folders that you do not want to be formatted by Prettier to the `.prettierignore` file. I have added [the patterns used in my portfolio](https://github.com/akhila-ariyachandra/akhilaariyachandra.com/blob/main/.prettierignore) as an example.
+
+```text .prettierignore
+next-env.d.ts
+.next
+.vercel
+pnpm-lock.yaml
+.eslint.json
+.vscode
+.contentlayer
+```
+
+Finally you can run the script to format the files.
+
+```shell
+pnpm prettier:format
+```
+
+## Configuring the Github Action
+
+We can run Prettier with the [check flag](https://prettier.io/docs/en/cli.html#--check) to see if there are any unformatted files. If we run this in any CI/CD workflow such as GitHub Actions, it should fail based on the [exit codes](https://prettier.io/docs/en/cli.html#exit-codes) if any file is not formatted. First add another script, `prettier:check:ci`, to the `package.json` file to run Prettier with the check flag in GitHub Actions.
+
+```json package.json focus=4
+{
+  "scripts": {
+    "prettier:format": "prettier --write \"**/*.{ts,tsx,js,md,mdx,css,yaml}\"",
+    "prettier:check:ci": "prettier --check \"**/*.{ts,tsx,js,md,mdx,css,yaml}\""
+  }
+}
+```
+
+Next let's configure the GitHub Action. Create the `quality.yaml` file in the `.github\workflows` folder and give the action a name.
+
+```yaml .github\workflows\quality.yaml
+name: Code Quality checks
+```
+
+Then we need to specify when to run the action. For our case, we need to run it when a pull request is created to the `main` branch. You can also add any other branches you want to protect here as well.
+
+```yaml .github\workflows\quality.yaml focus=2:4
+name: Code Quality checks
+on:
+  pull_request:
+    branches: [main]
+```
+
+After that we can specify the `job` to run.
+
+```yaml .github\workflows\quality.yaml focus=5:23 mark=12:23
+name: Code Quality checks
+on:
+  pull_request:
+    branches: [main]
+jobs:
+  prettier:
+    name: Prettier
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        node-version: [18]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install -D
+```
+
+There is quite a bit happening here so let's go through the `steps`. First we checkout our code with the [`actions/checkout@v3`](https://github.com/actions/checkout/tree/v3/) action. Then we set pnpm as the package manager with the [`pnpm/action-setup@v2`](https://github.com/pnpm/action-setup/tree/v2/) action. Next Node.js is setup with [`actions/setup-node@v3`](https://github.com/actions/setup-node/tree/v3/). Finally we install the dependencies with `pnpm install -D`. It does not make sense to install all the dependencies just to check the code with Prettier hence we are only installing the dev dependencies (which Prettier is in as [we specified in the install earlier](#setting-up-prettier-in-your-project)).
+
+All that is left to do is to run the Prettier check in the action through the script.
+
+```yaml .github\workflows\quality.yaml focus=24:25
+name: Code Quality checks
+on:
+  pull_request:
+    branches: [main]
+jobs:
+  prettier:
+    name: Prettier
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        node-version: [18]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install -D
+      - name: Check formatting with Prettier
+        run: pnpm prettier:check:ci
+```
+
+Now the action will run whenever there in pull request created to the `main` branch.
+
+## Protecting the repo branches
+
+At the moment, the action would not stop the pull request from being merged if there are unformatted files. So we need to add a status check to the "Branch protection rule".
+
+Go to your branch settings in GitHub under `Settings > Branches`. Edit the rule for the `main` branch by checking "Require status checks to pass before merging" and adding the "Prettier" check under "Status checks that are required.".
+
+<PostImage
+  src="/posts/prettier-in-github-actions/settings.png"
+  title="A picture of the branch protection rules"
+  width={1110}
+  height={1043}
+/>
+
+Now pull requests will be blocked until the "Prettier" check run successfully.
+
+<PostImage
+  src="/posts/prettier-in-github-actions/successful_check.png"
+  title="A picture a successful check in the pull request"
+  width={914}
+  height={310}
+/>
+
+## Conclusion
+
+Now your branches should be protected against code that is not properly formatted. You can also setup other checks such as ESLint with a similar configuration. You can check out the code checks that I run in my portfolio [here](https://github.com/akhila-ariyachandra/akhilaariyachandra.com/tree/main/.github/workflows).
