@@ -2,7 +2,6 @@ import { type NextRequest, NextResponse } from "next/server";
 import { Redis } from "@upstash/redis";
 import { Ratelimit } from "@upstash/ratelimit";
 import { eq } from "drizzle-orm";
-import { revalidatePath } from "next/cache";
 import { allPosts } from ".contentlayer/generated";
 import { db } from "@/db/connection";
 import { posts } from "@/db/schema";
@@ -73,10 +72,6 @@ export const POST = async (request: NextRequest, { params }: Options) => {
       .set({ views: result[0].views + 1 })
       .where(eq(posts.slug, slug));
   }
-
-  // Revalidate pages
-  revalidatePath("/blog");
-  revalidatePath("/blog/[slug]");
 
   return NextResponse.json({ message: "Incremented" });
 };
