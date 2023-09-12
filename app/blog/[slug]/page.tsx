@@ -1,7 +1,6 @@
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import Title from "@/components/Title";
-import Views from "@/components/Views";
 import MDXComponent from "@/components/MDXComponent";
 import ViewsIncrement from "./ViewsIncrement";
 import type { Metadata } from "next";
@@ -69,11 +68,9 @@ const BlogPostPage = ({ params }: BlogPostPageProps) => {
           {dayjs(post.posted).format("Do MMMM YYYY")}
         </time>
 
-        <span className="font-light text-zinc-500 dark:text-zinc-400">
+        {/* <span className="font-light text-zinc-500 dark:text-zinc-400">
           {" - "}
-        </span>
-
-        <Views slug={post.slug} />
+        </span> */}
       </div>
 
       <ViewsIncrement slug={params.slug} />
