@@ -78,8 +78,10 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
                 <NavLink
                   key={link.href}
                   href={link.href}
-                  className="font-medium text-zinc-700 hover:underline dark:text-zinc-300 sm:text-lg"
-                  activeClassName="font-medium sm:text-lg underline text-green-700 dark:text-green-500 underline-offset-2 hover:underline-offset-1"
+                  className={cn(
+                    "font-medium text-zinc-700 hover:underline dark:text-zinc-300 sm:text-lg",
+                    "data-[active]:font-medium data-[active]:text-green-700 data-[active]:underline data-[active]:underline-offset-2 data-[active]:hover:underline-offset-1 data-[active]:dark:text-green-500 data-[active]:sm:text-lg",
+                  )}
                 >
                   {link.label}
                 </NavLink>
