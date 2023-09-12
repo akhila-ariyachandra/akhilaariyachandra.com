@@ -2,7 +2,6 @@ import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
-import Views from "@/components/Views";
 import Title from "@/components/Title";
 import type { Metadata } from "next";
 import { allPosts } from ".contentlayer/generated";
@@ -47,11 +46,9 @@ const BlogPage = () => {
                   {dayjs(post.posted).format("Do MMMM YYYY")}
                 </time>
 
-                <span className="font-light text-zinc-500 dark:text-zinc-400">
+                {/* <span className="font-light text-zinc-500 dark:text-zinc-400">
                   {" - "}
-                </span>
-
-                <Views slug={post.slug} />
+                </span> */}
               </div>
             </li>
           ))}
