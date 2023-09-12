@@ -10,8 +10,6 @@ import { getOgImages } from "@/lib/helpers";
 
 dayjs.extend(advancedFormat);
 
-export const revalidate = 3600; // Revalidate after 1 hour
-
 export const metadata: Metadata = {
   title: "Blog | Akhila Ariyachandra",
   description: "My personal blog",
@@ -53,10 +51,7 @@ const BlogPage = () => {
                   {" - "}
                 </span>
 
-                <span>
-                  <Views slug={post.slug} />
-                  {" views"}
-                </span>
+                <Views slug={post.slug} />
               </div>
             </li>
           ))}
