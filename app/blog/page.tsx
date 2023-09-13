@@ -43,7 +43,13 @@ const BlogPage = () => {
 
               <div className="text-sm text-zinc-600 dark:text-zinc-400 sm:text-base">
                 <time dateTime={dayjs(post.posted).toISOString()}>
-                  {dayjs(post.posted).format("Do MMMM YYYY")}
+                  {`${dayjs(post.posted).format("Do MMMM YYYY")}${
+                    post.updated
+                      ? ` (Updated on ${dayjs(post.updated).format(
+                          "Do MMMM YYYY",
+                        )})`
+                      : ""
+                  }`}
                 </time>
 
                 <span className="font-light text-zinc-500 dark:text-zinc-400">
