@@ -46,9 +46,11 @@ const BlogPage = () => {
                   {dayjs(post.posted).format("Do MMMM YYYY")}
                 </time>
 
-                {/* <span className="font-light text-zinc-500 dark:text-zinc-400">
+                <span className="font-light text-zinc-500 dark:text-zinc-400">
                   {" - "}
-                </span> */}
+                </span>
+
+                <span>{`${post.readingTime} min read`}</span>
               </div>
             </li>
           ))}
