@@ -3,6 +3,7 @@ import rehypeSlug from "rehype-slug";
 import externalLinks from "rehype-external-links";
 import remarkGfm from "remark-gfm";
 import smartypants from "remark-smartypants";
+import readingTime from "reading-time";
 import {
   defineDocumentType,
   makeSource,
@@ -38,6 +39,10 @@ export const Post = defineDocumentType(() => ({
     slug: {
       type: "string",
       resolve: (post) => post._raw.sourceFileName.replace(".mdx", ""),
+    },
+    readingTime: {
+      type: "string",
+      resolve: (post) => Math.ceil(readingTime(post.body.raw).minutes),
     },
   },
 }));
