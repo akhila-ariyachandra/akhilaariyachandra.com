@@ -1,7 +1,9 @@
 import dayjs from "dayjs";
-import profilePic from "@/public/profile-pic.png";
 import Image from "next/image";
+
 import MDXComponent from "@/components/MDXComponent";
+import profilePic from "@/public/profile-pic.png";
+
 import { about, allJobs } from ".contentlayer/generated";
 
 const getPeriod = (start: string, end?: string) => {

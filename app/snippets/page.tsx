@@ -1,9 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
+
 import Title from "@/components/Title";
-import type { Metadata } from "next";
-import { allSnippets } from ".contentlayer/generated";
 import { getOgImages } from "@/lib/helpers";
+
+import { allSnippets } from ".contentlayer/generated";
 
 export const metadata: Metadata = {
   title: "Code Snippets | Akhila Ariyachandra",

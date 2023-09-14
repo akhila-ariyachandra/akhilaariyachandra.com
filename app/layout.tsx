@@ -1,13 +1,15 @@
-import Link from "next/link";
-import NavLink from "./NavLink";
-import type { ReactNode } from "react";
+import "./globals.css";
+
+import { Analytics } from "@vercel/analytics/react";
 import type { Metadata, Route } from "next";
 import { Oswald, Source_Code_Pro as SourceCodePro } from "next/font/google";
-import { cn, getOgImages } from "@/lib/helpers";
+import Link from "next/link";
+import type { ReactNode } from "react";
 import { Provider } from "react-wrap-balancer";
-import { Analytics } from "@vercel/analytics/react";
 
-import "./globals.css";
+import { cn, getOgImages } from "@/lib/helpers";
+
+import NavLink from "./NavLink";
 
 const display = Oswald({
   subsets: ["latin"],

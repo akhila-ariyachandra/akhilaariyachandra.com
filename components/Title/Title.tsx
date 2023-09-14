@@ -1,5 +1,5 @@
-import Balancer from "react-wrap-balancer";
 import type { ReactNode } from "react";
+import Balancer from "react-wrap-balancer";
 
 type TitleProps = {
   children: ReactNode;

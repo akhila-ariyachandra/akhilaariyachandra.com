@@ -1,11 +1,13 @@
-import { type NextRequest, NextResponse } from "next/server";
-import { Redis } from "@upstash/redis";
 import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
-import { allPosts } from ".contentlayer/generated";
+import { type NextRequest, NextResponse } from "next/server";
+
 import { db } from "@/db/connection";
 import { posts } from "@/db/schema";
+
+import { allPosts } from ".contentlayer/generated";
 
 export const runtime = "nodejs";
 

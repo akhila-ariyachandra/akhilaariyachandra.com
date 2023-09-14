@@ -1,11 +1,13 @@
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
+import type { Metadata } from "next";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
+
 import Title from "@/components/Title";
-import type { Metadata } from "next";
-import { allPosts } from ".contentlayer/generated";
 import { getOgImages } from "@/lib/helpers";
+
+import { allPosts } from ".contentlayer/generated";
 
 dayjs.extend(advancedFormat);
 

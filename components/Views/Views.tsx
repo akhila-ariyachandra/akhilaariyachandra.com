@@ -1,6 +1,7 @@
+import { Suspense } from "react";
+
 import ViewsErrorBoundary from "./ViewsErrorBoundary";
 import ViewsFetcher from "./ViewsFetcher";
-import { Suspense } from "react";
 
 type ViewsProps = {
   slug: string;
