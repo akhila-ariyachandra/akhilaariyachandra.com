@@ -1,6 +1,7 @@
-import Link from "next/link";
-import Title from "@/components/Title";
 import type { Metadata } from "next";
+import Link from "next/link";
+
+import Title from "@/components/Title";
 
 export const metadata: Metadata = {
   title: "404 | Akhila Ariyachandra",

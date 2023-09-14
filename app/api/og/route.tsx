@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from "next/server";
-import { NextResponse, type NextRequest } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+
 import { getBaseURL } from "@/lib/helpers";
 
 const queryParamSchema = z.object({

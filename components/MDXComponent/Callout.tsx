@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
+import { IoInformationCircle, IoPencil, IoWarning } from "react-icons/io5";
+
 import { cn } from "@/lib/helpers";
-import { IoWarning, IoInformationCircle, IoPencil } from "react-icons/io5";
 
 import styles from "./Callout.module.css";
 

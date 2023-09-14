@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+
 import { allPosts, allSnippets } from "@/.contentlayer/generated";
 
 const sitemap = (): MetadataRoute.Sitemap => {

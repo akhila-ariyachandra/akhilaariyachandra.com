@@ -1,9 +1,10 @@
 "use client";
 
-import { useMDXComponent } from "next-contentlayer/hooks";
-import { cn } from "@/lib/helpers";
-
 import "@code-hike/mdx/dist/index.css";
+
+import { useMDXComponent } from "next-contentlayer/hooks";
+
+import { cn } from "@/lib/helpers";
 
 // MDX Components
 import Callout from "./Callout";

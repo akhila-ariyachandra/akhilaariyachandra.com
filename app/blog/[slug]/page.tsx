@@ -1,12 +1,14 @@
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
-import Title from "@/components/Title";
-import MDXComponent from "@/components/MDXComponent";
-import ViewsIncrement from "./ViewsIncrement";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { allPosts } from ".contentlayer/generated";
+
+import MDXComponent from "@/components/MDXComponent";
+import Title from "@/components/Title";
 import { getOgImages } from "@/lib/helpers";
+
+import ViewsIncrement from "./ViewsIncrement";
+import { allPosts } from ".contentlayer/generated";
 
 dayjs.extend(advancedFormat);
 
