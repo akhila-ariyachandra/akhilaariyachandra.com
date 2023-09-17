@@ -76,9 +76,7 @@ export const POST = async (request: NextRequest, { params }: Options) => {
       .where(eq(posts.slug, slug));
   }
 
-  // Revalidate pages
   revalidatePath("/blog");
-  revalidatePath("/blog/[slug]");
 
   return NextResponse.json({ message: "Incremented" });
 };

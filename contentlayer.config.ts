@@ -4,7 +4,6 @@ import {
   defineNestedType,
   makeSource,
 } from "contentlayer/source-files";
-import readingTime from "reading-time";
 import externalLinks from "rehype-external-links";
 import rehypePrettyCode, { type Options } from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
@@ -39,10 +38,6 @@ export const Post = defineDocumentType(() => ({
     slug: {
       type: "string",
       resolve: (post) => post._raw.sourceFileName.replace(".mdx", ""),
-    },
-    readingTime: {
-      type: "string",
-      resolve: (post) => Math.ceil(readingTime(post.body.raw).minutes),
     },
   },
 }));

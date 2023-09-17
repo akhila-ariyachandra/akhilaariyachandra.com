@@ -1,6 +1,3 @@
-import { Suspense } from "react";
-
-import ViewsErrorBoundary from "./ViewsErrorBoundary";
 import ViewsFetcher from "./ViewsFetcher";
 
 type ViewsProps = {
@@ -9,12 +6,10 @@ type ViewsProps = {
 
 const Views = ({ slug }: ViewsProps) => {
   return (
-    <ViewsErrorBoundary>
-      <Suspense fallback={<span>0 views</span>}>
-        <ViewsFetcher slug={slug} />
-        {" views"}
-      </Suspense>
-    </ViewsErrorBoundary>
+    <span>
+      <ViewsFetcher slug={slug} />
+      {" views"}
+    </span>
   );
 };
 
