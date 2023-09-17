@@ -9,7 +9,7 @@ import { posts } from "@/db/schema";
 
 import { allPosts } from ".contentlayer/generated";
 
-export const runtime = "nodejs";
+export const runtime = "edge";
 
 type Options = {
   params: {
