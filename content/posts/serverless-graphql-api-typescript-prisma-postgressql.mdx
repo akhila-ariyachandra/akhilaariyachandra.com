@@ -43,7 +43,7 @@ yarn add @prisma/cli ts-node @types/node -D
 
 Then create `tsconfig.json` with the following configuration.
 
-```json tsconfig.json
+```json title="tsconfig.json"
 {
   "compilerOptions": {
     "sourceMap": true,
@@ -63,9 +63,7 @@ npx prisma init
 
 This will create the `prisma` folder in the project root and in it the `schema.prisma` and `.env` files.
 
-<CH.Code>
-
-```prisma prisma\schema.prisma
+```prisma title="prisma\schema.prisma"
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
@@ -79,7 +77,7 @@ generator client {
 }
 ```
 
-```text prisma/.env
+```text title="prisma/.env"
 # Environment variables declared in this file are automatically made available to Prisma.
 # See the documentation for more detail: https://pris.ly/d/prisma-schema#using-environment-variables
 
@@ -89,8 +87,6 @@ generator client {
 DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=public"
 ```
 
-</CH.Code>
-
 Replace the placeholder `DATABASE_URL` in your `.env` file with the URL of your own database.
 
 <Callout type="warn">
@@ -99,7 +95,7 @@ Replace the placeholder `DATABASE_URL` in your `.env` file with the URL of your 
 
 To organize our code, first let's move the `.env` to the project root.
 
-```text .env
+```text title=".env"
 # Environment variables declared in this file are automatically made available to Prisma.
 # See the documentation for more detail: https://pris.ly/d/prisma-schema#using-environment-variables
 
@@ -111,7 +107,7 @@ DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=pub
 
 Then move the `schema.prisma` file to `src\db\schema.prisma`.
 
-```prisma src\db\schema.prisma
+```prisma title="src\db\schema.prisma"
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
@@ -127,7 +123,7 @@ generator client {
 
 We also need to modify Prisma to read the schema from its new path by adding the path in `package.json`.
 
-```json package.json focus=7:9
+```json title="package.json" {7-9}
 {
   "name": "serverless-api-graphql-prisma",
   "version": "1.0.0",
@@ -148,7 +144,7 @@ We also need to modify Prisma to read the schema from its new path by adding the
 
 Now we need to add the model for Notes. All models are "declared" in the `schema.prisma` file.
 
-```prisma src\db\schema.prisma focus=13:18
+```prisma title="src\db\schema.prisma" {13-18}
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
@@ -211,13 +207,13 @@ Next create the folder `api` in the project root and in it create the file `grap
 
 Then import `ApolloServer` from `apollo-server-micro`.
 
-```typescript api/graphql.ts
+```typescript title="api/graphql.ts"
 import { ApolloServer } from "apollo-server-micro";
 ```
 
 After that import the GraphQL Schemas and Resolvers. We'll create these later.
 
-```typescript api/graphql.ts focus=3:4
+```typescript title="api/graphql.ts" {3-4}
 import { ApolloServer } from "apollo-server-micro";
 
 import typeDefs from "../src/graphql/schema";
@@ -226,7 +222,7 @@ import resolvers from "../src/graphql/resolvers";
 
 Then initialize the Apollo Server and export it.
 
-```typescript api/graphql.ts focus=6:9,11
+```typescript title="api/graphql.ts" {6-9,11}
 import { ApolloServer } from "apollo-server-micro";
 
 import typeDefs from "../src/graphql/schema";
@@ -242,7 +238,7 @@ export default apolloServer.createHandler({ path: "/api/graphql" });
 
 To finish configuring we'll set the `introspection` and `playground` options.
 
-```typescript api/graphql.ts focus=9,10
+```typescript title="api/graphql.ts" {9,10}
 import { ApolloServer } from "apollo-server-micro";
 
 import typeDefs from "../src/graphql/schema";
@@ -264,7 +260,7 @@ In the `src` folder create the `graphql` folder and in it create the `schema` fo
 
 GraphQL doesn't have a type for date and time so we'll need a schema for those types. Create `custom.ts` in the `schema` folder.
 
-```typescript src/graphql/schema/custom.ts
+```typescript title="src/graphql/schema/custom.ts"
 import { gql } from "apollo-server-micro";
 
 export default gql`
@@ -278,7 +274,7 @@ Next we'll setup the schema for Note.
 
 First create the Note schema file, `note.ts` in the `schema` folder.
 
-```typescript src/graphql/schema/note.ts
+```typescript title="src/graphql/schema/note.ts"
 import { gql } from "apollo-server-micro";
 
 export default gql``;
@@ -286,7 +282,7 @@ export default gql``;
 
 Then add the Note type.
 
-```typescript src/graphql/schema/note.ts focus=3:10
+```typescript title="src/graphql/schema/note.ts" {3-10}
 import { gql } from "apollo-server-micro";
 
 export default gql`
@@ -301,7 +297,7 @@ export default gql`
 
 After that add two Queries, one to get all Notes and one to get a specific Note.
 
-```typescript src/graphql/schema/note.ts focus=4:7
+```typescript title="src/graphql/schema/note.ts" {4-7}
 import { gql } from "apollo-server-micro";
 
 export default gql`
@@ -321,7 +317,7 @@ export default gql`
 
 Next add two Mutations to create new Notes and delete existing ones.
 
-```typescript src/graphql/schema/note.ts focus=9:12
+```typescript title="src/graphql/schema/note.ts" {9-12}
 import { gql } from "apollo-server-micro";
 
 export default gql`
@@ -348,7 +344,7 @@ export default gql`
 
 Finally we'll need a schema a join all the others schemas together. Create `index.ts` in the `schema` folder and declare and export the Link Schema in an array.
 
-```typescript src/graphql/schema/index.ts
+```typescript title="src/graphql/schema/index.ts"
 import { gql } from "apollo-server-micro";
 
 const linkSchema = gql`
@@ -370,7 +366,7 @@ export default [linkSchema];
 
 Then import the other Schemas and add them to the array.
 
-```typescript src/graphql/schema/index.ts focus=3:4,20
+```typescript title="src/graphql/schema/index.ts" {3-4,20}
 import { gql } from "apollo-server-micro";
 
 import noteSchema from "./note";
@@ -397,7 +393,7 @@ export default [linkSchema, noteSchema, customSchema];
 
 Since we added a custom type for dates and times in our schema, the first resolver we'll add is for those types. Create a folder called `resolvers` in the `graphql` folder and in it create `custom.ts`.
 
-```typescript src/graphql/resolvers/custom.ts
+```typescript title="src/graphql/resolvers/custom.ts"
 import { GraphQLDate, GraphQLTime, GraphQLDateTime } from "graphql-iso-date";
 
 export default {
@@ -411,7 +407,7 @@ Next we'll start working on the resolver for Notes.
 
 Start by creating `note.ts` in `graphql`, importing the required dependencies and exporting an empty object which is going to be our resolver.
 
-```typescript src/graphql/resolvers/note.ts
+```typescript title="src/graphql/resolvers/note.ts"
 import { ApolloError } from "apollo-server-micro";
 import { PrismaClient, Note } from "@prisma/client";
 
@@ -424,7 +420,7 @@ export default {};
 
 Then define an object for the Queries.
 
-```typescript src/graphql/resolvers/note.ts focus=7
+```typescript title="src/graphql/resolvers/note.ts" {7}
 import { ApolloError } from "apollo-server-micro";
 import { PrismaClient, Note } from "@prisma/client";
 
@@ -443,7 +439,7 @@ When defining the function for each of the queries (or mutations or fields) ther
 
 First let's write the resolver for `getAllNotes`. Start by declaring the function.
 
-```typescript src/graphql/resolvers/note.ts focus=7
+```typescript title="src/graphql/resolvers/note.ts" {7}
 import { ApolloError } from "apollo-server-micro";
 import { PrismaClient, Note } from "@prisma/client";
 
@@ -458,7 +454,7 @@ export default {
 
 Then add the code to get all the notes.
 
-```typescript src/graphql/resolvers/note.ts focus=9:17
+```typescript title="src/graphql/resolvers/note.ts" {9-17}
 import { ApolloError } from "apollo-server-micro";
 import { PrismaClient, Note } from "@prisma/client";
 
@@ -483,7 +479,7 @@ export default {
 
 After that let's add the resolver for `getNote`.
 
-```typescript src/graphql/resolvers/note.ts focus=20:37
+```typescript title="src/graphql/resolvers/note.ts" {20-37}
 import { ApolloError } from "apollo-server-micro";
 import { PrismaClient, Note } from "@prisma/client";
 
@@ -529,7 +525,7 @@ We can retrieve the `id` argument from the second parameter.
 
 Let's finish of the Note resolvers by adding the resolvers for the mutations.
 
-```typescript src/graphql/resolvers/note.ts focus=40:79
+```typescript title="src/graphql/resolvers/note.ts" {40-79}
 import { ApolloError } from "apollo-server-micro";
 import { PrismaClient, Note } from "@prisma/client";
 
@@ -614,7 +610,7 @@ export default {
 
 Now we have to connect all the resolvers together using an `index.ts` file created in the `resolvers` folder.
 
-```typescript src/graphql/resolvers/index.ts
+```typescript title="src/graphql/resolvers/index.ts"
 import noteResolver from "./note";
 import customResolver from "./custom";
 
@@ -669,7 +665,7 @@ You can create a GraphQL API endpoint in your Next.js project by putting the `gr
 
 The only extra step you need to do is to add this bit of code to the end of the `graphql.ts` file.
 
-```typescript pages/api/graphql.ts focus=5:9
+```typescript title="pages/api/graphql.ts" {5-9}
 // ...
 
 export default apolloServer.createHandler({ path: "/api/graphql" });

@@ -56,7 +56,7 @@ pnpx prisma init
 
 Then will create the `.env` file with the `DATABASE_URL` variable and the `schema.prisma` file in the `prisma` folder. The `DATABASE_URL` variable will come a placeholder value so replace it with the local database path.
 
-```text .env
+```text title=".env"
 DATABASE_URL="mysql://root@127.0.0.1:3309/akhilaariyachandra-com"
 ```
 
@@ -66,7 +66,7 @@ DATABASE_URL="mysql://root@127.0.0.1:3309/akhilaariyachandra-com"
 
 Next let's take a look at the `schema.prisma` file. The first change we need to make is to set the `provider` to `mysql`.
 
-```prisma prisma/schema.prisma focus=9
+```prisma title="prisma/schema.prisma" {9}
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
@@ -84,7 +84,7 @@ Another change we need to make is to how foreign keys are handled in our databas
 
 If you have a foreign key in your model, it is important to create an index on that field using the `@@index` [argument](https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#index) to prevent perfomance issues as PlanetScale will not automatically create an index on that field because it doesn't maintain it as a foreign key.
 
-```prisma prisma/schema.prisma focus=11
+```prisma title="prisma/schema.prisma" {11}
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
@@ -101,7 +101,7 @@ datasource db {
 
 Now we have to create a model for our database. For this post I'll be creating a model for a basic page view counter.
 
-```prisma prisma/schema.prisma focus=14:17
+```prisma title="prisma/schema.prisma" {14-17}
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
@@ -125,7 +125,7 @@ Once we have done the changes to the schema, we should push them to the database
 
 To make things easier in the future, let's create a script in the `package.json` file and run it.
 
-```json package.json focus=3
+```json title="package.json" {3}
 {
   "scripts": {
     "prisma:db-push": "prisma db push"
@@ -145,7 +145,7 @@ pnpm install @prisma/client
 
 Similar to how we created a `package.json` script to push our schema changes to the database, let's create another script to manaully generate the Prisma Client.
 
-```json package.json focus=4
+```json title="package.json" {4}
 {
   "scripts": {
     "prisma:db-push": "prisma db push",
@@ -162,7 +162,7 @@ warn(prisma-client) There are already 10 instances of Prisma Client actively run
 
 To prevent this, we can initialize and store a Prisma Client instance to be shared.
 
-```typescript prisma/index.ts
+```typescript title="prisma/index.ts"
 import { PrismaClient } from "@prisma/client";
 
 declare global {
@@ -182,7 +182,7 @@ export default prisma;
 
 Now all we have to do is to import the Prisma Client from this file. You can use [Absolute Imports and Module path aliases](https://nextjs.org/docs/advanced-features/module-path-aliases) to make an easy path to import it from.
 
-```json tsconfig.json focus=3,5
+```json title="tsconfig.json" {3,5}
 {
   "compilerOptions": {
     "baseUrl": ".",

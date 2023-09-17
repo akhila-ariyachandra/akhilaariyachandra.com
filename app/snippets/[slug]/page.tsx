@@ -56,7 +56,7 @@ const SnippetPage = ({ params }: SnippetPageProps) => {
     <>
       <Title>{snippet.title}</Title>
 
-      <p className="text-sm text-zinc-600 dark:text-zinc-400 sm:text-base">
+      <p className="mb-4 text-sm text-zinc-600 dark:text-zinc-400 sm:mb-5 sm:text-base">
         {snippet.description}
       </p>
 

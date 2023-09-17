@@ -65,7 +65,7 @@ const BlogPostPage = ({ params }: BlogPostPageProps) => {
     <>
       <Title>{post.title}</Title>
 
-      <div className="text-sm text-zinc-600 dark:text-zinc-400 sm:text-base">
+      <div className="mb-4 text-sm text-zinc-600 dark:text-zinc-400 sm:mb-5 sm:text-base">
         <time dateTime={dayjs(post.posted).toISOString()}>
           {`${dayjs(post.posted).format("Do MMMM YYYY")}${
             post.updated

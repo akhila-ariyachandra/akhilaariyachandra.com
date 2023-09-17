@@ -25,7 +25,7 @@ const useStickyState = (initialState = null) => {};
 
 Then let's initialize the state and return it and the function to change it.
 
-```jsx focus=4,6
+```jsx {4,6}
 import React from "react";
 
 const useStickyState = (initialState = null) => {
@@ -37,7 +37,7 @@ const useStickyState = (initialState = null) => {
 
 Next we'll add an effect to store the state in `localstorage` when the state changes. Since we need an key to store a value in local storage we'll add one as an argument.
 
-```jsx focus=3,6:8
+```jsx {3,6-8}
 import React from "react";
 
 const useStickyState = (key = "sticky", initialState = null) => {
@@ -53,7 +53,7 @@ const useStickyState = (key = "sticky", initialState = null) => {
 
 In its current form the state will always initialize with `initialState`, but we need to load the state from `localstorage` if available. We can use [lazy initialization](https://reactjs.org/docs/hooks-reference.html#lazy-initial-state "Lazy initial state") to check `localstorage` and use it's value if present. If not, use `initialState` instead.
 
-```jsx focus=4:8
+```jsx {4-8}
 import React from "react";
 
 const useStickyState = (key = "sticky", initialState = null) => {
@@ -73,7 +73,7 @@ const useStickyState = (key = "sticky", initialState = null) => {
 
 To finish up the hook, let's add and return a function to remove clear up the value in `localstorage`.
 
-```jsx focus=14,16
+```jsx {14,16}
 import React from "react";
 
 const useStickyState = (key = "sticky", initialState = null) => {
@@ -97,7 +97,7 @@ const useStickyState = (key = "sticky", initialState = null) => {
 
 Below is an example on how to use the `useStickyState` hook to save the value in an `<input>`
 
-```jsx focus=19:38
+```jsx {19-38}
 import React from "react";
 
 const useStickyState = (key = "sticky", initialState = null) => {

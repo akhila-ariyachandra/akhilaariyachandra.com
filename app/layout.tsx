@@ -1,4 +1,5 @@
 import "./globals.css";
+import "./syntax-highlighting.css";
 
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata, Route } from "next";

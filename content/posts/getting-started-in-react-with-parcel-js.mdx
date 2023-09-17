@@ -32,7 +32,7 @@ yarn add @babel/core @babel/preset-env @babel/preset-react @babel/plugin-proposa
 
 Once the dependencies are done installing create the `.babelrc` file in the project root with the following code.
 
-```json .babelrc
+```json title=".babelrc"
 {
   "presets": ["@babel/preset-env", "@babel/preset-react"],
   "plugins": ["@babel/plugin-proposal-class-properties"]
@@ -55,7 +55,7 @@ yarn add regenerator-runtime -D
 Next we will need an entry point for out app. The nice thing about Parcel is that the entry file doesn't have to be a JavaScript file. In our case its going to be a HTML file.
 Create a folder with the name `src`. This folder is going to contain all the source code. In the `src` folder create the `index.html` file which is going to be the entry point of the app and add the following code.
 
-```html src/index.html
+```html title="src/index.html"
 <!doctype html>
 <html lang="en">
   <head>
@@ -77,7 +77,7 @@ Create a folder with the name `src`. This folder is going to contain all the sou
 
 After that we will create the `index.js` file (also in `src`) which will connect the root React component to the `index.html` file.
 
-```jsx src/index.js
+```jsx title="src/index.js"
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App.js";
@@ -88,7 +88,7 @@ ReactDOM.render(<App />, document.getElementById("root"));
 
 Next let's create the root component in the `App.js` file. The root component is going to contain the routing configuration.
 
-```jsx src/App.js
+```jsx title="src/App.js"
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -117,7 +117,7 @@ export default App;
 
 After that let's create a layout for our pages. Create the folder `components` in `src` and in it create `Layout.js`. The layout component is also going to contain the navigation links within the app.
 
-```jsx src/components/Layout.js
+```jsx title="src/components/Layout.js"
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -144,7 +144,7 @@ export default Layout;
 
 Then let's create the pages. In `src` create a folder called `pages`. The first page we are going to create is the home page.
 
-```jsx src/pages/home.js
+```jsx title="src/pages/home.js"
 import React from "react";
 import Layout from "../components/Layout";
 
@@ -161,7 +161,7 @@ export default Home;
 
 After that we will create the about page.
 
-```jsx src/pages/about.js
+```jsx title="src/pages/about.js"
 import React from "react";
 import Layout from "../components/Layout";
 
@@ -187,7 +187,7 @@ export default About;
 
 Finally all that's left to do is to add the scripts to run the app. Add the following in the `package.json` file.
 
-```json package.json focus=9:12
+```json title="package.json" {9-12}
 {
   "name": "react-parcel-starter",
   "version": "1.0.0",

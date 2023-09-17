@@ -1,15 +1,15 @@
 import a11yEmoji from "@fec/remark-a11y-emoji";
-import rehypeSlug from "rehype-slug";
-import externalLinks from "rehype-external-links";
-import remarkGfm from "remark-gfm";
-import smartypants from "remark-smartypants";
-import readingTime from "reading-time";
 import {
   defineDocumentType,
-  makeSource,
   defineNestedType,
+  makeSource,
 } from "contentlayer/source-files";
-import { remarkCodeHike } from "@code-hike/mdx";
+import readingTime from "reading-time";
+import externalLinks from "rehype-external-links";
+import rehypePrettyCode, { type Options } from "rehype-pretty-code";
+import rehypeSlug from "rehype-slug";
+import remarkGfm from "remark-gfm";
+import smartypants from "remark-smartypants";
 
 export const About = defineDocumentType(() => ({
   name: "About",
@@ -122,15 +122,16 @@ export default makeSource({
   contentDirPath: "content",
   documentTypes: [About, Post, Snippet, Job],
   mdx: {
-    remarkPlugins: [
-      smartypants,
-      a11yEmoji,
-      remarkGfm,
-      [remarkCodeHike, { theme: "material-ocean", showCopyButton: true }],
-    ],
+    remarkPlugins: [smartypants, a11yEmoji, remarkGfm],
     rehypePlugins: [
       rehypeSlug,
       [externalLinks, { target: "_blank", rel: ["noopener", "noreferrer"] }],
+      [
+        rehypePrettyCode,
+        {
+          theme: "material-theme-ocean",
+        } satisfies Options,
+      ],
     ],
   },
 });
