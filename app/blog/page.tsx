@@ -5,7 +5,6 @@ import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 
 import Title from "@/components/Title";
-import { getOgImages } from "@/lib/helpers";
 
 import { allPosts } from ".contentlayer/generated";
 
@@ -19,7 +18,6 @@ export const metadata: Metadata = {
     description: "My personal blog",
     url: "/blog",
     type: "website",
-    images: getOgImages("Personal Blog", "Akhila Ariyachandra"),
   },
   alternates: {
     canonical: "/blog",

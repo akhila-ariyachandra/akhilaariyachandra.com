@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 
 import MDXComponent from "@/components/MDXComponent";
 import Title from "@/components/Title";
-import { getOgImages } from "@/lib/helpers";
 
 import { allSnippets } from ".contentlayer/generated";
 
@@ -37,7 +36,6 @@ export const generateMetadata = async ({
       description: snippet.description,
       url: `/snippets/${snippet.slug}`,
       type: "article",
-      images: getOgImages(snippet.title, "Akhila Ariyachandra", "Code Snippet"),
     },
     alternates: {
       canonical: `/snippets/${snippet.slug}`,

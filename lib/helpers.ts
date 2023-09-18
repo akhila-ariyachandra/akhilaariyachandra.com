@@ -1,5 +1,4 @@
 import { type ClassValue, clsx } from "clsx";
-import { nanoid } from "nanoid";
 import { twMerge } from "tailwind-merge";
 
 export const cn = (...args: ClassValue[]) => {
@@ -16,54 +15,4 @@ export const getBaseURL = () => {
   }
 
   return "http://localhost:3000";
-};
-
-export const getOgImages = (
-  title: string,
-  subtitle: string,
-  content?: string,
-) => {
-  const url = new URL(`${getBaseURL()}/api/og`);
-
-  url.searchParams.set("random-id", nanoid());
-  url.searchParams.set("title", title);
-  url.searchParams.set("subtitle", subtitle);
-
-  if (content) {
-    url.searchParams.set("content", content);
-  }
-
-  const images = [];
-
-  // Twitter 1200x600
-  const twitterUrl = new URL(url);
-  twitterUrl.searchParams.set("width", "1200");
-  twitterUrl.searchParams.set("height", "600");
-  images.push({
-    url: twitterUrl.toString(),
-    width: 1200,
-    height: 600,
-  });
-
-  // LinkedIn 1200x627
-  const linkedInUrl = new URL(url);
-  linkedInUrl.searchParams.set("width", "1200");
-  linkedInUrl.searchParams.set("height", "627");
-  images.push({
-    url: linkedInUrl.toString(),
-    width: 1200,
-    height: 627,
-  });
-
-  // Base/Facebook 1200x630
-  const baseUrl = new URL(url);
-  baseUrl.searchParams.set("width", "1200");
-  baseUrl.searchParams.set("height", "630");
-  images.push({
-    url: baseUrl.toString(),
-    width: 1200,
-    height: 630,
-  });
-
-  return images;
 };
