@@ -7,7 +7,7 @@ import { Oswald, Source_Code_Pro as SourceCodePro } from "next/font/google";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-import { cn, getOgImages } from "@/lib/helpers";
+import { cn, getOgImage } from "@/lib/helpers";
 
 import NavLink from "./NavLink";
 import Providers from "./Providers";
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     description: "Web Developer",
     url: "/",
     type: "website",
-    images: getOgImages("Akhila Ariyachandra", "Web Developer"),
+    images: getOgImage("Akhila Ariyachandra", "Web Developer"),
   },
   twitter: {
     card: "summary_large_image",

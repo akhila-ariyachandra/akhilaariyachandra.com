@@ -18,7 +18,7 @@ export const getBaseURL = () => {
   return "http://localhost:3000";
 };
 
-export const getOgImages = (
+export const getOgImage = (
   title: string,
   subtitle: string,
   content?: string,
@@ -33,37 +33,9 @@ export const getOgImages = (
     url.searchParams.set("content", content);
   }
 
-  const images = [];
-
-  // Twitter 1200x600
-  const twitterUrl = new URL(url);
-  twitterUrl.searchParams.set("width", "1200");
-  twitterUrl.searchParams.set("height", "600");
-  images.push({
-    url: twitterUrl.toString(),
-    width: 1200,
-    height: 600,
-  });
-
-  // LinkedIn 1200x627
-  const linkedInUrl = new URL(url);
-  linkedInUrl.searchParams.set("width", "1200");
-  linkedInUrl.searchParams.set("height", "627");
-  images.push({
-    url: linkedInUrl.toString(),
-    width: 1200,
-    height: 627,
-  });
-
-  // Base/Facebook 1200x630
-  const baseUrl = new URL(url);
-  baseUrl.searchParams.set("width", "1200");
-  baseUrl.searchParams.set("height", "630");
-  images.push({
-    url: baseUrl.toString(),
+  return {
+    url: url.toString(),
     width: 1200,
     height: 630,
-  });
-
-  return images;
+  };
 };

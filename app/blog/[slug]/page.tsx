@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import MDXComponent from "@/components/MDXComponent";
 import Title from "@/components/Title";
 import Views from "@/components/Views";
-import { getOgImages } from "@/lib/helpers";
+import { getOgImage } from "@/lib/helpers";
 
 import { allPosts } from ".contentlayer/generated";
 
@@ -42,7 +42,7 @@ export const generateMetadata = async ({
       description: "A post on my blog",
       url: `/blog/${post.slug}`,
       type: "article",
-      images: getOgImages(
+      images: getOgImage(
         post.title,
         "Akhila Ariyachandra",
         dayjs(post.posted).format("Do MMMM YYYY"),
