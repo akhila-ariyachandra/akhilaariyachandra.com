@@ -12,6 +12,8 @@ import { allPosts } from ".contentlayer/generated";
 
 dayjs.extend(advancedFormat);
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Blog | Akhila Ariyachandra",
   description: "My personal blog",

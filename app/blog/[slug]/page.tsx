@@ -13,6 +13,7 @@ import { allPosts } from ".contentlayer/generated";
 
 dayjs.extend(advancedFormat);
 
+export const dynamic = "force-static";
 // https://beta.nextjs.org/docs/api-reference/generate-static-params
 export const generateStaticParams = () => {
   return allPosts.map((post) => ({
