@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 
 import MDXComponent from "@/components/MDXComponent";
 import Title from "@/components/Title";
+import Views from "@/components/Views";
 import { getOgImages } from "@/lib/helpers";
 
 import ViewsIncrement from "./ViewsIncrement";
@@ -78,7 +79,7 @@ const BlogPostPage = ({ params }: BlogPostPageProps) => {
           {" - "}
         </span>
 
-        <span>{`${post.readingTime} min read`}</span>
+        <Views slug={post.slug} />
       </div>
 
       <ViewsIncrement slug={params.slug} />
