@@ -1,8 +1,12 @@
+import dayjs from "dayjs";
+import advancedFormat from "dayjs/plugin/advancedFormat";
 import { notFound } from "next/navigation";
 
 import generateOgImage from "@/lib/og-image-generator";
 
 import { allSnippets } from ".contentlayer/generated";
+
+dayjs.extend(advancedFormat);
 
 // Route segment config
 export const runtime = "edge";
