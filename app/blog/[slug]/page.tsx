@@ -42,6 +42,7 @@ export const generateMetadata = async ({
       description: "A post on my blog",
       url: `/blog/${post.slug}`,
       type: "article",
+      publishedTime: dayjs(post.posted).toISOString(),
       images: getOgImage(
         post.title,
         "Akhila Ariyachandra",
@@ -50,6 +51,10 @@ export const generateMetadata = async ({
     },
     alternates: {
       canonical: `/blog/${post.slug}`,
+    },
+    authors: {
+      name: "Akhila Ariyachandra",
+      url: new URL("https://akhilaariyachandra.com"),
     },
   };
 };
