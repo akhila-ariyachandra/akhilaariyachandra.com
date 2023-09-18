@@ -1,7 +1,6 @@
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { eq } from "drizzle-orm";
-import { revalidatePath } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 
 import { db } from "@/db/connection";
@@ -11,10 +10,46 @@ import { allPosts } from ".contentlayer/generated";
 
 export const runtime = "nodejs";
 
+const getRecord = async (slug: string) => {
+  const results = await db.select().from(posts).where(eq(posts.slug, slug));
+
+  if (results.length === 0) {
+    return null;
+  } else {
+    return results[0];
+  }
+};
+
 type Options = {
   params: {
     slug: string;
   };
+};
+
+export const GET = async (request: NextRequest, { params }: Options) => {
+  const slug = params.slug;
+
+  if (!allPosts.map((post) => post.slug).includes(slug)) {
+    return NextResponse.json(
+      {
+        error: "Not found",
+      },
+      {
+        status: 404,
+      },
+    );
+  }
+
+  const result = await getRecord(slug);
+
+  if (!result) {
+    return NextResponse.json({
+      slug,
+      views: 0,
+    });
+  } else {
+    return NextResponse.json(result);
+  }
 };
 
 const ratelimit = new Ratelimit({
@@ -60,9 +95,9 @@ export const POST = async (request: NextRequest, { params }: Options) => {
     );
   }
 
-  const result = await db.select().from(posts).where(eq(posts.slug, slug));
+  const result = await getRecord(slug);
 
-  if (result.length === 0) {
+  if (!result) {
     // Create new record
     await db.insert(posts).values({
       slug,
@@ -72,13 +107,11 @@ export const POST = async (request: NextRequest, { params }: Options) => {
     // Update record
     await db
       .update(posts)
-      .set({ views: result[0].views + 1 })
+      .set({ views: result.views + 1 })
       .where(eq(posts.slug, slug));
   }
 
-  // Revalidate pages
-  revalidatePath("/blog");
-  revalidatePath("/blog/[slug]");
+  const updatedResult = await getRecord(slug);
 
-  return NextResponse.json({ message: "Incremented" });
+  return NextResponse.json(updatedResult);
 };
