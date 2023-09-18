@@ -6,11 +6,11 @@ import type { Metadata, Route } from "next";
 import { Oswald, Source_Code_Pro as SourceCodePro } from "next/font/google";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { Provider } from "react-wrap-balancer";
 
 import { cn, getOgImages } from "@/lib/helpers";
 
 import NavLink from "./NavLink";
+import Providers from "./Providers";
 
 const display = Oswald({
   subsets: ["latin"],
@@ -74,7 +74,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
           "scrollbar-thin scrollbar-thumb-green-700 dark:scrollbar-thumb-green-500",
         )}
       >
-        <Provider>
+        <Providers>
           <header className="container max-w-4xl p-3 sm:p-4">
             <nav className="flex flex-row items-center gap-2 sm:gap-3">
               {links.map((link) => (
@@ -103,7 +103,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
               akhilaariyachandra.com
             </Link>
           </footer>
-        </Provider>
+        </Providers>
 
         <Analytics />
       </body>

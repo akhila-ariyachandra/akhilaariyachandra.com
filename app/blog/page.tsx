@@ -5,6 +5,7 @@ import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 
 import Title from "@/components/Title";
+import Views from "@/components/Views";
 import { getOgImages } from "@/lib/helpers";
 
 import { allPosts } from ".contentlayer/generated";
@@ -58,7 +59,7 @@ const BlogPage = () => {
                   {" - "}
                 </span>
 
-                <span>{`${post.readingTime} min read`}</span>
+                <Views slug={post.slug} />
               </div>
             </li>
           ))}
