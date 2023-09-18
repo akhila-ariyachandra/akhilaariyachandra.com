@@ -8,7 +8,14 @@ import { posts } from "@/db/schema";
 
 import { allPosts } from ".contentlayer/generated";
 
-export const runtime = "nodejs";
+export const dynamicParams = false;
+export const runtime = "edge";
+// https://beta.nextjs.org/docs/api-reference/generate-static-params
+export const generateStaticParams = () => {
+  return allPosts.map((post) => ({
+    slug: post.slug,
+  }));
+};
 
 const getRecord = async (slug: string) => {
   const results = await db.select().from(posts).where(eq(posts.slug, slug));
@@ -28,18 +35,6 @@ type Options = {
 
 export const GET = async (request: NextRequest, { params }: Options) => {
   const slug = params.slug;
-
-  if (!allPosts.map((post) => post.slug).includes(slug)) {
-    return NextResponse.json(
-      {
-        error: "Not found",
-      },
-      {
-        status: 404,
-      },
-    );
-  }
-
   const result = await getRecord(slug);
 
   if (!result) {
@@ -62,17 +57,6 @@ const ratelimit = new Ratelimit({
 export const POST = async (request: NextRequest, { params }: Options) => {
   const ip = request.ip ?? "127.0.0.1";
   const slug = params.slug;
-
-  if (!allPosts.map((post) => post.slug).includes(slug)) {
-    return NextResponse.json(
-      {
-        error: "Not found",
-      },
-      {
-        status: 404,
-      },
-    );
-  }
 
   // Check rate limit
   const { success, limit, reset, remaining } = await ratelimit.limit(
