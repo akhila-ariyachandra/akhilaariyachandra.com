@@ -16,9 +16,7 @@ const Views = ({ slug, incrementOnMount = false }: ViewsProps) => {
   const { data } = useQuery({
     queryKey: ["views", slug],
     queryFn: async () => {
-      const response = await fetch(`/api/views/${slug}`, {
-        cache: "no-cache",
-      });
+      const response = await fetch(`/api/views/${slug}`);
 
       if (!response.ok) {
         throw new Error("Error fetching views");
@@ -40,7 +38,6 @@ const Views = ({ slug, incrementOnMount = false }: ViewsProps) => {
         headers: {
           "Content-Type": "application/json",
         },
-        cache: "no-cache",
       });
 
       if (!response.ok) {
