@@ -3,6 +3,7 @@ import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 
 import Title from "@/components/Title";
+import { getOgImages } from "@/lib/helpers";
 
 import { allSnippets } from ".contentlayer/generated";
 
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     description: "Some code snippets that I use",
     url: "/snippets",
     type: "website",
+    images: getOgImages("Code Snippets", "Akhila Ariyachandra"),
   },
   alternates: {
     canonical: "/snippets",

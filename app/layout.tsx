@@ -8,7 +8,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { Provider } from "react-wrap-balancer";
 
-import { cn, getBaseURL } from "@/lib/helpers";
+import { cn, getOgImages } from "@/lib/helpers";
 
 import NavLink from "./NavLink";
 
@@ -27,12 +27,13 @@ const content = SourceCodePro({
 export const metadata: Metadata = {
   title: "Akhila Ariyachandra",
   description: "Web Developer",
-  metadataBase: new URL(getBaseURL()),
+  metadataBase: new URL("https://akhilaariyachandra.com"),
   openGraph: {
     title: "Akhila Ariyachandra",
     description: "Web Developer",
     url: "/",
     type: "website",
+    images: getOgImages("Akhila Ariyachandra", "Web Developer"),
   },
   twitter: {
     card: "summary_large_image",
