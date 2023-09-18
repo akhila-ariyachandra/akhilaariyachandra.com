@@ -26,7 +26,7 @@ class Stack<T> {}
 
 Then declare a private member variable array to store the data of the stack. Making it private will stop it from being directly accessed from outside the class.
 
-```typescript focus=2
+```typescript {2}
 class Stack<T> {
   private _data: T[] = [];
 }
@@ -34,7 +34,7 @@ class Stack<T> {
 
 Next, we need a way to check the size of the stack. We can use a getter to access the size of the `_data` array.
 
-```typescript focus=4:7
+```typescript {4-7}
 class Stack<T> {
   private _data: T[] = [];
 
@@ -47,7 +47,7 @@ class Stack<T> {
 
 After that we'll add a method to check whether the stack is empty or not.
 
-```typescript focus=9:12
+```typescript {9-12}
 class Stack<T> {
   private _data: T[] = [];
 
@@ -65,7 +65,7 @@ class Stack<T> {
 
 Now we need a method to add new elements to the stack. We can use the `push()` method in arrays to add an element to the end of the `_data` array.
 
-```typescript focus=14:19
+```typescript {14-19}
 class Stack<T> {
   private _data: T[] = [];
 
@@ -90,7 +90,7 @@ class Stack<T> {
 
 Finally we will implement two methods to check the element on top of the stack. One will just check the value, `peek()`, and the other will remove the element from the stack and return it, `pop()`. Both will throw an error if they are called when the stack is empty, i.e. the length of the `_data` array is zero.
 
-```typescript focus=21:37
+```typescript {21-37}
 class Stack<T> {
   private _data: T[] = [];
 

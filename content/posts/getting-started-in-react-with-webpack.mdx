@@ -27,7 +27,7 @@ npm install @babel/core babel-loader @babel/preset-env @babel/preset-react -D
 
 Once the dependencies are done installing create the `.babelrc` file in the project root with the following code.
 
-```json .babelrc
+```json title=".babelrc"
 {
   "presets": ["@babel/preset-env", "@babel/preset-react"]
 }
@@ -37,7 +37,7 @@ Babel will allow us to use **ES6+** feature in code without breaking the functio
 
 Next we need to configure babel to load all **.js** and **.jsx** files thorough the **babel-loader**. For that create the `webpack.config.js` file in the project root and enter the following configuration.
 
-```javascript webpack.config.js
+```javascript title="webpack.config.js"
 module.exports = {
   module: {
     rules: [
@@ -63,7 +63,7 @@ npm install react react-dom react-router-dom
 
 After that create the `index.js` file in the `src` folder.
 
-```jsx src/index.js
+```jsx title="src/index.js"
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App.js";
@@ -71,7 +71,7 @@ import App from "./App.js";
 
 Next let's create the root component in the `App.js` file. The root component is going to contain the routing configuration.
 
-```jsx src/App.js
+```jsx title="src/App.js"
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -100,7 +100,7 @@ export default App;
 
 After that let's create a layout for our pages. Create the folder `components` in `src` and in it create `Layout.js`. The layout component is also going to contain the navigation links within the app.
 
-```jsx src/components/Layout.js
+```jsx title="src/components/Layout.js"
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -127,7 +127,7 @@ export default Layout;
 
 Then let's create the pages. In `src` create a folder called `pages`. The first page we are going to create is the home page.
 
-```jsx src/pages/home.js
+```jsx title="src/pages/home.js"
 import React from "react";
 import Layout from "../components/Layout";
 
@@ -144,7 +144,7 @@ export default Home;
 
 After that we will create the about page.
 
-```jsx src/pages/about.js
+```jsx title="src/pages/about.js"
 import React from "react";
 import Layout from "../components/Layout";
 
@@ -180,7 +180,7 @@ npm install html-webpack-plugin html-loader -D
 
 Then update the webpack config.
 
-```javascript webpack.config.js
+```javascript title="webpack.config.js"
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -214,7 +214,7 @@ module.exports = {
 
 After that create the HTML file, `index.html` in the `src` folder.
 
-```html src/index.html
+```html title="src/index.html"
 <!doctype html>
 <html lang="en">
   <head>
@@ -234,7 +234,7 @@ After that create the HTML file, `index.html` in the `src` folder.
 
 Finally update the `src/index.js` file.
 
-```javascript src/index.js focus=5
+```javascript title="src/index.js" {5}
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App.js";
@@ -252,7 +252,7 @@ npm install webpack-dev-server -D
 
 Next add the **dev** script in `package.json`.
 
-```json package.json
+```json title="package.json"
 {
   "scripts": {
     "dev": "webpack-dev-server --open --mode development"
@@ -270,7 +270,7 @@ npm run dev
 
 To get the production build of the project which is optimized add these scripts to `package.json`.
 
-```json package.json
+```json title="package.json"
 {
   "scripts": {
     "dev": "webpack-dev-server --open --mode development",

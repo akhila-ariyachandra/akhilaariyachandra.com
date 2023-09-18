@@ -1,12 +1,7 @@
-"use client";
-
-import "@code-hike/mdx/dist/index.css";
-
-import { useMDXComponent } from "next-contentlayer/hooks";
+import { getMDXComponent } from "next-contentlayer/hooks";
 
 import { cn } from "@/lib/helpers";
 
-// MDX Components
 import Callout from "./Callout";
 import CodeSandboxWrapper from "./CodeSandboxWrapper";
 import Iframe from "./Iframe";
@@ -18,7 +13,7 @@ type MDXComponentProps = {
 };
 
 const MDXComponent = ({ code }: MDXComponentProps) => {
-  const Component = useMDXComponent(code);
+  const Component = getMDXComponent(code);
 
   return (
     <div

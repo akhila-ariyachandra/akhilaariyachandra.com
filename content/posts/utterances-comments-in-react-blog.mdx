@@ -10,7 +10,7 @@ First thing you need to have a public GitHub repository with the [utterances app
 
 Next create a component.
 
-```tsx Comments.tsx
+```tsx title="Comments.tsx"
 import type { FC } from "react";
 
 const Comments: FC = () => {
@@ -22,7 +22,7 @@ export default Comments;
 
 After that, add a `div` as a container for the comments and also store it's `ref`.
 
-```tsx Comments.tsx focus=2,5,9
+```tsx title="Comments.tsx" {2,5,9}
 import type { FC } from "react";
 import { useRef } from "react";
 
@@ -41,7 +41,7 @@ export default Comments;
 
 Then we'll add a `<script>` tag using an `useEffect` hook. utterances gives us the HTML to just add the `<script>` to our file, but we'll need the cleanup function in the `useEffect` hook later.
 
-```tsx Comments.tsx focus=2,7:19
+```tsx title="Comments.tsx" {2,7-19}
 import type { FC } from "react";
 import { useRef, useEffect } from "react";
 
@@ -82,7 +82,7 @@ This will work fine as is but will create problems when running the blog in deve
 
 To fix this we can use the cleanup function of the `useEffect` hook to remove all children of the `<div>` container.
 
-```tsx Comments.tsx focus=2,20:24
+```tsx title="Comments.tsx" {20-24}
 import type { FC } from "react";
 import { useRef, useEffect } from "react";
 
@@ -125,7 +125,7 @@ Since we have the cleanup function to remove the children on rerenders, we can a
 
 In my site I use [next-themes](https://github.com/pacocoursey/next-themes). If we add the `theme` variable to the `useEffect` hook's dependency array we can run the cleanup function and script again when the theme changes.
 
-```tsx Comments.tsx focus=3,7,16:19,30[16:22]
+```tsx title="Comments.tsx" {3,7,16-19,30}
 import type { FC } from "react";
 import { useRef, useEffect } from "react";
 import { useTheme } from "next-themes";
@@ -171,7 +171,7 @@ Finally as a bonus we can improve the loading speed of the script by [preloading
 
 In Next.js we can do this with the [`next/head`](https://nextjs.org/docs/api-reference/next/head) component. If you're not using Next.js, you can use something like [React Helmet](https://www.npmjs.com/package/react-helmet).
 
-```tsx Comments.tsx focus=1,35:37
+```tsx title="Comments.tsx" {1,35-37}
 import Head from "next/head";
 import type { FC } from "react";
 import { useRef, useEffect } from "react";

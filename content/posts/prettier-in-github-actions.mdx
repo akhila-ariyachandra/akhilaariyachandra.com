@@ -7,7 +7,7 @@ posted: 2023-09-12
 
 Usually while working on the code base, developers might have a setting like "Format on Save" enabled so that the files are automatically formatted using Prettier (along with the [Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)) when they are saved. They might even commit those settings to the project like in the Visual Studio Code workspace settings so that other developers are automatically doing it too.
 
-```json .vscode\settings.json
+```json title=".vscode\settings.json"
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true
@@ -32,7 +32,7 @@ pnpm install prettier -E -D
 
 Then add a script to your `pacakage.json` file that makes formatting all you files in one go easier.
 
-```json package.json mark=3
+```json title="package.json" {3}
 {
   "scripts": {
     "prettier:format": "prettier --write \"**/*.{ts,tsx,js,md,mdx,css,yaml}\""
@@ -42,7 +42,7 @@ Then add a script to your `pacakage.json` file that makes formatting all you fil
 
 After that add any files and folders that you do not want to be formatted by Prettier to the `.prettierignore` file. I have added [the patterns used in my portfolio](https://github.com/akhila-ariyachandra/akhilaariyachandra.com/blob/main/.prettierignore) as an example.
 
-```text .prettierignore
+```text title=".prettierignore"
 next-env.d.ts
 .next
 .vercel
@@ -62,7 +62,7 @@ pnpm prettier:format
 
 We can run Prettier with the [check flag](https://prettier.io/docs/en/cli.html#--check) to see if there are any unformatted files. If we run this in any CI/CD workflow such as GitHub Actions, it should fail based on the [exit codes](https://prettier.io/docs/en/cli.html#exit-codes) if any file is not formatted. First add another script, `prettier:check:ci`, to the `package.json` file to run Prettier with the check flag in GitHub Actions.
 
-```json package.json focus=4
+```json title="package.json" {4}
 {
   "scripts": {
     "prettier:format": "prettier --write \"**/*.{ts,tsx,js,md,mdx,css,yaml}\"",
@@ -73,13 +73,13 @@ We can run Prettier with the [check flag](https://prettier.io/docs/en/cli.html#-
 
 Next let's configure the GitHub Action. Create the `quality.yaml` file in the `.github\workflows` folder and give the action a name.
 
-```yaml .github\workflows\quality.yaml
+```yaml title=".github\workflows\quality.yaml"
 name: Code Quality checks
 ```
 
 Then we need to specify when to run the action. For our case, we need to run it when a pull request is created to the `main` branch. You can also add any other branches you want to protect here as well. We will also be using [concurrency](https://docs.github.com/en/actions/using-jobs/using-concurrency) to make sure that the action reruns after the pull request has been updated.
 
-```yaml .github\workflows\quality.yaml focus=2:7
+```yaml title=".github\workflows\quality.yaml" {2-7}
 name: Code Quality checks
 on:
   pull_request:
@@ -91,7 +91,7 @@ concurrency:
 
 After that we can specify the `job` to run.
 
-```yaml .github\workflows\quality.yaml focus=8:26 mark=15:26
+```yaml title=".github\workflows\quality.yaml" {8-26}
 name: Code Quality checks
 on:
   pull_request:
@@ -124,7 +124,7 @@ There is quite a bit happening here so let's go through the `steps`. First we ch
 
 All that is left to do is to run the Prettier check in the action through the script.
 
-```yaml .github\workflows\quality.yaml focus=27:28
+```yaml title=".github\workflows\quality.yaml" {27-28}
 name: Code Quality checks
 on:
   pull_request:

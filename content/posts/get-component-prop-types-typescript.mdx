@@ -5,7 +5,7 @@ posted: "2023-03-03"
 
 **tldr:** Just use the `ComponentProps` type in React to extract the type of prop of a component.
 
-```tsx mark=2:4
+```tsx {2-4}
 import CustomComponent from "component-library";
 import type { ComponentProps } from "react";
 
@@ -27,7 +27,7 @@ type HrefType = ComponentProps<typeof Link>["href"]; // UrlObject | __next_route
 
 Then it was simple as using that type in my custom components. For example, in my `DashboardItem` component, this is how I defined the props.
 
-```tsx mark=5
+```tsx {5}
 interface DashboardItemProps {
   title: string;
   link:

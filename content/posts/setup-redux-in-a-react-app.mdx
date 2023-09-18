@@ -36,7 +36,7 @@ The **store** is the first part of redux we are going to setup. The store is wha
 
 In the `redux` folder create another folder called `user` and in it create a file called `initialState.js`. This is where we'll define the initial state that redux is going to load with. We'll need one state to store the **user id**, one to store the **user** and one to indicate whether is app is in the middle of retrieving a user.
 
-```javascript src/redux/user/initialState.js
+```javascript title="src/redux/user/initialState.js"
 const initialState = {
   isFetchingUser: false,
   userId: 1,
@@ -54,7 +54,7 @@ We'll need a couple of actions, one to change the user ID, one to change the use
 
 Before we create the actual actions, let's create some constants. These constants will be used to specify the type of state change that has to occur.
 
-```javascript src/redux/user/constants.js
+```javascript title="src/redux/user/constants.js"
 const constants = {
   IS_FETCHING_USER: "IS_FETCHING_USER",
   SET_USER_ID: "SET_USER_ID",
@@ -66,7 +66,7 @@ export default constants;
 
 Now let's create the actions.
 
-```javascript src/redux/user/actions.js
+```javascript title="src/redux/user/actions.js"
 import constants from "./constants";
 
 const { IS_FETCHING_USER, SET_USER, SET_USER_ID } = constants;
@@ -121,7 +121,7 @@ The **reducer** is the part of redux that changes the state based on the object 
 
 In the reducer all that has to be done is for the state to be changed based on the action, so we check the `type` of the action and change the state with the `payload` of the action.
 
-```javascript src/redux/user/reducer.js
+```javascript title="src/redux/user/reducer.js"
 import constants from "./constants";
 import initialState from "./initialState";
 
@@ -154,7 +154,7 @@ export default reducer;
 
 Now that we've setup the initial state, actions and reducers, it's time to tie them all together. First create `index.js` in `src/redux` and import the required dependencies.
 
-```javascript src/redux/index.js
+```javascript title="src/redux/index.js"
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 import { combineReducers, createStore, applyMiddleware } from "redux";
@@ -168,7 +168,7 @@ import userReducer from "./user/reducer";
 
 In order to keep our redux states organized, we will group our states. In this example, we will keep all user related data under `user`.
 
-```javascript src/redux/index.js
+```javascript title="src/redux/index.js"
 const initialState = {
   user: userState,
 };
@@ -180,7 +180,7 @@ const rootReducer = combineReducers({
 
 Then all we have to do is create the redux store and export it.
 
-```javascript src/redux/index.js
+```javascript title="src/redux/index.js"
 const configureStore = () => {
   return createStore(rootReducer, initialState, applyMiddleware(thunk, logger));
 };
@@ -192,7 +192,7 @@ export default store;
 
 In the end `index.js` should be like this.
 
-```javascript src/redux/index.js
+```javascript title="src/redux/index.js"
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 import { combineReducers, createStore, applyMiddleware } from "redux";
@@ -244,7 +244,7 @@ We can spilt the app into two components
 
 We'll start with the Display component. Create a folder called `components` in `src` and then create `Display.js` in it. Once that's done declare the component in it.
 
-```jsx src/components/Display.js
+```jsx title="src/components/Display.js"
 import React from "react";
 
 const Display = () => {
@@ -259,7 +259,7 @@ Now we can connect redux to it. We'll need the user state and the `getUser` acti
 
 For `mapStateToProps` we need to declare a function with the redux state as the argument. It should return the state we want to send through the props.
 
-```javascript src/components/Display.js
+```javascript title="src/components/Display.js"
 const mapStateToProps = (state) => ({
   user: state.user,
 });
@@ -269,14 +269,14 @@ All we are doing here is accessing the user section of the redux state and sendi
 
 Before we declare `mapDispatchToProps` we need two more imports.
 
-```javascript src/components/Display.js
+```javascript title="src/components/Display.js"
 import { bindActionCreators } from "redux";
 import { getUser } from "../redux/user/actions";
 ```
 
 `getUser` is the redux action to get the user and `bindActionCreators` is used so that the actions can be called directly instead of inside `store.dispatch` all the time and also group them. We'll put `getUser` inside the `actions` prop.
 
-```javascript src/components/Display.js
+```javascript title="src/components/Display.js"
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({ getUser }, dispatch),
 });
@@ -284,7 +284,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 Then when exporting the component it'll be wrapped in the `connect` Higher Order Component.
 
-```javascript src/components/Display.js
+```javascript title="src/components/Display.js"
 export default connect(mapStateToProps, mapDispatchToProps)(Display);
 ```
 
@@ -300,7 +300,7 @@ const Display = ({ user, actions }) => {
 
 We can set the component to load the user every time the `userId` in the redux state changes. If you want to learn about how to mimic react life cycle methods with hooks, check my post [here](https://akhilaariyachandra.com/mimic-react-life-cycles-methods-with-hooks/).
 
-```javascript src/components/Display.js
+```javascript title="src/components/Display.js"
 React.useEffect(() => {
   actions.getUser(user.userId);
 }, [user.userId]);
@@ -308,7 +308,7 @@ React.useEffect(() => {
 
 After that let's complete the return of the component.
 
-```jsx src/components/Display.js
+```jsx title="src/components/Display.js"
 return (
   <div>
     <table>
@@ -340,7 +340,7 @@ return (
 
 Finally the `Display` component should be like this.
 
-```jsx src/components/Display.js
+```jsx title="src/components/Display.js"
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -395,7 +395,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Display);
 
 The Controls component will only be used to change the userId in the redux user state. We don't need to fetch the user in the Controls component because the effect in the Display will automatically run whenever the userId is changed.
 
-```javascript src/components/Controls.js
+```javascript title="src/components/Controls.js"
 React.useEffect(() => {
   actions.getUser(user.userId);
 }, [user.userId]);
@@ -403,7 +403,7 @@ React.useEffect(() => {
 
 This is the Controls component.
 
-```jsx src/components/Controls.js
+```jsx title="src/components/Controls.js"
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -450,7 +450,7 @@ A few notes here.
 
 One thing we need to do to enable `react-redux` throughout the whole app is wrap the root component with `Provider` component from `react-redux`. Once we do that all the child components will be able to use redux through `connect`.
 
-```jsx src/App.js
+```jsx title="src/App.js"
 import React from "react";
 import store from "./redux";
 import Display from "./components/Display";
