@@ -1,10 +1,13 @@
 import "server-only";
 
-import { drizzle } from "drizzle-orm/mysql2";
-import mysql from "mysql2/promise";
+import { connect } from "@planetscale/database";
+import { drizzle } from "drizzle-orm/planetscale-serverless";
 
-const connection = await mysql.createConnection({
-  uri: process.env["DATABASE_URL"],
+// create the connection
+const connection = connect({
+  host: process.env["DATABASE_HOST"],
+  username: process.env["DATABASE_USERNAME"],
+  password: process.env["DATABASE_PASSWORD"],
 });
 
 export const db = drizzle(connection);

@@ -1,20 +1,21 @@
-import { eq } from "drizzle-orm";
+import { Suspense } from "react";
 
-import { db } from "@/db/connection";
-import { posts } from "@/db/schema";
+import ViewsErrorBoundary from "./ViewsErrorBoundary";
+import ViewsFetcher from "./ViewsFetcher";
 
 type ViewsProps = {
   slug: string;
 };
 
-const Views = async ({ slug }: ViewsProps) => {
-  const result = await db.select().from(posts).where(eq(posts.slug, slug));
-
-  if (result.length === 0) {
-    return <span>0 views</span>;
-  }
-
-  return <span>{`${result[0].views} views`}</span>;
+const Views = ({ slug }: ViewsProps) => {
+  return (
+    <ViewsErrorBoundary>
+      <Suspense fallback={<span>0 views</span>}>
+        <ViewsFetcher slug={slug} />
+        {" views"}
+      </Suspense>
+    </ViewsErrorBoundary>
+  );
 };
 
 export default Views;
