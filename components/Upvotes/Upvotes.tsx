@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { motion } from "framer-motion";
 import { type ComponentProps, useEffect, useRef, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 
@@ -95,9 +93,9 @@ const Upvotes = ({ slug }: UpvotesProps) => {
         className="relative overflow-hidden rounded bg-zinc-200 p-2 text-2xl data-[full]:animate-wiggle dark:bg-zinc-800"
         data-full={currentCount >= MAX_UPVOTES ? true : undefined}
       >
-        <motion.div
-          className="absolute bottom-0 left-0 right-0 w-full transform bg-green-400 dark:bg-green-800"
-          animate={{
+        <div
+          className="absolute bottom-0 left-0 right-0 w-full transform bg-green-400 transition-height duration-200 ease-out dark:bg-green-800"
+          style={{
             height: `${(currentCount / MAX_UPVOTES) * 100}%`,
           }}
         />
