@@ -87,7 +87,9 @@ const Upvotes = ({ slug }: UpvotesProps) => {
     }, 2000);
   };
 
-  return (
+  return null;
+
+  /* return (
     <div className="my-9 flex flex-row items-center justify-center gap-3 sm:my-10 sm:gap-4">
       <button
         onClick={increment}
@@ -111,7 +113,7 @@ const Upvotes = ({ slug }: UpvotesProps) => {
         {currentTotal}
       </div>
     </div>
-  );
+  ); */
 };
 
 export default Upvotes;
