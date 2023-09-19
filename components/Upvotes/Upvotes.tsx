@@ -92,7 +92,7 @@ const Upvotes = ({ slug }: UpvotesProps) => {
       <button
         onClick={increment}
         disabled={currentCount >= MAX_UPVOTES}
-        className="data-[full]:animate-wiggle relative overflow-hidden rounded bg-zinc-200 p-2 text-2xl dark:bg-zinc-800"
+        className="relative overflow-hidden rounded bg-zinc-200 p-2 text-2xl data-[full]:animate-wiggle dark:bg-zinc-800"
         data-full={currentCount >= MAX_UPVOTES ? true : undefined}
       >
         <motion.div
