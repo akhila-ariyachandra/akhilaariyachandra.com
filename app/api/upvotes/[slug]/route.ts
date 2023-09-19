@@ -7,7 +7,7 @@ import { db } from "@/db/connection";
 import { posts, type PostsSelectModel } from "@/db/schema";
 import { MAX_UPVOTES } from "@/lib/constants";
 
-import { allPosts } from ".contentlayer/generated";
+import { allPosts, allSnippets } from ".contentlayer/generated";
 
 type ResponseFormat = Omit<PostsSelectModel, "views"> & {
   userVotes: number;
@@ -53,7 +53,10 @@ export const GET = async (request: NextRequest, { params }: Options) => {
   const slug = params.slug;
   const ip = request.ip ?? "127.0.0.1";
 
-  if (!allPosts.map((post) => post.slug).includes(slug)) {
+  if (
+    !allPosts.map((post) => post.slug).includes(slug) &&
+    !allSnippets.map((snippet) => snippet.slug).includes(slug)
+  ) {
     return NextResponse.json(
       {
         error: "Not found",
@@ -90,7 +93,10 @@ export const POST = async (request: NextRequest, { params }: Options) => {
   const slug = params.slug;
   const ip = request.ip ?? "127.0.0.1";
 
-  if (!allPosts.map((post) => post.slug).includes(slug)) {
+  if (
+    !allPosts.map((post) => post.slug).includes(slug) &&
+    !allSnippets.map((snippet) => snippet.slug).includes(slug)
+  ) {
     return NextResponse.json(
       {
         error: "Not found",

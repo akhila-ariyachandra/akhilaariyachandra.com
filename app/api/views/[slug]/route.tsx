@@ -6,7 +6,7 @@ import { type NextRequest, NextResponse } from "next/server";
 import { db } from "@/db/connection";
 import { posts, type PostsSelectModel } from "@/db/schema";
 
-import { allPosts } from ".contentlayer/generated";
+import { allPosts, allSnippets } from ".contentlayer/generated";
 
 export const runtime = "nodejs";
 
@@ -29,7 +29,10 @@ type Options = {
 export const GET = async (request: NextRequest, { params }: Options) => {
   const slug = params.slug;
 
-  if (!allPosts.map((post) => post.slug).includes(slug)) {
+  if (
+    !allPosts.map((post) => post.slug).includes(slug) &&
+    !allSnippets.map((snippet) => snippet.slug).includes(slug)
+  ) {
     return NextResponse.json(
       {
         error: "Not found",
@@ -64,7 +67,10 @@ export const POST = async (request: NextRequest, { params }: Options) => {
   const ip = request.ip ?? "127.0.0.1";
   const slug = params.slug;
 
-  if (!allPosts.map((post) => post.slug).includes(slug)) {
+  if (
+    !allPosts.map((post) => post.slug).includes(slug) &&
+    !allSnippets.map((snippet) => snippet.slug).includes(slug)
+  ) {
     return NextResponse.json(
       {
         error: "Not found",

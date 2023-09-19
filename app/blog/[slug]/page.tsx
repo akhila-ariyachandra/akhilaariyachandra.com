@@ -11,7 +11,7 @@ import { getOgImage } from "@/lib/helpers";
 
 import { allPosts } from ".contentlayer/generated";
 
-const Upvotes = dynamic(() => import("./Upvotes"));
+const Upvotes = dynamic(() => import("@/components/Upvotes"));
 
 dayjs.extend(advancedFormat);
 

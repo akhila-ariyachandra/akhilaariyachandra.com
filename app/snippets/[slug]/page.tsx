@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 
 import MDXComponent from "@/components/MDXComponent";
 import Title from "@/components/Title";
+import Views from "@/components/Views";
 import { getOgImage } from "@/lib/helpers";
 
 import { allSnippets } from ".contentlayer/generated";
+
+const Upvotes = dynamic(() => import("@/components/Upvotes"));
 
 // https://beta.nextjs.org/docs/api-reference/generate-static-params
 export const generateStaticParams = () => {
@@ -58,9 +62,17 @@ const SnippetPage = ({ params }: SnippetPageProps) => {
 
       <p className="mb-4 text-sm text-zinc-600 dark:text-zinc-400 sm:mb-5 sm:text-base">
         {snippet.description}
+
+        <span className="font-light text-zinc-500 dark:text-zinc-400">
+          {" - "}
+        </span>
+
+        <Views slug={snippet.slug} incrementOnMount />
       </p>
 
       <MDXComponent code={snippet.body.code} />
+
+      <Upvotes slug={snippet.slug} />
     </>
   );
 };
