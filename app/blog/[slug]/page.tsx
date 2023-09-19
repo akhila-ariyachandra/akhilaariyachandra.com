@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 
 import MDXComponent from "@/components/MDXComponent";
@@ -9,6 +10,8 @@ import Views from "@/components/Views";
 import { getOgImage } from "@/lib/helpers";
 
 import { allPosts } from ".contentlayer/generated";
+
+const Upvotes = dynamic(() => import("@/components/Upvotes"));
 
 dayjs.extend(advancedFormat);
 
@@ -42,6 +45,7 @@ export const generateMetadata = async ({
       description: "A post on my blog",
       url: `/blog/${post.slug}`,
       type: "article",
+      publishedTime: dayjs(post.posted).toISOString(),
       images: getOgImage(
         post.title,
         "Akhila Ariyachandra",
@@ -50,6 +54,10 @@ export const generateMetadata = async ({
     },
     alternates: {
       canonical: `/blog/${post.slug}`,
+    },
+    authors: {
+      name: "Akhila Ariyachandra",
+      url: new URL("https://akhilaariyachandra.com"),
     },
   };
 };
@@ -82,6 +90,8 @@ const BlogPostPage = ({ params }: BlogPostPageProps) => {
       </div>
 
       <MDXComponent code={post.body.code} />
+
+      <Upvotes slug={post.slug} />
     </>
   );
 };

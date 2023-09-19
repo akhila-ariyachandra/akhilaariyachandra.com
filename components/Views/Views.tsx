@@ -27,6 +27,7 @@ const Views = ({ slug, incrementOnMount = false }: ViewsProps) => {
     placeholderData: {
       slug,
       views: 0,
+      upvotes: 0,
     },
   });
 
@@ -41,7 +42,7 @@ const Views = ({ slug, incrementOnMount = false }: ViewsProps) => {
       });
 
       if (!response.ok) {
-        throw new Error("Error fetching views");
+        throw new Error("Error incrementing views");
       }
 
       return (await response.json()) as PostsSelectModel;
