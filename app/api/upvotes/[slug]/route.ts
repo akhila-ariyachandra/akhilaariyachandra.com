@@ -6,6 +6,7 @@ import { z } from "zod";
 import { db } from "@/db/connection";
 import { posts, type PostsSelectModel } from "@/db/schema";
 import { MAX_UPVOTES } from "@/lib/constants";
+import { getIp } from "@/lib/server-helpers";
 
 import { allPosts, allSnippets } from ".contentlayer/generated";
 
@@ -51,15 +52,7 @@ type Options = {
 
 export const GET = async (request: NextRequest, { params }: Options) => {
   const slug = params.slug;
-  let ip = request.ip ?? request.headers.get("x-real-ip");
-  const forwardedFor = request.headers.get("x-forwarded-for");
-  if (!ip && forwardedFor) {
-    ip = forwardedFor.split(",").at(0) ?? "Unknown";
-  }
-  if (!ip) {
-    ip = "127.0.0.1";
-  }
-  console.log("> upvotes request.ip: ", ip);
+  const ip = getIp(request);
 
   if (
     !allPosts.map((post) => post.slug).includes(slug) &&
@@ -99,7 +92,7 @@ const bodySchema = z.object({
 
 export const POST = async (request: NextRequest, { params }: Options) => {
   const slug = params.slug;
-  const ip = request.ip ?? "127.0.0.1";
+  const ip = getIp(request);
 
   if (
     !allPosts.map((post) => post.slug).includes(slug) &&
