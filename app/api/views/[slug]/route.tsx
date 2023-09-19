@@ -5,6 +5,7 @@ import { type NextRequest, NextResponse } from "next/server";
 
 import { db } from "@/db/connection";
 import { posts, type PostsSelectModel } from "@/db/schema";
+import { getIp } from "@/lib/server-helpers";
 
 import { allPosts, allSnippets } from ".contentlayer/generated";
 
@@ -64,7 +65,7 @@ const ratelimit = new Ratelimit({
 });
 
 export const POST = async (request: NextRequest, { params }: Options) => {
-  const ip = request.ip ?? "127.0.0.1";
+  const ip = getIp(request);
   const slug = params.slug;
 
   if (
