@@ -52,7 +52,7 @@ type Options = {
 export const GET = async (request: NextRequest, { params }: Options) => {
   const slug = params.slug;
   const ip = request.ip ?? "127.0.0.1";
-  console.log("> request.ip: ", request.ip);
+  console.log("> upvotes request.ip: ", request.ip);
 
   if (
     !allPosts.map((post) => post.slug).includes(slug) &&
