@@ -127,7 +127,7 @@ export const POST = async (request: NextRequest, { params }: Options) => {
 
     // Update the user's votes in Redis
     await redis.set(getUserKey(ip, slug), count, {
-      ex: 60 * 60 * 24 * 30, // 1 month
+      ex: 60 * 60 * 24 * 7, // 1 week
     });
 
     const response: PostsResponse = {
