@@ -26,6 +26,9 @@ const config: Config = {
       animation: {
         wiggle: "wiggle 200ms ease-in-out 2",
       },
+      transitionProperty: {
+        height: "height",
+      },
     },
   },
   plugins: [typography, scrollbar],

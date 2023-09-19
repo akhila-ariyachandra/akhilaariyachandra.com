@@ -1,45 +1,23 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { motion } from "framer-motion";
+import { useMutation } from "@tanstack/react-query";
 import { type ComponentProps, useEffect, useRef, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 
-import { type PostsSelectModel } from "@/db/schema";
+import usePost from "@/hooks/usePost.hook";
 import { MAX_UPVOTES } from "@/lib/constants";
-
-type ResponseFormat = Omit<PostsSelectModel, "views"> & {
-  userVotes: number;
-};
+import type { PostsResponse } from "@/lib/types";
 
 type UpvotesProps = {
   slug: string;
 };
 
 const Upvotes = ({ slug }: UpvotesProps) => {
-  const queryClient = useQueryClient();
   const timeoutRef = useRef<NodeJS.Timeout>();
   const [currentCount, setCurrentCount] = useState(0);
   const [currentTotal, setCurrentTotal] = useState(0);
 
-  const { data, refetch } = useQuery({
-    queryKey: ["upvotes", slug],
-    queryFn: async () => {
-      const response = await fetch(`/api/upvotes/${slug}`);
-
-      if (!response.ok) {
-        throw new Error("Error fetching upvotes");
-      }
-
-      return (await response.json()) as ResponseFormat;
-    },
-    placeholderData: {
-      slug,
-      upvotes: 0,
-      userVotes: 0,
-    },
-  });
+  const { data, refetch } = usePost(slug);
 
   useEffect(() => {
     if (data) {
@@ -49,9 +27,9 @@ const Upvotes = ({ slug }: UpvotesProps) => {
   }, [data]);
 
   const upvotesMutation = useMutation({
-    mutationKey: ["upvotes", slug, "changing"],
+    mutationKey: ["upvotes", slug, "change"],
     mutationFn: async (count: number) => {
-      const response = await fetch(`/api/upvotes/${slug}`, {
+      const response = await fetch(`/api/posts/${slug}/upvotes`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -63,13 +41,10 @@ const Upvotes = ({ slug }: UpvotesProps) => {
         throw new Error("Error changing upvotes");
       }
 
-      return (await response.json()) as ResponseFormat;
+      return (await response.json()) as PostsResponse;
     },
-    onError: () => {
-      refetch();
-    },
-    onSuccess: (data) => {
-      queryClient.setQueryData(["upvotes", slug], data);
+    onSettled: async () => {
+      await refetch();
     },
   });
 
@@ -91,13 +66,13 @@ const Upvotes = ({ slug }: UpvotesProps) => {
     <div className="my-9 flex flex-row items-center justify-center gap-3 sm:my-10 sm:gap-4">
       <button
         onClick={increment}
-        disabled={currentCount >= MAX_UPVOTES}
+        disabled={currentCount >= MAX_UPVOTES || upvotesMutation.isLoading}
         className="relative overflow-hidden rounded bg-zinc-200 p-2 text-2xl data-[full]:animate-wiggle dark:bg-zinc-800"
         data-full={currentCount >= MAX_UPVOTES ? true : undefined}
       >
-        <motion.div
-          className="absolute bottom-0 left-0 right-0 w-full transform bg-green-400 dark:bg-green-800"
-          animate={{
+        <div
+          className="absolute bottom-0 left-0 right-0 w-full transform bg-green-400 transition-height duration-200 ease-out dark:bg-green-800"
+          style={{
             height: `${(currentCount / MAX_UPVOTES) * 100}%`,
           }}
         />

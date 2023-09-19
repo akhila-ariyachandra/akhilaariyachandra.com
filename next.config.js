@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require("path");
 const fs = require("fs");
 const { withContentlayer } = require("next-contentlayer");
@@ -9,7 +10,7 @@ const nextConfig = {
     formats: ["image/avif", "image/webp"],
   },
   eslint: {
-    dirs: ["app", "components", "db", "lib"],
+    dirs: ["app", "components", "db", "lib", "hooks"],
   },
   experimental: {
     typedRoutes: true,
