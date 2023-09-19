@@ -4,7 +4,7 @@ import { eq } from "drizzle-orm";
 import { type NextRequest, NextResponse } from "next/server";
 
 import { db } from "@/db/connection";
-import { posts } from "@/db/schema";
+import { posts, type PostsSelectModel } from "@/db/schema";
 
 import { allPosts } from ".contentlayer/generated";
 
@@ -46,7 +46,8 @@ export const GET = async (request: NextRequest, { params }: Options) => {
     return NextResponse.json({
       slug,
       views: 0,
-    });
+      upvotes: 0,
+    } satisfies PostsSelectModel);
   } else {
     return NextResponse.json(result);
   }

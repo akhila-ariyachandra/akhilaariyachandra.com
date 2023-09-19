@@ -3,7 +3,8 @@
   "editor.formatOnSave": true,
   "cSpell.words": [
     "Contentlayer",
-    "Ratelimit"
+    "Ratelimit",
+    "upvotes"
   ],
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
