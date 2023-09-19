@@ -28,7 +28,6 @@ type Options = {
 
 export const GET = async (request: NextRequest, { params }: Options) => {
   const slug = params.slug;
-  console.log("> views request.ip: ", request.ip);
 
   if (
     !allPosts.map((post) => post.slug).includes(slug) &&

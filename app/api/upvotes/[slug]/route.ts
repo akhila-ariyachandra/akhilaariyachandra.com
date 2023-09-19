@@ -51,8 +51,15 @@ type Options = {
 
 export const GET = async (request: NextRequest, { params }: Options) => {
   const slug = params.slug;
-  const ip = request.ip ?? "127.0.0.1";
-  console.log("> upvotes request.ip: ", request.ip);
+  let ip = request.ip ?? request.headers.get("x-real-ip");
+  const forwardedFor = request.headers.get("x-forwarded-for");
+  if (!ip && forwardedFor) {
+    ip = forwardedFor.split(",").at(0) ?? "Unknown";
+  }
+  if (!ip) {
+    ip = "127.0.0.1";
+  }
+  console.log("> upvotes request.ip: ", ip);
 
   if (
     !allPosts.map((post) => post.slug).includes(slug) &&
