@@ -1,6 +1,6 @@
 "use client";
 
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { type ComponentProps, useEffect, useRef, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 
@@ -13,6 +13,7 @@ type UpvotesProps = {
 };
 
 const Upvotes = ({ slug }: UpvotesProps) => {
+  const queryClient = useQueryClient();
   const timeoutRef = useRef<NodeJS.Timeout>();
   const [currentCount, setCurrentCount] = useState(0);
   const [currentTotal, setCurrentTotal] = useState(0);
@@ -45,6 +46,7 @@ const Upvotes = ({ slug }: UpvotesProps) => {
     },
     onSettled: async () => {
       await refetch();
+      queryClient.refetchQueries(["posts"]);
     },
   });
 
