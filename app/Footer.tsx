@@ -31,8 +31,7 @@ const Footer = () => {
         className="font-medium text-green-700 hover:underline dark:text-green-500"
       >
         akhilaariyachandra.com
-      </Link>
-      {", "}
+      </Link>{" "}
       <span className="font-light text-zinc-600 dark:text-zinc-400">{`(${data?.views} post views, ${data?.upvotes} upvotes)`}</span>
     </footer>
   );
