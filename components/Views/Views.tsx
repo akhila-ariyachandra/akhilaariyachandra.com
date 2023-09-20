@@ -34,6 +34,7 @@ const Views = ({ slug, incrementOnMount = false }: ViewsProps) => {
     },
     onSuccess: (data) => {
       queryClient.setQueryData(["post", slug], data);
+      queryClient.refetchQueries(["posts"]);
     },
   });
 

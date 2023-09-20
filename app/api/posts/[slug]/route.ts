@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 import { getIp } from "@/lib/server-helpers";
 import type { PostsResponse } from "@/lib/types";
