@@ -85,13 +85,13 @@ const HomePage = () => {
             )
             .map((job) => (
               <div key={job._id}>
-                <div className="mb-1 flex flex-row items-center gap-1 sm:mb-2 sm:gap-2">
+                <div className="mb-1 flex flex-row items-center gap-2 sm:mb-2 sm:gap-3">
                   <Image
                     src={job.company.logo}
                     width={64}
                     height={64}
                     alt={`The company logo of ${job.company.name}`}
-                    className="shrink-0 rounded-sm sm:rounded"
+                    className="h-14 w-14 shrink-0 rounded-sm sm:h-16 sm:w-16 sm:rounded"
                   />
 
                   <div className="break-words">
