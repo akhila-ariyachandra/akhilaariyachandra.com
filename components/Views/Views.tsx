@@ -1,6 +1,7 @@
 "use client";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import ky from "ky";
 import { useEffect } from "react";
 
 import usePost from "@/hooks/usePost.hook";
@@ -18,20 +19,7 @@ const Views = ({ slug, incrementOnMount = false }: ViewsProps) => {
 
   const incrementMutation = useMutation({
     mutationKey: ["views", slug, "increment"],
-    mutationFn: async () => {
-      const response = await fetch(`/api/posts/${slug}/views`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error("Error incrementing views");
-      }
-
-      return (await response.json()) as PostsResponse;
-    },
+    mutationFn: () => ky.post(`/api/posts/${slug}/views`).json<PostsResponse>(),
     onSuccess: (data) => {
       queryClient.setQueryData(["post", slug], data);
       queryClient.refetchQueries(["posts"]);

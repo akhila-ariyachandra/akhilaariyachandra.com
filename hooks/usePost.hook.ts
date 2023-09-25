@@ -1,21 +1,14 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+import ky from "ky";
 
 import type { PostsResponse } from "@/lib/types";
 
 const usePost = (slug: string) => {
   return useQuery({
     queryKey: ["post", slug],
-    queryFn: async () => {
-      const response = await fetch(`/api/posts/${slug}`);
-
-      if (!response.ok) {
-        throw new Error("Error fetching views");
-      }
-
-      return (await response.json()) as PostsResponse;
-    },
+    queryFn: () => ky(`/api/posts/${slug}`).json<PostsResponse>(),
     placeholderData: {
       slug,
       views: 0,
