@@ -136,5 +136,14 @@ export const POST = async (request: NextRequest, { params }: Options) => {
       userVotes: count,
     };
     return NextResponse.json(response);
+  } else {
+    return NextResponse.json(
+      {
+        error: "Invalid type",
+      },
+      {
+        status: 400,
+      },
+    );
   }
 };

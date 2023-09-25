@@ -1,4 +1,4 @@
-import { notFound, redirect } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 
 import { allPosts } from ".contentlayer/generated";
 
@@ -25,7 +25,7 @@ const OldBlogPostPage = ({ params }: OldBlogPostPageProps) => {
   // Redirect old blog post URLs as when the site was built with
   // Gatsby, the blog post pages didn't have `/blog` as a prefix
   // in the pathname
-  redirect(`/blog/${post.slug}`);
+  permanentRedirect(`/blog/${post.slug}`);
 };
 
 export default OldBlogPostPage;
