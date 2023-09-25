@@ -29,6 +29,7 @@
     "cva": "1.0.0-beta.1",
     "dayjs": "1.11.10",
     "drizzle-orm": "0.28.6",
+    "ky": "1.0.1",
     "nanoid": "5.0.1",
     "next": "13.5.2",
     "next-contentlayer": "0.3.4",

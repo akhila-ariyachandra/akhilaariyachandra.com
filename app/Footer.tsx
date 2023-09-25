@@ -1,6 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+import ky from "ky";
 import Link from "next/link";
 
 import type { PostsTotalResponse } from "@/lib/types";
@@ -8,15 +9,7 @@ import type { PostsTotalResponse } from "@/lib/types";
 const Footer = () => {
   const { data } = useQuery({
     queryKey: ["posts"],
-    queryFn: async () => {
-      const response = await fetch("/api/posts");
-
-      if (!response.ok) {
-        throw new Error("Error fetching post totals");
-      }
-
-      return (await response.json()) as PostsTotalResponse;
-    },
+    queryFn: () => ky("/api/posts").json<PostsTotalResponse>(),
     placeholderData: {
       views: 0,
       upvotes: 0,

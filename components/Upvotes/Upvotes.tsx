@@ -1,6 +1,7 @@
 "use client";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import ky from "ky";
 import { type ComponentProps, useEffect, useRef, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 
@@ -29,21 +30,10 @@ const Upvotes = ({ slug }: UpvotesProps) => {
 
   const upvotesMutation = useMutation({
     mutationKey: ["upvotes", slug, "change"],
-    mutationFn: async (count: number) => {
-      const response = await fetch(`/api/posts/${slug}/upvotes`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ count }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Error changing upvotes");
-      }
-
-      return (await response.json()) as PostsResponse;
-    },
+    mutationFn: (count: number) =>
+      ky
+        .post(`/api/posts/${slug}/upvotes`, { json: { count } })
+        .json<PostsResponse>(),
     onSettled: async () => {
       await refetch();
       queryClient.refetchQueries(["posts"]);
