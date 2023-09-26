@@ -4,6 +4,7 @@ import "./syntax-highlighting.css";
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata, Route } from "next";
 import { Oswald, Source_Code_Pro as SourceCodePro } from "next/font/google";
+import Script from "next/script";
 import type { ReactNode } from "react";
 
 import { cn, getOgImage } from "@/lib/helpers";
@@ -100,6 +101,12 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
 
         <Analytics />
         <GoogleAnalytics />
+
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9764216594022086"
+          crossOrigin="anonymous"
+        />
       </body>
     </html>
   );
