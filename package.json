@@ -14,7 +14,11 @@
     "drizzle:push": "dotenv -e .env.local drizzle-kit push:mysql",
     "drizzle:studio": "dotenv -e .env.local drizzle-kit studio",
     "prettier:format": "prettier --write \"**/*.{ts,tsx,js,md,mdx,css,yaml}\"",
-    "prettier:check:ci": "prettier --check \"**/*.{ts,tsx,js,md,mdx,css,yaml}\""
+    "prettier:check:ci": "prettier --check \"**/*.{ts,tsx,js,md,mdx,css,yaml}\"",
+    "e2e": "start-server-and-test dev http://localhost:3000 \"cypress open --e2e\"",
+    "e2e:headless": "start-server-and-test dev http://localhost:3000 \"cypress run --e2e\"",
+    "component": "cypress open --component",
+    "component:headless": "cypress run --component"
   },
   "dependencies": {
     "@fec/remark-a11y-emoji": "3.1.0",
@@ -58,6 +62,7 @@
     "@types/react-dom": "18.2.7",
     "@typescript-eslint/eslint-plugin": "6.7.2",
     "autoprefixer": "10.4.16",
+    "cypress": "13.2.0",
     "dotenv-cli": "7.3.0",
     "drizzle-kit": "0.19.13",
     "eslint": "8.50.0",
@@ -68,6 +73,7 @@
     "postcss": "8.4.30",
     "prettier": "3.0.3",
     "prettier-plugin-tailwindcss": "0.5.4",
+    "start-server-and-test": "2.0.1",
     "tailwind-scrollbar": "3.0.5",
     "tailwindcss": "3.3.3",
     "typescript": "5.2.2"
