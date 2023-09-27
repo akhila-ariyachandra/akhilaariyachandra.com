@@ -51,8 +51,8 @@ jobs:
           name: build
           if-no-files-found: error
           path: .next
-  cypress-run:
-    name: Cypress
+  cypress-run-e2e:
+    name: Cypress End-to-End
     runs-on: ubuntu-22.04
     needs: build
     strategy:
@@ -82,3 +82,32 @@ jobs:
           # component: true
           start: pnpm start
           wait-on: http://localhost:3000
+  cypress-run-component:
+    name: Cypress Component
+    runs-on: ubuntu-22.04
+    needs: build
+    strategy:
+      matrix:
+        node-version: [18]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download the build folder
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: .next
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          component: true
