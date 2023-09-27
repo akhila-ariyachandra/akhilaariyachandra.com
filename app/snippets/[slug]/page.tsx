@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 
 import MDXComponent from "@/components/MDXComponent";
+import PostAd from "@/components/PostAd";
 import Title from "@/components/Title";
 import Views from "@/components/Views";
 import { getOgImage } from "@/lib/helpers";
@@ -73,6 +74,8 @@ const SnippetPage = ({ params }: SnippetPageProps) => {
       <MDXComponent code={snippet.body.code} />
 
       <Upvotes slug={snippet.slug} />
+
+      <PostAd />
     </>
   );
 };
