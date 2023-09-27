@@ -8,6 +8,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   cypress-run:
+    name: Cypress
     runs-on: ubuntu-22.04
     strategy:
       matrix:
@@ -28,6 +29,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
+          component: true
           build: pnpm build
           start: pnpm start
           wait-on: http://localhost:3000
@@ -39,62 +41,3 @@ jobs:
           NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID }}
           UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
           UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
-  # install:
-  #   runs-on: ubuntu-22.04
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v4
-  #     - name: Cypress install
-  #       uses: cypress-io/github-action@v6
-  #       with:
-  #         # Disable running of tests within install job
-  #         runTests: false
-  #         build: pnpm build
-  #     - name: Save build folder
-  #       uses: actions/upload-artifact@v3
-  #       with:
-  #         name: build
-  #         if-no-files-found: error
-  #         path: build
-  # component:
-  #   name: Component
-  #   runs-on: ubuntu-22.04
-  #   needs: install
-  #   strategy:
-  #     matrix:
-  #       node-version: [18]
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: pnpm/action-setup@v2
-  #       with:
-  #         version: 8
-  #     - name: Use Node.js ${{ matrix.node-version }}
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: ${{ matrix.node-version }}
-  #         cache: "pnpm"
-  #     - name: Install dependencies
-  #       run: pnpm install
-  #     - name: Run unit testing
-  #       run: pnpm component:headless
-  # e2e:
-  #   name: End to End
-  #   runs-on: ubuntu-22.04
-  #   needs: install
-  #   strategy:
-  #     matrix:
-  #       node-version: [18]
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: pnpm/action-setup@v2
-  #       with:
-  #         version: 8
-  #     - name: Use Node.js ${{ matrix.node-version }}
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: ${{ matrix.node-version }}
-  #         cache: "pnpm"
-  #     - name: Install dependencies
-  #       run: pnpm install
-  #     - name: Run unit testing
-  #       run: pnpm e2e:headless
