@@ -5,7 +5,7 @@
 
 // Cypress E2E Test
 describe("Navigation", () => {
-  it("should navigate to the about page", () => {
+  it("should navigate to the blog page", () => {
     // Start from the index page
     cy.visit("http://localhost:3000/");
 
