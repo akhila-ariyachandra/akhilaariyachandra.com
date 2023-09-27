@@ -24,11 +24,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Download the build folder
-        uses: actions/download-artifact@v3
+      - name: Cache build folder
+        id: cache-build
+        uses: actions/cache@v3
         with:
-          name: build
           path: .next
+          key: ${{ runner.os }}-build
       - uses: pnpm/action-setup@v2
         with:
           version: 8
