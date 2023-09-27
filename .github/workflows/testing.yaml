@@ -6,9 +6,17 @@ concurrency:
   # Rerun check when the PR is updated, https://stackoverflow.com/a/72408109
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
+env:
+  DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+  DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+  NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID }}
+  UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+  UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
 jobs:
-  cypress-run:
-    name: Cypress
+  build:
+    name: Build
     runs-on: ubuntu-22.04
     strategy:
       matrix:
@@ -29,15 +37,42 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          # component: true
+          runTests: false
           build: pnpm build
+      - name: Save build folder
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          if-no-files-found: error
+          path: .next
+  cypress-run:
+    name: Cypress
+    runs-on: ubuntu-22.04
+    needs: build
+    strategy:
+      matrix:
+        node-version: [18]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download the build folder
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: .next
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          # component: true
           start: pnpm start
           wait-on: http://localhost:3000
-        env:
-          DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
-          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
-          NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID }}
-          UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
-          UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
