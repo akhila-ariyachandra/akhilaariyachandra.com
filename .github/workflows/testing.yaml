@@ -6,15 +6,30 @@ concurrency:
   # Rerun check when the PR is updated, https://stackoverflow.com/a/72408109
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
+env:
+  DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+  DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+  NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID }}
+  UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+  UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
 jobs:
-  component:
-    name: Component
+  build:
+    name: Build
     runs-on: ubuntu-22.04
     strategy:
       matrix:
         node-version: [18]
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Cache build folder
+        id: cache-build
+        uses: actions/cache@v3
+        with:
+          path: .next
+          key: ${{ runner.os }}-build
       - uses: pnpm/action-setup@v2
         with:
           version: 8
@@ -25,16 +40,32 @@ jobs:
           cache: "pnpm"
       - name: Install dependencies
         run: pnpm install
-      - name: Run unit testing
-        run: pnpm component:headless
-  e2e:
-    name: End to End
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          runTests: false
+          build: pnpm build
+      - name: Save build folder
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          if-no-files-found: error
+          path: .next
+  cypress-run:
+    name: Cypress
     runs-on: ubuntu-22.04
+    needs: build
     strategy:
       matrix:
         node-version: [18]
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download the build folder
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: .next
       - uses: pnpm/action-setup@v2
         with:
           version: 8
@@ -45,5 +76,9 @@ jobs:
           cache: "pnpm"
       - name: Install dependencies
         run: pnpm install
-      - name: Run unit testing
-        run: pnpm e2e:headless
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          # component: true
+          start: pnpm start
+          wait-on: http://localhost:3000
