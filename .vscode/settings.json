@@ -4,6 +4,7 @@
   "cSpell.words": [
     "Contentlayer",
     "Ratelimit",
+    "Upvote",
     "upvotes"
   ],
   "typescript.tsdk": "node_modules\\typescript\\lib",
