@@ -61,6 +61,7 @@ const Upvotes = ({ slug }: UpvotesProps) => {
         disabled={currentCount >= MAX_UPVOTES || upvotesMutation.isLoading}
         className="relative overflow-hidden rounded bg-zinc-200 p-2 text-2xl data-[full]:animate-wiggle dark:bg-zinc-800"
         data-full={currentCount >= MAX_UPVOTES ? true : undefined}
+        aria-label="Upvote"
       >
         <div
           className="absolute bottom-0 left-0 right-0 w-full transform bg-green-400 transition-height duration-200 ease-out dark:bg-green-800"
