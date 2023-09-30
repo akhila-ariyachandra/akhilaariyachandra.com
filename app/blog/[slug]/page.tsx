@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 
 import MDXComponent from "@/components/MDXComponent";
-import PostAd from "@/components/PostAd";
 import Title from "@/components/Title";
 import Views from "@/components/Views";
 import { getOgImage } from "@/lib/helpers";
@@ -93,8 +92,6 @@ const BlogPostPage = ({ params }: BlogPostPageProps) => {
       <MDXComponent code={post.body.code} />
 
       <Upvotes slug={post.slug} />
-
-      <PostAd />
     </>
   );
 };
