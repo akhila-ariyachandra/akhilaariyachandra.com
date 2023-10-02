@@ -8,7 +8,7 @@ import type { ReactNode } from "react";
 
 import { cn, getOgImage } from "@/lib/helpers";
 
-import Footer from "./_Footer";
+import Footer from "./Footer";
 import GoogleAnalytics from "./GoogleAnalytics";
 import NavLink from "./NavLink";
 import Providers from "./Providers";
