@@ -2,8 +2,8 @@
 
 import { useQuery } from "@tanstack/react-query";
 import ky from "ky";
-import { getBaseURL } from "@/lib/helpers";
 
+import { getBaseURL } from "@/lib/helpers";
 import type { PostsTotalResponse } from "@/lib/types";
 
 type TotalsDisplayProps = {
