@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "analyze": "cross-env ANALYZE=true next build",
     "start": "next start",
     "lint": "next lint",
     "drizzle:push": "dotenv -e .env.local drizzle-kit push:mysql",
@@ -22,6 +23,7 @@
   },
   "dependencies": {
     "@fec/remark-a11y-emoji": "3.1.0",
+    "@next/bundle-analyzer": "13.5.4",
     "@planetscale/database": "1.11.0",
     "@tanstack/react-query": "4.35.7",
     "@tanstack/react-query-devtools": "4.35.7",
@@ -62,6 +64,7 @@
     "@types/react-dom": "18.2.9",
     "@typescript-eslint/eslint-plugin": "6.7.4",
     "autoprefixer": "10.4.16",
+    "cross-env": "7.0.3",
     "cypress": "13.3.0",
     "dotenv-cli": "7.3.0",
     "drizzle-kit": "0.19.13",
