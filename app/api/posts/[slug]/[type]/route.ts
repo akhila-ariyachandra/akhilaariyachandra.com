@@ -1,5 +1,6 @@
 import { Redis } from "@upstash/redis";
 import { eq } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -129,6 +130,9 @@ export const POST = async (request: NextRequest, { params }: Options) => {
     await redis.set(getUserKey(ip, slug), count, {
       ex: 60 * 60 * 24 * 7, // 1 week
     });
+
+    // Revalidate
+    revalidatePath("/blog", "page");
 
     const response: PostsResponse = {
       ...record,
