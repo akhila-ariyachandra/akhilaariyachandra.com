@@ -15,6 +15,10 @@ const nextConfig = {
   },
   experimental: {
     typedRoutes: true,
+    logging: {
+      level: "verbose",
+      fullUrl: true,
+    },
   },
 };
 
