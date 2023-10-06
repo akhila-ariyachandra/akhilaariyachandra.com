@@ -1,11 +1,20 @@
-"use client";
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
+import { eq } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
+import { Suspense } from "react";
 
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import ky from "ky";
-import { useEffect } from "react";
+import { db } from "@/db/connection";
+import { posts } from "@/db/schema";
 
-import usePost from "@/hooks/usePost.hook";
-import type { PostsResponse } from "@/lib/types";
+import Increment from "./Increment";
+import ViewsFetcher from "./ViewsFetcher";
+
+const ratelimit = new Ratelimit({
+  redis: Redis.fromEnv(),
+  analytics: true,
+  limiter: Ratelimit.slidingWindow(1, "60s"),
+});
 
 type ViewsProps = {
   slug: string;
@@ -13,27 +22,50 @@ type ViewsProps = {
 };
 
 const Views = ({ slug, incrementOnMount = false }: ViewsProps) => {
-  const queryClient = useQueryClient();
+  const incrementViews = async (slug: string, ip: string) => {
+    "use server";
 
-  const { data } = usePost(slug);
-
-  const incrementMutation = useMutation({
-    mutationKey: ["views", slug, "increment"],
-    mutationFn: () => ky.post(`/api/posts/${slug}/views`).json<PostsResponse>(),
-    onSuccess: (data) => {
-      queryClient.setQueryData(["post", slug], data);
-      queryClient.refetchQueries(["posts"]);
-    },
-  });
-
-  useEffect(() => {
-    if (incrementOnMount) {
-      incrementMutation.mutate();
+    // Check rate limit
+    const limit = await ratelimit.limit(`${ip}-${slug}`);
+    if (!limit.success) {
+      return;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
-  return <span>{`${data?.views} views`}</span>;
+    // Check record in database
+    const results = await db.select().from(posts).where(eq(posts.slug, slug));
+
+    if (results.length === 0) {
+      // And create if it doesn't exist
+      await db.insert(posts).values({
+        slug,
+      });
+    } else {
+      await db
+        .update(posts)
+        .set({ views: results[0].views + 1 })
+        .where(eq(posts.slug, slug));
+    }
+
+    // Revalidate
+    revalidatePath("/", "layout");
+  };
+
+  return (
+    <>
+      <Suspense fallback={<span>0 views</span>}>
+        <span>
+          <ViewsFetcher slug={slug} />
+          {" views"}
+        </span>
+      </Suspense>
+
+      <Increment
+        slug={slug}
+        action={incrementViews}
+        enabled={incrementOnMount}
+      />
+    </>
+  );
 };
 
 export default Views;
