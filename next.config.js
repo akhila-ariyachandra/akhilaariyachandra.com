@@ -19,7 +19,6 @@ const nextConfig = {
       level: "verbose",
       fullUrl: true,
     },
-    serverActions: true,
   },
 };
 
