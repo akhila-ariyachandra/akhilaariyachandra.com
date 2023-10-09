@@ -1,3 +1,4 @@
+import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { eq } from "drizzle-orm";
 import { type NextRequest, NextResponse } from "next/server";
@@ -19,6 +20,12 @@ const redis = Redis.fromEnv();
 const typeSchema = z.enum(["views", "upvotes"]);
 const upvotesSchema = z.object({
   count: z.number().int().min(0).max(MAX_UPVOTES),
+});
+
+const ratelimit = new Ratelimit({
+  redis: Redis.fromEnv(),
+  limiter: Ratelimit.slidingWindow(1, "60 s"),
+  analytics: true,
 });
 
 type Options = {
@@ -85,18 +92,38 @@ export const POST = async (request: NextRequest, { params }: Options) => {
   const userVotes = await getValue(ip, slug);
 
   if (type === "views") {
-    // Update record
-    await db
-      .update(posts)
-      .set({ views: record.views + 1 })
-      .where(eq(posts.slug, slug));
+    const { limit, remaining, reset, success } = await ratelimit.limit(
+      `${ip}-${slug}`,
+    );
 
-    const response: PostsResponse = {
-      ...record,
-      views: record.views + 1,
-      userVotes,
-    };
-    return NextResponse.json(response);
+    if (success) {
+      // Update record
+      await db
+        .update(posts)
+        .set({ views: record.views + 1 })
+        .where(eq(posts.slug, slug));
+
+      const response: PostsResponse = {
+        ...record,
+        views: record.views + 1,
+        userVotes,
+      };
+      return NextResponse.json(response);
+    } else {
+      return NextResponse.json(
+        {
+          error: "Too many requests",
+        },
+        {
+          status: 429,
+          headers: {
+            "X-RateLimit-Limit": limit.toString(),
+            "X-RateLimit-Remaining": remaining.toString(),
+            "X-RateLimit-Reset": reset.toString(),
+          },
+        },
+      );
+    }
   } else if (type === "upvotes") {
     const body = await request.json();
     const parseResult = await upvotesSchema.safeParseAsync(body);
