@@ -217,8 +217,8 @@ After that import the GraphQL Schemas and Resolvers. We'll create these later.
 import { ApolloServer } from "apollo-server-micro";
 import { getConnection } from "../src/database";
 
-import typeDefs from "../src/graphql/schema";
 import resolvers from "../src/graphql/resolvers";
+import typeDefs from "../src/graphql/schema";
 ```
 
 Then initialize the Apollo Server and export it.
@@ -227,8 +227,8 @@ Then initialize the Apollo Server and export it.
 import { ApolloServer } from "apollo-server-micro";
 import { getConnection } from "../src/database";
 
-import typeDefs from "../src/graphql/schema";
 import resolvers from "../src/graphql/resolvers";
+import typeDefs from "../src/graphql/schema";
 
 const apolloServer = new ApolloServer({
   typeDefs,
@@ -246,8 +246,8 @@ This will be a good place to initialize the database connection and automaticall
 import { ApolloServer } from "apollo-server-micro";
 import { getConnection } from "../src/database";
 
-import typeDefs from "../src/graphql/schema";
 import resolvers from "../src/graphql/resolvers";
+import typeDefs from "../src/graphql/schema";
 
 const apolloServer = new ApolloServer({
   typeDefs,
@@ -268,8 +268,8 @@ To finish configuring we'll set the `introspection` and `playground` options.
 import { ApolloServer } from "apollo-server-micro";
 import { getConnection } from "../src/database";
 
-import typeDefs from "../src/graphql/schema";
 import resolvers from "../src/graphql/resolvers";
+import typeDefs from "../src/graphql/schema";
 
 const apolloServer = new ApolloServer({
   typeDefs,
@@ -401,8 +401,8 @@ Then import the other Schemas and add them to the array.
 ```typescript title="src/graphql/schema/index.ts" {3-4,20}
 import { gql } from "apollo-server-micro";
 
-import noteSchema from "./note";
 import customSchema from "./custom";
+import noteSchema from "./note";
 
 const linkSchema = gql`
   type Query {
@@ -426,7 +426,7 @@ export default [linkSchema, noteSchema, customSchema];
 Since we added a custom type for dates and times in our schema, the first resolver we'll add is for those types. Create a folder called `resolvers` in the `graphql` folder and in it create `custom.ts`.
 
 ```typescript title="src/graphql/resolvers/custom.ts"
-import { GraphQLDate, GraphQLTime, GraphQLDateTime } from "graphql-iso-date";
+import { GraphQLDate, GraphQLDateTime, GraphQLTime } from "graphql-iso-date";
 
 export default {
   Date: GraphQLDate,
@@ -440,10 +440,10 @@ Next we'll start working on the resolver for Notes.
 Start by creating `note.ts` in `graphql`, importing the required dependencies and exporting an empty object which is going to be our resolver.
 
 ```typescript title="src/graphql/resolvers/note.ts"
-import mongoose from "mongoose";
-import dayjs from "dayjs";
-import NoteModel, { INote } from "../../database/models/note";
 import { ApolloError } from "apollo-server-micro";
+import dayjs from "dayjs";
+import mongoose from "mongoose";
+import NoteModel, { INote } from "../../database/models/note";
 
 export default {};
 ```
@@ -451,10 +451,10 @@ export default {};
 Then define an object for the Queries.
 
 ```typescript title="src/graphql/resolvers/note.ts {7}
-import mongoose from "mongoose";
-import dayjs from "dayjs";
-import NoteModel, { INote } from "../../database/models/note";
 import { ApolloError } from "apollo-server-micro";
+import dayjs from "dayjs";
+import mongoose from "mongoose";
+import NoteModel, { INote } from "../../database/models/note";
 
 export default {
   Query: {},
@@ -504,10 +504,10 @@ export default {
 In the function we should create the Note model using the database connection from the context and retrieve all the Notes using it.
 
 ```typescript title="src/graphql/resolvers/note.ts" {13-25}
-import mongoose from "mongoose";
-import dayjs from "dayjs";
-import NoteModel, { INote } from "../../database/models/note";
 import { ApolloError } from "apollo-server-micro";
+import dayjs from "dayjs";
+import mongoose from "mongoose";
+import NoteModel, { INote } from "../../database/models/note";
 
 export default {
   Query: {
@@ -537,10 +537,10 @@ export default {
 After that let's add the resolver for `getNote`.
 
 ```typescript title="src/graphql/resolvers/note.ts" {28-44}
-import mongoose from "mongoose";
-import dayjs from "dayjs";
-import NoteModel, { INote } from "../../database/models/note";
 import { ApolloError } from "apollo-server-micro";
+import dayjs from "dayjs";
+import mongoose from "mongoose";
+import NoteModel, { INote } from "../../database/models/note";
 
 export default {
   Query: {
@@ -590,10 +590,10 @@ We can retrieve the `id` argument from the second parameter.
 Let's finish of the Note resolvers by adding the resolvers for the mutations.
 
 ```typescript title="src/graphql/resolvers/note.ts" {47-87}
-import mongoose from "mongoose";
-import dayjs from "dayjs";
-import NoteModel, { INote } from "../../database/models/note";
 import { ApolloError } from "apollo-server-micro";
+import dayjs from "dayjs";
+import mongoose from "mongoose";
+import NoteModel, { INote } from "../../database/models/note";
 
 export default {
   Query: {
@@ -683,8 +683,8 @@ export default {
 Now we have to connect all the resolvers together using an `index.ts` file created in the `resolvers` folder.
 
 ```typescript title="src/graphql/resolvers/index.ts"
-import noteResolver from "./note";
 import customResolver from "./custom";
+import noteResolver from "./note";
 
 export default [noteResolver, customResolver];
 ```

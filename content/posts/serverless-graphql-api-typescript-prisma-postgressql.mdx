@@ -216,8 +216,8 @@ After that import the GraphQL Schemas and Resolvers. We'll create these later.
 ```typescript title="api/graphql.ts" {3-4}
 import { ApolloServer } from "apollo-server-micro";
 
-import typeDefs from "../src/graphql/schema";
 import resolvers from "../src/graphql/resolvers";
+import typeDefs from "../src/graphql/schema";
 ```
 
 Then initialize the Apollo Server and export it.
@@ -225,8 +225,8 @@ Then initialize the Apollo Server and export it.
 ```typescript title="api/graphql.ts" {6-9,11}
 import { ApolloServer } from "apollo-server-micro";
 
-import typeDefs from "../src/graphql/schema";
 import resolvers from "../src/graphql/resolvers";
+import typeDefs from "../src/graphql/schema";
 
 const apolloServer = new ApolloServer({
   typeDefs,
@@ -241,8 +241,8 @@ To finish configuring we'll set the `introspection` and `playground` options.
 ```typescript title="api/graphql.ts" {9,10}
 import { ApolloServer } from "apollo-server-micro";
 
-import typeDefs from "../src/graphql/schema";
 import resolvers from "../src/graphql/resolvers";
+import typeDefs from "../src/graphql/schema";
 
 const apolloServer = new ApolloServer({
   typeDefs,
@@ -369,8 +369,8 @@ Then import the other Schemas and add them to the array.
 ```typescript title="src/graphql/schema/index.ts" {3-4,20}
 import { gql } from "apollo-server-micro";
 
-import noteSchema from "./note";
 import customSchema from "./custom";
+import noteSchema from "./note";
 
 const linkSchema = gql`
   type Query {
@@ -394,7 +394,7 @@ export default [linkSchema, noteSchema, customSchema];
 Since we added a custom type for dates and times in our schema, the first resolver we'll add is for those types. Create a folder called `resolvers` in the `graphql` folder and in it create `custom.ts`.
 
 ```typescript title="src/graphql/resolvers/custom.ts"
-import { GraphQLDate, GraphQLTime, GraphQLDateTime } from "graphql-iso-date";
+import { GraphQLDate, GraphQLDateTime, GraphQLTime } from "graphql-iso-date";
 
 export default {
   Date: GraphQLDate,
@@ -408,8 +408,8 @@ Next we'll start working on the resolver for Notes.
 Start by creating `note.ts` in `graphql`, importing the required dependencies and exporting an empty object which is going to be our resolver.
 
 ```typescript title="src/graphql/resolvers/note.ts"
+import { Note, PrismaClient } from "@prisma/client";
 import { ApolloError } from "apollo-server-micro";
-import { PrismaClient, Note } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -421,8 +421,8 @@ export default {};
 Then define an object for the Queries.
 
 ```typescript title="src/graphql/resolvers/note.ts" {7}
+import { Note, PrismaClient } from "@prisma/client";
 import { ApolloError } from "apollo-server-micro";
-import { PrismaClient, Note } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -440,8 +440,8 @@ When defining the function for each of the queries (or mutations or fields) ther
 First let's write the resolver for `getAllNotes`. Start by declaring the function.
 
 ```typescript title="src/graphql/resolvers/note.ts" {7}
+import { Note, PrismaClient } from "@prisma/client";
 import { ApolloError } from "apollo-server-micro";
-import { PrismaClient, Note } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -455,8 +455,8 @@ export default {
 Then add the code to get all the notes.
 
 ```typescript title="src/graphql/resolvers/note.ts" {9-17}
+import { Note, PrismaClient } from "@prisma/client";
 import { ApolloError } from "apollo-server-micro";
-import { PrismaClient, Note } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -480,8 +480,8 @@ export default {
 After that let's add the resolver for `getNote`.
 
 ```typescript title="src/graphql/resolvers/note.ts" {20-37}
+import { Note, PrismaClient } from "@prisma/client";
 import { ApolloError } from "apollo-server-micro";
-import { PrismaClient, Note } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -526,8 +526,8 @@ We can retrieve the `id` argument from the second parameter.
 Let's finish of the Note resolvers by adding the resolvers for the mutations.
 
 ```typescript title="src/graphql/resolvers/note.ts" {40-79}
+import { Note, PrismaClient } from "@prisma/client";
 import { ApolloError } from "apollo-server-micro";
-import { PrismaClient, Note } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -611,8 +611,8 @@ export default {
 Now we have to connect all the resolvers together using an `index.ts` file created in the `resolvers` folder.
 
 ```typescript title="src/graphql/resolvers/index.ts"
-import noteResolver from "./note";
 import customResolver from "./custom";
+import noteResolver from "./note";
 
 export default [noteResolver, customResolver];
 ```

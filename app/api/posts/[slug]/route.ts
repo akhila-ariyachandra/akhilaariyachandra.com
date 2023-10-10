@@ -1,10 +1,10 @@
-import { type NextRequest, NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 
 import { getIp } from "@/lib/server-helpers";
 import type { PostsResponse } from "@/lib/types";
 
-import { getRecord, getValue } from "./db.helpers";
 import { allPosts, allSnippets } from ".contentlayer/generated";
+import { getRecord, getValue } from "./db.helpers";
 
 export const runtime = "nodejs";
 

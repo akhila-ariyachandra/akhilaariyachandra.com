@@ -1,7 +1,7 @@
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { eq } from "drizzle-orm";
-import { type NextRequest, NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 import { z } from "zod";
 
 import { db } from "@/db/connection";
@@ -10,8 +10,8 @@ import { MAX_UPVOTES } from "@/lib/constants";
 import { getIp } from "@/lib/server-helpers";
 import type { PostsResponse } from "@/lib/types";
 
-import { getRecord, getUserKey, getValue } from "../db.helpers";
 import { allPosts, allSnippets } from ".contentlayer/generated";
+import { getRecord, getUserKey, getValue } from "../db.helpers";
 
 export const runtime = "nodejs";
 

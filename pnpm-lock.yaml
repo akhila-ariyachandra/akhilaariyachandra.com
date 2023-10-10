@@ -148,9 +148,6 @@ devDependencies:
   eslint-config-prettier:
     specifier: 9.0.0
     version: 9.0.0(eslint@8.51.0)
-  eslint-plugin-simple-import-sort:
-    specifier: 10.0.0
-    version: 10.0.0(eslint@8.51.0)
   mysql2:
     specifier: 3.6.1
     version: 3.6.1
@@ -160,9 +157,12 @@ devDependencies:
   prettier:
     specifier: 3.0.3
     version: 3.0.3
+  prettier-plugin-organize-imports:
+    specifier: 3.2.3
+    version: 3.2.3(prettier@3.0.3)(typescript@5.2.2)
   prettier-plugin-tailwindcss:
     specifier: 0.5.5
-    version: 0.5.5(prettier@3.0.3)
+    version: 0.5.5(prettier-plugin-organize-imports@3.2.3)(prettier@3.0.3)
   start-server-and-test:
     specifier: 2.0.1
     version: 2.0.1
@@ -3236,14 +3236,6 @@ packages:
       string.prototype.matchall: 4.0.10
     dev: true
 
-  /eslint-plugin-simple-import-sort@10.0.0(eslint@8.51.0):
-    resolution: {integrity: sha512-AeTvO9UCMSNzIHRkg8S6c3RPy5YEwKWSQPx3DYghLedo2ZQxowPFLGDN1AZ2evfg6r6mjBSZSLxLFsWSu3acsw==}
-    peerDependencies:
-      eslint: '>=5.0.0'
-    dependencies:
-      eslint: 8.51.0
-    dev: true
-
   /eslint-scope@7.2.2:
     resolution: {integrity: sha512-dOt21O7lTMhDM+X9mB4GX+DZrZtCUJPL/wlcTqxyrx5IvO0IYtILdtrQGQp+8n5S0gwSVmOf9NQrjMOgfQZlIg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -5931,7 +5923,24 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-tailwindcss@0.5.5(prettier@3.0.3):
+  /prettier-plugin-organize-imports@3.2.3(prettier@3.0.3)(typescript@5.2.2):
+    resolution: {integrity: sha512-KFvk8C/zGyvUaE3RvxN2MhCLwzV6OBbFSkwZ2OamCrs9ZY4i5L77jQ/w4UmUr+lqX8qbaqVq6bZZkApn+IgJSg==}
+    peerDependencies:
+      '@volar/vue-language-plugin-pug': ^1.0.4
+      '@volar/vue-typescript': ^1.0.4
+      prettier: '>=2.0'
+      typescript: '>=2.9'
+    peerDependenciesMeta:
+      '@volar/vue-language-plugin-pug':
+        optional: true
+      '@volar/vue-typescript':
+        optional: true
+    dependencies:
+      prettier: 3.0.3
+      typescript: 5.2.2
+    dev: true
+
+  /prettier-plugin-tailwindcss@0.5.5(prettier-plugin-organize-imports@3.2.3)(prettier@3.0.3):
     resolution: {integrity: sha512-voy0CjWv/CM8yeaduv5ZwovovpTGMR5LbzlhGF+LtEvMJt9wBeVTVnW781hL38R/RcDXCJwN2rolsgr94B/n0Q==}
     engines: {node: '>=14.21.3'}
     peerDependencies:
@@ -5984,6 +5993,7 @@ packages:
         optional: true
     dependencies:
       prettier: 3.0.3
+      prettier-plugin-organize-imports: 3.2.3(prettier@3.0.3)(typescript@5.2.2)
     dev: true
 
   /prettier@3.0.3:

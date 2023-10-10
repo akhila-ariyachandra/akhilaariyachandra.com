@@ -2,7 +2,7 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import ky from "ky";
-import { type ComponentProps, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ComponentProps } from "react";
 import { FaHeart } from "react-icons/fa";
 
 import usePost from "@/hooks/usePost.hook";
