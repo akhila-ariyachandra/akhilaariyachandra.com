@@ -90,12 +90,12 @@ First create the file `note.ts` in `src/database/models` and import the dependen
 
 ```typescript title="src/database/models/note.ts"
 import {
+  Connection,
   Document,
+  Model,
+  Schema,
   SchemaDefinition,
   SchemaTypes,
-  Schema,
-  Connection,
-  Model,
 } from "mongoose";
 ```
 
@@ -135,12 +135,12 @@ Finally the file should look like this.
 
 ```typescript title="src/database/models/note.ts"
 import {
+  Connection,
   Document,
+  Model,
+  Schema,
   SchemaDefinition,
   SchemaTypes,
-  Schema,
-  Connection,
-  Model,
 } from "mongoose";
 
 export interface INote extends Document {
