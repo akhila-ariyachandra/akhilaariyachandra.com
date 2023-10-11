@@ -3,10 +3,10 @@ import { NextResponse, type NextRequest } from "next/server";
 import { getIp } from "@/lib/server-helpers";
 import type { PostsResponse } from "@/lib/types";
 
-import { allPosts, allSnippets } from ".contentlayer/generated";
+// import { allPosts, allSnippets } from ".contentlayer/generated";
 import { getRecord, getValue } from "./db.helpers";
 
-export const runtime = "nodejs";
+export const runtime = "edge";
 
 type Options = {
   params: {
@@ -18,19 +18,19 @@ export const GET = async (request: NextRequest, { params }: Options) => {
   const slug = params.slug;
   const ip = getIp(request);
 
-  if (
-    !allPosts.map((post) => post.slug).includes(slug) &&
-    !allSnippets.map((snippet) => snippet.slug).includes(slug)
-  ) {
-    return NextResponse.json(
-      {
-        error: "Not found",
-      },
-      {
-        status: 404,
-      },
-    );
-  }
+  // if (
+  //   !allPosts.map((post) => post.slug).includes(slug) &&
+  //   !allSnippets.map((snippet) => snippet.slug).includes(slug)
+  // ) {
+  //   return NextResponse.json(
+  //     {
+  //       error: "Not found",
+  //     },
+  //     {
+  //       status: 404,
+  //     },
+  //   );
+  // }
 
   const record = await getRecord(slug);
   const value = await getValue(ip, slug);

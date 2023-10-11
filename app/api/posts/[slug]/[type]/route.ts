@@ -10,10 +10,10 @@ import { MAX_UPVOTES } from "@/lib/constants";
 import { getIp } from "@/lib/server-helpers";
 import type { PostsResponse } from "@/lib/types";
 
-import { allPosts, allSnippets } from ".contentlayer/generated";
+// import { allPosts, allSnippets } from ".contentlayer/generated";
 import { getRecord, getUserKey, getValue } from "../db.helpers";
 
-export const runtime = "nodejs";
+export const runtime = "edge";
 
 const redis = Redis.fromEnv();
 
@@ -40,19 +40,19 @@ export const POST = async (request: NextRequest, { params }: Options) => {
   const ip = getIp(request);
 
   // Blog post or code snippet must exist
-  if (
-    !allPosts.map((post) => post.slug).includes(slug) &&
-    !allSnippets.map((snippet) => snippet.slug).includes(slug)
-  ) {
-    return NextResponse.json(
-      {
-        error: "Not found",
-      },
-      {
-        status: 404,
-      },
-    );
-  }
+  // if (
+  //   !allPosts.map((post) => post.slug).includes(slug) &&
+  //   !allSnippets.map((snippet) => snippet.slug).includes(slug)
+  // ) {
+  //   return NextResponse.json(
+  //     {
+  //       error: "Not found",
+  //     },
+  //     {
+  //       status: 404,
+  //     },
+  //   );
+  // }
 
   // Limit what can be passed in the `type` parameter
   const parseResult = await typeSchema.safeParseAsync(params.type);
