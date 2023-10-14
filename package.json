@@ -15,11 +15,7 @@
     "drizzle:push": "dotenv -e .env.local drizzle-kit push:mysql",
     "drizzle:studio": "dotenv -e .env.local drizzle-kit studio",
     "prettier:format": "prettier --write \"**/*.{ts,tsx,js,md,mdx,css,yaml}\"",
-    "prettier:check:ci": "prettier --check \"**/*.{ts,tsx,js,md,mdx,css,yaml}\"",
-    "e2e": "start-server-and-test dev http://localhost:3000 \"cypress open --e2e\"",
-    "e2e:headless": "start-server-and-test dev http://localhost:3000 \"cypress run --e2e\"",
-    "component": "cypress open --component",
-    "component:headless": "cypress run --component"
+    "prettier:check:ci": "prettier --check \"**/*.{ts,tsx,js,md,mdx,css,yaml}\""
   },
   "dependencies": {
     "@fec/remark-a11y-emoji": "3.1.0",
@@ -65,7 +61,6 @@
     "@typescript-eslint/eslint-plugin": "6.7.4",
     "autoprefixer": "10.4.16",
     "cross-env": "7.0.3",
-    "cypress": "13.3.0",
     "dotenv-cli": "7.3.0",
     "drizzle-kit": "0.19.13",
     "eslint": "8.51.0",
