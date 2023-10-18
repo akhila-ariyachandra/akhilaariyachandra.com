@@ -36,7 +36,9 @@ const Upvotes = ({ slug }: UpvotesProps) => {
         .json<PostsResponse>(),
     onSettled: async () => {
       await refetch();
-      queryClient.refetchQueries(["posts"]);
+      queryClient.refetchQueries({
+        queryKey: ["posts"],
+      });
     },
   });
 
@@ -58,7 +60,7 @@ const Upvotes = ({ slug }: UpvotesProps) => {
     <div className="my-9 flex flex-row items-center justify-center gap-3 sm:my-10 sm:gap-4">
       <button
         onClick={increment}
-        disabled={currentCount >= MAX_UPVOTES || upvotesMutation.isLoading}
+        disabled={currentCount >= MAX_UPVOTES || upvotesMutation.isPending}
         className="relative overflow-hidden rounded bg-zinc-200 p-2 text-2xl data-[full]:animate-wiggle dark:bg-zinc-800"
         data-full={currentCount >= MAX_UPVOTES ? true : undefined}
         aria-label="Upvote"
