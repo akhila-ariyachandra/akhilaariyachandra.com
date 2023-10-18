@@ -22,7 +22,9 @@ const Views = ({ slug, incrementOnMount = false }: ViewsProps) => {
     mutationFn: () => ky.post(`/api/posts/${slug}/views`).json<PostsResponse>(),
     onSuccess: (data) => {
       queryClient.setQueryData(["post", slug], data);
-      queryClient.refetchQueries(["posts"]);
+      queryClient.refetchQueries({
+        queryKey: ["posts"],
+      });
     },
   });
 
