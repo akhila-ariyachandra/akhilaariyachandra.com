@@ -1,7 +1,6 @@
 import "./globals.css";
 import "./syntax-highlighting.css";
 
-import { Analytics } from "@vercel/analytics/react";
 import type { Metadata, Route } from "next";
 import { Oswald, Source_Code_Pro as SourceCodePro } from "next/font/google";
 import type { ReactNode } from "react";
@@ -98,7 +97,6 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
           <Footer />
         </Providers>
 
-        <Analytics />
         <GoogleAnalytics />
       </body>
     </html>
