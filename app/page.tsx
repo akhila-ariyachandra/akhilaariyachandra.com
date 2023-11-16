@@ -6,6 +6,8 @@ import profilePic from "@/public/profile-pic.png";
 
 import { about, allJobs } from ".contentlayer/generated";
 
+export const revalidate = 3600;
+
 const getPeriod = (start: string, end?: string) => {
   const startDate = dayjs(start);
   const endDate = dayjs(end);
