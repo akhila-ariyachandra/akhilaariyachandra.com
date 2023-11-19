@@ -6,7 +6,7 @@ import confusedTravolta from "./confused-travolta.gif";
 import Title from "@/components/Title";
 
 export const metadata: Metadata = {
-  title: "404 | Akhila Ariyachandra",
+  title: "404",
   description: "Not Found",
 };
 
