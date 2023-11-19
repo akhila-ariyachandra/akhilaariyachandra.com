@@ -25,11 +25,17 @@ const content = SourceCodePro({
 });
 
 export const metadata: Metadata = {
-  title: "Akhila Ariyachandra",
+  title: {
+    default: "Akhila Ariyachandra",
+    template: "%s | Akhila Ariyachandra",
+  },
   description: "Web Developer",
   metadataBase: new URL("https://akhilaariyachandra.com"),
   openGraph: {
-    title: "Akhila Ariyachandra",
+    title: {
+      default: "Akhila Ariyachandra",
+      template: "%s | Akhila Ariyachandra",
+    },
     description: "Web Developer",
     url: "/",
     type: "website",

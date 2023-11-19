@@ -34,10 +34,10 @@ export const generateMetadata = async ({
   }
 
   return {
-    title: `${snippet.title} | Akhila Ariyachandra`,
+    title: snippet.title,
     description: "A code snippet",
     openGraph: {
-      title: `${snippet.title} | Akhila Ariyachandra`,
+      title: snippet.title,
       description: snippet.description,
       url: `/snippets/${snippet.slug}`,
       type: "article",

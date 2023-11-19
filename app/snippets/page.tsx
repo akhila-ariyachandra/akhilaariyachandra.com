@@ -9,10 +9,10 @@ import { getOgImage } from "@/lib/helpers";
 import { allSnippets } from ".contentlayer/generated";
 
 export const metadata: Metadata = {
-  title: "Code Snippets | Akhila Ariyachandra",
+  title: "Code Snippets",
   description: "Some code snippets that I use",
   openGraph: {
-    title: "Code Snippets | Akhila Ariyachandra",
+    title: "Code Snippets",
     description: "Some code snippets that I use",
     url: "/snippets",
     type: "website",

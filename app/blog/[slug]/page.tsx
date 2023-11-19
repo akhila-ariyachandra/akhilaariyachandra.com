@@ -38,10 +38,10 @@ export const generateMetadata = async ({
   }
 
   return {
-    title: `${post.title} | Akhila Ariyachandra`,
+    title: post.title,
     description: "A post on my blog",
     openGraph: {
-      title: `${post.title} | Akhila Ariyachandra`,
+      title: post.title,
       description: "A post on my blog",
       url: `/blog/${post.slug}`,
       type: "article",
