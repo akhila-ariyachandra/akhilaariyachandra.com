@@ -13,10 +13,10 @@ import { allPosts } from ".contentlayer/generated";
 dayjs.extend(advancedFormat);
 
 export const metadata: Metadata = {
-  title: "Blog | Akhila Ariyachandra",
+  title: "Blog",
   description: "My personal blog",
   openGraph: {
-    title: "Blog | Akhila Ariyachandra",
+    title: "Blog",
     description: "My personal blog",
     url: "/blog",
     type: "website",
