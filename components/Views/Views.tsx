@@ -1,41 +1,54 @@
-"use client";
+import { db } from "@/db/connection";
+import { posts } from "@/db/schema";
+import { eq } from "drizzle-orm";
+import {
+  unstable_cache as cache,
+  unstable_noStore as noStore,
+} from "next/cache";
+import { Suspense } from "react";
+import ViewsIncrementer from "./ViewsIncrementer";
 
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import ky from "ky";
-import { useEffect } from "react";
+const getCachedViews = cache(
+  async (slug: string) => {
+    const results = await db.select().from(posts).where(eq(posts.slug, slug));
 
-import usePost from "@/hooks/usePost.hook";
-import type { PostsResponse } from "@/lib/types";
+    if (results?.length === 0) {
+      return 0;
+    }
+
+    return results[0].views;
+  },
+  ["views"],
+  { tags: ["views"] },
+);
 
 type ViewsProps = {
+  slug: string;
+};
+
+const Views = async ({ slug }: ViewsProps) => {
+  noStore();
+
+  const views = await getCachedViews(slug);
+
+  return <span>{views} views</span>;
+};
+
+type ViewsRootProps = {
   slug: string;
   incrementOnMount?: boolean;
 };
 
-const Views = ({ slug, incrementOnMount = false }: ViewsProps) => {
-  const queryClient = useQueryClient();
+const ViewsRoot = ({ slug, incrementOnMount = false }: ViewsRootProps) => {
+  return (
+    <>
+      <Suspense fallback={<span>0 views</span>}>
+        <Views slug={slug} />
+      </Suspense>
 
-  const { data } = usePost(slug);
-
-  const incrementMutation = useMutation({
-    mutationKey: ["views", slug, "increment"],
-    mutationFn: () => ky.post(`/api/posts/${slug}/views`).json<PostsResponse>(),
-    onSuccess: (data) => {
-      queryClient.setQueryData(["post", slug], data);
-      queryClient.refetchQueries({
-        queryKey: ["posts"],
-      });
-    },
-  });
-
-  useEffect(() => {
-    if (incrementOnMount) {
-      incrementMutation.mutate();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  return <span>{`${data?.views} views`}</span>;
+      <ViewsIncrementer slug={slug} incrementOnMount={incrementOnMount} />
+    </>
+  );
 };
 
-export default Views;
+export default ViewsRoot;
