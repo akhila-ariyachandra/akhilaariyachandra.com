@@ -1,10 +1,7 @@
 import { db } from "@/db/connection";
 import { posts } from "@/db/schema";
 import { eq } from "drizzle-orm";
-import {
-  unstable_cache as cache,
-  unstable_noStore as noStore,
-} from "next/cache";
+import { unstable_cache as cache } from "next/cache";
 import { Suspense } from "react";
 import ViewsIncrementer from "./ViewsIncrementer";
 
@@ -27,8 +24,6 @@ type ViewsProps = {
 };
 
 const Views = async ({ slug }: ViewsProps) => {
-  noStore();
-
   const views = await getCachedViews(slug);
 
   return <span>{views} views</span>;
