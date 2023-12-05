@@ -7,10 +7,11 @@ import type { ReactNode } from "react";
 
 import { cn, getOgImage } from "@/lib/helpers";
 
+import { Suspense } from "react";
 import Footer from "./Footer";
-import GoogleAnalytics from "./GoogleAnalytics";
 import NavLink from "./NavLink";
 import Providers from "./Providers";
+import { PostHogPageview } from "./posthog";
 
 const display = Oswald({
   subsets: ["latin"],
@@ -74,6 +75,10 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
       lang="en"
       className={cn(display.variable, content.variable, "h-full scroll-smooth")}
     >
+      <Suspense>
+        <PostHogPageview />
+      </Suspense>
+
       <body
         className={cn(
           "flex h-full flex-col overflow-y-scroll bg-white font-content antialiased dark:bg-zinc-950",
@@ -102,8 +107,6 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
 
           <Footer />
         </Providers>
-
-        <GoogleAnalytics />
       </body>
     </html>
   );
