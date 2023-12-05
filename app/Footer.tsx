@@ -9,33 +9,31 @@ import {
   unstable_noStore as noStore,
 } from "next/cache";
 
-const getTotals = cache(
+const getTotal = cache(
   async () => {
     const results = await db
       .select({
         views: sql<number>`SUM(count)`,
-        upvotes: sql<number>`SUM(upvotes)`,
       })
       .from(posts);
     const result = results[0];
 
     return {
       views: result.views,
-      upvotes: result.upvotes,
     };
   },
-  ["totals", "views", "upvotes"],
+  ["total", "views"],
   {
-    tags: ["totals", "views", "upvotes"],
+    tags: ["total", "views"],
   },
 );
 
 const Totals = async () => {
   noStore();
 
-  const totals = await getTotals();
+  const total = await getTotal();
 
-  return `(${totals?.views} post views, ${totals?.upvotes} upvotes)`;
+  return `(${total?.views} post views)`;
 };
 
 const Footer = () => {

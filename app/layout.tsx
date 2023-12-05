@@ -8,10 +8,10 @@ import type { ReactNode } from "react";
 import { cn, getOgImage } from "@/lib/helpers";
 
 import { Suspense } from "react";
+import { Provider as WrapBalancerProvider } from "react-wrap-balancer";
 import Footer from "./Footer";
 import NavLink from "./NavLink";
-import Providers from "./Providers";
-import { PostHogPageview } from "./posthog";
+import { PHProvider, PostHogPageview } from "./posthog";
 
 const display = Oswald({
   subsets: ["latin"],
@@ -85,28 +85,30 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
           "scrollbar-thin scrollbar-thumb-green-700 dark:scrollbar-thumb-green-500",
         )}
       >
-        <Providers>
-          <header className="container max-w-4xl p-3 sm:p-4">
-            <nav className="flex flex-row items-center gap-2 sm:gap-3">
-              {links.map((link) => (
-                <NavLink
-                  key={link.href}
-                  href={link.href}
-                  className={cn(
-                    "font-medium text-zinc-700 hover:underline dark:text-zinc-300 sm:text-lg",
-                    "data-[active]:font-medium data-[active]:text-green-700 data-[active]:underline data-[active]:underline-offset-2 data-[active]:hover:underline-offset-1 data-[active]:dark:text-green-500 data-[active]:sm:text-lg",
-                  )}
-                >
-                  {link.label}
-                </NavLink>
-              ))}
-            </nav>
-          </header>
+        <PHProvider>
+          <WrapBalancerProvider>
+            <header className="container max-w-4xl p-3 sm:p-4">
+              <nav className="flex flex-row items-center gap-2 sm:gap-3">
+                {links.map((link) => (
+                  <NavLink
+                    key={link.href}
+                    href={link.href}
+                    className={cn(
+                      "font-medium text-zinc-700 hover:underline dark:text-zinc-300 sm:text-lg",
+                      "data-[active]:font-medium data-[active]:text-green-700 data-[active]:underline data-[active]:underline-offset-2 data-[active]:hover:underline-offset-1 data-[active]:dark:text-green-500 data-[active]:sm:text-lg",
+                    )}
+                  >
+                    {link.label}
+                  </NavLink>
+                ))}
+              </nav>
+            </header>
 
-          <main className="container max-w-4xl p-3 sm:p-4">{children}</main>
+            <main className="container max-w-4xl p-3 sm:p-4">{children}</main>
 
-          <Footer />
-        </Providers>
+            <Footer />
+          </WrapBalancerProvider>
+        </PHProvider>
       </body>
     </html>
   );
