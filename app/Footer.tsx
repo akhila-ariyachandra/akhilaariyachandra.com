@@ -4,7 +4,10 @@ import { Suspense } from "react";
 
 import { db } from "@/db/connection";
 import { posts } from "@/db/schema";
-import { unstable_cache as cache } from "next/cache";
+import {
+  unstable_cache as cache,
+  unstable_noStore as noStore,
+} from "next/cache";
 
 const getTotals = cache(
   async () => {
@@ -28,6 +31,8 @@ const getTotals = cache(
 );
 
 const Totals = async () => {
+  noStore();
+
   const totals = await getTotals();
 
   return `(${totals?.views} post views, ${totals?.upvotes} upvotes)`;
