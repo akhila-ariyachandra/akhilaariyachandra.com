@@ -21,8 +21,6 @@
     "@fec/remark-a11y-emoji": "4.0.2",
     "@next/bundle-analyzer": "14.0.3",
     "@planetscale/database": "1.11.0",
-    "@tanstack/react-query": "5.8.4",
-    "@tanstack/react-query-devtools": "5.8.4",
     "@upstash/ratelimit": "0.4.4",
     "@upstash/redis": "1.25.1",
     "clsx": "2.0.0",
@@ -52,7 +50,6 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "0.5.10",
-    "@tanstack/eslint-plugin-query": "5.8.4",
     "@total-typescript/ts-reset": "0.5.1",
     "@types/gtag.js": "0.0.18",
     "@types/node": "20.9.2",
