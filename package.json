@@ -23,6 +23,7 @@
     "@planetscale/database": "1.11.0",
     "@upstash/ratelimit": "1.0.0",
     "@upstash/redis": "1.25.1",
+    "@vercel/speed-insights": "1.0.0",
     "clsx": "2.0.0",
     "contentlayer": "0.3.4",
     "cva": "1.0.0-beta.1",
