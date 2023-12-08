@@ -1,6 +1,7 @@
 import "./globals.css";
 import "./syntax-highlighting.css";
 
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Route } from "next";
 import { Oswald, Source_Code_Pro as SourceCodePro } from "next/font/google";
 import type { ReactNode } from "react";
@@ -109,6 +110,8 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
             <Footer />
           </WrapBalancerProvider>
         </PHProvider>
+
+        <SpeedInsights />
       </body>
     </html>
   );
