@@ -8,11 +8,13 @@ import type { ReactNode } from "react";
 
 import { cn, getOgImage } from "@/lib/helpers";
 
-import { Suspense } from "react";
+import Script from "next/script";
+
+import { GA_TRACKING_ID } from "@/lib/analytics";
+
 import { Provider as WrapBalancerProvider } from "react-wrap-balancer";
 import Footer from "./Footer";
 import NavLink from "./NavLink";
-import { PHProvider, PostHogPageview } from "./posthog";
 
 const display = Oswald({
   subsets: ["latin"],
@@ -76,42 +78,48 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
       lang="en"
       className={cn(display.variable, content.variable, "h-full scroll-smooth")}
     >
-      <Suspense>
-        <PostHogPageview />
-      </Suspense>
-
       <body
         className={cn(
           "flex h-full flex-col overflow-y-scroll bg-white font-content antialiased dark:bg-zinc-950",
           "scrollbar-thin scrollbar-thumb-green-700 dark:scrollbar-thumb-green-500",
         )}
       >
-        <PHProvider>
-          <WrapBalancerProvider>
-            <header className="container max-w-4xl p-3 sm:p-4">
-              <nav className="flex flex-row items-center gap-2 sm:gap-3">
-                {links.map((link) => (
-                  <NavLink
-                    key={link.href}
-                    href={link.href}
-                    className={cn(
-                      "font-medium text-zinc-700 hover:underline dark:text-zinc-300 sm:text-lg",
-                      "data-[active]:font-medium data-[active]:text-green-700 data-[active]:underline data-[active]:underline-offset-2 data-[active]:hover:underline-offset-1 data-[active]:dark:text-green-500 data-[active]:sm:text-lg",
-                    )}
-                  >
-                    {link.label}
-                  </NavLink>
-                ))}
-              </nav>
-            </header>
+        <WrapBalancerProvider>
+          <header className="container max-w-4xl p-3 sm:p-4">
+            <nav className="flex flex-row items-center gap-2 sm:gap-3">
+              {links.map((link) => (
+                <NavLink
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    "font-medium text-zinc-700 hover:underline dark:text-zinc-300 sm:text-lg",
+                    "data-[active]:font-medium data-[active]:text-green-700 data-[active]:underline data-[active]:underline-offset-2 data-[active]:hover:underline-offset-1 data-[active]:dark:text-green-500 data-[active]:sm:text-lg",
+                  )}
+                >
+                  {link.label}
+                </NavLink>
+              ))}
+            </nav>
+          </header>
 
-            <main className="container max-w-4xl p-3 sm:p-4">{children}</main>
+          <main className="container max-w-4xl p-3 sm:p-4">{children}</main>
 
-            <Footer />
-          </WrapBalancerProvider>
-        </PHProvider>
+          <Footer />
+        </WrapBalancerProvider>
 
         <SpeedInsights />
+
+        <Script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+        />
+        <Script id="google-analytics-script">{`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+  
+        gtag('config', '${GA_TRACKING_ID}');
+        `}</Script>
       </body>
     </html>
   );

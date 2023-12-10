@@ -16,14 +16,6 @@ const nextConfig = {
   experimental: {
     typedRoutes: true,
   },
-  rewrites: async () => {
-    return [
-      {
-        source: "/ingest/:path*",
-        destination: "https://app.posthog.com/:path*",
-      },
-    ];
-  },
 };
 
 module.exports = withBundleAnalyzer(withContentlayer(nextConfig));
