@@ -8,9 +8,12 @@ const robots = (): MetadataRoute.Robots => {
         allow: "/",
       },
       {
-        userAgent: ["GPTBot", "Google-Extended"],
-        allow: "/",
-        disallow: ["/blog/", "/snippets/"],
+        userAgent: "GPTBot",
+        disallow: "/",
+      },
+      {
+        userAgent: "Google-Extended",
+        disallow: "/",
       },
     ],
     sitemap: "https://akhilaariyachandra.com/sitemap.xml",
