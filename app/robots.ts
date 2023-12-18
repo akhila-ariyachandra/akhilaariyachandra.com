@@ -7,6 +7,11 @@ const robots = (): MetadataRoute.Robots => {
         userAgent: "*",
         allow: "/",
       },
+      {
+        userAgent: ["GPTBot", "Google-Extended"],
+        allow: "/",
+        disallow: ["/blog/", "/snippets/"],
+      },
     ],
     sitemap: "https://akhilaariyachandra.com/sitemap.xml",
     host: "https://akhilaariyachandra.com",
