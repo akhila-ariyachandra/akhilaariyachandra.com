@@ -6,6 +6,7 @@ import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { eq } from "drizzle-orm";
 import { revalidateTag } from "next/cache";
+import { headers } from "next/headers";
 
 const ratelimit = new Ratelimit({
   redis: Redis.fromEnv(),
@@ -13,7 +14,18 @@ const ratelimit = new Ratelimit({
   analytics: true,
 });
 
-export const incrementViews = async (slug: string, ip: string) => {
+export const incrementViews = async (slug: string) => {
+  let ip = "";
+
+  const FALLBACK_IP_ADDRESS = "0.0.0.0";
+  const forwardedFor = headers().get("x-forwarded-for");
+
+  if (forwardedFor) {
+    ip = forwardedFor.split(",")[0] ?? FALLBACK_IP_ADDRESS;
+  } else {
+    ip = headers().get("x-real-ip") ?? FALLBACK_IP_ADDRESS;
+  }
+
   const { success } = await ratelimit.limit(`${ip}-${slug}`);
 
   if (!success) {

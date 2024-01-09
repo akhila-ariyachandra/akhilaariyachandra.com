@@ -1,6 +1,5 @@
 "use client";
 
-import ky from "ky";
 import { useEffect } from "react";
 import { incrementViews } from "./actions";
 
@@ -14,15 +13,8 @@ const ViewsIncrementer = ({
   incrementOnMount,
 }: ViewsIncrementerProps) => {
   useEffect(() => {
-    const increment = async () => {
-      const { ip } = await ky
-        .get("https://api.ipify.org/?format=json")
-        .json<{ ip: string }>();
-      await incrementViews(slug, ip);
-    };
-
     if (incrementOnMount) {
-      increment();
+      incrementViews(slug);
     }
   }, [slug, incrementOnMount]);
 
