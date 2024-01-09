@@ -16,7 +16,7 @@ const getCachedViews = cache(
     return results[0].views;
   },
   ["views"],
-  { tags: ["views"] },
+  { tags: ["views"], revalidate: 60 },
 );
 
 type ViewsProps = {
