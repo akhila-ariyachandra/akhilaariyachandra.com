@@ -1,7 +1,7 @@
+import { compose, cva } from "@/_lib/cva.config";
 import type { VariantProps } from "cva";
 import type { ReactNode } from "react";
 import { IoInformationCircle, IoPencil, IoWarning } from "react-icons/io5";
-import { compose, cva } from "@/_lib/cva.config";
 import styles from "./callout.module.css";
 
 const root = cva({
