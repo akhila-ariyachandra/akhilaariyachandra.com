@@ -1,6 +1,5 @@
+import { allPosts, allSnippets } from "contentlayer/generated";
 import type { MetadataRoute } from "next";
-
-import { allPosts, allSnippets } from "@/.contentlayer/generated";
 
 const sitemap = (): MetadataRoute.Sitemap => {
   const posts = allPosts.map((post) => ({

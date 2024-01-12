@@ -1,14 +1,12 @@
+import { allPosts } from ".contentlayer/generated";
+import MDXComponent from "@/_components/mdx-component";
+import Title from "@/_components/title";
+import Views from "@/_components/views";
+import { getOgImage } from "@/_utils/helpers";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-
-import MDXComponent from "@/components/MDXComponent";
-import Title from "@/components/Title";
-import Views from "@/components/Views";
-import { getOgImage } from "@/lib/helpers";
-
-import { allPosts } from ".contentlayer/generated";
 
 dayjs.extend(advancedFormat);
 
@@ -70,7 +68,7 @@ const BlogPostPage = ({ params }: BlogPostPageProps) => {
     <>
       <Title>{post.title}</Title>
 
-      <div className="mb-4 text-sm text-zinc-600 dark:text-zinc-400 sm:mb-5 sm:text-base">
+      <div className="mb-4 text-sm text-zinc-600 sm:mb-5 sm:text-base dark:text-zinc-400">
         <time dateTime={dayjs(post.posted).toISOString()}>
           {`${dayjs(post.posted).format("Do MMMM YYYY")}${
             post.updated

@@ -1,7 +1,6 @@
-import "server-only";
-
 import { connect } from "@planetscale/database";
 import { drizzle } from "drizzle-orm/planetscale-serverless";
+import "server-only";
 
 // create the connection
 const connection = connect({

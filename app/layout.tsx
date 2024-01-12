@@ -1,20 +1,16 @@
-import "./globals.css";
-import "./syntax-highlighting.css";
-
+import { GA_TRACKING_ID } from "@/_lib/analytics";
+import { cn, getOgImage } from "@/_utils/helpers";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Route } from "next";
 import { Oswald, Source_Code_Pro as SourceCodePro } from "next/font/google";
-import type { ReactNode } from "react";
-
-import { cn, getOgImage } from "@/lib/helpers";
-
+import Link from "next/link";
 import Script from "next/script";
-
-import { GA_TRACKING_ID } from "@/lib/analytics";
-
+import NextTopLoader from "nextjs-toploader";
+import type { ReactNode } from "react";
 import { Provider as WrapBalancerProvider } from "react-wrap-balancer";
-import Footer from "./Footer";
-import NavLink from "./NavLink";
+import "./globals.css";
+import NavLink from "./nav-link";
+import "./syntax-highlighting.css";
 
 const display = Oswald({
   subsets: ["latin"],
@@ -84,6 +80,8 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
           "scrollbar-thin scrollbar-thumb-green-700 dark:scrollbar-thumb-green-500",
         )}
       >
+        <NextTopLoader color="#22c55e" showSpinner={false} />
+
         <WrapBalancerProvider>
           <header className="container max-w-4xl p-3 sm:p-4">
             <nav className="flex flex-row items-center gap-2 sm:gap-3">
@@ -92,8 +90,8 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "font-medium text-zinc-700 hover:underline dark:text-zinc-300 sm:text-lg",
-                    "data-[active]:font-medium data-[active]:text-green-700 data-[active]:underline data-[active]:underline-offset-2 data-[active]:hover:underline-offset-1 data-[active]:dark:text-green-500 data-[active]:sm:text-lg",
+                    "font-medium text-zinc-700 hover:underline sm:text-lg dark:text-zinc-300",
+                    "data-[active]:font-medium data-[active]:text-green-700 data-[active]:underline data-[active]:underline-offset-2 data-[active]:hover:underline-offset-1 data-[active]:sm:text-lg data-[active]:dark:text-green-500",
                   )}
                 >
                   {link.label}
@@ -104,7 +102,15 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
 
           <main className="container max-w-4xl p-3 sm:p-4">{children}</main>
 
-          <Footer />
+          <footer className="container mt-auto max-w-4xl p-3 text-sm text-zinc-700 sm:p-4 sm:text-base dark:text-zinc-300">
+            © {new Date().getFullYear()},{" "}
+            <Link
+              href="/"
+              className="font-medium text-green-700 hover:underline dark:text-green-500"
+            >
+              akhilaariyachandra.com
+            </Link>
+          </footer>
         </WrapBalancerProvider>
 
         <SpeedInsights />

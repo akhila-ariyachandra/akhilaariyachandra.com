@@ -1,12 +1,10 @@
+import { allSnippets } from ".contentlayer/generated";
+import Title from "@/_components/title";
+import Views from "@/_components/views";
+import { getOgImage } from "@/_utils/helpers";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
-
-import Title from "@/components/Title";
-import Views from "@/components/Views";
-import { getOgImage } from "@/lib/helpers";
-
-import { allSnippets } from ".contentlayer/generated";
 
 export const metadata: Metadata = {
   title: "Code Snippets",
@@ -33,12 +31,12 @@ const SnippetsPage = () => {
           <li key={snippet.slug}>
             <Link
               href={`/snippets/${snippet.slug}`}
-              className="font-display text-xl font-medium text-green-700 hover:underline dark:text-green-500 sm:text-2xl"
+              className="font-display text-xl font-medium text-green-700 hover:underline sm:text-2xl dark:text-green-500"
             >
               <Balancer>{snippet.title}</Balancer>
             </Link>
 
-            <div className="text-sm text-zinc-600 dark:text-zinc-400 sm:text-base">
+            <div className="text-sm text-zinc-600 sm:text-base dark:text-zinc-400">
               {`${snippet.description} - `}
               <Views slug={snippet.slug} />
             </div>

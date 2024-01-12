@@ -1,12 +1,10 @@
+import { allSnippets } from ".contentlayer/generated";
+import MDXComponent from "@/_components/mdx-component";
+import Title from "@/_components/title";
+import Views from "@/_components/views";
+import { getOgImage } from "@/_utils/helpers";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-
-import MDXComponent from "@/components/MDXComponent";
-import Title from "@/components/Title";
-import Views from "@/components/Views";
-import { getOgImage } from "@/lib/helpers";
-
-import { allSnippets } from ".contentlayer/generated";
 
 // https://beta.nextjs.org/docs/api-reference/generate-static-params
 export const generateStaticParams = () => {
@@ -57,7 +55,7 @@ const SnippetPage = ({ params }: SnippetPageProps) => {
     <>
       <Title>{snippet.title}</Title>
 
-      <p className="mb-4 text-sm text-zinc-600 dark:text-zinc-400 sm:mb-5 sm:text-base">
+      <p className="mb-4 text-sm text-zinc-600 sm:mb-5 sm:text-base dark:text-zinc-400">
         {snippet.description}
 
         <span className="font-light text-zinc-500 dark:text-zinc-400">

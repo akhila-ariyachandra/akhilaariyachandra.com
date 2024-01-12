@@ -11,7 +11,7 @@ const nextConfig = {
     formats: ["image/avif", "image/webp"],
   },
   eslint: {
-    dirs: ["app", "components", "db", "lib"],
+    dirs: ["app"],
   },
   experimental: {
     typedRoutes: true,

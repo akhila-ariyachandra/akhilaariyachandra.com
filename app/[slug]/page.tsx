@@ -1,6 +1,5 @@
-import { notFound, permanentRedirect } from "next/navigation";
-
 import { allPosts } from ".contentlayer/generated";
+import { notFound, permanentRedirect } from "next/navigation";
 
 // https://beta.nextjs.org/docs/api-reference/generate-static-params
 export const generateStaticParams = () => {
