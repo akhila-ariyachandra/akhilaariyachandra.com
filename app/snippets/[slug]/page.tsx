@@ -1,12 +1,10 @@
+import { allSnippets } from ".contentlayer/generated";
+import MDXComponent from "@/_components/mdx-component";
+import Title from "@/_components/title";
+import Views from "@/_components/views";
+import { getOgImage } from "@/_utils/helpers";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-
-import MDXComponent from "@/components/MDXComponent";
-import Title from "@/components/Title";
-import Views from "@/components/Views";
-import { getOgImage } from "@/lib/helpers";
-
-import { allSnippets } from ".contentlayer/generated";
 
 // https://beta.nextjs.org/docs/api-reference/generate-static-params
 export const generateStaticParams = () => {

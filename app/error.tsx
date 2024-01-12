@@ -1,8 +1,7 @@
 "use client"; // Error components must be Client Components
 
+import Title from "@/_components/title";
 import { useEffect } from "react";
-
-import Title from "@/components/Title";
 
 const ErrorPage = ({
   error,

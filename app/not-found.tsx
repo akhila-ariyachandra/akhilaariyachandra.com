@@ -1,9 +1,8 @@
+import Title from "@/_components/title";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import confusedTravolta from "./confused-travolta.gif";
-
-import Title from "@/components/Title";
 
 export const metadata: Metadata = {
   title: "404",

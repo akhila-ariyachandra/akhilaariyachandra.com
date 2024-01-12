@@ -1,9 +1,9 @@
-import { db } from "@/db/connection";
-import { posts } from "@/db/schema";
+import { db } from "@/_db/connection";
+import { posts } from "@/_db/schema";
 import { eq } from "drizzle-orm";
 import { unstable_cache as cache } from "next/cache";
 import { Suspense } from "react";
-import ViewsIncrementer from "./ViewsIncrementer";
+import ViewsIncrementer from "./views-incrementer";
 
 const getCachedViews = cache(
   async (slug: string) => {

@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import Image from "next/image";
 
-import MDXComponent from "@/components/MDXComponent";
+import MDXComponent from "@/_components/mdx-component";
 import profilePic from "@/public/profile-pic.png";
 
 import { about, allJobs } from ".contentlayer/generated";

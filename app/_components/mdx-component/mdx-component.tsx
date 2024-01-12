@@ -1,12 +1,12 @@
 import { getMDXComponent } from "next-contentlayer/hooks";
 
-import { cn } from "@/lib/helpers";
+import { cn } from "@/_utils/helpers";
 
-import Callout from "./Callout";
-import CodeSandboxWrapper from "./CodeSandboxWrapper";
-import Iframe from "./Iframe";
-import PostImage from "./PostImage";
-import Video from "./Video";
+import Callout from "./callout";
+import CodeSandboxWrapper from "./code-sandbox-wrapper";
+import Iframe from "./iframe";
+import PostImage from "./post-image";
+import Video from "./video";
 
 type MDXComponentProps = {
   code: string;

@@ -1,12 +1,10 @@
+import { allSnippets } from ".contentlayer/generated";
+import Title from "@/_components/title";
+import Views from "@/_components/views";
+import { getOgImage } from "@/_utils/helpers";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
-
-import Title from "@/components/Title";
-import Views from "@/components/Views";
-import { getOgImage } from "@/lib/helpers";
-
-import { allSnippets } from ".contentlayer/generated";
 
 export const metadata: Metadata = {
   title: "Code Snippets",

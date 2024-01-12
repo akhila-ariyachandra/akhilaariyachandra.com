@@ -1,7 +1,7 @@
 "use server";
 
-import { db } from "@/db/connection";
-import { posts } from "@/db/schema";
+import { db } from "@/_db/connection";
+import { posts } from "@/_db/schema";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { eq } from "drizzle-orm";

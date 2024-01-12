@@ -3,6 +3,7 @@
   "editor.formatOnSave": true,
   "cSpell.words": [
     "Contentlayer",
+    "Incrementer",
     "Ratelimit",
     "Upvote",
     "upvotes"

@@ -4,7 +4,7 @@ import { ImageResponse } from "next/og";
 import { NextResponse, type NextRequest } from "next/server";
 import { z } from "zod";
 
-import { getBaseURL } from "@/lib/helpers";
+import { getBaseURL } from "@/_utils/helpers";
 
 const queryParamSchema = z.object({
   title: z.string(),

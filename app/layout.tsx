@@ -1,20 +1,15 @@
-import "./globals.css";
-import "./syntax-highlighting.css";
-
+import { GA_TRACKING_ID } from "@/_lib/analytics";
+import { cn, getOgImage } from "@/_utils/helpers";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Route } from "next";
 import { Oswald, Source_Code_Pro as SourceCodePro } from "next/font/google";
-import type { ReactNode } from "react";
-
-import { cn, getOgImage } from "@/lib/helpers";
-
+import Link from "next/link";
 import Script from "next/script";
-
-import { GA_TRACKING_ID } from "@/lib/analytics";
-
+import type { ReactNode } from "react";
 import { Provider as WrapBalancerProvider } from "react-wrap-balancer";
-import Footer from "./Footer";
-import NavLink from "./NavLink";
+import "./globals.css";
+import NavLink from "./nav-link";
+import "./syntax-highlighting.css";
 
 const display = Oswald({
   subsets: ["latin"],
@@ -104,7 +99,15 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
 
           <main className="container max-w-4xl p-3 sm:p-4">{children}</main>
 
-          <Footer />
+          <footer className="container mt-auto max-w-4xl p-3 text-sm text-zinc-700 dark:text-zinc-300 sm:p-4 sm:text-base">
+            © {new Date().getFullYear()},{" "}
+            <Link
+              href="/"
+              className="font-medium text-green-700 hover:underline dark:text-green-500"
+            >
+              akhilaariyachandra.com
+            </Link>
+          </footer>
         </WrapBalancerProvider>
 
         <SpeedInsights />
