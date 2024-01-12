@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .callout {
+    a {
+      @apply font-medium hover:underline;
+    }
+
+    code {
+      @apply font-mono font-semibold before:content-['`'] after:content-['`'];
+    }
+  }
+}

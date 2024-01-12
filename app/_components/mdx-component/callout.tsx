@@ -2,13 +2,9 @@ import { compose, cva } from "@/_lib/cva.config";
 import type { VariantProps } from "cva";
 import type { ReactNode } from "react";
 import { IoInformationCircle, IoPencil, IoWarning } from "react-icons/io5";
-import styles from "./callout.module.css";
 
 const root = cva({
-  base: [
-    "not-prose my-4 flex flex-row items-center gap-3 rounded p-3 sm:my-5 sm:gap-4 sm:rounded-md sm:p-4",
-    styles.wrapper,
-  ],
+  base: "not-prose my-4 flex flex-row items-center gap-3 rounded p-3 sm:my-5 sm:gap-4 sm:rounded-md sm:p-4 callout",
   variants: {
     type: {
       default: "bg-zinc-200 dark:bg-zinc-800",
