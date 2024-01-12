@@ -1,7 +1,0 @@
-.wrapper a {
-  @apply font-medium hover:underline;
-}
-
-.wrapper code {
-  @apply font-mono font-semibold before:content-['`'] after:content-['`'];
-}
