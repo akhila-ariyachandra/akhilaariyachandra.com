@@ -1,10 +1,8 @@
-import dayjs from "dayjs";
-import Image from "next/image";
-
+import { about, allJobs } from ".contentlayer/generated";
 import MDXComponent from "@/_components/mdx-component";
 import profilePic from "@/public/profile-pic.png";
-
-import { about, allJobs } from ".contentlayer/generated";
+import dayjs from "dayjs";
+import Image from "next/image";
 
 export const revalidate = 3600;
 
@@ -64,7 +62,7 @@ const HomePage = () => {
         placeholder="blur"
       />
 
-      <h1 className="mb-4 font-display text-3xl text-zinc-600 dark:text-zinc-300 sm:mb-5 sm:text-4xl">
+      <h1 className="mb-4 font-display text-3xl text-zinc-600 sm:mb-5 sm:text-4xl dark:text-zinc-300">
         Hi, I&apos;m{" "}
         <span className="font-black text-green-700 dark:text-green-500">
           Akhila Ariyachandra
@@ -76,7 +74,7 @@ const HomePage = () => {
       <hr className="my-7 sm:my-8" />
 
       <section>
-        <h2 className="mb-6 font-display text-xl font-bold text-zinc-800 dark:text-zinc-200 sm:mb-7 sm:text-2xl">
+        <h2 className="mb-6 font-display text-xl font-bold text-zinc-800 sm:mb-7 sm:text-2xl dark:text-zinc-200">
           My Career
         </h2>
 
@@ -97,7 +95,7 @@ const HomePage = () => {
                   />
 
                   <div className="break-words">
-                    <h3 className="font-display text-lg font-semibold leading-tight text-zinc-700 dark:text-zinc-300 sm:text-xl sm:leading-snug">
+                    <h3 className="font-display text-lg font-semibold leading-tight text-zinc-700 sm:text-xl sm:leading-snug dark:text-zinc-300">
                       {job.position}
                     </h3>
 
@@ -105,7 +103,7 @@ const HomePage = () => {
                       href={job.company.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-base font-medium leading-tight text-green-700 hover:underline dark:text-green-500 sm:text-lg sm:leading-snug"
+                      className="text-base font-medium leading-tight text-green-700 hover:underline sm:text-lg sm:leading-snug dark:text-green-500"
                     >
                       {job.company.name}
                     </a>

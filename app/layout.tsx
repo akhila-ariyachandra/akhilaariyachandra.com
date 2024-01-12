@@ -90,8 +90,8 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "font-medium text-zinc-700 hover:underline dark:text-zinc-300 sm:text-lg",
-                    "data-[active]:font-medium data-[active]:text-green-700 data-[active]:underline data-[active]:underline-offset-2 data-[active]:hover:underline-offset-1 data-[active]:dark:text-green-500 data-[active]:sm:text-lg",
+                    "font-medium text-zinc-700 hover:underline sm:text-lg dark:text-zinc-300",
+                    "data-[active]:font-medium data-[active]:text-green-700 data-[active]:underline data-[active]:underline-offset-2 data-[active]:hover:underline-offset-1 data-[active]:sm:text-lg data-[active]:dark:text-green-500",
                   )}
                 >
                   {link.label}
@@ -102,7 +102,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
 
           <main className="container max-w-4xl p-3 sm:p-4">{children}</main>
 
-          <footer className="container mt-auto max-w-4xl p-3 text-sm text-zinc-700 dark:text-zinc-300 sm:p-4 sm:text-base">
+          <footer className="container mt-auto max-w-4xl p-3 text-sm text-zinc-700 sm:p-4 sm:text-base dark:text-zinc-300">
             © {new Date().getFullYear()},{" "}
             <Link
               href="/"
