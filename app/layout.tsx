@@ -5,6 +5,7 @@ import type { Metadata, Route } from "next";
 import { Oswald, Source_Code_Pro as SourceCodePro } from "next/font/google";
 import Link from "next/link";
 import Script from "next/script";
+import NextTopLoader from "nextjs-toploader";
 import type { ReactNode } from "react";
 import { Provider as WrapBalancerProvider } from "react-wrap-balancer";
 import "./globals.css";
@@ -79,6 +80,8 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
           "scrollbar-thin scrollbar-thumb-green-700 dark:scrollbar-thumb-green-500",
         )}
       >
+        <NextTopLoader color="#22c55e" showSpinner={false} />
+
         <WrapBalancerProvider>
           <header className="container max-w-4xl p-3 sm:p-4">
             <nav className="flex flex-row items-center gap-2 sm:gap-3">
