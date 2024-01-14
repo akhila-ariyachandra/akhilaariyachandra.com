@@ -1,8 +1,9 @@
 import { GA_TRACKING_ID } from "@/_lib/analytics";
 import { cn, getOgImage } from "@/_utils/helpers";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
 import type { Metadata, Route } from "next";
-import { Oswald, Source_Code_Pro as SourceCodePro } from "next/font/google";
 import Link from "next/link";
 import Script from "next/script";
 import NextTopLoader from "nextjs-toploader";
@@ -11,18 +12,6 @@ import { Provider as WrapBalancerProvider } from "react-wrap-balancer";
 import "./globals.css";
 import NavLink from "./nav-link";
 import "./syntax-highlighting.css";
-
-const display = Oswald({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-display",
-});
-
-const content = SourceCodePro({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-content",
-});
 
 export const metadata: Metadata = {
   title: {
@@ -72,7 +61,11 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html
       lang="en"
-      className={cn(display.variable, content.variable, "h-full scroll-smooth")}
+      className={cn(
+        GeistMono.variable,
+        GeistSans.variable,
+        "h-full scroll-smooth",
+      )}
     >
       <body
         className={cn(

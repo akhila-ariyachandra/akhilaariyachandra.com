@@ -14,8 +14,8 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        display: ["var(--font-display)"],
-        content: ["var(--font-content)"],
+        display: ["var(--font-geist-mono)"],
+        content: ["var(--font-geist-sans)"],
       },
       keyframes: {
         wiggle: {

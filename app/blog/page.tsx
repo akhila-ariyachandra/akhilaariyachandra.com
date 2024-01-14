@@ -37,7 +37,7 @@ const BlogPage = () => {
             <li key={post.slug}>
               <Link
                 href={`/blog/${post.slug}`}
-                className="font-display text-xl font-medium text-green-700 hover:underline sm:text-2xl dark:text-green-500"
+                className="font-display text-xl font-medium tracking-tighter text-green-700 hover:underline sm:text-2xl dark:text-green-500"
               >
                 <Balancer>{post.title}</Balancer>
               </Link>
