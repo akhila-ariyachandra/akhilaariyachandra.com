@@ -1,6 +1,6 @@
 import { about, allJobs } from ".contentlayer/generated";
+import profilePic from "@/_assets/profile-pic.png";
 import MDXComponent from "@/_components/mdx-component";
-import profilePic from "@/public/profile-pic.png";
 import dayjs from "dayjs";
 import Image from "next/image";
 

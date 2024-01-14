@@ -2,21 +2,15 @@ import { allSnippets } from ".contentlayer/generated";
 import MDXComponent from "@/_components/mdx-component";
 import Title from "@/_components/title";
 import Views from "@/_components/views";
-import { getOgImage } from "@/_utils/helpers";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { SnippetPageProps } from "./types";
 
 // https://beta.nextjs.org/docs/api-reference/generate-static-params
 export const generateStaticParams = () => {
   return allSnippets.map((snippet) => ({
     slug: snippet.slug,
   }));
-};
-
-type SnippetPageProps = {
-  params: {
-    slug: string;
-  };
 };
 
 export const generateMetadata = async ({
@@ -36,7 +30,6 @@ export const generateMetadata = async ({
       description: snippet.description,
       url: `/snippets/${snippet.slug}`,
       type: "article",
-      images: getOgImage(snippet.title, "Akhila Ariyachandra", "Code Snippet"),
     },
     alternates: {
       canonical: `/snippets/${snippet.slug}`,

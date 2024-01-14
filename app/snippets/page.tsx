@@ -1,7 +1,6 @@
 import { allSnippets } from ".contentlayer/generated";
 import Title from "@/_components/title";
 import Views from "@/_components/views";
-import { getOgImage } from "@/_utils/helpers";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
@@ -14,7 +13,6 @@ export const metadata: Metadata = {
     description: "Some code snippets that I use",
     url: "/snippets",
     type: "website",
-    images: getOgImage("Code Snippets", "Akhila Ariyachandra"),
   },
   alternates: {
     canonical: "/snippets",

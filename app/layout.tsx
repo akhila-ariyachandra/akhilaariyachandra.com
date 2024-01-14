@@ -1,5 +1,5 @@
 import { GA_TRACKING_ID } from "@/_lib/analytics";
-import { cn, getOgImage } from "@/_utils/helpers";
+import { cn } from "@/_utils/helpers";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
@@ -28,7 +28,6 @@ export const metadata: Metadata = {
     description: "Web Developer",
     url: "/",
     type: "website",
-    images: getOgImage("Akhila Ariyachandra", "Web Developer"),
   },
   twitter: {
     card: "summary_large_image",
