@@ -14,20 +14,8 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        display: ["var(--font-display)"],
-        content: ["var(--font-content)"],
-      },
-      keyframes: {
-        wiggle: {
-          "0%, 100%": { transform: "rotate(-6deg)" },
-          "50%": { transform: "rotate(6deg)" },
-        },
-      },
-      animation: {
-        wiggle: "wiggle 200ms ease-in-out 2",
-      },
-      transitionProperty: {
-        height: "height",
+        display: ["var(--font-geist-mono)"],
+        content: ["var(--font-geist-sans)"],
       },
     },
   },

@@ -9,7 +9,7 @@
     }
 
     code {
-      @apply font-mono font-semibold before:content-['`'] after:content-['`'];
+      @apply font-display font-semibold before:content-['`'] after:content-['`'];
     }
   }
 }

@@ -62,7 +62,7 @@ const HomePage = () => {
         placeholder="blur"
       />
 
-      <h1 className="mb-4 font-display text-3xl text-zinc-600 sm:mb-5 sm:text-4xl dark:text-zinc-300">
+      <h1 className="mb-4 font-display text-3xl tracking-tighter text-zinc-600 sm:mb-5 sm:text-4xl dark:text-zinc-300">
         Hi, I&apos;m{" "}
         <span className="font-black text-green-700 dark:text-green-500">
           Akhila Ariyachandra
@@ -74,7 +74,7 @@ const HomePage = () => {
       <hr className="my-7 sm:my-8" />
 
       <section>
-        <h2 className="mb-6 font-display text-xl font-bold text-zinc-800 sm:mb-7 sm:text-2xl dark:text-zinc-200">
+        <h2 className="mb-6 font-display text-xl font-bold tracking-tighter text-zinc-800 sm:mb-7 sm:text-2xl dark:text-zinc-200">
           My Career
         </h2>
 
@@ -95,7 +95,7 @@ const HomePage = () => {
                   />
 
                   <div className="break-words">
-                    <h3 className="font-display text-lg font-semibold leading-tight text-zinc-700 sm:text-xl sm:leading-snug dark:text-zinc-300">
+                    <h3 className="font-display text-lg font-semibold leading-tight tracking-tighter text-zinc-700 sm:text-xl sm:leading-snug dark:text-zinc-300">
                       {job.position}
                     </h3>
 

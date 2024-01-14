@@ -38,6 +38,9 @@ dependencies:
   drizzle-orm:
     specifier: 0.29.3
     version: 0.29.3(@opentelemetry/api@1.4.1)(@planetscale/database@1.13.0)(@types/react@18.2.47)(mysql2@3.7.0)(react@18.2.0)
+  geist:
+    specifier: 1.2.1
+    version: 1.2.1(next@14.0.4)
   nanoid:
     specifier: 5.0.4
     version: 5.0.4
@@ -3372,6 +3375,14 @@ packages:
   /functions-have-names@1.2.3:
     resolution: {integrity: sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==}
     dev: true
+
+  /geist@1.2.1(next@14.0.4):
+    resolution: {integrity: sha512-xCl7zWfnWqc+TbCG5qqyeT5tnVlOO4pSJsT3Ei59DN1SR4N2VlauF8Fv0D1pPFXGUJgu6RMoeZX+wsR4T9bMhg==}
+    peerDependencies:
+      next: ^13.2 || ^14
+    dependencies:
+      next: 14.0.4(@opentelemetry/api@1.4.1)(react-dom@18.2.0)(react@18.2.0)
+    dev: false
 
   /gemoji@6.1.0:
     resolution: {integrity: sha512-MOlX3doQ1fsfzxQX8Y+u6bC5Ssc1pBUBIPVyrS69EzKt+5LIZAOm0G5XGVNhwXFgkBF3r+Yk88ONyrFHo8iNFA==}
