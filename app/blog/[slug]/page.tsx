@@ -2,11 +2,11 @@ import { allPosts } from ".contentlayer/generated";
 import MDXComponent from "@/_components/mdx-component";
 import Title from "@/_components/title";
 import Views from "@/_components/views";
+import { getOgImage } from "@/_utils/helpers";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { BlogPostPageProps } from "./types";
 
 dayjs.extend(advancedFormat);
 
@@ -15,6 +15,12 @@ export const generateStaticParams = () => {
   return allPosts.map((post) => ({
     slug: post.slug,
   }));
+};
+
+type BlogPostPageProps = {
+  params: {
+    slug: string;
+  };
 };
 
 export const generateMetadata = async ({
@@ -35,6 +41,11 @@ export const generateMetadata = async ({
       url: `/blog/${post.slug}`,
       type: "article",
       publishedTime: dayjs(post.posted).toISOString(),
+      images: getOgImage(
+        post.title,
+        "Akhila Ariyachandra",
+        dayjs(post.posted).format("Do MMMM YYYY"),
+      ),
     },
     alternates: {
       canonical: `/blog/${post.slug}`,

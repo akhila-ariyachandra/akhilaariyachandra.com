@@ -1,6 +1,7 @@
 import { allPosts } from ".contentlayer/generated";
 import Title from "@/_components/title";
 import Views from "@/_components/views";
+import { getOgImage } from "@/_utils/helpers";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import type { Metadata } from "next";
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
     description: "My personal blog",
     url: "/blog",
     type: "website",
+    images: getOgImage("Personal Blog", "Akhila Ariyachandra"),
   },
   alternates: {
     canonical: "/blog",
