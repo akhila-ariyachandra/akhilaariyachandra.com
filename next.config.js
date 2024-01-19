@@ -13,9 +13,6 @@ const nextConfig = {
   eslint: {
     dirs: ["app"],
   },
-  experimental: {
-    typedRoutes: true,
-  },
   logging: {
     fetches: {
       fullUrl: true,
