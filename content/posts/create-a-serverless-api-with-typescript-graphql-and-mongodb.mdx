@@ -7,7 +7,7 @@ updated: "2020-12-04"
 <Callout type="info">
   If you would like to use [Prisma](https://www.prisma.io/) instead of MongoDB,
   check out my post
-  [here](/serverless-graphql-api-typescript-prisma-postgressql).
+  [here](/blog/serverless-graphql-api-typescript-prisma-postgressql).
 </Callout>
 
 In this post we'll create a GraphQL API to create, view and delete notes that we can deploy to [Vercel](https://vercel.com/home) using [Apollo Server](https://www.apollographql.com/docs/apollo-server/), TypeScript and MongoDB.
@@ -36,7 +36,7 @@ npm install typescript -D
 
 To start setting up the database first go to [MongoDB Atlas](https://www.mongodb.com/), create a database and get the connection URI.
 
-> If you want a more detailed explanation check out my [previous guide here](https://akhilaariyachandra.com/setup-mongodb-in-nodejs-with-mongoose/). Note that you can't follow it exactly here because you can no longer create new accounts in MLab (use [MongoDB Atlas](https://www.mongodb.com/) instead) and that guide is for an always running server, not a serverless one.
+> If you want a more detailed explanation check out my [previous guide here](https://akhilaariyachandra.com/blog/setup-mongodb-in-nodejs-with-mongoose). Note that you can't follow it exactly here because you can no longer create new accounts in MLab (use [MongoDB Atlas](https://www.mongodb.com/) instead) and that guide is for an always running server, not a serverless one.
 
 Then install the `mongoose` dependency. Since we'll be working with TypeScript we'll need the types for `mongoose` as well.
 

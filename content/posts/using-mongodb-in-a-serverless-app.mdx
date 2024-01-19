@@ -3,7 +3,7 @@ title: "Using MongoDB in a Serverless app"
 posted: "2019-12-30"
 ---
 
-If you have been developing an API in Node setting up a connection to a MongoDB database is relatively straight forward. Check out my [previous post](https://akhilaariyachandra.com/setup-mongodb-in-nodejs-with-mongoose) if you need a refresher.
+If you have been developing an API in Node setting up a connection to a MongoDB database is relatively straight forward. Check out my [previous post](https://akhilaariyachandra.com/blog/setup-mongodb-in-nodejs-with-mongoose) if you need a refresher.
 
 When considering serverless we can't think about a server running constantly which has a persistent connection to the database. Serverless apps run as functions which are destroyed at the end of the invocation. So we'll have to create a new connection (or reuse an old one) every time the serverless function is called.
 
