@@ -1,11 +1,10 @@
-import { GA_TRACKING_ID } from "@/_lib/analytics";
 import { cn, getOgImage } from "@/_utils/helpers";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata, Route } from "next";
 import Link from "next/link";
-import Script from "next/script";
 import NextTopLoader from "nextjs-toploader";
 import type { ReactNode } from "react";
 import { Provider as WrapBalancerProvider } from "react-wrap-balancer";
@@ -107,18 +106,11 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
         </WrapBalancerProvider>
 
         <SpeedInsights />
-
-        <Script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-        />
-        <Script id="google-analytics-script">{`
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-  
-        gtag('config', '${GA_TRACKING_ID}');
-        `}</Script>
+        {!!process.env.NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID && (
+          <GoogleAnalytics
+            gaId={process.env.NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID}
+          />
+        )}
       </body>
     </html>
   );

@@ -20,6 +20,7 @@
   "dependencies": {
     "@fec/remark-a11y-emoji": "4.0.2",
     "@next/bundle-analyzer": "14.1.0",
+    "@next/third-parties": "14.1.0",
     "@planetscale/database": "1.14.0",
     "@upstash/ratelimit": "1.0.0",
     "@upstash/redis": "1.28.1",
