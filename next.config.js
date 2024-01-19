@@ -16,6 +16,11 @@ const nextConfig = {
   experimental: {
     typedRoutes: true,
   },
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
 };
 
 module.exports = withBundleAnalyzer(withContentlayer(nextConfig));
