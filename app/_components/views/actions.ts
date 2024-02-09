@@ -51,7 +51,8 @@ export const incrementViews = async (slug: string) => {
   }
 
   revalidateTag("views");
-  revalidatePath("/blog", "layout");
+  revalidatePath("/blog");
+  revalidatePath(`/blog/${slug}`);
 
   return true;
 };
