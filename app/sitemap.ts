@@ -1,4 +1,4 @@
-import { allPosts, allSnippets } from "contentlayer/generated";
+import { allPosts } from "contentlayer/generated";
 import type { MetadataRoute } from "next";
 
 const sitemap = (): MetadataRoute.Sitemap => {
@@ -9,17 +9,12 @@ const sitemap = (): MetadataRoute.Sitemap => {
       : post.posted.split("T")[0],
   }));
 
-  const snippets = allSnippets.map((snippet) => ({
-    url: `https://akhilaariyachandra.com/snippets/${snippet.slug}`,
-    lastModified: new Date().toISOString().split("T")[0],
-  }));
-
-  const routes = ["", "/blog", "/snippets"].map((route) => ({
+  const routes = ["", "/blog"].map((route) => ({
     url: `https://akhilaariyachandra.com${route}`,
     lastModified: new Date().toISOString().split("T")[0],
   }));
 
-  return [...routes, ...posts, ...snippets];
+  return [...routes, ...posts];
 };
 
 export default sitemap;

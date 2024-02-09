@@ -50,10 +50,6 @@ const links: Array<{ label: string; href: Route }> = [
     label: "Blog",
     href: "/blog",
   },
-  {
-    label: "Snippets",
-    href: "/snippets",
-  },
 ];
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
