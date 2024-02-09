@@ -11,9 +11,7 @@ const NavLink = ({ children, href, ...delegated }: NavLinkProps) => {
 
   const isActive =
     (pathname === "/" && href === "/") ||
-    (pathname.startsWith("/blog") && href.toString().startsWith("/blog")) ||
-    (pathname.startsWith("/snippets") &&
-      href.toString().startsWith("/snippets"));
+    (pathname.startsWith("/blog") && href.toString().startsWith("/blog"));
 
   return (
     <Link href={href} data-active={isActive ? isActive : null} {...delegated}>

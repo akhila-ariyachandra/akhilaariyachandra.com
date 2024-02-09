@@ -42,28 +42,6 @@ export const Post = defineDocumentType(() => ({
   },
 }));
 
-export const Snippet = defineDocumentType(() => ({
-  name: "Snippet",
-  filePathPattern: "snippets/*.mdx",
-  contentType: "mdx",
-  fields: {
-    title: {
-      type: "string",
-      required: true,
-    },
-    description: {
-      type: "string",
-      required: true,
-    },
-  },
-  computedFields: {
-    slug: {
-      type: "string",
-      resolve: (post) => post._raw.sourceFileName.replace(".mdx", ""),
-    },
-  },
-}));
-
 export const Job = defineDocumentType(() => ({
   name: "Job",
   filePathPattern: "jobs/*.mdx",
@@ -115,7 +93,7 @@ export const Job = defineDocumentType(() => ({
 
 export default makeSource({
   contentDirPath: "content",
-  documentTypes: [About, Post, Snippet, Job],
+  documentTypes: [About, Post, Job],
   mdx: {
     remarkPlugins: [smartypants, a11yEmoji, remarkGfm],
     rehypePlugins: [
