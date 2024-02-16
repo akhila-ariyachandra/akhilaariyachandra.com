@@ -5,8 +5,6 @@
     "Contentlayer",
     "Incrementer",
     "Ratelimit",
-    "Upvote",
-    "upvotes"
   ],
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
