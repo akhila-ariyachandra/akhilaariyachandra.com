@@ -51,7 +51,7 @@ export const incrementViews = async (slug: string) => {
 
     await db
       .update(posts)
-      .set({ views: result.views + 1 })
+      .set({ views: result.views })
       .where(eq(posts.slug, slug));
   }
 
