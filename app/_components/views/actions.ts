@@ -36,15 +36,18 @@ export const incrementViews = async (slug: string) => {
 
   // Check if row exists
   const results = await db.select().from(posts).where(eq(posts.slug, slug));
-  if (results.length === 0) {
+  let result = structuredClone(results[0]);
+  if (!result) {
     // Create the record
-    await db.insert(posts).values({
+    result = {
       slug,
       views: 1,
-    });
+    };
+
+    await db.insert(posts).values(result);
   } else {
     // Update the record
-    const result = results[0];
+    result.views = result.views + 1;
 
     await db
       .update(posts)
@@ -61,15 +64,12 @@ export const incrementViews = async (slug: string) => {
     // Create the record
     await newDb.insert(newPost).values({
       slug,
-      views: 1,
+      views: result.views,
     });
   } else {
-    // Update the record
-    const result = newResults[0];
-
     await newDb
       .update(newPost)
-      .set({ views: result.views + 1 })
+      .set({ views: result.views })
       .where(eq(newPost.slug, slug));
   }
 

@@ -9,11 +9,7 @@ const getCachedViews = cache(
   async (slug: string) => {
     const results = await db.select().from(posts).where(eq(posts.slug, slug));
 
-    if (results?.length === 0) {
-      return 0;
-    }
-
-    return results[0].views;
+    return results[0]?.views ?? 0;
   },
   ["views"],
   { tags: ["views"], revalidate: 60 },
