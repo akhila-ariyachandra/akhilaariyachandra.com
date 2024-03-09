@@ -1,9 +1,4 @@
-import { NeonQueryFunction, neon } from "@neondatabase/serverless";
-import { drizzle } from "drizzle-orm/neon-http";
-
-const sql = neon(process.env.DRIZZLE_DATABASE_URL!) as NeonQueryFunction<
-  boolean,
-  boolean
->;
+import { sql } from "@vercel/postgres";
+import { drizzle } from "drizzle-orm/vercel-postgres";
 
 export const db = drizzle(sql);
