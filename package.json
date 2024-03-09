@@ -12,13 +12,14 @@
     "analyze": "cross-env ANALYZE=true next build",
     "start": "next start",
     "lint": "next lint",
-    "drizzle:push": "dotenv -e .env.local drizzle-kit push:mysql",
+    "drizzle:push": "dotenv -e .env.local drizzle-kit push:pg",
     "drizzle:studio": "dotenv -e .env.local drizzle-kit studio",
     "prettier:format": "prettier --write \"**/*.{ts,tsx,js,md,mdx,css,yaml}\"",
     "prettier:check:ci": "prettier --check \"**/*.{ts,tsx,js,md,mdx,css,yaml}\""
   },
   "dependencies": {
     "@fec/remark-a11y-emoji": "4.0.2",
+    "@neondatabase/serverless": "0.9.0",
     "@next/bundle-analyzer": "14.1.0",
     "@next/third-parties": "14.1.0",
     "@planetscale/database": "1.16.0",
