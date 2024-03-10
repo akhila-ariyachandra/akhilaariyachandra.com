@@ -1,12 +1,5 @@
-import { Client } from "@planetscale/database";
-import { drizzle } from "drizzle-orm/planetscale-serverless";
+import { sql } from "@vercel/postgres";
+import { drizzle } from "drizzle-orm/vercel-postgres";
 import "server-only";
 
-// create the connection
-const client = new Client({
-  host: process.env["DATABASE_HOST"],
-  username: process.env["DATABASE_USERNAME"],
-  password: process.env["DATABASE_PASSWORD"],
-});
-
-export const db = drizzle(client);
+export const db = drizzle(sql);

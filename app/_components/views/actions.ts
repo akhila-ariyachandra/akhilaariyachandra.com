@@ -1,9 +1,7 @@
 "use server";
 
 import { db } from "@/_db/connection";
-import { db as newDb } from "@/_db/new-connection";
-import { post as newPost } from "@/_db/new-schema";
-import { posts } from "@/_db/schema";
+import { post } from "@/_db/schema";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { eq } from "drizzle-orm";
@@ -35,42 +33,20 @@ export const incrementViews = async (slug: string) => {
   }
 
   // Check if row exists
-  const results = await db.select().from(posts).where(eq(posts.slug, slug));
-  let result = structuredClone(results[0]);
+  const results = await db.select().from(post).where(eq(post.slug, slug));
+  const result = results[0];
   if (!result) {
     // Create the record
-    result = {
+    await db.insert(post).values({
       slug,
       views: 1,
-    };
-
-    await db.insert(posts).values(result);
-  } else {
-    // Update the record
-    result.views = result.views + 1;
-
-    await db
-      .update(posts)
-      .set({ views: result.views })
-      .where(eq(posts.slug, slug));
-  }
-
-  // Start writing to new database
-  const newResults = await newDb
-    .select()
-    .from(newPost)
-    .where(eq(newPost.slug, slug));
-  if (newResults.length === 0) {
-    // Create the record
-    await newDb.insert(newPost).values({
-      slug,
-      views: result.views,
     });
   } else {
-    await newDb
-      .update(newPost)
-      .set({ views: result.views })
-      .where(eq(newPost.slug, slug));
+    // Update the record
+    await db
+      .update(post)
+      .set({ views: result.views + 1 })
+      .where(eq(post.slug, slug));
   }
 
   revalidateTag("views");
