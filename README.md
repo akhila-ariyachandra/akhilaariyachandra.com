@@ -2,19 +2,15 @@
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-This site is built with [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), [Contentlayer](https://www.contentlayer.dev), [PlanetScale](https://planetscale.com/), [Drizzle ORM](https://github.com/drizzle-team/drizzle-orm), & [Vercel](https://vercel.com/home).
+This site is built with [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), [Contentlayer](https://www.contentlayer.dev), [Vercel Postgres](https://vercel.com/docs/storage/vercel-postgres), [Drizzle ORM](https://github.com/drizzle-team/drizzle-orm), & [Vercel](https://vercel.com/home).
 
 ## Environment Variables
 
-|                Name                 | Description                                                                                                                                                                                                                                                                                                 |
-| :---------------------------------: | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|           `DATABASE_HOST`           | Host for [PlanetScale serverless driver for JavaScript](https://planetscale.com/docs/tutorials/planetscale-serverless-driver)                                                                                                                                                                               |
-|         `DATABASE_USERNAME`         | Username for [PlanetScale serverless driver for JavaScript](https://planetscale.com/docs/tutorials/planetscale-serverless-driver)                                                                                                                                                                           |
-|         `DATABASE_PASSWORD`         | Password for [PlanetScale serverless driver for JavaScript](https://planetscale.com/docs/tutorials/planetscale-serverless-driver)                                                                                                                                                                           |
-|           `DATABASE_URL`            | [PlanetScale](https://planetscale.com/) database connection URL. Used only for schema changes with [Drizzle Kit](https://orm.drizzle.team/kit-docs/overview). Replace `?sslaccept=strict` with `?ssl={"rejectUnauthorized":true}` in string ([link](https://orm.drizzle.team/kit-docs/conf#push-and-pull)). |
-|      `UPSTASH_REDIS_REST_URL`       | [Upstash](https://upstash.com/)                                                                                                                                                                                                                                                                             |
-|     `UPSTASH_REDIS_REST_TOKEN`      | [Upstash](https://upstash.com/)                                                                                                                                                                                                                                                                             |
-| `NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID` | [Google Analytics](https://analytics.google.com/analytics) Measurement ID                                                                                                                                                                                                                                   |
+|                Name                 | Description                                                               |
+| :---------------------------------: | ------------------------------------------------------------------------- |
+|      `UPSTASH_REDIS_REST_URL`       | [Upstash](https://upstash.com/)                                           |
+|     `UPSTASH_REDIS_REST_TOKEN`      | [Upstash](https://upstash.com/)                                           |
+| `NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID` | [Google Analytics](https://analytics.google.com/analytics) Measurement ID |
 
 ## Actions
 

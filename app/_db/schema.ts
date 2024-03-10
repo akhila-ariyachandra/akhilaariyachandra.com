@@ -1,8 +1,8 @@
 import { InferSelectModel } from "drizzle-orm";
-import { int, mysqlTable, varchar } from "drizzle-orm/mysql-core";
+import { integer, pgTable, text } from "drizzle-orm/pg-core";
 
-export const posts = mysqlTable("posts", {
-  slug: varchar("slug", { length: 191 }).primaryKey(),
-  views: int("count").default(0).notNull(),
+export const post = pgTable("post", {
+  slug: text("slug").primaryKey(),
+  views: integer("count").default(0).notNull(),
 });
-export type PostsSelectModel = InferSelectModel<typeof posts>;
+export type PostSelectModel = InferSelectModel<typeof post>;

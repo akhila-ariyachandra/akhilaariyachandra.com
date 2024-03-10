@@ -1,5 +1,5 @@
 import { db } from "@/_db/connection";
-import { posts } from "@/_db/schema";
+import { post } from "@/_db/schema";
 import { eq } from "drizzle-orm";
 import { unstable_cache as cache } from "next/cache";
 import { Suspense } from "react";
@@ -7,7 +7,7 @@ import ViewsIncrementer from "./views-incrementer";
 
 const getCachedViews = cache(
   async (slug: string) => {
-    const results = await db.select().from(posts).where(eq(posts.slug, slug));
+    const results = await db.select().from(post).where(eq(post.slug, slug));
 
     return results[0]?.views ?? 0;
   },
