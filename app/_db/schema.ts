@@ -1,8 +1,8 @@
 import { InferSelectModel } from "drizzle-orm";
-import { integer, pgTable, text } from "drizzle-orm/pg-core";
+import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
-export const post = pgTable("post", {
+export const post = sqliteTable("post", {
   slug: text("slug").primaryKey(),
-  views: integer("count").default(0).notNull(),
+  views: integer("views").default(0).notNull(),
 });
 export type PostSelectModel = InferSelectModel<typeof post>;
