@@ -3,8 +3,9 @@ import type { Config } from "drizzle-kit";
 export default {
   schema: "./app/_db/new-schema.ts",
   out: "./drizzle",
-  driver: "pg",
+  driver: "turso",
   dbCredentials: {
-    connectionString: process.env.POSTGRES_URL!,
+    url: process.env.DATABASE_URL!,
+    authToken: process.env.DATABASE_AUTH_TOKEN!,
   },
 } satisfies Config;
