@@ -1,8 +1,6 @@
 "use server";
 
 import { db } from "@/_db/connection";
-import { db as newDb } from "@/_db/new-connection";
-import { post as newPost } from "@/_db/new-schema";
 import { post } from "@/_db/schema";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
@@ -35,8 +33,8 @@ export const incrementViews = async (slug: string) => {
   }
 
   // Check if row exists
-  let results = await db.select().from(post).where(eq(post.slug, slug));
-  let result = results[0];
+  const results = await db.select().from(post).where(eq(post.slug, slug));
+  const result = results[0];
   if (!result) {
     // Create the record
     await db.insert(post).values({
@@ -49,33 +47,6 @@ export const incrementViews = async (slug: string) => {
       .update(post)
       .set({ views: result.views + 1 })
       .where(eq(post.slug, slug));
-  }
-
-  // Migrate data to new database
-  results = await db.select().from(post).where(eq(post.slug, slug));
-  result = results[0];
-  if (result) {
-    const newResults = await newDb
-      .select()
-      .from(newPost)
-      .where(eq(newPost.slug, slug));
-    const newResult = newResults[0];
-
-    if (!newResult) {
-      // Create the record
-      await newDb.insert(newPost).values({
-        slug,
-        views: result.views,
-      });
-    } else {
-      // Update the record
-      await newDb
-        .update(newPost)
-        .set({
-          views: result.views,
-        })
-        .where(eq(newPost.slug, slug));
-    }
   }
 
   revalidateTag("views");
