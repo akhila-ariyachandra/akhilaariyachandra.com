@@ -10,22 +10,12 @@ jobs:
   prettier:
     name: Prettier
     runs-on: ubuntu-22.04
-    strategy:
-      matrix:
-        node-version: [18]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
       - name: Install dependencies
-        run: pnpm install -D
+        run: bun install
       - name: Check formatting with Prettier
-        run: pnpm prettier:check:ci
+        run: bun run prettier:check:ci
