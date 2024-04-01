@@ -19,18 +19,18 @@ This site is built with [Next.js](https://nextjs.org/), [Tailwind CSS](https://t
 ### Running in development mode
 
 ```shell
-pnpm dev
+bun run dev
 ```
 
 ### Running in production mode
 
 ```shell
-pnpm build
-pnpm start
+bun run build
+bun run start
 ```
 
 ### Formatting the code
 
 ```shell
-pnpm prettier:format
+bun run prettier:format
 ```
