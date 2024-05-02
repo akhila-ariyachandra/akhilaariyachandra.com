@@ -29,7 +29,7 @@ const ThemeSwitcher = () => {
 
   return (
     <button
-      className="leading-none text-zinc-700 sm:text-lg dark:text-zinc-300"
+      className="leading-none text-zinc-700 dark:text-zinc-300 sm:text-lg"
       onClick={toggleTheme}
     >
       {resolvedTheme === "light" ? <FaMoon /> : <FaSun />}

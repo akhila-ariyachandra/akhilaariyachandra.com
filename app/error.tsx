@@ -18,7 +18,7 @@ const ErrorPage = ({
     <div>
       <Title>Error</Title>
 
-      <p className="text-sm text-zinc-700 sm:text-base dark:text-zinc-300">
+      <p className="text-sm text-zinc-700 dark:text-zinc-300 sm:text-base">
         Something went wrong. Maybe try refreshing the page?
       </p>
     </div>

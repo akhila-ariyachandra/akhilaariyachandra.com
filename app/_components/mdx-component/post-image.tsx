@@ -24,7 +24,7 @@ const PostImage = ({ src, width, height, title, credit }: PostImageProps) => {
       />
 
       {credit && (
-        <div className="mt-2 text-center text-sm text-zinc-700 sm:mt-3 sm:text-base dark:text-zinc-300">
+        <div className="mt-2 text-center text-sm text-zinc-700 dark:text-zinc-300 sm:mt-3 sm:text-base">
           Credit -{" "}
           <a
             href={credit.link}
