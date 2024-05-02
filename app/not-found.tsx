@@ -14,7 +14,7 @@ const NotFound = () => {
     <>
       <Title>Not Found</Title>
 
-      <p className="text-sm text-zinc-700 sm:text-base dark:text-zinc-300">
+      <p className="text-sm text-zinc-700 dark:text-zinc-300 sm:text-base">
         {"You have reached a page that doesn't exist. "}
         <Link
           href="/"
