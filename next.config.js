@@ -8,6 +8,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 const nextConfig = {
   experimental: {
     reactCompiler: true,
+    ppr: true,
   },
   reactStrictMode: true,
   images: {
