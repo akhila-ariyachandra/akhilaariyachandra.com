@@ -3,7 +3,7 @@ import {
   defineDocumentType,
   defineNestedType,
   makeSource,
-} from "contentlayer/source-files";
+} from "contentlayer2/source-files";
 import externalLinks from "rehype-external-links";
 import rehypePrettyCode, { type Options } from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
@@ -103,6 +103,7 @@ export default makeSource({
         rehypePrettyCode,
         {
           theme: "material-theme-ocean",
+          filterMetaString: (string) => string.replace(/filename="[^"]*"/, ""),
         } satisfies Options,
       ],
     ],
