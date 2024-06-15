@@ -1,4 +1,4 @@
-div[data-rehype-pretty-code-fragment] {
+figure[data-rehype-pretty-code-figure] {
   margin-top: 1.6666667em;
   margin-bottom: 1.6666667em;
 
@@ -9,27 +9,27 @@ div[data-rehype-pretty-code-fragment] {
 }
 
 /* Remove vertical margins in code blocks from Tailwind CSS Typography*/
-div[data-rehype-pretty-code-fragment] > pre {
+figure[data-rehype-pretty-code-figure] > pre {
   margin-top: 0px !important;
   margin-bottom: 0px !important;
   padding-left: 0px !important;
   padding-right: 0px !important;
 }
 
-div[data-rehype-pretty-code-fragment] {
+figure[data-rehype-pretty-code-figure] {
   @apply overflow-hidden rounded sm:rounded-md;
   background-color: rgb(15, 17, 26);
 }
 
-div[data-rehype-pretty-code-fragment] pre {
+figure[data-rehype-pretty-code-figure] pre {
   @apply overflow-x-auto text-sm sm:text-base;
 }
 
-div[data-rehype-pretty-code-title] {
-  @apply bg-neutral-900 px-3 py-2 text-xs font-medium leading-none text-zinc-300 sm:px-4 sm:py-3 sm:text-sm sm:leading-none;
+figcaption[data-rehype-pretty-code-title] {
+  @apply !my-0 bg-neutral-900 px-3 py-2 text-xs font-medium leading-none text-zinc-300 sm:px-4 sm:py-3 sm:text-sm sm:leading-none;
 }
 
-div[data-rehype-pretty-code-fragment] span[data-line] {
+figure[data-rehype-pretty-code-figure] span[data-line] {
   @apply border-l-4 border-transparent;
   padding-left: 1em;
   padding-right: 1em;
@@ -40,6 +40,6 @@ div[data-rehype-pretty-code-fragment] span[data-line] {
   }
 }
 
-div[data-rehype-pretty-code-fragment] span[data-line][data-highlighted-line] {
+figure[data-rehype-pretty-code-figure] span[data-line][data-highlighted-line] {
   @apply border-l-green-500 bg-zinc-500/10;
 }

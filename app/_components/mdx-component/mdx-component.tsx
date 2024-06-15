@@ -1,5 +1,5 @@
 import { cn } from "@/_utils/helpers";
-import { getMDXComponent } from "next-contentlayer/hooks";
+import { getMDXComponent } from "next-contentlayer2/hooks";
 import Callout from "./callout";
 import CodeSandboxWrapper from "./code-sandbox-wrapper";
 import Iframe from "./iframe";
