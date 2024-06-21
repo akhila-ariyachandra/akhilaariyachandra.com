@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        node-version: [20]
+        node-version: [18]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -28,4 +28,4 @@ jobs:
       - name: Install dependencies
         run: pnpm install -D
       - name: Check formatting with Prettier
-        run: pnpm prettier:check:ci
+        run: pnpm prettier:check

@@ -14,16 +14,16 @@
     "lint": "next lint",
     "drizzle:push": "dotenv -e .env.local drizzle-kit push:sqlite",
     "drizzle:studio": "dotenv -e .env.local drizzle-kit studio",
-    "prettier:format": "prettier --write \"**/*.{ts,tsx,js,md,mdx,css,yaml}\"",
-    "prettier:check:ci": "prettier --check \"**/*.{ts,tsx,js,md,mdx,css,yaml}\""
+    "prettier:format": "prettier --write \"**/*.{ts,tsx,js,md,mdx,css,yaml}\" --cache",
+    "prettier:check": "prettier --check \"**/*.{ts,tsx,js,md,mdx,css,yaml}\" --cache"
   },
   "dependencies": {
     "@fec/remark-a11y-emoji": "4.0.2",
     "@libsql/client": "0.6.2",
     "@next/bundle-analyzer": "^14.2.4",
     "@next/third-parties": "^14.2.4",
-    "@upstash/ratelimit": "^1.2.0",
-    "@upstash/redis": "^1.31.4",
+    "@upstash/ratelimit": "^1.2.1",
+    "@upstash/redis": "^1.31.6",
     "@vercel/speed-insights": "1.0.12",
     "clsx": "2.1.1",
     "contentlayer2": "^0.4.6",
@@ -47,7 +47,7 @@
     "remark-smartypants": "3.0.1",
     "server-only": "0.0.1",
     "sharp": "0.33.4",
-    "shiki": "1.6.4",
+    "shiki": "1.7.0",
     "tailwind-merge": "2.3.0",
     "zod": "3.23.8"
   },
@@ -57,7 +57,7 @@
     "@types/gtag.js": "0.0.20",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/eslint-plugin": "7.9.0",
+    "@typescript-eslint/eslint-plugin": "7.13.1",
     "autoprefixer": "10.4.19",
     "babel-plugin-react-compiler": "0.0.0-experimental-938cd9a-20240601",
     "cross-env": "7.0.3",
@@ -71,9 +71,9 @@
     "postcss-nesting": "12.1.5",
     "prettier": "3.3.2",
     "prettier-plugin-organize-imports": "3.2.4",
-    "prettier-plugin-tailwindcss": "0.6.3",
+    "prettier-plugin-tailwindcss": "0.6.5",
     "tailwind-scrollbar": "3.1.0",
     "tailwindcss": "3.4.4",
-    "typescript": "5.4.5"
+    "typescript": "5.5.2"
   }
 }
