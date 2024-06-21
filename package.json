@@ -15,7 +15,7 @@
     "drizzle:push": "dotenv -e .env.local drizzle-kit push:sqlite",
     "drizzle:studio": "dotenv -e .env.local drizzle-kit studio",
     "prettier:format": "prettier --write \"**/*.{ts,tsx,js,md,mdx,css,yaml}\"",
-    "prettier:check:ci": "prettier --check \"**/*.{ts,tsx,js,md,mdx,css,yaml}\""
+    "prettier:check": "prettier --check \"**/*.{ts,tsx,js,md,mdx,css,yaml}\""
   },
   "dependencies": {
     "@fec/remark-a11y-emoji": "4.0.2",
