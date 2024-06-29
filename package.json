@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@fec/remark-a11y-emoji": "4.0.2",
-    "@libsql/client": "0.6.2",
+    "@libsql/client": "0.7.0",
     "@next/bundle-analyzer": "^14.2.4",
     "@next/third-parties": "^14.2.4",
     "@upstash/ratelimit": "^1.2.1",
@@ -47,7 +47,7 @@
     "remark-smartypants": "3.0.1",
     "server-only": "0.0.1",
     "sharp": "0.33.4",
-    "shiki": "1.7.0",
+    "shiki": "1.10.0",
     "tailwind-merge": "2.3.0",
     "zod": "3.23.8"
   },
@@ -57,7 +57,7 @@
     "@types/gtag.js": "0.0.20",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/eslint-plugin": "7.13.1",
+    "@typescript-eslint/eslint-plugin": "7.14.1",
     "autoprefixer": "10.4.19",
     "babel-plugin-react-compiler": "0.0.0-experimental-938cd9a-20240601",
     "cross-env": "7.0.3",
