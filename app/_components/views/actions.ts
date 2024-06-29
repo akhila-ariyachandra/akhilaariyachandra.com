@@ -5,7 +5,7 @@ import { post } from "@/_db/schema";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { eq } from "drizzle-orm";
-import { revalidatePath } from "next/cache";
+import { revalidateTag } from "next/cache";
 import { headers } from "next/headers";
 
 const ratelimit = new Ratelimit({
@@ -49,7 +49,7 @@ export const incrementViews = async (slug: string) => {
       .where(eq(post.slug, slug));
   }
 
-  revalidatePath("/blog", "layout");
+  revalidateTag("views");
 
   return true;
 };
