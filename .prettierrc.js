@@ -1,5 +1,6 @@
 module.exports = {
   organizeImportsSkipDestructiveCodeActions: true,
+  tailwindAttributes: ["tw"],
   tailwindFunctions: ["cn"],
   plugins: [
     require.resolve("prettier-plugin-organize-imports"),

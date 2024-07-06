@@ -1,4 +1,4 @@
-import { cn, getOgImage } from "@/_utils/helpers";
+import { cn } from "@/_utils/helpers";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GeistMono } from "geist/font/mono";
@@ -29,7 +29,6 @@ export const metadata: Metadata = {
     description: "Web Developer",
     url: "/",
     type: "website",
-    images: getOgImage("Akhila Ariyachandra", "Web Developer"),
   },
   twitter: {
     card: "summary_large_image",

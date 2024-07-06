@@ -2,7 +2,6 @@ import { allPosts } from ".content-collections/generated";
 import MDXComponent from "@/_components/mdx-component";
 import Title from "@/_components/title";
 import Views from "@/_components/views";
-import { getOgImage } from "@/_utils/helpers";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import type { Metadata } from "next";
@@ -41,11 +40,6 @@ export const generateMetadata = async ({
       url: `/blog/${post._meta.path}`,
       type: "article",
       publishedTime: dayjs(post.posted).toISOString(),
-      images: getOgImage(
-        post.title,
-        "Akhila Ariyachandra",
-        dayjs(post.posted).format("Do MMMM YYYY"),
-      ),
     },
     alternates: {
       canonical: `/blog/${post._meta.path}`,

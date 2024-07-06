@@ -1,0 +1,42 @@
+import { allNoBodyPosts } from ".content-collections/generated";
+import { getOgImage } from "@/_lib/og-image";
+import dayjs from "dayjs";
+import advancedFormat from "dayjs/plugin/advancedFormat";
+import { notFound } from "next/navigation";
+
+dayjs.extend(advancedFormat);
+
+// Route segment config
+export const runtime = "edge";
+
+// Image metadata
+export const alt = "Akhila Ariyachandra's Blog";
+export const size = {
+  width: 1200,
+  height: 630,
+};
+
+export const contentType = "image/png";
+
+type BlogPostPageProps = {
+  params: {
+    slug: string;
+  };
+};
+
+// Image generation
+const Image = ({ params }: BlogPostPageProps) => {
+  const post = allNoBodyPosts.find((post) => post._meta.path === params.slug);
+
+  if (!post) {
+    notFound();
+  }
+
+  return getOgImage(
+    post.title,
+    "Akhila Ariyachandra",
+    dayjs(post.posted).format("Do MMMM YYYY"),
+  );
+};
+
+export default Image;

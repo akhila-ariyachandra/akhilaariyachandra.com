@@ -16,7 +16,6 @@ const Post = defineCollection({
     posted: z.string(),
     updated: z.string().optional(),
   }),
-
   transform: async (document, context) => {
     const mdx = await compileMDX(context, document, {
       remarkPlugins: [smartypants, a11yEmoji, remarkGfm],
@@ -39,6 +38,17 @@ const Post = defineCollection({
       mdx,
     };
   },
+});
+
+const NoBodyPost = defineCollection({
+  name: "NoBodyPost",
+  directory: "content/posts",
+  include: "*.mdx",
+  schema: (z) => ({
+    title: z.string(),
+    posted: z.string(),
+    updated: z.string().optional(),
+  }),
 });
 
 const About = defineCollection({
@@ -93,5 +103,5 @@ const Job = defineCollection({
 });
 
 export default defineConfig({
-  collections: [Post, About, Job],
+  collections: [Post, NoBodyPost, About, Job],
 });
