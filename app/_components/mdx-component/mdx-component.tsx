@@ -1,5 +1,5 @@
 import { cn } from "@/_utils/helpers";
-import { getMDXComponent } from "next-contentlayer2/hooks";
+import { useMDXComponent } from "@content-collections/mdx/react";
 import Callout from "./callout";
 import CodeSandboxWrapper from "./code-sandbox-wrapper";
 import Iframe from "./iframe";
@@ -7,11 +7,11 @@ import PostImage from "./post-image";
 import Video from "./video";
 
 type MDXComponentProps = {
-  code: string;
+  mdx: string;
 };
 
-const MDXComponent = ({ code }: MDXComponentProps) => {
-  const Component = getMDXComponent(code);
+const MDXComponent = ({ mdx }: MDXComponentProps) => {
+  const Component = useMDXComponent(mdx);
 
   return (
     <div

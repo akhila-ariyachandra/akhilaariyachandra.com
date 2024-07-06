@@ -1,4 +1,4 @@
-import { allPosts } from ".contentlayer/generated";
+import { allPosts } from ".content-collections/generated";
 import MDXComponent from "@/_components/mdx-component";
 import Title from "@/_components/title";
 import Views from "@/_components/views";
@@ -13,7 +13,7 @@ dayjs.extend(advancedFormat);
 // https://beta.nextjs.org/docs/api-reference/generate-static-params
 export const generateStaticParams = () => {
   return allPosts.map((post) => ({
-    slug: post.slug,
+    slug: post._meta.path,
   }));
 };
 
@@ -26,7 +26,7 @@ type BlogPostPageProps = {
 export const generateMetadata = async ({
   params,
 }: BlogPostPageProps): Promise<Metadata> => {
-  const post = allPosts.find((post) => post.slug === params.slug);
+  const post = allPosts.find((post) => post._meta.path === params.slug);
 
   if (!post) {
     notFound();
@@ -38,7 +38,7 @@ export const generateMetadata = async ({
     openGraph: {
       title: post.title,
       description: "A post on my blog",
-      url: `/blog/${post.slug}`,
+      url: `/blog/${post._meta.path}`,
       type: "article",
       publishedTime: dayjs(post.posted).toISOString(),
       images: getOgImage(
@@ -48,7 +48,7 @@ export const generateMetadata = async ({
       ),
     },
     alternates: {
-      canonical: `/blog/${post.slug}`,
+      canonical: `/blog/${post._meta.path}`,
     },
     authors: {
       name: "Akhila Ariyachandra",
@@ -58,7 +58,7 @@ export const generateMetadata = async ({
 };
 
 const BlogPostPage = ({ params }: BlogPostPageProps) => {
-  const post = allPosts.find((post) => post.slug === params.slug);
+  const post = allPosts.find((post) => post._meta.path === params.slug);
 
   if (!post) {
     notFound();
@@ -81,10 +81,10 @@ const BlogPostPage = ({ params }: BlogPostPageProps) => {
           {" - "}
         </span>
 
-        <Views slug={post.slug} incrementOnMount />
+        <Views slug={post._meta.path} incrementOnMount />
       </div>
 
-      <MDXComponent code={post.body.code} />
+      <MDXComponent mdx={post.mdx} />
     </>
   );
 };

@@ -1,4 +1,4 @@
-import { about, allJobs } from ".contentlayer/generated";
+import { allAbouts, allJobs } from ".content-collections/generated";
 import MDXComponent from "@/_components/mdx-component";
 import profilePic from "@/public/profile-pic.png";
 import dayjs from "dayjs";
@@ -51,6 +51,8 @@ const getPeriod = (start: string, end?: string) => {
 };
 
 const HomePage = () => {
+  const about = allAbouts[0];
+
   return (
     <>
       <Image
@@ -69,7 +71,7 @@ const HomePage = () => {
         </span>
       </h1>
 
-      <MDXComponent code={about.body.code} />
+      {!!about && <MDXComponent mdx={about.mdx} />}
 
       <hr className="my-7 sm:my-8" />
 
@@ -84,7 +86,7 @@ const HomePage = () => {
               dayjs(a.period.start).isBefore(b.period.start) ? 1 : -1,
             )
             .map((job) => (
-              <div key={job._id}>
+              <div key={job._meta.path}>
                 <div className="mb-1 flex flex-row items-center gap-2 sm:mb-2 sm:gap-3">
                   <Image
                     src={job.company.logo}
@@ -128,7 +130,7 @@ const HomePage = () => {
                   </div>
                 </div>
 
-                <MDXComponent code={job.body.code} />
+                <MDXComponent mdx={job.mdx} />
               </div>
             ))}
         </div>
