@@ -1,7 +1,6 @@
-import { allPosts } from ".contentlayer/generated";
+import { allPosts } from ".content-collections/generated";
 import Title from "@/_components/title";
 import Views from "@/_components/views";
-import { getOgImage } from "@/_utils/helpers";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import type { Metadata } from "next";
@@ -18,7 +17,6 @@ export const metadata: Metadata = {
     description: "My personal blog",
     url: "/blog",
     type: "website",
-    images: getOgImage("Personal Blog", "Akhila Ariyachandra"),
   },
   alternates: {
     canonical: "/blog",
@@ -34,9 +32,9 @@ const BlogPage = () => {
         {allPosts
           .sort((a, b) => (dayjs(a.posted).isBefore(b.posted) ? 1 : -1))
           .map((post) => (
-            <li key={post.slug}>
+            <li key={post._meta.path}>
               <Link
-                href={`/blog/${post.slug}`}
+                href={`/blog/${post._meta.path}`}
                 className="font-display text-xl font-medium tracking-tighter text-green-700 hover:underline dark:text-green-500 sm:text-2xl"
               >
                 <Balancer>{post.title}</Balancer>
@@ -57,7 +55,7 @@ const BlogPage = () => {
                   {" - "}
                 </span>
 
-                <Views slug={post.slug} />
+                <Views slug={post._meta.path} />
               </div>
             </li>
           ))}

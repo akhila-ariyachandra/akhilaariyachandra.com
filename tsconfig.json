@@ -24,7 +24,7 @@
     "paths": {
       "@/*": ["./app/*"],
       "@/public/*": ["./public/*"],
-      "contentlayer/generated": ["./.contentlayer/generated"]
+      "content-collections": ["./.content-collections/generated"]
     }
   },
   "include": [
@@ -32,7 +32,6 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    ".contentlayer/generated",
     "custom.d.ts",
     "reset.d.ts"
   ],

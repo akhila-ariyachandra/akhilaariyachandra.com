@@ -8,6 +8,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "content-collections build",
     "build": "next build",
     "analyze": "cross-env ANALYZE=true next build",
     "start": "next start",
@@ -26,14 +27,11 @@
     "@upstash/redis": "^1.31.6",
     "@vercel/speed-insights": "1.0.12",
     "clsx": "2.1.1",
-    "contentlayer2": "^0.4.6",
     "cva": "1.0.0-beta.1",
     "dayjs": "1.11.11",
     "drizzle-orm": "0.31.2",
     "geist": "1.3.0",
-    "nanoid": "5.0.7",
     "next": "15.0.0-rc.0",
-    "next-contentlayer2": "^0.4.6",
     "next-themes": "^0.3.0",
     "nextjs-toploader": "1.6.12",
     "react": "19.0.0-rc-fb9a90fa48-20240614",
@@ -52,6 +50,10 @@
     "zod": "3.23.8"
   },
   "devDependencies": {
+    "@content-collections/cli": "^0.1.2",
+    "@content-collections/core": "^0.6.0",
+    "@content-collections/mdx": "^0.1.3",
+    "@content-collections/next": "^0.2.0",
     "@tailwindcss/typography": "0.5.13",
     "@total-typescript/ts-reset": "0.5.1",
     "@types/gtag.js": "0.0.20",
