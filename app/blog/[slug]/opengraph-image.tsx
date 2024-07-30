@@ -1,5 +1,5 @@
-import { allNoBodyPosts } from ".content-collections/generated";
 import { getOgImage } from "@/_lib/og-image";
+import { allNoBodyPosts } from "content-collections";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import { notFound } from "next/navigation";

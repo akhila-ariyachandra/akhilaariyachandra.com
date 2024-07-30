@@ -1,6 +1,6 @@
-import { allAbouts, allJobs } from ".content-collections/generated";
 import MDXComponent from "@/_components/mdx-component";
 import profilePic from "@/public/profile-pic.png";
+import { allAbouts, allJobs } from "content-collections";
 import dayjs from "dayjs";
 import Image from "next/image";
 
