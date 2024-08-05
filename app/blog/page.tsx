@@ -1,6 +1,6 @@
-import { allPosts } from ".content-collections/generated";
 import Title from "@/_components/title";
 import Views from "@/_components/views";
+import { allPosts } from "content-collections";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import type { Metadata } from "next";
