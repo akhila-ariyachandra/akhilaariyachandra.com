@@ -30,6 +30,7 @@ const icon = cva({
   },
 });
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const callout = compose(root, icon);
 
 interface CalloutProps extends VariantProps<typeof callout> {
