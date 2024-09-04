@@ -1,7 +1,6 @@
 import { db } from "@/_db/connection";
 import { post } from "@/_db/schema";
 import { eq } from "drizzle-orm";
-import { unstable_noStore as noStore } from "next/cache";
 import { Suspense } from "react";
 import ViewsIncrementer from "./views-incrementer";
 
@@ -25,8 +24,6 @@ const Views = ({ slug, incrementOnMount = false }: ViewsProps) => {
 export default Views;
 
 const ViewsBase = async ({ slug }: { slug: string }) => {
-  noStore();
-
   const results = await db.select().from(post).where(eq(post.slug, slug));
   const views = results[0]?.views ?? 0;
 
