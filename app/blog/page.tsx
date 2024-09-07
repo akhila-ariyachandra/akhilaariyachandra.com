@@ -4,7 +4,7 @@ import { allPosts } from "content-collections";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import Balancer from "react-wrap-balancer";
 
 dayjs.extend(advancedFormat);

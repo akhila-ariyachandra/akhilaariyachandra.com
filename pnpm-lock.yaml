@@ -53,6 +53,9 @@ importers:
       next-themes:
         specifier: ^0.3.0
         version: 0.3.0(react-dom@19.0.0-rc-4f604941-20240830(react@19.0.0-rc-4f604941-20240830))(react@19.0.0-rc-4f604941-20240830)
+      next-view-transitions:
+        specifier: ^0.3.0
+        version: 0.3.0(next@15.0.0-canary.140(@babel/core@7.24.8)(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@0.0.0-experimental-9e9694c-20240827)(react-dom@19.0.0-rc-4f604941-20240830(react@19.0.0-rc-4f604941-20240830))(react@19.0.0-rc-4f604941-20240830))(react-dom@19.0.0-rc-4f604941-20240830(react@19.0.0-rc-4f604941-20240830))(react@19.0.0-rc-4f604941-20240830)
       nextjs-toploader:
         specifier: 3.6.14
         version: 3.6.14(next@15.0.0-canary.140(@babel/core@7.24.8)(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@0.0.0-experimental-9e9694c-20240827)(react-dom@19.0.0-rc-4f604941-20240830(react@19.0.0-rc-4f604941-20240830))(react@19.0.0-rc-4f604941-20240830))(react-dom@19.0.0-rc-4f604941-20240830(react@19.0.0-rc-4f604941-20240830))(react@19.0.0-rc-4f604941-20240830)
@@ -3051,6 +3054,13 @@ packages:
     peerDependencies:
       react: ^16.8 || ^17 || ^18
       react-dom: ^16.8 || ^17 || ^18
+
+  next-view-transitions@0.3.0:
+    resolution: {integrity: sha512-EfMG4sQR48Q40apCl0rWqTvpDNk4TcdlFjcsGd2ZOBJMNlwfuB8lnwhOL5A0kKWnZwXlMgDPFXY7qwoOY+NhtQ==}
+    peerDependencies:
+      next: ^14.0.0
+      react: ^18.2.0
+      react-dom: ^18.2.0
 
   next@15.0.0-canary.140:
     resolution: {integrity: sha512-eib9L5F8z9dqm4lmZM3S2RBPGxeqOQos+A2tj48zZL/RHdRu7qoqBaLkpbiopSqYE/74q+BS4nx4Xk4OTVPpmw==}
@@ -7246,6 +7256,12 @@ snapshots:
 
   next-themes@0.3.0(react-dom@19.0.0-rc-4f604941-20240830(react@19.0.0-rc-4f604941-20240830))(react@19.0.0-rc-4f604941-20240830):
     dependencies:
+      react: 19.0.0-rc-4f604941-20240830
+      react-dom: 19.0.0-rc-4f604941-20240830(react@19.0.0-rc-4f604941-20240830)
+
+  next-view-transitions@0.3.0(next@15.0.0-canary.140(@babel/core@7.24.8)(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@0.0.0-experimental-9e9694c-20240827)(react-dom@19.0.0-rc-4f604941-20240830(react@19.0.0-rc-4f604941-20240830))(react@19.0.0-rc-4f604941-20240830))(react-dom@19.0.0-rc-4f604941-20240830(react@19.0.0-rc-4f604941-20240830))(react@19.0.0-rc-4f604941-20240830):
+    dependencies:
+      next: 15.0.0-canary.140(@babel/core@7.24.8)(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@0.0.0-experimental-9e9694c-20240827)(react-dom@19.0.0-rc-4f604941-20240830(react@19.0.0-rc-4f604941-20240830))(react@19.0.0-rc-4f604941-20240830)
       react: 19.0.0-rc-4f604941-20240830
       react-dom: 19.0.0-rc-4f604941-20240830(react@19.0.0-rc-4f604941-20240830)
 
