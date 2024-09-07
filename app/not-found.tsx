@@ -1,7 +1,7 @@
 import Title from "@/_components/title";
 import type { Metadata } from "next";
+import { Link } from "next-view-transitions";
 import Image from "next/image";
-import Link from "next/link";
 import confusedTravolta from "./confused-travolta.gif";
 
 export const metadata: Metadata = {
