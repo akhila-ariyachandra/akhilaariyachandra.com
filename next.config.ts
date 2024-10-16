@@ -7,11 +7,6 @@ const withBundleAnalyzer = bundleAnalyzer({
 });
 
 const nextConfig: NextConfig = {
-  experimental: {
-    reactCompiler: true,
-    ppr: true,
-    dynamicIO: true,
-  },
   reactStrictMode: true,
   images: {
     formats: ["image/avif", "image/webp"],
