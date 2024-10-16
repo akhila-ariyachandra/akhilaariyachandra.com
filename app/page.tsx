@@ -1,9 +1,13 @@
+import MDXComponent from "@/_components/mdx-component";
 import profilePic from "@/public/profile-pic.png";
+import { allAbouts } from "content-collections";
 import Image from "next/image";
 
 export const revalidate = 3600;
 
 const HomePage = () => {
+  const about = allAbouts[0];
+
   return (
     <>
       <Image
@@ -21,6 +25,8 @@ const HomePage = () => {
           Akhila Ariyachandra
         </span>
       </h1>
+
+      {!!about && <MDXComponent mdx={about.mdx} />}
 
       <hr className="my-7 sm:my-8" />
     </>
