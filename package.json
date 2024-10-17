@@ -18,7 +18,9 @@
     "prettier:check": "prettier --check \"**/*.{ts,tsx,js,md,mdx,css,yaml}\" --cache"
   },
   "dependencies": {
-    "@content-collections/cli": "^0.1.5",
+    "@content-collections/core": "^0.7.2",
+    "@content-collections/mdx": "^0.1.6",
+    "@content-collections/next": "^0.2.3",
     "@fec/remark-a11y-emoji": "4.0.2",
     "@libsql/client": "0.14.0",
     "@next/bundle-analyzer": "^14.2.15",
@@ -52,9 +54,6 @@
     "zod": "3.23.8"
   },
   "devDependencies": {
-    "@content-collections/core": "^0.7.2",
-    "@content-collections/mdx": "^0.1.6",
-    "@content-collections/next": "^0.2.3",
     "@tailwindcss/typography": "0.5.15",
     "@total-typescript/ts-reset": "0.6.1",
     "@types/gtag.js": "0.0.20",
