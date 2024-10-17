@@ -15,17 +15,15 @@ const ratelimit = new Ratelimit({
 });
 
 export const incrementViews = async (slug: string) => {
-  const headersStore = await headers();
-
   let ip = "";
 
   const FALLBACK_IP_ADDRESS = "0.0.0.0";
-  const forwardedFor = headersStore.get("x-forwarded-for");
+  const forwardedFor = headers().get("x-forwarded-for");
 
   if (forwardedFor) {
     ip = forwardedFor.split(",")[0] ?? FALLBACK_IP_ADDRESS;
   } else {
-    ip = headersStore.get("x-real-ip") ?? FALLBACK_IP_ADDRESS;
+    ip = headers().get("x-real-ip") ?? FALLBACK_IP_ADDRESS;
   }
 
   const { success } = await ratelimit.limit(`${ip}-${slug}`);
