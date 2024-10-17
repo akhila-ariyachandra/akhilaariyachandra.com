@@ -8,9 +8,8 @@ const withBundleAnalyzer = bundleAnalyzer({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
+    after: true,
     reactCompiler: true,
-    ppr: true,
-    dynamicIO: true,
   },
   reactStrictMode: true,
   images: {
@@ -41,4 +40,4 @@ const nextConfig = {
   },
 };
 
-export default withBundleAnalyzer(withContentCollections(nextConfig));
+export default withContentCollections(withBundleAnalyzer(nextConfig));
