@@ -24,6 +24,7 @@ const nextConfig: NextConfig = {
       fullUrl: true,
     },
   },
+  serverExternalPackages: ["@content-collections/core"],
   redirects: async () => {
     // Redirect old snippet pages
     return [
