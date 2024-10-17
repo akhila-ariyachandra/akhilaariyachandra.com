@@ -17,6 +17,11 @@
     "prettier:format": "prettier --write \"**/*.{ts,tsx,js,md,mdx,css,yaml}\" --cache",
     "prettier:check": "prettier --check \"**/*.{ts,tsx,js,md,mdx,css,yaml}\" --cache"
   },
+  "engines": {
+    "node": ">=20.15.1",
+    "pnpm": "9.7.0"
+  },
+  "packageManager": "pnpm@9.7.0",
   "dependencies": {
     "@content-collections/cli": "^0.1.5",
     "@fec/remark-a11y-emoji": "4.0.2",
