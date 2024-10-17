@@ -19,14 +19,13 @@ export const size = {
 export const contentType = "image/png";
 
 type BlogPostPageProps = {
-  params: Promise<{
+  params: {
     slug: string;
-  }>;
+  };
 };
 
 // Image generation
-const Image = async (props: BlogPostPageProps) => {
-  const params = await props.params;
+const Image = ({ params }: BlogPostPageProps) => {
   const post = allNoBodyPosts.find((post) => post._meta.path === params.slug);
 
   if (!post) {

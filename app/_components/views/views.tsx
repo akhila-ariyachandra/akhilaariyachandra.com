@@ -16,9 +16,7 @@ const Views = ({ slug, incrementOnMount = false }: ViewsProps) => {
         <ViewsBase slug={slug} />
       </Suspense>
 
-      {process.env.NEXT_PUBLIC_DISABLE_VIEWS_INCREMENT !== "true" && (
-        <ViewsIncrementer slug={slug} incrementOnMount={incrementOnMount} />
-      )}
+      <ViewsIncrementer slug={slug} incrementOnMount={incrementOnMount} />
     </>
   );
 };
