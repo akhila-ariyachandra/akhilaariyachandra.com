@@ -1,5 +1,6 @@
 import { cn } from "@/_utils/helpers";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
@@ -114,6 +115,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
                 gaId={process.env.NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID}
               />
             )}
+            <Analytics />
           </ThemeProvider>
         </body>
       </html>
