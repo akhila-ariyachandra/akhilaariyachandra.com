@@ -19,7 +19,7 @@ const getPeriod = (start: string, end?: string) => {
     if (years === 1) {
       period = "1 year";
     } else {
-      period = `${years} years`;
+      period = `${years.toString()} years`;
     }
   }
 
@@ -33,7 +33,7 @@ const getPeriod = (start: string, end?: string) => {
     if (months === 1) {
       period += "1 month";
     } else {
-      period += `${months} months`;
+      period += `${months.toString()} months`;
     }
   }
 
@@ -41,9 +41,9 @@ const getPeriod = (start: string, end?: string) => {
     const days = endDate.diff(startDate, "day");
 
     if (days === 1) {
-      period = `${days} day`;
+      period = "1 day";
     } else {
-      period = `${days} days`;
+      period = `${days.toString()} days`;
     }
   }
 
