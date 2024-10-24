@@ -1,4 +1,4 @@
-interface VideoProps {
+type VideoProps = {
   paths: {
     webm: string;
     mp4: string;
@@ -6,13 +6,16 @@ interface VideoProps {
   title: string;
   height: number;
   width: number;
-}
+};
 
 const Video = ({ paths, width, height, title }: VideoProps) => {
   return (
     <div
       className="not-prose relative mx-auto my-6 w-full overflow-hidden rounded sm:my-8 sm:rounded-md"
-      style={{ aspectRatio: `${width} / ${height}`, maxWidth: width }}
+      style={{
+        aspectRatio: `${width.toString()} / ${height.toString()}`,
+        maxWidth: width,
+      }}
     >
       <video
         autoPlay

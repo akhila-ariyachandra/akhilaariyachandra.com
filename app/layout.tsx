@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   },
 };
 
-const links: Array<{ label: string; href: Route }> = [
+const links: { label: string; href: Route }[] = [
   {
     label: "Home",
     href: "/",
