@@ -35,7 +35,7 @@ const callout = compose(root, icon);
 
 type CalloutProps = {
   children: ReactNode;
-} & VariantProps<typeof callout>
+} & VariantProps<typeof callout>;
 
 const Callout = ({ type = "default", children }: CalloutProps) => {
   return (
