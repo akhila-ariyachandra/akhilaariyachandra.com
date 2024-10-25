@@ -8,12 +8,14 @@ import type { Metadata, Route } from "next";
 import { ThemeProvider } from "next-themes";
 import { Link, ViewTransitions } from "next-view-transitions";
 import NextTopLoader from "nextjs-toploader";
-import type { ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
 import { Provider as WrapBalancerProvider } from "react-wrap-balancer";
 import "./globals.css";
 import NavLink from "./nav-link";
 import "./syntax-highlighting.css";
 import ThemeSwitcher from "./theme-switcher";
+import { unstable_cacheLife as cacheLife } from "next/cache";
+import Skeleton from "./_components/skeleton";
 
 export const metadata: Metadata = {
   title: {
@@ -98,15 +100,9 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
 
               <main className="container max-w-4xl p-3 sm:p-4">{children}</main>
 
-              <footer className="container mt-auto max-w-4xl p-3 text-sm text-zinc-700 dark:text-zinc-300 sm:p-4 sm:text-base">
-                © {new Date().getFullYear()},{" "}
-                <Link
-                  href="/"
-                  className="font-medium text-green-700 hover:underline dark:text-green-500"
-                >
-                  akhilaariyachandra.com
-                </Link>
-              </footer>
+              <Suspense fallback={<Skeleton className="h-11 sm:h-14" />}>
+                <Footer />
+              </Suspense>
             </WrapBalancerProvider>
 
             <SpeedInsights />
@@ -124,3 +120,21 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
 };
 
 export default RootLayout;
+
+// eslint-disable-next-line @typescript-eslint/require-await
+const Footer = async () => {
+  "use cache";
+  cacheLife("days");
+
+  return (
+    <footer className="container mt-auto max-w-4xl p-3 text-sm text-zinc-700 dark:text-zinc-300 sm:p-4 sm:text-base">
+      © {new Date().getFullYear()},{" "}
+      <Link
+        href="/"
+        className="font-medium text-green-700 hover:underline dark:text-green-500"
+      >
+        akhilaariyachandra.com
+      </Link>
+    </footer>
+  );
+};
