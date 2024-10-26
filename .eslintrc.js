@@ -6,8 +6,10 @@ module.exports = {
     "next/core-web-vitals",
     "prettier",
   ],
-  plugins: ["react-compiler"],
+  plugins: ["@typescript-eslint", "react-compiler"],
+  parser: "@typescript-eslint/parser",
   parserOptions: { projectService: true, tsconfigRootDir: __dirname },
+  root: true,
   rules: {
     "react-compiler/react-compiler": "error",
     "@typescript-eslint/consistent-type-definitions": ["error", "type"],

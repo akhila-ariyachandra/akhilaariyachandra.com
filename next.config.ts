@@ -10,8 +10,6 @@ const nextConfig: NextConfig = {
   experimental: {
     after: true,
     reactCompiler: true,
-    ppr: true,
-    dynamicIO: true,
   },
   reactStrictMode: true,
   images: {
