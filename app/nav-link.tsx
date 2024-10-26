@@ -11,8 +11,8 @@ const NavLink = ({ children, href, ...delegated }: NavLinkProps) => {
 
   const isActive =
     (pathname === "/" && href === "/") ||
-    (pathname.startsWith("/blog") &&
-      (() => href).toString().startsWith("/blog"));
+    // eslint-disable-next-line @typescript-eslint/no-base-to-string
+    (pathname.startsWith("/blog") && href.toString().startsWith("/blog"));
 
   return (
     <Link href={href} data-active={isActive ? isActive : null} {...delegated}>
