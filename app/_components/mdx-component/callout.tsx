@@ -1,7 +1,7 @@
 import { compose, cva } from "@/_lib/cva.config";
 import type { VariantProps } from "cva";
+import { CircleAlert, Info, Pencil } from "lucide-react";
 import type { ReactNode } from "react";
-import { IoInformationCircle, IoPencil, IoWarning } from "react-icons/io5";
 
 const root = cva({
   base: "not-prose my-4 flex flex-row items-center gap-3 rounded p-3 sm:my-5 sm:gap-4 sm:rounded-md sm:p-4 callout",
@@ -17,7 +17,7 @@ const root = cva({
   },
 });
 const icon = cva({
-  base: "shrink-0 text-xl sm:text-2xl",
+  base: "shrink-0",
   variants: {
     type: {
       default: "text-zinc-600 dark:text-zinc-400",
@@ -38,12 +38,17 @@ type CalloutProps = {
 } & VariantProps<typeof callout>;
 
 const Callout = ({ type = "default", children }: CalloutProps) => {
+  let Icon = Pencil;
+  if (type === "warn") {
+    Icon = CircleAlert;
+  } else if (type === "info") {
+    Icon = Info;
+  }
+
   return (
     <div className={root({ type })}>
       <div className={icon({ type })}>
-        {type === "warn" && <IoWarning />}
-        {type === "info" && <IoInformationCircle />}
-        {type === "default" && <IoPencil />}
+        <Icon className="size-5 sm:size-6" />
       </div>
 
       <div>{children}</div>
