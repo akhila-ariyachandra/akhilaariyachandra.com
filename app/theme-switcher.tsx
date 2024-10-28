@@ -1,7 +1,8 @@
 "use client";
+
+import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { FaMoon, FaSun } from "react-icons/fa6";
 
 const ThemeSwitcher = () => {
   const { resolvedTheme, setTheme } = useTheme();
@@ -28,11 +29,12 @@ const ThemeSwitcher = () => {
   }
 
   return (
-    <button
-      className="leading-none text-zinc-700 dark:text-zinc-300 sm:text-lg"
-      onClick={toggleTheme}
-    >
-      {resolvedTheme === "light" ? <FaMoon /> : <FaSun />}
+    <button className="text-zinc-700 dark:text-zinc-300" onClick={toggleTheme}>
+      {resolvedTheme === "light" ? (
+        <Moon className="size-4 sm:size-[1.125rem]" />
+      ) : (
+        <Sun className="size-4 sm:size-[1.125rem]" />
+      )}
 
       <span className="sr-only">
         Switch to {resolvedTheme === "light" ? "dark" : "light"} mode
