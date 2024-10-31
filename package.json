@@ -8,7 +8,7 @@
   "private": true,
   "packageManager": "pnpm@9.4.0",
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev --turbopack",
     "prebuild": "content-collections build",
     "build": "next build",
     "analyze": "cross-env ANALYZE=true next build",
