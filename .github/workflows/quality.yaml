@@ -9,7 +9,7 @@ concurrency:
 jobs:
   quality:
     name: Code Quality
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         node-version: [20]
