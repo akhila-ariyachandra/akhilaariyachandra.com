@@ -1,3 +1,4 @@
+/** @type {import("eslint").Linter.Config} */
 module.exports = {
   extends: [
     "eslint:recommended",
@@ -13,5 +14,6 @@ module.exports = {
   rules: {
     "react-compiler/react-compiler": "error",
     "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+    "@typescript-eslint/require-await": "off",
   },
 };
