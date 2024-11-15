@@ -35,12 +35,12 @@ const BlogPage = () => {
             <li key={post._meta.path}>
               <Link
                 href={`/blog/${post._meta.path}`}
-                className="font-display text-xl font-medium tracking-tighter text-green-700 hover:underline dark:text-green-500 sm:text-2xl"
+                className="font-display text-xl font-medium tracking-tighter text-green-700 hover:underline sm:text-2xl dark:text-green-500"
               >
                 <Balancer>{post.title}</Balancer>
               </Link>
 
-              <div className="text-sm text-zinc-600 dark:text-zinc-400 sm:text-base">
+              <div className="text-sm text-zinc-600 sm:text-base dark:text-zinc-400">
                 <time dateTime={dayjs(post.posted).toISOString()}>
                   {`${dayjs(post.posted).format("Do MMMM YYYY")}${
                     post.updated
