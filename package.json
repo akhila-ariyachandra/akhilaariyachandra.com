@@ -6,7 +6,7 @@
   "author": "Akhila Ariyachandra <akhila_ariyachandra@live.com>",
   "license": "MIT",
   "private": true,
-  "packageManager": "pnpm@9.4.0",
+  "packageManager": "pnpm@9.13.2",
   "scripts": {
     "dev": "next dev --turbopack",
     "prebuild": "content-collections build",
@@ -68,7 +68,7 @@
     "cross-env": "7.0.3",
     "dotenv-cli": "7.4.2",
     "drizzle-kit": "0.28.1",
-    "eslint": "9.14.0",
+    "eslint": "8.57.0",
     "eslint-config-next": "15.0.3",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-react-compiler": "19.0.0-beta-a7bf2bd-20241110",
