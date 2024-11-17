@@ -2,12 +2,12 @@ import { db } from "@/_db/connection";
 import { post } from "@/_db/schema";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
-import { allNoBodyPosts } from "content-collections";
+import { allPosts } from "content-collections";
 import { eq } from "drizzle-orm";
 import type { NextFetchEvent, NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-const blogPaths = allNoBodyPosts.map((post) => `/blog/${post._meta.path}`);
+const blogPaths = allPosts.map((post) => `/blog/${post._meta.path}`);
 
 const ratelimit = new Ratelimit({
   redis: Redis.fromEnv(),
