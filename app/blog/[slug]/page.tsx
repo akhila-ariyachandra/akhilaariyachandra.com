@@ -77,7 +77,7 @@ const BlogPostPage = async (props: BlogPostPageProps) => {
           {" - "}
         </span>
 
-        <Views slug={post._meta.path} increment />
+        <Views slug={post._meta.path} />
       </div>
 
       <MDXComponent mdx={post.mdx} />
