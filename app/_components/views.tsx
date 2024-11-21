@@ -31,8 +31,10 @@ const ratelimit = new Ratelimit({
 const ViewsBase = async ({ slug, increment }: ViewsProps) => {
   const headersStore = await headers();
 
-  const results = await db.select().from(post).where(eq(post.slug, slug));
-  const views = results[0]?.views ?? 0;
+  const result = await db.query.post.findFirst({
+    where: eq(post.slug, slug),
+  });
+  const views = result?.views ?? 0;
 
   if (increment) {
     after(async () => {
@@ -54,8 +56,9 @@ const ViewsBase = async ({ slug, increment }: ViewsProps) => {
       }
 
       // Check if row exists
-      const results = await db.select().from(post).where(eq(post.slug, slug));
-      const result = results[0];
+      const result = await db.query.post.findFirst({
+        where: eq(post.slug, slug),
+      });
       if (!result) {
         // Create the record
         await db.insert(post).values({
