@@ -10,7 +10,6 @@ const nextConfig: NextConfig = {
   experimental: {
     after: true,
     reactCompiler: true,
-    ppr: true,
   },
   reactStrictMode: true,
   images: {
