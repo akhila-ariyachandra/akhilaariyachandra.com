@@ -38,3 +38,6 @@ next-env.d.ts
 .env*.local
 
 .content-collections
+
+# Turborepo
+.turbo
