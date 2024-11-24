@@ -1,5 +1,5 @@
 import { cn } from "@/_utils/helpers";
-import { useMDXComponent } from "@content-collections/mdx/react";
+import { MDXContent } from "@content-collections/mdx/react";
 import Callout from "./callout";
 import CodeSandboxWrapper from "./code-sandbox-wrapper";
 import Iframe from "./iframe";
@@ -11,8 +11,6 @@ type MDXComponentProps = {
 };
 
 const MDXComponent = ({ mdx }: MDXComponentProps) => {
-  const Component = useMDXComponent(mdx);
-
   return (
     <div
       className={cn(
@@ -21,7 +19,8 @@ const MDXComponent = ({ mdx }: MDXComponentProps) => {
         "prose-a:font-medium prose-a:text-green-700 prose-a:no-underline hover:prose-a:underline dark:prose-a:text-green-500", // Links
       )}
     >
-      <Component
+      <MDXContent
+        code={mdx}
         components={{ Callout, CodeSandboxWrapper, Iframe, PostImage, Video }}
       />
     </div>
