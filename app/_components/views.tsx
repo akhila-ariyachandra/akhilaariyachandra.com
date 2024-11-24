@@ -36,7 +36,7 @@ const ViewsBase = async ({ slug, increment }: ViewsProps) => {
   });
   const views = result?.views ?? 0;
 
-  if (increment) {
+  if (increment && process.env.NODE_ENV === "production") {
     after(async () => {
       let ip = "";
 
