@@ -2,9 +2,8 @@ import MDXComponent from "@/_components/mdx-component";
 import profilePic from "@/public/profile-pic.png";
 import { allAbouts, allJobs } from "content-collections";
 import dayjs from "dayjs";
+import { unstable_cacheLife as cacheLife } from "next/cache";
 import Image from "next/image";
-
-export const revalidate = 3600;
 
 const getPeriod = (start: string, end?: string) => {
   const startDate = dayjs(start);
@@ -50,7 +49,10 @@ const getPeriod = (start: string, end?: string) => {
   return period;
 };
 
-const HomePage = () => {
+const HomePage = async () => {
+  "use cache";
+  cacheLife("days");
+
   const about = allAbouts[0];
 
   return (

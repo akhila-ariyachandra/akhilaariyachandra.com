@@ -7,6 +7,7 @@ import { GeistSans } from "geist/font/sans";
 import type { Metadata, Route } from "next";
 import { ThemeProvider } from "next-themes";
 import { Link, ViewTransitions } from "next-view-transitions";
+import { unstable_cacheLife as cacheLife } from "next/cache";
 import NextTopLoader from "nextjs-toploader";
 import type { ReactNode } from "react";
 import { Provider as WrapBalancerProvider } from "react-wrap-balancer";
@@ -54,7 +55,10 @@ const links: { label: string; href: Route }[] = [
   },
 ];
 
-const RootLayout = ({ children }: { children: ReactNode }) => {
+const RootLayout = async ({ children }: { children: ReactNode }) => {
+  "use cache";
+  cacheLife("days");
+
   return (
     <ViewTransitions>
       <html
