@@ -3,6 +3,7 @@ import { post } from "@/_db/schema";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { eq } from "drizzle-orm";
+import { unstable_cacheLife as cacheLife } from "next/cache";
 import { headers } from "next/headers";
 import { unstable_after as after } from "next/server";
 import { Suspense } from "react";
@@ -12,11 +13,28 @@ type ViewsProps = {
   increment?: boolean;
 };
 
-const Views = ({ slug, increment = false }: ViewsProps) => {
+const getViews = async (slug: string) => {
+  "use cache";
+  cacheLife("default");
+
+  const result = await db.query.post.findFirst({
+    where: eq(post.slug, slug),
+  });
+
+  return result?.views ?? 0;
+};
+
+const Views = async ({ slug, increment = false }: ViewsProps) => {
+  const views = await getViews(slug);
+
   return (
-    <Suspense fallback={<span className="invisible">0 views</span>}>
-      <ViewsBase slug={slug} increment={increment} />
-    </Suspense>
+    <>
+      <span>{views} views</span>
+
+      <Suspense>
+        <ViewsIncrementor slug={slug} increment={increment} />
+      </Suspense>
+    </>
   );
 };
 
@@ -28,13 +46,8 @@ const ratelimit = new Ratelimit({
   analytics: true,
 });
 
-const ViewsBase = async ({ slug, increment }: ViewsProps) => {
+const ViewsIncrementor = async ({ slug, increment }: ViewsProps) => {
   const headersStore = await headers();
-
-  const result = await db.query.post.findFirst({
-    where: eq(post.slug, slug),
-  });
-  const views = result?.views ?? 0;
 
   if (increment && process.env.NODE_ENV === "production") {
     after(async () => {
@@ -75,5 +88,5 @@ const ViewsBase = async ({ slug, increment }: ViewsProps) => {
     });
   }
 
-  return <span>{views} views</span>;
+  return null;
 };
