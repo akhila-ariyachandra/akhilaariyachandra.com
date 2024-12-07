@@ -1,3 +1,4 @@
+import { PRODUCTION_URL } from "@/_lib/constants";
 import { cn } from "@/_utils/helpers";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | Akhila Ariyachandra",
   },
   description: "Web Developer",
-  metadataBase: new URL("https://akhilaariyachandra.com"),
+  metadataBase: new URL(PRODUCTION_URL),
   openGraph: {
     title: {
       default: "Akhila Ariyachandra",

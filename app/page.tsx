@@ -1,4 +1,6 @@
 import MDXComponent from "@/_components/mdx-component";
+import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
+import ProfileStructuredData from "@/_components/structured-data/profile";
 import profilePic from "@/public/profile-pic.png";
 import { allAbouts, allJobs } from "content-collections";
 import dayjs from "dayjs";
@@ -135,6 +137,9 @@ const HomePage = () => {
             ))}
         </div>
       </section>
+
+      <ProfileStructuredData />
+      <BreadcrumbStructuredData items={[{ name: "Home", route: "/" }]} />
     </>
   );
 };

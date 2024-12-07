@@ -1,3 +1,4 @@
+import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
 import Title from "@/_components/title";
 import Views from "@/_components/views";
 import { allPosts } from "content-collections";
@@ -60,6 +61,13 @@ const BlogPage = () => {
             </li>
           ))}
       </ul>
+
+      <BreadcrumbStructuredData
+        items={[
+          { name: "Home", route: "/" },
+          { name: "Blog", route: "/blog" },
+        ]}
+      />
     </>
   );
 };
