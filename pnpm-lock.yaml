@@ -89,6 +89,9 @@ importers:
       remark-smartypants:
         specifier: 3.0.2
         version: 3.0.2
+      schema-dts:
+        specifier: ^1.1.2
+        version: 1.1.2(typescript@5.7.2)
       server-only:
         specifier: 0.0.1
         version: 0.0.1
@@ -3388,6 +3391,11 @@ packages:
 
   scheduler@0.25.0:
     resolution: {integrity: sha512-xFVuu11jh+xcO7JOAGJNOXld8/TcEHK/4CituBUeUb5hqxJLj9YuemAEuvm9gQ/+pgXYfbQuqAkiYu+u7YEsNA==}
+
+  schema-dts@1.1.2:
+    resolution: {integrity: sha512-MpNwH0dZJHinVxk9bT8XUdjKTxMYrA5bLtrrGmFA6PTLwlOKnhi67XoRd6/ty+Djt6ZC0slR57qFhZDNMI6DhQ==}
+    peerDependencies:
+      typescript: '>=4.1.0'
 
   section-matter@1.0.0:
     resolution: {integrity: sha512-vfD3pmTzGpufjScBh50YHKzEu2lxBWhVEHsNGoEXmCmn2hKGfeNLYMzCJpe8cD7gqX7TJluOVpBkAequ6dgMmA==}
@@ -7378,6 +7386,10 @@ snapshots:
       is-regex: 1.2.0
 
   scheduler@0.25.0: {}
+
+  schema-dts@1.1.2(typescript@5.7.2):
+    dependencies:
+      typescript: 5.7.2
 
   section-matter@1.0.0:
     dependencies:

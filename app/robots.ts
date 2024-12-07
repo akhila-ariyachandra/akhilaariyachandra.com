@@ -1,3 +1,4 @@
+import { PRODUCTION_URL } from "@/_lib/constants";
 import type { MetadataRoute } from "next";
 
 const robots = (): MetadataRoute.Robots => {
@@ -33,8 +34,8 @@ const robots = (): MetadataRoute.Robots => {
         disallow: "/",
       },
     ],
-    sitemap: "https://akhilaariyachandra.com/sitemap.xml",
-    host: "https://akhilaariyachandra.com",
+    sitemap: `${PRODUCTION_URL}/sitemap.xml`,
+    host: PRODUCTION_URL,
   };
 };
 

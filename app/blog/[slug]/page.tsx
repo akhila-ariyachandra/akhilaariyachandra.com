@@ -1,6 +1,9 @@
 import MDXComponent from "@/_components/mdx-component";
+import ArticleStructuredData from "@/_components/structured-data/article";
+import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
 import Title from "@/_components/title";
 import Views from "@/_components/views";
+import { PRODUCTION_URL } from "@/_lib/constants";
 import { allPosts } from "content-collections";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
@@ -47,7 +50,7 @@ export const generateMetadata = async (
     },
     authors: {
       name: "Akhila Ariyachandra",
-      url: new URL("https://akhilaariyachandra.com"),
+      url: new URL(PRODUCTION_URL),
     },
   };
 };
@@ -81,6 +84,19 @@ const BlogPostPage = async (props: BlogPostPageProps) => {
       </div>
 
       <MDXComponent mdx={post.mdx} />
+
+      <BreadcrumbStructuredData
+        items={[
+          { name: "Home", route: "/" },
+          { name: "Blog", route: "/blog" },
+          { name: post.title, route: `/blog/${post._meta.path}` },
+        ]}
+      />
+      <ArticleStructuredData
+        title={post.title}
+        posted={post.posted}
+        updated={post.updated}
+      />
     </>
   );
 };
