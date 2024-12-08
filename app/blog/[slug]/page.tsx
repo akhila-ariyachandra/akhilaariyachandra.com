@@ -1,5 +1,5 @@
 import MDXComponent from "@/_components/mdx-component";
-import ArticleStructuredData from "@/_components/structured-data/article";
+import BlogPostingStructuredData from "@/_components/structured-data/blog-posting";
 import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
 import Title from "@/_components/title";
 import Views from "@/_components/views";
@@ -92,8 +92,9 @@ const BlogPostPage = async (props: BlogPostPageProps) => {
           { name: post.title, route: `/blog/${post._meta.path}` },
         ]}
       />
-      <ArticleStructuredData
+      <BlogPostingStructuredData
         title={post.title}
+        content={post.content}
         posted={post.posted}
         updated={post.updated}
       />
