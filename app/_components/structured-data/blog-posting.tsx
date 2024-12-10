@@ -4,11 +4,13 @@ import { BlogPosting, WithContext } from "schema-dts";
 
 const BlogPostingStructuredData = ({
   title,
+  description,
   content,
   posted,
   updated,
 }: {
   title: string;
+  description?: string;
   content: string;
   posted: string;
   updated?: string;
@@ -17,6 +19,7 @@ const BlogPostingStructuredData = ({
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: title,
+    description: description,
     articleBody: content,
     datePublished: dayjs(posted).toISOString(),
     dateModified: updated ? dayjs(updated).toISOString() : undefined,

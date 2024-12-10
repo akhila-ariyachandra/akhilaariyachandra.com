@@ -13,6 +13,7 @@ const Post = defineCollection({
   include: "*.mdx",
   schema: (z) => ({
     title: z.string(),
+    description: z.string().optional(),
     posted: z.string(),
     updated: z.string().optional(),
   }),
@@ -46,6 +47,7 @@ const NoBodyPost = defineCollection({
   include: "*.mdx",
   schema: (z) => ({
     title: z.string(),
+    description: z.string().max(140).optional(),
     posted: z.string(),
     updated: z.string().optional(),
   }),
