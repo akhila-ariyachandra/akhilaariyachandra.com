@@ -37,10 +37,10 @@ export const generateMetadata = async (
 
   return {
     title: post.title,
-    description: "A post on my blog",
+    description: post.description,
     openGraph: {
       title: post.title,
-      description: "A post on my blog",
+      description: post.description,
       url: `/blog/${post._meta.path}`,
       type: "article",
       publishedTime: dayjs(post.posted).toISOString(),
