@@ -9,6 +9,7 @@ import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Comments from "./comments";
 
 dayjs.extend(advancedFormat);
 
@@ -83,7 +84,9 @@ const BlogPostPage = async (props: BlogPostPageProps) => {
         <Views slug={post._meta.path} increment />
       </div>
 
-      <MDXComponent mdx={post.mdx} />
+      <MDXComponent mdx={post.mdx} className="mb-16" />
+
+      <Comments />
 
       <BreadcrumbStructuredData
         items={[
