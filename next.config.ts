@@ -8,7 +8,6 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 const nextConfig: NextConfig = {
   experimental: {
-    after: true,
     reactCompiler: true,
   },
   reactStrictMode: true,

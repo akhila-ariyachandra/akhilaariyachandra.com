@@ -4,7 +4,7 @@ import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
-import { unstable_after as after } from "next/server";
+import { after } from "next/server";
 import { Suspense } from "react";
 
 type ViewsProps = {
