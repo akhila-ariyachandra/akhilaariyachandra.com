@@ -66,10 +66,21 @@ const BlogPostPage = async (props: BlogPostPageProps) => {
 
   return (
     <>
-      <Title>{post.title}</Title>
+      <Title
+        style={{
+          viewTransitionName: `title-${post._meta.path}`,
+        }}
+      >
+        {post.title}
+      </Title>
 
       <div className="mb-4 text-sm text-zinc-600 sm:mb-5 sm:text-base dark:text-zinc-400">
-        <time dateTime={dayjs(post.posted).toISOString()}>
+        <time
+          dateTime={dayjs(post.posted).toISOString()}
+          style={{
+            viewTransitionName: `date-${post._meta.path}`,
+          }}
+        >
           {`${dayjs(post.posted).format("Do MMMM YYYY")}${
             post.updated
               ? ` (Updated on ${dayjs(post.updated).format("Do MMMM YYYY")})`
@@ -77,7 +88,12 @@ const BlogPostPage = async (props: BlogPostPageProps) => {
           }`}
         </time>
 
-        <span className="font-light text-zinc-500 dark:text-zinc-400">
+        <span
+          className="font-light text-zinc-500 dark:text-zinc-400"
+          style={{
+            viewTransitionName: `separator-${post._meta.path}`,
+          }}
+        >
           {" - "}
         </span>
 

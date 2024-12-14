@@ -6,7 +6,6 @@ import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import type { Metadata } from "next";
 import { Link } from "next-view-transitions";
-import Balancer from "react-wrap-balancer";
 
 dayjs.extend(advancedFormat);
 
@@ -36,13 +35,21 @@ const BlogPage = () => {
             <li key={post._meta.path}>
               <Link
                 href={`/blog/${post._meta.path}`}
-                className="font-display text-xl font-medium tracking-tighter text-green-700 hover:underline sm:text-2xl dark:text-green-500"
+                className="text-pretty font-display text-xl font-medium tracking-tighter text-green-700 hover:underline sm:text-2xl dark:text-green-500"
+                style={{
+                  viewTransitionName: `title-${post._meta.path}`,
+                }}
               >
-                <Balancer>{post.title}</Balancer>
+                {post.title}
               </Link>
 
               <div className="text-sm text-zinc-600 sm:text-base dark:text-zinc-400">
-                <time dateTime={dayjs(post.posted).toISOString()}>
+                <time
+                  dateTime={dayjs(post.posted).toISOString()}
+                  style={{
+                    viewTransitionName: `date-${post._meta.path}`,
+                  }}
+                >
                   {`${dayjs(post.posted).format("Do MMMM YYYY")}${
                     post.updated
                       ? ` (Updated on ${dayjs(post.updated).format(
@@ -52,7 +59,12 @@ const BlogPage = () => {
                   }`}
                 </time>
 
-                <span className="font-light text-zinc-500 dark:text-zinc-400">
+                <span
+                  className="font-light text-zinc-500 dark:text-zinc-400"
+                  style={{
+                    viewTransitionName: `separator-${post._meta.path}`,
+                  }}
+                >
                   {" - "}
                 </span>
 

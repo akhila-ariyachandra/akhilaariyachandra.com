@@ -14,7 +14,18 @@ type ViewsProps = {
 
 const Views = ({ slug, increment = false }: ViewsProps) => {
   return (
-    <Suspense fallback={<span className="invisible">0 views</span>}>
+    <Suspense
+      fallback={
+        <span
+          className="invisible"
+          style={{
+            viewTransitionName: `views-${slug}`,
+          }}
+        >
+          0 views
+        </span>
+      }
+    >
       <ViewsBase slug={slug} increment={increment} />
     </Suspense>
   );
@@ -75,5 +86,13 @@ const ViewsBase = async ({ slug, increment }: ViewsProps) => {
     });
   }
 
-  return <span>{views} views</span>;
+  return (
+    <span
+      style={{
+        viewTransitionName: `views-${slug}`,
+      }}
+    >
+      {views} views
+    </span>
+  );
 };
