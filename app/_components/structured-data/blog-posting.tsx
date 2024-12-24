@@ -11,7 +11,7 @@ const BlogPostingStructuredData = ({
 }: {
   title: string;
   description?: string;
-  content: string;
+  content?: string;
   posted: string;
   updated?: string;
 }) => {
