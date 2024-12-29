@@ -7,8 +7,8 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 jobs:
-  prettier:
-    name: Prettier
+  quality:
+    name: Code Quality
     runs-on: ubuntu-22.04
     strategy:
       matrix:
@@ -25,5 +25,9 @@ jobs:
           cache: "pnpm"
       - name: Install dependencies
         run: pnpm install
-      - name: Check formatting with Prettier
+      - name: Generate content
+        run: pnpm content:build
+      - name: Check formatting
         run: pnpm prettier:check
+      - name: Linting
+        run: pnpm lint

@@ -14,13 +14,13 @@
     "analyze": "cross-env ANALYZE=true next build",
     "start": "next start",
     "lint": "next lint",
+    "content:build": "content-collections build",
     "drizzle:push": "dotenv -e .env.local drizzle-kit push:sqlite",
     "drizzle:studio": "dotenv -e .env.local drizzle-kit studio",
     "prettier:format": "prettier --write \"**/*.{ts,tsx,js,md,mdx,css,yaml}\" --cache",
     "prettier:check": "prettier --check \"**/*.{ts,tsx,js,md,mdx,css,yaml}\" --cache"
   },
   "dependencies": {
-    "@content-collections/cli": "^0.1.6",
     "@fec/remark-a11y-emoji": "4.0.2",
     "@giscus/react": "^3.0.0",
     "@libsql/client": "0.14.0",
@@ -55,6 +55,7 @@
     "zod": "3.24.1"
   },
   "devDependencies": {
+    "@content-collections/cli": "^0.1.6",
     "@content-collections/core": "^0.8.0",
     "@content-collections/mdx": "^0.2.0",
     "@content-collections/next": "^0.2.4",
