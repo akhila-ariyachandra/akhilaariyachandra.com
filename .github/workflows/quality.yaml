@@ -30,9 +30,7 @@ jobs:
           cache: "pnpm"
       - name: Install dependencies
         run: pnpm install
-      - name: Generate content
-        run: pnpm turbo:content:build
       - name: Check formatting
         run: pnpm prettier:check
       - name: Linting
-        run: pnpm lint
+        run: pnpm turbo:lint
