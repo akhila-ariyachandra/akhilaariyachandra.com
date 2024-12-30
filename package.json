@@ -81,6 +81,7 @@
     "prettier-plugin-tailwindcss": "0.6.9",
     "tailwind-scrollbar": "3.1.0",
     "tailwindcss": "3.4.17",
+    "turbo": "^2.3.3",
     "typescript": "5.7.2"
   }
 }
