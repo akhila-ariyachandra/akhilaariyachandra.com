@@ -18,6 +18,7 @@ const BreadcrumbStructuredData = ({
   };
 
   return (
+    // eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

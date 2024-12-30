@@ -9,6 +9,7 @@ const ThemeSwitcher = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
     setIsMounted(true);
   }, []);
 
@@ -22,14 +23,18 @@ const ThemeSwitcher = () => {
 
   if (!isMounted) {
     return (
-      <button disabled className="size-4 sm:size-[1.125rem]">
+      <button type="button" disabled className="size-4 sm:size-[1.125rem]">
         <span className="sr-only">Placeholder theme toggle button</span>
       </button>
     );
   }
 
   return (
-    <button className="text-zinc-700 dark:text-zinc-300" onClick={toggleTheme}>
+    <button
+      type="button"
+      className="text-zinc-700 dark:text-zinc-300"
+      onClick={toggleTheme}
+    >
       {resolvedTheme === "light" ? (
         <Moon className="size-4 sm:size-[1.125rem]" />
       ) : (
