@@ -8,7 +8,6 @@ import { GeistSans } from "geist/font/sans";
 import type { Metadata, Route } from "next";
 import { ThemeProvider } from "next-themes";
 import { Link, ViewTransitions } from "next-view-transitions";
-import NextTopLoader from "nextjs-toploader";
 import type { ReactNode } from "react";
 import "./globals.css";
 import NavLink from "./nav-link";
@@ -74,8 +73,6 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
           )}
         >
           <ThemeProvider attribute="class">
-            <NextTopLoader color="#22c55e" showSpinner={false} />
-
             <header className="container flex max-w-4xl flex-row items-center justify-between gap-4 p-3 sm:p-4">
               <nav className="flex flex-row items-center gap-2 sm:gap-3">
                 {links.map((link) => (
