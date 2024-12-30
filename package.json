@@ -19,7 +19,7 @@
     "drizzle:studio": "dotenv -e .env.local drizzle-kit studio",
     "prettier:format": "prettier --write \"**/*.{ts,tsx,js,md,mdx,css,yaml}\" --cache",
     "prettier:check": "prettier --check \"**/*.{ts,tsx,js,md,mdx,css,yaml}\" --cache",
-    "turbo:content:build": "turbo content:build"
+    "turbo:lint": "turbo lint"
   },
   "dependencies": {
     "@fec/remark-a11y-emoji": "4.0.2",

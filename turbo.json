@@ -4,6 +4,9 @@
     "content:build": {
       "inputs": ["content-collections.ts", "content/**"],
       "outputs": [".content-collections"]
+    },
+    "lint": {
+      "dependsOn": ["content:build"]
     }
   }
 }
