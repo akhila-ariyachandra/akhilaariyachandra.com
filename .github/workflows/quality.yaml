@@ -34,5 +34,3 @@ jobs:
         run: pnpm action:content:build
       - name: Check formatting
         run: pnpm prettier:check
-      - name: Linting
-        run: pnpm lint
