@@ -31,7 +31,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Generate content
-        run: turbo content:build
+        run: pnpm action:content:build
       - name: Check formatting
         run: pnpm prettier:check
       - name: Linting
