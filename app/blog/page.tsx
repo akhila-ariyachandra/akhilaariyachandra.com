@@ -1,13 +1,9 @@
+import PostsList from "@/_components/posts-list";
 import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
 import Title from "@/_components/title";
-import Views from "@/_components/views";
 import { allPosts } from "content-collections";
-import dayjs from "dayjs";
-import advancedFormat from "dayjs/plugin/advancedFormat";
 import type { Metadata } from "next";
 import { Link } from "next-view-transitions";
-
-dayjs.extend(advancedFormat);
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -28,51 +24,17 @@ const BlogPage = () => {
     <>
       <Title>Blog</Title>
 
-      <ul className="space-y-2 sm:space-y-3">
-        {allPosts
-          .sort((a, b) => (dayjs(a.posted).isBefore(b.posted) ? 1 : -1))
-          .map((post) => (
-            <li key={post._meta.path}>
-              <Link
-                href={`/blog/${post._meta.path}`}
-                className="text-pretty font-display text-xl font-medium tracking-tighter text-green-700 hover:underline sm:text-2xl dark:text-green-500"
-                style={{
-                  viewTransitionName: `title-${post._meta.path}`,
-                }}
-              >
-                {post.title}
-              </Link>
+      <PostsList posts={allPosts.filter((post) => !post.archived)} />
 
-              <div className="text-sm text-zinc-600 sm:text-base dark:text-zinc-400">
-                <time
-                  dateTime={dayjs(post.posted).toISOString()}
-                  style={{
-                    viewTransitionName: `date-${post._meta.path}`,
-                  }}
-                >
-                  {`${dayjs(post.posted).format("Do MMMM YYYY")}${
-                    post.updated
-                      ? ` (Updated on ${dayjs(post.updated).format(
-                          "Do MMMM YYYY",
-                        )})`
-                      : ""
-                  }`}
-                </time>
-
-                <span
-                  className="font-light text-zinc-500 dark:text-zinc-400"
-                  style={{
-                    viewTransitionName: `separator-${post._meta.path}`,
-                  }}
-                >
-                  {" - "}
-                </span>
-
-                <Views slug={post._meta.path} />
-              </div>
-            </li>
-          ))}
-      </ul>
+      <Link
+        href="/blog/archived"
+        className="float-right mt-4 text-base text-green-700 hover:underline sm:mt-5 sm:text-lg dark:text-green-500"
+        style={{
+          viewTransitionName: "archived-posts",
+        }}
+      >
+        Archived Posts
+      </Link>
 
       <BreadcrumbStructuredData
         items={[
