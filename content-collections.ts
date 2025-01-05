@@ -13,9 +13,10 @@ const Post = defineCollection({
   include: "*.mdx",
   schema: (z) => ({
     title: z.string(),
-    description: z.string().optional(),
+    description: z.string().max(140).optional(),
     posted: z.string(),
     updated: z.string().optional(),
+    archived: z.boolean().optional(),
   }),
   transform: async (document, context) => {
     const mdx = await compileMDX(context, document, {
@@ -50,6 +51,7 @@ const NoBodyPost = defineCollection({
     description: z.string().max(140).optional(),
     posted: z.string(),
     updated: z.string().optional(),
+    archived: z.boolean().optional(),
   }),
 });
 

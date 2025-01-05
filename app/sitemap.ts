@@ -4,10 +4,12 @@ import dayjs from "dayjs";
 import type { MetadataRoute } from "next";
 
 const sitemap = (): MetadataRoute.Sitemap => {
-  const posts = allPosts.map((post) => ({
-    url: `${PRODUCTION_URL}/blog/${post._meta.path}`,
-    lastModified: dayjs(post.updated ?? post.posted).format("YYYY-MM-DD"),
-  }));
+  const posts = allPosts
+    .filter((post) => !post.archived)
+    .map((post) => ({
+      url: `${PRODUCTION_URL}/blog/${post._meta.path}`,
+      lastModified: dayjs(post.updated ?? post.posted).format("YYYY-MM-DD"),
+    }));
 
   const routes = ["", "/blog"].map((route) => ({
     url: `${PRODUCTION_URL}${route}`,

@@ -19,9 +19,11 @@ const slugsToIgnoreContent = [
 
 // https://beta.nextjs.org/docs/api-reference/generate-static-params
 export const generateStaticParams = () => {
-  return allPosts.map((post) => ({
-    slug: post._meta.path,
-  }));
+  return allPosts
+    .filter((post) => !post.archived)
+    .map((post) => ({
+      slug: post._meta.path,
+    }));
 };
 
 type BlogPostPageProps = {
@@ -56,6 +58,10 @@ export const generateMetadata = async (
     authors: {
       name: "Akhila Ariyachandra",
       url: new URL(PRODUCTION_URL),
+    },
+    robots: {
+      index: !post.archived,
+      follow: !post.archived,
     },
   };
 };
