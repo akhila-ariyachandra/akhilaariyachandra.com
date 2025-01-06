@@ -1,4 +1,4 @@
-import { cn } from "@/_utils/helpers";
+import { cn } from "@/_lib/helpers";
 import { MDXContent } from "@content-collections/mdx/react";
 import Callout from "./callout";
 import CodeSandboxWrapper from "./code-sandbox-wrapper";
