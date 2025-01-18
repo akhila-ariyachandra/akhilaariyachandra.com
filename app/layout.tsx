@@ -1,5 +1,5 @@
 import { PRODUCTION_URL } from "@/_lib/constants";
-import { cn } from "@/_utils/helpers";
+import { cn } from "@/_lib/helpers";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
