@@ -6,6 +6,7 @@
   "author": "Akhila Ariyachandra <akhila_ariyachandra@live.com>",
   "license": "MIT",
   "private": true,
+  "packageManager": "bun@1.2.2",
   "scripts": {
     "dev": "next dev --turbopack",
     "prebuild": "content-collections build",
