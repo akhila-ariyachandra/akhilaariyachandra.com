@@ -15,9 +15,9 @@ const jsonLd: WithContext<ProfilePage> = {
 
 const ProfileStructuredData = () => {
   return (
-    // eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml
     <script
       type="application/ld+json"
+      // eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml
       dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
     />
   );
