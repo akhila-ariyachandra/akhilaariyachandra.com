@@ -6,7 +6,7 @@
   "author": "Akhila Ariyachandra <akhila_ariyachandra@live.com>",
   "license": "MIT",
   "private": true,
-  "packageManager": "pnpm@9.15.1",
+  "packageManager": "bun@1.2.2",
   "scripts": {
     "dev": "next dev --turbopack",
     "prebuild": "content-collections build",
@@ -15,8 +15,8 @@
     "start": "next start",
     "lint": "next lint",
     "content:build": "content-collections build",
-    "drizzle:push": "dotenv -e .env.local drizzle-kit push:sqlite",
-    "drizzle:studio": "dotenv -e .env.local drizzle-kit studio",
+    "drizzle:push": "drizzle-kit push:sqlite",
+    "drizzle:studio": "drizzle-kit studio",
     "prettier:format": "prettier --write \"**/*.{ts,tsx,js,md,mdx,css,yaml}\" --cache",
     "prettier:check": "prettier --check \"**/*.{ts,tsx,js,md,mdx,css,yaml}\" --cache",
     "turbo:lint": "turbo lint"
@@ -68,7 +68,6 @@
     "autoprefixer": "10.4.20",
     "babel-plugin-react-compiler": "19.0.0-beta-e552027-20250112",
     "cross-env": "7.0.3",
-    "dotenv-cli": "8.0.0",
     "drizzle-kit": "0.30.2",
     "eslint": "^9.18.0",
     "eslint-config-next": "15.1.5",
