@@ -11,9 +11,6 @@ jobs:
     name: Code Quality
     timeout-minutes: 15
     runs-on: ubuntu-22.04
-    strategy:
-      matrix:
-        node-version: [20]
     env:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_TEAM: ${{ vars.TURBO_TEAM }}
