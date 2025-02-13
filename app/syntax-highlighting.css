@@ -1,3 +1,5 @@
+@reference "./globals.css"
+
 figure[data-rehype-pretty-code-figure] {
   margin-top: 1.6666667em;
   margin-bottom: 1.6666667em;
@@ -26,7 +28,7 @@ figure[data-rehype-pretty-code-figure] pre {
 }
 
 figcaption[data-rehype-pretty-code-title] {
-  @apply !my-0 bg-neutral-900 px-3 py-2 text-xs font-medium leading-none text-zinc-300 sm:px-4 sm:py-3 sm:text-sm sm:leading-none;
+  @apply !my-0 bg-neutral-900 px-3 py-2 text-xs leading-none font-medium text-zinc-300 sm:px-4 sm:py-3 sm:text-sm sm:leading-none;
 }
 
 figure[data-rehype-pretty-code-figure] span[data-line] {

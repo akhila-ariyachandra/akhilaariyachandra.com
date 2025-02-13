@@ -4,7 +4,7 @@ import { CircleAlert, Info, Pencil } from "lucide-react";
 import type { ReactNode } from "react";
 
 const root = cva({
-  base: "not-prose my-4 flex flex-row items-center gap-3 rounded p-3 sm:my-5 sm:gap-4 sm:rounded-md sm:p-4 callout",
+  base: "not-prose my-4 flex flex-row items-center gap-3 rounded-sm p-3 sm:my-5 sm:gap-4 sm:rounded-md sm:p-4 callout",
   variants: {
     type: {
       default: "bg-zinc-200 dark:bg-zinc-800",

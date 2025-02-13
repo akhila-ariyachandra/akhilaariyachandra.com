@@ -35,7 +35,7 @@ const BlogPage = () => {
             <li key={post._meta.path}>
               <Link
                 href={`/blog/${post._meta.path}`}
-                className="text-pretty font-display text-xl font-medium tracking-tighter text-green-700 hover:underline sm:text-2xl dark:text-green-500"
+                className="font-display text-xl font-medium tracking-tighter text-pretty text-green-700 hover:underline sm:text-2xl dark:text-green-500"
                 style={{
                   viewTransitionName: `title-${post._meta.path}`,
                 }}

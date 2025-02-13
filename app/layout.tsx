@@ -67,7 +67,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
       >
         <body
           className={cn(
-            "flex h-full flex-col overflow-y-scroll bg-white font-content antialiased dark:bg-zinc-950",
+            "font-content flex h-full flex-col overflow-y-scroll bg-white antialiased dark:bg-zinc-950",
             "scrollbar-thin scrollbar-thumb-green-700 dark:scrollbar-thumb-green-500",
             "transition-colors duration-200 ease-out",
           )}
@@ -81,7 +81,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
                     href={link.href}
                     className={cn(
                       "font-medium text-zinc-700 hover:underline sm:text-lg dark:text-zinc-300",
-                      "data-[active]:font-medium data-[active]:text-green-700 data-[active]:underline data-[active]:underline-offset-2 data-[active]:hover:underline-offset-1 data-[active]:sm:text-lg data-[active]:dark:text-green-500",
+                      "data-active:font-medium data-active:text-green-700 data-active:underline data-active:underline-offset-2 data-active:hover:underline-offset-1 sm:data-active:text-lg dark:data-active:text-green-500",
                     )}
                   >
                     {link.label}
