@@ -67,7 +67,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
       >
         <body
           className={cn(
-            "flex h-full flex-col overflow-y-scroll bg-white font-content antialiased dark:bg-zinc-950",
+            "font-content flex h-full flex-col overflow-y-scroll bg-white antialiased dark:bg-zinc-950",
             "scrollbar-thin scrollbar-thumb-green-700 dark:scrollbar-thumb-green-500",
             "transition-colors duration-200 ease-out",
           )}

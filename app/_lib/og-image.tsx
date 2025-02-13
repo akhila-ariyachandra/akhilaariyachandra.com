@@ -26,7 +26,7 @@ export const getOgImage = (
 
         {!!content && <h3 tw="my-0 text-4xl text-zinc-400">{content}</h3>}
 
-        <p tw="mb-0 mt-auto text-3xl text-green-500">akhilaariyachandra.com</p>
+        <p tw="mt-auto mb-0 text-3xl text-green-500">akhilaariyachandra.com</p>
 
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -34,7 +34,7 @@ export const getOgImage = (
           alt="Akhila Ariyachandra"
           width={240}
           height={240}
-          tw="absolute bottom-8 right-8 rounded-xl"
+          tw="absolute right-8 bottom-8 rounded-xl"
         />
       </div>
     ),
