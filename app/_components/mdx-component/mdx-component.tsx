@@ -17,7 +17,7 @@ const MDXComponent = ({ mdx, className }: MDXComponentProps) => {
       className={cn(
         "prose prose-sm prose-zinc max-w-none sm:prose-base dark:prose-invert", // Base styles
         "prose-headings:font-display prose-headings:tracking-tighter", // Headings
-        "prose-a:font-medium prose-a:text-green-700 prose-a:no-underline hover:prose-a:underline dark:prose-a:text-green-500", // Links
+        "prose-a:font-medium prose-a:text-green-700 prose-a:no-underline prose-a:hover:underline dark:prose-a:text-green-500", // Links
         className,
       )}
     >

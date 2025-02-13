@@ -1,15 +1,45 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer components {
-  .callout {
-    a {
-      @apply font-medium hover:underline;
-    }
+@source './**/*.{js,ts,jsx,tsx,mdx,css}';
 
-    code {
-      @apply font-display font-semibold before:content-['`'] after:content-['`'];
-    }
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: var(--font-geist-mono);
+  --font-content: var(--font-geist-sans);
+}
+
+@utility container {
+  margin-inline: auto;
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
   }
 }
+
+@utility callout {
+  a {
+    @apply font-medium hover:underline;
+  }
+
+  code {
+    @apply font-display font-semibold before:content-['`'] after:content-['`'];
+  }
+}
+
+@plugin '@tailwindcss/typography';
+@plugin 'tailwind-scrollbar';

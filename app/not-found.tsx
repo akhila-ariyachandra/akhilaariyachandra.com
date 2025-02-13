@@ -27,7 +27,7 @@ const NotFound = () => {
       <Image
         src={confusedTravolta}
         alt="John Travolta confused in Pulp Fiction"
-        className="my-9 rounded sm:my-10 sm:rounded-md"
+        className="my-9 rounded-sm sm:my-10 sm:rounded-md"
         unoptimized
       />
     </>

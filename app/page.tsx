@@ -62,11 +62,11 @@ const HomePage = () => {
         width={240}
         height={240}
         alt="A picture of Akhila Ariyachandra"
-        className="mb-4 w-44 rounded sm:float-left sm:mb-5 sm:mr-5 sm:w-60 sm:rounded-lg"
+        className="mb-4 w-44 rounded-sm sm:float-left sm:mr-5 sm:mb-5 sm:w-60 sm:rounded-lg"
         placeholder="blur"
       />
 
-      <h1 className="mb-4 font-display text-3xl tracking-tighter text-zinc-600 sm:mb-5 sm:text-4xl dark:text-zinc-300">
+      <h1 className="font-display mb-4 text-3xl tracking-tighter text-zinc-600 sm:mb-5 sm:text-4xl dark:text-zinc-300">
         Hi, I&apos;m{" "}
         <span className="font-black text-green-700 dark:text-green-500">
           Akhila Ariyachandra
@@ -78,7 +78,7 @@ const HomePage = () => {
       <hr className="my-7 sm:my-8" />
 
       <section>
-        <h2 className="mb-6 font-display text-xl font-bold tracking-tighter text-zinc-800 sm:mb-7 sm:text-2xl dark:text-zinc-200">
+        <h2 className="font-display mb-6 text-xl font-bold tracking-tighter text-zinc-800 sm:mb-7 sm:text-2xl dark:text-zinc-200">
           My Career
         </h2>
 
@@ -95,11 +95,11 @@ const HomePage = () => {
                     width={64}
                     height={64}
                     alt={`The company logo of ${job.company.name}`}
-                    className="h-14 w-14 shrink-0 rounded-sm sm:h-16 sm:w-16 sm:rounded"
+                    className="h-14 w-14 shrink-0 rounded-xs sm:h-16 sm:w-16 sm:rounded-sm"
                   />
 
                   <div className="break-words">
-                    <h3 className="font-display text-lg font-semibold leading-tight tracking-tighter text-zinc-700 sm:text-xl sm:leading-snug dark:text-zinc-300">
+                    <h3 className="font-display text-lg leading-tight font-semibold tracking-tighter text-zinc-700 sm:text-xl sm:leading-snug dark:text-zinc-300">
                       {job.position}
                     </h3>
 
@@ -107,7 +107,7 @@ const HomePage = () => {
                       href={job.company.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-base font-medium leading-tight text-green-700 hover:underline sm:text-lg sm:leading-snug dark:text-green-500"
+                      className="text-base leading-tight font-medium text-green-700 hover:underline sm:text-lg sm:leading-snug dark:text-green-500"
                     >
                       {job.company.name}
                     </a>
