@@ -11,7 +11,7 @@ Recently while looking into a solution of incrementally migrating a legacy CRA (
 3. Next.js seems to be recommending the native [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) with the Next.js specific extensions for [caching and revalidating requests](https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating).
 4. The new codebase was setup to use [TanStack Query](https://tanstack.com/query/latest) (FKA React Query) to manage server state from the browser so it made more sense to let it handle the token refresh rather than the HTTP client itself.
 
-After trying a couple of methods, I settled on one using the `onError` option in TanStack Query's [`QueryCache`](https://tanstack.com/query/latest/docs/react/reference/QueryCache) an in this post I'll show you what I did.
+After trying a couple of methods, I settled on one using the `onError` option in TanStack Query's [`QueryCache`](https://tanstack.com/query/latest/docs/react/reference/QueryCache) and in this post I'll show you what I did.
 
 ## A detour for ky
 
