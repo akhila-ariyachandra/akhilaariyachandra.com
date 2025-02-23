@@ -1,10 +1,7 @@
 import { cn } from "@/_lib/helpers";
 import { MDXContent } from "@content-collections/mdx/react";
 import Callout from "./callout";
-import CodeSandboxWrapper from "./code-sandbox-wrapper";
-import Iframe from "./iframe";
 import PostImage from "./post-image";
-import Video from "./video";
 
 type MDXComponentProps = {
   mdx: string;
@@ -21,10 +18,7 @@ const MDXComponent = ({ mdx, className }: MDXComponentProps) => {
         className,
       )}
     >
-      <MDXContent
-        code={mdx}
-        components={{ Callout, CodeSandboxWrapper, Iframe, PostImage, Video }}
-      />
+      <MDXContent code={mdx} components={{ Callout, PostImage }} />
     </div>
   );
 };

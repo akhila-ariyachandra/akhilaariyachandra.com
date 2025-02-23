@@ -14,6 +14,7 @@ import NavLink from "./nav-link";
 import "./syntax-highlighting.css";
 import ThemeSwitcher from "./theme-switcher";
 
+export const revalidate = 3600;
 export const metadata: Metadata = {
   title: {
     default: "Akhila Ariyachandra",
