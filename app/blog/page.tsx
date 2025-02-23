@@ -74,6 +74,19 @@ const BlogPage = () => {
           ))}
       </ul>
 
+      <p className="mt-6 text-lg text-zinc-600 sm:text-xl dark:text-zinc-400">
+        View my old blog posts{" "}
+        <Link
+          href="https://archive.akhilaariyachandra.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-green-700 hover:underline dark:text-green-500"
+        >
+          here
+        </Link>
+        .
+      </p>
+
       <BreadcrumbStructuredData
         items={[
           { name: "Home", route: "/" },

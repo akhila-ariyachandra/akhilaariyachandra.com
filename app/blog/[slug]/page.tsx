@@ -13,10 +13,6 @@ import Comments from "./comments";
 
 dayjs.extend(advancedFormat);
 
-const slugsToIgnoreContent = [
-  "client-side-rendering-vs-server-side-rendering",
-] as const;
-
 // https://beta.nextjs.org/docs/api-reference/generate-static-params
 export const generateStaticParams = () => {
   return allPosts.map((post) => ({
@@ -117,11 +113,7 @@ const BlogPostPage = async (props: BlogPostPageProps) => {
       />
       <BlogPostingStructuredData
         title={post.title}
-        content={
-          slugsToIgnoreContent.includes(post._meta.path)
-            ? undefined
-            : post.content
-        }
+        content={post.content}
         posted={post.posted}
         updated={post.updated}
       />
