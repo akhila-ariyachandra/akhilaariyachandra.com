@@ -73,37 +73,6 @@ const About = defineCollection({
   },
 });
 
-const Job = defineCollection({
-  name: "Job",
-  directory: "content/jobs",
-  include: "*.mdx",
-  schema: (z) => ({
-    position: z.string(),
-    company: z.object({
-      name: z.string(),
-      link: z.string(),
-      logo: z.string(),
-    }),
-    period: z.object({
-      start: z.string(),
-      end: z.string().optional(),
-    }),
-  }),
-  transform: async (document, context) => {
-    const mdx = await compileMDX(context, document, {
-      remarkPlugins: [smartypants, a11yEmoji, remarkGfm],
-      rehypePlugins: [
-        rehypeSlug,
-        [externalLinks, { target: "_blank", rel: ["noopener", "noreferrer"] }],
-      ],
-    });
-    return {
-      ...document,
-      mdx,
-    };
-  },
-});
-
 export default defineConfig({
-  collections: [Post, NoBodyPost, About, Job],
+  collections: [Post, NoBodyPost, About],
 });
