@@ -1,6 +1,5 @@
 import { PRODUCTION_URL } from "@/_lib/constants";
 import { cn } from "@/_lib/helpers";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Route } from "next";
@@ -116,11 +115,6 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
             </footer>
 
             <SpeedInsights />
-            {!!process.env.NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID && (
-              <GoogleAnalytics
-                gaId={process.env.NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID}
-              />
-            )}
             <Analytics />
           </ThemeProvider>
         </body>
