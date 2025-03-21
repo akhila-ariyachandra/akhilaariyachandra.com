@@ -6,13 +6,12 @@ This site is built with [Next.js](https://nextjs.org/), [Tailwind CSS](https://t
 
 ## Environment Variables
 
-|                Name                 | Description                                                               |
-| :---------------------------------: | ------------------------------------------------------------------------- |
-|           `DATABASE_URL`            | [Turso](https://turso.tech/) database URL                                 |
-|        `DATABASE_AUTH_TOKEN`        | [Turso](https://turso.tech/) database token                               |
-|      `UPSTASH_REDIS_REST_URL`       | [Upstash](https://upstash.com/)                                           |
-|     `UPSTASH_REDIS_REST_TOKEN`      | [Upstash](https://upstash.com/)                                           |
-| `NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID` | [Google Analytics](https://analytics.google.com/analytics) Measurement ID |
+|            Name            | Description                                 |
+| :------------------------: | ------------------------------------------- |
+|       `DATABASE_URL`       | [Turso](https://turso.tech/) database URL   |
+|   `DATABASE_AUTH_TOKEN`    | [Turso](https://turso.tech/) database token |
+|  `UPSTASH_REDIS_REST_URL`  | [Upstash](https://upstash.com/)             |
+| `UPSTASH_REDIS_REST_TOKEN` | [Upstash](https://upstash.com/)             |
 
 ## Actions
 

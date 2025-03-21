@@ -6,7 +6,7 @@
 
 @theme {
   --font-display: var(--font-geist-mono);
-  --font-content: var(--font-geist-sans);
+  --font-content: var(--font-geist);
 }
 
 @utility container {

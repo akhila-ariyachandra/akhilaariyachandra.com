@@ -7,27 +7,38 @@ import { headers } from "next/headers";
 import { after } from "next/server";
 import { Suspense } from "react";
 
+const getViews = async (slug: string) => {
+  "use cache";
+
+  const result = await db.query.post.findFirst({
+    where: eq(post.slug, slug),
+  });
+
+  return result?.views ?? 0;
+};
+
 type ViewsProps = {
   slug: string;
   increment?: boolean;
 };
 
 const Views = ({ slug, increment = false }: ViewsProps) => {
+  const views = getViews(slug);
+
   return (
-    <Suspense
-      fallback={
-        <span
-          className="invisible"
-          style={{
-            viewTransitionName: `views-${slug}`,
-          }}
-        >
-          0 views
-        </span>
-      }
-    >
-      <ViewsBase slug={slug} increment={increment} />
-    </Suspense>
+    <>
+      <span
+        style={{
+          viewTransitionName: `views-${slug}`,
+        }}
+      >
+        {views} views
+      </span>
+
+      <Suspense>
+        <ViewsIncrementor slug={slug} increment={increment} />
+      </Suspense>
+    </>
   );
 };
 
@@ -39,13 +50,8 @@ const ratelimit = new Ratelimit({
   analytics: true,
 });
 
-const ViewsBase = async ({ slug, increment }: ViewsProps) => {
+const ViewsIncrementor = async ({ slug, increment }: ViewsProps) => {
   const headersStore = await headers();
-
-  const result = await db.query.post.findFirst({
-    where: eq(post.slug, slug),
-  });
-  const views = result?.views ?? 0;
 
   if (increment && process.env.NODE_ENV === "production") {
     after(async () => {
@@ -86,13 +92,5 @@ const ViewsBase = async ({ slug, increment }: ViewsProps) => {
     });
   }
 
-  return (
-    <span
-      style={{
-        viewTransitionName: `views-${slug}`,
-      }}
-    >
-      {views} views
-    </span>
-  );
+  return null;
 };

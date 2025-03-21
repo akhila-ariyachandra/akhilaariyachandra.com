@@ -1,18 +1,27 @@
 import { PRODUCTION_URL } from "@/_lib/constants";
 import { cn } from "@/_lib/helpers";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
 import type { Metadata, Route } from "next";
 import { ThemeProvider } from "next-themes";
 import { Link, ViewTransitions } from "next-view-transitions";
+import { Geist, Geist_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import "./globals.css";
 import NavLink from "./nav-link";
 import "./syntax-highlighting.css";
 import ThemeSwitcher from "./theme-switcher";
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-geist-mono",
+});
+const geist = Geist({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-geist",
+});
 
 export const revalidate = 3600;
 export const metadata: Metadata = {
@@ -60,8 +69,8 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
       <html
         lang="en"
         className={cn(
-          GeistMono.variable,
-          GeistSans.variable,
+          geistMono.variable,
+          geist.variable,
           "h-full scroll-smooth",
         )}
         suppressHydrationWarning
@@ -106,11 +115,6 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
             </footer>
 
             <SpeedInsights />
-            {!!process.env.NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID && (
-              <GoogleAnalytics
-                gaId={process.env.NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID}
-              />
-            )}
             <Analytics />
           </ThemeProvider>
         </body>
