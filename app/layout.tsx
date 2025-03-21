@@ -1,3 +1,5 @@
+"use cache";
+
 import { PRODUCTION_URL } from "@/_lib/constants";
 import { cn } from "@/_lib/helpers";
 import { Analytics } from "@vercel/analytics/react";
@@ -23,7 +25,6 @@ const geist = Geist({
   variable: "--font-geist",
 });
 
-export const revalidate = 3600;
 export const metadata: Metadata = {
   title: {
     default: "Akhila Ariyachandra",
@@ -63,7 +64,7 @@ const links: { label: string; href: Route }[] = [
   },
 ];
 
-const RootLayout = ({ children }: { children: ReactNode }) => {
+const RootLayout = async ({ children }: { children: ReactNode }) => {
   return (
     <ViewTransitions>
       <html
