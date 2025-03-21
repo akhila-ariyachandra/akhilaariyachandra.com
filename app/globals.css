@@ -33,7 +33,7 @@
 
 @utility callout {
   a {
-    @apply font-medium hover:underline;
+    @apply font-medium text-green-700 hover:underline dark:text-green-500;
   }
 
   code {
