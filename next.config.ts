@@ -9,6 +9,8 @@ const withBundleAnalyzer = bundleAnalyzer({
 const nextConfig: NextConfig = {
   experimental: {
     reactCompiler: true,
+    useCache: true,
+    ppr: true,
   },
   reactStrictMode: true,
   images: {
