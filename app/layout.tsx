@@ -79,7 +79,6 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
         <body
           className={cn(
             "font-content flex h-full flex-col overflow-y-scroll bg-white antialiased dark:bg-zinc-950",
-            "scrollbar-thin scrollbar-thumb-green-700 dark:scrollbar-thumb-green-500",
             "transition-colors duration-200 ease-out",
           )}
         >

@@ -1,6 +1,5 @@
 "use client";
 
-import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
@@ -36,9 +35,36 @@ const ThemeSwitcher = () => {
       onClick={toggleTheme}
     >
       {resolvedTheme === "light" ? (
-        <Moon className="size-4 sm:size-[1.125rem]" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          className="lucide lucide-moon size-4 sm:size-[1.125rem]"
+          viewBox="0 0 24 24"
+        >
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9"></path>
+        </svg>
       ) : (
-        <Sun className="size-4 sm:size-[1.125rem]" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          className="lucide lucide-sun size-4 sm:size-[1.125rem]"
+          viewBox="0 0 24 24"
+        >
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+        </svg>
       )}
 
       <span className="sr-only">
