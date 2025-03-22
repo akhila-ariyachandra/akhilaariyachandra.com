@@ -17,6 +17,7 @@ const HomePage = () => {
         alt="A picture of Akhila Ariyachandra"
         className="mb-4 w-44 rounded-sm sm:float-left sm:mr-5 sm:mb-5 sm:w-60 sm:rounded-lg"
         placeholder="blur"
+        priority
       />
 
       <h1 className="font-display mb-4 text-3xl tracking-tighter text-zinc-600 sm:mb-5 sm:text-4xl dark:text-zinc-300">
