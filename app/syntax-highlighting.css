@@ -43,5 +43,5 @@ figure[data-rehype-pretty-code-figure] span[data-line] {
 }
 
 figure[data-rehype-pretty-code-figure] span[data-line][data-highlighted-line] {
-  @apply border-l-green-500 bg-zinc-500/10;
+  @apply border-l-accent-dark bg-zinc-500/10;
 }

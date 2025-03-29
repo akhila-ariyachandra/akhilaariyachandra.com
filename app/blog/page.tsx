@@ -35,7 +35,7 @@ const BlogPage = () => {
             <li key={post._meta.path}>
               <Link
                 href={`/blog/${post._meta.path}`}
-                className="font-display text-xl font-medium tracking-tighter text-pretty text-green-700 hover:underline sm:text-2xl dark:text-green-500"
+                className="font-display text-accent dark:text-accent-dark text-xl font-medium tracking-tighter text-pretty hover:underline sm:text-2xl"
                 style={{
                   viewTransitionName: `title-${post._meta.path}`,
                 }}
@@ -80,7 +80,7 @@ const BlogPage = () => {
           href="https://archive.akhilaariyachandra.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-green-700 hover:underline dark:text-green-500"
+          className="text-accent dark:text-accent-dark hover:underline"
         >
           here
         </Link>

@@ -30,7 +30,7 @@ const PostImage = ({ src, width, height, title, credit }: PostImageProps) => {
             href={credit.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium text-green-700 hover:underline dark:text-green-500"
+            className="text-accent dark:text-accent-dark font-medium hover:underline"
           >
             {credit.name}
           </a>
