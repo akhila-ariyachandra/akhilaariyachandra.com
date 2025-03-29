@@ -91,7 +91,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
                     href={link.href}
                     className={cn(
                       "font-medium text-zinc-700 hover:underline sm:text-lg dark:text-zinc-300",
-                      "data-active:font-medium data-active:text-green-700 data-active:underline data-active:underline-offset-2 data-active:hover:underline-offset-1 sm:data-active:text-lg dark:data-active:text-green-500",
+                      "data-active:text-accent dark:data-active:text-accent-dark data-active:font-medium data-active:underline data-active:underline-offset-2 data-active:hover:underline-offset-1 sm:data-active:text-lg",
                     )}
                   >
                     {link.label}
@@ -108,7 +108,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
               © {new Date().getFullYear()},{" "}
               <Link
                 href="/"
-                className="font-medium text-green-700 hover:underline dark:text-green-500"
+                className="text-accent dark:text-accent-dark font-medium hover:underline"
               >
                 akhilaariyachandra.com
               </Link>

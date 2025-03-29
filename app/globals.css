@@ -9,6 +9,11 @@
   --font-content: var(--font-geist);
 }
 
+@theme inline {
+  --color-accent: var(--color-green-700);
+  --color-accent-dark: var(--color-green-500);
+}
+
 @utility container {
   margin-inline: auto;
 }
@@ -28,16 +33,6 @@
   ::backdrop,
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
-  }
-}
-
-@utility callout {
-  a {
-    @apply font-medium text-green-700 hover:underline dark:text-green-500;
-  }
-
-  code {
-    @apply font-display font-semibold before:content-['`'] after:content-['`'];
   }
 }
 

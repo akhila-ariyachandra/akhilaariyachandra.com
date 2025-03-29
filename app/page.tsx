@@ -22,7 +22,7 @@ const HomePage = () => {
 
       <h1 className="font-display mb-4 text-3xl tracking-tighter text-zinc-600 sm:mb-5 sm:text-4xl dark:text-zinc-300">
         Hi, I&apos;m{" "}
-        <span className="font-black text-green-700 dark:text-green-500">
+        <span className="text-accent dark:text-accent-dark font-black">
           Akhila Ariyachandra
         </span>
       </h1>

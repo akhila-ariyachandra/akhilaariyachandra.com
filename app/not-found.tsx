@@ -18,7 +18,7 @@ const NotFound = () => {
         {"You have reached a page that doesn't exist. "}
         <Link
           href="/"
-          className="font-medium text-green-700 hover:underline dark:text-green-500"
+          className="text-accent dark:text-accent-dark font-medium hover:underline"
         >
           Return Home
         </Link>
