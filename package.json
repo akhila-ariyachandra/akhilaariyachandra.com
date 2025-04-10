@@ -60,7 +60,6 @@
     "eslint-config-prettier": "10.1.1",
     "eslint-plugin-drizzle": "^0.2.3",
     "eslint-plugin-react-compiler": "19.0.0-beta-e993439-20250405",
-    "next-rspack": "^15.3.0",
     "postcss": "8.5.3",
     "prettier": "3.5.3",
     "prettier-plugin-organize-imports": "4.1.0",
