@@ -2,12 +2,13 @@ import { defineCollection, defineConfig } from "@content-collections/core";
 import { compileMDX } from "@content-collections/mdx";
 import externalLinks from "rehype-external-links";
 import rehypePrettyCode, { type Options } from "rehype-pretty-code";
+import { z } from "zod";
 
 const Post = defineCollection({
   name: "Post",
   directory: "content/posts",
   include: "*.mdx",
-  schema: (z) => ({
+  schema: z.object({
     title: z.string(),
     description: z.string().optional(),
     posted: z.string(),
@@ -39,7 +40,7 @@ const NoBodyPost = defineCollection({
   name: "NoBodyPost",
   directory: "content/posts",
   include: "*.mdx",
-  schema: (z) => ({
+  schema: z.object({
     title: z.string(),
     description: z.string().max(140).optional(),
     posted: z.string(),
@@ -51,7 +52,7 @@ const About = defineCollection({
   name: "About",
   directory: "content",
   include: "about.mdx",
-  schema: () => ({}),
+  schema: z.object({}),
   transform: async (document, context) => {
     const mdx = await compileMDX(context, document, {
       rehypePlugins: [
