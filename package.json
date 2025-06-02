@@ -6,7 +6,7 @@
   "author": "Akhila Ariyachandra <akhila_ariyachandra@live.com>",
   "license": "MIT",
   "private": true,
-  "packageManager": "pnpm@10.11.0",
+  "packageManager": "bun@1.2.2",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -29,7 +29,7 @@
     "clsx": "2.1.1",
     "dayjs": "1.11.13",
     "drizzle-orm": "0.44.1",
-    "next": "15.4.0-canary.59",
+    "next": "^15.4.0-canary.59",
     "next-themes": "^0.4.6",
     "next-view-transitions": "^0.3.4",
     "react": "19.1.0",

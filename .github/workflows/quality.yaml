@@ -11,9 +11,6 @@ jobs:
     name: Code Quality
     timeout-minutes: 15
     runs-on: ubuntu-22.04
-    strategy:
-      matrix:
-        node-version: [20]
     env:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_TEAM: ${{ vars.TURBO_TEAM }}
@@ -21,16 +18,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
       - name: Install dependencies
-        run: pnpm install
+        run: bun install
       - name: Check formatting
-        run: pnpm prettier:check
+        run: bun run prettier:check
       - name: Linting
-        run: pnpm turbo:lint
+        run: bun run turbo:lint
