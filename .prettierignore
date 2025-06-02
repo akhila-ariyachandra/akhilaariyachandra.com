@@ -4,4 +4,3 @@ next-env.d.ts
 .eslint.json
 .vscode
 .content-collections
-pnpm-lock.yaml
