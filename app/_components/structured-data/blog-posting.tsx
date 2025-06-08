@@ -1,6 +1,6 @@
 import { PRODUCTION_URL } from "@/_lib/constants";
 import dayjs from "dayjs";
-import { BlogPosting, WithContext } from "schema-dts";
+import { type BlogPosting, type WithContext } from "schema-dts";
 
 const BlogPostingStructuredData = ({
   title,

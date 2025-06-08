@@ -1,5 +1,5 @@
 import { PRODUCTION_URL } from "@/_lib/constants";
-import { ProfilePage, WithContext } from "schema-dts";
+import { type ProfilePage, type WithContext } from "schema-dts";
 
 const jsonLd: WithContext<ProfilePage> = {
   "@context": "https://schema.org",
