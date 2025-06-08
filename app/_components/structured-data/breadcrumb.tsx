@@ -1,5 +1,5 @@
 import { PRODUCTION_URL } from "@/_lib/constants";
-import { BreadcrumbList, WithContext } from "schema-dts";
+import { type BreadcrumbList, type WithContext } from "schema-dts";
 
 const BreadcrumbStructuredData = ({
   items,

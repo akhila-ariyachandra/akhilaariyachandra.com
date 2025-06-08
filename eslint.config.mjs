@@ -23,6 +23,13 @@ export default tseslint.config(
     },
     rules: {
       "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+      "@typescript-eslint/consistent-type-imports": [
+        "error",
+        {
+          fixStyle: "inline-type-imports",
+          prefer: "type-imports",
+        },
+      ],
       "@typescript-eslint/require-await": "off",
     },
   },
