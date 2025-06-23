@@ -3,6 +3,7 @@ import eslintReact from "@eslint-react/eslint-plugin";
 import { FlatCompat } from "@eslint/eslintrc";
 import eslint from "@eslint/js";
 import eslintConfigPrettier from "eslint-config-prettier";
+import reactCompiler from "eslint-plugin-react-compiler";
 import tseslint from "typescript-eslint";
 
 const compat = new FlatCompat({
@@ -39,12 +40,7 @@ export default tseslint.config(
   compat.config({
     extends: ["next/core-web-vitals"],
   }),
-  compat.config({
-    plugins: ["react-compiler"],
-    rules: {
-      "react-compiler/react-compiler": "error",
-    },
-  }),
+  reactCompiler.configs.recommended,
   {
     extends: [eslintReact.configs["recommended-type-checked"]],
   },
