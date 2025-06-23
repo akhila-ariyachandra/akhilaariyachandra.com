@@ -16,8 +16,7 @@
     "drizzle:push": "drizzle-kit push:sqlite",
     "drizzle:studio": "drizzle-kit studio",
     "prettier:format": "prettier --write \"**/*.{ts,tsx,js,md,mdx,css,yaml}\"",
-    "prettier:check": "prettier --check \"**/*.{ts,tsx,js,md,mdx,css,yaml}\"",
-    "turbo:lint": "turbo lint"
+    "prettier:check": "prettier --check \"**/*.{ts,tsx,js,md,mdx,css,yaml}\""
   },
   "dependencies": {
     "@giscus/react": "^3.1.0",
@@ -66,7 +65,6 @@
     "prettier-plugin-organize-imports": "4.1.0",
     "prettier-plugin-tailwindcss": "^0.6.12",
     "tailwindcss": "^4.1.8",
-    "turbo": "^2.5.4",
     "typescript": "5.8.3",
     "typescript-eslint": "^8.33.0"
   }

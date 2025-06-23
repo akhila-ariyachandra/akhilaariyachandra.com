@@ -11,10 +11,6 @@ jobs:
     name: Code Quality
     timeout-minutes: 15
     runs-on: ubuntu-22.04
-    env:
-      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-      TURBO_TEAM: ${{ vars.TURBO_TEAM }}
-      TURBO_CACHE: remote:rw
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -22,7 +18,9 @@ jobs:
         uses: oven-sh/setup-bun@v2
       - name: Install dependencies
         run: bun install
+      - name: Build content
+        run: bun run content:build
       - name: Check formatting
         run: bun run prettier:check
       - name: Linting
-        run: bun run turbo:lint
+        run: bun run lint
