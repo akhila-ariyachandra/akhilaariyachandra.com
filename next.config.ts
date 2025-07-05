@@ -4,8 +4,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   experimental: {
     reactCompiler: true,
-    useCache: true,
-    ppr: true,
+    dynamicIO: true,
   },
   reactStrictMode: true,
   images: {
