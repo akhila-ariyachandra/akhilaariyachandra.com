@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { unstable_ViewTransition as ViewTransition } from "react";
 
 dayjs.extend(advancedFormat);
 
@@ -33,40 +34,33 @@ const BlogPage = () => {
           .sort((a, b) => (dayjs(a.posted).isBefore(b.posted) ? 1 : -1))
           .map((post) => (
             <li key={post._meta.path}>
-              <Link
-                href={`/blog/${post._meta.path}`}
-                className="font-display text-accent dark:text-accent-dark text-xl font-medium tracking-tighter text-pretty hover:underline sm:text-2xl"
-                style={{
-                  viewTransitionName: `title-${post._meta.path}`,
-                }}
-              >
-                {post.title}
-              </Link>
+              <ViewTransition name={`title-${post._meta.path}`}>
+                <Link
+                  href={`/blog/${post._meta.path}`}
+                  className="font-display text-accent dark:text-accent-dark text-xl font-medium tracking-tighter text-pretty hover:underline sm:text-2xl"
+                >
+                  {post.title}
+                </Link>
+              </ViewTransition>
 
               <div className="text-sm text-zinc-600 sm:text-base dark:text-zinc-400">
-                <time
-                  dateTime={dayjs(post.posted).toISOString()}
-                  style={{
-                    viewTransitionName: `date-${post._meta.path}`,
-                  }}
-                >
-                  {`${dayjs(post.posted).format("Do MMMM YYYY")}${
-                    post.updated
-                      ? ` (Updated on ${dayjs(post.updated).format(
-                          "Do MMMM YYYY",
-                        )})`
-                      : ""
-                  }`}
-                </time>
+                <ViewTransition name={`date-${post._meta.path}`}>
+                  <time dateTime={dayjs(post.posted).toISOString()}>
+                    {`${dayjs(post.posted).format("Do MMMM YYYY")}${
+                      post.updated
+                        ? ` (Updated on ${dayjs(post.updated).format(
+                            "Do MMMM YYYY",
+                          )})`
+                        : ""
+                    }`}
+                  </time>
+                </ViewTransition>
 
-                <span
-                  className="font-light text-zinc-500 dark:text-zinc-400"
-                  style={{
-                    viewTransitionName: `separator-${post._meta.path}`,
-                  }}
-                >
-                  {" - "}
-                </span>
+                <ViewTransition name={`separator-${post._meta.path}`}>
+                  <span className="font-light text-zinc-500 dark:text-zinc-400">
+                    {" - "}
+                  </span>
+                </ViewTransition>
 
                 <Views slug={post._meta.path} />
               </div>

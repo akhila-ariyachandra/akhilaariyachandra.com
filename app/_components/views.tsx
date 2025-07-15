@@ -6,6 +6,7 @@ import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
 import { after } from "next/server";
 import { Suspense } from "react";
+import { unstable_ViewTransition as ViewTransition } from "react";
 
 const getViews = async (slug: string) => {
   "use cache";
@@ -27,13 +28,9 @@ const Views = ({ slug, increment = false }: ViewsProps) => {
 
   return (
     <>
-      <span
-        style={{
-          viewTransitionName: `views-${slug}`,
-        }}
-      >
-        {views} views
-      </span>
+      <ViewTransition name={`views-${slug}`}>
+        <span>{views} views</span>
+      </ViewTransition>
 
       <Suspense>
         <ViewsIncrementor slug={slug} increment={increment} />
