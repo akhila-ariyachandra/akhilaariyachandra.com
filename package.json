@@ -9,7 +9,7 @@
   "packageManager": "bun@1.2.2",
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "next build --turbopack",
     "start": "next start",
     "lint": "next lint",
     "content:build": "content-collections build",
