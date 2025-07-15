@@ -20,6 +20,8 @@ jobs:
         run: bun install
       - name: Build content
         run: bun run content:build
+      - name: Generate ORM client
+        run: bun run db:generate
       - name: Check formatting
         run: bun run prettier:check
       - name: Linting

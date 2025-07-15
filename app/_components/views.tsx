@@ -1,18 +1,19 @@
-import { db } from "@/_db/connection";
-import { post } from "@/_db/schema";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
-import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
 import { after } from "next/server";
 import { Suspense } from "react";
 import { unstable_ViewTransition as ViewTransition } from "react";
+import prisma from "@/_lib/prisma";
+import { revalidatePath } from "next/cache";
 
 const getViews = async (slug: string) => {
   "use cache";
 
-  const result = await db.query.post.findFirst({
-    where: eq(post.slug, slug),
+  const result = await prisma.post.findFirst({
+    where: {
+      slug,
+    },
   });
 
   return result?.views ?? 0;
@@ -69,23 +70,21 @@ const ViewsIncrementor = async ({ slug, increment }: ViewsProps) => {
         return false;
       }
 
-      // Check if row exists
-      const result = await db.query.post.findFirst({
-        where: eq(post.slug, slug),
-      });
-      if (!result) {
-        // Create the record
-        await db.insert(post).values({
+      await prisma.post.upsert({
+        create: {
           slug,
-          views: 1,
-        });
-      } else {
-        // Update the record
-        await db
-          .update(post)
-          .set({ views: result.views + 1 })
-          .where(eq(post.slug, slug));
-      }
+        },
+        update: {
+          views: {
+            increment: 1,
+          },
+        },
+        where: {
+          slug,
+        },
+      });
+
+      revalidatePath("/blog", "layout");
     });
   }
 
