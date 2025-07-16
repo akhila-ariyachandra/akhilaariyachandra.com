@@ -5,7 +5,7 @@ import { allPosts } from "content-collections";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import type { Metadata } from "next";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 
 dayjs.extend(advancedFormat);
 
@@ -36,20 +36,12 @@ const BlogPage = () => {
               <Link
                 href={`/blog/${post._meta.path}`}
                 className="font-display text-accent dark:text-accent-dark text-xl font-medium tracking-tighter text-pretty hover:underline sm:text-2xl"
-                style={{
-                  viewTransitionName: `title-${post._meta.path}`,
-                }}
               >
                 {post.title}
               </Link>
 
               <div className="text-sm text-zinc-600 sm:text-base dark:text-zinc-400">
-                <time
-                  dateTime={dayjs(post.posted).toISOString()}
-                  style={{
-                    viewTransitionName: `date-${post._meta.path}`,
-                  }}
-                >
+                <time dateTime={dayjs(post.posted).toISOString()}>
                   {`${dayjs(post.posted).format("Do MMMM YYYY")}${
                     post.updated
                       ? ` (Updated on ${dayjs(post.updated).format(
@@ -59,12 +51,7 @@ const BlogPage = () => {
                   }`}
                 </time>
 
-                <span
-                  className="font-light text-zinc-500 dark:text-zinc-400"
-                  style={{
-                    viewTransitionName: `separator-${post._meta.path}`,
-                  }}
-                >
+                <span className="font-light text-zinc-500 dark:text-zinc-400">
                   {" - "}
                 </span>
 
