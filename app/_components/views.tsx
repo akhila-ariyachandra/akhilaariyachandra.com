@@ -3,7 +3,6 @@ import { Redis } from "@upstash/redis";
 import { headers } from "next/headers";
 import { after } from "next/server";
 import { Suspense } from "react";
-import { unstable_ViewTransition as ViewTransition } from "react";
 import prisma from "@/_lib/prisma";
 import { revalidatePath } from "next/cache";
 
@@ -29,9 +28,7 @@ const Views = ({ slug, increment = false }: ViewsProps) => {
 
   return (
     <>
-      <ViewTransition name={`views-${slug}`}>
-        <span>{views} views</span>
-      </ViewTransition>
+      <span>{views} views</span>
 
       <Suspense>
         <ViewsIncrementor slug={slug} increment={increment} />
