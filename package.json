@@ -51,6 +51,7 @@
     "@prisma/extension-accelerate": "^2.0.2",
     "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/typography": "0.5.16",
+    "@types/node": "20",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
     "babel-plugin-react-compiler": "19.1.0-rc.2",
