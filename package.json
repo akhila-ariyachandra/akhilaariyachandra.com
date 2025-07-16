@@ -9,7 +9,7 @@
   "packageManager": "bun@1.2.2",
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "prisma generate --no-engine && next build --turbopack",
     "start": "next start",
     "lint": "next lint",
     "content:build": "content-collections build",
