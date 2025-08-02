@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
     browserDebugInfoInTerminal: true,
 
     // Enable new caching and pre-rendering behavior
-    dynamicIO: true, // will be renamed to cacheComponents in Next.js 16
+    cacheComponents: true,
 
     // Activate new client-side router improvements
     clientSegmentCache: true,
@@ -19,6 +19,9 @@ const nextConfig: NextConfig = {
 
     // Enable persistent caching for the turbopack dev server and build.
     turbopackPersistentCaching: true,
+
+    // https://nextjs.org/docs/messages/missing-data-scroll-behavior
+    optimizeRouterScrolling: true,
   },
   reactStrictMode: true,
   images: {

@@ -1,10 +1,10 @@
+import prisma from "@/_lib/prisma";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
+import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 import { after } from "next/server";
 import { Suspense } from "react";
-import prisma from "@/_lib/prisma";
-import { revalidatePath } from "next/cache";
 
 const getViews = async (slug: string) => {
   "use cache";

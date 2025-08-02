@@ -7,12 +7,12 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Route } from "next";
 import { ThemeProvider } from "next-themes";
 import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
 import type { ReactNode } from "react";
 import "./globals.css";
 import NavLink from "./nav-link";
 import "./syntax-highlighting.css";
 import ThemeSwitcher from "./theme-switcher";
-import Link from "next/link";
 
 const geistMono = Geist_Mono({
   subsets: ["latin"],
@@ -70,6 +70,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
       lang="en"
       className={cn(geistMono.variable, geist.variable, "h-full scroll-smooth")}
       suppressHydrationWarning
+      data-scroll-behavior="smooth"
     >
       <body
         className={cn(
