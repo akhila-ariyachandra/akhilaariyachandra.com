@@ -19,6 +19,9 @@ const nextConfig: NextConfig = {
 
     // Enable persistent caching for the turbopack dev server and build.
     turbopackPersistentCaching: true,
+
+    // https://nextjs.org/docs/messages/missing-data-scroll-behavior
+    optimizeRouterScrolling: true,
   },
   reactStrictMode: true,
   images: {

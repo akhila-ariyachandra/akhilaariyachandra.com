@@ -70,6 +70,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
       lang="en"
       className={cn(geistMono.variable, geist.variable, "h-full scroll-smooth")}
       suppressHydrationWarning
+      data-scroll-behavior="smooth"
     >
       <body
         className={cn(
