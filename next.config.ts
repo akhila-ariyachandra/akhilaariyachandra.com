@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
     browserDebugInfoInTerminal: true,
 
     // Enable new caching and pre-rendering behavior
-    dynamicIO: true, // will be renamed to cacheComponents in Next.js 16
+    cacheComponents: true,
 
     // Activate new client-side router improvements
     clientSegmentCache: true,
