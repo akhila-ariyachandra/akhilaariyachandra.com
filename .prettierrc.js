@@ -3,7 +3,6 @@ module.exports = {
   tailwindAttributes: ["tw"],
   tailwindFunctions: ["cn"],
   plugins: [
-    "@prettier/plugin-oxc",
     "prettier-plugin-organize-imports",
     "prettier-plugin-tailwindcss",
     "prettier-plugin-prisma",
