@@ -14,9 +14,6 @@ const nextConfig: NextConfig = {
     // Activate new client-side router improvements
     clientSegmentCache: true,
 
-    // Explore route composition and segment overrides via DevTools
-    devtoolSegmentExplorer: true,
-
     // Enable persistent caching for the turbopack dev server and build.
     turbopackPersistentCaching: true,
 
@@ -24,6 +21,7 @@ const nextConfig: NextConfig = {
     optimizeRouterScrolling: true,
   },
   reactStrictMode: true,
+  typedRoutes: true,
   images: {
     formats: ["image/avif", "image/webp"],
   },

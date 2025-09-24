@@ -4,6 +4,7 @@ import { FlatCompat } from "@eslint/eslintrc";
 import eslint from "@eslint/js";
 import eslintConfigPrettier from "eslint-config-prettier";
 import reactCompiler from "eslint-plugin-react-compiler";
+import { defineConfig } from "eslint/config";
 import tseslint from "typescript-eslint";
 
 const compat = new FlatCompat({
@@ -11,14 +12,14 @@ const compat = new FlatCompat({
   baseDirectory: import.meta.dirname,
 });
 
-export default tseslint.config(
+export default defineConfig(
   eslint.configs.recommended,
   tseslint.configs.strictTypeChecked,
   tseslint.configs.stylisticTypeChecked,
   {
     languageOptions: {
       parserOptions: {
-        projectService: true,
+        project: "./tsconfig.json",
         tsconfigRootDir: import.meta.dirname,
       },
     },

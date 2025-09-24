@@ -14,15 +14,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install Bun
-        uses: oven-sh/setup-bun@v2
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          run_install: false
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
       - name: Install dependencies
-        run: bun install
+        run: pnpm install
       - name: Build content
-        run: bun run content:build
+        run: pnpm run content:build
       - name: Generate ORM client
-        run: bun run db:generate
+        run: pnpm run db:generate
       - name: Check formatting
-        run: bun run prettier:check
+        run: pnpm run prettier:check
       - name: Linting
-        run: bun run lint
+        run: pnpm run lint
