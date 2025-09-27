@@ -4,9 +4,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   experimental: {
     reactCompiler: true,
-
-    // Forward browser logs to the terminal for easier debugging
-    browserDebugInfoInTerminal: true,
+    viewTransition: true,
 
     // Enable new caching and pre-rendering behavior
     cacheComponents: true,
