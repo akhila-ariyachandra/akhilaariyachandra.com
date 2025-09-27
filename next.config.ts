@@ -6,9 +6,6 @@ const nextConfig: NextConfig = {
     reactCompiler: true,
     viewTransition: true,
 
-    // Forward browser logs to the terminal for easier debugging
-    browserDebugInfoInTerminal: true,
-
     // Enable new caching and pre-rendering behavior
     cacheComponents: true,
 
