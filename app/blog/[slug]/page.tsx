@@ -9,6 +9,7 @@ import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { unstable_ViewTransition as ViewTransition } from "react";
 import Comments from "./comments";
 
 dayjs.extend(advancedFormat);
@@ -66,23 +67,25 @@ const BlogPostPage = async (props: BlogPostPageProps) => {
 
   return (
     <>
-      <Title>{post.title}</Title>
+      <Title transitionName={`post-${post._meta.path}`}>{post.title}</Title>
 
-      <div className="mb-4 text-sm text-zinc-600 sm:mb-5 sm:text-base dark:text-zinc-400">
-        <time dateTime={dayjs(post.posted).toISOString()}>
-          {`${dayjs(post.posted).format("Do MMMM YYYY")}${
-            post.updated
-              ? ` (Updated on ${dayjs(post.updated).format("Do MMMM YYYY")})`
-              : ""
-          }`}
-        </time>
+      <ViewTransition name={`post-details-${post._meta.path}`}>
+        <div className="mb-4 text-sm text-zinc-600 sm:mb-5 sm:text-base dark:text-zinc-400">
+          <time dateTime={dayjs(post.posted).toISOString()}>
+            {`${dayjs(post.posted).format("Do MMMM YYYY")}${
+              post.updated
+                ? ` (Updated on ${dayjs(post.updated).format("Do MMMM YYYY")})`
+                : ""
+            }`}
+          </time>
 
-        <span className="font-light text-zinc-500 dark:text-zinc-400">
-          {" - "}
-        </span>
+          <span className="font-light text-zinc-500 dark:text-zinc-400">
+            {" - "}
+          </span>
 
-        <Views slug={post._meta.path} increment />
-      </div>
+          <Views slug={post._meta.path} increment />
+        </div>
+      </ViewTransition>
 
       <MDXComponent mdx={post.mdx} className="mb-16" />
 
