@@ -1,7 +1,7 @@
 import MDXComponent from "@/_components/mdx-component";
 import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
 import ProfileStructuredData from "@/_components/structured-data/profile";
-import profilePic from "@/public/profile-pic.png";
+import profilePic from "@/public/profile-pic.jpg";
 import { allAbouts } from "content-collections";
 import Image from "next/image";
 

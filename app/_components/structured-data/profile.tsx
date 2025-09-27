@@ -9,7 +9,7 @@ const jsonLd: WithContext<ProfilePage> = {
     name: "Akhila Ariyachandra",
     givenName: "Akhila",
     familyName: "Ariyachandra",
-    image: `${PRODUCTION_URL}/profile-pic.png`,
+    image: `${PRODUCTION_URL}/profile-pic.jpg`,
   },
 };
 

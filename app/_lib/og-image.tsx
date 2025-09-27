@@ -30,7 +30,7 @@ export const getOgImage = (
 
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={`${getBaseURL()}/profile-pic.png`}
+          src={`${getBaseURL()}/profile-pic.jpg`}
           alt="Akhila Ariyachandra"
           width={240}
           height={240}
