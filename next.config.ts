@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   experimental: {
     viewTransition: true,
     turbopackFileSystemCacheForDev: true,
+
+    cacheComponents: true,
+    turbopackFileSystemCacheForBuild: true,
   },
   reactStrictMode: true,
   reactCompiler: true,
