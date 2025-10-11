@@ -41,6 +41,9 @@ export default defineConfig(
   reactCompiler.configs.recommended,
   {
     extends: [eslintReact.configs["recommended-type-checked"]],
+    rules: {
+      "@eslint-react/hooks-extra/no-direct-set-state-in-use-effect": "off",
+    },
   },
   eslintConfigPrettier,
 );

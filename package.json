@@ -21,9 +21,9 @@
   },
   "dependencies": {
     "@giscus/react": "^3.1.0",
-    "@prisma/client": "^6.16.2",
+    "@prisma/client": "^6.17.1",
     "@upstash/ratelimit": "^2.0.6",
-    "@upstash/redis": "^1.35.4",
+    "@upstash/redis": "^1.35.5",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "1.2.0",
     "clsx": "2.1.1",
@@ -39,24 +39,24 @@
     "sharp": "0.34.4",
     "shiki": "^3.13.0",
     "tailwind-merge": "3.3.1",
-    "zod": "4.1.11"
+    "zod": "4.1.12"
   },
   "devDependencies": {
     "@content-collections/cli": "^0.1.7",
     "@content-collections/core": "^0.11.1",
     "@content-collections/mdx": "^0.2.2",
     "@content-collections/next": "^0.2.7",
-    "@eslint-react/eslint-plugin": "^1.53.1",
+    "@eslint-react/eslint-plugin": "^2.0.6",
     "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.36.0",
+    "@eslint/js": "^9.37.0",
     "@prisma/extension-accelerate": "^2.0.2",
-    "@tailwindcss/postcss": "^4.1.13",
+    "@tailwindcss/postcss": "^4.1.14",
     "@tailwindcss/typography": "0.5.19",
-    "@types/node": "^24.5.2",
+    "@types/node": "^24.7.1",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.1",
     "babel-plugin-react-compiler": "19.1.0-rc.3",
-    "eslint": "^9.36.0",
+    "eslint": "^9.37.0",
     "eslint-config-next": "16.0.0-beta.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-react-compiler": "19.1.0-rc.2",
@@ -65,9 +65,9 @@
     "prettier-plugin-organize-imports": "4.3.0",
     "prettier-plugin-prisma": "^5.0.0",
     "prettier-plugin-tailwindcss": "^0.6.14",
-    "prisma": "^6.16.2",
-    "tailwindcss": "^4.1.13",
-    "typescript": "5.9.2",
-    "typescript-eslint": "^8.44.1"
+    "prisma": "^6.17.1",
+    "tailwindcss": "^4.1.14",
+    "typescript": "5.9.3",
+    "typescript-eslint": "^8.46.0"
   }
 }
