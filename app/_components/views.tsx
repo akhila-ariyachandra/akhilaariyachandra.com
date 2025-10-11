@@ -7,8 +7,6 @@ import { after } from "next/server";
 import { Suspense } from "react";
 
 const getViews = async (slug: string) => {
-  "use cache";
-
   const result = await prisma.post.findFirst({
     where: {
       slug,
