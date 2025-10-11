@@ -1,7 +1,4 @@
-import {
-  type ReactNode,
-  unstable_ViewTransition as ViewTransition,
-} from "react";
+import { type ReactNode, ViewTransition } from "react";
 
 const TitleBase = ({ children }: { children: ReactNode }) => {
   return (

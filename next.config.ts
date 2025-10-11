@@ -3,28 +3,14 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   experimental: {
-    reactCompiler: true,
     viewTransition: true,
-
-    // Enable new caching and pre-rendering behavior
-    cacheComponents: true,
-
-    // Activate new client-side router improvements
-    clientSegmentCache: true,
-
-    // Enable persistent caching for the turbopack dev server and build.
-    turbopackPersistentCaching: true,
-
-    // https://nextjs.org/docs/messages/missing-data-scroll-behavior
-    optimizeRouterScrolling: true,
+    turbopackFileSystemCacheForDev: true,
   },
   reactStrictMode: true,
+  reactCompiler: true,
   typedRoutes: true,
   images: {
     formats: ["image/avif", "image/webp"],
-  },
-  eslint: {
-    dirs: ["app"],
   },
   logging: {
     fetches: {
