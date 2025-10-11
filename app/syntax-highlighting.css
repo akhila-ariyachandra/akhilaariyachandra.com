@@ -1,10 +1,10 @@
-@reference "./globals.css"
+@reference "./globals.css";
 
 figure[data-rehype-pretty-code-figure] {
   margin-top: 1.6666667em;
   margin-bottom: 1.6666667em;
 
-  @screen sm {
+  @media (width >= 40rem) {
     margin-top: 1.7142857em;
     margin-bottom: 1.7142857em;
   }
@@ -36,7 +36,7 @@ figure[data-rehype-pretty-code-figure] span[data-line] {
   padding-left: 1em;
   padding-right: 1em;
 
-  @screen sm {
+  @media (width >= 40rem) {
     padding-left: 1.1428571em;
     padding-right: 1.1428571em;
   }
