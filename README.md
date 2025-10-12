@@ -6,11 +6,12 @@ This site is built with [Next.js](https://nextjs.org/), [Tailwind CSS](https://t
 
 ## Environment Variables
 
-|            Name            | Description                                                    |
-| :------------------------: | -------------------------------------------------------------- |
-|       `DATABASE_URL`       | [Prisma Postgres](https://www.prisma.io/postgres) database URL |
-|  `UPSTASH_REDIS_REST_URL`  | [Upstash](https://upstash.com/)                                |
-| `UPSTASH_REDIS_REST_TOKEN` | [Upstash](https://upstash.com/)                                |
+|              Name              | Description                                                                                          |
+| :----------------------------: | ---------------------------------------------------------------------------------------------------- |
+|         `DATABASE_URL`         | [Prisma Postgres](https://www.prisma.io/postgres) database URL                                       |
+|    `UPSTASH_REDIS_REST_URL`    | [Upstash](https://upstash.com/)                                                                      |
+|   `UPSTASH_REDIS_REST_TOKEN`   | [Upstash](https://upstash.com/)                                                                      |
+| `ENABLE_EXPERIMENTAL_COREPACK` | Set to `1` to enable [Corepack in Vercel](https://vercel.com/docs/builds/configure-a-build#corepack) |
 
 ## Actions
 
