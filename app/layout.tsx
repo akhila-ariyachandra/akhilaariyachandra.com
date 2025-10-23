@@ -78,7 +78,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
           "transition-colors duration-200 ease-out",
         )}
       >
-        <ThemeProvider attribute="class">
+        <ThemeProvider {...({ attribute: "class", enableSystem: true } as any)}>
           <header className="container flex max-w-4xl flex-row items-center justify-between gap-4 p-3 sm:p-4">
             <nav className="flex flex-row items-center gap-2 sm:gap-3">
               {links.map((link) => (

@@ -9,7 +9,20 @@ import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ViewTransition } from "react";
+// ViewTransition is not available in React 19, using custom implementation
+const ViewTransition = ({ 
+  name, 
+  children 
+}: { 
+  name: string; 
+  children: React.ReactNode 
+}) => {
+  return (
+    <div style={{ viewTransitionName: name }}>
+      {children}
+    </div>
+  );
+};
 import Comments from "./comments";
 
 dayjs.extend(advancedFormat);

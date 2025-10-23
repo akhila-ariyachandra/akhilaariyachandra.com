@@ -4,14 +4,14 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   experimental: {
     viewTransition: true,
-    turbopackFileSystemCacheForDev: true,
-
-    cacheComponents: true,
-    turbopackFileSystemCacheForBuild: true,
   },
+  cacheComponents: true,
   reactStrictMode: true,
   reactCompiler: true,
   typedRoutes: true,
+  webpack: (config, { isServer }) => {
+    return config;
+  },
   images: {
     formats: ["image/avif", "image/webp"],
   },

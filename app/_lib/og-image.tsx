@@ -19,14 +19,14 @@ export const getOgImage = (
 ) => {
   return new ImageResponse(
     (
-      <div tw="relative flex h-full w-full flex-col border-8 border-green-600 bg-zinc-900 p-8">
-        <h1 tw="my-0 text-8xl text-zinc-100">{title}</h1>
+      <div {...({ tw: "relative flex h-full w-full flex-col border-8 border-green-600 bg-zinc-900 p-8" } as any)}>
+        <h1 {...({ tw: "my-0 text-8xl text-zinc-100" } as any)}>{title}</h1>
 
-        <h2 tw="my-2 text-6xl text-zinc-300">{subtitle}</h2>
+        <h2 {...({ tw: "my-2 text-6xl text-zinc-300" } as any)}>{subtitle}</h2>
 
-        {!!content && <h3 tw="my-0 text-4xl text-zinc-400">{content}</h3>}
+        {!!content && <h3 {...({ tw: "my-0 text-4xl text-zinc-400" } as any)}>{content}</h3>}
 
-        <p tw="mt-auto mb-0 text-3xl text-green-500">akhilaariyachandra.com</p>
+        <p {...({ tw: "mt-auto mb-0 text-3xl text-green-500" } as any)}>akhilaariyachandra.com</p>
 
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -34,7 +34,7 @@ export const getOgImage = (
           alt="Akhila Ariyachandra"
           width={240}
           height={240}
-          tw="absolute right-8 bottom-8 rounded-xl"
+          {...({ tw: "absolute right-8 bottom-8 rounded-xl" } as any)}
         />
       </div>
     ),
