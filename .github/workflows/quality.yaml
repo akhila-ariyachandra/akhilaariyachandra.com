@@ -25,11 +25,11 @@ jobs:
           cache: "pnpm"
       - name: Install dependencies
         run: pnpm install
-      - name: Build content
-        run: pnpm run content:build
       - name: Generate ORM client
         run: pnpm run db:generate
       - name: Check formatting
         run: pnpm run prettier:check
+      - name: Type checking
+        run: pnpm run typecheck
       - name: Linting
         run: pnpm run lint
