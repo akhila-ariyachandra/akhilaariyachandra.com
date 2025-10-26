@@ -7,7 +7,6 @@ const ErrorPage = ({
   error,
 }: {
   error: Error & { digest?: string };
-  // eslint-disable-next-line @eslint-react/no-unused-props
   reset: () => void;
 }) => {
   useEffect(() => {

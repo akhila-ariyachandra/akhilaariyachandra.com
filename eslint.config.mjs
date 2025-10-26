@@ -1,16 +1,10 @@
 // @ts-check
 import eslintReact from "@eslint-react/eslint-plugin";
-import { FlatCompat } from "@eslint/eslintrc";
 import eslint from "@eslint/js";
+import nextVitals from "eslint-config-next/core-web-vitals";
 import eslintConfigPrettier from "eslint-config-prettier";
-import reactCompiler from "eslint-plugin-react-compiler";
 import { defineConfig } from "eslint/config";
 import tseslint from "typescript-eslint";
-
-const compat = new FlatCompat({
-  // import.meta.dirname is available after Node.js v20.11.0
-  baseDirectory: import.meta.dirname,
-});
 
 export default defineConfig(
   eslint.configs.recommended,
@@ -35,10 +29,7 @@ export default defineConfig(
       "@typescript-eslint/require-await": "off",
     },
   },
-  compat.config({
-    extends: ["next/core-web-vitals"],
-  }),
-  reactCompiler.configs.recommended,
+  nextVitals,
   {
     extends: [eslintReact.configs["recommended-type-checked"]],
     rules: {

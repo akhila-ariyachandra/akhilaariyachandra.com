@@ -5,13 +5,11 @@ const nextConfig: NextConfig = {
   experimental: {
     viewTransition: true,
     turbopackFileSystemCacheForDev: true,
-
-    cacheComponents: true,
-    turbopackFileSystemCacheForBuild: true,
   },
   reactStrictMode: true,
   reactCompiler: true,
   typedRoutes: true,
+  cacheComponents: true,
   images: {
     formats: ["image/avif", "image/webp"],
   },
