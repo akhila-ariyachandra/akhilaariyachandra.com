@@ -21,14 +21,8 @@ export const generateStaticParams = () => {
   }));
 };
 
-type BlogPostPageProps = {
-  params: Promise<{
-    slug: string;
-  }>;
-};
-
 export const generateMetadata = async (
-  props: BlogPostPageProps,
+  props: PageProps<"/blog/[slug]">,
 ): Promise<Metadata> => {
   const params = await props.params;
   const post = allPosts.find((post) => post._meta.path === params.slug);
@@ -57,7 +51,7 @@ export const generateMetadata = async (
   };
 };
 
-const BlogPostPage = async (props: BlogPostPageProps) => {
+const BlogPostPage = async (props: PageProps<"/blog/[slug]">) => {
   const params = await props.params;
   const post = allPosts.find((post) => post._meta.path === params.slug);
 

@@ -42,3 +42,5 @@ next-env.d.ts
 /generated/prisma
 
 next-env.d.ts
+
+.eslintcache
