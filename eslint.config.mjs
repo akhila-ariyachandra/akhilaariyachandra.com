@@ -1,6 +1,7 @@
 // @ts-check
 import eslintReact from "@eslint-react/eslint-plugin";
 import eslint from "@eslint/js";
+import stylistic from "@stylistic/eslint-plugin";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import eslintConfigPrettier from "eslint-config-prettier";
 import { defineConfig } from "eslint/config";
@@ -27,6 +28,20 @@ export default defineConfig(
         },
       ],
       "@typescript-eslint/require-await": "off",
+    },
+  },
+  {
+    plugins: {
+      "@stylistic": stylistic,
+    },
+    rules: {
+      "@stylistic/padding-line-between-statements": [
+        "error",
+        { blankLine: "always", prev: "*", next: "return" },
+        { blankLine: "always", prev: "directive", next: "*" },
+        { blankLine: "never", prev: "directive", next: "directive" },
+      ],
+      "@stylistic/spaced-comment": "error",
     },
   },
   nextVitals,

@@ -29,5 +29,6 @@
   ],
   "[mdx]": {
     "editor.wordWrap": "on"
-  }
+  },
+  "eslint.lintTask.options": ". --max-warnings=0 --cache --cache-location .cache/eslint --concurrency=auto"
 }
