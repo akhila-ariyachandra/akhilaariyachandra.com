@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@source './**/*.{js,ts,jsx,tsx,mdx,css}';
+@source "./**/*.{js,ts,jsx,tsx,mdx,css}";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -36,4 +36,4 @@
   }
 }
 
-@plugin '@tailwindcss/typography';
+@plugin "@tailwindcss/typography";
