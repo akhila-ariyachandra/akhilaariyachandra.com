@@ -11,7 +11,7 @@
     "dev": "next dev --turbopack",
     "build": "prisma generate --no-engine && next build --turbopack",
     "start": "next start",
-    "lint": "eslint app --max-warnings=0 --cache --cache-location .cache/eslint --concurrency=auto",
+    "lint": "eslint app --max-warnings=0 --cache --concurrency=auto",
     "typecheck": "next typegen && tsc --noEmit",
     "db:generate": "prisma generate --no-engine",
     "db:migrate": "prisma migrate dev",
