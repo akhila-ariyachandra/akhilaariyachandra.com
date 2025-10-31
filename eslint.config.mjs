@@ -4,11 +4,18 @@ import eslint from "@eslint/js";
 import stylistic from "@stylistic/eslint-plugin";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import eslintConfigPrettier from "eslint-config-prettier";
+import importPlugin from "eslint-plugin-import";
 import { defineConfig } from "eslint/config";
 import tseslint from "typescript-eslint";
 
 export default defineConfig(
   eslint.configs.recommended,
+  {
+    rules: {
+      curly: ["error", "all"],
+      "no-console": "error",
+    },
+  },
   tseslint.configs.strictTypeChecked,
   tseslint.configs.stylisticTypeChecked,
   {
@@ -31,7 +38,12 @@ export default defineConfig(
     },
   },
   {
+    files: ["**/*.{js,mjs}"],
+    extends: [tseslint.configs.disableTypeChecked],
+  },
+  {
     plugins: {
+      // @ts-expect-error - @stylistic/eslint-plugin has incompatible configs type structure
       "@stylistic": stylistic,
     },
     rules: {
@@ -40,8 +52,17 @@ export default defineConfig(
         { blankLine: "always", prev: "*", next: "return" },
         { blankLine: "always", prev: "directive", next: "*" },
         { blankLine: "never", prev: "directive", next: "directive" },
+        { blankLine: "never", prev: "import", next: "import" },
       ],
       "@stylistic/spaced-comment": "error",
+    },
+  },
+  {
+    plugins: {
+      import: importPlugin,
+    },
+    rules: {
+      "import/newline-after-import": "error",
     },
   },
   nextVitals,
@@ -50,6 +71,10 @@ export default defineConfig(
     rules: {
       "@eslint-react/hooks-extra/no-direct-set-state-in-use-effect": "off",
     },
+  },
+  {
+    files: ["**/*.{js,mjs}"],
+    extends: [eslintReact.configs["disable-type-checked"]],
   },
   eslintConfigPrettier,
 );

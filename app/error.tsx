@@ -1,19 +1,12 @@
 "use client"; // Error components must be Client Components
 
 import Title from "@/_components/title";
-import { useEffect } from "react";
 
-const ErrorPage = ({
-  error,
-}: {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const ErrorPage = (props: {
   error: Error & { digest?: string };
   reset: () => void;
 }) => {
-  useEffect(() => {
-    // Log the error to an error reporting service
-    console.error(error);
-  }, [error]);
-
   return (
     <div>
       <Title>Error</Title>
