@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -26,15 +22,9 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./app/*"
-      ],
-      "@/public/*": [
-        "./public/*"
-      ],
-      "content-collections": [
-        "./.content-collections/generated"
-      ]
+      "@/*": ["./app/*"],
+      "@/public/*": ["./public/*"],
+      "content-collections": ["./.content-collections/generated"]
     }
   },
   "include": [
@@ -43,10 +33,7 @@
     ".next/types/**/*.ts",
     "next-env.d.ts",
     "**/*.mts",
-    ".next\\dev/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
