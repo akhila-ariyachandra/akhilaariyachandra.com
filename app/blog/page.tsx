@@ -1,4 +1,5 @@
 import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
+import Subtitle from "@/_components/subtitle";
 import Title from "@/_components/title";
 import Views from "@/_components/views";
 import { allPosts } from "content-collections";
@@ -28,6 +29,16 @@ const BlogPage = () => {
   return (
     <>
       <Title>Blog</Title>
+
+      <Subtitle transitionName="blog-author">
+        By{" "}
+        <Link
+          href="/"
+          className="text-accent dark:text-accent-dark hover:underline"
+        >
+          Akhila Ariyachandra
+        </Link>
+      </Subtitle>
 
       <ul className="space-y-2 sm:space-y-3">
         {allPosts

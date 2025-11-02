@@ -19,7 +19,7 @@ export const getOgImage = (
 ) => {
   return new ImageResponse(
     (
-      <div tw="relative flex h-full w-full flex-col border-8 border-green-600 bg-zinc-900 p-8">
+      <div tw="relative flex h-full w-full flex-col bg-zinc-900 p-8">
         <h1 tw="my-0 text-8xl text-zinc-100">{title}</h1>
 
         <h2 tw="my-2 text-6xl text-zinc-300">{subtitle}</h2>
