@@ -11,7 +11,11 @@ export const contentType = "image/png";
 
 // Image generation
 const Image = () => {
-  return getOgImage("Personal Blog", "Akhila Ariyachandra");
+  return getOgImage({
+    title: "Personal Blog",
+    subtitle: "Akhila Ariyachandra",
+    pathname: "/blog",
+  });
 };
 
 export default Image;

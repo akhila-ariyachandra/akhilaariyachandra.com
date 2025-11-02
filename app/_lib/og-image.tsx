@@ -12,11 +12,17 @@ export const getBaseURL = () => {
   return "http://localhost:3000";
 };
 
-export const getOgImage = (
-  title: string,
-  subtitle: string,
-  content?: string,
-) => {
+export const getOgImage = ({
+  title,
+  subtitle,
+  pathname,
+  content,
+}: {
+  title: string;
+  subtitle: string;
+  pathname: string;
+  content?: string;
+}) => {
   return new ImageResponse(
     (
       <div tw="relative flex h-full w-full flex-col bg-zinc-900 p-8">
@@ -26,16 +32,9 @@ export const getOgImage = (
 
         {!!content && <h3 tw="my-0 text-4xl text-zinc-400">{content}</h3>}
 
-        <p tw="mt-auto mb-0 text-3xl text-green-500">akhilaariyachandra.com</p>
-
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={`${getBaseURL()}/profile-pic.jpg`}
-          alt="Akhila Ariyachandra"
-          width={240}
-          height={240}
-          tw="absolute right-8 bottom-8 rounded-xl"
-        />
+        <p tw="mt-auto mb-0 text-3xl text-green-500">
+          akhilaariyachandra.com{pathname}
+        </p>
       </div>
     ),
     {

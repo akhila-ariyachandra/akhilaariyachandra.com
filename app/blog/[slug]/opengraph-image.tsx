@@ -24,11 +24,12 @@ const Image = async (props: PageProps<"/blog/[slug]">) => {
     notFound();
   }
 
-  return getOgImage(
-    post.title,
-    "Akhila Ariyachandra",
-    dayjs(post.posted).format("Do MMMM YYYY"),
-  );
+  return getOgImage({
+    title: post.title,
+    subtitle: "Akhila Ariyachandra",
+    pathname: `/blog/${params.slug}`,
+    content: dayjs(post.posted).format("Do MMMM YYYY"),
+  });
 };
 
 export default Image;
