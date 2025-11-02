@@ -1,8 +1,5 @@
 import { getOgImage } from "@/_lib/og-image";
 
-// Route segment config
-export const runtime = "edge";
-
 // Image metadata
 export const alt = "Akhila Ariyachandra's Blog";
 export const size = {

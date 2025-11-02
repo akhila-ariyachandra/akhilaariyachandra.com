@@ -2,11 +2,8 @@
 
 @source "./**/*.{js,ts,jsx,tsx,mdx,css}";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 @theme {
   --font-display: var(--font-geist-mono);
-  --font-content: var(--font-geist);
 }
 
 @theme inline {
