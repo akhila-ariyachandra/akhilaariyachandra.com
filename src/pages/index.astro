@@ -1,0 +1,63 @@
+---
+---
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import profilePic from "/profile-pic.jpg";
+import BreadcrumbStructuredData from "../components/structured-data/breadcrumb";
+import ProfileStructuredData from "../components/structured-data/profile";
+import { cn } from "../lib/helpers";
+
+const aboutEntries = await getCollection("about");
+const about = aboutEntries[0];
+
+if (!about) {
+  throw new Error("About content not found");
+}
+
+const { Content } = await about.render();
+---
+---
+
+<Layout title="Akhila Ariyachandra" description="Web Developer">
+  <Image
+    src={profilePic}
+    width={240}
+    height={240}
+    alt="A picture of Akhila Ariyachandra"
+    class={cn(
+      "mb-4 w-44 rounded-sm sm:float-left sm:mr-5 sm:mb-5 sm:w-60 sm:rounded-lg",
+    )}
+    loading="eager"
+  />
+
+  <h1
+    class={cn(
+      "font-display mb-4 text-3xl tracking-tighter text-zinc-600 sm:mb-5 sm:text-4xl dark:text-zinc-300",
+    )}
+  >
+    Hi, I&apos;m{" "}
+    <span class={cn("text-accent dark:text-accent-dark font-black")}>
+      Akhila Ariyachandra
+    </span>
+  </h1>
+
+  <Content
+    components={{
+      Callout: (await import("../components/mdx-component/callout")).default,
+      PostImage: (await import("../components/mdx-component/post-image"))
+        .default,
+    }}
+    class={cn(
+      "prose prose-sm prose-zinc sm:prose-base dark:prose-invert max-w-none",
+      "prose-headings:font-display prose-headings:tracking-tighter",
+      "prose-a:font-medium prose-a:text-accent prose-a:no-underline prose-a:hover:underline dark:prose-a:text-accent-dark",
+    )}
+  />
+
+  <ProfileStructuredData client:only="react" />
+  <BreadcrumbStructuredData
+    items={[{ name: "Home", route: "/" }]}
+    client:only="react"
+  />
+</Layout>

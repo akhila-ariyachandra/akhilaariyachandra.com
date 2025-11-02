@@ -1,0 +1,94 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import dayjs from "dayjs";
+import advancedFormat from "dayjs/plugin/advancedFormat";
+import Title from "../../components/title";
+import Views from "../../components/Views";
+import Comments from "../../components/Comments";
+import BlogPostingStructuredData from "../../components/structured-data/blog-posting";
+import BreadcrumbStructuredData from "../../components/structured-data/breadcrumb";
+import { PRODUCTION_URL } from "../../lib/constants";
+import { cn } from "../../lib/helpers";
+
+dayjs.extend(advancedFormat);
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+type Props = {
+  post: CollectionEntry<"posts">;
+};
+
+const { post } = Astro.props;
+
+const { Content } = await post.render();
+---
+
+<Layout
+  title={post.data.title}
+  description={post.data.description}
+>
+  <Title transitionName={`post-${post.slug}`} client:only="react">
+    {post.data.title}
+  </Title>
+
+  <div
+    class={cn("mb-4 text-sm text-zinc-600 sm:mb-5 sm:text-base dark:text-zinc-400")}
+  >
+    <time dateTime={dayjs(post.data.posted).toISOString()}>
+      {`${dayjs(post.data.posted).format("Do MMMM YYYY")}${
+        post.data.updated
+          ? ` (Updated on ${dayjs(post.data.updated).format("Do MMMM YYYY")})`
+          : ""
+      }`}
+    </time>
+
+    <span class={cn("font-light text-zinc-500 dark:text-zinc-400")}>
+      {" - "}
+    </span>
+
+    <Views slug={post.slug} increment client:only="react" />
+  </div>
+
+  <article
+    class={cn(
+      "prose prose-sm prose-zinc sm:prose-base dark:prose-invert max-w-none mb-16",
+      "prose-headings:font-display prose-headings:tracking-tighter",
+      "prose-a:font-medium prose-a:text-accent prose-a:no-underline prose-a:hover:underline dark:prose-a:text-accent-dark",
+    )}
+  >
+    <Content
+      components={{
+        Callout: (await import("../../components/mdx-component/callout"))
+          .default,
+        PostImage: (
+          await import("../../components/mdx-component/post-image")
+        ).default,
+      }}
+    />
+  </article>
+
+  <Comments client:only="react" />
+
+  <BreadcrumbStructuredData
+    items={[
+      { name: "Home", route: "/" },
+      { name: "Blog", route: "/blog" },
+      { name: post.data.title, route: `/blog/${post.slug}` },
+    ]}
+    client:only="react"
+  />
+  <BlogPostingStructuredData
+    title={post.data.title}
+    description={post.data.description}
+    posted={post.data.posted}
+    updated={post.data.updated}
+    client:only="react"
+  />
+</Layout>

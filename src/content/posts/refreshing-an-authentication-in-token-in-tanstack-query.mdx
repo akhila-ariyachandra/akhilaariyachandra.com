@@ -1,0 +1,340 @@
+---
+title: "Refreshing an authentication token in TanStack Query"
+description: "Setup TanStack Query to automatically refresh the authentication token when it expires by running the refresh token flow on 400 responses"
+posted: 2023-12-08
+---
+
+Recently while looking into a solution of incrementally migrating a legacy CRA (Create React App) codebase to a newer one with Next.js, I ran into a problem on how to refresh the authentication token (sent with each request for authentication) with the refresh token. Almost all the articles I looked into were about solving it using [Axios](https://axios-http.com/) [Interceptors](https://axios-http.com/docs/interceptors). There were a couple of issues for me with this approach.
+
+1. The request to refresh the authentication token could be made multiple times simultaneously as each request will have no context on whether other requests are already making the call to refresh the token. (In the legacy codebase I was working with, the refresh token request was being made around 6-10 times at once when reopening the site.)
+2. I was more conservative on adding new dependencies to avoid increasing [bundle size](https://bundlejs.com/?q=axios) too much.
+3. Next.js seems to be recommending the native [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) with the Next.js specific extensions for [caching and revalidating requests](https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating).
+4. The new codebase was setup to use [TanStack Query](https://tanstack.com/query/latest) (FKA React Query) to manage server state from the browser so it made more sense to let it handle the token refresh rather than the HTTP client itself.
+
+After trying a couple of methods, I settled on one using the `onError` option in TanStack Query's [`QueryCache`](https://tanstack.com/query/latest/docs/react/reference/QueryCache) and in this post I'll show you what I did.
+
+## A detour for ky
+
+<Callout type="info">
+  Skip this section if you are not using
+  [`ky`](https://github.com/sindresorhus/ky) as your HTTP client.
+</Callout>
+
+After learning about the [`ky`](https://github.com/sindresorhus/ky) library earlier this year I've been using it as my library of choice to make network request. It is only a thin wrapper over the Fetch API and gives a couple of useful features such as throwing errors for 4xx and 5xx status codes, having helpers such as `.post()`. and being able to define the type for the `json()` function such as `json<{token: string}>()`;
+
+TanStack Query defines the `error` as type [`Error`](https://tanstack.com/query/latest/docs/react/guides/migrating-to-v5#typescript-error-is-now-the-default-type-for-errors-instead-of-unknown) by default, so if you're using TypeScript like I am, you could be losing on the fields of the error that `ky` throws, [`HTTPError`](https://github.com/sindresorhus/ky#httperror), such as the [`request`](https://developer.mozilla.org/en-US/docs/Web/API/Request) and [`response`](https://developer.mozilla.org/en-US/docs/Web/API/Response) fields. But we can easily set the error type in TanStack Query to `HTTPError` using **module augmentation** (taken from [TkDodo's excellent blog](https://tkdodo.eu/blog/react-query-and-type-script)).
+
+```typescript title="global-error-registration.d.ts"
+import type { HTTPError } from "ky";
+
+declare module "@tanstack/react-query" {
+  interface Register {
+    defaultError: HTTPError;
+  }
+}
+```
+
+Now all error objects you access in TanStack Query will be of type `HTTPError` instead of `Error`.
+
+## Setting up
+
+<Callout type="info">
+  I'll be setting up as I did it in my Next.js application but the principle of
+  using the `QueryCache` should work for any framework.
+</Callout>
+
+First we can start by setting up a `QueryClient` and the `QueryClientProvider`.
+
+```tsx title="Providers.tsx"
+"use client";
+
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { useState, type ReactNode } from "react";
+
+type ProvidersProps = {
+  children: ReactNode;
+};
+
+const Providers = ({ children }: ProvidersProps) => {
+  const [queryClient] = useState(() => new QueryClient());
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      {children}
+
+      <ReactQueryDevtools />
+    </QueryClientProvider>
+  );
+};
+
+export default Providers;
+```
+
+Next get your refresh token, in my case it was made accessible through a custom hook.
+
+```tsx title="Providers.tsx" {3,13}
+"use client";
+
+import useTokens from "@/hooks/useTokens.hook";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { useState, type ReactNode } from "react";
+
+type ProvidersProps = {
+  children: ReactNode;
+};
+
+const Providers = ({ children }: ProvidersProps) => {
+  const { refreshToken } = useTokens();
+
+  const [queryClient] = useState(() => new QueryClient());
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      {children}
+
+      <ReactQueryDevtools />
+    </QueryClientProvider>
+  );
+};
+
+export default Providers;
+```
+
+After that we can write the function to refresh the token. Along with it, we need to make sure that only one such request is made. For that, we can use a simple state flag.
+
+```tsx title="Providers.tsx" {6,7,15,17,20-42}
+"use client";
+
+import useTokens from "@/hooks/useTokens.hook";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import ky from "ky";
+import { useRouter } from "next/navigation";
+import { useState, type ReactNode } from "react";
+
+type ProvidersProps = {
+  children: ReactNode;
+};
+
+const Providers = ({ children }: ProvidersProps) => {
+  const router = useRouter();
+
+  const { refreshToken, setAuthToken } = useTokens();
+  const [refreshingToken, setRefreshingToken] = useState(false);
+
+  const refreshAuthToken = async () => {
+    if (!refreshingToken && refreshToken) {
+      try {
+        setRefreshingToken(true);
+
+        const response = await ky
+          .post("https://your-api/refresh-token", {
+            headers: {
+              Authorization: `Bearer ${refreshToken}`,
+              "Content-Type": "application/json",
+            },
+          })
+          .json<{ token: string }>();
+
+        setAuthToken(response.token);
+      } catch {
+        // If refreshing token fails, redirect back to the home page
+        router.replace("/");
+      } finally {
+        setRefreshingToken(false);
+      }
+    }
+  };
+
+  const [queryClient] = useState(() => new QueryClient());
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      {children}
+
+      <ReactQueryDevtools />
+    </QueryClientProvider>
+  );
+};
+
+export default Providers;
+```
+
+I have also set the function to redirect the user to the home page if the call to refresh the token fails.
+
+Once we have defined the function to refresh the token, we can pass it to the `onError` field of the `QueryCache`. I set the function to be invoked only for 400 and 401 HTTP status codes.
+
+```tsx title="Providers.tsx" {5,50-61}
+"use client";
+
+import useTokens from "@/hooks/useTokens.hook";
+import {
+  QueryCache,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import ky from "ky";
+import { useRouter } from "next/navigation";
+import { useState, type ReactNode } from "react";
+
+type ProvidersProps = {
+  children: ReactNode;
+};
+
+const Providers = ({ children }: ProvidersProps) => {
+  const router = useRouter();
+
+  const { refreshToken, setAuthToken } = useTokens();
+  const [refreshingToken, setRefreshingToken] = useState(false);
+
+  const refreshAuthToken = async () => {
+    if (!refreshingToken && refreshToken) {
+      try {
+        setRefreshingToken(true);
+
+        const response = await ky
+          .post("https://your-api/refresh-token", {
+            headers: {
+              Authorization: `Bearer ${refreshToken}`,
+              "Content-Type": "application/json",
+            },
+          })
+          .json<{ token: string }>();
+
+        setAuthToken(response.token);
+      } catch {
+        // If refreshing token fails, redirect back to the home page
+        router.replace("/");
+      } finally {
+        setRefreshingToken(false);
+      }
+    }
+  };
+
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        queryCache: new QueryCache({
+          onError: (error) => {
+            if (
+              error?.response?.status === 400 ||
+              error?.response?.status === 401
+            ) {
+              refreshAuthToken();
+            }
+          },
+        }),
+      }),
+  );
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      {children}
+
+      <ReactQueryDevtools />
+    </QueryClientProvider>
+  );
+};
+
+export default Providers;
+```
+
+Finally we can set the number of retries for the queries for responses with HTTP status to 0, so that the refresh token flow will be made immediately after a 400 or 401 HTTP status response.
+
+```tsx title="Providers.tsx" {51-67}
+"use client";
+
+import useTokens from "@/hooks/useTokens.hook";
+import {
+  QueryCache,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import ky from "ky";
+import { useRouter } from "next/navigation";
+import { useState, type ReactNode } from "react";
+
+type ProvidersProps = {
+  children: ReactNode;
+};
+
+const Providers = ({ children }: ProvidersProps) => {
+  const router = useRouter();
+
+  const { refreshToken, setAuthToken } = useTokens();
+  const [refreshingToken, setRefreshingToken] = useState(false);
+
+  const refreshAuthToken = async () => {
+    if (!refreshingToken && refreshToken) {
+      try {
+        setRefreshingToken(true);
+
+        const response = await ky
+          .post("https://your-api/refresh-token", {
+            headers: {
+              Authorization: `Bearer ${refreshToken}`,
+              "Content-Type": "application/json",
+            },
+          })
+          .json<{ token: string }>();
+
+        setAuthToken(response.token);
+      } catch {
+        // If refreshing token fails, redirect back to the home page
+        router.replace("/");
+      } finally {
+        setRefreshingToken(false);
+      }
+    }
+  };
+
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            staleTime: 30000, // 30 seconds
+            retry: (failureCount, error) => {
+              // Don't retry for certain error responses
+              if (
+                error?.response?.status === 400 ||
+                error?.response?.status === 401
+              ) {
+                return false;
+              }
+
+              // Retry others just once
+              return failureCount <= 1;
+            },
+          },
+        },
+        queryCache: new QueryCache({
+          onError: (error) => {
+            if (
+              error?.response?.status === 400 ||
+              error?.response?.status === 401
+            ) {
+              refreshAuthToken();
+            }
+          },
+        }),
+      }),
+  );
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      {children}
+
+      <ReactQueryDevtools />
+    </QueryClientProvider>
+  );
+};
+
+export default Providers;
+```
+
+And that's it. TanStack Query should automatically make the request to refresh the authentication token if any of the other requests fail with the status code 400 or 401, and redirect the user back to the home page if the request to refresh the token fails.

@@ -1,0 +1,47 @@
+@reference "./globals.css";
+
+figure[data-rehype-pretty-code-figure] {
+  margin-top: 1.6666667em;
+  margin-bottom: 1.6666667em;
+
+  @media (width >= 40rem) {
+    margin-top: 1.7142857em;
+    margin-bottom: 1.7142857em;
+  }
+}
+
+/* Remove vertical margins in code blocks from Tailwind CSS Typography*/
+figure[data-rehype-pretty-code-figure] > pre {
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+figure[data-rehype-pretty-code-figure] {
+  @apply overflow-hidden rounded sm:rounded-md;
+  background-color: rgb(15, 17, 26);
+}
+
+figure[data-rehype-pretty-code-figure] pre {
+  @apply overflow-x-auto text-sm sm:text-base;
+}
+
+figcaption[data-rehype-pretty-code-title] {
+  @apply !my-0 bg-neutral-900 px-3 py-2 text-xs leading-none font-medium text-zinc-300 sm:px-4 sm:py-3 sm:text-sm sm:leading-none;
+}
+
+figure[data-rehype-pretty-code-figure] span[data-line] {
+  @apply border-l-4 border-transparent;
+  padding-left: 1em;
+  padding-right: 1em;
+
+  @media (width >= 40rem) {
+    padding-left: 1.1428571em;
+    padding-right: 1.1428571em;
+  }
+}
+
+figure[data-rehype-pretty-code-figure] span[data-line][data-highlighted-line] {
+  @apply border-l-accent-dark bg-zinc-500/10;
+}

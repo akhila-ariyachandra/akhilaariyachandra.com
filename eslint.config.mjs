@@ -2,7 +2,6 @@
 import eslintReact from "@eslint-react/eslint-plugin";
 import eslint from "@eslint/js";
 import stylistic from "@stylistic/eslint-plugin";
-import nextVitals from "eslint-config-next/core-web-vitals";
 import eslintConfigPrettier from "eslint-config-prettier";
 import importPlugin from "eslint-plugin-import";
 import { defineConfig } from "eslint/config";
@@ -65,7 +64,6 @@ export default defineConfig(
       "import/newline-after-import": "error",
     },
   },
-  nextVitals,
   {
     extends: [eslintReact.configs["recommended-type-checked"]],
     rules: {

@@ -1,0 +1,77 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import dayjs from "dayjs";
+import advancedFormat from "dayjs/plugin/advancedFormat";
+import Title from "../../components/title";
+import Views from "../../components/Views";
+import BreadcrumbStructuredData from "../../components/structured-data/breadcrumb";
+import { cn } from "../../lib/helpers";
+
+dayjs.extend(advancedFormat);
+
+const allPosts = await getCollection("posts");
+const sortedPosts = allPosts.sort((a, b) =>
+  dayjs(a.data.posted).isBefore(b.data.posted) ? 1 : -1
+);
+---
+
+<Layout title="Blog" description="My personal blog">
+  <Title client:only="react">Blog</Title>
+
+  <ul class={cn("space-y-2 sm:space-y-3")}>
+    {sortedPosts.map((post) => (
+      <li key={post.id}>
+        <a
+          href={`/blog/${post.slug}`}
+          class={cn(
+            "font-display text-accent dark:text-accent-dark text-xl font-medium tracking-tighter text-pretty hover:underline sm:text-2xl",
+          )}
+        >
+          {post.data.title}
+        </a>
+
+        <div
+          class={cn("text-sm text-zinc-600 sm:text-base dark:text-zinc-400")}
+        >
+          <time dateTime={dayjs(post.data.posted).toISOString()}>
+            {`${dayjs(post.data.posted).format("Do MMMM YYYY")}${
+              post.data.updated
+                ? ` (Updated on ${dayjs(post.data.updated).format(
+                    "Do MMMM YYYY",
+                  )})`
+                : ""
+            }`}
+          </time>
+
+          <span class={cn("font-light text-zinc-500 dark:text-zinc-400")}>
+            {" - "}
+          </span>
+
+          <Views slug={post.slug} client:only="react" />
+        </div>
+      </li>
+    ))}
+  </ul>
+
+  <p class={cn("mt-6 text-lg text-zinc-600 sm:text-xl dark:text-zinc-400")}>
+    View my old blog posts{" "}
+    <a
+      href="https://archive.akhilaariyachandra.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      class={cn("text-accent dark:text-accent-dark hover:underline")}
+    >
+      here
+    </a>
+    .
+  </p>
+
+  <BreadcrumbStructuredData
+    items={[
+      { name: "Home", route: "/" },
+      { name: "Blog", route: "/blog" },
+    ]}
+    client:only="react"
+  />
+</Layout>

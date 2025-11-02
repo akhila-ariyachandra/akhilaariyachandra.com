@@ -1,0 +1,121 @@
+---
+import { cn } from "../lib/helpers";
+import NavLink from "../components/NavLink";
+import ThemeSwitcher from "../components/ThemeSwitcher";
+import ThemeProvider from "../components/ThemeProvider";
+import Analytics from "../components/Analytics";
+import SpeedInsights from "../components/SpeedInsights";
+import "../styles/globals.css";
+import "../styles/syntax-highlighting.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Akhila Ariyachandra",
+  description = "Web Developer",
+} = Astro.props;
+
+const PRODUCTION_URL = import.meta.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${import.meta.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : "https://localhost:4321";
+
+const canonicalURL = new URL(Astro.url.pathname, PRODUCTION_URL);
+---
+
+<!doctype html>
+<html
+  lang="en"
+  class={cn("h-full scroll-smooth")}
+  data-scroll-behavior="smooth"
+  is:raw
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="description" content={description} />
+    <meta name="google-site-verification" content="SCtCAdftAAE0UptAZAoIYsHnG7xbuN_ofCaHgfDyjn4" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL.toString()} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@heshan_1010" />
+    <link rel="canonical" href={canonicalURL.toString()} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title === "Akhila Ariyachandra" ? title : `${title} | Akhila Ariyachandra`}</title>
+    <slot name="head" />
+  </head>
+  <body
+    class={cn(
+      "font-content flex h-full flex-col overflow-y-scroll bg-white antialiased dark:bg-zinc-950",
+      "transition-colors duration-200 ease-out",
+    )}
+  >
+    <ThemeProvider client:only="react">
+      <header class="container flex max-w-4xl flex-row items-center justify-between gap-4 p-3 sm:p-4">
+        <nav class="flex flex-row items-center gap-2 sm:gap-3">
+          <NavLink
+            href="/"
+            className={cn(
+              "font-medium text-zinc-700 hover:underline sm:text-lg dark:text-zinc-300",
+              "data-active:text-accent dark:data-active:text-accent-dark data-active:font-medium data-active:underline data-active:underline-offset-2 data-active:hover:underline-offset-1 sm:data-active:text-lg",
+            )}
+            client:only="react"
+          >
+            Home
+          </NavLink>
+          <NavLink
+            href="/blog"
+            className={cn(
+              "font-medium text-zinc-700 hover:underline sm:text-lg dark:text-zinc-300",
+              "data-active:text-accent dark:data-active:text-accent-dark data-active:font-medium data-active:underline data-active:underline-offset-2 data-active:hover:underline-offset-1 sm:data-active:text-lg",
+            )}
+            client:only="react"
+          >
+            Blog
+          </NavLink>
+        </nav>
+
+        <ThemeSwitcher client:only="react" />
+      </header>
+
+      <main class="container max-w-4xl p-3 sm:p-4">
+        <slot />
+      </main>
+
+      <footer class="container mt-auto max-w-4xl p-3 text-sm text-zinc-700 sm:p-4 sm:text-base dark:text-zinc-300">
+        ? {new Date().getFullYear()},{" "}
+        <a
+          href="/"
+          class="text-accent dark:text-accent-dark font-medium hover:underline"
+        >
+          akhilaariyachandra.com
+        </a>
+      </footer>
+
+      <SpeedInsights client:only="react" />
+      <Analytics client:only="react" />
+    </ThemeProvider>
+  </body>
+</html>
+
+<script is:inline define:vars={{ PRODUCTION_URL }}>
+  // Apply theme before hydration to prevent flash
+  const theme = localStorage.getItem("theme") || "system";
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  if (
+    theme === "dark" ||
+    (theme === "system" && prefersDark)
+  ) {
+    document.documentElement.classList.add("dark");
+  }
+</script>
