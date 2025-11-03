@@ -8,8 +8,8 @@
   "private": true,
   "packageManager": "pnpm@10.20.0",
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "prisma generate --no-engine && next build --turbopack",
+    "dev": "next dev",
+    "build": "prisma generate --no-engine && next build",
     "start": "next start",
     "lint": "eslint app --max-warnings=0 --cache --concurrency=auto",
     "typecheck": "next typegen && tsc --noEmit",
