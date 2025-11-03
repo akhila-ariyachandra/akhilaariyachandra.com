@@ -8,6 +8,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import "./globals.css";
+import Header from "./header";
 import "./syntax-highlighting.css";
 
 const geistMono = Geist_Mono({
@@ -59,9 +60,9 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
           "transition-colors duration-200 ease-out",
         )}
       >
-        <main className="container max-w-4xl p-3 sm:my-40 sm:p-4">
-          {children}
-        </main>
+        <Header />
+
+        <main className="container max-w-4xl p-3 sm:p-4">{children}</main>
 
         <SpeedInsights />
         <Analytics />
