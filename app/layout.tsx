@@ -53,8 +53,6 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
       className={cn(geistMono.variable, "scroll-smooth")}
       data-scroll-behavior="smooth"
     >
-      <Header />
-
       <body
         className={cn(
           geist.className,
@@ -62,6 +60,8 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
           "transition-colors duration-200 ease-out",
         )}
       >
+        <Header />
+
         <main className="container max-w-4xl p-3 sm:p-4">{children}</main>
 
         <SpeedInsights />
