@@ -1,7 +1,6 @@
 import MDXComponent from "@/_components/mdx-component";
 import BlogPostingStructuredData from "@/_components/structured-data/blog-posting";
 import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
-import Subtitle from "@/_components/subtitle";
 import Title from "@/_components/title";
 import Views from "@/_components/views";
 import { PRODUCTION_URL } from "@/_lib/constants";
@@ -9,7 +8,6 @@ import { allPosts } from "content-collections";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ViewTransition } from "react";
 
@@ -63,16 +61,6 @@ const BlogPostPage = async (props: PageProps<"/blog/[slug]">) => {
   return (
     <>
       <Title transitionName={`post-${post._meta.path}`}>{post.title}</Title>
-
-      <Subtitle transitionName="blog-author">
-        By{" "}
-        <Link
-          href="/"
-          className="text-accent dark:text-accent-dark hover:underline"
-        >
-          Akhila Ariyachandra
-        </Link>
-      </Subtitle>
 
       <ViewTransition name={`post-details-${post._meta.path}`}>
         <div className="mb-4 text-sm text-zinc-600 sm:mb-5 sm:text-base dark:text-zinc-400">
