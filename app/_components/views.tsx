@@ -23,8 +23,8 @@ type ViewsProps = {
   increment?: boolean;
 };
 
-const Views = ({ slug, increment = false }: ViewsProps) => {
-  const views = getViews(slug);
+const Views = async ({ slug, increment = false }: ViewsProps) => {
+  const views = await getViews(slug);
 
   return (
     <>
