@@ -1,7 +1,9 @@
-import prisma from "@/_lib/prisma";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
-import { revalidatePath } from "next/cache";
+import { db } from "db";
+import { postsTable } from "db/schema";
+import { eq } from "drizzle-orm";
+import { cacheTag, revalidateTag } from "next/cache";
 import { headers } from "next/headers";
 import { after } from "next/server";
 import { Suspense } from "react";
@@ -9,10 +11,10 @@ import { Suspense } from "react";
 const getViews = async (slug: string) => {
   "use cache";
 
-  const result = await prisma.post.findFirst({
-    where: {
-      slug,
-    },
+  cacheTag(`views-${slug}`);
+
+  const result = await db.query.postsTable.findFirst({
+    where: eq(postsTable.slug, slug),
   });
 
   return result?.views ?? 0;
@@ -67,21 +69,26 @@ const ViewsIncrementor = async ({ slug, increment }: ViewsProps) => {
         return false;
       }
 
-      await prisma.post.upsert({
-        create: {
-          slug,
-        },
-        update: {
-          views: {
-            increment: 1,
-          },
-        },
-        where: {
-          slug,
-        },
+      // Check if record exists
+      const result = await db.query.postsTable.findFirst({
+        where: eq(postsTable.slug, slug),
       });
 
-      revalidatePath("/blog", "layout");
+      if (!result) {
+        await db.insert(postsTable).values({
+          slug,
+          views: 1,
+        });
+      } else {
+        await db
+          .update(postsTable)
+          .set({
+            views: result.views + 1,
+          })
+          .where(eq(postsTable.slug, slug));
+      }
+
+      revalidateTag(`views-${slug}`, "max");
     });
   }
 

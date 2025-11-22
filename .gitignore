@@ -39,8 +39,6 @@ next-env.d.ts
 
 .content-collections
 
-/generated/prisma
-
 next-env.d.ts
 
 .eslintcache

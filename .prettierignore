@@ -4,5 +4,4 @@ next-env.d.ts
 .eslint.json
 .vscode
 .content-collections
-prisma/migrations
 pnpm-lock.yaml

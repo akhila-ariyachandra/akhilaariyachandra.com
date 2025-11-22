@@ -23,6 +23,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./app/*"],
+      "@/db": ["./db"],
+      "@/db/*": ["./db/*"],
       "@/public/*": ["./public/*"],
       "content-collections": ["./.content-collections/generated"]
     }
