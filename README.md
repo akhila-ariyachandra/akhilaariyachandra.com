@@ -2,13 +2,13 @@
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-This site is built with [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), [Content Collections](https://www.content-collections.dev/), [Prisma Postgres](https://www.prisma.io/postgres), [Prisma ORM](https://www.prisma.io/orm), & [Vercel](https://vercel.com/home).
+This site is built with [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), [Content Collections](https://www.content-collections.dev/), [PostgreSQL](https://www.postgresql.org/), [Drizzle ORM](https://orm.drizzle.team/), & [Vercel](https://vercel.com/home).
 
 ## Environment Variables
 
 |              Name              | Description                                                                                          |
 | :----------------------------: | ---------------------------------------------------------------------------------------------------- |
-|         `DATABASE_URL`         | [Prisma Postgres](https://www.prisma.io/postgres) database URL                                       |
+|         `DATABASE_URL`         | [PostgreSQL](https://www.postgresql.org/) database URL                                               |
 |    `UPSTASH_REDIS_REST_URL`    | [Upstash](https://upstash.com/)                                                                      |
 |   `UPSTASH_REDIS_REST_TOKEN`   | [Upstash](https://upstash.com/)                                                                      |
 | `ENABLE_EXPERIMENTAL_COREPACK` | Set to `1` to enable [Corepack in Vercel](https://vercel.com/docs/builds/configure-a-build#corepack) |

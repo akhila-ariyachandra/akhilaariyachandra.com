@@ -2,9 +2,5 @@ module.exports = {
   organizeImportsSkipDestructiveCodeActions: true,
   tailwindAttributes: ["tw"],
   tailwindFunctions: ["cn"],
-  plugins: [
-    "prettier-plugin-organize-imports",
-    "prettier-plugin-tailwindcss",
-    "prettier-plugin-prisma",
-  ],
+  plugins: ["prettier-plugin-organize-imports", "prettier-plugin-tailwindcss"],
 };

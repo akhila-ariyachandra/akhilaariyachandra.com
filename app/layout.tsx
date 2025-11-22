@@ -1,5 +1,3 @@
-"use cache";
-
 import { PRODUCTION_URL } from "@/_lib/constants";
 import { cn } from "@/_lib/helpers";
 import { Analytics } from "@vercel/analytics/react";
