@@ -13,6 +13,7 @@ const Post = defineCollection({
     description: z.string().optional(),
     posted: z.string(),
     updated: z.string().optional(),
+    content: z.string(),
   }),
   transform: async (document, context) => {
     const mdx = await compileMDX(context, document, {
@@ -45,6 +46,7 @@ const NoBodyPost = defineCollection({
     description: z.string().max(140).optional(),
     posted: z.string(),
     updated: z.string().optional(),
+    content: z.string(),
   }),
 });
 
@@ -52,7 +54,9 @@ const About = defineCollection({
   name: "About",
   directory: "content",
   include: "about.mdx",
-  schema: z.object({}),
+  schema: z.object({
+    content: z.string(),
+  }),
   transform: async (document, context) => {
     const mdx = await compileMDX(context, document, {
       rehypePlugins: [
