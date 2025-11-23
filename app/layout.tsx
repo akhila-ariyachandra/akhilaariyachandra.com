@@ -3,6 +3,7 @@ import { cn } from "@/_lib/helpers";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
+import { cacheLife } from "next/cache";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -78,6 +79,8 @@ export default RootLayout;
 
 const Footer = async () => {
   "use cache";
+
+  cacheLife("days");
 
   return (
     <footer className="container max-w-4xl p-3 text-zinc-600 sm:p-4 dark:text-zinc-300">
