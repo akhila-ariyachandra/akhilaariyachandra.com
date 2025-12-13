@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   experimental: {
     viewTransition: true,
     turbopackFileSystemCacheForDev: true,
+    staticGenerationRetryCount: 2,
   },
   reactStrictMode: true,
   reactCompiler: true,
