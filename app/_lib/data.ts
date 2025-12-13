@@ -60,7 +60,7 @@ export const career: {
       end: "07/31/2023",
     },
     description: [
-      "Worked on a system an Australian client and service providers that allows them to book and vehicles for service",
+      "Worked on a system an Australian client that allows users to book vehicles for service and providers to manage their bookings and vehicles",
       "Worked on the redesign of the Villvay website",
     ],
     technologies: [
