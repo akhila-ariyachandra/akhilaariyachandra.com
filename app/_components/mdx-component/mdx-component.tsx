@@ -2,6 +2,7 @@ import { cn } from "@/_lib/helpers";
 import { MDXContent } from "@content-collections/mdx/react";
 import Link from "next/link";
 import Callout from "./callout";
+import CurrentJob from "./current-job";
 import PostImage from "./post-image";
 
 type MDXComponentProps = {
@@ -19,7 +20,10 @@ const MDXComponent = ({ mdx, className }: MDXComponentProps) => {
         className,
       )}
     >
-      <MDXContent code={mdx} components={{ Callout, PostImage, a: Link }} />
+      <MDXContent
+        code={mdx}
+        components={{ Callout, PostImage, a: Link, CurrentJob }}
+      />
     </div>
   );
 };
