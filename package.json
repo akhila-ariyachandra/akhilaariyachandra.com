@@ -27,7 +27,7 @@
     "clsx": "2.1.1",
     "dayjs": "1.11.19",
     "drizzle-orm": "^0.45.1",
-    "next": "16.0.10",
+    "next": "16.1.0",
     "pg": "^8.16.3",
     "react": "19.2.3",
     "react-dom": "19.2.3",
@@ -38,26 +38,26 @@
     "sharp": "0.34.5",
     "shiki": "^3.20.0",
     "tailwind-merge": "3.4.0",
-    "zod": "4.1.13"
+    "zod": "4.2.1"
   },
   "devDependencies": {
-    "@content-collections/core": "^0.12.0",
+    "@content-collections/core": "^0.13.0",
     "@content-collections/mdx": "^0.2.2",
-    "@content-collections/next": "^0.2.9",
+    "@content-collections/next": "^0.2.10",
     "@eslint-react/eslint-plugin": "^2.3.13",
-    "@eslint/js": "^9.39.1",
+    "@eslint/js": "^9.39.2",
     "@stylistic/eslint-plugin": "5.6.1",
     "@tailwindcss/postcss": "^4.1.18",
     "@tailwindcss/typography": "0.5.19",
-    "@types/node": "^25.0.1",
+    "@types/node": "^25.0.3",
     "@types/pg": "^8.16.0",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "babel-plugin-react-compiler": "19.1.0-rc.3",
     "dotenv": "17.2.3",
     "drizzle-kit": "0.31.8",
-    "eslint": "^9.39.1",
-    "eslint-config-next": "16.0.10",
+    "eslint": "^9.39.2",
+    "eslint-config-next": "16.1.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-import": "2.32.0",
     "postcss": "8.5.6",
@@ -66,6 +66,6 @@
     "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4.1.18",
     "typescript": "5.9.3",
-    "typescript-eslint": "^8.49.0"
+    "typescript-eslint": "^8.50.0"
   }
 }
