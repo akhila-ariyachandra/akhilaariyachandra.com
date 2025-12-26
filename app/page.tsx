@@ -1,16 +1,22 @@
 import MDXComponent from "@/_components/mdx-component";
+import SpotifyLogo from "@/_components/spotify-logo";
 import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
 import ProfileStructuredData from "@/_components/structured-data/profile";
 import { career } from "@/_lib/data";
 import { cn } from "@/_lib/helpers";
+import { getTopTracks } from "@/_lib/spotify";
 import profilePic from "@/public/profile-pic.jpg";
 import { allAbouts } from "content-collections";
 import dayjs from "dayjs";
 import { cacheLife } from "next/cache";
 import Image from "next/image";
+import { type CSSProperties } from "react";
 
-const HomePage = () => {
+const ALBUM_ART_DIMENSIONS = 75;
+
+const HomePage = async () => {
   const about = allAbouts[0];
+  const topTracks = await getTopTracks();
 
   return (
     <>
@@ -103,6 +109,82 @@ const HomePage = () => {
             </li>
           ))}
         </ol>
+      </section>
+
+      <section className="my-10 space-y-4 text-zinc-600 sm:my-20 sm:space-y-8 dark:text-zinc-300">
+        <div className="space-y-0.5 sm:space-y-1">
+          <h2 className="font-display text-2xl font-bold tracking-tighter sm:text-3xl">
+            Top Tracks
+          </h2>
+
+          <p className="text-sm sm:text-base">
+            These are the tracks that I&apos;ve been listening to the most
+            recently, updated daily.
+          </p>
+        </div>
+
+        <ul
+          className="space-y-2 sm:space-y-4"
+          style={
+            {
+              "--album-art-dimensions": `${ALBUM_ART_DIMENSIONS.toString()}px`,
+            } as CSSProperties
+          }
+        >
+          {topTracks.items.map((track) => {
+            const albumArt = track.album.images.find(
+              (image) => image.width >= ALBUM_ART_DIMENSIONS,
+            )?.url;
+
+            return (
+              <li key={track.id} className="flex flex-row items-center gap-4">
+                {albumArt ? (
+                  <a
+                    href={track.album.external_urls.spotify}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="shrink-0"
+                  >
+                    <Image
+                      src={albumArt}
+                      alt={track.name}
+                      width={ALBUM_ART_DIMENSIONS}
+                      height={ALBUM_ART_DIMENSIONS}
+                      className="size-[50px] rounded-sm sm:size-(--album-art-dimensions)"
+                    />
+
+                    <span className="sr-only">{track.name}</span>
+                  </a>
+                ) : (
+                  <div className="grid size-[50px] shrink-0 place-items-center rounded-sm sm:size-(--album-art-dimensions)">
+                    <SpotifyLogo
+                      width={30}
+                      height={30}
+                      className="size-[15px] sm:size-[30px]"
+                    />
+                  </div>
+                )}
+
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-lg font-medium sm:text-xl">
+                    <a
+                      href={track.external_urls.spotify}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-accent dark:text-accent-dark hover:underline"
+                    >
+                      {track.name}
+                    </a>
+                  </p>
+
+                  <p className="truncate text-sm sm:text-base">
+                    {track.artists.map((artist) => artist.name).join(", ")}
+                  </p>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
       </section>
 
       <ProfileStructuredData />
