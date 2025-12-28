@@ -17,10 +17,6 @@ const TOP_TRACKS_ENDPOINT = `https://api.spotify.com/v1/me/top/tracks`;
 const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
 
 const getAccessToken = async () => {
-  "use cache";
-
-  cacheLife("minutes");
-
   const response = await ky
     .post(TOKEN_ENDPOINT, {
       headers: {
@@ -46,10 +42,6 @@ const getAccessToken = async () => {
 };
 
 export const getNowPlaying = async () => {
-  "use cache";
-
-  cacheLife("minutes");
-
   const { access_token } = await getAccessToken();
 
   const response = await ky
