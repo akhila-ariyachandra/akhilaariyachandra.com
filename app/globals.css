@@ -4,6 +4,8 @@
 
 @theme {
   --font-display: var(--font-geist-mono);
+
+  --color-spotify-green: #1ed760;
 }
 
 @theme inline {
