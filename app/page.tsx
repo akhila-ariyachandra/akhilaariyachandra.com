@@ -1,5 +1,4 @@
 import MDXComponent from "@/_components/mdx-component";
-import SpotifyLogo from "@/_components/spotify-logo";
 import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
 import ProfileStructuredData from "@/_components/structured-data/profile";
 import { career } from "@/_lib/data";
@@ -136,34 +135,28 @@ const HomePage = async () => {
               (image) => image.width >= ALBUM_ART_DIMENSIONS,
             )?.url;
 
+            if (!albumArt) {
+              return null;
+            }
+
             return (
               <li key={track.id} className="flex flex-row items-center gap-4">
-                {albumArt ? (
-                  <a
-                    href={track.album.external_urls.spotify}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="shrink-0"
-                  >
-                    <Image
-                      src={albumArt}
-                      alt={track.name}
-                      width={ALBUM_ART_DIMENSIONS}
-                      height={ALBUM_ART_DIMENSIONS}
-                      className="size-[50px] rounded-sm sm:size-(--album-art-dimensions)"
-                    />
+                <a
+                  href={track.album.external_urls.spotify}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="shrink-0"
+                >
+                  <Image
+                    src={albumArt}
+                    alt={track.name}
+                    width={ALBUM_ART_DIMENSIONS}
+                    height={ALBUM_ART_DIMENSIONS}
+                    className="size-[50px] rounded-sm sm:size-(--album-art-dimensions)"
+                  />
 
-                    <span className="sr-only">{track.name}</span>
-                  </a>
-                ) : (
-                  <div className="grid size-[50px] shrink-0 place-items-center rounded-sm sm:size-(--album-art-dimensions)">
-                    <SpotifyLogo
-                      width={30}
-                      height={30}
-                      className="size-[15px] sm:size-[30px]"
-                    />
-                  </div>
-                )}
+                  <span className="sr-only">{track.name}</span>
+                </a>
 
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-lg font-medium sm:text-xl">

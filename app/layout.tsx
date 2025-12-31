@@ -1,4 +1,3 @@
-import SpotifyLogo from "@/_components/spotify-logo";
 import { PRODUCTION_URL } from "@/_lib/constants";
 import { cn } from "@/_lib/helpers";
 import { getNowPlaying } from "@/_lib/spotify";
@@ -88,6 +87,7 @@ const getYear = async () => {
   return new Date().getFullYear();
 };
 
+const MOBILE_ALBUM_ART_DIMENSIONS = 50;
 const ALBUM_ART_DIMENSIONS = 75;
 
 const Footer = async () => {
@@ -99,20 +99,13 @@ const Footer = async () => {
       style={
         {
           "--album-art-dimensions": `${ALBUM_ART_DIMENSIONS.toString()}px`,
+          "--mobile-album-art-dimensions": `${MOBILE_ALBUM_ART_DIMENSIONS.toString()}px`,
         } as CSSProperties
       }
     >
       <Suspense
         fallback={
-          <div className="flex items-center gap-4">
-            <div className="bg-spotify-green size-[50px] animate-pulse rounded-sm sm:size-(--album-art-dimensions)" />
-
-            <div className="min-w-0 flex-1">
-              <div className="bg-accent dark:bg-accent-dark h-7 w-40 animate-pulse rounded-sm" />
-
-              <div className="h-5 w-28 animate-pulse rounded-sm bg-zinc-600 sm:h-6 dark:bg-zinc-300" />
-            </div>
-          </div>
+          <div className="h-(--mobile-album-art-dimensions) sm:h-(--album-art-dimensions)" />
         }
       >
         <NowPlaying />
@@ -140,61 +133,51 @@ const NowPlaying = async () => {
     (image) => image.width >= ALBUM_ART_DIMENSIONS,
   )?.url;
 
+  if (!nowPlayingSong || !albumArt) {
+    return (
+      <div className="h-(--mobile-album-art-dimensions) sm:h-(--album-art-dimensions)" />
+    );
+  }
+
   return (
     <div className="flex items-center gap-4">
-      {nowPlayingSong && albumArt ? (
-        <a
-          href={nowPlayingSong.album.external_urls.spotify}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="relative"
-        >
-          <Image
-            src={albumArt}
-            alt={nowPlayingSong.album.name}
-            width={ALBUM_ART_DIMENSIONS}
-            height={ALBUM_ART_DIMENSIONS}
-            className="size-[50px] rounded-sm sm:size-(--album-art-dimensions)"
-          />
+      <a
+        href={nowPlayingSong.album.external_urls.spotify}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="relative"
+      >
+        <Image
+          src={albumArt}
+          alt={nowPlayingSong.album.name}
+          width={ALBUM_ART_DIMENSIONS}
+          height={ALBUM_ART_DIMENSIONS}
+          className="size-(--mobile-album-art-dimensions) rounded-sm sm:size-(--album-art-dimensions)"
+        />
 
-          <span className="sr-only">{nowPlayingSong.album.name}</span>
+        <span className="sr-only">{nowPlayingSong.album.name}</span>
 
-          <span
-            className="bg-spotify-green absolute top-0 right-0 size-3 translate-x-1/2 -translate-y-1/2 animate-ping rounded-full select-none"
-            aria-hidden="true"
-          />
-        </a>
-      ) : (
-        <div className="grid size-[50px] shrink-0 place-items-center rounded-sm sm:size-(--album-art-dimensions)">
-          <SpotifyLogo
-            width={30}
-            height={30}
-            className="size-[15px] sm:size-[30px]"
-          />
-        </div>
-      )}
+        <span
+          className="absolute top-0 right-0 size-3 translate-x-1/2 -translate-y-1/2 animate-ping rounded-full bg-[#1ed760] select-none"
+          aria-hidden="true"
+        />
+      </a>
 
       <div className="min-w-0 flex-1">
-        {nowPlayingSong ? (
-          <>
-            <p className="truncate text-lg font-medium sm:text-xl">
-              <a
-                href={nowPlayingSong.external_urls.spotify}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-accent dark:text-accent-dark hover:underline"
-              >
-                {nowPlayingSong.name}
-              </a>
-            </p>
+        <p className="truncate text-lg font-medium sm:text-xl">
+          <a
+            href={nowPlayingSong.external_urls.spotify}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent dark:text-accent-dark hover:underline"
+          >
+            {nowPlayingSong.name}
+          </a>
+        </p>
 
-            <p className="truncate text-sm sm:text-base">
-              {nowPlayingSong.artists.map((artist) => artist.name).join(", ")}
-            </p>
-          </>
-        ) : (
-          <div className="text-lg font-medium sm:text-xl">Not playing</div>
-        )}
+        <p className="truncate text-sm sm:text-base">
+          {nowPlayingSong.artists.map((artist) => artist.name).join(", ")}
+        </p>
       </div>
     </div>
   );
