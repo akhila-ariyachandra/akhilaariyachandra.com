@@ -137,6 +137,4 @@ const AudioLinesIcon = ({
   );
 };
 
-AudioLinesIcon.displayName = "AudioLinesIcon";
-
 export { AudioLinesIcon };
