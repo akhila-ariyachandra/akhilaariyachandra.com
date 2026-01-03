@@ -2,6 +2,7 @@ import ky from "ky";
 import { cacheLife } from "next/cache";
 import "server-only";
 import { z } from "zod";
+import { nowPlayingSchema } from "./helpers";
 
 const client_id = process.env.SPOTIFY_CLIENT_ID;
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
@@ -52,31 +53,7 @@ export const getNowPlaying = async () => {
     })
     .json();
 
-  return await z
-    .object({
-      item: z.object({
-        album: z.object({
-          external_urls: z.object({ spotify: z.string() }),
-          images: z.array(
-            z.object({
-              url: z.string(),
-              height: z.number(),
-              width: z.number(),
-            }),
-          ),
-          name: z.string(),
-        }),
-        artists: z.array(
-          z.object({
-            name: z.string(),
-          }),
-        ),
-        external_urls: z.object({ spotify: z.string() }),
-        name: z.string(),
-      }),
-    })
-    .or(z.string())
-    .parseAsync(response);
+  return await nowPlayingSchema.parseAsync(response);
 };
 
 export const getTopTracks = async () => {

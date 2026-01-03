@@ -55,6 +55,7 @@ export default defineConfig(
         { blankLine: "never", prev: "import", next: "import" },
       ],
       "@stylistic/spaced-comment": "error",
+      "@stylistic/jsx-self-closing-comp": "error",
     },
   },
   {
