@@ -31,6 +31,7 @@ const NowPlayingClient = ({ nowPlaying }: { nowPlaying: NowPlaying }) => {
             alt={nowPlaying.item.album.name}
             fill
             className="brightness-50"
+            unoptimized
           />
         )}
 
