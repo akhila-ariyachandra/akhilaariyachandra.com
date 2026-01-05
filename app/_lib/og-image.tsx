@@ -1,6 +1,8 @@
 import { ImageResponse } from "next/og";
-import { readFile } from "node:fs/promises";
-import { join } from "node:path";
+
+const vercelUrl = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : "http://localhost:3000";
 
 export const getOgImage = async ({
   title,
@@ -9,12 +11,6 @@ export const getOgImage = async ({
   title: string;
   pathname: string;
 }) => {
-  const profilePicData = await readFile(
-    join(process.cwd(), "public", "profile-pic.jpg"),
-    "base64",
-  );
-  const profilePicSrc = `data:image/png;base64,${profilePicData}`;
-
   return new ImageResponse(
     <div
       tw="flex h-full w-full flex-col justify-between bg-zinc-900 p-8"
@@ -29,7 +25,7 @@ export const getOgImage = async ({
 
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={profilePicSrc}
+          src={`${vercelUrl}/profile-pic.jpg`}
           alt="Akhila Ariyachandra"
           width={240}
           height={240}
