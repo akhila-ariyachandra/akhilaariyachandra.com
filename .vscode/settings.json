@@ -30,5 +30,11 @@
   "[mdx]": {
     "editor.wordWrap": "on"
   },
-  "eslint.lintTask.options": ". --max-warnings=0 --cache --concurrency=auto"
+  "eslint.lintTask.options": ". --max-warnings=0 --cache --concurrency=auto",
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "typescript.preferences.autoImportSpecifierExcludeRegexes": [
+    "^(node:)?os$"
+  ]
 }
