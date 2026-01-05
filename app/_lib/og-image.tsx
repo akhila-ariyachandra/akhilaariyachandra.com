@@ -1,8 +1,5 @@
 import { ImageResponse } from "next/og";
-
-const vercelUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-  : "http://localhost:3000";
+import { PRODUCTION_URL } from "./constants";
 
 export const getOgImage = async ({
   title,
@@ -25,7 +22,7 @@ export const getOgImage = async ({
 
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={`${vercelUrl}/profile-pic.jpg`}
+          src={`${PRODUCTION_URL}/profile-pic.jpg`}
           alt="Akhila Ariyachandra"
           width={240}
           height={240}
