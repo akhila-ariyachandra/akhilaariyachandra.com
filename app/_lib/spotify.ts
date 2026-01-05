@@ -1,8 +1,8 @@
+import { type } from "arktype";
 import ky from "ky";
 import { cacheLife } from "next/cache";
 import "server-only";
-import { z } from "zod";
-import { nowPlayingSchema } from "./helpers";
+import { NowPlaying } from "./helpers";
 
 const client_id = process.env.SPOTIFY_CLIENT_ID;
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
@@ -16,6 +16,14 @@ const basic = btoa(`${client_id}:${client_secret}`);
 const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;
 const TOP_TRACKS_ENDPOINT = `https://api.spotify.com/v1/me/top/tracks`;
 const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
+
+const AccessToken = type({
+  access_token: "string",
+  token_type: "'Bearer'",
+  expires_in: "number",
+  "refresh_token?": "string",
+  scope: "string",
+});
 
 const getAccessToken = async () => {
   const response = await ky
@@ -31,15 +39,13 @@ const getAccessToken = async () => {
     })
     .json();
 
-  return z
-    .object({
-      access_token: z.string(),
-      token_type: z.literal("Bearer"),
-      expires_in: z.number(),
-      refresh_token: z.string().optional(),
-      scope: z.string(),
-    })
-    .parseAsync(response);
+  const accessToken = AccessToken(response);
+
+  if (accessToken instanceof type.errors) {
+    throw new Error("Failed to parse access token response");
+  } else {
+    return accessToken;
+  }
 };
 
 export const getNowPlaying = async () => {
@@ -53,8 +59,38 @@ export const getNowPlaying = async () => {
     })
     .json();
 
-  return await nowPlayingSchema.parseAsync(response);
+  const nowPlaying = NowPlaying(response);
+
+  if (nowPlaying instanceof type.errors) {
+    throw new Error("Failed to parse now playing response");
+  } else {
+    return nowPlaying;
+  }
 };
+
+const TopTracks = type({
+  items: type({
+    album: {
+      external_urls: {
+        spotify: "string",
+      },
+      images: type({
+        url: "string",
+        height: "number",
+        width: "number",
+      }).array(),
+      name: "string",
+    },
+    artists: type({
+      name: "string",
+    }).array(),
+    name: "string",
+    id: "string",
+    external_urls: {
+      spotify: "string",
+    },
+  }).array(),
+});
 
 export const getTopTracks = async () => {
   "use cache";
@@ -75,30 +111,11 @@ export const getTopTracks = async () => {
     })
     .json();
 
-  return await z
-    .object({
-      items: z.array(
-        z.object({
-          album: z.object({
-            external_urls: z.object({ spotify: z.string() }),
-            images: z.array(
-              z.object({
-                url: z.string(),
-                height: z.number(),
-                width: z.number(),
-              }),
-            ),
-          }),
-          artists: z.array(
-            z.object({
-              name: z.string(),
-            }),
-          ),
-          name: z.string(),
-          id: z.string(),
-          external_urls: z.object({ spotify: z.string() }),
-        }),
-      ),
-    })
-    .parseAsync(response);
+  const topTracks = TopTracks(response);
+
+  if (topTracks instanceof type.errors) {
+    throw new Error("Failed to parse top tracks response");
+  } else {
+    return topTracks;
+  }
 };
