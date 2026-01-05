@@ -16,10 +16,13 @@ export const getOgImage = async ({
   const profilePicSrc = `data:image/png;base64,${profilePicData}`;
 
   return new ImageResponse(
-    <div tw="flex h-full w-full flex-col justify-between gap-4 bg-zinc-900 p-8">
+    <div
+      tw="flex h-full w-full flex-col justify-between bg-zinc-900 p-8"
+      style={{ gap: "1rem" }}
+    >
       <h1 tw="text-8xl leading-none text-zinc-100">{title}</h1>
 
-      <div tw="flex shrink-0 flex-row items-end gap-4">
+      <div tw="flex shrink-0 flex-row items-end" style={{ gap: "1rem" }}>
         <p tw="flex-1 text-3xl text-green-500">
           akhilaariyachandra.com{pathname}
         </p>
