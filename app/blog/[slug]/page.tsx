@@ -13,6 +13,17 @@ import { ViewTransition } from "react";
 
 dayjs.extend(advancedFormat);
 
+const getPost = async (props: PageProps<"/blog/[slug]">) => {
+  const params = await props.params;
+  const post = allPosts.find((post) => post._meta.path === params.slug);
+
+  if (!post) {
+    notFound();
+  }
+
+  return post;
+};
+
 // https://beta.nextjs.org/docs/api-reference/generate-static-params
 export const generateStaticParams = () => {
   return allPosts.map((post) => ({
@@ -23,12 +34,7 @@ export const generateStaticParams = () => {
 export const generateMetadata = async (
   props: PageProps<"/blog/[slug]">,
 ): Promise<Metadata> => {
-  const params = await props.params;
-  const post = allPosts.find((post) => post._meta.path === params.slug);
-
-  if (!post) {
-    notFound();
-  }
+  const post = await getPost(props);
 
   return {
     title: post.title,
@@ -51,12 +57,7 @@ export const generateMetadata = async (
 };
 
 const BlogPostPage = async (props: PageProps<"/blog/[slug]">) => {
-  const params = await props.params;
-  const post = allPosts.find((post) => post._meta.path === params.slug);
-
-  if (!post) {
-    notFound();
-  }
+  const post = await getPost(props);
 
   return (
     <>
