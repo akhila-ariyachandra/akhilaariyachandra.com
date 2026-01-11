@@ -10,6 +10,7 @@ import advancedFormat from "dayjs/plugin/advancedFormat";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ViewTransition } from "react";
+import Comments from "./comments";
 
 dayjs.extend(advancedFormat);
 
@@ -81,6 +82,8 @@ const BlogPostPage = async (props: PageProps<"/blog/[slug]">) => {
       </ViewTransition>
 
       <MDXComponent mdx={post.mdx} className="mb-16" />
+
+      <Comments />
 
       <BreadcrumbStructuredData
         items={[
