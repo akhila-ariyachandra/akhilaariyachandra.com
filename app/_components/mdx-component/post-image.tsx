@@ -1,42 +1,54 @@
+import { cn } from "@/_lib/helpers";
 import Image from "next/image";
 
 type PostImageProps = {
   src: string;
+  darkSrc?: string;
+  alt: string;
   width: number;
   height: number;
-  title: string;
-  credit?: {
-    name: string;
-    link: string;
-  };
+  caption?: string;
 };
 
-const PostImage = ({ src, width, height, title, credit }: PostImageProps) => {
+const PostImage = ({
+  src,
+  darkSrc,
+  alt,
+  width,
+  height,
+  caption,
+}: PostImageProps) => {
+  const isDarkImageAvailable = !!darkSrc;
+
   return (
-    <div className="not-prose my-6 sm:my-8">
+    <figure className="not-prose my-6 sm:my-8">
       <Image
         src={src}
         width={width}
         height={height}
-        alt={title}
-        title={title}
-        className="mx-auto rounded-sm sm:rounded-md"
+        alt={alt}
+        className={cn(
+          "mx-auto rounded-sm sm:rounded-md",
+          isDarkImageAvailable && "dark:hidden",
+        )}
       />
 
-      {credit && (
-        <div className="mt-2 text-center text-sm text-zinc-700 sm:mt-3 sm:text-base dark:text-zinc-300">
-          Credit -{" "}
-          <a
-            href={credit.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-accent dark:text-accent-dark font-medium hover:underline"
-          >
-            {credit.name}
-          </a>
-        </div>
+      {isDarkImageAvailable && (
+        <Image
+          src={darkSrc}
+          width={width}
+          height={height}
+          alt={alt}
+          className="mx-auto hidden rounded-sm sm:rounded-md dark:block"
+        />
       )}
-    </div>
+
+      {caption && (
+        <figcaption className="mt-2 text-center text-sm text-pretty text-zinc-700 sm:mt-3 sm:text-base dark:text-zinc-300">
+          {caption}
+        </figcaption>
+      )}
+    </figure>
   );
 };
 
