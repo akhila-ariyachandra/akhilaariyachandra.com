@@ -43,7 +43,6 @@ export default defineConfig(
   },
   {
     plugins: {
-      // @ts-expect-error - @stylistic/eslint-plugin has incompatible configs type structure
       "@stylistic": stylistic,
     },
     rules: {
