@@ -1,6 +1,11 @@
-import Link from "next/link";
+"use client";
 
-const Header = ({ pathname }: { pathname?: string }) => {
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const Header = () => {
+  const pathname = usePathname();
+
   return (
     <header className="container max-w-4xl p-3 sm:mt-40 sm:p-4">
       <nav className="flex items-center gap-4 text-base font-medium text-zinc-600 sm:text-lg dark:text-zinc-300">
@@ -14,7 +19,7 @@ const Header = ({ pathname }: { pathname?: string }) => {
 
         <Link
           href="/blog"
-          data-active={pathname?.startsWith("/blog") ? true : false}
+          data-active={pathname.startsWith("/blog") ? true : false}
           className="data-[active=true]:text-accent dark:data-[active=true]:text-accent-dark underline-offset-2 hover:underline"
         >
           Blog

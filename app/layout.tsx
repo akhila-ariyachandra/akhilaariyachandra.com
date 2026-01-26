@@ -8,8 +8,8 @@ import { cacheLife } from "next/cache";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import { type ReactNode } from "react";
-import Header from "./_components/header";
 import "./globals.css";
+import Header from "./header";
 import "./syntax-highlighting.css";
 
 const geistMono = Geist_Mono({
