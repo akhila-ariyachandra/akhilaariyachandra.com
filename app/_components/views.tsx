@@ -3,6 +3,7 @@ import { Redis } from "@upstash/redis";
 import { db } from "db";
 import { postsTable } from "db/schema";
 import { eq } from "drizzle-orm";
+import { isbot } from "isbot";
 import { cacheTag, revalidateTag } from "next/cache";
 import { headers } from "next/headers";
 import { after } from "next/server";
@@ -49,8 +50,9 @@ const ratelimit = new Ratelimit({
 
 const ViewsIncrementor = async ({ slug, increment }: ViewsProps) => {
   const headersStore = await headers();
+  const isBot = isbot(headersStore.get("user-agent") ?? "");
 
-  if (increment && process.env.NODE_ENV === "production") {
+  if (increment && process.env.NODE_ENV === "production" && !isBot) {
     after(async () => {
       let ip = "";
 
