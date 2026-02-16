@@ -5,7 +5,7 @@ import { career } from "@/_lib/data";
 import { cn } from "@/_lib/helpers";
 import { getTopTracks } from "@/_lib/spotify";
 import profilePic from "@/public/profile-pic.jpg";
-import { allAbouts } from "content-collections";
+import { about } from "content-collections";
 import dayjs from "dayjs";
 import { cacheLife } from "next/cache";
 import Image from "next/image";
@@ -14,7 +14,6 @@ import { type CSSProperties } from "react";
 const ALBUM_ART_DIMENSIONS = 75;
 
 const HomePage = async () => {
-  const about = allAbouts[0];
   const topTracks = await getTopTracks();
 
   return (
@@ -36,7 +35,7 @@ const HomePage = async () => {
         </span>
       </h1>
 
-      {!!about && <MDXComponent mdx={about.mdx} />}
+      <MDXComponent mdx={about.mdx} />
 
       <section className="my-10 space-y-4 text-zinc-600 sm:my-20 sm:space-y-8 dark:text-zinc-300">
         <h2 className="font-display text-2xl font-bold tracking-tighter sm:text-3xl">

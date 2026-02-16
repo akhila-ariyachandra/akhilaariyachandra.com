@@ -1,4 +1,8 @@
-import { defineCollection, defineConfig } from "@content-collections/core";
+import {
+  defineCollection,
+  defineConfig,
+  defineSingleton,
+} from "@content-collections/core";
 import { compileMDX } from "@content-collections/mdx";
 import { type } from "arktype";
 import externalLinks from "rehype-external-links";
@@ -46,10 +50,9 @@ const NoBodyPost = defineCollection({
   schema: PostSchema,
 });
 
-const About = defineCollection({
+const About = defineSingleton({
   name: "About",
-  directory: "content",
-  include: "about.mdx",
+  filePath: "content/about.mdx",
   schema: type({
     content: "string",
   }),
