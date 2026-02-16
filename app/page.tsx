@@ -35,7 +35,7 @@ const HomePage = async () => {
         </span>
       </h1>
 
-      {!!about && <MDXComponent mdx={about.mdx} />}
+      <MDXComponent mdx={about.mdx} />
 
       <section className="my-10 space-y-4 text-zinc-600 sm:my-20 sm:space-y-8 dark:text-zinc-300">
         <h2 className="font-display text-2xl font-bold tracking-tighter sm:text-3xl">
