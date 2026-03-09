@@ -18,26 +18,28 @@ const HomePage = async () => {
 
   return (
     <>
-      <Image
-        src={profilePic}
-        width={240}
-        height={240}
-        alt="A picture of Akhila Ariyachandra"
-        className="mb-4 w-44 rounded-sm sm:float-left sm:mr-5 sm:mb-5 sm:w-60 sm:rounded-lg"
-        placeholder="blur"
-        priority
-      />
+      <div className="border-b border-zinc-200 p-3 sm:p-4 dark:border-zinc-700">
+        <Image
+          src={profilePic}
+          width={240}
+          height={240}
+          alt="A picture of Akhila Ariyachandra"
+          className="mb-4 w-44 rounded-sm sm:float-left sm:mr-5 sm:mb-5 sm:w-60 sm:rounded-lg"
+          placeholder="blur"
+          priority
+        />
 
-      <h1 className="font-display mb-4 text-3xl tracking-tighter text-zinc-600 sm:mb-5 sm:text-4xl dark:text-zinc-300">
-        Hi, I&apos;m{" "}
-        <span className="text-accent dark:text-accent-dark font-black">
-          Akhila Ariyachandra
-        </span>
-      </h1>
+        <h1 className="font-display mb-4 text-3xl tracking-tighter text-zinc-600 sm:mb-5 sm:text-4xl dark:text-zinc-300">
+          Hi, I&apos;m{" "}
+          <span className="text-accent dark:text-accent-dark font-black">
+            Akhila Ariyachandra
+          </span>
+        </h1>
 
-      <MDXComponent mdx={about.mdx} />
+        <MDXComponent mdx={about.mdx} />
+      </div>
 
-      <section className="my-10 space-y-4 text-zinc-600 sm:my-20 sm:space-y-8 dark:text-zinc-300">
+      <section className="space-y-2 border-b border-zinc-200 p-3 text-zinc-600 sm:space-y-4 sm:p-4 dark:border-zinc-700 dark:text-zinc-300">
         <h2 className="font-display text-2xl font-bold tracking-tighter sm:text-3xl">
           Career
         </h2>
@@ -109,7 +111,7 @@ const HomePage = async () => {
         </ol>
       </section>
 
-      <section className="my-10 space-y-4 text-zinc-600 sm:my-20 sm:space-y-8 dark:text-zinc-300">
+      <section className="space-y-2 p-3 text-zinc-600 sm:space-y-4 sm:p-4 dark:text-zinc-300">
         <div className="space-y-0.5 sm:space-y-1">
           <h2 className="font-display text-2xl font-bold tracking-tighter sm:text-3xl">
             Top Tracks

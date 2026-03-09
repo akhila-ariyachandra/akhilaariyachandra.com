@@ -27,9 +27,9 @@ export const metadata: Metadata = {
 const BlogPage = () => {
   return (
     <>
-      <Title>Blog</Title>
+      <Title className="px-3 pt-3 sm:px-4 sm:pt-4">Blog</Title>
 
-      <ul className="space-y-2 sm:space-y-3">
+      <ul className="space-y-2 px-3 sm:space-y-3 sm:px-4">
         {allPosts
           .sort((a, b) => (dayjs(a.posted).isBefore(b.posted) ? 1 : -1))
           .map((post) => (
@@ -66,7 +66,7 @@ const BlogPage = () => {
           ))}
       </ul>
 
-      <p className="mt-6 text-lg text-zinc-600 sm:text-xl dark:text-zinc-400">
+      <p className="mt-6 px-3 pb-3 text-lg text-zinc-600 sm:px-4 sm:pb-4 sm:text-xl dark:text-zinc-400">
         View my old blog posts{" "}
         <Link
           href="https://archive.akhilaariyachandra.com"
