@@ -61,10 +61,15 @@ const BlogPostPage = async (props: PageProps<"/blog/[slug]">) => {
 
   return (
     <>
-      <Title transitionName={`post-${post._meta.path}`}>{post.title}</Title>
+      <Title
+        transitionName={`post-${post._meta.path}`}
+        className="px-3 pt-3 sm:px-4 sm:pt-4"
+      >
+        {post.title}
+      </Title>
 
       <ViewTransition name={`post-details-${post._meta.path}`}>
-        <div className="mb-4 text-sm text-zinc-600 sm:mb-5 sm:text-base dark:text-zinc-400">
+        <div className="mb-4 px-3 text-sm text-zinc-600 sm:mb-5 sm:px-4 sm:text-base dark:text-zinc-400">
           <time dateTime={dayjs(post.posted).toISOString()}>
             {`${dayjs(post.posted).format("Do MMMM YYYY")}${
               post.updated
@@ -81,7 +86,7 @@ const BlogPostPage = async (props: PageProps<"/blog/[slug]">) => {
         </div>
       </ViewTransition>
 
-      <MDXComponent mdx={post.mdx} className="mb-16" />
+      <MDXComponent mdx={post.mdx} className="mb-16 px-3 sm:px-4" />
 
       <BreadcrumbStructuredData
         items={[

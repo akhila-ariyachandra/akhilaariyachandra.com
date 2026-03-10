@@ -18,7 +18,7 @@ const HomePage = async () => {
 
   return (
     <>
-      <div className="border-b border-zinc-200 p-3 sm:p-4 dark:border-zinc-700">
+      <div className="border-b border-zinc-200 bg-yellow-950/50 p-3 sm:p-4 dark:border-zinc-700">
         <Image
           src={profilePic}
           width={240}

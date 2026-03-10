@@ -78,8 +78,10 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
           </div>
         </header>
 
-        <main className="container max-w-4xl flex-1 border-x border-zinc-200 dark:border-zinc-700">
-          {children}
+        <main className="flex flex-1 flex-col px-4">
+          <div className="mx-auto w-full max-w-4xl flex-1 border-x border-zinc-200 dark:border-zinc-700">
+            {children}
+          </div>
         </main>
 
         <Footer />
@@ -105,7 +107,7 @@ const Footer = async () => {
   const year = await getYear();
 
   return (
-    <footer className="border-t border-zinc-200 text-zinc-600 dark:border-zinc-700 dark:text-zinc-300">
+    <footer className="border-t border-zinc-200 px-4 text-zinc-600 dark:border-zinc-700 dark:text-zinc-300">
       <div className="mx-auto max-w-4xl border-x border-zinc-200 *:p-3 sm:*:p-4 dark:border-zinc-700">
         <NowPlaying />
 
