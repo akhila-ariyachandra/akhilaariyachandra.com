@@ -1,38 +1,27 @@
-import { cn } from "@/_lib/helpers";
-import { ViewTransition, type ComponentProps, type ReactNode } from "react";
+import { type ReactNode, ViewTransition } from "react";
 
-const TitleBase = ({
-  children,
-  className,
-}: {
-  children: ReactNode;
-  className?: string;
-}) => {
+const TitleBase = ({ children }: { children: ReactNode }) => {
   return (
-    <h1
-      className={cn(
-        "font-display mb-4 text-2xl font-bold tracking-tighter text-pretty text-zinc-800 sm:mb-5 sm:text-3xl dark:text-zinc-200",
-        className,
-      )}
-    >
+    <h1 className="font-display mb-4 text-2xl font-bold tracking-tighter text-pretty text-zinc-800 sm:mb-5 sm:text-3xl dark:text-zinc-200">
       {children}
     </h1>
   );
 };
 
 const Title = ({
+  children,
   transitionName,
-  ...delegated
 }: {
+  children: ReactNode;
   transitionName?: string;
-} & ComponentProps<typeof TitleBase>) => {
+}) => {
   if (!transitionName) {
-    return <TitleBase {...delegated} />;
+    return <TitleBase>{children}</TitleBase>;
   }
 
   return (
     <ViewTransition name={transitionName}>
-      <TitleBase {...delegated} />
+      <TitleBase>{children}</TitleBase>
     </ViewTransition>
   );
 };

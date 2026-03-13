@@ -9,6 +9,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import { type ReactNode } from "react";
 import "./globals.css";
+import Header from "./header";
 import "./syntax-highlighting.css";
 
 const geistMono = Geist_Mono({
@@ -60,25 +61,9 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
           "transition-colors duration-200 ease-out",
         )}
       >
-        <header className="border-b border-zinc-200 px-4 text-zinc-600 dark:border-zinc-700 dark:text-zinc-300">
-          <div className="mx-auto flex max-w-4xl flex-row items-center border-x border-zinc-200 *:border-r *:border-zinc-200 dark:border-zinc-700 *:dark:border-zinc-700">
-            <Link
-              href="/"
-              className="font-display text-accent dark:text-accent-dark px-4 py-2 text-lg font-bold sm:text-xl"
-            >
-              Akhila Ariyachandra
-            </Link>
+        <Header />
 
-            <Link
-              href="/blog"
-              className="px-3 py-2 text-base font-medium sm:text-lg"
-            >
-              Blog
-            </Link>
-          </div>
-        </header>
-
-        <main className="container max-w-4xl flex-1 border-x border-zinc-200 dark:border-zinc-700">
+        <main className="container max-w-4xl flex-1 p-3 sm:p-4">
           {children}
         </main>
 
@@ -105,20 +90,18 @@ const Footer = async () => {
   const year = await getYear();
 
   return (
-    <footer className="border-t border-zinc-200 text-zinc-600 dark:border-zinc-700 dark:text-zinc-300">
-      <div className="mx-auto max-w-4xl border-x border-zinc-200 *:p-3 sm:*:p-4 dark:border-zinc-700">
-        <NowPlaying />
+    <footer className="container max-w-4xl space-y-4 p-3 text-zinc-600 sm:p-4 dark:text-zinc-300">
+      <NowPlaying />
 
-        <p className="border-t border-zinc-200 text-sm sm:text-base dark:border-zinc-700">
-          &copy; {year}{" "}
-          <Link
-            href="/"
-            className="text-accent dark:text-accent-dark hover:underline"
-          >
-            Akhila Ariyachandra
-          </Link>
-        </p>
-      </div>
+      <p className="text-sm sm:text-base">
+        &copy; {year}{" "}
+        <Link
+          href="/"
+          className="text-accent dark:text-accent-dark hover:underline"
+        >
+          Akhila Ariyachandra
+        </Link>
+      </p>
     </footer>
   );
 };
