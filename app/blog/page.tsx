@@ -37,7 +37,7 @@ const BlogPage = () => {
               <ViewTransition name={`post-${post._meta.path}`}>
                 <Link
                   href={`/blog/${post._meta.path}`}
-                  className="font-display text-accent dark:text-accent-dark text-xl font-medium tracking-tighter text-pretty hover:underline sm:text-2xl"
+                  className="font-display text-accent dark:text-accent-dark text-xl font-medium tracking-tighter text-balance hover:underline sm:text-2xl"
                 >
                   {post.title}
                 </Link>
