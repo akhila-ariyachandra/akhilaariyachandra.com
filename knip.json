@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
-  "ignoreFiles": ["content-collections.ts"],
+  "ignoreFiles": ["content-collections.ts", "drizzle.config.ts"],
   "ignoreDependencies": [
     "rehype-external-links",
     "rehype-pretty-code",
