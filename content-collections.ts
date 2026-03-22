@@ -71,5 +71,5 @@ const About = defineSingleton({
 });
 
 export default defineConfig({
-  collections: [Post, NoBodyPost, About],
+  content: [Post, NoBodyPost, About],
 });
