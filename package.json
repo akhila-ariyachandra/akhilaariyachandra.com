@@ -17,7 +17,8 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "prettier:format": "prettier --write \"**/*.{ts,tsx,js,md,mdx,css,yaml}\"",
-    "prettier:check": "prettier --check \"**/*.{ts,tsx,js,md,mdx,css,yaml}\""
+    "prettier:check": "prettier --check \"**/*.{ts,tsx,js,md,mdx,css,yaml}\"",
+    "knip": "knip"
   },
   "dependencies": {
     "@upstash/ratelimit": "^2.0.8",
@@ -63,6 +64,7 @@
     "eslint-config-next": "16.2.1",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-import": "2.32.0",
+    "knip": "^6.0.1",
     "postcss": "8.5.8",
     "prettier": "3.8.1",
     "prettier-plugin-organize-imports": "4.3.0",

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "ignoreFiles": ["content-collections.ts"],
+  "ignoreDependencies": [
+    "rehype-external-links",
+    "rehype-pretty-code",
+    "sharp",
+    "shiki"
+  ]
+}
