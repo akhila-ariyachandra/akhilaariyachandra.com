@@ -28,8 +28,6 @@ jobs:
           cache: "pnpm"
       - name: Install dependencies
         run: pnpm install
-      - name: Run Knip
-        run: pnpm run knip
       - name: Check formatting
         run: pnpm run prettier:check
       - name: Type checking

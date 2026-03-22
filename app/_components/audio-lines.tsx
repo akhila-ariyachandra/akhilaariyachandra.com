@@ -9,7 +9,7 @@ import {
   type RefObject,
 } from "react";
 
-type AudioLinesIconHandle = {
+export type AudioLinesIconHandle = {
   startAnimation: () => void;
   stopAnimation: () => void;
 };
