@@ -21,7 +21,7 @@ const NotPlaying = () => {
 const NowPlayingServer = async () => {
   const nowPlaying = await getNowPlaying();
 
-  if (typeof nowPlaying === "string") {
+  if (!nowPlaying || typeof nowPlaying === "string") {
     return <NotPlaying />;
   }
 
