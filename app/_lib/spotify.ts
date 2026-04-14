@@ -51,15 +51,17 @@ const getAccessToken = async () => {
 export const getNowPlaying = async () => {
   const { access_token } = await getAccessToken();
 
-  const response = await ky
-    .get(NOW_PLAYING_ENDPOINT, {
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-      },
-    })
-    .json();
+  const response = await ky.get(NOW_PLAYING_ENDPOINT, {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+  });
 
-  const nowPlaying = NowPlaying(response);
+  if (response.status === 204) {
+    return null;
+  }
+
+  const nowPlaying = NowPlaying(await response.json());
 
   if (nowPlaying instanceof type.errors) {
     throw new Error("Failed to parse now playing response");

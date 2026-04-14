@@ -35,7 +35,7 @@ const BlogPostingStructuredData = ({
   return (
     <script
       type="application/ld+json"
-      // eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml
+      // eslint-disable-next-line @eslint-react/dom-no-dangerously-set-innerhtml
       dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
     />
   );
