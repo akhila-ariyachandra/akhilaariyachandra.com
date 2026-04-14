@@ -1,7 +1,7 @@
+import { db } from "@/db";
+import { postsTable } from "@/db/schema";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
-import { db } from "db";
-import { postsTable } from "db/schema";
 import { eq } from "drizzle-orm";
 import { isbot } from "isbot";
 import { cacheTag, revalidateTag } from "next/cache";
