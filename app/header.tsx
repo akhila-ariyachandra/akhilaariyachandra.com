@@ -12,7 +12,7 @@ const Header = () => {
         <Link
           href="/"
           data-active={pathname === "/" ? true : false}
-          className="data-[active=true]:text-accent dark:data-[active=true]:text-accent-dark underline-offset-2 hover:underline"
+          className="data-[active=true]:text-accent dark:data-[active=true]:text-accent-dark"
         >
           Home
         </Link>
@@ -20,7 +20,7 @@ const Header = () => {
         <Link
           href="/blog"
           data-active={pathname.startsWith("/blog") ? true : false}
-          className="data-[active=true]:text-accent dark:data-[active=true]:text-accent-dark underline-offset-2 hover:underline"
+          className="data-[active=true]:text-accent dark:data-[active=true]:text-accent-dark"
         >
           Blog
         </Link>
