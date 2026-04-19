@@ -1,0 +1,30 @@
+{
+  "name": "@repo/cms",
+  "exports": {
+    "./sanity.config": {
+      "import": "./sanity.config.ts"
+    },
+    "./sanity.cli": {
+      "import": "./sanity.cli.ts"
+    },
+    "./types": {
+      "import": "./generated/sanity.types.ts"
+    },
+    "./queries": {
+      "import": "./src/queries.ts",
+      "types": "./generated/sanity.types.ts"
+    }
+  },
+  "scripts": {
+    "typegen": "sanity schema extract --enforce-required-fields --path=./generated/schema.json && sanity typegen generate",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@sanity/client": "catalog:",
+    "@sanity/vision": "catalog:",
+    "groq": "catalog:",
+    "sanity": "catalog:",
+    "sanity-plugin-media": "catalog:",
+    "typescript": "catalog:"
+  }
+}

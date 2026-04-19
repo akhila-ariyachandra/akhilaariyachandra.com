@@ -4,16 +4,11 @@ import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { eq } from "drizzle-orm";
 import { isbot } from "isbot";
-import { cacheTag, revalidateTag } from "next/cache";
 import { headers } from "next/headers";
 import { after } from "next/server";
 import { Suspense } from "react";
 
 const getViews = async (slug: string) => {
-  "use cache";
-
-  cacheTag(`views-${slug}`);
-
   const result = await db.query.postsTable.findFirst({
     where: eq(postsTable.slug, slug),
   });
@@ -89,8 +84,6 @@ const ViewsIncrementor = async ({ slug, increment }: ViewsProps) => {
           })
           .where(eq(postsTable.slug, slug));
       }
-
-      revalidateTag(`views-${slug}`, "max");
     });
   }
 

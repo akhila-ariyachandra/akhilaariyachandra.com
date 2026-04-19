@@ -1,0 +1,35 @@
+{
+  "name": "studio",
+  "private": true,
+  "version": "1.0.0",
+  "main": "package.json",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "deploy-graphql": "sanity graphql deploy",
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --max-warnings=0"
+  },
+  "keywords": [
+    "sanity"
+  ],
+  "dependencies": {
+    "@repo/cms": "workspace:*",
+    "@sanity/vision": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "sanity": "catalog:",
+    "styled-components": "catalog:"
+  },
+  "devDependencies": {
+    "@sanity/eslint-config-studio": "catalog:",
+    "@types/react": "catalog:",
+    "eslint": "catalog:",
+    "eslint-config-turbo": "catalog:",
+    "prettier": "^3.5",
+    "typescript": "catalog:"
+  }
+}

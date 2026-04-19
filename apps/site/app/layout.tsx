@@ -4,7 +4,6 @@ import { cn } from "@/_lib/helpers";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import { cacheLife } from "next/cache";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import { type ReactNode } from "react";
@@ -79,10 +78,6 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
 export default RootLayout;
 
 const getYear = async () => {
-  "use cache";
-
-  cacheLife("days");
-
   return new Date().getFullYear();
 };
 

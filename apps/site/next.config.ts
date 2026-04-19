@@ -10,7 +10,6 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   reactCompiler: true,
   typedRoutes: true,
-  cacheComponents: true,
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
@@ -18,6 +17,11 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "i.scdn.co",
         pathname: "/image/**",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        pathname: `/images/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/${process.env.NEXT_PUBLIC_SANITY_DATASET}/*`,
       },
     ],
   },

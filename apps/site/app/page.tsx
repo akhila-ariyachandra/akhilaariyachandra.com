@@ -1,13 +1,14 @@
 import MDXComponent from "@/_components/mdx-component";
 import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
 import ProfileStructuredData from "@/_components/structured-data/profile";
-import { career } from "@/_lib/data";
-import { cn } from "@/_lib/helpers";
+import { cn, getParagraphs, urlFor } from "@/_lib/helpers";
+import { client } from "@/_lib/sanity/client";
 import { getTopTracks } from "@/_lib/spotify";
 import profilePic from "@/public/profile-pic.jpg";
+import { CAREERS_QUERY } from "@repo/cms/queries";
+import type { CAREERS_QUERY_RESULT } from "@repo/cms/types";
 import { about } from "content-collections";
 import dayjs from "dayjs";
-import { cacheLife } from "next/cache";
 import Image from "next/image";
 import { type CSSProperties } from "react";
 
@@ -15,6 +16,7 @@ const ALBUM_ART_DIMENSIONS = 75;
 
 const HomePage = async () => {
   const topTracks = await getTopTracks();
+  const career = await client.fetch<CAREERS_QUERY_RESULT>(CAREERS_QUERY);
 
   return (
     <>
@@ -43,69 +45,91 @@ const HomePage = async () => {
         </h2>
 
         <ol className="space-y-3 sm:space-y-6">
-          {career.map((job) => (
-            <li
-              key={job.company.name + job.position + job.duration.start}
-              className="space-y-1.5 border-zinc-200 pb-3 not-last:border-b sm:space-y-3 sm:pb-6 dark:border-zinc-700"
-            >
-              <div className="flex flex-row items-center gap-2 sm:gap-4">
-                <Image
-                  src={job.company.logo}
-                  alt={job.company.name}
-                  width={50}
-                  height={50}
-                  placeholder="blur"
-                  className="rounded"
-                />
+          {career.map((job) => {
+            const descriptionParagraphs = getParagraphs(job.description);
 
-                <div className="flex-1">
-                  <h3 className="font-display text-xl font-semibold tracking-tighter sm:text-2xl">
-                    {job.position}
-                  </h3>
+            return (
+              <li
+                key={job._id}
+                className="space-y-1.5 border-zinc-200 pb-3 not-last:border-b sm:space-y-3 sm:pb-6 dark:border-zinc-700"
+              >
+                <div className="flex flex-row items-center gap-2 sm:gap-4">
+                  <Image
+                    src={urlFor(job.employer.logo).width(50).height(50).url()}
+                    alt={job.employer.logo.alt}
+                    width={50}
+                    height={50}
+                    className="rounded"
+                  />
 
-                  <a
-                    href={job.company.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-accent dark:text-accent-dark text-lg font-medium hover:underline sm:text-xl"
-                  >
-                    {job.company.name}
-                  </a>
+                  <div className="flex-1">
+                    <h3 className="font-display text-xl font-semibold tracking-tighter sm:text-2xl">
+                      {job.position}
+                    </h3>
+
+                    <a
+                      href={job.employer.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-accent dark:text-accent-dark text-lg font-medium hover:underline sm:text-xl"
+                    >
+                      {job.employer.name}
+                    </a>
+
+                    <JobDuration
+                      start={job.startDate}
+                      end={job.endDate}
+                      className="sm:hidden"
+                    />
+                  </div>
 
                   <JobDuration
-                    start={job.duration.start}
-                    end={job.duration.end}
-                    className="sm:hidden"
+                    start={job.startDate}
+                    end={job.endDate}
+                    className="hidden sm:block"
                   />
                 </div>
 
-                <JobDuration
-                  start={job.duration.start}
-                  end={job.duration.end}
-                  className="hidden sm:block"
-                />
-              </div>
+                <ul className="list-outside list-disc pl-5 text-sm sm:text-base">
+                  {descriptionParagraphs.map((paragraph) => {
+                    return (
+                      <li key={paragraph} className="text-pretty">
+                        {paragraph}
+                      </li>
+                    );
+                  })}
+                </ul>
 
-              <ul className="list-outside list-disc pl-5 text-sm sm:text-base">
-                {job.description.map((description) => (
-                  <li key={description} className="text-pretty">
-                    {description}
-                  </li>
-                ))}
-              </ul>
+                <ul className="flex flex-row flex-wrap gap-1 text-xs sm:gap-2 sm:text-sm">
+                  {job.technologies.map((technology) => (
+                    <li key={technology._id}>
+                      <a
+                        href={technology.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex flex-row items-center gap-1 rounded-md border border-zinc-200 p-1 text-pretty sm:p-2 dark:border-zinc-700"
+                      >
+                        {!!technology.logo && (
+                          <Image
+                            src={urlFor(technology.logo)
+                              .width(30)
+                              .height(30)
+                              .url()}
+                            alt={technology.name}
+                            width={30}
+                            height={30}
+                            className="size-5 rounded-md sm:size-7.5"
+                          />
+                        )}
 
-              <ul className="flex flex-row flex-wrap gap-1 text-xs sm:gap-2 sm:text-sm">
-                {job.technologies.map((technology) => (
-                  <li
-                    key={technology}
-                    className="rounded-full border border-zinc-200 px-1.5 py-0.5 text-pretty sm:px-3 sm:py-1 dark:border-zinc-700"
-                  >
-                    {technology}
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
+                        <span>{technology.name}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            );
+          })}
         </ol>
       </section>
 
@@ -196,12 +220,8 @@ const JobDuration = async ({
   end?: string;
   className?: string;
 }) => {
-  "use cache";
-
-  cacheLife("days");
-
-  const startDate = dayjs(start, "MM/DD/YYYY");
-  const endDate = end ? dayjs(end, "MM/DD/YYYY") : dayjs();
+  const startDate = dayjs(start, "YYYY-MM-DD");
+  const endDate = end ? dayjs(end, "YYYY-MM-DD") : dayjs();
 
   return (
     <div className={cn("text-sm sm:text-base", className)}>

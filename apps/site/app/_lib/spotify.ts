@@ -1,6 +1,5 @@
 import { type } from "arktype";
 import ky from "ky";
-import { cacheLife } from "next/cache";
 import "server-only";
 import { NowPlaying } from "./helpers";
 
@@ -95,10 +94,6 @@ const TopTracks = type({
 });
 
 export const getTopTracks = async () => {
-  "use cache";
-
-  cacheLife("days");
-
   const { access_token } = await getAccessToken();
 
   const response = await ky

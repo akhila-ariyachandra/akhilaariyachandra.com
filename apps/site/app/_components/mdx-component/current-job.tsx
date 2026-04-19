@@ -1,11 +1,13 @@
-import { career } from "@/_lib/data";
+import { client } from "@/_lib/sanity/client";
+import { CURRENT_JOB_QUERY } from "@repo/cms/queries";
+import type { CURRENT_JOB_QUERY_RESULT } from "@repo/cms/types";
 
-const CurrentJob = ({
+const CurrentJob = async ({
   type,
 }: {
   type: "position-indefinite-article" | "position" | "company";
 }) => {
-  const job = career[0];
+  const job = await client.fetch<CURRENT_JOB_QUERY_RESULT>(CURRENT_JOB_QUERY);
 
   if (!job) {
     return null;
@@ -30,8 +32,8 @@ const CurrentJob = ({
   }
 
   return (
-    <a href={job.company.url} target="_blank" rel="noopener noreferrer">
-      {job.company.name}
+    <a href={job.employer.url} target="_blank" rel="noopener noreferrer">
+      {job.employer.name}
     </a>
   );
 };

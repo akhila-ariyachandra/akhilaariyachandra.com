@@ -1,13 +1,7 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "cSpell.words": [
-    "Bluesky",
-    "Giscus",
-    "Incrementer",
-    "Ratelimit",
-    "Villvay"
-  ],
+  "cSpell.words": ["Bluesky", "Giscus", "Incrementer", "Ratelimit", "Villvay"],
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "files.associations": {
@@ -17,12 +11,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "tailwindCSS.classAttributes": [
-    "class",
-    "className",
-    "ngClass",
-    "tw"
-  ],
+  "tailwindCSS.classAttributes": ["class", "className", "ngClass", "tw"],
   "tailwindCSS.experimental.classRegex": [
     ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
     ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
@@ -34,7 +23,5 @@
   "editor.quickSuggestions": {
     "strings": "on"
   },
-  "typescript.preferences.autoImportSpecifierExcludeRegexes": [
-    "^(node:)?os$"
-  ]
+  "typescript.preferences.autoImportSpecifierExcludeRegexes": ["^(node:)?os$"]
 }
