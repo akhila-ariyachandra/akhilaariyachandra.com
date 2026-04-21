@@ -7,10 +7,6 @@ const CurrentJob = async ({
 }: {
   type: "position-indefinite-article" | "position" | "company";
 }) => {
-  if (!client) {
-    return null;
-  }
-
   const job = await client.fetch<CURRENT_JOB_QUERY_RESULT>(CURRENT_JOB_QUERY);
 
   if (!job) {

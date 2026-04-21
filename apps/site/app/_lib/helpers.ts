@@ -11,13 +11,13 @@ export const cn = (...args: ClassValue[]) => {
   return twMerge(clsx(args));
 };
 
-export const getParagraphs = (text: string) => {
-  return text.split("\n").map((paragraph) => paragraph.trim());
+const builder = createImageUrlBuilder(client);
+export const urlFor = (source: SanityImageSource) => {
+  return builder.image(source);
 };
 
-const builder = client ? createImageUrlBuilder(client) : null;
-export const urlFor = (source: SanityImageSource) => {
-  return builder?.image(source);
+export const getParagraphs = (text: string) => {
+  return text.split("\n").map((paragraph) => paragraph.trim());
 };
 
 export const NowPlaying = type({

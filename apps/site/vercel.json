@@ -1,0 +1,14 @@
+{
+  "env": {
+    "NEXT_PUBLIC_SANITY_PROJECT_ID": "vcrx709q",
+    "NEXT_PUBLIC_SANITY_DATASET": "production",
+    "NEXT_PUBLIC_SANITY_API_VERSION": "2026-03-01"
+  },
+  "build": {
+    "env": {
+      "NEXT_PUBLIC_SANITY_PROJECT_ID": "vcrx709q",
+      "NEXT_PUBLIC_SANITY_DATASET": "production",
+      "NEXT_PUBLIC_SANITY_API_VERSION": "2026-03-01"
+    }
+  }
+}
