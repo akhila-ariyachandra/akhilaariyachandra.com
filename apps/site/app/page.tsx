@@ -16,7 +16,9 @@ const ALBUM_ART_DIMENSIONS = 75;
 
 const HomePage = async () => {
   const topTracks = await getTopTracks();
-  const career = await client.fetch<CAREERS_QUERY_RESULT>(CAREERS_QUERY);
+  const career = client
+    ? await client.fetch<CAREERS_QUERY_RESULT>(CAREERS_QUERY)
+    : [];
 
   return (
     <>
@@ -55,7 +57,10 @@ const HomePage = async () => {
               >
                 <div className="flex flex-row items-center gap-2 sm:gap-4">
                   <Image
-                    src={urlFor(job.employer.logo).width(50).height(50).url()}
+                    src={
+                      urlFor(job.employer.logo)?.width(50).height(50).url() ??
+                      profilePic.src
+                    }
                     alt={job.employer.logo.alt}
                     width={50}
                     height={50}
@@ -111,10 +116,12 @@ const HomePage = async () => {
                       >
                         {!!technology.logo && (
                           <Image
-                            src={urlFor(technology.logo)
-                              .width(30)
-                              .height(30)
-                              .url()}
+                            src={
+                              urlFor(technology.logo)
+                                ?.width(30)
+                                .height(30)
+                                .url() ?? profilePic.src
+                            }
                             alt={technology.name}
                             width={30}
                             height={30}
