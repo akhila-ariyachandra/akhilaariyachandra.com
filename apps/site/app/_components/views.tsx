@@ -7,17 +7,34 @@ import { headers } from "next/headers";
 import { after } from "next/server";
 import { Suspense } from "react";
 
-const hasDatabaseConfig = Boolean(process.env.DATABASE_URL);
-const hasRedisConfig = Boolean(
-  process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN,
-);
+const getDb = async () => {
+  try {
+    const { db } = await import("@/db");
+
+    return db;
+  } catch {
+    return null;
+  }
+};
+
+const getRatelimit = () => {
+  try {
+    return new Ratelimit({
+      redis: Redis.fromEnv(),
+      limiter: Ratelimit.slidingWindow(1, "60 s"),
+      analytics: true,
+    });
+  } catch {
+    return null;
+  }
+};
 
 const getViews = async (slug: string) => {
-  if (!hasDatabaseConfig) {
+  const db = await getDb();
+  if (!db) {
     return 0;
   }
 
-  const { db } = await import("@/db");
   const result = await db.query.postsTable.findFirst({
     where: eq(postsTable.slug, slug),
   });
@@ -46,25 +63,18 @@ const Views = async ({ slug, increment = false }: ViewsProps) => {
 
 export default Views;
 
-const ratelimit =
-  hasRedisConfig &&
-  new Ratelimit({
-    redis: Redis.fromEnv(),
-    limiter: Ratelimit.slidingWindow(1, "60 s"),
-    analytics: true,
-  });
-
 const ViewsIncrementor = async ({ slug, increment }: ViewsProps) => {
   const headersStore = await headers();
   const isBot = isbot(headersStore.get("user-agent") ?? "");
 
   if (increment && process.env.NODE_ENV === "production" && !isBot) {
-    if (!hasDatabaseConfig || !ratelimit) {
+    const db = await getDb();
+    const ratelimit = getRatelimit();
+    if (!db || !ratelimit) {
       return null;
     }
 
     after(async () => {
-      const { db } = await import("@/db");
       let ip = "";
 
       const FALLBACK_IP_ADDRESS = "0.0.0.0";

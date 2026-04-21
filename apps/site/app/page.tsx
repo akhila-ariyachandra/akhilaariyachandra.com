@@ -59,7 +59,7 @@ const HomePage = async () => {
                   <Image
                     src={
                       urlFor(job.employer.logo)?.width(50).height(50).url() ??
-                      profilePic.src
+                      profilePic
                     }
                     alt={job.employer.logo.alt}
                     width={50}
@@ -120,7 +120,7 @@ const HomePage = async () => {
                               urlFor(technology.logo)
                                 ?.width(30)
                                 .height(30)
-                                .url() ?? profilePic.src
+                                .url() ?? profilePic
                             }
                             alt={technology.name}
                             width={30}
