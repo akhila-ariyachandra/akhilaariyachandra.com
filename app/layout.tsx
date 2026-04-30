@@ -63,7 +63,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
       >
         <Header />
 
-        <main className="container max-w-4xl flex-1 p-3 sm:p-4">
+        <main className="mx-auto w-full max-w-4xl flex-1 p-3 sm:p-4">
           {children}
         </main>
 
@@ -90,7 +90,7 @@ const Footer = async () => {
   const year = await getYear();
 
   return (
-    <footer className="container max-w-4xl space-y-4 p-3 text-zinc-600 sm:p-4 dark:text-zinc-300">
+    <footer className="mx-auto w-full max-w-4xl space-y-4 p-3 text-zinc-600 sm:p-4 dark:text-zinc-300">
       <NowPlaying />
 
       <p className="text-sm sm:text-base">
