@@ -8,8 +8,6 @@ This site is built with [Next.js](https://nextjs.org/), [Tailwind CSS](https://t
 
 |              Name              | Description                                                                                                                                                                                  |
 | :----------------------------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|    `UPSTASH_REDIS_REST_URL`    | [Upstash](https://upstash.com/)                                                                                                                                                              |
-|   `UPSTASH_REDIS_REST_TOKEN`   | [Upstash](https://upstash.com/)                                                                                                                                                              |
 | `ENABLE_EXPERIMENTAL_COREPACK` | Set to `1` to enable [Corepack in Vercel](https://vercel.com/docs/builds/configure-a-build#corepack)                                                                                         |
 |      `SPOTIFY_CLIENT_ID`       | [Spotify Web App](https://developer.spotify.com/documentation/web-api/concepts/apps) Client ID                                                                                               |
 |    `SPOTIFY_CLIENT_SECRET`     | [Spotify Web App](https://developer.spotify.com/documentation/web-api/concepts/apps) Client Secret                                                                                           |
