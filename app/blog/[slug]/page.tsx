@@ -2,7 +2,6 @@ import MDXComponent from "@/_components/mdx-component";
 import BlogPostingStructuredData from "@/_components/structured-data/blog-posting";
 import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
 import Title from "@/_components/title";
-import Views from "@/_components/views";
 import { PRODUCTION_URL } from "@/_lib/constants";
 import { allPosts } from "content-collections";
 import dayjs from "dayjs";
@@ -72,12 +71,6 @@ const BlogPostPage = async (props: PageProps<"/blog/[slug]">) => {
                 : ""
             }`}
           </time>
-
-          <span className="font-light text-zinc-500 dark:text-zinc-400">
-            {" - "}
-          </span>
-
-          <Views slug={post._meta.path} increment />
         </div>
       </ViewTransition>
 

@@ -1,6 +1,5 @@
 import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
 import Title from "@/_components/title";
-import Views from "@/_components/views";
 import { allPosts } from "content-collections";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
@@ -54,12 +53,6 @@ const BlogPage = () => {
                         : ""
                     }`}
                   </time>
-
-                  <span className="font-light text-zinc-500 dark:text-zinc-400">
-                    {" - "}
-                  </span>
-
-                  <Views slug={post._meta.path} />
                 </div>
               </ViewTransition>
             </li>
