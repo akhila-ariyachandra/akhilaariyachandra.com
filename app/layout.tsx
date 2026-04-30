@@ -57,7 +57,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
       <body
         className={cn(
           geist.className,
-          "font-content flex min-h-dvh flex-col bg-white antialiased dark:bg-zinc-950",
+          "flex min-h-dvh flex-col bg-white antialiased dark:bg-zinc-950",
           "transition-colors duration-200 ease-out",
         )}
       >
