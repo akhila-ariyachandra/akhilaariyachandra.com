@@ -3,10 +3,8 @@
   "editor.formatOnSave": true,
   "cSpell.words": [
     "Bluesky",
-    "Giscus",
-    "Incrementer",
-    "Ratelimit",
-    "Villvay"
+    "Villvay",
+    "Knip"
   ],
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
