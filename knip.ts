@@ -8,7 +8,11 @@ const config: KnipConfig = {
     "postcss.config.{js,cjs,mjs,ts}",
     "app/**/*.{ts,tsx}",
   ],
-  ignoreDependencies: ["tailwindcss", "@tailwindcss/typography"],
+  ignoreDependencies: [
+    "tailwindcss",
+    "@tailwindcss/typography",
+    "content-collections",
+  ],
 };
 
 export default config;
