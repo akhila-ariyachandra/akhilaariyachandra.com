@@ -26,6 +26,8 @@ jobs:
           cache: "pnpm"
       - name: Install dependencies
         run: pnpm install
+      - name: Build collections
+        run: pnpm run collections:build
       - name: Run Knip
         run: pnpm run knip
       - name: Check formatting
