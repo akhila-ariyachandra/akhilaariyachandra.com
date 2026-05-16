@@ -34,19 +34,19 @@
     "schema-dts": "^2.0.0",
     "server-only": "0.0.1",
     "shiki": "^4.0.2",
-    "tailwind-merge": "3.5.0"
+    "tailwind-merge": "3.6.0"
   },
   "devDependencies": {
     "@content-collections/cli": "0.1.9",
     "@content-collections/core": "^0.15.0",
     "@content-collections/mdx": "^0.2.2",
     "@content-collections/next": "^0.2.11",
-    "@eslint-react/eslint-plugin": "^5.7.4",
+    "@eslint-react/eslint-plugin": "^5.7.8",
     "@eslint/js": "^9.39.2",
     "@stylistic/eslint-plugin": "5.10.0",
-    "@tailwindcss/postcss": "^4.2.4",
+    "@tailwindcss/postcss": "^4.3.0",
     "@tailwindcss/typography": "0.5.19",
-    "@types/node": "^25.6.2",
+    "@types/node": "^25.8.0",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "babel-plugin-react-compiler": "19.1.0-rc.3",
@@ -54,13 +54,13 @@
     "eslint-config-next": "16.2.6",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-import": "2.32.0",
-    "knip": "^6.12.1",
+    "knip": "^6.13.1",
     "postcss": "8.5.14",
     "prettier": "3.8.3",
     "prettier-plugin-organize-imports": "4.3.0",
     "prettier-plugin-tailwindcss": "^0.8.0",
-    "tailwindcss": "^4.2.4",
+    "tailwindcss": "^4.3.0",
     "typescript": "6.0.3",
-    "typescript-eslint": "^8.59.2"
+    "typescript-eslint": "^8.59.3"
   }
 }
