@@ -51,7 +51,11 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
   return (
     <html
       lang="en"
-      className={cn(geistMono.variable, "min-h-dvh scroll-smooth")}
+      className={cn(
+        geistMono.variable,
+        "min-h-dvh scroll-smooth",
+        "scrollbar-thumb-accent dark:scrollbar-thumb-accent-dark scrollbar-thin",
+      )}
       data-scroll-behavior="smooth"
     >
       <body
