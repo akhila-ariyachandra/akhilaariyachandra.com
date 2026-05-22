@@ -3,9 +3,6 @@ allowBuilds:
   sharp: false
   unrs-resolver: false
 
-configDependencies:
-  "@pnpm/pacquet": 0.2.4
-
 trustPolicy: no-downgrade
 
 trustPolicyIgnoreAfter: 43200 # 1 month
