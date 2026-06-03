@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-      
+
       - uses: pnpm/action-setup@v6
         name: Install pnpm
         with:
@@ -36,12 +36,12 @@ jobs:
 
       - name: Run Knip
         run: pnpm run knip
-        
+
       - name: Check formatting
         run: pnpm run prettier:check
 
       - name: Type checking
         run: pnpm run typecheck
-        
+
       - name: Linting
         run: pnpm run lint
