@@ -4,7 +4,9 @@ import Title from "@/_components/title";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ErrorPage = (props: {
+  // eslint-disable-next-line @eslint-react/no-unused-props
   error: Error & { digest?: string };
+  // eslint-disable-next-line @eslint-react/no-unused-props
   reset: () => void;
 }) => {
   return (
