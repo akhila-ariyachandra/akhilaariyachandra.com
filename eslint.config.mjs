@@ -21,7 +21,7 @@ export default defineConfig(
   {
     languageOptions: {
       parserOptions: {
-        project: "./tsconfig.json",
+        projectService: true,
         tsconfigRootDir: import.meta.dirname,
       },
     },
@@ -67,10 +67,11 @@ export default defineConfig(
   },
   nextVitals,
   {
-    extends: [eslintReact.configs["recommended-type-checked"]],
-    rules: {
-      "@eslint-react/hooks-extra/no-direct-set-state-in-use-effect": "off",
-    },
+    extends: [
+      eslintReact.configs["strict-type-checked"],
+      eslintReact.configs["disable-conflict-eslint-plugin-react"],
+      eslintReact.configs["disable-conflict-eslint-plugin-react-hooks"],
+    ],
   },
   {
     files: ["**/*.{js,mjs}"],
