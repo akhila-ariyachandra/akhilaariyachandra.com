@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   typedRoutes: true,
   cacheComponents: true,
+  partialPrefetching: true,
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
