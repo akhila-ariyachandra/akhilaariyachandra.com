@@ -49,7 +49,6 @@
     "@types/node": "^26.1.1",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
-    "@typescript/native": "npm:typescript@7.0.2",
     "babel-plugin-react-compiler": "19.1.0-rc.3",
     "eslint": "^9.39.2",
     "eslint-config-next": "16.2.10",
@@ -61,7 +60,7 @@
     "prettier-plugin-organize-imports": "4.3.0",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "tailwindcss": "^4.3.2",
-    "typescript": "npm:@typescript/typescript6@^6.0.2",
+    "typescript": "7.0.2",
     "typescript-eslint": "^8.63.0"
   }
 }
