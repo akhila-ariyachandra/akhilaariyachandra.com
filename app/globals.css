@@ -6,7 +6,7 @@
 @theme {
   --font-display: var(--font-geist-mono);
 
-  --color-spotify-green: #1ed760;
+  --color-last-fm-red: #d51007;
 }
 
 @theme inline {

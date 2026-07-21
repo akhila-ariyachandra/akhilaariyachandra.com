@@ -38,6 +38,9 @@ importers:
       react-dom:
         specifier: 19.2.7
         version: 19.2.7(react@19.2.7)
+      react-error-boundary:
+        specifier: 6.1.2
+        version: 6.1.2(react@19.2.7)
       rehype-external-links:
         specifier: 3.0.0
         version: 3.0.0
@@ -3048,6 +3051,11 @@ packages:
     resolution: {integrity: sha512-t0BRVXvbiE/o20Hfw669rLbMCDWtYZLvmJigy2f0MxsXF+71pxhR3xOkspmsO8h3ZlNzyibAmtCa3l4lYKk6gQ==}
     peerDependencies:
       react: ^19.2.7
+
+  react-error-boundary@6.1.2:
+    resolution: {integrity: sha512-3DpCr5HVdZ0caUjYE/kIHBEJN0mNP3ZCgf16c48uJ5TbWjorKVp+YG8W3XqlJ7vJAVNw6wNIImyPXmFydwmyng==}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -6805,6 +6813,10 @@ snapshots:
     dependencies:
       react: 19.2.7
       scheduler: 0.27.0
+
+  react-error-boundary@6.1.2(react@19.2.7):
+    dependencies:
+      react: 19.2.7
 
   react-is@16.13.1: {}
 

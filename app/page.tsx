@@ -3,7 +3,7 @@ import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
 import ProfileStructuredData from "@/_components/structured-data/profile";
 import { career } from "@/_lib/data";
 import { cn } from "@/_lib/helpers";
-import { getTopTracks } from "@/_lib/spotify";
+import { getTopTracks } from "@/_lib/last-fm";
 import profilePic from "@/public/profile-pic.jpg";
 import { about } from "content-collections";
 import dayjs from "dayjs";
@@ -129,19 +129,22 @@ const HomePage = async () => {
             } as CSSProperties
           }
         >
-          {topTracks.items.map((track) => {
-            const albumArt = track.album.images.find(
-              (image) => image.width >= ALBUM_ART_DIMENSIONS,
-            )?.url;
+          {topTracks.map((track) => {
+            const albumArt = track.image.find(
+              (image) => image.size === "extralarge",
+            )?.["#text"];
 
             if (!albumArt) {
               return null;
             }
 
             return (
-              <li key={track.id} className="flex flex-row items-center gap-4">
+              <li
+                key={track.mbid ? track.mbid : track.url}
+                className="flex flex-row items-center gap-4"
+              >
                 <a
-                  href={track.album.external_urls.spotify}
+                  href={track.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="shrink-0"
@@ -160,7 +163,7 @@ const HomePage = async () => {
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-lg font-medium sm:text-xl">
                     <a
-                      href={track.external_urls.spotify}
+                      href={track.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-accent dark:text-accent-dark hover:underline"
@@ -170,7 +173,7 @@ const HomePage = async () => {
                   </p>
 
                   <p className="truncate text-sm sm:text-base">
-                    {track.artists.map((artist) => artist.name).join(", ")}
+                    {track.artist.name}
                   </p>
                 </div>
               </li>
