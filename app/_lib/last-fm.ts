@@ -59,3 +59,38 @@ export const getRecentTracks = async () => {
 
   return tracks.recenttracks.track;
 };
+
+/**
+ * Last.fm doesn't return the album art for tracks so we're using the iTunes Search API to get it
+ */
+export const getAlbumArt = async (name: string, artist: string) => {
+  "use cache";
+
+  cacheLife("max");
+
+  const response = await ky
+    .get("https://itunes.apple.com/search", {
+      searchParams: {
+        term: `${name} ${artist}`,
+        media: "music",
+        entity: "song",
+        limit: "1",
+      },
+    })
+    .json();
+
+  const song = type({
+    resultCount: "1",
+    results: [
+      {
+        artworkUrl100: "string",
+      },
+    ],
+  })(response);
+
+  if (song instanceof type.errors) {
+    return undefined;
+  }
+
+  return song.results[0].artworkUrl100;
+};
