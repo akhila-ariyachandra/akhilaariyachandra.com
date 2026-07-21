@@ -3,7 +3,7 @@ import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
 import ProfileStructuredData from "@/_components/structured-data/profile";
 import { career } from "@/_lib/data";
 import { cn } from "@/_lib/helpers";
-import { getTopTracks } from "@/_lib/last-fm";
+import { getAlbumArt, getTopTracks } from "@/_lib/last-fm";
 import profilePic from "@/public/profile-pic.jpg";
 import { about } from "content-collections";
 import dayjs from "dayjs";
@@ -134,10 +134,6 @@ const HomePage = async () => {
               (image) => image.size === "extralarge",
             )?.["#text"];
 
-            if (!albumArt) {
-              return null;
-            }
-
             return (
               <li
                 key={track.mbid ? track.mbid : track.url}
@@ -149,12 +145,10 @@ const HomePage = async () => {
                   rel="noopener noreferrer"
                   className="shrink-0"
                 >
-                  <Image
-                    src={albumArt}
-                    alt={track.name}
-                    width={ALBUM_ART_DIMENSIONS}
-                    height={ALBUM_ART_DIMENSIONS}
-                    className="size-[50px] rounded-sm sm:size-(--album-art-dimensions)"
+                  <AlbumArt
+                    name={track.name}
+                    artist={track.artist.name}
+                    fallbackUrl={albumArt}
                   />
 
                   <span className="sr-only">{track.name}</span>
@@ -216,5 +210,31 @@ const JobDuration = async ({
         {end ? endDate.format("MMMM YYYY") : "Present"}
       </time>
     </div>
+  );
+};
+
+const AlbumArt = async ({
+  name,
+  artist,
+  fallbackUrl,
+}: {
+  name: string;
+  artist: string;
+  fallbackUrl?: string | undefined;
+}) => {
+  const albumArt = await getAlbumArt(name, artist);
+
+  if (!albumArt && !fallbackUrl) {
+    return <div className="size-[50px] sm:size-(--album-art-dimensions)" />;
+  }
+
+  return (
+    <Image
+      src={albumArt ?? fallbackUrl ?? ""}
+      alt={name}
+      width={ALBUM_ART_DIMENSIONS}
+      height={ALBUM_ART_DIMENSIONS}
+      className="size-[50px] rounded-sm sm:size-(--album-art-dimensions)"
+    />
   );
 };

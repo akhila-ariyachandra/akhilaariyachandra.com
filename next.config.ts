@@ -19,6 +19,10 @@ const nextConfig: NextConfig = {
         hostname: "lastfm.freetls.fastly.net",
         pathname: "/i/u/**",
       },
+      {
+        protocol: "https",
+        hostname: "is1-ssl.mzstatic.com",
+      },
     ],
   },
   logging: {
