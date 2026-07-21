@@ -1,8 +1,24 @@
 import { AudioLinesIcon } from "@/_components/audio-lines";
 import { getRecentTracks } from "@/_lib/last-fm";
-import { type CSSProperties, Suspense } from "react";
+import { type CSSProperties, type ReactNode, Suspense } from "react";
 import { ALBUM_ART_DIMENSIONS } from "./constants";
 import NowPlayingClient from "./now-playing-client";
+
+const NowPlayingContainer = ({ children }: { children: ReactNode }) => {
+  return (
+    <div
+      className="flex items-center gap-4"
+      style={
+        {
+          "--album-art-dimensions": `${ALBUM_ART_DIMENSIONS.desktop.toString()}px`,
+          "--mobile-album-art-dimensions": `${ALBUM_ART_DIMENSIONS.mobile.toString()}px`,
+        } as CSSProperties
+      }
+    >
+      {children}
+    </div>
+  );
+};
 
 const NotPlaying = () => {
   return (
@@ -23,23 +39,19 @@ const NowPlaying = async () => {
   const nowPlaying = recentTracks.find((track) => track["@attr"]?.nowplaying);
 
   if (!nowPlaying) {
-    return <NotPlaying />;
+    return (
+      <NowPlayingContainer>
+        <NotPlaying />
+      </NowPlayingContainer>
+    );
   }
 
   return (
-    <div
-      className="flex items-center gap-4"
-      style={
-        {
-          "--album-art-dimensions": `${ALBUM_ART_DIMENSIONS.desktop.toString()}px`,
-          "--mobile-album-art-dimensions": `${ALBUM_ART_DIMENSIONS.mobile.toString()}px`,
-        } as CSSProperties
-      }
-    >
+    <NowPlayingContainer>
       <Suspense fallback={<NotPlaying />}>
         <NowPlayingClient nowPlaying={nowPlaying} />
       </Suspense>
-    </div>
+    </NowPlayingContainer>
   );
 };
 
