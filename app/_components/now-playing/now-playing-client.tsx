@@ -1,17 +1,20 @@
 "use client";
 
 import { AudioLinesIcon } from "@/_components/audio-lines";
-import type { NowPlaying } from "@/_lib/helpers";
+import type { RecentTracksType } from "@/_lib/types";
 import Image from "next/image";
 import { useEffect, useRef, type ComponentRef } from "react";
-import { ALBUM_ART_DIMENSIONS } from "./constants";
 
-const NowPlayingClient = ({ nowPlaying }: { nowPlaying: NowPlaying }) => {
+const NowPlayingClient = ({
+  nowPlaying,
+}: {
+  nowPlaying: RecentTracksType["recenttracks"]["track"][number];
+}) => {
   const visualizerIconRef = useRef<ComponentRef<typeof AudioLinesIcon>>(null);
 
-  const albumArt = nowPlaying.item.album.images.find(
-    (image) => image.width >= ALBUM_ART_DIMENSIONS.desktop,
-  )?.url;
+  const albumArt = nowPlaying.image.find(
+    (image) => image.size === "extralarge",
+  )?.["#text"];
 
   useEffect(() => {
     visualizerIconRef.current?.startAnimation();
@@ -20,7 +23,7 @@ const NowPlayingClient = ({ nowPlaying }: { nowPlaying: NowPlaying }) => {
   return (
     <>
       <a
-        href={nowPlaying.item.album.external_urls.spotify}
+        href={nowPlaying.url}
         target="_blank"
         rel="noopener noreferrer"
         className="relative grid size-(--mobile-album-art-dimensions) place-items-center overflow-hidden rounded-sm sm:size-(--album-art-dimensions)"
@@ -28,35 +31,35 @@ const NowPlayingClient = ({ nowPlaying }: { nowPlaying: NowPlaying }) => {
         {!!albumArt && (
           <Image
             src={albumArt}
-            alt={nowPlaying.item.album.name}
+            alt={nowPlaying.artist["#text"]}
             fill
             className="brightness-50"
             unoptimized
           />
         )}
 
-        <span className="sr-only">{nowPlaying.item.album.name}</span>
+        <span className="sr-only">{nowPlaying.artist["#text"]}</span>
 
         <AudioLinesIcon
           ref={visualizerIconRef}
-          className="*:stroke-spotify-green z-10"
+          className="*:stroke-last-fm-red z-10"
         />
       </a>
 
       <div className="min-w-0 flex-1">
         <p className="truncate text-lg font-medium sm:text-xl">
           <a
-            href={nowPlaying.item.external_urls.spotify}
+            href={nowPlaying.url}
             target="_blank"
             rel="noopener noreferrer"
             className="text-accent dark:text-accent-dark hover:underline"
           >
-            {nowPlaying.item.name}
+            {nowPlaying.name}
           </a>
         </p>
 
         <p className="truncate text-sm sm:text-base">
-          {nowPlaying.item.artists.map((artist) => artist.name).join(", ")}
+          {nowPlaying.artist["#text"]}
         </p>
       </div>
     </>
