@@ -38,10 +38,6 @@ export const getTopTracks = async () => {
 };
 
 export const getRecentTracks = async () => {
-  "use cache";
-
-  cacheLife("minutes");
-
   const response = await api
     .get("", {
       searchParams: {
