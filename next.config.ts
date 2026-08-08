@@ -2,7 +2,12 @@ import { withContentCollections } from "@content-collections/next";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  experimental: { prefetchInlining: false, turbopackRustReactCompiler: true },
+  experimental: {
+    prefetchInlining: false,
+    turbopackRustReactCompiler: true,
+    globalNotFound: true,
+  },
+  compiler: { styledComponents: { transpileTemplateLiterals: false } },
   reactStrictMode: true,
   reactCompiler: true,
   typedRoutes: true,
