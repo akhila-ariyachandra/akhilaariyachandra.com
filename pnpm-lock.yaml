@@ -50,6 +50,9 @@ importers:
       react-dom:
         specifier: 19.2.8
         version: 19.2.8(react@19.2.8)
+      react-icons:
+        specifier: 5.7.0
+        version: 5.7.0(react@19.2.8)
       rehype-external-links:
         specifier: 3.0.0
         version: 3.0.0
@@ -6324,6 +6327,11 @@ packages:
         optional: true
       typescript:
         optional: true
+
+  react-icons@5.7.0:
+    resolution: {integrity: sha512-LBLy340Rzqy6+/yVhZKT3B/QpP1BZaesGqasf09HPOBzRarcDIFH0WwXlXQfE7q7ipxK4MSiC5DIBWURCny6fw==}
+    peerDependencies:
+      react: '*'
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -14530,6 +14538,10 @@ snapshots:
     optionalDependencies:
       react-dom: 19.2.8(react@19.2.8)
       typescript: 6.0.3
+
+  react-icons@5.7.0(react@19.2.8):
+    dependencies:
+      react: 19.2.8
 
   react-is@16.13.1: {}
 

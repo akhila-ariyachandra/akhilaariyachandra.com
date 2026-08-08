@@ -34,7 +34,8 @@
     ".next/types/**/*.ts",
     "next-env.d.ts",
     "**/*.mts",
-    ".next/dev/types/**/*.ts"
+    ".next/dev/types/**/*.ts",
+    "sanity/generated/types.ts"
   ],
   "exclude": ["node_modules"]
 }
