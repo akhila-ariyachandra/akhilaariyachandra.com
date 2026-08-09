@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import confusedTravolta from "./confused-travolta.gif";
+import "./global-not-found-styles.css";
 
 export const metadata: Metadata = {
   title: "404 - Page Not Found",

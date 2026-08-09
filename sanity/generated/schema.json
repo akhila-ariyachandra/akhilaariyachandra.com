@@ -130,7 +130,7 @@
             }
           }
         },
-        "optional": true
+        "optional": false
       },
       "description": {
         "type": "objectAttribute",

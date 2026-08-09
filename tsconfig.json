@@ -25,7 +25,8 @@
       "@/db": ["./db"],
       "@/db/*": ["./db/*"],
       "@/public/*": ["./public/*"],
-      "content-collections": ["./.content-collections/generated"]
+      "content-collections": ["./.content-collections/generated"],
+      "@/sanity/*": ["./sanity/*"]
     }
   },
   "include": [

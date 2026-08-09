@@ -50,6 +50,7 @@ export const jobType = defineType({
             }),
         }),
       ],
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "description",

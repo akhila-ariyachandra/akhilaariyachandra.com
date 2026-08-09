@@ -37,7 +37,7 @@ export type Job = {
   _rev: string;
   position: string;
   company: CompanyReference;
-  duration?: {
+  duration: {
     start: string;
     end?: string;
   };
@@ -227,3 +227,60 @@ export type AllSanitySchemaTypes =
   | SanityImageAsset
   | Geopoint
   | Slug;
+
+// Source: sanity/lib/queries.ts
+// Variable: CAREERS_QUERY
+// Query: *[_type == "job"] | order(duration.start desc) {  ...,  company ->,  technologies[] ->}
+export type CAREERS_QUERY_RESULT = Array<{
+  _id: string;
+  _type: "job";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  position: string;
+  company: {
+    _id: string;
+    _type: "company";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    name: string;
+    url: string;
+    logo: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+  };
+  duration: {
+    start: string;
+    end?: string;
+  };
+  description: string;
+  technologies: Array<{
+    _id: string;
+    _type: "technology";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    name: string;
+    url: string;
+    icon: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+  }>;
+}>;
+
+// Query TypeMap
+import "@sanity/client";
+declare module "@sanity/client" {
+  interface SanityQueries {
+    '*[_type == "job"] | order(duration.start desc) {\n  ...,\n  company ->,\n  technologies[] ->\n}': CAREERS_QUERY_RESULT;
+  }
+}
