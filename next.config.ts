@@ -5,7 +5,6 @@ import { sanity } from "next-sanity/live/cache-life";
 
 const nextConfig: NextConfig = {
   experimental: {
-    prefetchInlining: false,
     turbopackRustReactCompiler: true,
     globalNotFound: true,
   },

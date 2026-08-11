@@ -6,3 +6,7 @@ export const CAREERS_QUERY =
   company ->,
   technologies[] ->
 }`);
+
+export const POSTS_QUERY = defineQuery(
+  `*[_type == "post"] | order(posted desc)`,
+);
