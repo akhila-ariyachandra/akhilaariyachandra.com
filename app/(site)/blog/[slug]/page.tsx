@@ -6,7 +6,7 @@ import { cn } from "@/_lib/helpers";
 import type { POST_BY_SLUG_QUERY_RESULT } from "@/sanity/generated/types";
 import { urlFor } from "@/sanity/lib/image";
 import {
-  DynamicFetchOptions,
+  type DynamicFetchOptions,
   getDynamicFetchOptions,
   sanityFetch,
   sanityFetchMetadata,
@@ -171,6 +171,7 @@ const CachedBlogPostPage = async ({
 
   return (
     <>
+      {/* eslint-disable-next-line @eslint-react/dom-no-dangerously-set-innerhtml */}
       <style dangerouslySetInnerHTML={{ __html: highlightCss }} />
 
       <Title transitionName={`post-${post.slug.current}`}>{post.title}</Title>
@@ -220,6 +221,7 @@ const CachedBlogPostPage = async ({
                         </div>
                       )}
 
+                      {/* eslint-disable-next-line @eslint-react/dom-no-dangerously-set-innerhtml */}
                       <div dangerouslySetInnerHTML={{ __html: htmlMarkup }} />
                     </div>
                   );

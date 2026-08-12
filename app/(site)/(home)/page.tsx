@@ -1,10 +1,7 @@
 import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
 import ProfileStructuredData from "@/_components/structured-data/profile";
-import { cn } from "@/_lib/helpers";
 import { getAlbumArt, getTopTracks } from "@/_lib/last-fm";
 import profilePic from "@/public/profile-pic.jpg";
-import dayjs from "dayjs";
-import { cacheLife } from "next/cache";
 import Image from "next/image";
 import { type CSSProperties } from "react";
 import Career from "./career";
@@ -111,35 +108,6 @@ const HomePage = async () => {
 };
 
 export default HomePage;
-
-const JobDuration = async ({
-  start,
-  end,
-  className,
-}: {
-  start: string;
-  end?: string;
-  className?: string;
-}) => {
-  "use cache";
-
-  cacheLife("days");
-
-  const startDate = dayjs(start, "MM/DD/YYYY");
-  const endDate = end ? dayjs(end, "MM/DD/YYYY") : dayjs();
-
-  return (
-    <div className={cn("text-sm sm:text-base", className)}>
-      <time dateTime={startDate.format("YYYY-MM-DD")}>
-        {startDate.format("MMMM YYYY")}
-      </time>{" "}
-      to{" "}
-      <time dateTime={endDate.format("YYYY-MM-DD")}>
-        {end ? endDate.format("MMMM YYYY") : "Present"}
-      </time>
-    </div>
-  );
-};
 
 const AlbumArt = async ({
   name,

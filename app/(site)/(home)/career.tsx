@@ -1,7 +1,7 @@
 import { cn, getParagraphs } from "@/_lib/helpers";
 import { urlFor } from "@/sanity/lib/image";
 import {
-  DynamicFetchOptions,
+  type DynamicFetchOptions,
   getDynamicFetchOptions,
   sanityFetch,
 } from "@/sanity/lib/live";

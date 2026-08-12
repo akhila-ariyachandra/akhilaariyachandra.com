@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
+import type { ReactNode } from "react";
 import { FaExclamation, FaImage, FaLink, FaPen } from "react-icons/fa6";
 import { MdHorizontalRule } from "react-icons/md";
 import { defineField, defineType } from "sanity";
@@ -126,20 +127,29 @@ export const postType = defineType({
               content: "content",
               type: "type",
             },
-            prepare: ({ content, type }) => {
+            prepare: ({
+              content,
+              type,
+            }: {
+              content?: { children?: { text?: string }[] }[];
+              type?: string;
+            }) => {
               const text =
                 content
                   ?.map(
-                    (block: { children?: { text?: string }[] }) =>
+                    (block) =>
                       block.children
                         ?.map((child) => child.text ?? "")
                         .join("") ?? "",
                   )
                   .join(" ") ?? "";
 
+              const typeLabel = type ?? "default";
+
               return {
                 title: text.slice(0, 100),
-                subtitle: type.charAt(0).toUpperCase() + type.slice(1),
+                subtitle:
+                  typeLabel.charAt(0).toUpperCase() + typeLabel.slice(1),
               };
             },
           },
@@ -182,7 +192,15 @@ export const postType = defineType({
               subtitle: "alt",
               media: "asset",
             },
-            prepare: ({ title, subtitle, media }) => {
+            prepare: ({
+              title,
+              subtitle,
+              media,
+            }: {
+              title?: string;
+              subtitle?: string;
+              media?: ReactNode;
+            }) => {
               return {
                 title: title ?? subtitle,
                 media,
@@ -218,7 +236,13 @@ export const postType = defineType({
       title: "title",
       subtitle: "posted",
     },
-    prepare: ({ title, subtitle }) => {
+    prepare: ({
+      title,
+      subtitle,
+    }: {
+      title?: string;
+      subtitle?: string;
+    }) => {
       return {
         title,
         subtitle: dayjs(subtitle).format("Do MMMM YYYY"),

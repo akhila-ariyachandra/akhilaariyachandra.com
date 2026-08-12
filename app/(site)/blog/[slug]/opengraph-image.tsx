@@ -35,7 +35,7 @@ const Image = async ({ params }: PageProps<"/blog/[slug]">) => {
 
   return getOgImage({
     title: post.title,
-    pathname: `/blog/${post.slug}`,
+    pathname: `/blog/${post.slug.current}`,
   });
 };
 

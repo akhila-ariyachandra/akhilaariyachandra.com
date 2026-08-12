@@ -4,11 +4,21 @@ import eslint from "@eslint/js";
 import stylistic from "@stylistic/eslint-plugin";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import eslintConfigPrettier from "eslint-config-prettier";
-import importPlugin from "eslint-plugin-import";
 import { defineConfig } from "eslint/config";
 import tseslint from "typescript-eslint";
 
+const jsFiles = ["**/*.{js,mjs}", "**/.*.{js,mjs}"];
+
 export default defineConfig(
+  {
+    ignores: [
+      ".next/**",
+      "out/**",
+      "build/**",
+      "next-env.d.ts",
+      "sanity/generated/**",
+    ],
+  },
   eslint.configs.recommended,
   {
     rules: {
@@ -19,6 +29,7 @@ export default defineConfig(
   tseslint.configs.strictTypeChecked,
   tseslint.configs.stylisticTypeChecked,
   {
+    files: ["**/*.{ts,tsx}"],
     languageOptions: {
       parserOptions: {
         projectService: true,
@@ -38,10 +49,6 @@ export default defineConfig(
     },
   },
   {
-    files: ["**/*.{js,mjs}"],
-    extends: [tseslint.configs.disableTypeChecked],
-  },
-  {
     plugins: {
       "@stylistic": stylistic,
     },
@@ -51,18 +58,11 @@ export default defineConfig(
         { blankLine: "always", prev: "*", next: "return" },
         { blankLine: "always", prev: "directive", next: "*" },
         { blankLine: "never", prev: "directive", next: "directive" },
+        { blankLine: "always", prev: "import", next: "*" },
         { blankLine: "never", prev: "import", next: "import" },
       ],
       "@stylistic/spaced-comment": "error",
       "@stylistic/jsx-self-closing-comp": "error",
-    },
-  },
-  {
-    plugins: {
-      import: importPlugin,
-    },
-    rules: {
-      "import/newline-after-import": "error",
     },
   },
   nextVitals,
@@ -74,8 +74,11 @@ export default defineConfig(
     ],
   },
   {
-    files: ["**/*.{js,mjs}"],
-    extends: [eslintReact.configs["disable-type-checked"]],
+    files: jsFiles,
+    extends: [
+      tseslint.configs.disableTypeChecked,
+      eslintReact.configs["disable-type-checked"],
+    ],
   },
   eslintConfigPrettier,
 );

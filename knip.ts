@@ -6,9 +6,10 @@ const config: KnipConfig = {
   project: [
     "next.config.{js,cjs,mjs,ts}",
     "postcss.config.{js,cjs,mjs,ts}",
-    "app/**/*.{ts,tsx}",
+    "app/**/*.{ts,tsx,css}",
+    "sanity/**/*.{ts,tsx}",
   ],
-  ignoreDependencies: ["tailwindcss", "@tailwindcss/typography"],
+  ignore: ["sanity/generated/types.ts"],
 };
 
 export default config;

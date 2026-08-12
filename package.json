@@ -59,7 +59,6 @@
     "eslint": "9.39.2",
     "eslint-config-next": "16.3.0",
     "eslint-config-prettier": "10.1.8",
-    "eslint-plugin-import": "2.32.0",
     "knip": "6.31.0",
     "postcss": "8.5.25",
     "prettier": "3.9.6",

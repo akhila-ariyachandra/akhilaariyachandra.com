@@ -1,7 +1,7 @@
 import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
 import Title from "@/_components/title";
 import {
-  DynamicFetchOptions,
+  type DynamicFetchOptions,
   getDynamicFetchOptions,
   sanityFetch,
 } from "@/sanity/lib/live";

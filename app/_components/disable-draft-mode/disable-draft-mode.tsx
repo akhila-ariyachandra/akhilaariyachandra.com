@@ -21,6 +21,7 @@ const DisableDraftMode = () => {
 
   return (
     <button
+      type="button"
       className="fixed right-4 bottom-4 cursor-pointer rounded bg-gray-50 px-4 py-2 disabled:pointer-events-none disabled:opacity-50"
       onClick={disable}
       disabled={pending}
