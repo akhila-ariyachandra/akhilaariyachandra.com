@@ -2,7 +2,7 @@ import type { KnipConfig } from "knip";
 
 const config: KnipConfig = {
   tags: ["-lintignore"],
-  entry: ["app/**/*.{ts,tsx}", "content-collections.ts"],
+  entry: ["app/**/*.{ts,tsx}"],
   project: [
     "next.config.{js,cjs,mjs,ts}",
     "postcss.config.{js,cjs,mjs,ts}",

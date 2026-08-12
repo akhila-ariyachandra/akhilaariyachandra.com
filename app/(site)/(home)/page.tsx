@@ -1,10 +1,8 @@
-import MDXComponent from "@/_components/mdx-component";
 import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
 import ProfileStructuredData from "@/_components/structured-data/profile";
 import { cn } from "@/_lib/helpers";
 import { getAlbumArt, getTopTracks } from "@/_lib/last-fm";
 import profilePic from "@/public/profile-pic.jpg";
-import { about } from "content-collections";
 import dayjs from "dayjs";
 import { cacheLife } from "next/cache";
 import Image from "next/image";
@@ -35,7 +33,7 @@ const HomePage = async () => {
         </span>
       </h1>
 
-      <MDXComponent mdx={about.mdx} />
+      {/* <MDXComponent mdx={about.mdx} /> */}
 
       <Career />
 

@@ -7,7 +7,6 @@ import { VisualEditing } from "next-sanity/visual-editing";
 import { draftMode } from "next/headers";
 import { type ReactNode } from "react";
 import "./globals.css";
-import "./syntax-highlighting.css";
 
 export const metadata: Metadata = {
   title: {

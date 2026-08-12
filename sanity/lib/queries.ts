@@ -10,3 +10,7 @@ export const CAREERS_QUERY =
 export const POSTS_QUERY = defineQuery(
   `*[_type == "post"] | order(posted desc)`,
 );
+
+export const POST_BY_SLUG_QUERY = defineQuery(
+  `*[_type == "post" && slug.current == $slug][0]`,
+);

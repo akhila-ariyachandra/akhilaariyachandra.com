@@ -144,7 +144,6 @@ export const postType = defineType({
             },
           },
         },
-
         {
           name: "image",
           title: "Image",
