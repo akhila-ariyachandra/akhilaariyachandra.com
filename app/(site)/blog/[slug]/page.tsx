@@ -311,12 +311,17 @@ const CachedBlogPostPage = async ({
                   }
 
                   if (!value.openInNewTab) {
-                    return <Link href={value.url as Route}>{children}</Link>;
+                    return (
+                      <Link href={value.url as Route} title={value.label}>
+                        {children}
+                      </Link>
+                    );
                   }
 
                   return (
                     <a
                       href={value.url}
+                      title={value.label}
                       target="_blank"
                       rel="noopener noreferrer"
                     >

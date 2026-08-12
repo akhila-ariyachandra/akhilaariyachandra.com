@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import type { ReactNode } from "react";
-import { FaExclamation, FaImage, FaLink, FaPen } from "react-icons/fa6";
+import { FaExclamation, FaImage, FaPen } from "react-icons/fa6";
 import { MdHorizontalRule } from "react-icons/md";
 import { defineField, defineType } from "sanity";
 import slugify from "slugify";
@@ -61,31 +61,7 @@ export const postType = defineType({
           marks: {
             annotations: [
               {
-                name: "link",
-                title: "Link",
-                icon: FaLink,
-                type: "object",
-                fields: [
-                  defineField({
-                    name: "url",
-                    title: "URL",
-                    type: "url",
-                    validation: (Rule) => Rule.required(),
-                  }),
-                  defineField({
-                    name: "label",
-                    title: "Label",
-                    type: "string",
-                  }),
-                  defineField({
-                    name: "openInNewTab",
-                    title: "Open in new tab",
-                    type: "boolean",
-                    initialValue: true,
-                    validation: (Rule) => Rule.required(),
-                  }),
-                ],
-                validation: (Rule) => Rule.required(),
+                type: "link",
               },
             ],
           },

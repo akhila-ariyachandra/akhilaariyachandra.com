@@ -12,7 +12,11 @@ import { structureTool } from "sanity/structure";
 import { apiVersion, dataset, projectId } from "./sanity/env";
 import { resolve } from "./sanity/presentation/resolve";
 import { schema } from "./sanity/schema-types";
+import { singletonTypes } from "./sanity/shared";
 import { structure } from "./sanity/structure";
+
+// Define the actions that should be available for singleton documents
+const singletonActions = new Set(["publish", "discardChanges", "restore"]);
 
 export default defineConfig({
   basePath: "/studio",
@@ -36,4 +40,12 @@ export default defineConfig({
     }),
     codeInput(),
   ],
+  document: {
+    // For singleton types, filter out actions that are not explicitly included
+    // in the `singletonActions` list defined above
+    actions: (input, context) =>
+      singletonTypes.has(context.schemaType)
+        ? input.filter(({ action }) => action && singletonActions.has(action))
+        : input,
+  },
 });

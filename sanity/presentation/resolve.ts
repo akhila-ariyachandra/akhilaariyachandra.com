@@ -12,6 +12,12 @@ export const resolve: PresentationPluginOptions["resolve"] = {
     },
   ]),
   locations: {
+    personalInfo: defineLocations({
+      select: {},
+      resolve: () => ({
+        locations: [{ title: "Home", href: `/` }],
+      }),
+    }),
     job: defineLocations({
       select: {},
       resolve: () => ({

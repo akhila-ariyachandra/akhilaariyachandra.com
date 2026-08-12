@@ -15,6 +15,13 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: sanity/generated/schema.json
+export type Link = {
+  _type: "link";
+  url: string;
+  label?: string;
+  openInNewTab: boolean;
+};
+
 export type CompanyReference = {
   _ref: string;
   _type: "reference";
@@ -126,13 +133,11 @@ export type Post = {
         }>;
         style?: "normal" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
         listItem?: "bullet" | "number";
-        markDefs?: Array<{
-          url: string;
-          label?: string;
-          openInNewTab: boolean;
-          _type: "link";
-          _key: string;
-        }>;
+        markDefs?: Array<
+          {
+            _key: string;
+          } & Link
+        >;
         level?: number;
         _type: "block";
         _key: string;
@@ -192,6 +197,59 @@ export type Slug = {
   _type: "slug";
   current: string;
   source?: string;
+};
+
+export type SanityFileAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+};
+
+export type PersonalInfo = {
+  _id: string;
+  _type: "personalInfo";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string;
+  picture: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  resume: {
+    asset?: SanityFileAssetReference;
+    media?: unknown;
+    _type: "file";
+  };
+  about: Array<{
+    children?: Array<
+      | {
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }
+      | {
+          enabled?: boolean;
+          _type: "latestJob";
+          _key: string;
+        }
+    >;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: Array<
+      {
+        _key: string;
+      } & Link
+    >;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
 };
 
 export type Code = {
@@ -300,6 +358,7 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
+  | Link
   | CompanyReference
   | TechnologyReference
   | Job
@@ -310,6 +369,8 @@ export type AllSanitySchemaTypes =
   | Technology
   | Post
   | Slug
+  | SanityFileAssetReference
+  | PersonalInfo
   | Code
   | SanityImagePaletteSwatch
   | SanityImagePalette
@@ -395,13 +456,11 @@ export type POSTS_QUERY_RESULT = Array<{
         }>;
         style?: "blockquote" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
         listItem?: "bullet" | "number";
-        markDefs?: Array<{
-          url: string;
-          label?: string;
-          openInNewTab: boolean;
-          _type: "link";
-          _key: string;
-        }>;
+        markDefs?: Array<
+          {
+            _key: string;
+          } & Link
+        >;
         level?: number;
         _type: "block";
         _key: string;
@@ -480,13 +539,11 @@ export type POST_BY_SLUG_QUERY_RESULT = {
         }>;
         style?: "blockquote" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
         listItem?: "bullet" | "number";
-        markDefs?: Array<{
-          url: string;
-          label?: string;
-          openInNewTab: boolean;
-          _type: "link";
-          _key: string;
-        }>;
+        markDefs?: Array<
+          {
+            _key: string;
+          } & Link
+        >;
         level?: number;
         _type: "block";
         _key: string;
@@ -539,6 +596,59 @@ export type POST_BY_SLUG_QUERY_RESULT = {
   >;
 } | null;
 
+// Source: sanity/lib/queries.ts
+// Variable: PERSONAL_INFO_QUERY
+// Query: *[_type == "personalInfo"][0] {  ...,  "resume": resume.asset->url }
+export type PERSONAL_INFO_QUERY_RESULT = {
+  _id: string;
+  _type: "personalInfo";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string;
+  picture: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  resume: string | null;
+  about: Array<{
+    children?: Array<
+      | {
+          enabled?: boolean;
+          _type: "latestJob";
+          _key: string;
+        }
+      | {
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }
+    >;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: Array<
+      {
+        _key: string;
+      } & Link
+    >;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+} | null;
+
+// Source: sanity/lib/queries.ts
+// Variable: RESUME_QUERY
+// Query: *[_type == "personalInfo"][0] {  "url": resume.asset->url,  "filename": resume.asset->originalFilename}
+export type RESUME_QUERY_RESULT = {
+  url: string | null;
+  filename: string | null;
+} | null;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
@@ -546,5 +656,7 @@ declare module "@sanity/client" {
     '*[_type == "job"] | order(duration.start desc) {\n  ...,\n  company ->,\n  technologies[] ->\n}': CAREERS_QUERY_RESULT;
     '*[_type == "post"] | order(posted desc)': POSTS_QUERY_RESULT;
     '*[_type == "post" && slug.current == $slug][0]': POST_BY_SLUG_QUERY_RESULT;
+    '*[_type == "personalInfo"][0] {\n  ...,\n  "resume": resume.asset->url \n}': PERSONAL_INFO_QUERY_RESULT;
+    '*[_type == "personalInfo"][0] {\n  "url": resume.asset->url,\n  "filename": resume.asset->originalFilename\n}': RESUME_QUERY_RESULT;
   }
 }
