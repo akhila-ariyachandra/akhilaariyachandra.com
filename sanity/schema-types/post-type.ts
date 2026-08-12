@@ -236,13 +236,7 @@ export const postType = defineType({
       title: "title",
       subtitle: "posted",
     },
-    prepare: ({
-      title,
-      subtitle,
-    }: {
-      title?: string;
-      subtitle?: string;
-    }) => {
+    prepare: ({ title, subtitle }: { title?: string; subtitle?: string }) => {
       return {
         title,
         subtitle: dayjs(subtitle).format("Do MMMM YYYY"),
