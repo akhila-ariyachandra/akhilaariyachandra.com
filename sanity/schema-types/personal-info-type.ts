@@ -9,12 +9,6 @@ export const personalInfoType = defineType({
   icon: FaUser,
   fields: [
     defineField({
-      name: "name",
-      title: "Name",
-      type: "string",
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
       name: "picture",
       title: "Picture",
       type: "image",
@@ -66,4 +60,11 @@ export const personalInfoType = defineType({
       validation: (Rule) => Rule.required(),
     }),
   ],
+  preview: {
+    prepare: () => ({
+      title: "Personal Information",
+      media: FaUser,
+    }),
+  },
+  __experimental_formPreviewTitle: false,
 });
