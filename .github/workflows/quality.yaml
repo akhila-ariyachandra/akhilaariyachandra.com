@@ -1,7 +1,7 @@
 name: Code Quality checks
 on:
   pull_request:
-    branches: [main]
+    branches: [main, preview]
 concurrency:
   # Rerun check when the PR is updated, https://stackoverflow.com/a/72408109
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
