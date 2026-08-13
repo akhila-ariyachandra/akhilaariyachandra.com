@@ -30,6 +30,7 @@ const GlobalNotFound = () => {
         src={confusedTravolta}
         alt="John Travolta confused in Pulp Fiction"
         className="my-9 rounded-sm sm:my-10 sm:rounded-md"
+        priority
         unoptimized
       />
     </CommonLayout>
