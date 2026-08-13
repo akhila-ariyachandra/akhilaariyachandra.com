@@ -35,7 +35,6 @@ import { draftMode } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ViewTransition } from "react";
 
 dayjs.extend(advancedFormat);
 
@@ -164,15 +163,13 @@ const CachedBlogPostPage = async ({
       {/* eslint-disable-next-line @eslint-react/dom-no-dangerously-set-innerhtml */}
       <style dangerouslySetInnerHTML={{ __html: highlightCss }} />
 
-      <Title transitionName={`post-${post.slug.current}`}>{post.title}</Title>
+      <Title>{post.title}</Title>
 
-      <ViewTransition name={`post-details-${post.slug.current}`}>
-        <div className="mb-4 text-sm text-zinc-600 sm:mb-5 sm:text-base dark:text-zinc-400">
-          <time dateTime={dayjs(post.posted).toISOString()}>
-            {dayjs(post.posted).format("Do MMMM YYYY")}
-          </time>
-        </div>
-      </ViewTransition>
+      <div className="mb-4 text-sm text-zinc-600 sm:mb-5 sm:text-base dark:text-zinc-400">
+        <time dateTime={dayjs(post.posted).toISOString()}>
+          {dayjs(post.posted).format("Do MMMM YYYY")}
+        </time>
+      </div>
 
       <div
         className={cn(
