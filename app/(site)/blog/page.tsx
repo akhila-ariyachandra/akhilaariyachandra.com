@@ -11,7 +11,7 @@ import advancedFormat from "dayjs/plugin/advancedFormat";
 import type { Metadata } from "next";
 import { draftMode } from "next/headers";
 import Link from "next/link";
-import { Suspense, ViewTransition } from "react";
+import { Suspense } from "react";
 
 dayjs.extend(advancedFormat);
 
@@ -94,22 +94,19 @@ const CachedPostsList = async ({ perspective, stega }: DynamicFetchOptions) => {
     <ul className="space-y-2 sm:space-y-3">
       {posts.map((post) => (
         <li key={post._id}>
-          <ViewTransition name={`post-${post._id}`}>
-            <Link
-              href={`/blog/${post.slug.current}`}
-              className="font-display text-accent dark:text-accent-dark text-xl font-medium tracking-tighter text-balance hover:underline sm:text-2xl"
-            >
-              {post.title}
-            </Link>
-          </ViewTransition>
+          <Link
+            href={`/blog/${post.slug.current}`}
+            className="font-display text-accent dark:text-accent-dark text-xl font-medium tracking-tighter text-balance hover:underline sm:text-2xl"
+            prefetch
+          >
+            {post.title}
+          </Link>
 
-          <ViewTransition name={`post-details-${post._id}`}>
-            <div className="text-sm text-zinc-600 sm:text-base dark:text-zinc-400">
-              <time dateTime={dayjs(post.posted).toISOString()}>
-                {dayjs(post.posted).format("Do MMMM YYYY")}
-              </time>
-            </div>
-          </ViewTransition>
+          <div className="text-sm text-zinc-600 sm:text-base dark:text-zinc-400">
+            <time dateTime={dayjs(post.posted).toISOString()}>
+              {dayjs(post.posted).format("Do MMMM YYYY")}
+            </time>
+          </div>
         </li>
       ))}
     </ul>
