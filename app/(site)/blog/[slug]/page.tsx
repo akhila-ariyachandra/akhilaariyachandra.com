@@ -35,7 +35,7 @@ import { draftMode } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Suspense, ViewTransition } from "react";
+import { ViewTransition } from "react";
 
 dayjs.extend(advancedFormat);
 
@@ -116,17 +116,7 @@ const BlogPostPage = async ({ params }: PageProps<"/blog/[slug]">) => {
   const { isEnabled: isDraftMode } = await draftMode();
 
   if (isDraftMode) {
-    return (
-      <Suspense
-        fallback={
-          <div className="text-zinc-600 dark:text-zinc-300">
-            Loading Blog Post...
-          </div>
-        }
-      >
-        <DynamicBlogPostPage params={params} />
-      </Suspense>
-    );
+    return <DynamicBlogPostPage params={params} />;
   }
 
   const { slug } = await params;
