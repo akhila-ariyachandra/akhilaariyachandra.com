@@ -2,15 +2,16 @@ import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
 import ProfileStructuredData from "@/_components/structured-data/profile";
 import { cn } from "@/_lib/helpers";
 import { getAlbumArt, getTopTracks } from "@/_lib/last-fm";
+import { type PERSONAL_INFO_QUERY_RESULT } from "@/sanity/generated/types";
 import { urlFor } from "@/sanity/lib/image";
 import {
   getDynamicFetchOptions,
   sanityFetch,
   type DynamicFetchOptions,
 } from "@/sanity/lib/live";
-import { PERSONAL_INFO_QUERY } from "@/sanity/lib/queries";
+import { CAREERS_QUERY, PERSONAL_INFO_QUERY } from "@/sanity/lib/queries";
 import { type Route } from "next";
-import { PortableText } from "next-sanity";
+import { PortableText, type InferComponents } from "next-sanity";
 import { draftMode } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
@@ -162,34 +163,72 @@ const CachedAbout = async ({ perspective, stega }: DynamicFetchOptions) => {
       >
         <PortableText
           value={data.about}
-          components={{
-            marks: {
-              link: ({ value, children }) => {
-                if (!value) {
-                  return children;
-                }
+          components={
+            {
+              types: {
+                latestJob: async () => {
+                  const { data } = await sanityFetch({
+                    query: CAREERS_QUERY,
+                    perspective,
+                    stega,
+                  });
 
-                if (!value.openInNewTab) {
+                  const latestJob = data.at(0);
+
+                  if (!latestJob) {
+                    return null;
+                  }
+
+                  const firstLetter =
+                    latestJob.position.toLowerCase().at(0) ?? "";
+
                   return (
-                    <Link href={value.url as Route} title={value.label}>
-                      {children}
-                    </Link>
+                    <>
+                      {["a", "e", "i", "o", "u"].includes(firstLetter)
+                        ? "an"
+                        : "a"}{" "}
+                      {latestJob.position} at{" "}
+                      <a
+                        href={latestJob.company.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {latestJob.company.name}
+                      </a>
+                    </>
                   );
-                }
-
-                return (
-                  <a
-                    href={value.url}
-                    title={value.label}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {children}
-                  </a>
-                );
+                },
               },
-            },
-          }}
+              marks: {
+                link: ({ value, children }) => {
+                  if (!value) {
+                    return children;
+                  }
+
+                  if (!value.openInNewTab) {
+                    return (
+                      <Link href={value.url as Route} title={value.label}>
+                        {children}
+                      </Link>
+                    );
+                  }
+
+                  return (
+                    <a
+                      href={value.url}
+                      title={value.label}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {children}
+                    </a>
+                  );
+                },
+              },
+            } satisfies InferComponents<
+              NonNullable<PERSONAL_INFO_QUERY_RESULT>["about"]
+            >
+          }
         />
       </div>
 
