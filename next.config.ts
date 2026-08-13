@@ -1,16 +1,33 @@
-import { withContentCollections } from "@content-collections/next";
+import { dataset, projectId } from "@/sanity/env";
 import type { NextConfig } from "next";
+import { sanity } from "next-sanity/live/cache-life";
 
 const nextConfig: NextConfig = {
-  experimental: { prefetchInlining: false, turbopackRustReactCompiler: true },
+  experimental: {
+    turbopackRustReactCompiler: true,
+    globalNotFound: true,
+  },
+  compiler: {
+    styledComponents: {
+      transpileTemplateLiterals: false,
+    },
+  },
   reactStrictMode: true,
   reactCompiler: true,
   typedRoutes: true,
   cacheComponents: true,
+  cacheLife: {
+    default: sanity,
+  },
   partialPrefetching: true,
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        pathname: `/images/${projectId}/${dataset}/**`,
+      },
       {
         protocol: "https",
         hostname: "lastfm.freetls.fastly.net",
@@ -84,4 +101,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withContentCollections(nextConfig);
+export default nextConfig;

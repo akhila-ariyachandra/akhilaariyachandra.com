@@ -1,5 +1,7 @@
+import { urlFor } from "@/sanity/lib/image";
+import { sanityFetchStaticParams } from "@/sanity/lib/live";
+import { PERSONAL_INFO_QUERY } from "@/sanity/lib/queries";
 import { ImageResponse } from "next/og";
-import { PRODUCTION_URL } from "./constants";
 
 export const getOgImage = async ({
   title,
@@ -8,6 +10,10 @@ export const getOgImage = async ({
   title: string;
   pathname: string;
 }) => {
+  const { data } = await sanityFetchStaticParams({
+    query: PERSONAL_INFO_QUERY,
+  });
+
   return new ImageResponse(
     <div
       tw="flex h-full w-full flex-col justify-between bg-zinc-900 p-8"
@@ -20,14 +26,15 @@ export const getOgImage = async ({
           akhilaariyachandra.com{pathname}
         </p>
 
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={`${PRODUCTION_URL}/profile-pic.jpg`}
-          alt="Akhila Ariyachandra"
-          width={240}
-          height={240}
-          tw="shrink-0 rounded-xl"
-        />
+        {!!data && ( // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={urlFor(data.picture).width(240).height(240).url()}
+            alt="Akhila Ariyachandra"
+            width={240}
+            height={240}
+            tw="shrink-0 rounded-xl"
+          />
+        )}
       </div>
     </div>,
     {

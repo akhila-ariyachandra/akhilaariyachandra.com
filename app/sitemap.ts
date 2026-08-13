@@ -1,12 +1,17 @@
 import { PRODUCTION_URL } from "@/_lib/constants";
-import { allPosts } from "content-collections";
+import { sanityFetchStaticParams } from "@/sanity/lib/live";
+import { POSTS_QUERY } from "@/sanity/lib/queries";
 import dayjs from "dayjs";
 import type { MetadataRoute } from "next";
 
-const sitemap = (): MetadataRoute.Sitemap => {
-  const posts = allPosts.map((post) => ({
-    url: `${PRODUCTION_URL}/blog/${post._meta.path}`,
-    lastModified: dayjs(post.updated ?? post.posted).format("YYYY-MM-DD"),
+const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
+  const { data } = await sanityFetchStaticParams({
+    query: POSTS_QUERY,
+  });
+
+  const posts = data.map((post) => ({
+    url: `${PRODUCTION_URL}/blog/${post.slug.current}`,
+    lastModified: dayjs(post._updatedAt).format("YYYY-MM-DD"),
   }));
 
   const routes = ["", "/blog"].map((route) => ({

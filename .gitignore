@@ -37,8 +37,6 @@ next-env.d.ts
 .vercel
 .env*.local
 
-.content-collections
-
 next-env.d.ts
 
 .eslintcache
