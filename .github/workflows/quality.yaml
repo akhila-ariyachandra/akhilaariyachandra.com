@@ -1,7 +1,7 @@
 name: Code Quality checks
 on:
   pull_request:
-    branches: [main]
+    branches: [main, preview]
 concurrency:
   # Rerun check when the PR is updated, https://stackoverflow.com/a/72408109
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -14,6 +14,9 @@ jobs:
     strategy:
       matrix:
         node-version: [24]
+    env:
+      NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
+      NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -30,9 +33,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
-
-      - name: Build collections
-        run: pnpm run collections:build
 
       - name: Run Knip
         run: pnpm run knip
