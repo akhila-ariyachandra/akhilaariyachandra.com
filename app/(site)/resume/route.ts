@@ -1,11 +1,8 @@
 import { sanityFetch } from "@/sanity/lib/live";
 import { RESUME_QUERY } from "@/sanity/lib/queries";
-import { cacheLife } from "next/cache";
 
 const getResume = async () => {
   "use cache";
-
-  cacheLife("days");
 
   const { data } = await sanityFetch({
     query: RESUME_QUERY,
@@ -46,7 +43,6 @@ export const GET = async () => {
     headers: {
       "Content-Type": "application/pdf",
       "Content-Disposition": `attachment; filename="${RESUME_FILENAME}"`,
-      "Cache-Control": "public, max-age=3600, s-maxage=86400",
       "X-Robots-Tag": "noindex, nofollow",
     },
   });
