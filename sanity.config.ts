@@ -4,6 +4,7 @@
  * This configuration is used to for the Sanity Studio that’s mounted on the `\app\studio\[[...tool]]\page.tsx` route
  */
 
+import { PRODUCTION_URL } from "@/_lib/constants";
 import { codeInput } from "@sanity/code-input";
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
@@ -32,7 +33,7 @@ export default defineConfig({
     presentationTool({
       resolve,
       previewUrl: {
-        origin: "http://localhost:3000",
+        origin: PRODUCTION_URL,
         previewMode: {
           enable: "/api/draft-mode/enable",
         },
