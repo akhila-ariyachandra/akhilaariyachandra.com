@@ -236,8 +236,7 @@ const CachedAbout = async ({ perspective, stega }: DynamicFetchOptions) => {
         {!!data.resume && (
           <a
             href="/resume"
-            target="_blank"
-            rel="noopener noreferrer"
+            download="Akhila_Heshan_Ariyachandra_Resume.pdf"
             className="text-accent dark:text-accent-dark rounded border border-zinc-200 px-2 py-1 text-lg hover:underline sm:px-4 sm:py-2 sm:text-xl dark:border-zinc-700"
           >
             Resume

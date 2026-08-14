@@ -24,10 +24,11 @@ const getResume = async () => {
   }
 
   const body = await response.arrayBuffer();
-  const filename = data.filename ?? "resume.pdf";
 
-  return { body, filename };
+  return { body };
 };
+
+const RESUME_FILENAME = "Akhila_Heshan_Ariyachandra_Resume.pdf";
 
 export const GET = async () => {
   const resume = await getResume();
@@ -39,7 +40,7 @@ export const GET = async () => {
   return new Response(resume.body, {
     headers: {
       "Content-Type": "application/pdf",
-      "Content-Disposition": `inline; filename="${resume.filename}"`,
+      "Content-Disposition": `attachment; filename="${RESUME_FILENAME}"`,
       "Cache-Control": "public, max-age=3600, s-maxage=86400",
     },
   });
