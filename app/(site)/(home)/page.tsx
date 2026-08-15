@@ -17,6 +17,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Suspense, type CSSProperties } from "react";
 import Career from "./career";
+import ResumeButton from "./resume-button";
 
 const ALBUM_ART_DIMENSIONS = 75;
 
@@ -233,16 +234,7 @@ const CachedAbout = async ({ perspective, stega }: DynamicFetchOptions) => {
       </div>
 
       <div className="my-4 flex flex-row gap-4 sm:my-6">
-        {!!data.resume && (
-          <a
-            href="/resume"
-            download="Akhila_Heshan_Ariyachandra_Resume.pdf"
-            rel="nofollow"
-            className="text-accent dark:text-accent-dark rounded border border-zinc-200 px-2 py-1 text-lg hover:underline sm:px-4 sm:py-2 sm:text-xl dark:border-zinc-700"
-          >
-            Resume
-          </a>
-        )}
+        <ResumeButton resume={data.resume} />
       </div>
     </>
   );

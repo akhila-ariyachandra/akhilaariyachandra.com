@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@next/third-parties':
+        specifier: 16.3.1
+        version: 16.3.1(next@16.3.0(@babel/core@7.29.7(supports-color@8.1.1))(@types/node@26.1.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
       '@sanity/asset-utils':
         specifier: 2.3.0
         version: 2.3.0
@@ -26,9 +29,6 @@ importers:
       '@tanstack/highlight':
         specifier: 0.0.10
         version: 0.0.10
-      '@vercel/analytics':
-        specifier: 2.0.1
-        version: 2.0.1(next@16.3.0(@babel/core@7.29.7(supports-color@8.1.1))(@types/node@26.1.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
       '@vercel/speed-insights':
         specifier: 2.0.0
         version: 2.0.0(next@16.3.0(@babel/core@7.29.7(supports-color@8.1.1))(@types/node@26.1.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
@@ -1874,6 +1874,12 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@next/third-parties@16.3.1':
+    resolution: {integrity: sha512-OyIUIohaQ8AkD/8Ew0yPTaxcoOwobIgBjvNnhajgJ2IWPuSjFHfKYAFmFjYmL5Jwrf2qJDWubadhPqPbFhrDNg==}
+    peerDependencies:
+      next: ^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0-beta.0
+      react: ^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0
+
   '@noble/ed25519@3.1.0':
     resolution: {integrity: sha512-pfcObRY3CtvwfaG9Mt5XqZdKmAQppl37tHUeuBhDUbiwJBCVY4/A4lbMvb1xKhMDx96AqAqZpMWuBX1HulhX4g==}
 
@@ -3259,35 +3265,6 @@ packages:
 
   '@vanilla-extract/private@1.0.9':
     resolution: {integrity: sha512-gT2jbfZuaaCLrAxwXbRgIhGhcXbRZCG3v4TTUnjw0EJ7ArdBRxkq4msNJkbuRkCgfIK5ATmprB5t9ljvLeFDEA==}
-
-  '@vercel/analytics@2.0.1':
-    resolution: {integrity: sha512-MTQG6V9qQrt1tsDeF+2Uoo5aPjqbVPys1xvnIftXSJYG2SrwXRHnqEvVoYID7BTruDz4lCd2Z7rM1BdkUehk2g==}
-    peerDependencies:
-      '@remix-run/react': ^2
-      '@sveltejs/kit': ^1 || ^2
-      next: '>= 13'
-      nuxt: '>= 3'
-      react: ^18 || ^19 || ^19.0.0-rc
-      svelte: '>= 4'
-      vue: ^3
-      vue-router: ^4
-    peerDependenciesMeta:
-      '@remix-run/react':
-        optional: true
-      '@sveltejs/kit':
-        optional: true
-      next:
-        optional: true
-      nuxt:
-        optional: true
-      react:
-        optional: true
-      svelte:
-        optional: true
-      vue:
-        optional: true
-      vue-router:
-        optional: true
 
   '@vercel/error-utils@2.2.0':
     resolution: {integrity: sha512-WFWiRxfPzoYWYifaj4thSKvAaZZwUOqD4k5GINRIgZgCiS2E3iAJbWbIsIZmkQdTecWFHcWGA6q48CjisgpOBA==}
@@ -6286,6 +6263,9 @@ packages:
   text-decoder@1.2.7:
     resolution: {integrity: sha512-vlLytXkeP4xvEq2otHeJfSQIRyWxo/oZGEbXrtEEF9Hnmrdly59sUbzZ/QgyWuLYHctCHxFF4tRQZNQ9k60ExQ==}
 
+  third-party-capital@1.0.20:
+    resolution: {integrity: sha512-oB7yIimd8SuGptespDAZnNkzIz+NWaJCu2RMsbs4Wmp9zSDUM8Nhi3s2OOcqYuv3mN4hitXc8DVx+LyUmbUDiA==}
+
   through2@2.0.5:
     resolution: {integrity: sha512-/mrRod8xqpA+IHSLyGCQ2s8SPHiCDEeQJSep1jqLYeEUClOFG2Qsh+4FU6G9VeqpZnGW/Su8LQGc4YKni5rYSQ==}
 
@@ -8711,6 +8691,12 @@ snapshots:
   '@next/swc-win32-x64-msvc@16.3.0':
     optional: true
 
+  '@next/third-parties@16.3.1(next@16.3.0(@babel/core@7.29.7(supports-color@8.1.1))(@types/node@26.1.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)':
+    dependencies:
+      next: 16.3.0(@babel/core@7.29.7(supports-color@8.1.1))(@types/node@26.1.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      react: 19.2.8
+      third-party-capital: 1.0.20
+
   '@noble/ed25519@3.1.0': {}
 
   '@noble/hashes@2.3.0': {}
@@ -10374,11 +10360,6 @@ snapshots:
       '@vanilla-extract/private': 1.0.9
 
   '@vanilla-extract/private@1.0.9': {}
-
-  '@vercel/analytics@2.0.1(next@16.3.0(@babel/core@7.29.7(supports-color@8.1.1))(@types/node@26.1.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)':
-    optionalDependencies:
-      next: 16.3.0(@babel/core@7.29.7(supports-color@8.1.1))(@types/node@26.1.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      react: 19.2.8
 
   '@vercel/error-utils@2.2.0': {}
 
@@ -13823,6 +13804,8 @@ snapshots:
       b4a: 1.8.1
     transitivePeerDependencies:
       - react-native-b4a
+
+  third-party-capital@1.0.20: {}
 
   through2@2.0.5:
     dependencies:
