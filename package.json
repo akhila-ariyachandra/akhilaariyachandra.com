@@ -29,7 +29,6 @@
     "@sanity/image-url": "2.1.1",
     "@sanity/vision": "6.9.1",
     "@tanstack/highlight": "0.0.10",
-    "@vercel/analytics": "2.0.1",
     "@vercel/speed-insights": "2.0.0",
     "arktype": "2.2.3",
     "clsx": "2.1.1",
