@@ -1,5 +1,6 @@
 import NowPlaying from "@/_components/now-playing";
 import { cn } from "@/_lib/helpers";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { cacheLife } from "next/cache";
@@ -47,6 +48,10 @@ const CommonLayout = ({ children }: { children: ReactNode }) => {
         <SpeedInsights />
         <Analytics />
       </body>
+
+      {!!process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
+      )}
     </html>
   );
 };
