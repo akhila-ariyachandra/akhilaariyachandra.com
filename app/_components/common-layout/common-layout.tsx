@@ -24,7 +24,7 @@ const CommonLayout = ({ children }: { children: ReactNode }) => {
       lang="en"
       className={cn(
         geistMono.variable,
-        "min-h-dvh scroll-smooth",
+        "min-h-dvh scrollbar-gutter-stable scroll-smooth",
         "scrollbar-thumb-accent dark:scrollbar-thumb-accent-dark scrollbar-thin",
       )}
       data-scroll-behavior="smooth"
