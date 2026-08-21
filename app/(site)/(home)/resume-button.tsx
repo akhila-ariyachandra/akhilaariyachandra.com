@@ -1,6 +1,7 @@
 "use client";
 
 import { sendGAEvent } from "@next/third-parties/google";
+import { type Route } from "next";
 
 const ResumeButton = ({ resume }: { resume?: string | null }) => {
   if (!resume) {
@@ -9,7 +10,7 @@ const ResumeButton = ({ resume }: { resume?: string | null }) => {
 
   return (
     <a
-      href="/resume"
+      href={"/resume" satisfies Route}
       download="Akhila_Heshan_Ariyachandra_Resume.pdf"
       rel="nofollow"
       className="text-accent dark:text-accent-dark rounded border border-zinc-200 px-2 py-1 text-lg hover:underline sm:px-4 sm:py-2 sm:text-xl dark:border-zinc-700"
