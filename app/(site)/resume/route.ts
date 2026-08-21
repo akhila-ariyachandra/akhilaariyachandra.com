@@ -1,36 +1,20 @@
-import { sanityFetch } from "@/sanity/lib/live";
+import { client } from "@/sanity/lib/client";
 import { RESUME_QUERY } from "@/sanity/lib/queries";
-
-const getResume = async () => {
-  "use cache";
-
-  const { data } = await sanityFetch({
-    query: RESUME_QUERY,
-    perspective: "published",
-    stega: false,
-  });
-
-  if (!data?.url) {
-    return null;
-  }
-
-  const response = await fetch(data.url);
-
-  if (!response.ok) {
-    return null;
-  }
-
-  const body = await response.arrayBuffer();
-
-  return { body };
-};
 
 const RESUME_FILENAME = "Akhila_Heshan_Ariyachandra_Resume.pdf";
 
 export const GET = async () => {
-  const resume = await getResume();
+  const data = await client.fetch(
+    RESUME_QUERY,
+    {},
+    {
+      perspective: "published",
+      stega: false,
+      next: { revalidate: 0 },
+    },
+  );
 
-  if (!resume) {
+  if (!data?.url) {
     return new Response("Resume not found", {
       status: 404,
       headers: {
@@ -39,7 +23,18 @@ export const GET = async () => {
     });
   }
 
-  return new Response(resume.body, {
+  const response = await fetch(data.url, { cache: "no-store" });
+
+  if (!response.ok) {
+    return new Response("Resume not found", {
+      status: 404,
+      headers: {
+        "X-Robots-Tag": "noindex, nofollow",
+      },
+    });
+  }
+
+  return new Response(response.body, {
     headers: {
       "Content-Type": "application/pdf",
       "Content-Disposition": `attachment; filename="${RESUME_FILENAME}"`,
