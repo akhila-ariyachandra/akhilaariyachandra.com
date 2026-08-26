@@ -18,8 +18,8 @@ const Header = () => {
 
   return (
     <header>
-      <aside className="bg-yellow-50 p-3 sm:p-4 dark:bg-yellow-950">
-        <p className="mx-auto max-w-4xl text-sm text-zinc-600 sm:text-base dark:text-zinc-300">
+      <aside className="bg-yellow-50 dark:bg-yellow-950">
+        <p className="mx-auto max-w-4xl p-3 text-sm text-zinc-600 sm:p-4 sm:text-base dark:text-zinc-300">
           <strong>Open to new opportunities: </strong> I&apos;m currently
           looking for my next opportunity and open to remote work in any
           timezone or hybrid opportunities in Colombo, Sri Lanka. I&apos;m a{" "}
