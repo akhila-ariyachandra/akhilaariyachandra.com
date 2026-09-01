@@ -39,6 +39,7 @@
     "next-sanity": "13.3.3",
     "react": "19.2.8",
     "react-dom": "19.2.8",
+    "react-error-boundary": "6.1.4",
     "react-icons": "5.7.0",
     "sanity": "6.9.1",
     "schema-dts": "2.0.0",

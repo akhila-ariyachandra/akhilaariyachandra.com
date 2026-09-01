@@ -1,6 +1,7 @@
 import { AudioLinesIcon } from "@/_components/audio-lines";
 import { getRecentTracks } from "@/_lib/last-fm";
 import { type CSSProperties, Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 import { ALBUM_ART_DIMENSIONS } from "./constants";
 import NowPlayingClient from "./now-playing-client";
 
@@ -40,9 +41,11 @@ const NowPlaying = async () => {
         } as CSSProperties
       }
     >
-      <Suspense fallback={<NotPlaying />}>
-        <NowPlayingServer />
-      </Suspense>
+      <ErrorBoundary fallback={<NotPlaying />}>
+        <Suspense fallback={<NotPlaying />}>
+          <NowPlayingServer />
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
 };
