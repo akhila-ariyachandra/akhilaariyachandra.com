@@ -16,6 +16,7 @@ import { draftMode } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense, type CSSProperties } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 import Career from "./career";
 import ResumeButton from "./resume-button";
 
@@ -23,8 +24,6 @@ const ALBUM_ART_DIMENSIONS = 75;
 
 const HomePage = async () => {
   const { isEnabled: isDraftMode } = await draftMode();
-
-  const topTracks = await getTopTracks();
 
   return (
     <>
@@ -44,72 +43,9 @@ const HomePage = async () => {
 
       <Career />
 
-      <section className="my-10 space-y-4 text-zinc-600 sm:my-20 sm:space-y-8 dark:text-zinc-300">
-        <div className="space-y-0.5 sm:space-y-1">
-          <h2 className="font-display text-2xl font-bold tracking-tighter sm:text-3xl">
-            Top Tracks
-          </h2>
-
-          <p className="text-sm sm:text-base">
-            These are the tracks that I&apos;ve been listening to the most
-            recently, updated daily.
-          </p>
-        </div>
-
-        <ul
-          className="space-y-2 sm:space-y-4"
-          style={
-            {
-              "--album-art-dimensions": `${ALBUM_ART_DIMENSIONS.toString()}px`,
-            } as CSSProperties
-          }
-        >
-          {topTracks.map((track) => {
-            const albumArt = track.image.find(
-              (image) => image.size === "extralarge",
-            )?.["#text"];
-
-            return (
-              <li
-                key={track.mbid ? track.mbid : track.url}
-                className="flex flex-row items-center gap-4"
-              >
-                <a
-                  href={track.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="shrink-0"
-                >
-                  <AlbumArt
-                    name={track.name}
-                    artist={track.artist.name}
-                    fallbackUrl={albumArt}
-                  />
-
-                  <span className="sr-only">{track.name}</span>
-                </a>
-
-                <div className="min-w-0 flex-1">
-                  <p className="truncate text-lg font-medium sm:text-xl">
-                    <a
-                      href={track.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-accent dark:text-accent-dark hover:underline"
-                    >
-                      {track.name}
-                    </a>
-                  </p>
-
-                  <p className="truncate text-sm sm:text-base">
-                    {track.artist.name}
-                  </p>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      </section>
+      <ErrorBoundary fallback={null}>
+        <TopTracks />
+      </ErrorBoundary>
 
       <ProfileStructuredData />
       <BreadcrumbStructuredData items={[{ name: "Home", route: "/" }]} />
@@ -237,6 +173,79 @@ const CachedAbout = async ({ perspective, stega }: DynamicFetchOptions) => {
         <ResumeButton resume={data.resume} />
       </div>
     </>
+  );
+};
+
+const TopTracks = async () => {
+  const topTracks = await getTopTracks();
+
+  return (
+    <section className="my-10 space-y-4 text-zinc-600 sm:my-20 sm:space-y-8 dark:text-zinc-300">
+      <div className="space-y-0.5 sm:space-y-1">
+        <h2 className="font-display text-2xl font-bold tracking-tighter sm:text-3xl">
+          Top Tracks
+        </h2>
+
+        <p className="text-sm sm:text-base">
+          These are the tracks that I&apos;ve been listening to the most
+          recently, updated daily.
+        </p>
+      </div>
+
+      <ul
+        className="space-y-2 sm:space-y-4"
+        style={
+          {
+            "--album-art-dimensions": `${ALBUM_ART_DIMENSIONS.toString()}px`,
+          } as CSSProperties
+        }
+      >
+        {topTracks.map((track) => {
+          const albumArt = track.image.find(
+            (image) => image.size === "extralarge",
+          )?.["#text"];
+
+          return (
+            <li
+              key={track.mbid ? track.mbid : track.url}
+              className="flex flex-row items-center gap-4"
+            >
+              <a
+                href={track.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0"
+              >
+                <AlbumArt
+                  name={track.name}
+                  artist={track.artist.name}
+                  fallbackUrl={albumArt}
+                />
+
+                <span className="sr-only">{track.name}</span>
+              </a>
+
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-lg font-medium sm:text-xl">
+                  <a
+                    href={track.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-accent dark:text-accent-dark hover:underline"
+                  >
+                    {track.name}
+                  </a>
+                </p>
+
+                <p className="truncate text-sm sm:text-base">
+                  {track.artist.name}
+                </p>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
   );
 };
 
