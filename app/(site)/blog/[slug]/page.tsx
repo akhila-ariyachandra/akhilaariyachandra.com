@@ -2,7 +2,6 @@ import BlogPostingStructuredData from "@/_components/structured-data/blog-postin
 import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
 import Title from "@/_components/title";
 import { PRODUCTION_URL } from "@/_lib/constants";
-import { cn } from "@/_lib/helpers";
 import type { POST_BY_SLUG_QUERY_RESULT } from "@/sanity/generated/types";
 import { urlFor } from "@/sanity/lib/image";
 import {
@@ -27,6 +26,7 @@ import { createHighlightedCodeBlockProps } from "@tanstack/highlight/react";
 import { createThemeBaseCss, createThemeRule } from "@tanstack/highlight/theme";
 import { githubDarkTheme } from "@tanstack/highlight/themes/github-dark";
 import { githubLightTheme } from "@tanstack/highlight/themes/github-light";
+import { cn } from "cn";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import type { Metadata, Route } from "next";
