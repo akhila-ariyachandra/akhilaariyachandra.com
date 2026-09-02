@@ -9,7 +9,7 @@
   "author": "Akhila Ariyachandra <akhila_ariyachandra@live.com>",
   "license": "MIT",
   "private": true,
-  "packageManager": "pnpm@11.22.0",
+  "packageManager": "pnpm@12.2.1",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
