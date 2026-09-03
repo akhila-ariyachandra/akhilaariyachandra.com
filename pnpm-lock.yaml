@@ -35,9 +35,9 @@ importers:
       arktype:
         specifier: 2.2.3
         version: 2.2.3
-      clsx:
-        specifier: 2.1.1
-        version: 2.1.1
+      cn:
+        specifier: 0.2.2
+        version: 0.2.2
       dayjs:
         specifier: 1.11.23
         version: 1.11.23
@@ -80,9 +80,6 @@ importers:
       styled-components:
         specifier: npm:@sanity/css-in-js@6.2.1
         version: '@sanity/css-in-js@6.2.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8)'
-      tailwind-merge:
-        specifier: 3.6.0
-        version: 3.6.0
     devDependencies:
       '@eslint-react/eslint-plugin':
         specifier: 5.18.6
@@ -3736,6 +3733,11 @@ packages:
     resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
     engines: {node: '>=6'}
 
+  cn@0.2.2:
+    resolution: {integrity: sha512-1TjHp2yGdFzu5Td2bc2bnceh/WKPEvLYVtcg6czWSifHBy5oN/bK5/I0eFNIr839Hlh5cxrV93Yh2ByrpO5Stw==}
+    engines: {node: '>=20'}
+    hasBin: true
+
   codemirror@6.0.2:
     resolution: {integrity: sha512-VhydHotNW5w1UGK0Qj96BwSk/Zqbp9WbnyK2W/eVMv4QyF41INRGpjUhFJY7/uDNuudSc33a/PKr4iDqRduvHw==}
 
@@ -4196,6 +4198,7 @@ packages:
   eslint@9.39.2:
     resolution: {integrity: sha512-LEyamqS7W5HB3ujJyvi0HQK/dtVINZvd5mAAp9eT5S/ujByGjiZLCzPcHVzuXbpJDJF/cxwHlfceVUDZ2lnSTw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -6260,9 +6263,6 @@ packages:
 
   symbol-tree@3.2.4:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
-
-  tailwind-merge@3.6.0:
-    resolution: {integrity: sha512-uxL7qAVQriqRQPAyK3pj66VqskWqoZ37PW94jwOTwNfq/z9oyu1V+eqrZqtR2+fCiXdYOZe/Modt8GtvqNzu+w==}
 
   tailwindcss@4.3.3:
     resolution: {integrity: sha512-gOhV3P7ufE62QDGg1zVaTgCR+EtPv92k2nIhVcVKcLmxT1sUBsQGhnZj175j+MqRt4zLF7ic+sCYjfhxMxj7YQ==}
@@ -10826,6 +10826,8 @@ snapshots:
 
   clsx@2.1.1: {}
 
+  cn@0.2.2: {}
+
   codemirror@6.0.2:
     dependencies:
       '@codemirror/autocomplete': 6.20.3
@@ -13700,8 +13702,6 @@ snapshots:
       use-sync-external-store: 1.6.0(react@19.2.8)
 
   symbol-tree@3.2.4: {}
-
-  tailwind-merge@3.6.0: {}
 
   tailwindcss@4.3.3: {}
 

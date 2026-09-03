@@ -31,7 +31,7 @@
     "@tanstack/highlight": "0.0.10",
     "@vercel/speed-insights": "2.0.0",
     "arktype": "2.2.3",
-    "clsx": "2.1.1",
+    "cn": "0.2.2",
     "dayjs": "1.11.23",
     "ky": "2.0.2",
     "motion": "13.1.1",
@@ -45,8 +45,7 @@
     "schema-dts": "2.0.0",
     "server-only": "0.0.1",
     "slugify": "1.6.9",
-    "styled-components": "npm:@sanity/css-in-js@6.2.1",
-    "tailwind-merge": "3.6.0"
+    "styled-components": "npm:@sanity/css-in-js@6.2.1"
   },
   "devDependencies": {
     "@eslint-react/eslint-plugin": "5.18.6",

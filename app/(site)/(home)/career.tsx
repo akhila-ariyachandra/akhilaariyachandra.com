@@ -1,4 +1,4 @@
-import { cn, getParagraphs } from "@/_lib/helpers";
+import { getParagraphs } from "@/_lib/helpers";
 import { urlFor } from "@/sanity/lib/image";
 import {
   type DynamicFetchOptions,
@@ -6,6 +6,7 @@ import {
   sanityFetch,
 } from "@/sanity/lib/live";
 import { CAREERS_QUERY } from "@/sanity/lib/queries";
+import { cn } from "cn";
 import dayjs from "dayjs";
 import { cacheLife } from "next/cache";
 import { draftMode } from "next/headers";
