@@ -42,7 +42,7 @@ type PostContent = NonNullable<POST_BY_SLUG_QUERY_RESULT>["content"];
 
 const highlightCss = [
   createThemeRule(":root", githubLightTheme),
-  `@media (prefers-color-scheme: dark) {\n${createThemeRule(":root", githubDarkTheme)}\n}`,
+  createThemeRule(".dark", githubDarkTheme),
   createThemeBaseCss(),
   `pre.th-code:has(.th-line) { padding-inline: 0; }
 pre.th-code > code { display: inline-block; min-width: 100%; }
@@ -55,9 +55,7 @@ pre.th-code > code { display: inline-block; min-width: 100%; }
   border-left-color: var(--color-accent);
   background: color-mix(in srgb, var(--color-zinc-500) 10%, transparent);
 }
-@media (prefers-color-scheme: dark) {
-  .th-line--highlighted { border-left-color: var(--color-accent-dark); }
-}`,
+.dark .th-line--highlighted { border-left-color: var(--color-accent-dark); }`,
 ].join("\n\n");
 const highlighter = createHighlighter({
   languages: [ts, tsx, js, jsx, json, css, html, yaml],
@@ -203,13 +201,16 @@ const CachedBlogPostPage = async ({
                   return (
                     <div className="not-prose overflow-hidden rounded">
                       {!!title && (
-                        <div className="bg-zinc-100 px-6 py-4 text-sm font-medium text-zinc-600 dark:bg-zinc-900 dark:text-zinc-400">
+                        <div className="theme-transition bg-zinc-100 px-6 py-4 text-sm font-medium text-zinc-600 dark:bg-zinc-900 dark:text-zinc-400">
                           {title}
                         </div>
                       )}
 
-                      {/* eslint-disable-next-line @eslint-react/dom-no-dangerously-set-innerhtml */}
-                      <div dangerouslySetInnerHTML={{ __html: htmlMarkup }} />
+                      <div
+                        className="[&_.th-code]:theme-transition"
+                        // eslint-disable-next-line @eslint-react/dom-no-dangerously-set-innerhtml
+                        dangerouslySetInnerHTML={{ __html: htmlMarkup }}
+                      />
                     </div>
                   );
                 },

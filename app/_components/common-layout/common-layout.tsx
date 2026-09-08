@@ -7,6 +7,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import Header from "./header";
+import ThemeProvider from "./theme-provider";
 
 const geistMono = Geist_Mono({
   subsets: ["latin"],
@@ -28,23 +29,25 @@ const CommonLayout = ({ children }: { children: ReactNode }) => {
         "scrollbar-thumb-accent dark:scrollbar-thumb-accent-dark scrollbar-thin",
       )}
       data-scroll-behavior="smooth"
+      suppressHydrationWarning
     >
       <body
         className={cn(
           geist.className,
-          "flex min-h-dvh flex-col bg-white antialiased dark:bg-zinc-950",
-          "transition-colors duration-200 ease-out",
+          "theme-transition flex min-h-dvh flex-col bg-white antialiased dark:bg-zinc-950",
         )}
       >
-        <Header />
+        <ThemeProvider attribute="class" defaultTheme="system">
+          <Header />
 
-        <main className="mx-auto w-full max-w-4xl flex-1 p-3 sm:p-4">
-          {children}
-        </main>
+          <main className="mx-auto w-full max-w-4xl flex-1 p-3 sm:p-4">
+            {children}
+          </main>
 
-        <Footer />
+          <Footer />
 
-        <SpeedInsights />
+          <SpeedInsights />
+        </ThemeProvider>
       </body>
 
       {!!process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (
