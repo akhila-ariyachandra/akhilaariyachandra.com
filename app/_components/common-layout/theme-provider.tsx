@@ -5,7 +5,11 @@ import {
   type ThemeProviderProps,
 } from "next-themes";
 
-const ThemeProvider = ({ children, scriptProps, ...props }: ThemeProviderProps) => {
+const ThemeProvider = ({
+  children,
+  scriptProps,
+  ...props
+}: ThemeProviderProps) => {
   return (
     <NextThemesProvider
       {...props}
@@ -14,8 +18,7 @@ const ThemeProvider = ({ children, scriptProps, ...props }: ThemeProviderProps) 
       // https://nextjs.org/docs/app/guides/preventing-flash-before-hydration
       scriptProps={{
         ...scriptProps,
-        type:
-          typeof window === "undefined" ? "text/javascript" : "text/plain",
+        type: typeof window === "undefined" ? "text/javascript" : "text/plain",
       }}
     >
       {children}
