@@ -1,4 +1,4 @@
-import { cn } from "@/_lib/helpers";
+import { cn } from "cn";
 import type { ComponentProps } from "react";
 
 const Skeleton = ({ className, ...props }: ComponentProps<"div">) => {

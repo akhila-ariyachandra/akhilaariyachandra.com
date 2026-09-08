@@ -1,6 +1,5 @@
 import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
 import ProfileStructuredData from "@/_components/structured-data/profile";
-import { cn } from "@/_lib/helpers";
 import { getAlbumArt, getTopTracks } from "@/_lib/last-fm";
 import { type PERSONAL_INFO_QUERY_RESULT } from "@/sanity/generated/types";
 import { urlFor } from "@/sanity/lib/image";
@@ -10,6 +9,7 @@ import {
   type DynamicFetchOptions,
 } from "@/sanity/lib/live";
 import { CAREERS_QUERY, PERSONAL_INFO_QUERY } from "@/sanity/lib/queries";
+import { cn } from "cn";
 import { type Route } from "next";
 import { PortableText, type InferComponents } from "next-sanity";
 import { draftMode } from "next/headers";
