@@ -1,15 +1,11 @@
 "use client";
 
 import { AudioLinesIcon } from "@/_components/audio-lines";
-import type { RecentTracksType } from "@/_lib/types";
+import type { RecentTrack } from "@/_lib/schema";
 import Image from "next/image";
 import { useEffect, useRef, type ComponentRef } from "react";
 
-const NowPlayingClient = ({
-  nowPlaying,
-}: {
-  nowPlaying: RecentTracksType["recenttracks"]["track"][number];
-}) => {
+const NowPlayingClient = ({ nowPlaying }: { nowPlaying: RecentTrack }) => {
   const visualizerIconRef = useRef<ComponentRef<typeof AudioLinesIcon>>(null);
 
   const albumArt = nowPlaying.image.find(

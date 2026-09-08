@@ -32,9 +32,6 @@ importers:
       '@vercel/speed-insights':
         specifier: 2.0.0
         version: 2.0.0(next@16.3.2(@babel/core@7.29.7(supports-color@8.1.1))(@types/node@26.3.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
-      arktype:
-        specifier: 2.2.3
-        version: 2.2.3
       cn:
         specifier: 0.2.2
         version: 0.2.2
@@ -83,6 +80,9 @@ importers:
       styled-components:
         specifier: npm:@sanity/css-in-js@6.2.1
         version: '@sanity/css-in-js@6.2.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8)'
+      zod:
+        specifier: 4.5.4
+        version: 4.5.4
     devDependencies:
       '@eslint-react/eslint-plugin':
         specifier: 5.18.6
@@ -196,12 +196,6 @@ packages:
   '@architect/utils@6.0.3':
     resolution: {integrity: sha512-6m2Tpw/X5lHy0551TcGyDFY8RxNUegcZYbgt6N/fZ3o+fK0b03W6xecS8lXrnxxbUk9EWrweI/9TbJIysafdbg==}
     engines: {node: '>=22'}
-
-  '@ark/schema@0.56.2':
-    resolution: {integrity: sha512-Qx4D2JFbBWpntiHZaTv7bGG4H/M2rigiknezKg/WVyDSaLdE4YCcWAOoFB7pjjDqHbbV2OqRfntm1nnXvwMexg==}
-
-  '@ark/util@0.56.2':
-    resolution: {integrity: sha512-9kU2sUE38FZEGG7l3hamYMBieLYEJh2L1mrYD2eXpT+78EnQSV1bhjxJhnxGBMSTbtwpBSDNSK+K60WvaI/DTQ==}
 
   '@asamuzakjp/css-color@5.1.11':
     resolution: {integrity: sha512-KVw6qIiCTUQhByfTd78h2yD1/00waTmm9uy/R7Ck/ctUyAPj+AEDLkQIdJW0T8+qGgj3j5bpNKK7Q3G+LedJWg==}
@@ -3422,12 +3416,6 @@ packages:
   aria-query@5.3.2:
     resolution: {integrity: sha512-COROpnaoap1E2F000S62r6A60uHZnmlvomhfyT2DlTcrY1OrBKn2UhH7qn5wTC9zMvD0AY7csdPSNwKP+7WiQw==}
     engines: {node: '>= 0.4'}
-
-  arkregex@0.0.8:
-    resolution: {integrity: sha512-PJcx6G1kQTgLKPUbeYlYecDRaKq15AMSGVajlKFYWlPeJRQL+j3dKE6tyMs40HZ99djS1l9Vhl3ezAHy9JBIqQ==}
-
-  arktype@2.2.3:
-    resolution: {integrity: sha512-7W+0RLTUNJiBFIIZXwOQxSR8Z273IAd6IvqBeG9+gHnQKFsIx2C0iOtGTmMrPnlX4qLXyc5+ll7A0BIj9WrbTg==}
 
   array-buffer-byte-length@1.0.2:
     resolution: {integrity: sha512-LHE+8BuR7RYGDKvnrmcuSq3tDcKv9OFEXQt/HpbZhY7V6h0zlUXutnAD82GiFx9rdieCMjkvtcsPqBwgUl1Iiw==}
@@ -6768,8 +6756,8 @@ packages:
     peerDependencies:
       zod: ^3.25.0 || ^4.0.0
 
-  zod@4.4.3:
-    resolution: {integrity: sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==}
+  zod@4.5.4:
+    resolution: {integrity: sha512-sC95tT5iHHH9gtpj6A81kh+NEaRAUFN+qlUPDUbRfOMvNf5QCBqsb3WgvnpVtK5Y+4UfA6KqufotuTvMGiTlsA==}
 
   zustand@5.0.14:
     resolution: {integrity: sha512-/8tAspM5LMPr28b3fwLYrtdj77ECpfZviaP75CMTnwO8ISyaE4GDIG/9rDDYq/cH9D2Xw2A2RXglLInmVBQB/g==}
@@ -6862,12 +6850,6 @@ snapshots:
     dependencies:
       '@aws-lite/client': 0.23.7
       lambda-runtimes: 3.0.0
-
-  '@ark/schema@0.56.2':
-    dependencies:
-      '@ark/util': 0.56.2
-
-  '@ark/util@0.56.2': {}
 
   '@asamuzakjp/css-color@5.1.11':
     dependencies:
@@ -8048,7 +8030,7 @@ snapshots:
       eslint: 9.39.2(jiti@2.7.0)(supports-color@7.2.0)
       ts-pattern: 5.9.0
       typescript: 6.0.3
-      zod: 4.4.3
+      zod: 4.5.4
     transitivePeerDependencies:
       - supports-color
 
@@ -9207,7 +9189,7 @@ snapshots:
       react-dom: 19.2.8(react@19.2.8)
       semver: 7.8.5
       vite: 8.2.1(@types/node@26.3.0)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.10)(yaml@2.9.0)
-      zod: 4.4.3
+      zod: 4.5.4
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/plugin-transform-runtime'
@@ -9258,7 +9240,7 @@ snapshots:
       vite: 8.2.1(@types/node@26.3.0)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.10)(yaml@2.9.0)
       vite-node: 6.0.0(@types/node@26.3.0)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.10)(yaml@2.9.0)
       wrap-ansi: 9.0.2
-      zod: 4.4.3
+      zod: 4.5.4
     transitivePeerDependencies:
       - '@noble/hashes'
       - '@types/node'
@@ -9342,7 +9324,7 @@ snapshots:
       vite: 8.2.1(@types/node@26.3.0)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.10)(yaml@2.9.0)
       which: 6.0.1
       yaml: 2.9.0
-      zod: 4.4.3
+      zod: 4.5.4
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/plugin-transform-runtime'
@@ -9436,7 +9418,7 @@ snapshots:
       prettier: 3.9.6
       reselect: 5.2.0
       tsconfig-paths: 4.2.0
-      zod: 4.4.3
+      zod: 4.5.4
     transitivePeerDependencies:
       - react
       - supports-color
@@ -9907,7 +9889,7 @@ snapshots:
       form-data: 4.0.6
       tar-fs: 3.1.3
       vite: 8.2.1(@types/node@26.3.0)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.10)(yaml@2.9.0)
-      zod: 4.4.3
+      zod: 4.5.4
     transitivePeerDependencies:
       - '@noble/hashes'
       - '@rolldown/plugin-babel'
@@ -9946,7 +9928,7 @@ snapshots:
       rxjs: 7.8.2
       verkit: 0.3.2
       xstate: 5.32.5
-      zod: 4.4.3
+      zod: 4.5.4
     transitivePeerDependencies:
       - react
 
@@ -10508,16 +10490,6 @@ snapshots:
   argparse@2.0.1: {}
 
   aria-query@5.3.2: {}
-
-  arkregex@0.0.8:
-    dependencies:
-      '@ark/util': 0.56.2
-
-  arktype@2.2.3:
-    dependencies:
-      '@ark/schema': 0.56.2
-      '@ark/util': 0.56.2
-      arkregex: 0.0.8
 
   array-buffer-byte-length@1.0.2:
     dependencies:
@@ -11373,8 +11345,8 @@ snapshots:
       '@babel/parser': 7.29.8
       eslint: 9.39.2(jiti@2.7.0)(supports-color@7.2.0)
       hermes-parser: 0.25.1
-      zod: 4.4.3
-      zod-validation-error: 4.0.2(zod@4.4.3)
+      zod: 4.5.4
+      zod-validation-error: 4.0.2(zod@4.5.4)
     transitivePeerDependencies:
       - supports-color
 
@@ -12319,7 +12291,7 @@ snapshots:
       tinyglobby: 0.2.17
       unbash: 4.0.10
       yaml: 2.9.0
-      zod: 4.4.3
+      zod: 4.5.4
 
   ky@2.0.2: {}
 
@@ -14207,11 +14179,11 @@ snapshots:
 
   yoctocolors@2.2.0: {}
 
-  zod-validation-error@4.0.2(zod@4.4.3):
+  zod-validation-error@4.0.2(zod@4.5.4):
     dependencies:
-      zod: 4.4.3
+      zod: 4.5.4
 
-  zod@4.4.3: {}
+  zod@4.5.4: {}
 
   zustand@5.0.14(@types/react@19.2.18)(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8)):
     optionalDependencies:
