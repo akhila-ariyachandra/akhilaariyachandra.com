@@ -1,0 +1,1 @@
+E:/Projects/akhilaariyachandra.com/AGENTS.md
