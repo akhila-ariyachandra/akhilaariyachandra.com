@@ -5,7 +5,7 @@ import { useTheme } from "next-themes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { FaCircle, FaMoon, FaSun } from "react-icons/fa6";
+import { FaMoon, FaSun } from "react-icons/fa6";
 
 const Header = () => {
   const pathname = usePathname();
@@ -26,6 +26,11 @@ const Header = () => {
     // eslint-disable-next-line @eslint-react/set-state-in-effect
     setIsMounted(true);
   }, []);
+
+  const themeToggle = () => {
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+    sendGAEvent("event", "themeToggled");
+  };
 
   return (
     <header>
@@ -98,9 +103,7 @@ const Header = () => {
           <button
             type="button"
             className="cursor-pointer text-lg text-zinc-600 sm:text-xl dark:text-zinc-300"
-            onClick={() => {
-              setTheme(resolvedTheme === "dark" ? "light" : "dark");
-            }}
+            onClick={themeToggle}
           >
             {resolvedTheme === "light" ? <FaMoon /> : <FaSun />}
 
@@ -111,11 +114,9 @@ const Header = () => {
         ) : (
           <button
             type="button"
-            className="text-lg text-zinc-600 sm:text-xl dark:text-zinc-300"
+            className="invisible size-4.5 text-lg text-zinc-600 sm:size-5 sm:text-xl dark:text-zinc-300"
             disabled
           >
-            <FaCircle />
-
             <span className="sr-only">Theme toggle</span>
           </button>
         )}
