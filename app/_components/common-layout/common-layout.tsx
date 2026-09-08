@@ -3,18 +3,13 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { cn } from "cn";
 import { cacheLife } from "next/cache";
-import { Geist, Geist_Mono } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import Header from "./header";
 import ThemeProvider from "./theme-provider";
 
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-geist-mono",
-});
-const geist = Geist({
+const dmSans = DM_Sans({
   subsets: ["latin"],
   display: "swap",
 });
@@ -24,7 +19,6 @@ const CommonLayout = ({ children }: { children: ReactNode }) => {
     <html
       lang="en"
       className={cn(
-        geistMono.variable,
         "min-h-dvh scrollbar-gutter-stable scroll-smooth",
         "scrollbar-thumb-accent dark:scrollbar-thumb-accent-dark scrollbar-thin",
       )}
@@ -33,11 +27,13 @@ const CommonLayout = ({ children }: { children: ReactNode }) => {
     >
       <body
         className={cn(
-          geist.className,
-          "theme-transition flex min-h-dvh flex-col bg-white antialiased dark:bg-zinc-950",
+          dmSans.className,
+          "theme-transition relative flex min-h-dvh flex-col bg-green-100 font-medium text-black antialiased dark:bg-green-950 dark:text-white",
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system">
+          <div className="absolute inset-0 -z-10 h-full w-full bg-[radial-gradient(var(--dot-color)_1px,transparent_1px)] bg-size-[16px_16px] [--dot-color:var(--color-zinc-400)] dark:[--dot-color:var(--color-zinc-600)]" />
+
           <Header />
 
           <main className="mx-auto w-full max-w-4xl flex-1 p-3 sm:p-4">
@@ -71,18 +67,20 @@ const Footer = async () => {
   const year = await getYear();
 
   return (
-    <footer className="mx-auto w-full max-w-4xl space-y-4 p-3 text-zinc-600 sm:p-4 dark:text-zinc-300">
-      <NowPlaying />
+    <footer className="p-3 sm:p-4">
+      <div className="neobrutalism-container mx-auto w-full max-w-4xl space-y-4 p-3">
+        <NowPlaying />
 
-      <p className="text-sm sm:text-base">
-        &copy; {year}{" "}
-        <Link
-          href="/"
-          className="text-accent dark:text-accent-dark hover:underline"
-        >
-          Akhila Ariyachandra
-        </Link>
-      </p>
+        <p className="text-sm sm:text-base">
+          &copy; {year}{" "}
+          <Link
+            href="/"
+            className="text-accent dark:text-accent-dark hover:underline"
+          >
+            Akhila Ariyachandra
+          </Link>
+        </p>
+      </div>
     </footer>
   );
 };

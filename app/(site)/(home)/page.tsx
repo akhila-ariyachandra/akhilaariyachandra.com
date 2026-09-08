@@ -75,17 +75,17 @@ const CachedAbout = async ({ perspective, stega }: DynamicFetchOptions) => {
   }
 
   return (
-    <>
+    <section className="neobrutalism-container p-3 sm:p-4">
       <Image
         src={urlFor(data.picture).width(240).height(240).url()}
         width={240}
         height={240}
         alt="Akhila Ariyachandra"
-        className="mb-4 w-44 rounded-sm sm:float-left sm:mr-5 sm:mb-5 sm:w-60 sm:rounded-lg"
+        className="mb-4 w-44 rounded-sm sm:mr-5 sm:mb-5 sm:w-60 sm:rounded-lg"
         priority
       />
 
-      <h1 className="font-display mb-4 text-3xl tracking-tighter text-zinc-600 sm:mb-5 sm:text-4xl dark:text-zinc-300">
+      <h1 className="mb-4 text-3xl text-zinc-600 sm:mb-5 sm:text-4xl dark:text-zinc-300">
         Hi, I&apos;m{" "}
         <span className="text-accent dark:text-accent-dark font-black">
           Akhila Ariyachandra
@@ -169,10 +169,10 @@ const CachedAbout = async ({ perspective, stega }: DynamicFetchOptions) => {
         />
       </div>
 
-      <div className="my-4 flex flex-row gap-4 sm:my-6">
+      <div className="mt-4 flex flex-row gap-4 sm:mt-6">
         <ResumeButton resume={data.resume} />
       </div>
-    </>
+    </section>
   );
 };
 
@@ -182,7 +182,7 @@ const TopTracks = async () => {
   return (
     <section className="my-10 space-y-4 text-zinc-600 sm:my-20 sm:space-y-8 dark:text-zinc-300">
       <div className="space-y-0.5 sm:space-y-1">
-        <h2 className="font-display text-2xl font-bold tracking-tighter sm:text-3xl">
+        <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">
           Top Tracks
         </h2>
 

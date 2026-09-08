@@ -52,7 +52,7 @@ const CachedCareer = async ({ perspective, stega }: DynamicFetchOptions) => {
 
   return (
     <section className="my-10 space-y-4 text-zinc-600 sm:my-20 sm:space-y-8 dark:text-zinc-300">
-      <h2 className="font-display text-2xl font-bold tracking-tighter sm:text-3xl">
+      <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">
         Career
       </h2>
 
@@ -72,7 +72,7 @@ const CachedCareer = async ({ perspective, stega }: DynamicFetchOptions) => {
               />
 
               <div className="flex-1">
-                <h3 className="font-display text-xl font-semibold tracking-tighter sm:text-2xl">
+                <h3 className="text-xl font-semibold tracking-tighter sm:text-2xl">
                   {job.position}
                 </h3>
 

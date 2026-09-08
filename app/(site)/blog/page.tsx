@@ -96,7 +96,7 @@ const CachedPostsList = async ({ perspective, stega }: DynamicFetchOptions) => {
         <li key={post._id}>
           <Link
             href={`/blog/${post.slug.current}`}
-            className="font-display text-accent dark:text-accent-dark text-xl font-medium tracking-tighter text-balance hover:underline sm:text-2xl"
+            className="text-accent dark:text-accent-dark text-xl font-medium tracking-tighter text-balance hover:underline sm:text-2xl"
             prefetch
           >
             {post.title}
