@@ -241,7 +241,7 @@ const CachedBlogPostPage = async ({
                           height={height}
                           alt={value.alt}
                           className={cn(
-                            "mx-auto rounded-sm sm:rounded-md",
+                            "mx-auto",
                             !!darkImageAsset && "dark:hidden",
                           )}
                         />
@@ -252,7 +252,7 @@ const CachedBlogPostPage = async ({
                             width={darkWidth}
                             height={darkHeight}
                             alt={value.alt}
-                            className="mx-auto hidden rounded-sm sm:rounded-md dark:block"
+                            className="mx-auto hidden dark:block"
                           />
                         )}
 
