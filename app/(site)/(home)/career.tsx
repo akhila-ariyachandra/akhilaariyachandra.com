@@ -18,13 +18,7 @@ const Career = async () => {
 
   if (isDraftMode) {
     return (
-      <Suspense
-        fallback={
-          <section className="text-zinc-600 dark:text-zinc-300">
-            Loading Career...
-          </section>
-        }
-      >
+      <Suspense fallback={<section>Loading Career...</section>}>
         <DynamicCareer />
       </Suspense>
     );
@@ -51,16 +45,14 @@ const CachedCareer = async ({ perspective, stega }: DynamicFetchOptions) => {
   });
 
   return (
-    <section className="my-10 space-y-4 text-zinc-600 sm:my-20 sm:space-y-8 dark:text-zinc-300">
-      <h2 className="font-display text-2xl font-bold tracking-tighter sm:text-3xl">
-        Career
-      </h2>
+    <section className="neobrutalism-container my-10 space-y-4 p-3 sm:my-20 sm:space-y-8 sm:p-4">
+      <h2 className="text-2xl font-bold sm:text-3xl">Career</h2>
 
       <ol className="space-y-3 sm:space-y-6">
         {jobs.map((job) => (
           <li
             key={job._id}
-            className="space-y-1.5 border-zinc-200 pb-3 not-last:border-b sm:space-y-3 sm:pb-6 dark:border-zinc-700"
+            className="space-y-1.5 border-zinc-200 pb-3 not-last:border-b last:pb-0 sm:space-y-3 sm:pb-6 sm:last:pb-0 dark:border-zinc-700"
           >
             <div className="flex flex-row items-center gap-2 sm:gap-4">
               <Image
@@ -72,7 +64,7 @@ const CachedCareer = async ({ perspective, stega }: DynamicFetchOptions) => {
               />
 
               <div className="flex-1">
-                <h3 className="font-display text-xl font-semibold tracking-tighter sm:text-2xl">
+                <h3 className="text-xl font-semibold sm:text-2xl">
                   {job.position}
                 </h3>
 
@@ -80,7 +72,7 @@ const CachedCareer = async ({ perspective, stega }: DynamicFetchOptions) => {
                   href={job.company.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-accent dark:text-accent-dark text-lg font-medium hover:underline sm:text-xl"
+                  className="text-accent dark:text-accent-dark text-lg hover:underline sm:text-xl"
                 >
                   {job.company.name}
                 </a>
@@ -107,14 +99,14 @@ const CachedCareer = async ({ perspective, stega }: DynamicFetchOptions) => {
               ))}
             </ul>
 
-            <ul className="flex flex-row flex-wrap gap-1 text-xs sm:gap-2 sm:text-sm">
+            <ul className="flex flex-row flex-wrap gap-2 text-xs sm:text-sm">
               {job.technologies.map((technology) => (
                 <li key={technology._id}>
                   <a
                     href={technology.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 rounded-full border border-zinc-200 px-0.5 py-0.5 text-pretty sm:px-1.5 sm:py-1 dark:border-zinc-700"
+                    className="neobrutalism-button px-0.5 py-0.5 text-pretty sm:px-1.5 sm:py-1"
                   >
                     <Image
                       src={urlFor(technology.icon).width(20).height(20).url()}

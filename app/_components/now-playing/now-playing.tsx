@@ -13,7 +13,7 @@ const NotPlaying = () => {
       </div>
 
       <div className="min-w-0 flex-1">
-        <p className="truncate text-lg font-medium sm:text-xl">Not Playing</p>
+        <p className="truncate text-lg sm:text-xl">Not Playing</p>
       </div>
     </>
   );

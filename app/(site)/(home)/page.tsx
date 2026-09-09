@@ -75,17 +75,17 @@ const CachedAbout = async ({ perspective, stega }: DynamicFetchOptions) => {
   }
 
   return (
-    <>
+    <section className="neobrutalism-container p-3 sm:p-4">
       <Image
         src={urlFor(data.picture).width(240).height(240).url()}
         width={240}
         height={240}
         alt="Akhila Ariyachandra"
-        className="mb-4 w-44 rounded-sm sm:float-left sm:mr-5 sm:mb-5 sm:w-60 sm:rounded-lg"
+        className="shadow-neobrutalism mb-4 w-44 rounded-sm border-2 border-black sm:mr-5 sm:mb-5 sm:w-60 sm:rounded-lg"
         priority
       />
 
-      <h1 className="font-display mb-4 text-3xl tracking-tighter text-zinc-600 sm:mb-5 sm:text-4xl dark:text-zinc-300">
+      <h1 className="mb-4 text-3xl sm:mb-5 sm:text-4xl">
         Hi, I&apos;m{" "}
         <span className="text-accent dark:text-accent-dark font-black">
           Akhila Ariyachandra
@@ -94,8 +94,8 @@ const CachedAbout = async ({ perspective, stega }: DynamicFetchOptions) => {
 
       <div
         className={cn(
-          "prose prose-sm prose-zinc sm:prose-base dark:prose-invert max-w-none", // Base styles
-          "prose-a:font-medium prose-a:text-accent prose-a:no-underline prose-a:hover:underline dark:prose-a:text-accent-dark", // Links
+          "prose prose-sm sm:prose-base dark:prose-invert max-w-none font-medium text-black dark:text-white", // Base styles
+          "prose-a:font-semibold prose-a:text-accent prose-a:no-underline prose-a:hover:underline dark:prose-a:text-accent-dark", // Links
         )}
       >
         <PortableText
@@ -169,10 +169,10 @@ const CachedAbout = async ({ perspective, stega }: DynamicFetchOptions) => {
         />
       </div>
 
-      <div className="my-4 flex flex-row gap-4 sm:my-6">
+      <div className="mt-4 flex flex-row gap-4 sm:mt-6">
         <ResumeButton resume={data.resume} />
       </div>
-    </>
+    </section>
   );
 };
 
@@ -180,11 +180,9 @@ const TopTracks = async () => {
   const topTracks = await getTopTracks();
 
   return (
-    <section className="my-10 space-y-4 text-zinc-600 sm:my-20 sm:space-y-8 dark:text-zinc-300">
+    <section className="neobrutalism-container my-10 space-y-4 p-3 sm:my-20 sm:space-y-8 sm:p-4">
       <div className="space-y-0.5 sm:space-y-1">
-        <h2 className="font-display text-2xl font-bold tracking-tighter sm:text-3xl">
-          Top Tracks
-        </h2>
+        <h2 className="text-2xl font-bold sm:text-3xl">Top Tracks</h2>
 
         <p className="text-sm sm:text-base">
           These are the tracks that I&apos;ve been listening to the most
@@ -226,12 +224,12 @@ const TopTracks = async () => {
               </a>
 
               <div className="min-w-0 flex-1">
-                <p className="truncate text-lg font-medium sm:text-xl">
+                <p className="truncate text-lg sm:text-xl">
                   <a
                     href={track.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-accent dark:text-accent-dark hover:underline"
+                    className="text-accent dark:text-accent-dark font-semibold hover:underline"
                   >
                     {track.name}
                   </a>

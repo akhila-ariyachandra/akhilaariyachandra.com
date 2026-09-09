@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-last-fm-red: #d51007;
+}
+
+@theme inline {
+  --color-accent: var(--color-green-700);
+  --color-accent-dark: var(--color-green-500);
+
+  --shadow-neobrutalism: var(--spacing) var(--spacing) 0px 0px
+    var(--color-black);
+}
+
+@utility theme-transition {
+  @apply transition-colors duration-200 ease-out;
+}
+
+@utility neobrutalism-container {
+  @apply shadow-neobrutalism theme-transition rounded border-2 border-black bg-white dark:bg-zinc-950;
+}
+
+@utility neobrutalism-button {
+  @apply neobrutalism-container flex items-center gap-2 bg-green-300 px-2 py-1 text-base leading-none font-semibold sm:px-3 sm:py-2 sm:text-lg dark:bg-green-900;
+  @apply transition duration-200 ease-out hover:translate-1 hover:shadow-none;
+}

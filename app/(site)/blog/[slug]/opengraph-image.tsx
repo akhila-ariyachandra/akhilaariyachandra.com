@@ -1,11 +1,7 @@
 import { getOgImage } from "@/_lib/og-image";
 import { getDynamicFetchOptions, sanityFetchMetadata } from "@/sanity/lib/live";
 import { POST_BY_SLUG_QUERY } from "@/sanity/lib/queries";
-import dayjs from "dayjs";
-import advancedFormat from "dayjs/plugin/advancedFormat";
 import { notFound } from "next/navigation";
-
-dayjs.extend(advancedFormat);
 
 // Image metadata
 export const alt = "Akhila Ariyachandra's Blog";

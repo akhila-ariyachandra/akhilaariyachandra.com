@@ -2,19 +2,18 @@ import NowPlaying from "@/_components/now-playing";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { cn } from "cn";
+import ky from "ky";
 import { cacheLife } from "next/cache";
-import { Geist, Geist_Mono } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { ErrorBoundary } from "react-error-boundary";
+import { FaStar } from "react-icons/fa6";
+import { z } from "zod";
 import Header from "./header";
 import ThemeProvider from "./theme-provider";
 
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-geist-mono",
-});
-const geist = Geist({
+const dmSans = DM_Sans({
   subsets: ["latin"],
   display: "swap",
 });
@@ -24,7 +23,6 @@ const CommonLayout = ({ children }: { children: ReactNode }) => {
     <html
       lang="en"
       className={cn(
-        geistMono.variable,
         "min-h-dvh scrollbar-gutter-stable scroll-smooth",
         "scrollbar-thumb-accent dark:scrollbar-thumb-accent-dark scrollbar-thin",
       )}
@@ -33,11 +31,13 @@ const CommonLayout = ({ children }: { children: ReactNode }) => {
     >
       <body
         className={cn(
-          geist.className,
-          "theme-transition flex min-h-dvh flex-col bg-white antialiased dark:bg-zinc-950",
+          dmSans.className,
+          "theme-transition relative flex min-h-dvh flex-col bg-green-100 font-medium text-black antialiased dark:bg-green-950 dark:text-white",
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system">
+          <div className="absolute inset-0 -z-10 h-full w-full bg-[radial-gradient(var(--dot-color)_1px,transparent_1px)] bg-size-[16px_16px] [--dot-color:var(--color-zinc-400)] dark:[--dot-color:var(--color-zinc-600)]" />
+
           <Header />
 
           <main className="mx-auto w-full max-w-4xl flex-1 p-3 sm:p-4">
@@ -71,18 +71,57 @@ const Footer = async () => {
   const year = await getYear();
 
   return (
-    <footer className="mx-auto w-full max-w-4xl space-y-4 p-3 text-zinc-600 sm:p-4 dark:text-zinc-300">
-      <NowPlaying />
+    <footer className="mx-auto w-full max-w-4xl p-3 sm:p-4">
+      <div className="neobrutalism-container space-y-4 p-3 sm:p-4">
+        <NowPlaying />
 
-      <p className="text-sm sm:text-base">
-        &copy; {year}{" "}
-        <Link
-          href="/"
-          className="text-accent dark:text-accent-dark hover:underline"
-        >
-          Akhila Ariyachandra
-        </Link>
-      </p>
+        <div className="flex flex-row items-center justify-between gap-4">
+          <p className="text-sm sm:text-base">
+            &copy; {year}{" "}
+            <Link
+              href="/"
+              className="text-accent dark:text-accent-dark font-semibold hover:underline"
+            >
+              Akhila Ariyachandra
+            </Link>
+          </p>
+
+          <ErrorBoundary fallback={null}>
+            <RepoLink />
+          </ErrorBoundary>
+        </div>
+      </div>
     </footer>
+  );
+};
+
+const RepoLink = async () => {
+  "use cache";
+
+  const response = await ky
+    .get(
+      "https://api.github.com/repos/akhila-ariyachandra/akhilaariyachandra.com",
+    )
+    .json();
+  const parsedResponse = await z
+    .object({
+      stargazers_count: z.number(),
+    })
+    .parseAsync(response);
+
+  return (
+    <a
+      href="https://github.com/akhila-ariyachandra/akhilaariyachandra.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="neobrutalism-button"
+    >
+      <span>{parsedResponse.stargazers_count}</span>
+
+      <FaStar />
+      <span className="sr-only">Star</span>
+
+      <span>Repo</span>
+    </a>
   );
 };

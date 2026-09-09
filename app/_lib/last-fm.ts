@@ -1,8 +1,11 @@
-import { type } from "arktype";
 import ky from "ky";
 import { cacheLife } from "next/cache";
 import "server-only";
-import { RecentTracks, TopTracks } from "./types";
+import {
+  albumArtSearchSchema,
+  recentTracksSchema,
+  topTracksSchema,
+} from "./schema";
 
 const api = ky.create({
   baseUrl: "https://ws.audioscrobbler.com/2.0",
@@ -28,11 +31,7 @@ export const getTopTracks = async () => {
     })
     .json();
 
-  const tracks = TopTracks(response);
-
-  if (tracks instanceof type.errors) {
-    throw new Error("Invalid response from Last.fm");
-  }
+  const tracks = await topTracksSchema.parseAsync(response);
 
   return tracks.toptracks.track;
 };
@@ -47,11 +46,7 @@ export const getRecentTracks = async () => {
     })
     .json();
 
-  const tracks = RecentTracks(response);
-
-  if (tracks instanceof type.errors) {
-    throw new Error("Invalid response from Last.fm");
-  }
+  const tracks = await recentTracksSchema.parseAsync(response);
 
   return tracks.recenttracks.track;
 };
@@ -59,7 +54,10 @@ export const getRecentTracks = async () => {
 /**
  * Last.fm doesn't return the album art for tracks so we're using the iTunes Search API to get it
  */
-export const getAlbumArt = async (name: string, artist: string) => {
+export const getAlbumArt = async (
+  name: string,
+  artist: string,
+): Promise<string | undefined> => {
   "use cache";
 
   cacheLife("max");
@@ -75,18 +73,7 @@ export const getAlbumArt = async (name: string, artist: string) => {
     })
     .json();
 
-  const song = type({
-    resultCount: "1",
-    results: [
-      {
-        artworkUrl100: "string",
-      },
-    ],
-  })(response);
-
-  if (song instanceof type.errors) {
-    return undefined;
-  }
+  const song = await albumArtSearchSchema.parseAsync(response);
 
   return song.results[0].artworkUrl100;
 };
