@@ -161,166 +161,186 @@ const CachedBlogPostPage = async ({
       {/* eslint-disable-next-line @eslint-react/dom-no-dangerously-set-innerhtml */}
       <style dangerouslySetInnerHTML={{ __html: highlightCss }} />
 
-      <Title>{post.title}</Title>
+      <article className="neobrutalism-container p-3 sm:p-4">
+        <Title>{post.title}</Title>
 
-      <div className="mb-4 text-sm text-zinc-600 sm:mb-5 sm:text-base dark:text-zinc-400">
-        <time dateTime={dayjs(post.posted).toISOString()}>
-          {dayjs(post.posted).format("Do MMMM YYYY")}
-        </time>
-      </div>
+        <div className="mb-4 text-sm font-semibold sm:mb-5 sm:text-base">
+          <time dateTime={dayjs(post.posted).toISOString()}>
+            {dayjs(post.posted).format("Do MMMM YYYY")}
+          </time>
+        </div>
 
-      <div
-        className={cn(
-          "prose prose-sm prose-zinc sm:prose-base dark:prose-invert max-w-none", // Base styles
-          "prose-a:font-medium prose-a:text-accent prose-a:no-underline prose-a:hover:underline dark:prose-a:text-accent-dark", // Links
-          "mb-16",
-        )}
-      >
-        <PortableText
-          value={post.content}
-          components={
-            {
-              types: {
-                code: ({ value }) => {
-                  const { htmlMarkup, title } = createHighlightedCodeBlockProps(
-                    {
-                      highlighter,
-                      code: value.code ?? "",
-                      lang: stegaClean(value.language),
-                      title: value.filename,
-                      decorations: value.highlightedLines?.length
-                        ? value.highlightedLines.map((line) => ({
-                            lines: line,
-                            className: "th-line--highlighted",
-                          }))
-                        : undefined,
-                    },
-                  );
+        <div
+          className={cn(
+            "prose prose-sm prose-zinc sm:prose-base dark:prose-invert max-w-none font-medium text-black dark:text-white", // Base styles
+            "prose-a:font-medium prose-a:text-accent prose-a:no-underline prose-a:hover:underline dark:prose-a:text-accent-dark", // Links
+          )}
+        >
+          <PortableText
+            value={post.content}
+            components={
+              {
+                types: {
+                  code: ({ value }) => {
+                    const { htmlMarkup, title } =
+                      createHighlightedCodeBlockProps({
+                        highlighter,
+                        code: value.code ?? "",
+                        lang: stegaClean(value.language),
+                        title: value.filename,
+                        decorations: value.highlightedLines?.length
+                          ? value.highlightedLines.map((line) => ({
+                              lines: line,
+                              className: "th-line--highlighted",
+                            }))
+                          : undefined,
+                      });
 
-                  return (
-                    <div className="not-prose overflow-hidden rounded">
-                      {!!title && (
-                        <div className="theme-transition bg-zinc-100 px-6 py-4 text-sm font-medium text-zinc-600 dark:bg-zinc-900 dark:text-zinc-400">
-                          {title}
-                        </div>
-                      )}
-
-                      <div
-                        className="[&_.th-code]:theme-transition"
-                        // eslint-disable-next-line @eslint-react/dom-no-dangerously-set-innerhtml
-                        dangerouslySetInnerHTML={{ __html: htmlMarkup }}
-                      />
-                    </div>
-                  );
-                },
-                image: ({ value }) => {
-                  if (!value.asset) {
-                    return null;
-                  }
-
-                  const { width, height } = getImageDimensions(value.asset);
-
-                  const darkImageAsset = value.darkImage?.asset;
-                  const darkSrc = darkImageAsset
-                    ? urlFor(darkImageAsset).url()
-                    : undefined;
-                  let darkWidth: number | undefined = undefined;
-                  let darkHeight: number | undefined = undefined;
-                  if (darkImageAsset) {
-                    const { width, height } =
-                      getImageDimensions(darkImageAsset);
-
-                    darkWidth = width;
-                    darkHeight = height;
-                  }
-
-                  return (
-                    <figure className="not-prose my-6 sm:my-8">
-                      <Image
-                        src={urlFor(value.asset).url()}
-                        width={width}
-                        height={height}
-                        alt={value.alt}
-                        className={cn(
-                          "mx-auto rounded-sm sm:rounded-md",
-                          !!darkImageAsset && "dark:hidden",
-                        )}
-                      />
-
-                      {!!darkSrc && !!darkWidth && !!darkHeight && (
-                        <Image
-                          src={darkSrc}
-                          width={darkWidth}
-                          height={darkHeight}
-                          alt={value.alt}
-                          className="mx-auto hidden rounded-sm sm:rounded-md dark:block"
-                        />
-                      )}
-
-                      {!!value.caption && (
-                        <figcaption className="mt-2 text-center text-sm text-pretty text-zinc-700 sm:mt-3 sm:text-base dark:text-zinc-300">
-                          {value.caption}
-                        </figcaption>
-                      )}
-                    </figure>
-                  );
-                },
-                callout: ({ value }) => {
-                  const type = stegaClean(value.type);
-
-                  return (
-                    <div
-                      className={cn(
-                        "not-prose my-4 border-l-4 p-3 sm:my-5 sm:p-4",
-                        {
-                          "border-zinc-600 dark:border-zinc-400":
-                            type === "default",
-                          "border-yellow-600 dark:border-yellow-400":
-                            type === "info",
-                          "border-red-600 dark:border-red-400": type === "warn",
-                        },
-                        "[&_a]:text-accent dark:[&_a]:text-accent-dark [&_a]:no-underline [&_a:hover]:underline",
-                        "[&_code]:font-semibold before:[&_code]:content-['`'] after:[&_code]:content-['`']",
-                      )}
-                    >
-                      <PortableText value={value.content} />
-                    </div>
-                  );
-                },
-                horizontalLine: () => {
-                  return <hr />;
-                },
-              },
-              marks: {
-                link: ({ value, children }) => {
-                  if (!value) {
-                    return children;
-                  }
-
-                  if (!value.openInNewTab) {
                     return (
-                      <Link href={value.url as Route} title={value.label}>
-                        {children}
-                      </Link>
-                    );
-                  }
+                      <div className="not-prose shadow-neobrutalism overflow-hidden rounded border-2 border-black">
+                        {!!title && (
+                          <div className="theme-transition border-b-2 border-b-black bg-green-300 px-6 py-4 text-sm font-semibold dark:bg-green-900">
+                            {title}
+                          </div>
+                        )}
 
-                  return (
-                    <a
-                      href={value.url}
-                      title={value.label}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {children}
-                    </a>
-                  );
+                        <div
+                          className="[&_.th-code]:theme-transition"
+                          // eslint-disable-next-line @eslint-react/dom-no-dangerously-set-innerhtml
+                          dangerouslySetInnerHTML={{ __html: htmlMarkup }}
+                        />
+                      </div>
+                    );
+                  },
+                  image: ({ value }) => {
+                    if (!value.asset) {
+                      return null;
+                    }
+
+                    const { width, height } = getImageDimensions(value.asset);
+
+                    const darkImageAsset = value.darkImage?.asset;
+                    const darkSrc = darkImageAsset
+                      ? urlFor(darkImageAsset).url()
+                      : undefined;
+                    let darkWidth: number | undefined = undefined;
+                    let darkHeight: number | undefined = undefined;
+                    if (darkImageAsset) {
+                      const { width, height } =
+                        getImageDimensions(darkImageAsset);
+
+                      darkWidth = width;
+                      darkHeight = height;
+                    }
+
+                    return (
+                      <figure className="not-prose neobrutalism-container my-6 sm:my-8">
+                        <Image
+                          src={urlFor(value.asset).url()}
+                          width={width}
+                          height={height}
+                          alt={value.alt}
+                          className={cn(
+                            "mx-auto rounded-sm sm:rounded-md",
+                            !!darkImageAsset && "dark:hidden",
+                          )}
+                        />
+
+                        {!!darkSrc && !!darkWidth && !!darkHeight && (
+                          <Image
+                            src={darkSrc}
+                            width={darkWidth}
+                            height={darkHeight}
+                            alt={value.alt}
+                            className="mx-auto hidden rounded-sm sm:rounded-md dark:block"
+                          />
+                        )}
+
+                        {!!value.caption && (
+                          <figcaption className="theme-transition border-t-2 border-t-black bg-green-300 p-2 text-center text-sm font-semibold text-pretty sm:p-3 sm:text-base dark:bg-green-900">
+                            {value.caption}
+                          </figcaption>
+                        )}
+                      </figure>
+                    );
+                  },
+                  callout: ({ value }) => {
+                    const type = stegaClean(value.type);
+
+                    return (
+                      <div
+                        className={cn(
+                          "not-prose my-4 rounded border-2 p-3 sm:my-5 sm:p-4",
+                          {
+                            "border-zinc-600 dark:border-zinc-400":
+                              type === "default",
+                            "border-yellow-600 dark:border-yellow-400":
+                              type === "info",
+                            "border-red-600 dark:border-red-400":
+                              type === "warn",
+                          },
+                          "[&_code]:font-semibold before:[&_code]:content-['`'] after:[&_code]:content-['`']",
+                        )}
+                      >
+                        <PortableText
+                          value={value.content}
+                          components={{
+                            marks: {
+                              link: ({ value, children }) => {
+                                return (
+                                  <a
+                                    href={value?.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-accent dark:text-accent-dark no-underline hover:underline"
+                                  >
+                                    {children}
+                                  </a>
+                                );
+                              },
+                            },
+                          }}
+                        />
+                      </div>
+                    );
+                  },
+                  horizontalLine: () => {
+                    return (
+                      <hr className="h-1 rounded-full border-0 bg-black" />
+                    );
+                  },
                 },
-              },
-            } satisfies InferComponents<PostContent>
-          }
-        />
-      </div>
+                marks: {
+                  link: ({ value, children }) => {
+                    if (!value) {
+                      return children;
+                    }
+
+                    if (!value.openInNewTab) {
+                      return (
+                        <Link href={value.url as Route} title={value.label}>
+                          {children}
+                        </Link>
+                      );
+                    }
+
+                    return (
+                      <a
+                        href={value.url}
+                        title={value.label}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {children}
+                      </a>
+                    );
+                  },
+                },
+              } satisfies InferComponents<PostContent>
+            }
+          />
+        </div>
+      </article>
 
       <BreadcrumbStructuredData
         items={[

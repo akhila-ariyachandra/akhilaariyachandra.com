@@ -81,7 +81,7 @@ const CachedAbout = async ({ perspective, stega }: DynamicFetchOptions) => {
         width={240}
         height={240}
         alt="Akhila Ariyachandra"
-        className="mb-4 w-44 rounded-sm sm:mr-5 sm:mb-5 sm:w-60 sm:rounded-lg"
+        className="shadow-neobrutalism mb-4 w-44 rounded-sm border-2 border-black sm:mr-5 sm:mb-5 sm:w-60 sm:rounded-lg"
         priority
       />
 

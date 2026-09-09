@@ -2,7 +2,7 @@ import Skeleton from "@/_components/skeleton";
 
 const BlogPostLoading = () => {
   return (
-    <>
+    <article className="neobrutalism-container p-3 sm:p-4">
       <Skeleton className="mb-4 h-16 sm:mb-5 sm:h-9" />
 
       <Skeleton className="mb-4 h-4.5 w-32 sm:mb-5 sm:h-5.25 sm:w-35" />
@@ -44,7 +44,7 @@ const BlogPostLoading = () => {
           <Skeleton className="h-lh w-2/3" />
         </div>
       </div>
-    </>
+    </article>
   );
 };
 
