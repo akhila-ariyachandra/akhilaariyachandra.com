@@ -34,34 +34,30 @@ const BlogPage = async () => {
 
   return (
     <>
-      <Title>Blog</Title>
+      <div className="neobrutalism-container p-3 sm:p-4">
+        <Title>Blog</Title>
 
-      {isDraftMode ? (
-        <Suspense
-          fallback={
-            <section className="text-zinc-600 dark:text-zinc-300">
-              Loading Posts...
-            </section>
-          }
-        >
-          <DynamicPostsList />
-        </Suspense>
-      ) : (
-        <CachedPostsList perspective="published" stega={false} />
-      )}
+        {isDraftMode ? (
+          <Suspense fallback={<div>Loading Posts...</div>}>
+            <DynamicPostsList />
+          </Suspense>
+        ) : (
+          <CachedPostsList perspective="published" stega={false} />
+        )}
 
-      <p className="mt-6 text-lg text-zinc-600 sm:text-xl dark:text-zinc-400">
-        View my old blog posts{" "}
-        <Link
-          href="https://archive.akhilaariyachandra.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-accent dark:text-accent-dark hover:underline"
-        >
-          here
-        </Link>
-        .
-      </p>
+        <p className="mt-6 text-lg sm:text-xl">
+          View my old blog posts{" "}
+          <Link
+            href="https://archive.akhilaariyachandra.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent dark:text-accent-dark font-semibold hover:underline"
+          >
+            here
+          </Link>
+          .
+        </p>
+      </div>
 
       <BreadcrumbStructuredData
         items={[
@@ -96,13 +92,13 @@ const CachedPostsList = async ({ perspective, stega }: DynamicFetchOptions) => {
         <li key={post._id}>
           <Link
             href={`/blog/${post.slug.current}`}
-            className="text-accent dark:text-accent-dark text-xl font-medium tracking-tighter text-balance hover:underline sm:text-2xl"
+            className="text-accent dark:text-accent-dark block text-xl font-semibold text-balance hover:underline sm:text-2xl"
             prefetch
           >
             {post.title}
           </Link>
 
-          <div className="text-sm text-zinc-600 sm:text-base dark:text-zinc-400">
+          <div className="text-sm sm:text-base">
             <time dateTime={dayjs(post.posted).toISOString()}>
               {dayjs(post.posted).format("Do MMMM YYYY")}
             </time>

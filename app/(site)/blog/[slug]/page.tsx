@@ -172,7 +172,6 @@ const CachedBlogPostPage = async ({
       <div
         className={cn(
           "prose prose-sm prose-zinc sm:prose-base dark:prose-invert max-w-none", // Base styles
-          "prose-headings:tracking-tighter", // Headings
           "prose-a:font-medium prose-a:text-accent prose-a:no-underline prose-a:hover:underline dark:prose-a:text-accent-dark", // Links
           "mb-16",
         )}

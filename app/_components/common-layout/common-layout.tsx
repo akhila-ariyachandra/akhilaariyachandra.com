@@ -67,15 +67,15 @@ const Footer = async () => {
   const year = await getYear();
 
   return (
-    <footer className="p-3 sm:p-4">
-      <div className="neobrutalism-container mx-auto w-full max-w-4xl space-y-4 p-3">
+    <footer className="mx-auto w-full max-w-4xl p-3 sm:p-4">
+      <div className="neobrutalism-container space-y-4 p-3 sm:p-4">
         <NowPlaying />
 
         <p className="text-sm sm:text-base">
           &copy; {year}{" "}
           <Link
             href="/"
-            className="text-accent dark:text-accent-dark hover:underline"
+            className="text-accent dark:text-accent-dark font-semibold hover:underline"
           >
             Akhila Ariyachandra
           </Link>

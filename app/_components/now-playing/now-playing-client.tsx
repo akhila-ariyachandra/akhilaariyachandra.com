@@ -43,12 +43,12 @@ const NowPlayingClient = ({ nowPlaying }: { nowPlaying: RecentTrack }) => {
       </a>
 
       <div className="min-w-0 flex-1">
-        <p className="truncate text-lg font-medium sm:text-xl">
+        <p className="truncate text-lg sm:text-xl">
           <a
             href={nowPlaying.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-accent dark:text-accent-dark hover:underline"
+            className="text-accent dark:text-accent-dark font-semibold hover:underline"
           >
             {nowPlaying.name}
           </a>
