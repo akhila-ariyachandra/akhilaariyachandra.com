@@ -8,9 +8,9 @@ import { useEffect, useRef, type ComponentRef } from "react";
 const NowPlayingClient = ({ nowPlaying }: { nowPlaying: RecentTrack }) => {
   const visualizerIconRef = useRef<ComponentRef<typeof AudioLinesIcon>>(null);
 
-  const albumArt = nowPlaying.image.find(
-    (image) => image.size === "extralarge",
-  )?.["#text"];
+  const albumArt = nowPlaying.image.find((image) => image.size === "large")?.[
+    "#text"
+  ];
 
   useEffect(() => {
     visualizerIconRef.current?.startAnimation();
@@ -22,7 +22,7 @@ const NowPlayingClient = ({ nowPlaying }: { nowPlaying: RecentTrack }) => {
         href={nowPlaying.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="relative grid size-(--mobile-album-art-dimensions) place-items-center overflow-hidden rounded-sm sm:size-(--album-art-dimensions)"
+        className="relative grid size-(--mobile-album-art-dimensions) place-items-center overflow-hidden rounded-sm border-2 border-black sm:size-(--album-art-dimensions)"
       >
         {!!albumArt && (
           <Image
