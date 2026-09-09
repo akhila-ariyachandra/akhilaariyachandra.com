@@ -26,7 +26,7 @@ export const getTopTracks = async () => {
       searchParams: {
         method: "user.gettoptracks",
         limit: "10",
-        period: "7day",
+        period: "1month",
       },
     })
     .json();
