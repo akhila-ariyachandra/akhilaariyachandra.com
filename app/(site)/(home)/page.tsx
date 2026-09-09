@@ -1,6 +1,6 @@
 import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
 import ProfileStructuredData from "@/_components/structured-data/profile";
-import { getAlbumArt, getTopTracks } from "@/_lib/last-fm";
+import { getTopTracks, getTrackInfo } from "@/_lib/last-fm";
 import { type PERSONAL_INFO_QUERY_RESULT } from "@/sanity/generated/types";
 import { urlFor } from "@/sanity/lib/image";
 import {
@@ -17,6 +17,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Suspense, type CSSProperties } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+import { BiAlbum } from "react-icons/bi";
 import Career from "./career";
 import ResumeButton from "./resume-button";
 
@@ -199,10 +200,6 @@ const TopTracks = async () => {
         }
       >
         {topTracks.map((track) => {
-          const albumArt = track.image.find(
-            (image) => image.size === "extralarge",
-          )?.["#text"];
-
           return (
             <li
               key={track.mbid ? track.mbid : track.url}
@@ -214,11 +211,7 @@ const TopTracks = async () => {
                 rel="noopener noreferrer"
                 className="shrink-0"
               >
-                <AlbumArt
-                  name={track.name}
-                  artist={track.artist.name}
-                  fallbackUrl={albumArt}
-                />
+                <AlbumArt mbid={track.mbid} />
 
                 <span className="sr-only">{track.name}</span>
               </a>
@@ -247,28 +240,29 @@ const TopTracks = async () => {
   );
 };
 
-const AlbumArt = async ({
-  name,
-  artist,
-  fallbackUrl,
-}: {
-  name: string;
-  artist: string;
-  fallbackUrl?: string | undefined;
-}) => {
-  const albumArt = await getAlbumArt(name, artist);
-
-  if (!albumArt && !fallbackUrl) {
-    return <div className="size-12.5 sm:size-(--album-art-dimensions)" />;
+const AlbumArt = async ({ mbid }: { mbid: string }) => {
+  if (!mbid) {
+    return (
+      <div className="grid size-12.5 place-items-center rounded-sm border-2 border-black sm:size-(--album-art-dimensions)">
+        <BiAlbum className="size-8 sm:size-10" />
+      </div>
+    );
   }
+
+  const track = await getTrackInfo(mbid);
 
   return (
     <Image
-      src={albumArt ?? fallbackUrl ?? ""}
-      alt={name}
+      src={
+        track.album.image.find((image) => image.size === "extralarge")?.[
+          "#text"
+        ] ?? ""
+      }
+      alt={track.album.title}
       width={ALBUM_ART_DIMENSIONS}
       height={ALBUM_ART_DIMENSIONS}
-      className="size-12.5 rounded-sm sm:size-(--album-art-dimensions)"
+      className="size-12.5 rounded-sm border-2 border-black sm:size-(--album-art-dimensions)"
+      unoptimized
     />
   );
 };

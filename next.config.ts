@@ -28,15 +28,6 @@ const nextConfig: NextConfig = {
         hostname: "cdn.sanity.io",
         pathname: `/images/${projectId}/${dataset}/**`,
       },
-      {
-        protocol: "https",
-        hostname: "lastfm.freetls.fastly.net",
-        pathname: "/i/u/**",
-      },
-      {
-        protocol: "https",
-        hostname: "is1-ssl.mzstatic.com",
-      },
     ],
   },
   logging: {
