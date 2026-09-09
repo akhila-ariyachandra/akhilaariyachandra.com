@@ -8,9 +8,11 @@ const ResumeButton = ({ resume }: { resume?: string | null }) => {
     return null;
   }
 
+  const href: Route = "/resume";
+
   return (
     <a
-      href={"/resume" satisfies Route}
+      href={href}
       download="Akhila_Heshan_Ariyachandra_Resume.pdf"
       rel="nofollow"
       className="neobrutalism-button"

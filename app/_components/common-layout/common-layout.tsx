@@ -24,7 +24,7 @@ const CommonLayout = ({ children }: { children: ReactNode }) => {
       lang="en"
       className={cn(
         "min-h-dvh scrollbar-gutter-stable scroll-smooth",
-        "scrollbar-thumb-accent dark:scrollbar-thumb-accent-dark scrollbar-thin",
+        "scrollbar-thumb-black scrollbar-track-white dark:scrollbar-thumb-white dark:scrollbar-track-zinc-950",
       )}
       data-scroll-behavior="smooth"
       suppressHydrationWarning
@@ -32,7 +32,7 @@ const CommonLayout = ({ children }: { children: ReactNode }) => {
       <body
         className={cn(
           dmSans.className,
-          "theme-transition relative flex min-h-dvh flex-col bg-green-100 font-medium text-black antialiased dark:bg-green-950 dark:text-white",
+          "theme-transition relative flex min-h-dvh flex-col border-r-4 border-r-black bg-green-100 font-medium text-black antialiased dark:bg-green-950 dark:text-white",
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system">
