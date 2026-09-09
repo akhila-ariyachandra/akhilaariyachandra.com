@@ -2,10 +2,14 @@ import NowPlaying from "@/_components/now-playing";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { cn } from "cn";
+import ky from "ky";
 import { cacheLife } from "next/cache";
 import { DM_Sans } from "next/font/google";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { ErrorBoundary } from "react-error-boundary";
+import { FaStar } from "react-icons/fa6";
+import { z } from "zod";
 import Header from "./header";
 import ThemeProvider from "./theme-provider";
 
@@ -71,16 +75,53 @@ const Footer = async () => {
       <div className="neobrutalism-container space-y-4 p-3 sm:p-4">
         <NowPlaying />
 
-        <p className="text-sm sm:text-base">
-          &copy; {year}{" "}
-          <Link
-            href="/"
-            className="text-accent dark:text-accent-dark font-semibold hover:underline"
-          >
-            Akhila Ariyachandra
-          </Link>
-        </p>
+        <div className="flex flex-row items-center justify-between gap-4">
+          <p className="text-sm sm:text-base">
+            &copy; {year}{" "}
+            <Link
+              href="/"
+              className="text-accent dark:text-accent-dark font-semibold hover:underline"
+            >
+              Akhila Ariyachandra
+            </Link>
+          </p>
+
+          <ErrorBoundary fallback={null}>
+            <RepoLink />
+          </ErrorBoundary>
+        </div>
       </div>
     </footer>
+  );
+};
+
+const RepoLink = async () => {
+  "use cache";
+
+  const response = await ky
+    .get(
+      "https://api.github.com/repos/akhila-ariyachandra/akhilaariyachandra.com",
+    )
+    .json();
+  const parsedResponse = await z
+    .object({
+      stargazers_count: z.number(),
+    })
+    .parseAsync(response);
+
+  return (
+    <a
+      href="https://github.com/akhila-ariyachandra/akhilaariyachandra.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="neobrutalism-button"
+    >
+      <span>{parsedResponse.stargazers_count}</span>
+
+      <FaStar />
+      <span className="sr-only">Star</span>
+
+      <span>Repo</span>
+    </a>
   );
 };
