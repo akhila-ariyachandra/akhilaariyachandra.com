@@ -11,9 +11,6 @@ jobs:
     name: Code Quality
     timeout-minutes: 15
     runs-on: ubuntu-22.04
-    strategy:
-      matrix:
-        node-version: [24]
     env:
       NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
       NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
@@ -21,18 +18,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - uses: pnpm/action-setup@v6
-        name: Install pnpm
+      - uses: pnpm/setup@v1
         with:
+          runtime: node@24
           cache: true
-
-      - name: Install Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Install dependencies
-        run: pnpm install
 
       - name: Run Knip
         run: pnpm run knip
