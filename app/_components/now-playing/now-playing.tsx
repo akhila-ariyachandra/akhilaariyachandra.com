@@ -8,7 +8,7 @@ import NowPlayingClient from "./now-playing-client";
 const NotPlaying = () => {
   return (
     <>
-      <div className="grid size-(--mobile-album-art-dimensions) place-items-center sm:size-(--album-art-dimensions)">
+      <div className="grid size-(--mobile-album-art-dimensions) place-items-center rounded-sm border-2 border-black sm:size-(--album-art-dimensions)">
         <AudioLinesIcon className="*:stroke-last-fm-red" />
       </div>
 

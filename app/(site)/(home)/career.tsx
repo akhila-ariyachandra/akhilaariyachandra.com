@@ -52,7 +52,7 @@ const CachedCareer = async ({ perspective, stega }: DynamicFetchOptions) => {
         {jobs.map((job) => (
           <li
             key={job._id}
-            className="space-y-1.5 border-zinc-200 pb-3 not-last:border-b last:pb-0 sm:space-y-3 sm:pb-6 sm:last:pb-0 dark:border-zinc-700"
+            className="space-y-1.5 border-black pb-3 not-last:border-b-2 last:pb-0 sm:space-y-3 sm:pb-6 sm:last:pb-0"
           >
             <div className="flex flex-row items-center gap-2 sm:gap-4">
               <Image
@@ -60,7 +60,7 @@ const CachedCareer = async ({ perspective, stega }: DynamicFetchOptions) => {
                 alt={job.company.name}
                 width={50}
                 height={50}
-                className="rounded"
+                className="rounded border-2 border-black"
               />
 
               <div className="flex-1">

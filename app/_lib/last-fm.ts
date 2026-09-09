@@ -1,11 +1,7 @@
 import ky from "ky";
 import { cacheLife } from "next/cache";
 import "server-only";
-import {
-  albumArtSearchSchema,
-  recentTracksSchema,
-  topTracksSchema,
-} from "./schema";
+import { recentTracksSchema, topTracksSchema, trackInfoSchema } from "./schema";
 
 const api = ky.create({
   baseUrl: "https://ws.audioscrobbler.com/2.0",
@@ -26,7 +22,7 @@ export const getTopTracks = async () => {
       searchParams: {
         method: "user.gettoptracks",
         limit: "10",
-        period: "7day",
+        period: "1month",
       },
     })
     .json();
@@ -51,29 +47,21 @@ export const getRecentTracks = async () => {
   return tracks.recenttracks.track;
 };
 
-/**
- * Last.fm doesn't return the album art for tracks so we're using the iTunes Search API to get it
- */
-export const getAlbumArt = async (
-  name: string,
-  artist: string,
-): Promise<string | undefined> => {
+export const getTrackInfo = async (mbid: string) => {
   "use cache";
 
   cacheLife("max");
 
-  const response = await ky
-    .get("https://itunes.apple.com/search", {
+  const response = await api
+    .get("", {
       searchParams: {
-        term: `${name} ${artist}`,
-        media: "music",
-        entity: "song",
-        limit: "1",
+        method: "track.getInfo",
+        mbid,
       },
     })
     .json();
 
-  const song = await albumArtSearchSchema.parseAsync(response);
+  const parsedResponse = await trackInfoSchema.parseAsync(response);
 
-  return song.results[0].artworkUrl100;
+  return parsedResponse.track;
 };

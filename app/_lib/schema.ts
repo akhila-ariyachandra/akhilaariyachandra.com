@@ -63,13 +63,13 @@ export const recentTracksSchema = z.object({
   }),
 });
 
-export const albumArtSearchSchema = z.object({
-  resultCount: z.literal(1),
-  results: z.tuple([
-    z.object({
-      artworkUrl100: z.string(),
+export const trackInfoSchema = z.object({
+  track: z.object({
+    album: z.object({
+      title: z.string(),
+      image: lastFmImageSchema,
     }),
-  ]),
+  }),
 });
 
 export type RecentTrack = z.infer<typeof recentTrackSchema>;
