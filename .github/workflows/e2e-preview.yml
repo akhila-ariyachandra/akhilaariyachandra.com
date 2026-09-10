@@ -7,13 +7,31 @@ concurrency:
   # Cancel a stale run if a newer deployment for the same commit succeeds
   group: ${{ github.workflow }}-${{ github.event.client_payload.git.sha }}
   cancel-in-progress: true
+permissions:
+  contents: read
+  statuses: write
 jobs:
   e2e:
     name: E2E Tests
     if: github.event_name == 'repository_dispatch'
     timeout-minutes: 60
     runs-on: ubuntu-22.04
+    env:
+      GH_TOKEN: ${{ github.token }}
+      STATUS_SHA: ${{ github.event.client_payload.git.sha }}
     steps:
+      # github.sha points at the default branch for repository_dispatch events,
+      # not the deployed commit, so the implicit Actions check never lands on
+      # the PR's head commit. Report a commit status on the real SHA instead
+      # so branch protection can actually see it.
+      - name: Set commit status to pending
+        run: |
+          gh api "repos/${{ github.repository }}/statuses/$STATUS_SHA" \
+            -f state=pending \
+            -f context="E2E Tests" \
+            -f description="Running Playwright tests" \
+            -f target_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
       - name: Checkout
         uses: actions/checkout@v6
         with:
@@ -40,3 +58,17 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+
+      - name: Set commit status to result
+        if: always()
+        run: |
+          case "${{ job.status }}" in
+            success) state=success ;;
+            cancelled) state=error ;;
+            *) state=failure ;;
+          esac
+          gh api "repos/${{ github.repository }}/statuses/$STATUS_SHA" \
+            -f state="$state" \
+            -f context="E2E Tests" \
+            -f description="Playwright tests $state" \
+            -f target_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
