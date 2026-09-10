@@ -7,8 +7,6 @@ concurrency:
   # Cancel a stale run if a newer deployment for the same commit succeeds
   group: ${{ github.workflow }}-${{ github.event.client_payload.git.sha }}
   cancel-in-progress: true
-permissions:
-  statuses: write
 jobs:
   e2e:
     name: E2E Tests
@@ -16,26 +14,6 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-22.04
     steps:
-      # Runs are triggered by repository_dispatch, so GitHub always associates them with the
-      # default branch and never surfaces them as a check on the PR for the tested commit.
-      # Publishing a commit status on that SHA directly makes the result show up on any PR
-      # containing it (e.g. the preview -> main promotion PR), same as the quality checks.
-      - name: Set commit status to pending
-        env:
-          GH_TOKEN: ${{ github.token }}
-          SHA: ${{ github.event.client_payload.git.sha }}
-        run: |
-          curl --request POST \
-            --url "https://api.github.com/repos/${{ github.repository }}/statuses/$SHA" \
-            --header "authorization: Bearer $GH_TOKEN" \
-            --header 'content-type: application/json' \
-            --data '{
-              "state": "pending",
-              "context": "E2E Tests",
-              "target_url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-            }' \
-            --fail
-
       - name: Checkout
         uses: actions/checkout@v6
         with:
@@ -62,21 +40,3 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
-
-      - name: Set commit status to result
-        if: always()
-        env:
-          GH_TOKEN: ${{ github.token }}
-          SHA: ${{ github.event.client_payload.git.sha }}
-          STATE: ${{ job.status == 'success' && 'success' || 'failure' }}
-        run: |
-          curl --request POST \
-            --url "https://api.github.com/repos/${{ github.repository }}/statuses/$SHA" \
-            --header "authorization: Bearer $GH_TOKEN" \
-            --header 'content-type: application/json' \
-            --data '{
-              "state": "'"$STATE"'",
-              "context": "E2E Tests",
-              "target_url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-            }' \
-            --fail
