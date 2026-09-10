@@ -18,6 +18,8 @@ export default defineConfig(
       "build/**",
       "next-env.d.ts",
       "sanity/generated/**",
+      "playwright-report/**",
+      "test-results/**",
     ],
   },
   eslint.configs.recommended,

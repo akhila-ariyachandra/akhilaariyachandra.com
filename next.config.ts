@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   experimental: {
     turbopackRustReactCompiler: true,
     globalNotFound: true,
+    exposeTestingApiInProductionBuild: process.env.VERCEL_ENV === "preview",
   },
   compiler: {
     styledComponents: {

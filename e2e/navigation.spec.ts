@@ -1,9 +1,7 @@
 import { instant } from "@next/playwright";
 import { expect, test } from "@playwright/test";
 
-const assertHref: (href: string | null) => asserts href is string = (
-  href,
-) => {
+const assertHref: (href: string | null) => asserts href is string = (href) => {
   expect(href).toBeTruthy();
 };
 
