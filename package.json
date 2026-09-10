@@ -19,7 +19,8 @@
     "prettier:format": "prettier --write \"**/*.{ts,tsx,js,md,mdx,css,yaml}\"",
     "prettier:check": "prettier --check \"**/*.{ts,tsx,js,md,mdx,css,yaml}\"",
     "sanity:typegen": "sanity schema extract --path=sanity/generated/schema.json --enforce-required-fields --force && sanity typegen generate",
-    "knip": "knip"
+    "knip": "knip",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@next/third-parties": "16.3.4",
@@ -51,6 +52,8 @@
   "devDependencies": {
     "@eslint-react/eslint-plugin": "5.19.0",
     "@eslint/js": "9.39.2",
+    "@next/playwright": "16.3.4",
+    "@playwright/test": "1.62.1",
     "@stylistic/eslint-plugin": "5.10.0",
     "@tailwindcss/postcss": "4.3.3",
     "@tailwindcss/typography": "0.5.20",
@@ -60,6 +63,7 @@
     "eslint": "9.39.2",
     "eslint-config-next": "16.3.4",
     "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-playwright": "2.11.0",
     "knip": "6.34.0",
     "postcss": "8.5.28",
     "prettier": "3.9.6",

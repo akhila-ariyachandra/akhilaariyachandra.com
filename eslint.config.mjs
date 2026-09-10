@@ -4,6 +4,7 @@ import eslint from "@eslint/js";
 import stylistic from "@stylistic/eslint-plugin";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import eslintConfigPrettier from "eslint-config-prettier";
+import playwright from "eslint-plugin-playwright";
 import { defineConfig } from "eslint/config";
 import tseslint from "typescript-eslint";
 
@@ -17,6 +18,8 @@ export default defineConfig(
       "build/**",
       "next-env.d.ts",
       "sanity/generated/**",
+      "playwright-report/**",
+      "test-results/**",
     ],
   },
   eslint.configs.recommended,
@@ -79,6 +82,10 @@ export default defineConfig(
       tseslint.configs.disableTypeChecked,
       eslintReact.configs["disable-type-checked"],
     ],
+  },
+  {
+    files: ["e2e/**"],
+    extends: [playwright.configs["flat/recommended"]],
   },
   eslintConfigPrettier,
 );
