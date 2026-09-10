@@ -1,0 +1,42 @@
+name: E2E Tests (Preview)
+on:
+  repository_dispatch:
+    types:
+      - vercel.deployment.success
+concurrency:
+  # Cancel a stale run if a newer deployment for the same commit succeeds
+  group: ${{ github.workflow }}-${{ github.event.client_payload.git.sha }}
+  cancel-in-progress: true
+jobs:
+  e2e:
+    name: E2E Tests
+    if: github.event_name == 'repository_dispatch'
+    timeout-minutes: 60
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.client_payload.git.sha }}
+
+      - uses: pnpm/setup@v1
+        with:
+          runtime: node@24
+          cache: true
+
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install --with-deps
+
+      - name: Run Playwright tests
+        run: pnpm exec playwright test
+        env:
+          BASE_URL: ${{ github.event.client_payload.url }}
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
