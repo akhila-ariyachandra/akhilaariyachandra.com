@@ -21,8 +21,3 @@
 @utility neobrutalism-container {
   @apply shadow-neobrutalism theme-transition rounded border-2 border-black bg-white dark:bg-zinc-950;
 }
-
-@utility neobrutalism-button {
-  @apply neobrutalism-container flex items-center gap-2 bg-green-300 px-2 py-1 text-base leading-none font-semibold sm:px-3 sm:py-2 sm:text-lg dark:bg-green-900;
-  @apply transition duration-200 ease-out hover:translate-1 hover:shadow-none;
-}

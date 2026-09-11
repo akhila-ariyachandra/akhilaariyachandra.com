@@ -6,17 +6,18 @@ import Link from "next/link";
 import { Suspense, use } from "react";
 import { browser } from "react-dom";
 import { FaMoon, FaSun } from "react-icons/fa6";
+import { buttonVariants } from "../button";
 
 const Header = () => {
   return (
     <header className="mx-auto w-full max-w-4xl p-3 sm:p-4">
       <div className="neobrutalism-container flex flex-row items-center justify-between p-3 sm:p-4">
         <nav className="flex flex-row items-center gap-4 text-base font-semibold sm:text-lg">
-          <Link href="/" className="neobrutalism-button">
+          <Link href="/" className={buttonVariants()}>
             Home
           </Link>
 
-          <Link href="/blog" className="neobrutalism-button">
+          <Link href="/blog" className={buttonVariants()}>
             Blog
           </Link>
         </nav>
@@ -54,7 +55,9 @@ const ThemeToggle = () => {
   return (
     <button
       type="button"
-      className="neobrutalism-button cursor-pointer p-1 text-lg sm:p-2 sm:text-xl"
+      className={buttonVariants({
+        className: "p-1 text-lg/none sm:p-2 sm:text-xl/none",
+      })}
       onClick={themeToggle}
     >
       {resolvedTheme === "light" ? <FaMoon /> : <FaSun />}

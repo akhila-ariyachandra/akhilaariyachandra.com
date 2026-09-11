@@ -21,6 +21,7 @@
     "ngClass",
     "tw"
   ],
+  "tailwindCSS.classFunctions": ["cva", "cx"],
   "tailwindCSS.experimental.classRegex": [
     ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
     ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]

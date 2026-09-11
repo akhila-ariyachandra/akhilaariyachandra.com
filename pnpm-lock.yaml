@@ -155,6 +155,9 @@ importers:
       cn:
         specifier: 0.2.6
         version: 0.2.6
+      cva:
+        specifier: 1.0.0-beta.9
+        version: 1.0.0-beta.9(typescript@6.0.3)
       dayjs:
         specifier: 1.11.23
         version: 1.11.23
@@ -3955,6 +3958,14 @@ packages:
 
   custom-media-element@1.4.6:
     resolution: {integrity: sha512-/HRYqJOa1ob5ik4q7FIJVYxTJCFs/FL3+cQPAJjUf2uiqrDEzbTgB315gQ2rG8oK3w094W9m5tcB8S5Qah+caA==}
+
+  cva@1.0.0-beta.9:
+    resolution: {integrity: sha512-hSiw3E2Z5IBAUhqSBcH32Zu5A73oZnCXCb7h5vWRs2QTMVLnqtj1dUGYVRcT7p0nqEJOJJ7jT0EvqkSA35Z5ZA==}
+    peerDependencies:
+      typescript: '>= 6.0.0'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
 
   damerau-levenshtein@1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
@@ -11079,6 +11090,12 @@ snapshots:
   csstype@3.2.3: {}
 
   custom-media-element@1.4.6: {}
+
+  cva@1.0.0-beta.9(typescript@6.0.3):
+    dependencies:
+      clsx: 2.1.1
+    optionalDependencies:
+      typescript: 6.0.3
 
   damerau-levenshtein@1.0.8: {}
 
