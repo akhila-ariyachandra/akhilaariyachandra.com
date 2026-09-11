@@ -10,6 +10,7 @@ import type { ReactNode } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { FaStar } from "react-icons/fa6";
 import { z } from "zod";
+import { buttonVariants } from "../button";
 import Header from "./header";
 import ThemeProvider from "./theme-provider";
 
@@ -115,7 +116,7 @@ const RepoLink = async () => {
       href="https://github.com/akhila-ariyachandra/akhilaariyachandra.com"
       target="_blank"
       rel="noopener noreferrer"
-      className="neobrutalism-button"
+      className={buttonVariants()}
     >
       <span>{parsedResponse.stargazers_count}</span>
 

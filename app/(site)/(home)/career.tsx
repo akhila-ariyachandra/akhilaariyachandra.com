@@ -1,3 +1,4 @@
+import { buttonVariants } from "@/_components/button";
 import { getParagraphs } from "@/_lib/helpers";
 import { urlFor } from "@/sanity/lib/image";
 import {
@@ -106,7 +107,7 @@ const CachedCareer = async ({ perspective, stega }: DynamicFetchOptions) => {
                     href={technology.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="neobrutalism-button px-0.5 py-0.5 text-pretty sm:px-1.5 sm:py-1"
+                    className={buttonVariants({ size: "small" })}
                   >
                     <Image
                       src={urlFor(technology.icon).width(20).height(20).url()}

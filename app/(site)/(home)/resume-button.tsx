@@ -1,5 +1,6 @@
 "use client";
 
+import { buttonVariants } from "@/_components/button";
 import { sendGAEvent } from "@next/third-parties/google";
 import { type Route } from "next";
 
@@ -15,7 +16,7 @@ const ResumeButton = ({ resume }: { resume?: string | null }) => {
       href={href}
       download="Akhila_Heshan_Ariyachandra_Resume.pdf"
       rel="nofollow"
-      className="neobrutalism-button"
+      className={buttonVariants()}
       onClick={() => {
         sendGAEvent("event", "resumeDownloaded");
       }}
