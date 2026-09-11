@@ -32,7 +32,7 @@ const CommonLayout = ({ children }: { children: ReactNode }) => {
       <body
         className={cn(
           dmSans.className,
-          "theme-transition relative flex min-h-dvh flex-col border-r-4 border-r-black bg-green-100 font-medium text-black antialiased dark:bg-green-950 dark:text-white",
+          "theme-transition relative flex min-h-dvh flex-col bg-green-100 font-medium text-black antialiased sm:border-r-4 sm:border-r-black dark:bg-green-950 dark:text-white",
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system">
@@ -50,9 +50,10 @@ const CommonLayout = ({ children }: { children: ReactNode }) => {
         </ThemeProvider>
       </body>
 
-      {!!process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
-      )}
+      {!!process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID &&
+        process.env.VERCEL_ENV === "production" && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
+        )}
     </html>
   );
 };
