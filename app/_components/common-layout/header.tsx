@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Suspense, use } from "react";
 import { browser } from "react-dom";
 import { FaMoon, FaSun } from "react-icons/fa6";
-import { buttonVariants } from "../button";
+import { Button, buttonVariants } from "../button";
 
 const Header = () => {
   return (
@@ -53,11 +53,9 @@ const ThemeToggle = () => {
   };
 
   return (
-    <button
+    <Button
       type="button"
-      className={buttonVariants({
-        className: "p-1 text-lg/none sm:p-2 sm:text-xl/none",
-      })}
+      className="p-1 text-lg/none sm:p-2 sm:text-xl/none"
       onClick={themeToggle}
     >
       {resolvedTheme === "light" ? <FaMoon /> : <FaSun />}
@@ -65,6 +63,6 @@ const ThemeToggle = () => {
       <span className="sr-only">
         {resolvedTheme === "light" ? "Dark mode" : "Light mode"}
       </span>
-    </button>
+    </Button>
   );
 };
