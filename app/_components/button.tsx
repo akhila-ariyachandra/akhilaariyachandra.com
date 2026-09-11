@@ -7,7 +7,8 @@ export const buttonVariants = cva({
   variants: {
     size: {
       default: "px-2 py-1 sm:px-3 sm:py-2",
-      small: "px-0.5 py-0.5 text-pretty sm:px-1.5 sm:py-1",
+      small: "px-0.5 py-0.5 sm:px-1.5 sm:py-1",
+      icon: "p-1 text-lg/none sm:p-2 sm:text-xl/none",
     },
   },
   defaultVariants: {
