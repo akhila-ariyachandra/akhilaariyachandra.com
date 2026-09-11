@@ -50,9 +50,10 @@ const CommonLayout = ({ children }: { children: ReactNode }) => {
         </ThemeProvider>
       </body>
 
-      {!!process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
-      )}
+      {!!process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID &&
+        process.env.VERCEL_ENV === "production" && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
+        )}
     </html>
   );
 };
