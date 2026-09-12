@@ -270,16 +270,13 @@ const CachedBlogPostPage = async ({
                     return (
                       <div
                         className={cn(
-                          "not-prose my-4 rounded border-2 p-3 sm:my-5 sm:p-4",
+                          "not-prose my-4 rounded border-2 border-black p-3 sm:my-5 sm:p-4",
                           {
-                            "border-zinc-600 dark:border-zinc-400":
-                              type === "default",
-                            "border-yellow-600 dark:border-yellow-400":
-                              type === "info",
-                            "border-red-600 dark:border-red-400":
-                              type === "warn",
+                            "bg-zinc-100 dark:bg-zinc-900": type === "default",
+                            "bg-yellow-100 dark:bg-yellow-950": type === "info",
+                            "bg-red-100 dark:bg-red-950": type === "warn",
                           },
-                          "[&_code]:font-semibold before:[&_code]:content-['`'] after:[&_code]:content-['`']",
+                          "[&_code]:font-semibold [&_code]:before:content-['`'] [&_code]:after:content-['`']",
                         )}
                       >
                         <PortableText
@@ -292,7 +289,7 @@ const CachedBlogPostPage = async ({
                                     href={value?.href}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-accent dark:text-accent-dark no-underline hover:underline"
+                                    className="text-accent dark:text-accent-dark font-semibold no-underline hover:underline"
                                   >
                                     {children}
                                   </a>
