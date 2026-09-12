@@ -1,5 +1,6 @@
 import NowPlaying from "@/_components/now-playing";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { cn } from "cn";
 import ky from "ky";
@@ -47,6 +48,7 @@ const CommonLayout = ({ children }: { children: ReactNode }) => {
 
           <Footer />
 
+          <Analytics />
           <SpeedInsights />
         </ThemeProvider>
       </body>
