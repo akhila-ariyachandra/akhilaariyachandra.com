@@ -1,5 +1,6 @@
 import NowPlaying from "@/_components/now-playing";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { cn } from "cn";
 import ky from "ky";
@@ -47,6 +48,7 @@ const CommonLayout = ({ children }: { children: ReactNode }) => {
 
           <Footer />
 
+          <Analytics />
           <SpeedInsights />
         </ThemeProvider>
       </body>
@@ -74,10 +76,10 @@ const Footer = async () => {
 
   return (
     <footer className="mx-auto w-full max-w-4xl p-3 sm:p-4">
-      <div className="neobrutalism-container space-y-4 p-3 sm:p-4">
+      <div className="neobrutalism-container space-y-4 py-3 sm:py-4">
         <NowPlaying />
 
-        <div className="flex flex-row items-center justify-between gap-4">
+        <div className="flex flex-row items-center justify-between gap-4 border-t-2 border-t-black px-3 pt-3 sm:px-4 sm:pt-4">
           <p className="text-sm sm:text-base">
             &copy; {year}{" "}
             <Link

@@ -33,7 +33,7 @@ const NowPlayingServer = async () => {
 const NowPlaying = async () => {
   return (
     <div
-      className="flex items-center gap-4"
+      className="flex items-center gap-4 px-3 sm:px-4"
       style={
         {
           "--album-art-dimensions": `${ALBUM_ART_DIMENSIONS.desktop.toString()}px`,

@@ -5,7 +5,7 @@ import { useTheme } from "next-themes";
 import Link from "next/link";
 import { Suspense, use } from "react";
 import { browser } from "react-dom";
-import { FaMoon, FaSun } from "react-icons/fa6";
+import { FaCircle, FaMoon, FaSun } from "react-icons/fa6";
 import { Button, buttonVariants } from "../button";
 
 const Header = () => {
@@ -24,13 +24,11 @@ const Header = () => {
 
         <Suspense
           fallback={
-            <button
-              type="button"
-              className="invisible size-7.5 sm:size-10"
-              disabled
-            >
+            <Button size="icon" className="invisible" disabled>
+              <FaCircle />
+
               <span className="sr-only">Theme toggle</span>
-            </button>
+            </Button>
           }
         >
           <ThemeToggle />
@@ -53,11 +51,7 @@ const ThemeToggle = () => {
   };
 
   return (
-    <Button
-      type="button"
-      className="p-1 text-lg/none sm:p-2 sm:text-xl/none"
-      onClick={themeToggle}
-    >
+    <Button size="icon" onClick={themeToggle}>
       {resolvedTheme === "light" ? <FaMoon /> : <FaSun />}
 
       <span className="sr-only">
