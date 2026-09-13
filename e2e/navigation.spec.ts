@@ -1,5 +1,5 @@
 import { instant } from "@next/playwright";
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 const assertHref: (href: string | null) => asserts href is string = (href) => {
   expect(href).toBeTruthy();

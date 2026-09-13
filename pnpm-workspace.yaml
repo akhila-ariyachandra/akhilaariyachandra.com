@@ -6,3 +6,6 @@ allowBuilds:
 trustPolicy: no-downgrade
 
 trustPolicyIgnoreAfter: 43200 # 1 month
+
+update:
+  githubActionsServer: true

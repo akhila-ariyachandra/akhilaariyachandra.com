@@ -10,8 +10,9 @@ Before any Next.js work, find and read the relevant doc in `node_modules/next/di
 
 ## Quality Checks
 
-Make sure to run the quality checks after doing any changes
+Make sure to run the quality checks after doing any changes.
 
 - `pnpm knip`
+- `pnpm prettier:format`
 - `pnpm typecheck`
 - `pnpm lint`
