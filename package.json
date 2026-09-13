@@ -9,7 +9,7 @@
   "author": "Akhila Ariyachandra <akhila_ariyachandra@live.com>",
   "license": "MIT",
   "private": true,
-  "packageManager": "pnpm@12.3.4",
+  "packageManager": "pnpm@12.4.1",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -23,13 +23,13 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
-    "@next/third-parties": "16.3.4",
+    "@next/third-parties": "16.3.5",
     "@sanity/asset-utils": "2.3.0",
     "@sanity/client": "7.26.2",
     "@sanity/code-input": "^7.3.3",
     "@sanity/image-url": "2.1.1",
     "@sanity/vision": "6.9.1",
-    "@tanstack/highlight": "0.0.10",
+    "@tanstack/highlight": "0.1.0",
     "@vercel/analytics": "2.0.1",
     "@vercel/speed-insights": "2.0.0",
     "cn": "0.2.6",
@@ -37,7 +37,7 @@
     "dayjs": "1.11.23",
     "ky": "2.1.0",
     "motion": "13.2.0",
-    "next": "16.3.4",
+    "next": "16.3.5",
     "next-sanity": "13.3.4",
     "next-themes": "0.4.6",
     "react": "19.3.0",
@@ -49,12 +49,12 @@
     "server-only": "0.0.1",
     "slugify": "1.6.9",
     "styled-components": "npm:@sanity/css-in-js@6.2.1",
-    "zod": "4.6.0"
+    "zod": "4.6.2"
   },
   "devDependencies": {
     "@eslint-react/eslint-plugin": "5.19.0",
     "@eslint/js": "9.39.2",
-    "@next/playwright": "16.3.4",
+    "@next/playwright": "16.3.5",
     "@playwright/test": "1.62.1",
     "@stylistic/eslint-plugin": "5.10.0",
     "@tailwindcss/postcss": "4.3.3",
@@ -63,7 +63,7 @@
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "eslint": "9.39.2",
-    "eslint-config-next": "16.3.4",
+    "eslint-config-next": "16.3.5",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-playwright": "2.11.0",
     "knip": "6.35.1",
