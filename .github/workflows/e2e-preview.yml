@@ -9,7 +9,7 @@ concurrency:
   cancel-in-progress: true
 permissions:
   contents: read
-  statuses: write
+  checks: write
 jobs:
   e2e:
     name: E2E Tests
@@ -22,15 +22,19 @@ jobs:
     steps:
       # github.sha points at the default branch for repository_dispatch events,
       # not the deployed commit, so the implicit Actions check never lands on
-      # the PR's head commit. Report a commit status on the real SHA instead
-      # so branch protection can actually see it.
-      - name: Set commit status to pending
+      # the PR's head commit. Create a check run on the real SHA instead so
+      # branch protection can see it, and so the PR shows a live "in progress"
+      # status rather than a static pending dot.
+      - name: Create check run
+        id: create-check
         run: |
-          gh api "repos/${{ github.repository }}/statuses/$STATUS_SHA" \
-            -f state=pending \
-            -f context="E2E Tests" \
-            -f description="Running Playwright tests" \
-            -f target_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          check_run_id=$(gh api "repos/${{ github.repository }}/check-runs" \
+            -f name="E2E Tests" \
+            -f head_sha="$STATUS_SHA" \
+            -f status=in_progress \
+            -f details_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+            --jq '.id')
+          echo "check_run_id=$check_run_id" >> "$GITHUB_OUTPUT"
 
       - name: Checkout
         uses: actions/checkout@v6
@@ -59,16 +63,16 @@ jobs:
           path: playwright-report/
           retention-days: 30
 
-      - name: Set commit status to result
+      - name: Complete check run
         if: always()
         run: |
           case "${{ job.status }}" in
-            success) state=success ;;
-            cancelled) state=error ;;
-            *) state=failure ;;
+            success) conclusion=success ;;
+            cancelled) conclusion=cancelled ;;
+            *) conclusion=failure ;;
           esac
-          gh api "repos/${{ github.repository }}/statuses/$STATUS_SHA" \
-            -f state="$state" \
-            -f context="E2E Tests" \
-            -f description="Playwright tests $state" \
-            -f target_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          gh api "repos/${{ github.repository }}/check-runs/${{ steps.create-check.outputs.check_run_id }}" \
+            -X PATCH \
+            -f status=completed \
+            -f conclusion="$conclusion" \
+            -f details_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
