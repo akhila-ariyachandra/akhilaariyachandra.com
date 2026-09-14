@@ -14,25 +14,27 @@ export const metadata: Metadata = {
 const GlobalNotFound = () => {
   return (
     <CommonLayout>
-      <Title>Not Found</Title>
+      <section className="neobrutalism-container p-3 sm:p-4">
+        <Title>Not Found</Title>
 
-      <p className="text-sm text-zinc-700 sm:text-base dark:text-zinc-300">
-        {"You have reached a page that doesn't exist. "}
-        <Link
-          href="/"
-          className="text-accent dark:text-accent-dark font-medium hover:underline"
-        >
-          Return Home
-        </Link>
-      </p>
+        <p className="text-base sm:text-lg">
+          {"You have reached a page that doesn't exist. "}
+          <Link
+            href="/"
+            className="text-accent dark:text-accent-dark font-semibold hover:underline"
+          >
+            Return Home
+          </Link>
+        </p>
 
-      <Image
-        src={confusedTravolta}
-        alt="John Travolta confused in Pulp Fiction"
-        className="my-9 rounded-sm sm:my-10 sm:rounded-md"
-        priority
-        unoptimized
-      />
+        <Image
+          src={confusedTravolta}
+          alt="John Travolta confused in Pulp Fiction"
+          className="shadow-neobrutalism mt-9 rounded-sm border-2 border-black sm:mt-10 sm:rounded-md"
+          priority
+          unoptimized
+        />
+      </section>
     </CommonLayout>
   );
 };

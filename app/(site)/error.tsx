@@ -10,10 +10,10 @@ const ErrorPage = (props: {
   reset: () => void;
 }) => {
   return (
-    <div>
+    <div className="neobrutalism-container p-3 sm:p-4">
       <Title>Error</Title>
 
-      <p className="text-sm text-zinc-700 sm:text-base dark:text-zinc-300">
+      <p className="text-base sm:text-lg">
         Something went wrong. Maybe try refreshing the page?
       </p>
     </div>

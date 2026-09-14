@@ -1,6 +1,10 @@
 import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
 import Title from "@/_components/title";
 import {
+  postDateViewTransitionName,
+  postTitleViewTransitionName,
+} from "@/_lib/view-transition-names";
+import {
   type DynamicFetchOptions,
   getDynamicFetchOptions,
   sanityFetch,
@@ -11,7 +15,7 @@ import advancedFormat from "dayjs/plugin/advancedFormat";
 import type { Metadata } from "next";
 import { draftMode } from "next/headers";
 import Link from "next/link";
-import { Suspense } from "react";
+import { Suspense, ViewTransition } from "react";
 
 dayjs.extend(advancedFormat);
 
@@ -90,19 +94,23 @@ const CachedPostsList = async ({ perspective, stega }: DynamicFetchOptions) => {
     <ul className="space-y-2 sm:space-y-3">
       {posts.map((post) => (
         <li key={post._id}>
-          <Link
-            href={`/blog/${post.slug.current}`}
-            className="text-accent dark:text-accent-dark block text-xl font-semibold text-balance hover:underline sm:text-2xl"
-            prefetch
-          >
-            {post.title}
-          </Link>
+          <ViewTransition name={postTitleViewTransitionName(post.slug.current)}>
+            <Link
+              href={`/blog/${post.slug.current}`}
+              className="text-accent dark:text-accent-dark block text-xl font-semibold text-balance hover:underline sm:text-2xl"
+              prefetch
+            >
+              {post.title}
+            </Link>
+          </ViewTransition>
 
-          <div className="text-sm sm:text-base">
-            <time dateTime={dayjs(post.posted).toISOString()}>
-              {dayjs(post.posted).format("Do MMMM YYYY")}
-            </time>
-          </div>
+          <ViewTransition name={postDateViewTransitionName(post.slug.current)}>
+            <div className="text-sm sm:text-base">
+              <time dateTime={dayjs(post.posted).toISOString()}>
+                {dayjs(post.posted).format("Do MMMM YYYY")}
+              </time>
+            </div>
+          </ViewTransition>
         </li>
       ))}
     </ul>
