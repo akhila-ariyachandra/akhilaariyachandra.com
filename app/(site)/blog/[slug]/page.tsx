@@ -2,6 +2,10 @@ import BlogPostingStructuredData from "@/_components/structured-data/blog-postin
 import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
 import Title from "@/_components/title";
 import { PRODUCTION_URL } from "@/_lib/constants";
+import {
+  postDateViewTransitionName,
+  postTitleViewTransitionName,
+} from "@/_lib/view-transition-names";
 import type { POST_BY_SLUG_QUERY_RESULT } from "@/sanity/generated/types";
 import { urlFor } from "@/sanity/lib/image";
 import {
@@ -35,6 +39,7 @@ import { draftMode } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ViewTransition } from "react";
 
 dayjs.extend(advancedFormat);
 
@@ -162,13 +167,17 @@ const CachedBlogPostPage = async ({
       <style dangerouslySetInnerHTML={{ __html: highlightCss }} />
 
       <article className="neobrutalism-container p-3 sm:p-4">
-        <Title>{post.title}</Title>
+        <ViewTransition name={postTitleViewTransitionName(post.slug.current)}>
+          <Title>{post.title}</Title>
+        </ViewTransition>
 
-        <div className="mb-4 text-sm font-semibold sm:mb-5 sm:text-base">
-          <time dateTime={dayjs(post.posted).toISOString()}>
-            {dayjs(post.posted).format("Do MMMM YYYY")}
-          </time>
-        </div>
+        <ViewTransition name={postDateViewTransitionName(post.slug.current)}>
+          <div className="mb-4 text-sm font-semibold sm:mb-5 sm:text-base">
+            <time dateTime={dayjs(post.posted).toISOString()}>
+              {dayjs(post.posted).format("Do MMMM YYYY")}
+            </time>
+          </div>
+        </ViewTransition>
 
         <div
           className={cn(
