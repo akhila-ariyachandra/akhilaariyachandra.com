@@ -1,6 +1,7 @@
 import { type SchemaTypeDefinition, type TemplateResolver } from "sanity";
 import { singletonTypes } from "../shared";
 import { companyType } from "./company-type";
+import { jobProjectType } from "./job-project-type";
 import { jobType } from "./job-type";
 import { linkType } from "./link-type";
 import { personalInfoType } from "./personal-info-type";
@@ -17,6 +18,7 @@ export const schema: {
     technologyType,
     companyType,
     jobType,
+    jobProjectType,
     linkType,
   ],
   // Filter out singleton types from the global “New document” menu options

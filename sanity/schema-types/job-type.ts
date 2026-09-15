@@ -65,6 +65,12 @@ export const jobType = defineType({
       of: [{ type: "reference", to: [{ type: "technology" }] }],
       validation: (Rule) => Rule.required().min(1),
     }),
+    defineField({
+      name: "projects",
+      title: "Projects",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "jobProject" }] }],
+    }),
   ],
   preview: {
     select: {

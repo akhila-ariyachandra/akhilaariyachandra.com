@@ -4,7 +4,8 @@ export const CAREERS_QUERY =
   defineQuery(`*[_type == "job"] | order(duration.start desc) {
   ...,
   company ->,
-  technologies[] ->
+  technologies[] ->,
+  projects[] ->
 }`);
 
 export const POSTS_QUERY = defineQuery(
