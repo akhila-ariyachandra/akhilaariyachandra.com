@@ -24,5 +24,11 @@ export const resolve: PresentationPluginOptions["resolve"] = {
         locations: [{ title: "Home", href: `/` }],
       }),
     }),
+    jobProject: defineLocations({
+      select: {},
+      resolve: () => ({
+        locations: [{ title: "Home", href: `/` }],
+      }),
+    }),
   },
 };

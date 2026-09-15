@@ -22,6 +22,53 @@ export type Link = {
   openInNewTab: boolean;
 };
 
+export type SanityImageAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+};
+
+export type JobProject = {
+  _id: string;
+  _type: "jobProject";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string;
+  links: Array<{
+    label: string;
+    url: string;
+    _type: "link";
+    _key: string;
+  }>;
+  cover: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt: string;
+    _type: "image";
+  };
+  description: string;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x: number;
+  y: number;
+  height: number;
+  width: number;
+};
+
 export type CompanyReference = {
   _ref: string;
   _type: "reference";
@@ -34,6 +81,13 @@ export type TechnologyReference = {
   _type: "reference";
   _weak?: boolean;
   [internalGroqTypeReferenceTo]?: "technology";
+};
+
+export type JobProjectReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "jobProject";
 };
 
 export type Job = {
@@ -54,13 +108,11 @@ export type Job = {
       _key: string;
     } & TechnologyReference
   >;
-};
-
-export type SanityImageAssetReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+  projects?: Array<
+    {
+      _key: string;
+    } & JobProjectReference
+  >;
 };
 
 export type Company = {
@@ -78,22 +130,6 @@ export type Company = {
     crop?: SanityImageCrop;
     _type: "image";
   };
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top: number;
-  bottom: number;
-  left: number;
-  right: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x: number;
-  y: number;
-  height: number;
-  width: number;
 };
 
 export type Technology = {
@@ -212,7 +248,6 @@ export type PersonalInfo = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name: string;
   picture: {
     asset?: SanityImageAssetReference;
     media?: unknown;
@@ -359,13 +394,15 @@ export type Geopoint = {
 
 export type AllSanitySchemaTypes =
   | Link
-  | CompanyReference
-  | TechnologyReference
-  | Job
   | SanityImageAssetReference
-  | Company
+  | JobProject
   | SanityImageCrop
   | SanityImageHotspot
+  | CompanyReference
+  | TechnologyReference
+  | JobProjectReference
+  | Job
+  | Company
   | Technology
   | Post
   | Slug
@@ -383,7 +420,7 @@ export type AllSanitySchemaTypes =
 
 // Source: sanity/lib/queries.ts
 // Variable: CAREERS_QUERY
-// Query: *[_type == "job"] | order(duration.start desc) {  ...,  company ->,  technologies[] ->}
+// Query: *[_type == "job"] | order(duration.start desc) {  ...,  company ->,  technologies[] ->,  projects[] ->}
 export type CAREERS_QUERY_RESULT = Array<{
   _id: string;
   _type: "job";
@@ -428,6 +465,29 @@ export type CAREERS_QUERY_RESULT = Array<{
       _type: "image";
     };
   }>;
+  projects: Array<{
+    _id: string;
+    _type: "jobProject";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    name: string;
+    links: Array<{
+      label: string;
+      url: string;
+      _type: "link";
+      _key: string;
+    }>;
+    cover: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt: string;
+      _type: "image";
+    };
+    description: string;
+  }> | null;
 }>;
 
 // Source: sanity/lib/queries.ts
@@ -605,7 +665,6 @@ export type PERSONAL_INFO_QUERY_RESULT = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name: string;
   picture: {
     asset?: SanityImageAssetReference;
     media?: unknown;
@@ -653,7 +712,7 @@ export type RESUME_QUERY_RESULT = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    '*[_type == "job"] | order(duration.start desc) {\n  ...,\n  company ->,\n  technologies[] ->\n}': CAREERS_QUERY_RESULT;
+    '*[_type == "job"] | order(duration.start desc) {\n  ...,\n  company ->,\n  technologies[] ->,\n  projects[] ->\n}': CAREERS_QUERY_RESULT;
     '*[_type == "post"] | order(posted desc)': POSTS_QUERY_RESULT;
     '*[_type == "post" && slug.current == $slug][0]': POST_BY_SLUG_QUERY_RESULT;
     '*[_type == "personalInfo"][0] {\n  ...,\n  "resume": resume.asset->url \n}': PERSONAL_INFO_QUERY_RESULT;
