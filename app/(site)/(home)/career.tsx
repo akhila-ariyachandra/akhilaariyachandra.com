@@ -53,7 +53,7 @@ const CachedCareer = async ({ perspective, stega }: DynamicFetchOptions) => {
         {jobs.map((job) => (
           <li
             key={job._id}
-            className="space-y-2 border-black pb-3 not-last:border-b-2 last:pb-0 sm:space-y-4 sm:pb-6 sm:last:pb-0"
+            className="space-y-1.5 border-black pb-3 not-last:border-b-2 last:pb-0 sm:space-y-3 sm:pb-6 sm:last:pb-0"
           >
             <div className="flex flex-row items-center gap-2 sm:gap-4">
               <Image
@@ -122,81 +122,6 @@ const CachedCareer = async ({ perspective, stega }: DynamicFetchOptions) => {
                 </li>
               ))}
             </ul>
-
-            {!!job.projects && (
-              <div className="neobrutalism-container space-y-1 p-1 sm:space-y-2 sm:p-2">
-                <ul className="grid grid-cols-1 gap-1 md:grid-cols-2 md:gap-2">
-                  {job.projects.map((project) => {
-                    const paragraphs = getParagraphs(project.description);
-
-                    return (
-                      <li
-                        key={project._id}
-                        className="flex flex-col rounded border-2 border-black"
-                      >
-                        <Image
-                          src={urlFor(project.cover)
-                            .width(480)
-                            .height(270)
-                            .url()}
-                          alt={project.cover.alt}
-                          width={480}
-                          height={270}
-                          className="aspect-video shrink-0 object-cover"
-                        />
-
-                        <div className="flex flex-1 flex-col gap-2 border-t-2 border-t-black p-2 sm:gap-3 sm:p-3">
-                          <h4 className="text-lg font-semibold text-balance sm:text-xl">
-                            {project.name}
-                          </h4>
-
-                          <div className="flex-1 space-y-1 text-sm sm:space-y-2 sm:text-base">
-                            {paragraphs.map((paragraph, index) => (
-                              // eslint-disable-next-line @eslint-react/no-array-index-key
-                              <p key={index} className="text-pretty">
-                                {paragraph}
-                              </p>
-                            ))}
-                          </div>
-
-                          <ul className="flex flex-row flex-wrap gap-2">
-                            {project.links.map((link) => (
-                              <li key={link._key}>
-                                <a
-                                  href={link.url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className={buttonVariants({
-                                    size: "small",
-                                  })}
-                                >
-                                  {link.label}
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </li>
-                    );
-                  })}
-                </ul>
-
-                <p className="text-xs sm:text-sm">
-                  All brand names, trademarks and product imagery shown here
-                  remain the property of their respective owners and clients.
-                  This work was produced during my time at{" "}
-                  <a
-                    href={job.company.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-accent dark:text-accent-dark font-semibold hover:underline focus:underline"
-                  >
-                    {job.company.name}
-                  </a>{" "}
-                  and is shown for portfolio purposes only.
-                </p>
-              </div>
-            )}
           </li>
         ))}
       </ol>
