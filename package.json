@@ -45,6 +45,7 @@
     "react-error-boundary": "6.1.5",
     "react-icons": "5.7.0",
     "sanity": "6.9.1",
+    "sanity-plugin-media": "6.2.0",
     "schema-dts": "2.0.0",
     "server-only": "0.0.1",
     "slugify": "1.6.9",

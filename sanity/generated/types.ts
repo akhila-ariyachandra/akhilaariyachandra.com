@@ -212,7 +212,6 @@ export type PersonalInfo = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name: string;
   picture: {
     asset?: SanityImageAssetReference;
     media?: unknown;
@@ -258,6 +257,32 @@ export type Code = {
   filename?: string;
   code?: string;
   highlightedLines?: Array<number>;
+};
+
+export type MediaFolderReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "media.folder";
+};
+
+export type MediaFolder = {
+  _id: string;
+  _type: "media.folder";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  parent?: MediaFolderReference;
+};
+
+export type MediaTag = {
+  _id: string;
+  _type: "media.tag";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: Slug;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -372,6 +397,9 @@ export type AllSanitySchemaTypes =
   | SanityFileAssetReference
   | PersonalInfo
   | Code
+  | MediaFolderReference
+  | MediaFolder
+  | MediaTag
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
@@ -605,7 +633,6 @@ export type PERSONAL_INFO_QUERY_RESULT = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name: string;
   picture: {
     asset?: SanityImageAssetReference;
     media?: unknown;
