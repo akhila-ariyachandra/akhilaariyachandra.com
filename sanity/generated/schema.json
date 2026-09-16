@@ -176,6 +176,13 @@
         },
         "optional": false
       },
+      "oldDescription": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": false
+      },
       "technologies": {
         "type": "objectAttribute",
         "value": {
