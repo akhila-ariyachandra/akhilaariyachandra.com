@@ -49,6 +49,7 @@ export type Job = {
     end?: string;
   };
   description: string;
+  oldDescription: string;
   technologies: Array<
     {
       _key: string;
@@ -440,6 +441,7 @@ export type CAREERS_QUERY_RESULT = Array<{
     end?: string;
   };
   description: string;
+  oldDescription: string;
   technologies: Array<{
     _id: string;
     _type: "technology";

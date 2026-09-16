@@ -93,7 +93,7 @@ const CachedCareer = async ({ perspective, stega }: DynamicFetchOptions) => {
             </div>
 
             <ul className="list-outside list-disc pl-5 text-sm sm:text-base">
-              {getParagraphs(job.description).map((paragraph) => (
+              {getParagraphs(job.oldDescription).map((paragraph) => (
                 <li key={paragraph} className="text-pretty">
                   {paragraph}
                 </li>
