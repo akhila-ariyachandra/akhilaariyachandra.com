@@ -1,5 +1,4 @@
 import { buttonVariants } from "@/_components/button";
-import { getParagraphs } from "@/_lib/helpers";
 import { urlFor } from "@/sanity/lib/image";
 import {
   type DynamicFetchOptions,
@@ -9,6 +8,7 @@ import {
 import { CAREERS_QUERY } from "@/sanity/lib/queries";
 import { cn } from "cn";
 import dayjs from "dayjs";
+import { PortableText } from "next-sanity";
 import { cacheLife } from "next/cache";
 import { draftMode } from "next/headers";
 import Image from "next/image";
@@ -92,13 +92,15 @@ const CachedCareer = async ({ perspective, stega }: DynamicFetchOptions) => {
               />
             </div>
 
-            <ul className="list-outside list-disc pl-5 text-sm sm:text-base">
-              {getParagraphs(job.oldDescription).map((paragraph) => (
-                <li key={paragraph} className="text-pretty">
-                  {paragraph}
-                </li>
-              ))}
-            </ul>
+            <div
+              className={cn(
+                "prose prose-sm sm:prose-base my-4 max-w-none font-medium text-black sm:my-8 dark:text-white",
+                "prose-a:text-accent prose-a:no-underline prose-a:hover:underline dark:prose-a:text-accent-dark prose-a:font-semibold",
+                "marker:text-black dark:marker:text-white", // list bullets/numbers
+              )}
+            >
+              <PortableText value={job.description} />
+            </div>
 
             <ul className="flex flex-row flex-wrap gap-2 text-xs sm:text-sm">
               {job.technologies.map((technology) => (
