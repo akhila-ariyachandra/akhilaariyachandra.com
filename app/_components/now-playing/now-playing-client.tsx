@@ -38,7 +38,7 @@ const NowPlayingClient = ({ nowPlaying }: { nowPlaying: RecentTrack }) => {
 
         <AudioLinesIcon
           ref={visualizerIconRef}
-          className="*:stroke-last-fm-red z-10"
+          className="z-10 *:stroke-last-fm-red"
         />
       </a>
 
@@ -48,7 +48,7 @@ const NowPlayingClient = ({ nowPlaying }: { nowPlaying: RecentTrack }) => {
             href={nowPlaying.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-accent dark:text-accent-dark font-semibold hover:underline"
+            className="font-semibold text-accent hover:underline dark:text-accent-dark"
           >
             {nowPlaying.name}
           </a>

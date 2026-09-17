@@ -55,7 +55,7 @@ const BlogPage = async () => {
             href="https://archive.akhilaariyachandra.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-accent dark:text-accent-dark font-semibold hover:underline"
+            className="font-semibold text-accent hover:underline dark:text-accent-dark"
           >
             here
           </Link>
@@ -97,7 +97,7 @@ const CachedPostsList = async ({ perspective, stega }: DynamicFetchOptions) => {
           <ViewTransition name={postTitleViewTransitionName(post.slug.current)}>
             <Link
               href={`/blog/${post.slug.current}`}
-              className="text-accent dark:text-accent-dark block text-xl font-semibold text-balance hover:underline sm:text-2xl"
+              className="block text-xl font-semibold text-balance text-accent hover:underline sm:text-2xl dark:text-accent-dark"
               prefetch
             >
               {post.title}

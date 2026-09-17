@@ -34,7 +34,7 @@ const CommonLayout = ({ children }: { children: ReactNode }) => {
       <body
         className={cn(
           dmSans.className,
-          "theme-transition relative flex min-h-dvh flex-col bg-green-100 font-medium text-black antialiased sm:border-r-4 sm:border-r-black dark:bg-green-950 dark:text-white",
+          "relative flex min-h-dvh flex-col bg-green-100 font-medium text-black antialiased theme-transition sm:border-r-4 sm:border-r-black dark:bg-green-950 dark:text-white",
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system">
@@ -75,7 +75,7 @@ const Footer = async () => {
 
   return (
     <footer className="mx-auto w-full max-w-4xl p-3 sm:p-4">
-      <div className="neobrutalism-container space-y-4 py-3 sm:py-4">
+      <div className="space-y-4 neobrutalism-container py-3 sm:py-4">
         <NowPlaying />
 
         <div className="flex flex-row items-center justify-between gap-4 border-t-2 border-t-black px-3 pt-3 sm:px-4 sm:pt-4">
@@ -83,7 +83,7 @@ const Footer = async () => {
             &copy; {year}{" "}
             <Link
               href="/"
-              className="text-accent dark:text-accent-dark font-semibold hover:underline"
+              className="font-semibold text-accent hover:underline dark:text-accent-dark"
             >
               Akhila Ariyachandra
             </Link>

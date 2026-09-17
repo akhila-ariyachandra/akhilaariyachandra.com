@@ -3,7 +3,7 @@ import { cn } from "cn";
 import { type ComponentProps } from "react";
 
 export const buttonVariants = cva({
-  base: "neobrutalism-container flex cursor-pointer items-center gap-2 bg-green-300 font-semibold ring-offset-white transition duration-200 ease-out hover:translate-1 hover:shadow-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50 dark:bg-green-900 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  base: "flex cursor-pointer items-center gap-2 neobrutalism-container bg-green-300 font-semibold ring-offset-white transition duration-200 ease-out hover:translate-1 hover:shadow-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50 dark:bg-green-900 [&_svg]:pointer-events-none [&_svg]:shrink-0",
   variants: {
     size: {
       default: "px-2 py-1 text-base/none sm:px-3 sm:py-2 sm:text-lg/none",

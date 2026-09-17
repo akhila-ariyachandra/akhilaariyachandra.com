@@ -82,20 +82,20 @@ const CachedAbout = async ({ perspective, stega }: DynamicFetchOptions) => {
         width={240}
         height={240}
         alt="Akhila Ariyachandra"
-        className="shadow-neobrutalism mb-4 w-44 rounded-sm border-2 border-black sm:mr-5 sm:mb-5 sm:w-60 sm:rounded-lg"
+        className="mb-4 w-44 rounded-sm border-2 border-black shadow-neobrutalism sm:mr-5 sm:mb-5 sm:w-60 sm:rounded-lg"
         priority
       />
 
       <h1 className="mb-4 text-3xl sm:mb-5 sm:text-4xl">
         Hi, I&apos;m{" "}
-        <span className="text-accent dark:text-accent-dark font-black">
+        <span className="font-black text-accent dark:text-accent-dark">
           Akhila Ariyachandra
         </span>
       </h1>
 
       <div
         className={cn(
-          "prose prose-sm sm:prose-base dark:prose-invert max-w-none font-medium text-black dark:text-white", // Base styles
+          "prose prose-sm max-w-none font-medium text-black sm:prose-base dark:text-white dark:prose-invert", // Base styles
           "prose-a:font-semibold prose-a:text-accent prose-a:no-underline prose-a:hover:underline dark:prose-a:text-accent-dark", // Links
         )}
       >
@@ -181,7 +181,7 @@ const TopTracks = async () => {
   const topTracks = await getTopTracks();
 
   return (
-    <section className="neobrutalism-container my-10 space-y-4 p-3 sm:my-20 sm:space-y-8 sm:p-4">
+    <section className="my-10 space-y-4 neobrutalism-container p-3 sm:my-20 sm:space-y-8 sm:p-4">
       <div className="space-y-0.5 sm:space-y-1">
         <h2 className="text-2xl font-bold sm:text-3xl">Top Tracks</h2>
 
@@ -222,7 +222,7 @@ const TopTracks = async () => {
                     href={track.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-accent dark:text-accent-dark font-semibold hover:underline"
+                    className="font-semibold text-accent hover:underline dark:text-accent-dark"
                   >
                     {track.name}
                   </a>

@@ -7,7 +7,7 @@ const BlogPostLoading = () => {
 
       <Skeleton className="mb-4 h-4.5 w-32 sm:mb-5 sm:h-5.25 sm:w-35" />
 
-      <div className="prose prose-sm prose-zinc sm:prose-base dark:prose-invert mb-16 max-w-none">
+      <div className="prose prose-sm mb-16 max-w-none prose-zinc sm:prose-base dark:prose-invert">
         <div className="mb-[1.25em] space-y-2">
           <Skeleton className="h-lh w-full" />
           <Skeleton className="h-lh w-full" />

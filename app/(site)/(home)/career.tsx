@@ -46,7 +46,7 @@ const CachedCareer = async ({ perspective, stega }: DynamicFetchOptions) => {
   });
 
   return (
-    <section className="neobrutalism-container my-10 space-y-4 p-3 sm:my-20 sm:space-y-8 sm:p-4">
+    <section className="my-10 space-y-4 neobrutalism-container p-3 sm:my-20 sm:space-y-8 sm:p-4">
       <h2 className="text-2xl font-bold sm:text-3xl">Career</h2>
 
       <ol className="space-y-3 sm:space-y-6">
@@ -73,7 +73,7 @@ const CachedCareer = async ({ perspective, stega }: DynamicFetchOptions) => {
                   href={job.company.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-accent dark:text-accent-dark text-lg hover:underline sm:text-xl"
+                  className="text-lg text-accent hover:underline sm:text-xl dark:text-accent-dark"
                 >
                   {job.company.name}
                 </a>
@@ -94,8 +94,8 @@ const CachedCareer = async ({ perspective, stega }: DynamicFetchOptions) => {
 
             <div
               className={cn(
-                "prose prose-sm sm:prose-base my-4 max-w-none font-medium text-black sm:my-8 dark:text-white",
-                "prose-a:text-accent prose-a:no-underline prose-a:hover:underline dark:prose-a:text-accent-dark prose-a:font-semibold",
+                "my-4 prose prose-sm max-w-none font-medium text-black sm:my-8 sm:prose-base dark:text-white",
+                "prose-a:font-semibold prose-a:text-accent prose-a:no-underline prose-a:hover:underline dark:prose-a:text-accent-dark",
                 "marker:text-black dark:marker:text-white", // list bullets/numbers
               )}
             >
