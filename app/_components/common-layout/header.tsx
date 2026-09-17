@@ -11,7 +11,7 @@ import { Button, buttonVariants } from "../button";
 const Header = () => {
   return (
     <header className="mx-auto w-full max-w-4xl p-3 sm:p-4">
-      <div className="neobrutalism-container flex flex-row items-center justify-between p-3 sm:p-4">
+      <div className="flex flex-row items-center justify-between neobrutalism-container p-3 sm:p-4">
         <nav className="flex flex-row items-center gap-4 text-base font-semibold sm:text-lg">
           <Link href="/" className={buttonVariants()}>
             Home

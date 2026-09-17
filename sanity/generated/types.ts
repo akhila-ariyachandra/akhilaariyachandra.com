@@ -48,8 +48,24 @@ export type Job = {
     start: string;
     end?: string;
   };
-  description: string;
-  oldDescription: string;
+  description: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
   technologies: Array<
     {
       _key: string;
@@ -440,8 +456,24 @@ export type CAREERS_QUERY_RESULT = Array<{
     start: string;
     end?: string;
   };
-  description: string;
-  oldDescription: string;
+  description: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
   technologies: Array<{
     _id: string;
     _type: "technology";

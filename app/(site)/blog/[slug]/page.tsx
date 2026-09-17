@@ -181,8 +181,9 @@ const CachedBlogPostPage = async ({
 
         <div
           className={cn(
-            "prose prose-sm prose-zinc sm:prose-base dark:prose-invert max-w-none font-medium text-black dark:text-white", // Base styles
+            "prose prose-sm max-w-none font-medium text-black sm:prose-base dark:text-white", // Base styles
             "prose-a:font-medium prose-a:text-accent prose-a:no-underline prose-a:hover:underline dark:prose-a:text-accent-dark", // Links
+            "marker:text-black dark:marker:text-white", // list bullets/numbers
           )}
         >
           <PortableText
@@ -206,9 +207,9 @@ const CachedBlogPostPage = async ({
                       });
 
                     return (
-                      <div className="not-prose shadow-neobrutalism overflow-hidden rounded border-2 border-black">
+                      <div className="not-prose overflow-hidden rounded border-2 border-black shadow-neobrutalism">
                         {!!title && (
-                          <div className="theme-transition border-b-2 border-b-black bg-green-300 px-6 py-4 text-sm font-semibold dark:bg-green-900">
+                          <div className="border-b-2 border-b-black bg-green-300 px-6 py-4 text-sm font-semibold theme-transition dark:bg-green-900">
                             {title}
                           </div>
                         )}
@@ -243,7 +244,7 @@ const CachedBlogPostPage = async ({
                     }
 
                     return (
-                      <figure className="not-prose neobrutalism-container my-6 sm:my-8">
+                      <figure className="not-prose my-6 neobrutalism-container sm:my-8">
                         <Image
                           src={urlFor(value.asset).url()}
                           width={width}
@@ -266,7 +267,7 @@ const CachedBlogPostPage = async ({
                         )}
 
                         {!!value.caption && (
-                          <figcaption className="theme-transition border-t-2 border-t-black bg-green-300 p-2 text-center text-sm font-semibold text-pretty sm:p-3 sm:text-base dark:bg-green-900">
+                          <figcaption className="border-t-2 border-t-black bg-green-300 p-2 text-center text-sm font-semibold text-pretty theme-transition sm:p-3 sm:text-base dark:bg-green-900">
                             {value.caption}
                           </figcaption>
                         )}
@@ -298,7 +299,7 @@ const CachedBlogPostPage = async ({
                                     href={value?.href}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-accent dark:text-accent-dark font-semibold no-underline hover:underline"
+                                    className="font-semibold text-accent no-underline hover:underline dark:text-accent-dark"
                                   >
                                     {children}
                                   </a>

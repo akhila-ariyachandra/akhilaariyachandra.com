@@ -21,7 +21,7 @@ const GlobalNotFound = () => {
           {"You have reached a page that doesn't exist. "}
           <Link
             href="/"
-            className="text-accent dark:text-accent-dark font-semibold hover:underline"
+            className="font-semibold text-accent hover:underline dark:text-accent-dark"
           >
             Return Home
           </Link>
@@ -30,7 +30,7 @@ const GlobalNotFound = () => {
         <Image
           src={confusedTravolta}
           alt="John Travolta confused in Pulp Fiction"
-          className="shadow-neobrutalism mt-9 rounded-sm border-2 border-black sm:mt-10 sm:rounded-md"
+          className="mt-9 rounded-sm border-2 border-black shadow-neobrutalism sm:mt-10 sm:rounded-md"
           priority
           unoptimized
         />

@@ -55,14 +55,13 @@ export const jobType = defineType({
     defineField({
       name: "description",
       title: "Description",
-      type: "text",
-      readOnly: true,
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: "oldDescription",
-      title: "Old Description",
-      type: "text",
+      type: "array",
+      of: [
+        {
+          type: "block",
+          styles: [],
+        },
+      ],
       validation: (Rule) => Rule.required(),
     }),
     defineField({
