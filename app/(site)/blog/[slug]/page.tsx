@@ -1,5 +1,3 @@
-import BlogPostingStructuredData from "@/_components/structured-data/blog-posting";
-import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
 import Title from "@/_components/title";
 import { PRODUCTION_URL } from "@/_lib/constants";
 import {
@@ -35,6 +33,7 @@ import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import type { Metadata, Route } from "next";
 import { type InferComponents, PortableText, stegaClean } from "next-sanity";
+import { ArticleJsonLd, BreadcrumbJsonLd } from "next-seo";
 import { draftMode } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
@@ -349,17 +348,27 @@ const CachedBlogPostPage = async ({
         </div>
       </article>
 
-      <BreadcrumbStructuredData
+      <BreadcrumbJsonLd
         items={[
-          { name: "Home", route: "/" },
-          { name: "Blog", route: "/blog" },
-          { name: post.title, route: `/blog/${post.slug.current}` },
+          { name: "Home", item: PRODUCTION_URL },
+          { name: "Blog", item: `${PRODUCTION_URL}/blog` },
+          {
+            name: post.title,
+            item: `${PRODUCTION_URL}/blog/${post.slug.current}`,
+          },
         ]}
       />
-      <BlogPostingStructuredData
-        title={post.title}
-        posted={post.posted}
-        updated={post._updatedAt}
+
+      <ArticleJsonLd
+        type="BlogPosting"
+        headline={post.title}
+        datePublished={dayjs(post.posted).toISOString()}
+        dateModified={dayjs(post._updatedAt).toISOString()}
+        author={{
+          "@type": "Person",
+          name: "Akhila Ariyachandra",
+          url: PRODUCTION_URL,
+        }}
       />
     </>
   );

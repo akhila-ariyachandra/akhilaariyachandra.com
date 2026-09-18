@@ -1,5 +1,5 @@
-import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
 import Title from "@/_components/title";
+import { PRODUCTION_URL } from "@/_lib/constants";
 import {
   postDateViewTransitionName,
   postTitleViewTransitionName,
@@ -13,6 +13,7 @@ import { POSTS_QUERY } from "@/sanity/lib/queries";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import type { Metadata } from "next";
+import { BreadcrumbJsonLd } from "next-seo";
 import { draftMode } from "next/headers";
 import Link from "next/link";
 import { Suspense, ViewTransition } from "react";
@@ -63,10 +64,10 @@ const BlogPage = async () => {
         </p>
       </div>
 
-      <BreadcrumbStructuredData
+      <BreadcrumbJsonLd
         items={[
-          { name: "Home", route: "/" },
-          { name: "Blog", route: "/blog" },
+          { name: "Home", item: PRODUCTION_URL },
+          { name: "Blog", item: `${PRODUCTION_URL}/blog` },
         ]}
       />
     </>
