@@ -1,5 +1,4 @@
-import BreadcrumbStructuredData from "@/_components/structured-data/breadcrumb";
-import ProfileStructuredData from "@/_components/structured-data/profile";
+import { PRODUCTION_URL } from "@/_lib/constants";
 import { getTopTracks, getTrackInfo } from "@/_lib/last-fm";
 import { type PERSONAL_INFO_QUERY_RESULT } from "@/sanity/generated/types";
 import { urlFor } from "@/sanity/lib/image";
@@ -12,6 +11,7 @@ import { CAREERS_QUERY, PERSONAL_INFO_QUERY } from "@/sanity/lib/queries";
 import { cn } from "cn";
 import { type Route } from "next";
 import { PortableText, type InferComponents } from "next-sanity";
+import { ProfilePageJsonLd } from "next-seo";
 import { draftMode } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
@@ -47,9 +47,6 @@ const HomePage = async () => {
       <ErrorBoundary fallback={null}>
         <TopTracks />
       </ErrorBoundary>
-
-      <ProfileStructuredData />
-      <BreadcrumbStructuredData items={[{ name: "Home", route: "/" }]} />
     </>
   );
 };
@@ -173,6 +170,22 @@ const CachedAbout = async ({ perspective, stega }: DynamicFetchOptions) => {
       <div className="mt-4 flex flex-row gap-4 sm:mt-6">
         <ResumeButton resume={data.resume} />
       </div>
+
+      <ProfilePageJsonLd
+        mainEntity={{
+          name: "Akhila Ariyachandra",
+          givenName: "Akhila",
+          familyName: "Ariyachandra",
+          image: urlFor(data.picture).url(),
+          description: "Web Developer",
+          url: PRODUCTION_URL,
+          sameAs: [
+            "https://www.linkedin.com/in/akhila-ariyachandra/",
+            "https://github.com/akhila-ariyachandra",
+            "https://bsky.app/profile/akhilaariyachandra.com",
+          ],
+        }}
+      />
     </section>
   );
 };
