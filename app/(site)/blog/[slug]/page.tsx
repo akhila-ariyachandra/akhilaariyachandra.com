@@ -362,6 +362,10 @@ const CachedBlogPostPage = async ({
       <ArticleJsonLd
         type="BlogPosting"
         headline={post.title}
+        description={post.description}
+        url={`${PRODUCTION_URL}/blog/${post.slug.current}`}
+        mainEntityOfPage={`${PRODUCTION_URL}/blog/${post.slug.current}`}
+        image={`${PRODUCTION_URL}/blog/${post.slug.current}/opengraph-image`}
         datePublished={dayjs(post.posted).toISOString()}
         dateModified={dayjs(post._updatedAt).toISOString()}
         author={{
