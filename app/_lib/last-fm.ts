@@ -10,6 +10,21 @@ const api = ky.create({
     user: process.env.LAST_FM_USER,
     format: "json",
   },
+  hooks: {
+    beforeError: [
+      (error) => {
+        const redactedUrl = new URL(error.request.url);
+        redactedUrl.searchParams.set("api_key", "REDACTED");
+        error.request = new Request(redactedUrl, error.request);
+        error.message = error.message.replace(
+          /api_key=[^&\s]+/,
+          "api_key=REDACTED",
+        );
+
+        return error;
+      },
+    ],
+  },
 });
 
 export const getTopTracks = async () => {
