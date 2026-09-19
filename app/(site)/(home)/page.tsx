@@ -1,4 +1,5 @@
 import { buttonVariants } from "@/_components/button";
+import TypographyWrapper from "@/_components/typography-wrapper";
 import { PRODUCTION_URL } from "@/_lib/constants";
 import { getTopTracks, getTrackInfo } from "@/_lib/last-fm";
 import { type PERSONAL_INFO_QUERY_RESULT } from "@/sanity/generated/types";
@@ -9,7 +10,6 @@ import {
   type DynamicFetchOptions,
 } from "@/sanity/lib/live";
 import { CAREERS_QUERY, PERSONAL_INFO_QUERY } from "@/sanity/lib/queries";
-import { cn } from "cn";
 import { type Route } from "next";
 import { PortableText, type InferComponents } from "next-sanity";
 import { ProfilePageJsonLd } from "next-seo";
@@ -90,12 +90,7 @@ const CachedAbout = async ({ perspective, stega }: DynamicFetchOptions) => {
         </span>
       </h1>
 
-      <div
-        className={cn(
-          "prose prose-sm max-w-none font-medium text-black sm:prose-base dark:text-white dark:prose-invert", // Base styles
-          "prose-a:font-semibold prose-a:text-accent prose-a:no-underline prose-a:hover:underline dark:prose-a:text-accent-dark", // Links
-        )}
-      >
+      <TypographyWrapper>
         <PortableText
           value={data.about}
           components={
@@ -165,7 +160,7 @@ const CachedAbout = async ({ perspective, stega }: DynamicFetchOptions) => {
             >
           }
         />
-      </div>
+      </TypographyWrapper>
 
       {!!data.resume && (
         <div className="mt-4 flex flex-row gap-4 sm:mt-6">

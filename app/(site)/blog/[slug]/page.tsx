@@ -1,4 +1,5 @@
 import Title from "@/_components/title";
+import TypographyWrapper from "@/_components/typography-wrapper";
 import { PRODUCTION_URL } from "@/_lib/constants";
 import {
   postDateViewTransitionName,
@@ -178,13 +179,7 @@ const CachedBlogPostPage = async ({
           </div>
         </ViewTransition>
 
-        <div
-          className={cn(
-            "prose prose-sm max-w-none font-medium text-black sm:prose-base dark:text-white", // Base styles
-            "prose-a:font-medium prose-a:text-accent prose-a:no-underline prose-a:hover:underline dark:prose-a:text-accent-dark", // Links
-            "marker:text-black dark:marker:text-white", // list bullets/numbers
-          )}
-        >
+        <TypographyWrapper>
           <PortableText
             value={post.content}
             components={
@@ -312,7 +307,7 @@ const CachedBlogPostPage = async ({
                   },
                   horizontalLine: () => {
                     return (
-                      <hr className="h-1 rounded-full border-0 bg-black" />
+                      <hr className="h-1 rounded-full border-0 bg-black dark:bg-white" />
                     );
                   },
                 },
@@ -345,7 +340,7 @@ const CachedBlogPostPage = async ({
               } satisfies InferComponents<PostContent>
             }
           />
-        </div>
+        </TypographyWrapper>
       </article>
 
       <BreadcrumbJsonLd

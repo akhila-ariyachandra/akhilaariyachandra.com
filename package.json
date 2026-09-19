@@ -10,6 +10,13 @@
   "license": "MIT",
   "private": true,
   "packageManager": "pnpm@12.4.2",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.4.2",
+      "onFail": "download"
+    }
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
