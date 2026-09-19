@@ -1,0 +1,87 @@
+name: E2E Tests (Preview)
+on:
+  repository_dispatch:
+    types:
+      - vercel.deployment.success
+concurrency:
+  # Cancel a stale run if a newer deployment for the same commit succeeds
+  group: ${{ github.workflow }}-${{ github.event.client_payload.git.sha }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+  statuses: write
+jobs:
+  e2e:
+    name: E2E Tests
+    if: github.event_name == 'repository_dispatch' && github.event.client_payload.target != 'production'
+    timeout-minutes: 60
+    runs-on: ubuntu-22.04
+    env:
+      GH_TOKEN: ${{ github.token }}
+      STATUS_SHA: ${{ github.event.client_payload.git.sha }}
+    steps:
+      # A commit status can only link to one URL, and the run page makes you
+      # click through to reach the logs. Resolve this job's own page instead so
+      # the PR's "Details" link lands directly on the Playwright output. Falls
+      # back to the run URL if the lookup fails for any reason.
+      - name: Resolve job URL
+        id: job
+        run: |
+          run_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          job_url=$(gh api \
+            "repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/attempts/${{ github.run_attempt }}/jobs" \
+            --jq '.jobs[] | select(.name == "E2E Tests") | .html_url') || job_url=""
+          echo "url=${job_url:-$run_url}" >> "$GITHUB_OUTPUT"
+
+      # github.sha points at the default branch for repository_dispatch events,
+      # not the deployed commit, so the implicit Actions check never lands on
+      # the PR's head commit. Report a commit status on the real SHA instead
+      # so branch protection can actually see it.
+      - name: Set commit status to pending
+        run: |
+          gh api "repos/${{ github.repository }}/statuses/$STATUS_SHA" \
+            -f state=pending \
+            -f context="E2E Tests" \
+            -f description="Running Playwright tests" \
+            -f target_url="${{ steps.job.outputs.url }}"
+
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.client_payload.git.sha }}
+
+      - uses: pnpm/setup@v1
+        with:
+          runtime: node@24
+          cache: true
+
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install --with-deps
+
+      - name: Run Playwright tests
+        run: pnpm exec playwright test
+        env:
+          BASE_URL: ${{ github.event.client_payload.url }}
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+
+      - name: Set commit status to result
+        if: always()
+        run: |
+          case "${{ job.status }}" in
+            success) state=success ;;
+            cancelled) state=error ;;
+            *) state=failure ;;
+          esac
+          gh api "repos/${{ github.repository }}/statuses/$STATUS_SHA" \
+            -f state="$state" \
+            -f context="E2E Tests" \
+            -f description="Playwright tests $state" \
+            -f target_url="${{ steps.job.outputs.url }}"
