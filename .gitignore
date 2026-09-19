@@ -49,7 +49,4 @@ node_modules/
 /playwright/.cache/
 /playwright/.auth/
 
-# Checkly
-/.checkly/
-
 .env*.local
