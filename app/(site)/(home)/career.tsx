@@ -1,4 +1,5 @@
 import { buttonVariants } from "@/_components/button";
+import TypographyWrapper from "@/_components/typography-wrapper";
 import { urlFor } from "@/sanity/lib/image";
 import {
   type DynamicFetchOptions,
@@ -92,15 +93,9 @@ const CachedCareer = async ({ perspective, stega }: DynamicFetchOptions) => {
               />
             </div>
 
-            <div
-              className={cn(
-                "my-4 prose prose-sm max-w-none font-medium text-black sm:my-8 sm:prose-base dark:text-white",
-                "prose-a:font-semibold prose-a:text-accent prose-a:no-underline prose-a:hover:underline dark:prose-a:text-accent-dark",
-                "marker:text-black dark:marker:text-white", // list bullets/numbers
-              )}
-            >
+            <TypographyWrapper className="my-4 sm:my-8">
               <PortableText value={job.description} />
-            </div>
+            </TypographyWrapper>
 
             <ul className="flex flex-row flex-wrap gap-2 text-xs sm:text-sm">
               {job.technologies.map((technology) => (
