@@ -1,3 +1,4 @@
+import { buttonVariants } from "@/_components/button";
 import { PRODUCTION_URL } from "@/_lib/constants";
 import { getTopTracks, getTrackInfo } from "@/_lib/last-fm";
 import { type PERSONAL_INFO_QUERY_RESULT } from "@/sanity/generated/types";
@@ -19,7 +20,6 @@ import { Suspense, type CSSProperties } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { BiAlbum } from "react-icons/bi";
 import Career from "./career";
-import ResumeButton from "./resume-button";
 
 const ALBUM_ART_DIMENSIONS = 75;
 
@@ -167,9 +167,18 @@ const CachedAbout = async ({ perspective, stega }: DynamicFetchOptions) => {
         />
       </div>
 
-      <div className="mt-4 flex flex-row gap-4 sm:mt-6">
-        <ResumeButton resume={data.resume} />
-      </div>
+      {!!data.resume && (
+        <div className="mt-4 flex flex-row gap-4 sm:mt-6">
+          <a
+            href="/resume"
+            download="Akhila_Heshan_Ariyachandra_Resume.pdf"
+            rel="nofollow"
+            className={buttonVariants()}
+          >
+            Resume
+          </a>
+        </div>
+      )}
 
       <ProfilePageJsonLd
         mainEntity={{

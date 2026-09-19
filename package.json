@@ -9,7 +9,7 @@
   "author": "Akhila Ariyachandra <akhila_ariyachandra@live.com>",
   "license": "MIT",
   "private": true,
-  "packageManager": "pnpm@12.4.1",
+  "packageManager": "pnpm@12.4.2",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -23,7 +23,6 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
-    "@next/third-parties": "16.3.5",
     "@sanity/asset-utils": "2.3.0",
     "@sanity/client": "7.26.2",
     "@sanity/code-input": "^7.3.3",

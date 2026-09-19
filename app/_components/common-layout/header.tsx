@@ -1,6 +1,5 @@
 "use client";
 
-import { sendGAEvent } from "@next/third-parties/google";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { Suspense, use } from "react";
@@ -47,7 +46,6 @@ const ThemeToggle = () => {
 
   const themeToggle = () => {
     setTheme(resolvedTheme === "dark" ? "light" : "dark");
-    sendGAEvent("event", "themeToggled");
   };
 
   return (
