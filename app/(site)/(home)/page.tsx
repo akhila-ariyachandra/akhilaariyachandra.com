@@ -170,7 +170,7 @@ const CachedAbout = async ({ perspective, stega }: DynamicFetchOptions) => {
       {!!data.resume && (
         <div className="mt-4 flex flex-row gap-4 sm:mt-6">
           <a
-            href={data.resume}
+            href="/resume"
             download="Akhila_Heshan_Ariyachandra_Resume.pdf"
             rel="nofollow"
             className={buttonVariants()}
