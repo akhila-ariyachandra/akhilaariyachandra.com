@@ -55,7 +55,7 @@
     "sanity-plugin-media": "6.2.0",
     "server-only": "0.0.1",
     "slugify": "1.6.9",
-    "styled-components": "npm:@sanity/css-in-js@6.2.1",
+    "styled-components": "6.5.3",
     "zod": "4.6.5"
   },
   "devDependencies": {

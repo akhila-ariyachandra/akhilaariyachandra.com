@@ -1,7 +1,11 @@
+import StyledComponentsRegistry from "./registry";
+
 const StudioLayout = ({ children }: LayoutProps<"/studio">) => {
   return (
     <html>
-      <body>{children}</body>
+      <body>
+        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+      </body>
     </html>
   );
 };
