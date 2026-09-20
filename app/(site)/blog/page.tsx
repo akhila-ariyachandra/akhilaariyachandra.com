@@ -87,6 +87,9 @@ const CachedPostsList = async ({ perspective, stega }: DynamicFetchOptions) => {
 
   const { data: posts } = await sanityFetch({
     query: POSTS_QUERY,
+    params: {
+      archived: false,
+    },
     perspective,
     stega,
   });

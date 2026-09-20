@@ -21,7 +21,7 @@ const Image = async ({ params }: PageProps<"/blog/[slug]">) => {
 
   const { data: post } = await sanityFetchMetadata({
     query: POST_BY_SLUG_QUERY,
-    params: { slug },
+    params: { slug, archived: false },
     perspective,
   });
 

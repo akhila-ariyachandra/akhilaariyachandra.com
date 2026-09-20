@@ -43,6 +43,15 @@ export const postType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "archived",
+      title: "Archived",
+      type: "boolean",
+      validation: (Rule) => Rule.required(),
+      initialValue: false,
+      description:
+        "Hide the post from the main blog and prevent it from being indexed",
+    }),
+    defineField({
       name: "content",
       title: "Content",
       type: "array",

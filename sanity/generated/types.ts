@@ -140,6 +140,7 @@ export type Post = {
   slug: Slug;
   description: string;
   posted: string;
+  archived: boolean;
   content: Array<
     | {
         children?: Array<{
@@ -494,7 +495,7 @@ export type CAREERS_QUERY_RESULT = Array<{
 
 // Source: sanity/lib/queries.ts
 // Variable: POSTS_QUERY
-// Query: *[_type == "post"] | order(posted desc)
+// Query: *[_type == "post" && archived == $archived] | order(posted desc)
 export type POSTS_QUERY_RESULT = Array<{
   _id: string;
   _type: "post";
@@ -505,6 +506,7 @@ export type POSTS_QUERY_RESULT = Array<{
   slug: Slug;
   description: string;
   posted: string;
+  archived: boolean;
   content: Array<
     | ({
         _key: string;
@@ -577,7 +579,7 @@ export type POSTS_QUERY_RESULT = Array<{
 
 // Source: sanity/lib/queries.ts
 // Variable: POST_BY_SLUG_QUERY
-// Query: *[_type == "post" && slug.current == $slug][0]
+// Query: *[_type == "post" && slug.current == $slug && archived == $archived][0]
 export type POST_BY_SLUG_QUERY_RESULT = {
   _id: string;
   _type: "post";
@@ -588,6 +590,7 @@ export type POST_BY_SLUG_QUERY_RESULT = {
   slug: Slug;
   description: string;
   posted: string;
+  archived: boolean;
   content: Array<
     | ({
         _key: string;
@@ -715,8 +718,8 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     '*[_type == "job"] | order(duration.start desc) {\n  ...,\n  company ->,\n  technologies[] ->\n}': CAREERS_QUERY_RESULT;
-    '*[_type == "post"] | order(posted desc)': POSTS_QUERY_RESULT;
-    '*[_type == "post" && slug.current == $slug][0]': POST_BY_SLUG_QUERY_RESULT;
+    '*[_type == "post" && archived == $archived] | order(posted desc)': POSTS_QUERY_RESULT;
+    '*[_type == "post" && slug.current == $slug && archived == $archived][0]': POST_BY_SLUG_QUERY_RESULT;
     '*[_type == "personalInfo"][0] {\n  ...,\n  "resume": resume.asset->url \n}': PERSONAL_INFO_QUERY_RESULT;
     '*[_type == "personalInfo"][0] {\n  "url": resume.asset->url,\n  "filename": resume.asset->originalFilename\n}': RESUME_QUERY_RESULT;
   }

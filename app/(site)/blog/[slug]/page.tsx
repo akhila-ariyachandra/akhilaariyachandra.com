@@ -69,6 +69,9 @@ const highlighter = createHighlighter({
 export const generateStaticParams = async () => {
   const { data } = await sanityFetchStaticParams({
     query: POSTS_QUERY,
+    params: {
+      archived: false,
+    },
   });
 
   return data.map((post) => ({
@@ -86,7 +89,7 @@ export const generateMetadata = async ({
 
   const { data: post } = await sanityFetchMetadata({
     query: POST_BY_SLUG_QUERY,
-    params: { slug },
+    params: { slug, archived: false },
     perspective,
   });
 
@@ -152,7 +155,7 @@ const CachedBlogPostPage = async ({
 
   const { data: post } = await sanityFetch({
     query: POST_BY_SLUG_QUERY,
-    params: { slug },
+    params: { slug, archived: false },
     perspective,
     stega,
   });
