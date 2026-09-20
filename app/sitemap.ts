@@ -7,6 +7,9 @@ import type { MetadataRoute } from "next";
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   const { data } = await sanityFetchStaticParams({
     query: POSTS_QUERY,
+    params: {
+      archived: false,
+    },
   });
 
   const posts = data.map((post) => ({

@@ -722,6 +722,13 @@
         },
         "optional": false
       },
+      "archived": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "boolean"
+        },
+        "optional": false
+      },
       "content": {
         "type": "objectAttribute",
         "value": {

@@ -8,11 +8,11 @@ export const CAREERS_QUERY =
 }`);
 
 export const POSTS_QUERY = defineQuery(
-  `*[_type == "post"] | order(posted desc)`,
+  `*[_type == "post" && archived == $archived] | order(posted desc)`,
 );
 
 export const POST_BY_SLUG_QUERY = defineQuery(
-  `*[_type == "post" && slug.current == $slug][0]`,
+  `*[_type == "post" && slug.current == $slug && archived == $archived][0]`,
 );
 
 export const PERSONAL_INFO_QUERY = defineQuery(`*[_type == "personalInfo"][0] {
