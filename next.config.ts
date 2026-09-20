@@ -8,11 +8,6 @@ const nextConfig: NextConfig = {
     globalNotFound: true,
     exposeTestingApiInProductionBuild: process.env.VERCEL_ENV === "preview",
   },
-  compiler: {
-    styledComponents: {
-      transpileTemplateLiterals: false,
-    },
-  },
   reactStrictMode: true,
   reactCompiler: true,
   typedRoutes: true,
