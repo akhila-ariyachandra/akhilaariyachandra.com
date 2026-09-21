@@ -309,10 +309,15 @@ const CachedBlogPost = async ({
                       <MuxPlayer
                         title={value.title}
                         playbackId={asset.playbackId}
+                        autoPlay={value.autoplay ? "muted" : false}
+                        loop={value.loop}
                         className="mx-auto my-4 block max-w-full overflow-hidden neobrutalism-container first:mt-0 last:mb-0"
                         style={{
                           width,
                           aspectRatio,
+                          ...(value.hideControls
+                            ? { "--controls": "none" }
+                            : {}),
                         }}
                         placeholder={blurDataURL}
                       />

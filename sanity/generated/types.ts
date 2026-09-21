@@ -211,6 +211,9 @@ export type Post = {
     | {
         title: string;
         video: MuxVideo;
+        autoplay?: boolean;
+        loop?: boolean;
+        hideControls?: boolean;
         _type: "video";
         _key: string;
       }
@@ -722,6 +725,9 @@ export type POSTS_QUERY_RESULT = Array<{
     | {
         title: string;
         video: MuxVideo;
+        autoplay?: boolean;
+        loop?: boolean;
+        hideControls?: boolean;
         _type: "video";
         _key: string;
       }
@@ -842,6 +848,9 @@ export type POST_BY_SLUG_QUERY_RESULT = {
             data?: MuxAssetData;
           } | null;
         };
+        autoplay?: boolean;
+        loop?: boolean;
+        hideControls?: boolean;
         _type: "video";
         _key: string;
       }
