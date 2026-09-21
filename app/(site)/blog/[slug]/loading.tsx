@@ -1,51 +1,7 @@
-import Skeleton from "@/_components/skeleton";
+import BlogPostLoadingSkeleton from "@/_components/blog/blog-post-loading-skeleton";
 
 const BlogPostLoading = () => {
-  return (
-    <article className="neobrutalism-container p-3 sm:p-4">
-      <Skeleton className="mb-4 h-16 sm:mb-5 sm:h-9" />
-
-      <Skeleton className="mb-4 h-4.5 w-32 sm:mb-5 sm:h-5.25 sm:w-35" />
-
-      <div className="prose prose-sm mb-16 max-w-none prose-zinc sm:prose-base dark:prose-invert">
-        <div className="mb-[1.25em] space-y-2">
-          <Skeleton className="h-lh w-full" />
-          <Skeleton className="h-lh w-full" />
-          <Skeleton className="h-lh w-5/6" />
-        </div>
-
-        <div className="mb-[1.25em] space-y-2">
-          <Skeleton className="h-lh w-full" />
-          <Skeleton className="h-lh w-11/12" />
-          <Skeleton className="h-lh w-4/5" />
-        </div>
-
-        <div className="mb-[1.25em] space-y-2">
-          <Skeleton className="h-lh w-full" />
-          <Skeleton className="h-lh w-2/3" />
-        </div>
-
-        <Skeleton className="mb-[1.25em] h-96 w-full" />
-
-        <div className="mb-[1.25em] space-y-2">
-          <Skeleton className="h-lh w-full" />
-          <Skeleton className="h-lh w-full" />
-          <Skeleton className="h-lh w-5/6" />
-        </div>
-
-        <div className="mb-[1.25em] space-y-2">
-          <Skeleton className="h-lh w-full" />
-          <Skeleton className="h-lh w-11/12" />
-          <Skeleton className="h-lh w-4/5" />
-        </div>
-
-        <div className="mb-[1.25em] space-y-2">
-          <Skeleton className="h-lh w-full" />
-          <Skeleton className="h-lh w-2/3" />
-        </div>
-      </div>
-    </article>
-  );
+  return <BlogPostLoadingSkeleton />;
 };
 
 export default BlogPostLoading;

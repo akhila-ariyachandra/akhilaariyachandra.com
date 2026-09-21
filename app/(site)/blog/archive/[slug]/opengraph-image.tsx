@@ -5,7 +5,7 @@ import type { Route } from "next";
 import { notFound } from "next/navigation";
 
 // Image metadata
-export const alt = "Akhila Ariyachandra's Blog";
+export const alt = "Akhila Ariyachandra's Blog Archive";
 export const size = {
   width: 1200,
   height: 630,
@@ -22,7 +22,7 @@ const Image = async ({ params }: PageProps<"/blog/[slug]">) => {
 
   const { data: post } = await sanityFetchMetadata({
     query: POST_BY_SLUG_QUERY,
-    params: { slug, archived: false },
+    params: { slug, archived: true },
     perspective,
   });
 
@@ -32,7 +32,7 @@ const Image = async ({ params }: PageProps<"/blog/[slug]">) => {
 
   return getOgImage({
     title: post.title,
-    pathname: `/blog/${post.slug.current}` as Route,
+    pathname: `/blog/archive/${post.slug.current}` as Route,
   });
 };
 

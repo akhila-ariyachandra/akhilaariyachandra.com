@@ -7,7 +7,7 @@ const robots = (): MetadataRoute.Robots => {
       {
         userAgent: "*",
         allow: "/",
-        disallow: "/resume",
+        disallow: ["/resume", "/blog/archive/"],
       },
     ],
     sitemap: `${PRODUCTION_URL}/sitemap.xml`,

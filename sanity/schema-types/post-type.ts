@@ -1,8 +1,15 @@
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
-import type { ReactNode } from "react";
-import { FaExclamation, FaImage, FaPen } from "react-icons/fa6";
+import { createElement, type ReactNode } from "react";
+import {
+  FaExclamation,
+  FaImage,
+  FaPen,
+  FaRegRectangleXmark,
+  FaVideo,
+} from "react-icons/fa6";
 import { MdHorizontalRule } from "react-icons/md";
+import { SiCodesandbox } from "react-icons/si";
 import { defineField, defineType } from "sanity";
 import slugify from "slugify";
 
@@ -147,7 +154,14 @@ export const postType = defineType({
           options: {
             hotspot: true,
           },
-          validation: (Rule) => Rule.required(),
+          validation: (Rule) =>
+            Rule.custom((value?: { asset?: { _ref?: string } }) => {
+              if (!value?.asset) {
+                return "Image is required";
+              }
+
+              return true;
+            }),
           fields: [
             defineField({
               name: "alt",
@@ -211,6 +225,109 @@ export const postType = defineType({
               title: "Horizontal Line",
             }),
           },
+        },
+        {
+          name: "video",
+          title: "Video",
+          type: "object",
+          icon: FaVideo,
+          fields: [
+            defineField({
+              name: "title",
+              title: "Title",
+              type: "string",
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "video",
+              type: "mux.video",
+              title: "Video file",
+              validation: (rule) => rule.required(),
+            }),
+          ],
+          validation: (Rule) => Rule.required(),
+          preview: {
+            select: {
+              title: "title",
+              playbackId: "video.asset.playbackId",
+              status: "video.asset.status",
+              thumbTime: "video.asset.thumbTime",
+            },
+            prepare: ({
+              title,
+              playbackId,
+              status,
+              thumbTime,
+            }: {
+              title?: string;
+              playbackId?: string;
+              status?: string;
+              thumbTime?: number | null;
+            }) => {
+              return {
+                title: title ?? "Video",
+                subtitle: status,
+                media: playbackId
+                  ? createElement("img", {
+                      src: `https://image.mux.com/${playbackId}/thumbnail.png?width=160${
+                        typeof thumbTime === "number"
+                          ? `&time=${String(thumbTime)}`
+                          : ""
+                      }`,
+                      alt: "",
+                    })
+                  : FaVideo,
+              };
+            },
+          },
+        },
+        {
+          name: "iframe",
+          title: "IFrame",
+          type: "object",
+          icon: FaRegRectangleXmark,
+          fields: [
+            defineField({
+              name: "url",
+              title: "URL",
+              type: "url",
+              validation: (rule) => rule.required(),
+            }),
+          ],
+          preview: {
+            select: {
+              url: "url",
+            },
+            prepare: ({ url }) => ({
+              title: "Iframe",
+              subtitle: url as string,
+            }),
+          },
+          validation: (rule) => rule.required(),
+        },
+        {
+          name: "codeSandbox",
+          title: "Code Sandbox Wrapper",
+          type: "object",
+          icon: SiCodesandbox,
+          fields: [
+            defineField({
+              name: "id",
+              title: "ID",
+              type: "string",
+              validation: (rule) => rule.required(),
+            }),
+          ],
+          preview: {
+            select: {
+              id: "id",
+            },
+            prepare: ({ id }) => ({
+              title: "Code Sandbox Wrapper",
+              subtitle: id as string,
+            }),
+          },
+          validation: (rule) => rule.required(),
         },
       ],
       validation: (Rule) => Rule.required(),
