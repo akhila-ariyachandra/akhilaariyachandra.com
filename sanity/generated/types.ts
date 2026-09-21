@@ -208,7 +208,35 @@ export type Post = {
         _type: "horizontalLine";
         _key: string;
       }
+    | {
+        title: string;
+        video: MuxVideo;
+        _type: "video";
+        _key: string;
+      }
+    | {
+        url: string;
+        _type: "iframe";
+        _key: string;
+      }
+    | {
+        id: string;
+        _type: "codeSandbox";
+        _key: string;
+      }
   >;
+};
+
+export type MuxVideoAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "mux.videoAsset";
+};
+
+export type MuxVideo = {
+  _type: "mux.video";
+  asset?: MuxVideoAssetReference;
 };
 
 export type Slug = {
@@ -275,6 +303,104 @@ export type Code = {
   filename?: string;
   code?: string;
   highlightedLines?: Array<number>;
+};
+
+export type MuxVideoAsset = {
+  _id: string;
+  _type: "mux.videoAsset";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  status?: string;
+  assetId?: string;
+  playbackId?: string;
+  filename?: string;
+  thumbTime?: number;
+  data?: MuxAssetData;
+};
+
+export type MuxAssetData = {
+  _type: "mux.assetData";
+  resolution_tier?: string;
+  upload_id?: string;
+  created_at?: string;
+  id?: string;
+  status?: string;
+  max_stored_resolution?: string;
+  passthrough?: string;
+  encoding_tier?: string;
+  video_quality?: string;
+  master_access?: string;
+  aspect_ratio?: string;
+  duration?: number;
+  max_stored_frame_rate?: number;
+  mp4_support?: string;
+  max_resolution_tier?: string;
+  tracks?: Array<
+    {
+      _key: string;
+    } & MuxTrack
+  >;
+  playback_ids?: Array<
+    {
+      _key: string;
+    } & MuxPlaybackId
+  >;
+  static_renditions?: MuxStaticRenditions;
+  master?: MuxMasterFile;
+};
+
+export type MuxMasterFile = {
+  _type: "mux.masterFile";
+  status?: string;
+  url?: string;
+};
+
+export type MuxStaticRenditions = {
+  _type: "mux.staticRenditions";
+  status?: string;
+  files?: Array<
+    {
+      _key: string;
+    } & MuxStaticRenditionFile
+  >;
+};
+
+export type MuxStaticRenditionFile = {
+  _type: "mux.staticRenditionFile";
+  name?: string;
+  ext?: string;
+  height?: number;
+  width?: number;
+  bitrate?: number;
+  filesize?: string;
+  type?: string;
+  status?: string;
+  resolution_tier?: string;
+  resolution?: string;
+  id?: string;
+  passthrough?: string;
+};
+
+export type MuxPlaybackId = {
+  _type: "mux.playbackId";
+  id?: string;
+  policy?: string;
+};
+
+export type MuxTrack = {
+  _type: "mux.track";
+  id?: string;
+  type?: string;
+  max_width?: number;
+  max_frame_rate?: number;
+  duration?: number;
+  max_height?: number;
+  language_code?: string;
+  name?: string;
+  status?: string;
+  text_source?: string;
+  text_type?: string;
 };
 
 export type MediaFolderReference = {
@@ -411,10 +537,19 @@ export type AllSanitySchemaTypes =
   | SanityImageHotspot
   | Technology
   | Post
+  | MuxVideoAssetReference
+  | MuxVideo
   | Slug
   | SanityFileAssetReference
   | PersonalInfo
   | Code
+  | MuxVideoAsset
+  | MuxAssetData
+  | MuxMasterFile
+  | MuxStaticRenditions
+  | MuxStaticRenditionFile
+  | MuxPlaybackId
+  | MuxTrack
   | MediaFolderReference
   | MediaFolder
   | MediaTag
@@ -553,8 +688,18 @@ export type POSTS_QUERY_RESULT = Array<{
         _key: string;
       }
     | {
+        id: string;
+        _type: "codeSandbox";
+        _key: string;
+      }
+    | {
         style?: string;
         _type: "horizontalLine";
+        _key: string;
+      }
+    | {
+        url: string;
+        _type: "iframe";
         _key: string;
       }
     | {
@@ -574,12 +719,18 @@ export type POSTS_QUERY_RESULT = Array<{
         _type: "image";
         _key: string;
       }
+    | {
+        title: string;
+        video: MuxVideo;
+        _type: "video";
+        _key: string;
+      }
   >;
 }>;
 
 // Source: sanity/lib/queries.ts
 // Variable: POST_BY_SLUG_QUERY
-// Query: *[_type == "post" && slug.current == $slug && archived == $archived][0]
+// Query: *[_type == "post" && slug.current == $slug && archived == $archived][0]{    ...,    content[]{      ...,      _type == "video" => {        video {          ...,          asset->,        }      }    }  }
 export type POST_BY_SLUG_QUERY_RESULT = {
   _id: string;
   _type: "post";
@@ -592,9 +743,6 @@ export type POST_BY_SLUG_QUERY_RESULT = {
   posted: string;
   archived: boolean;
   content: Array<
-    | ({
-        _key: string;
-      } & Code)
     | {
         children?: Array<{
           marks?: Array<string>;
@@ -637,8 +785,26 @@ export type POST_BY_SLUG_QUERY_RESULT = {
         _key: string;
       }
     | {
+        _key: string;
+        _type: "code";
+        language?: string;
+        filename?: string;
+        code?: string;
+        highlightedLines?: Array<number>;
+      }
+    | {
+        id: string;
+        _type: "codeSandbox";
+        _key: string;
+      }
+    | {
         style?: string;
         _type: "horizontalLine";
+        _key: string;
+      }
+    | {
+        url: string;
+        _type: "iframe";
         _key: string;
       }
     | {
@@ -656,6 +822,27 @@ export type POST_BY_SLUG_QUERY_RESULT = {
           _type: "image";
         };
         _type: "image";
+        _key: string;
+      }
+    | {
+        title: string;
+        video: {
+          _type: "mux.video";
+          asset: {
+            _id: string;
+            _type: "mux.videoAsset";
+            _createdAt: string;
+            _updatedAt: string;
+            _rev: string;
+            status?: string;
+            assetId?: string;
+            playbackId?: string;
+            filename?: string;
+            thumbTime?: number;
+            data?: MuxAssetData;
+          } | null;
+        };
+        _type: "video";
         _key: string;
       }
   >;
@@ -719,7 +906,7 @@ declare module "@sanity/client" {
   interface SanityQueries {
     '*[_type == "job"] | order(duration.start desc) {\n  ...,\n  company ->,\n  technologies[] ->\n}': CAREERS_QUERY_RESULT;
     '*[_type == "post" && archived == $archived] | order(posted desc)': POSTS_QUERY_RESULT;
-    '*[_type == "post" && slug.current == $slug && archived == $archived][0]': POST_BY_SLUG_QUERY_RESULT;
+    '\n  *[_type == "post" && slug.current == $slug && archived == $archived][0]{\n    ...,\n    content[]{\n      ...,\n      _type == "video" => {\n        video {\n          ...,\n          asset->,\n        }\n      }\n    }\n  }\n': POST_BY_SLUG_QUERY_RESULT;
     '*[_type == "personalInfo"][0] {\n  ...,\n  "resume": resume.asset->url \n}': PERSONAL_INFO_QUERY_RESULT;
     '*[_type == "personalInfo"][0] {\n  "url": resume.asset->url,\n  "filename": resume.asset->originalFilename\n}': RESUME_QUERY_RESULT;
   }

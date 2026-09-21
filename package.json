@@ -30,6 +30,8 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@mux/blurup": "1.0.2",
+    "@mux/mux-player-react": "3.13.4",
     "@sanity/asset-utils": "2.3.0",
     "@sanity/client": "7.26.2",
     "@sanity/code-input": "^7.3.3",
@@ -53,6 +55,7 @@
     "react-icons": "5.7.0",
     "sanity": "6.9.1",
     "sanity-plugin-media": "6.2.0",
+    "sanity-plugin-mux-input": "5.0.12",
     "server-only": "0.0.1",
     "slugify": "1.6.9",
     "styled-components": "6.5.3",

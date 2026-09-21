@@ -14,7 +14,7 @@ export const generateStaticParams = async () => {
   const { data } = await sanityFetchStaticParams({
     query: POSTS_QUERY,
     params: {
-      archived: false,
+      archived: true,
     },
   });
 
@@ -33,7 +33,7 @@ export const generateMetadata = async ({
 
   const { data: post } = await sanityFetchMetadata({
     query: POST_BY_SLUG_QUERY,
-    params: { slug, archived: false },
+    params: { slug, archived: true },
     perspective,
   });
 
@@ -47,22 +47,26 @@ export const generateMetadata = async ({
     openGraph: {
       title: post.title,
       description: post.description,
-      url: `/blog/${slug}`,
+      url: `/blog/archive/${slug}`,
       type: "article",
       publishedTime: dayjs(post.posted).toISOString(),
     },
     alternates: {
-      canonical: `/blog/${slug}`,
+      canonical: `/blog/archive/${slug}`,
     },
     authors: {
       name: "Akhila Ariyachandra",
       url: new URL(PRODUCTION_URL),
     },
+    robots: {
+      index: false,
+      follow: false,
+    },
   };
 };
 
-const BlogPostPage = async (props: PageProps<"/blog/[slug]">) => {
-  return <BlogPost {...props} />;
+const BlogPostPage = async (props: PageProps<"/blog/archive/[slug]">) => {
+  return <BlogPost {...props} archived />;
 };
 
 export default BlogPostPage;
