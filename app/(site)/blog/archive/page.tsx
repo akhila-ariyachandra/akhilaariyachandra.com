@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Archived Blog",
     description: "My old blog posts",
-    url: "/blog/archived",
+    url: "/blog/archive",
     type: "website",
   },
   alternates: {
