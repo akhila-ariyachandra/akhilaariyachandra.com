@@ -1253,6 +1253,27 @@
                     },
                     "optional": false
                   },
+                  "autoplay": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "boolean"
+                    },
+                    "optional": true
+                  },
+                  "loop": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "boolean"
+                    },
+                    "optional": true
+                  },
+                  "hideControls": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "boolean"
+                    },
+                    "optional": true
+                  },
                   "_type": {
                     "type": "objectAttribute",
                     "value": {

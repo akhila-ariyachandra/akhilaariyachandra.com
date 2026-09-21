@@ -231,6 +231,12 @@ export const postType = defineType({
           title: "Video",
           type: "object",
           icon: FaVideo,
+          fieldsets: [
+            {
+              name: "options",
+              title: "Options",
+            },
+          ],
           fields: [
             defineField({
               name: "title",
@@ -243,6 +249,29 @@ export const postType = defineType({
               type: "mux.video",
               title: "Video file",
               validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "autoplay",
+              title: "Autoplay",
+              type: "boolean",
+              initialValue: false,
+              fieldset: "options",
+              description:
+                "Automatically plays the video (muted) when it's in view",
+            }),
+            defineField({
+              name: "loop",
+              title: "Loop",
+              type: "boolean",
+              initialValue: false,
+              fieldset: "options",
+            }),
+            defineField({
+              name: "hideControls",
+              title: "Hide controls",
+              type: "boolean",
+              initialValue: false,
+              fieldset: "options",
             }),
           ],
           validation: (Rule) => Rule.required(),
