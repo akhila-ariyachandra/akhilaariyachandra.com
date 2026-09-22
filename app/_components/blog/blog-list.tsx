@@ -9,9 +9,12 @@ import {
 } from "@/sanity/lib/live";
 import { POSTS_QUERY } from "@/sanity/lib/queries";
 import dayjs from "dayjs";
+import advancedFormat from "dayjs/plugin/advancedFormat";
 import { draftMode } from "next/headers";
 import Link from "next/link";
 import { Suspense, ViewTransition } from "react";
+
+dayjs.extend(advancedFormat);
 
 type BlogListProps = {
   archived?: boolean;
