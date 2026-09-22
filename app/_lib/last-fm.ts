@@ -22,7 +22,7 @@ export const getTopTracks = async () => {
       searchParams: {
         method: "user.gettoptracks",
         limit: "10",
-        period: "1month",
+        period: "7day",
       },
     })
     .json();
