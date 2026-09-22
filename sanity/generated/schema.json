@@ -1258,21 +1258,21 @@
                     "value": {
                       "type": "boolean"
                     },
-                    "optional": true
+                    "optional": false
                   },
                   "loop": {
                     "type": "objectAttribute",
                     "value": {
                       "type": "boolean"
                     },
-                    "optional": true
+                    "optional": false
                   },
                   "hideControls": {
                     "type": "objectAttribute",
                     "value": {
                       "type": "boolean"
                     },
-                    "optional": true
+                    "optional": false
                   },
                   "_type": {
                     "type": "objectAttribute",

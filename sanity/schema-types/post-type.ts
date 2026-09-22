@@ -258,6 +258,7 @@ export const postType = defineType({
               fieldset: "options",
               description:
                 "Automatically plays the video (muted) when it's in view",
+              validation: (rule) => rule.required(),
             }),
             defineField({
               name: "loop",
@@ -265,6 +266,7 @@ export const postType = defineType({
               type: "boolean",
               initialValue: false,
               fieldset: "options",
+              validation: (rule) => rule.required(),
             }),
             defineField({
               name: "hideControls",
@@ -272,6 +274,7 @@ export const postType = defineType({
               type: "boolean",
               initialValue: false,
               fieldset: "options",
+              validation: (rule) => rule.required(),
             }),
           ],
           validation: (Rule) => Rule.required(),
