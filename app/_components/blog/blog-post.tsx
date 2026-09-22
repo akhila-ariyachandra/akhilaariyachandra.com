@@ -39,7 +39,7 @@ import { draftMode } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
-import { ViewTransition } from "react";
+import { type ComponentProps, ViewTransition } from "react";
 import OutdatedContentBanner from "./outdated-content-banner";
 
 dayjs.extend(advancedFormat);
@@ -305,20 +305,24 @@ const CachedBlogPost = async ({
                     const { blurDataURL, aspectRatio, width } =
                       await createBlurUp(asset.playbackId);
 
+                    const style: ComponentProps<typeof MuxPlayer>["style"] = {
+                      width,
+                      aspectRatio,
+                    };
+
+                    if (value.hideControls) {
+                      style["--controls"] = "none";
+                    }
+
                     return (
                       <MuxPlayer
                         videoTitle={value.title}
                         playbackId={asset.playbackId}
                         autoPlay={value.autoplay ? "muted" : false}
                         loop={value.loop}
+                        accentColor="var(--color-green-500)"
                         className="mx-auto my-4 block max-w-full overflow-hidden neobrutalism-container first:mt-0 last:mb-0"
-                        style={{
-                          width,
-                          aspectRatio,
-                          ...(value.hideControls
-                            ? { "--controls": "none" }
-                            : {}),
-                        }}
+                        style={style}
                         placeholder={blurDataURL}
                       />
                     );
