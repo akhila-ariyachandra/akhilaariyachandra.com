@@ -307,7 +307,7 @@ const CachedBlogPost = async ({
 
                     return (
                       <MuxPlayer
-                        title={value.title}
+                        videoTitle={value.title}
                         playbackId={asset.playbackId}
                         autoPlay={value.autoplay ? "muted" : false}
                         loop={value.loop}
