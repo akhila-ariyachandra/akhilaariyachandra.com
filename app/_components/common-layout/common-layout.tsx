@@ -5,6 +5,7 @@ import { cn } from "cn";
 import ky from "ky";
 import { cacheLife } from "next/cache";
 import { DM_Sans } from "next/font/google";
+import { draftMode } from "next/headers";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { ErrorBoundary } from "react-error-boundary";
@@ -19,7 +20,9 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-const CommonLayout = ({ children }: { children: ReactNode }) => {
+const CommonLayout = async ({ children }: { children: ReactNode }) => {
+  const { isEnabled: isDraftMode } = await draftMode();
+
   return (
     <html
       lang="en"
@@ -47,8 +50,12 @@ const CommonLayout = ({ children }: { children: ReactNode }) => {
 
           <Footer />
 
-          <Analytics />
-          <SpeedInsights />
+          {!isDraftMode && (
+            <>
+              <Analytics />
+              <SpeedInsights />
+            </>
+          )}
         </ThemeProvider>
       </body>
     </html>
