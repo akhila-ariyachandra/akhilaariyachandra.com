@@ -10,6 +10,8 @@ import {
 import { POSTS_QUERY } from "@/sanity/lib/queries";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
+import { type Route } from "next";
+import { stegaClean } from "next-sanity";
 import { draftMode } from "next/headers";
 import Link from "next/link";
 import { Suspense, ViewTransition } from "react";
@@ -70,7 +72,9 @@ const CachedPostsList = async ({
         <li key={post._id}>
           <ViewTransition name={postTitleViewTransitionName(post.slug.current)}>
             <Link
-              href={`/blog/${archived ? "archive/" : ""}${post.slug.current}`}
+              href={stegaClean(
+                `/blog/${archived ? "archive/" : ""}${post.slug.current}` as Route,
+              )}
               className="block text-xl font-semibold text-balance text-accent hover:underline sm:text-2xl dark:text-accent-dark"
               prefetch
             >
