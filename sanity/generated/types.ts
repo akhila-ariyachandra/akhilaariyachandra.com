@@ -902,6 +902,11 @@ export type PERSONAL_INFO_QUERY_RESULT = {
 } | null;
 
 // Source: sanity/lib/queries.ts
+// Variable: HOME_PAGE_UPDATED_AT_QUERY
+// Query: *[_type in ["personalInfo", "job", "company", "technology"]]._updatedAt
+export type HOME_PAGE_UPDATED_AT_QUERY_RESULT = Array<string>;
+
+// Source: sanity/lib/queries.ts
 // Variable: RESUME_QUERY
 // Query: *[_type == "personalInfo"][0] {  "url": resume.asset->url,  "filename": resume.asset->originalFilename}
 export type RESUME_QUERY_RESULT = {
@@ -917,6 +922,7 @@ declare module "@sanity/client" {
     '*[_type == "post" && archived == $archived] | order(posted desc)': POSTS_QUERY_RESULT;
     '\n  *[_type == "post" && slug.current == $slug && archived == $archived][0]{\n    ...,\n    content[]{\n      ...,\n      _type == "video" => {\n        video {\n          ...,\n          asset->,\n        }\n      }\n    }\n  }\n': POST_BY_SLUG_QUERY_RESULT;
     '*[_type == "personalInfo"][0] {\n  ...,\n  "resume": resume.asset->url \n}': PERSONAL_INFO_QUERY_RESULT;
+    '*[_type in ["personalInfo", "job", "company", "technology"]]._updatedAt': HOME_PAGE_UPDATED_AT_QUERY_RESULT;
     '*[_type == "personalInfo"][0] {\n  "url": resume.asset->url,\n  "filename": resume.asset->originalFilename\n}': RESUME_QUERY_RESULT;
   }
 }

@@ -31,6 +31,10 @@ export const PERSONAL_INFO_QUERY = defineQuery(`*[_type == "personalInfo"][0] {
   "resume": resume.asset->url 
 }`);
 
+export const HOME_PAGE_UPDATED_AT_QUERY = defineQuery(
+  `*[_type in ["personalInfo", "job", "company", "technology"]]._updatedAt`,
+);
+
 export const RESUME_QUERY = defineQuery(`*[_type == "personalInfo"][0] {
   "url": resume.asset->url,
   "filename": resume.asset->originalFilename
