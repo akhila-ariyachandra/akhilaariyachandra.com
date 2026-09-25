@@ -6,10 +6,9 @@
     "Villvay",
     "Knip"
   ],
-  "typescript.tsdk": "node_modules\\typescript\\lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "js/ts.tsdk.path": "node_modules\\typescript\\lib",
+  "js/ts.tsdk.promptToUseWorkspaceVersion": true,
   "files.associations": {
-    "*.mdx": "markdown",
     "*.css": "tailwindcss"
   },
   "editor.codeActionsOnSave": {
@@ -26,14 +25,11 @@
     ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
     ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
   ],
-  "[mdx]": {
-    "editor.wordWrap": "on"
-  },
-  "eslint.lintTask.options": ". --max-warnings=0 --cache --concurrency=auto",
+  "eslint.lintTask.options": ". --max-warnings=0",
   "editor.quickSuggestions": {
     "strings": "on"
   },
-  "typescript.preferences.autoImportSpecifierExcludeRegexes": [
+  "js/ts.preferences.autoImportSpecifierExcludeRegexes": [
     "^(node:)?os$"
   ]
 }
