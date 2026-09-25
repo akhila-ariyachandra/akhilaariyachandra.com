@@ -36,12 +36,11 @@ const CommonLayout = async ({ children }: { children: ReactNode }) => {
       <body
         className={cn(
           dmSans.className,
-          "relative flex min-h-dvh flex-col bg-green-100 font-medium text-black antialiased theme-transition sm:border-r-4 sm:border-r-black dark:bg-green-950 dark:text-white",
+          "flex min-h-dvh flex-col font-medium text-black antialiased sm:border-r-4 sm:border-r-black dark:text-white",
+          "bg-green-100 bg-[radial-gradient(var(--dot-color)_1px,transparent_1px)] bg-size-[16px_16px] theme-transition [--dot-color:var(--color-zinc-400)] dark:bg-green-950 dark:[--dot-color:var(--color-zinc-600)]",
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system">
-          <div className="absolute inset-0 -z-10 h-full w-full bg-[radial-gradient(var(--dot-color)_1px,transparent_1px)] bg-size-[16px_16px] [--dot-color:var(--color-zinc-400)] dark:[--dot-color:var(--color-zinc-600)]" />
-
           <Header />
 
           <main className="mx-auto w-full max-w-4xl flex-1 p-3 sm:p-4">
