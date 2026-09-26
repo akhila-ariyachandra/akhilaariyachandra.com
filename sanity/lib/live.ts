@@ -7,6 +7,7 @@ import {
   type LivePerspective,
   resolvePerspectiveFromCookies,
 } from "next-sanity/live";
+import { cacheLife } from "next/cache";
 import { cookies, draftMode } from "next/headers";
 import { client } from "./client";
 import { token } from "./token";
@@ -70,6 +71,32 @@ export async function sanityFetchMetadata<const QueryString extends string>({
     perspective,
     stega: false,
   });
+
+  return { data };
+}
+
+// For usage in routes that don't render "<SanityLive />" (sitemap, OG images)
+// Live events can be missed, so revalidate daily instead of relying on them
+export async function sanityFetchNonLive<const QueryString extends string>({
+  query,
+  params = {},
+  perspective = "published",
+}: {
+  query: QueryString;
+  params?: QueryParams;
+  perspective?: LivePerspective;
+}) {
+  "use cache";
+
+  const { data } = await sanityFetch({
+    query,
+    params,
+    perspective,
+    stega: false,
+  });
+
+  // The shortest cacheLife in a scope wins, so this overrides the "sanity" profile
+  cacheLife("days");
 
   return { data };
 }

@@ -1,5 +1,5 @@
 import { getOgImage } from "@/_lib/og-image";
-import { getDynamicFetchOptions, sanityFetchMetadata } from "@/sanity/lib/live";
+import { getDynamicFetchOptions, sanityFetchNonLive } from "@/sanity/lib/live";
 import { POST_BY_SLUG_QUERY } from "@/sanity/lib/queries";
 import type { Route } from "next";
 import { notFound } from "next/navigation";
@@ -20,7 +20,7 @@ const Image = async ({ params }: PageProps<"/blog/[slug]">) => {
     getDynamicFetchOptions(),
   ]);
 
-  const { data: post } = await sanityFetchMetadata({
+  const { data: post } = await sanityFetchNonLive({
     query: POST_BY_SLUG_QUERY,
     params: { slug, archived: true },
     perspective,
