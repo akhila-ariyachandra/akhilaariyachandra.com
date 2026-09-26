@@ -1,5 +1,5 @@
 import { urlFor } from "@/sanity/lib/image";
-import { sanityFetchStaticParams } from "@/sanity/lib/live";
+import { sanityFetchNonLive } from "@/sanity/lib/live";
 import { PERSONAL_INFO_QUERY } from "@/sanity/lib/queries";
 import type { Route } from "next";
 import { ImageResponse } from "next/og";
@@ -13,7 +13,7 @@ export const getOgImage = async ({
   title: string;
   pathname: Route;
 }) => {
-  const { data } = await sanityFetchStaticParams({
+  const { data } = await sanityFetchNonLive({
     query: PERSONAL_INFO_QUERY,
   });
 
