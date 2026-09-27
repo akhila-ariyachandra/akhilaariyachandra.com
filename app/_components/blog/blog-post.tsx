@@ -1,10 +1,5 @@
-import Title from "@/_components/title";
 import TypographyWrapper from "@/_components/typography-wrapper";
 import { PRODUCTION_URL } from "@/_lib/constants";
-import {
-  postDateViewTransitionName,
-  postTitleViewTransitionName,
-} from "@/_lib/view-transition-names";
 import type { POST_BY_SLUG_QUERY_RESULT } from "@/sanity/generated/types";
 import { urlFor } from "@/sanity/lib/image";
 import {
@@ -39,7 +34,7 @@ import { draftMode } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
-import { type ComponentProps, ViewTransition } from "react";
+import { type ComponentProps } from "react";
 import OutdatedContentBanner from "./outdated-content-banner";
 
 dayjs.extend(advancedFormat);
@@ -151,20 +146,20 @@ const CachedBlogPost = async ({
 
       {post.archived && <OutdatedContentBanner />}
 
-      <article className="neobrutalism-container p-3 sm:p-4">
-        <ViewTransition name={postTitleViewTransitionName(post.slug.current)}>
-          <Title>{post.title}</Title>
-        </ViewTransition>
+      <article className="neobrutalism-container">
+        <header className="space-y-2 border-b-2 border-b-black bg-green-300 p-3 theme-transition sm:space-y-3 sm:p-4 dark:bg-green-900">
+          <h1 className="text-3xl font-bold text-balance sm:text-4xl">
+            {post.title}
+          </h1>
 
-        <ViewTransition name={postDateViewTransitionName(post.slug.current)}>
-          <div className="mb-4 text-sm font-semibold sm:mb-5 sm:text-base">
-            <time dateTime={dayjs(post.posted).toISOString()}>
+          <div className="text-base font-semibold sm:text-lg">
+            <time dateTime={post.posted}>
               {dayjs(post.posted).format("Do MMMM YYYY")}
             </time>
           </div>
-        </ViewTransition>
+        </header>
 
-        <TypographyWrapper>
+        <TypographyWrapper className="p-3 sm:p-4">
           <PortableText
             value={post.content}
             components={
@@ -402,8 +397,8 @@ const CachedBlogPost = async ({
             url={`${PRODUCTION_URL}/blog/${post.slug.current}`}
             mainEntityOfPage={`${PRODUCTION_URL}/blog/${post.slug.current}`}
             image={`${PRODUCTION_URL}/blog/${post.slug.current}/opengraph-image`}
-            datePublished={dayjs(post.posted).toISOString()}
-            dateModified={dayjs(post._updatedAt).toISOString()}
+            datePublished={post.posted}
+            dateModified={post._updatedAt}
             author={{
               "@type": "Person",
               name: "Akhila Ariyachandra",

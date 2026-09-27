@@ -1,8 +1,4 @@
 import {
-  postDateViewTransitionName,
-  postTitleViewTransitionName,
-} from "@/_lib/view-transition-names";
-import {
   type DynamicFetchOptions,
   getDynamicFetchOptions,
   sanityFetch,
@@ -14,7 +10,7 @@ import { type Route } from "next";
 import { stegaClean } from "next-sanity";
 import { draftMode } from "next/headers";
 import Link from "next/link";
-import { Suspense, ViewTransition } from "react";
+import { Suspense } from "react";
 
 dayjs.extend(advancedFormat);
 
@@ -70,25 +66,21 @@ const CachedPostsList = async ({
     <ul className="space-y-2 sm:space-y-3">
       {posts.map((post) => (
         <li key={post._id}>
-          <ViewTransition name={postTitleViewTransitionName(post.slug.current)}>
-            <Link
-              href={stegaClean(
-                `/blog/${archived ? "archive/" : ""}${post.slug.current}` as Route,
-              )}
-              className="block text-xl font-semibold text-balance text-accent hover:underline sm:text-2xl dark:text-accent-dark"
-              prefetch
-            >
-              {post.title}
-            </Link>
-          </ViewTransition>
+          <Link
+            href={stegaClean(
+              `/blog/${archived ? "archive/" : ""}${post.slug.current}` as Route,
+            )}
+            className="block text-xl font-semibold text-balance text-accent hover:underline sm:text-2xl dark:text-accent-dark"
+            prefetch
+          >
+            {post.title}
+          </Link>
 
-          <ViewTransition name={postDateViewTransitionName(post.slug.current)}>
-            <div className="text-sm sm:text-base">
-              <time dateTime={dayjs(post.posted).toISOString()}>
-                {dayjs(post.posted).format("Do MMMM YYYY")}
-              </time>
-            </div>
-          </ViewTransition>
+          <div className="text-sm sm:text-base">
+            <time dateTime={post.posted}>
+              {dayjs(post.posted).format("Do MMMM YYYY")}
+            </time>
+          </div>
         </li>
       ))}
     </ul>
