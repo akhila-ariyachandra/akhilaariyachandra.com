@@ -6,7 +6,6 @@ import {
   sanityFetchStaticParams,
 } from "@/sanity/lib/live";
 import { POST_BY_SLUG_QUERY, POSTS_QUERY } from "@/sanity/lib/queries";
-import dayjs from "dayjs";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -49,7 +48,8 @@ export const generateMetadata = async ({
       description: post.description,
       url: `/blog/archive/${slug}`,
       type: "article",
-      publishedTime: dayjs(post.posted).toISOString(),
+      publishedTime: post.posted,
+      modifiedTime: post._updatedAt,
     },
     alternates: {
       canonical: `/blog/archive/${slug}`,
