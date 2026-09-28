@@ -10,12 +10,14 @@ const BlogPostLoadingSkeleton = ({
     <>
       {archived && <OutdatedContentBanner />}
 
-      <article className="neobrutalism-container p-3 sm:p-4">
-        <Skeleton className="mb-4 h-16 sm:mb-5 sm:h-9" />
+      <article className="neobrutalism-container">
+        <div className="space-y-2 border-b-2 border-b-black bg-green-300 p-3 theme-transition sm:space-y-3 sm:p-4 dark:bg-green-900">
+          <Skeleton className="h-27 sm:h-20" />
 
-        <Skeleton className="mb-4 h-4.5 w-32 sm:mb-5 sm:h-5.25 sm:w-35" />
+          <Skeleton className="h-6 w-35 sm:h-7 sm:w-40" />
+        </div>
 
-        <div className="prose prose-sm mb-16 max-w-none prose-zinc sm:prose-base dark:prose-invert">
+        <div className="prose prose-sm mb-16 max-w-none p-3 prose-zinc sm:prose-base sm:p-4 dark:prose-invert">
           <div className="mb-[1.25em] space-y-2">
             <Skeleton className="h-lh w-full" />
             <Skeleton className="h-lh w-full" />
