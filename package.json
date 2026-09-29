@@ -15,6 +15,11 @@
       "name": "pnpm",
       "version": "12.6.0",
       "onFail": "download"
+    },
+    "runtime": {
+      "name": "node",
+      "version": "^24.15.0",
+      "onFail": "download"
     }
   },
   "scripts": {

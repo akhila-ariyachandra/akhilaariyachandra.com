@@ -18,11 +18,10 @@ jobs:
       NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
-      - uses: pnpm/setup@v1
+      - uses: pnpm/setup@v3
         with:
-          runtime: node@24
           cache: true
 
       - name: Run Knip
