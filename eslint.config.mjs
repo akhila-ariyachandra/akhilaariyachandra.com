@@ -17,6 +17,7 @@ export default defineConfig(
       "out/**",
       "build/**",
       "next-env.d.ts",
+      "env.d.ts",
       "sanity/generated/**",
       "playwright-report/**",
       "test-results/**",

@@ -1,13 +1,14 @@
 import ky from "ky";
 import { cacheLife } from "next/cache";
 import "server-only";
+import { ENV } from "varlock/env";
 import { recentTracksSchema, topTracksSchema, trackInfoSchema } from "./schema";
 
 const api = ky.create({
   baseUrl: "https://ws.audioscrobbler.com/2.0",
   searchParams: {
-    api_key: process.env.LAST_FM_API_KEY,
-    user: process.env.LAST_FM_USER,
+    api_key: ENV.LAST_FM_API_KEY,
+    user: ENV.LAST_FM_USER,
     format: "json",
   },
 });
