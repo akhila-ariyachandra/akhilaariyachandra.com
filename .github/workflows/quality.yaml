@@ -12,6 +12,8 @@ jobs:
     timeout-minutes: 15
     runs-on: ubuntu-22.04
     env:
+      # Secrets aren't available here, see .env.schema
+      APP_ENV: test
       NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
       NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
     steps:

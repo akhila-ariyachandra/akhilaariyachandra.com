@@ -38,6 +38,7 @@
     "@sanity/image-url": "2.1.1",
     "@sanity/vision": "6.9.1",
     "@tanstack/highlight": "0.1.0",
+    "@varlock/nextjs-integration": "1.2.2",
     "@vercel/analytics": "2.0.1",
     "@vercel/speed-insights": "2.0.0",
     "cn": "0.4.0",
@@ -59,6 +60,7 @@
     "server-only": "0.0.1",
     "slugify": "1.6.9",
     "styled-components": "6.5.3",
+    "varlock": "1.21.0",
     "zod": "4.6.5"
   },
   "devDependencies": {
