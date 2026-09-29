@@ -46,13 +46,12 @@ jobs:
             -f target_url="${{ steps.job.outputs.url }}"
 
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: ${{ github.event.client_payload.git.sha }}
 
-      - uses: pnpm/setup@v1
+      - uses: pnpm/setup@v3
         with:
-          runtime: node@24
           cache: true
 
       - name: Install Playwright Browsers
@@ -65,7 +64,7 @@ jobs:
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
 
       - name: Upload Playwright report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: ${{ !cancelled() }}
         with:
           name: playwright-report
