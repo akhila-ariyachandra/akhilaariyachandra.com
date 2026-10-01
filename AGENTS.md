@@ -1,5 +1,8 @@
 # Agent Instructions
 
+When a step doesn't need my input, keep going. Put status notes in the same message as your next action.
+Stop and ask only when you can't continue without me, or before anything destructive: deleting data, force-pushing, or changing anything outside this repository.
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 # This is NOT the Next.js you know
@@ -10,7 +13,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
-## Quality Checks
+# Quality Checks
 
 Make sure to run the quality checks after doing any changes.
 
