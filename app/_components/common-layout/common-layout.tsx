@@ -76,11 +76,11 @@ const Footer = async () => {
 
   return (
     <footer className="mx-auto w-full max-w-4xl p-3 sm:p-4">
-      <div className="space-y-4 neobrutalism-container py-3 sm:py-4">
+      <div className="space-y-4 neobrutalism-container pt-3 sm:pt-4">
         <NowPlaying />
 
-        <div className="flex flex-row items-center justify-between gap-4 border-t-2 border-t-black px-3 pt-3 sm:px-4 sm:pt-4">
-          <p className="text-sm sm:text-base">
+        <div className="flex flex-row items-center justify-between gap-4 border-t-2 border-t-black">
+          <p className="p-3 text-sm sm:p-4 sm:text-base">
             &copy; {year}{" "}
             <Link
               href="/"
@@ -102,6 +102,8 @@ const Footer = async () => {
 const RepoLink = async () => {
   "use cache";
 
+  cacheLife("days");
+
   const response = await ky
     .get(
       "https://api.github.com/repos/akhila-ariyachandra/akhilaariyachandra.com",
@@ -114,18 +116,18 @@ const RepoLink = async () => {
     .parseAsync(response);
 
   return (
-    <a
-      href="https://github.com/akhila-ariyachandra/akhilaariyachandra.com"
-      target="_blank"
-      rel="noopener noreferrer"
-      className={buttonVariants()}
-    >
-      <span>{parsedResponse.stargazers_count}</span>
+    <div className="border-l-2 border-l-black p-3 sm:p-4">
+      <a
+        href="https://github.com/akhila-ariyachandra/akhilaariyachandra.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={buttonVariants()}
+      >
+        <span>{parsedResponse.stargazers_count}</span>
 
-      <FaStar />
-      <span className="sr-only">Star</span>
-
-      <span>Repo</span>
-    </a>
+        <FaStar />
+        <span className="sr-only">Star</span>
+      </a>
+    </div>
   );
 };
