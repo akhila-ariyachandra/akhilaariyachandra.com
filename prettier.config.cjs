@@ -1,3 +1,7 @@
+/**
+ * @see https://prettier.io/docs/configuration
+ * @type {import("prettier").Config}
+ */
 module.exports = {
   organizeImportsSkipDestructiveCodeActions: true,
   tailwindAttributes: ["tw"],
