@@ -8,8 +8,6 @@ import playwright from "eslint-plugin-playwright";
 import { defineConfig } from "eslint/config";
 import tseslint from "typescript-eslint";
 
-const jsFiles = ["**/*.{js,mjs}", "**/.*.{js,mjs}"];
-
 export default defineConfig(
   {
     ignores: [
@@ -78,7 +76,7 @@ export default defineConfig(
     ],
   },
   {
-    files: jsFiles,
+    files: ["**/*.{js,cjs,mjs}"],
     extends: [
       tseslint.configs.disableTypeChecked,
       eslintReact.configs["disable-type-checked"],

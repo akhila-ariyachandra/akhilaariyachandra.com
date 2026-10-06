@@ -1,5 +1,5 @@
 import { PRODUCTION_URL } from "@/_lib/constants";
-import { sanityFetchNonLive } from "@/sanity/lib/live";
+import { client } from "@/sanity/lib/client";
 import { HOME_PAGE_UPDATED_AT_QUERY, POSTS_QUERY } from "@/sanity/lib/queries";
 import dayjs from "dayjs";
 import type { MetadataRoute } from "next";
@@ -11,16 +11,9 @@ const getLatestDate = (dates: string[]) =>
   );
 
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
-  const [{ data: postsData }, { data: homePageUpdatedAt }] = await Promise.all([
-    sanityFetchNonLive({
-      query: POSTS_QUERY,
-      params: {
-        archived: false,
-      },
-    }),
-    sanityFetchNonLive({
-      query: HOME_PAGE_UPDATED_AT_QUERY,
-    }),
+  const [postsData, homePageUpdatedAt] = await Promise.all([
+    client.fetch(POSTS_QUERY, { archived: false }),
+    client.fetch(HOME_PAGE_UPDATED_AT_QUERY),
   ]);
 
   const posts = postsData.map((post) => ({

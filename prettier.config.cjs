@@ -1,3 +1,8 @@
+/**
+ * @see https://prettier.io/docs/configuration
+ * @type {import("prettier").Config}
+ */
+// eslint-disable-next-line no-undef
 module.exports = {
   organizeImportsSkipDestructiveCodeActions: true,
   tailwindAttributes: ["tw"],

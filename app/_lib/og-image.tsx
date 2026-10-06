@@ -1,5 +1,5 @@
+import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
-import { sanityFetchNonLive } from "@/sanity/lib/live";
 import { PERSONAL_INFO_QUERY } from "@/sanity/lib/queries";
 import type { Route } from "next";
 import { ImageResponse } from "next/og";
@@ -13,9 +13,7 @@ export const getOgImage = async ({
   title: string;
   pathname: Route;
 }) => {
-  const { data } = await sanityFetchNonLive({
-    query: PERSONAL_INFO_QUERY,
-  });
+  const data = await client.fetch(PERSONAL_INFO_QUERY);
 
   const [dmSansMedium, dmSansSemiBold, dmSansBold] = await Promise.all([
     readFile(join(process.cwd(), "app/_assets/fonts/DMSans-Medium.ttf")),
