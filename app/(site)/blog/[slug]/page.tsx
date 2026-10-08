@@ -9,6 +9,8 @@ import { POST_BY_SLUG_QUERY, POSTS_QUERY } from "@/sanity/lib/queries";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+export const ensureStatic = "prefetch";
+
 export const generateStaticParams = async () => {
   const { data } = await sanityFetchStaticParams({
     query: POSTS_QUERY,
