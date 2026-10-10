@@ -2,18 +2,23 @@ import NowPlaying from "@/_components/now-playing";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { cn } from "cn";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 import ky from "ky";
+import type { Language, LanguageName } from "linguist-languages";
+import * as languages from "linguist-languages";
 import { cacheLife } from "next/cache";
 import { DM_Sans } from "next/font/google";
 import { draftMode } from "next/headers";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import { FaStar } from "react-icons/fa6";
+import { FaCodeFork, FaStar } from "react-icons/fa6";
 import { z } from "zod";
-import { buttonVariants } from "../button";
 import Header from "./header";
 import ThemeProvider from "./theme-provider";
+
+dayjs.extend(relativeTime);
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -75,7 +80,7 @@ const Footer = async () => {
   const year = await getYear();
 
   return (
-    <footer className="mx-auto w-full max-w-4xl p-3 sm:p-4">
+    <footer className="mx-auto w-full max-w-4xl space-y-4 p-3 sm:p-4">
       <div className="space-y-4 neobrutalism-container pt-3 sm:pt-4">
         <NowPlaying />
 
@@ -89,12 +94,12 @@ const Footer = async () => {
               Akhila Ariyachandra
             </Link>
           </p>
-
-          <ErrorBoundary fallback={null}>
-            <RepoLink />
-          </ErrorBoundary>
         </div>
       </div>
+
+      <ErrorBoundary fallback={null}>
+        <RepoLink />
+      </ErrorBoundary>
     </footer>
   );
 };
@@ -111,23 +116,67 @@ const RepoLink = async () => {
     .json();
   const parsedResponse = await z
     .object({
+      name: z.string(),
+      owner: z.object({
+        login: z.string(),
+      }),
+      description: z.string(),
+      pushed_at: z.iso.datetime(),
       stargazers_count: z.number(),
+      language: z.string(),
+      forks_count: z.number(),
     })
     .parseAsync(response);
 
-  return (
-    <div className="border-l-2 border-l-black p-3 sm:p-4">
-      <a
-        href="https://github.com/akhila-ariyachandra/akhilaariyachandra.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={buttonVariants()}
-      >
-        <span>{parsedResponse.stargazers_count}</span>
+  const language: Language = languages[parsedResponse.language as LanguageName];
 
-        <FaStar />
-        <span className="sr-only">Star</span>
-      </a>
-    </div>
+  return (
+    <a
+      href="https://github.com/akhila-ariyachandra/akhilaariyachandra.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group block neobrutalism-container p-3 sm:p-4"
+    >
+      <div className="text-xs underline-offset-2 group-hover:underline sm:text-sm">
+        {parsedResponse.owner.login} /
+      </div>
+
+      <h4 className="text-xl font-bold underline-offset-2 group-hover:underline sm:text-2xl">
+        {parsedResponse.name}
+      </h4>
+
+      <p className="my-1 text-sm font-semibold sm:my-2 sm:text-base">
+        {parsedResponse.description}
+      </p>
+
+      <hr className="my-2 h-0.5 border-0 bg-black sm:my-3" />
+
+      <div className="flex flex-row items-center gap-2 text-xs sm:text-sm">
+        <div className="flex flex-row items-center gap-1">
+          <div
+            className="size-2 rounded-full"
+            style={{ backgroundColor: language.color }}
+          />
+
+          <div>{language.name}</div>
+        </div>
+
+        <div className="flex flex-row items-center gap-1">
+          <FaStar />
+
+          <div>{parsedResponse.stargazers_count}</div>
+        </div>
+
+        <div className="flex flex-row items-center gap-1">
+          <FaCodeFork />
+
+          <div>{parsedResponse.forks_count}</div>
+        </div>
+
+        <time dateTime={parsedResponse.pushed_at} className="ml-auto">
+          {dayjs(parsedResponse.pushed_at).fromNow()}
+        </time>
+      </div>
+    </a>
   );
 };
