@@ -34,10 +34,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-.vercel
-.env*.local
-
-next-env.d.ts
+# varlock (generated from .env.schema)
+env.d.ts
 
 .eslintcache
 
@@ -48,5 +46,3 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
-
-.env*.local
