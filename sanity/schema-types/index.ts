@@ -1,5 +1,4 @@
-import { type SchemaTypeDefinition, type TemplateResolver } from "sanity";
-import { singletonTypes } from "../shared";
+import { type SchemaTypeDefinition } from "sanity";
 import { companyType } from "./company-type";
 import { jobType } from "./job-type";
 import { linkType } from "./link-type";
@@ -9,7 +8,6 @@ import { technologyType } from "./technology-type";
 
 export const schema: {
   types: SchemaTypeDefinition[];
-  templates: TemplateResolver;
 } = {
   types: [
     personalInfoType,
@@ -19,7 +17,4 @@ export const schema: {
     jobType,
     linkType,
   ],
-  // Filter out singleton types from the global “New document” menu options
-  templates: (templates) =>
-    templates.filter(({ schemaType }) => !singletonTypes.has(schemaType)),
 };
