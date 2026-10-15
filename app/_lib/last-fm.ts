@@ -1,12 +1,13 @@
-import ky from "ky";
+import { createFetch } from "@better-fetch/fetch";
 import { cacheLife } from "next/cache";
 import "server-only";
 import { ENV } from "varlock/env";
 import { recentTracksSchema, topTracksSchema, trackInfoSchema } from "./schema";
 
-const api = ky.create({
-  baseUrl: "https://ws.audioscrobbler.com/2.0",
-  searchParams: {
+const $fetch = createFetch({
+  baseURL: "https://ws.audioscrobbler.com/2.0",
+  throw: true,
+  query: {
     api_key: ENV.LAST_FM_API_KEY,
     user: ENV.LAST_FM_USER,
     format: "json",
@@ -18,34 +19,28 @@ export const getTopTracks = async () => {
 
   cacheLife("days");
 
-  const response = await api
-    .get("", {
-      searchParams: {
-        method: "user.gettoptracks",
-        limit: "10",
-        period: "7day",
-      },
-    })
-    .json();
+  const data = await $fetch("", {
+    query: {
+      method: "user.gettoptracks",
+      limit: "10",
+      period: "7day",
+    },
+    output: topTracksSchema,
+  });
 
-  const tracks = await topTracksSchema.parseAsync(response);
-
-  return tracks.toptracks.track;
+  return data.toptracks.track;
 };
 
 export const getRecentTracks = async () => {
-  const response = await api
-    .get("", {
-      searchParams: {
-        method: "user.getRecentTracks",
-        limit: "10",
-      },
-    })
-    .json();
+  const data = await $fetch("", {
+    query: {
+      method: "user.getRecentTracks",
+      limit: "10",
+    },
+    output: recentTracksSchema,
+  });
 
-  const tracks = await recentTracksSchema.parseAsync(response);
-
-  return tracks.recenttracks.track;
+  return data.recenttracks.track;
 };
 
 export const getTrackInfo = async (mbid: string) => {
@@ -53,16 +48,13 @@ export const getTrackInfo = async (mbid: string) => {
 
   cacheLife("max");
 
-  const response = await api
-    .get("", {
-      searchParams: {
-        method: "track.getInfo",
-        mbid,
-      },
-    })
-    .json();
+  const data = await $fetch("", {
+    query: {
+      method: "track.getInfo",
+      mbid,
+    },
+    output: trackInfoSchema,
+  });
 
-  const parsedResponse = await trackInfoSchema.parseAsync(response);
-
-  return parsedResponse.track;
+  return data.track;
 };
