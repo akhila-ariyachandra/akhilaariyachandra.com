@@ -1,11 +1,11 @@
 "use client";
 
+import { Button, buttonVariants } from "@/_components/button";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { Suspense, use } from "react";
 import { browser } from "react-dom";
 import { FaCircle, FaMoon, FaSun } from "react-icons/fa6";
-import { Button, buttonVariants } from "../button";
 
 const Header = () => {
   return (

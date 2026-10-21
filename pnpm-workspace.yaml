@@ -13,3 +13,9 @@ update:
 # Let Varlock handle .env loading in Next.js, https://varlock.dev/integrations/nextjs/
 overrides:
   "@next/env": "npm:@varlock/nextjs-integration@1.2.2"
+
+permissions:
+  "@tanstack/highlight":
+    skills: true
+  varlock:
+    skills: true
