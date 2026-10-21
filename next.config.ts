@@ -8,7 +8,6 @@ const withVarlock = varlockNextConfigPlugin();
 const nextConfig: NextConfig = {
   experimental: {
     turbopackRustReactCompiler: true,
-    globalNotFound: true,
     exposeTestingApiInProductionBuild: process.env.VERCEL_ENV === "preview",
   },
   reactStrictMode: true,
