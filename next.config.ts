@@ -2,6 +2,7 @@ import { dataset, projectId } from "@/sanity/env";
 import { varlockNextConfigPlugin } from "@varlock/nextjs-integration/plugin";
 import type { NextConfig } from "next";
 import { sanity } from "next-sanity/live/cache-life";
+import { withNextVideo } from "next-video/process";
 
 const withVarlock = varlockNextConfigPlugin();
 
@@ -35,4 +36,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withVarlock(nextConfig);
+export default withVarlock(withNextVideo(nextConfig));

@@ -32,7 +32,8 @@
     "prettier:check": "prettier --check \"**/*.{ts,tsx,js,md,css,yaml}\"",
     "sanity:typegen": "sanity schema extract --path=sanity/generated/schema.json --enforce-required-fields --force && sanity typegen generate",
     "knip": "knip",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "video:sync": "next-video sync"
   },
   "dependencies": {
     "@better-fetch/fetch": "1.3.2",
@@ -55,6 +56,7 @@
     "next-sanity": "13.3.4",
     "next-seo": "7.3.0",
     "next-themes": "0.4.6",
+    "next-video": "^2.8.2",
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "react-error-boundary": "6.1.6",
