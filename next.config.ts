@@ -2,13 +2,15 @@ import { dataset, projectId } from "@/sanity/env";
 import { varlockNextConfigPlugin } from "@varlock/nextjs-integration/plugin";
 import type { NextConfig } from "next";
 import { sanity } from "next-sanity/live/cache-life";
-import { withNextVideo } from "next-video/process";
 
 const withVarlock = varlockNextConfigPlugin();
 
 const nextConfig: NextConfig = {
   experimental: {
     turbopackRustReactCompiler: true,
+    // Builds over the cache restored by Vercel compile far slower than cold builds
+    // https://github.com/vercel/next.js/issues/99579
+    turbopackFileSystemCacheForBuild: false,
     exposeTestingApiInProductionBuild: process.env.VERCEL_ENV === "preview",
   },
   reactStrictMode: true,
@@ -36,4 +38,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withVarlock(withNextVideo(nextConfig));
+export default withVarlock(nextConfig);

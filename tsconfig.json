@@ -25,12 +25,10 @@
       "@/db": ["./db"],
       "@/db/*": ["./db/*"],
       "@/public/*": ["./public/*"],
-      "@/sanity/*": ["./sanity/*"],
-      "@/videos/*": ["./videos/*"]
+      "@/sanity/*": ["./sanity/*"]
     }
   },
   "include": [
-    "video.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
