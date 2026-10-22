@@ -1,8 +1,8 @@
 import Title from "@/_components/title";
-import confusedTravolta from "@/videos/confused-travolta.mp4";
 import type { Metadata } from "next";
-import Video from "next-video";
+import Image from "next/image";
 import Link from "next/link";
+import confusedTravolta from "./confused-travolta.gif";
 
 export const metadata: Metadata = {
   title: "404 - Page Not Found",
@@ -24,14 +24,12 @@ const NotFoundPage = () => {
         </Link>
       </p>
 
-      <Video
+      <Image
         src={confusedTravolta}
-        className="mt-9 block aspect-1280/550! h-auto w-full rounded-sm border-2 border-black shadow-neobrutalism sm:mt-10 sm:rounded-md"
-        poster={confusedTravolta.blurDataURL}
-        controls={false}
-        autoPlay
-        loop
-        muted
+        alt="John Travolta confused in Pulp Fiction"
+        className="mt-9 rounded-sm border-2 border-black shadow-neobrutalism sm:mt-10 sm:rounded-md"
+        priority
+        unoptimized
       />
     </section>
   );
