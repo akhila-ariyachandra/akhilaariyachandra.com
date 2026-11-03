@@ -257,25 +257,32 @@ const TopTracks = async () => {
   );
 };
 
+const AlbumArtPlaceholder = () => {
+  return (
+    <div className="grid size-12.5 place-items-center rounded-sm border-2 border-black sm:size-(--album-art-dimensions)">
+      <BiAlbum className="size-8 sm:size-10" />
+    </div>
+  );
+};
+
 const AlbumArt = async ({ mbid }: { mbid: string }) => {
   if (!mbid) {
-    return (
-      <div className="grid size-12.5 place-items-center rounded-sm border-2 border-black sm:size-(--album-art-dimensions)">
-        <BiAlbum className="size-8 sm:size-10" />
-      </div>
-    );
+    return <AlbumArtPlaceholder />;
   }
 
-  const track = await getTrackInfo(mbid);
+  const album = (await getTrackInfo(mbid))?.album;
+
+  if (!album) {
+    return <AlbumArtPlaceholder />;
+  }
 
   return (
     <Image
       src={
-        track.album.image.find((image) => image.size === "extralarge")?.[
-          "#text"
-        ] ?? ""
+        album.image.find((image) => image.size === "extralarge")?.["#text"] ??
+        ""
       }
-      alt={track.album.title}
+      alt={album.title}
       width={ALBUM_ART_DIMENSIONS}
       height={ALBUM_ART_DIMENSIONS}
       className="size-12.5 rounded-sm border-2 border-black sm:size-(--album-art-dimensions)"
