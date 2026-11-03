@@ -56,5 +56,9 @@ export const getTrackInfo = async (mbid: string) => {
     output: trackInfoSchema,
   });
 
+  if ("error" in data) {
+    return null;
+  }
+
   return data.track;
 };

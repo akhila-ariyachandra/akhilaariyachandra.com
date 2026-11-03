@@ -1,6 +1,12 @@
 {
   "version": 1,
   "skills": {
+    "next-bundle-optimizer": {
+      "source": "vercel/next.js",
+      "sourceType": "github",
+      "skillPath": "skills/next-bundle-optimizer/SKILL.md",
+      "computedHash": "7c37f80887cf574e146b88d42cf7d8e847a96ac4cbd1a499672213a30a5ba8f5"
+    },
     "varlock": {
       "source": "dmno-dev/varlock",
       "sourceType": "github",

@@ -9,7 +9,7 @@ import {
 } from "@/sanity/lib/live";
 import { POST_BY_SLUG_QUERY } from "@/sanity/lib/queries";
 import { createBlurUp } from "@mux/blurup";
-import MuxPlayer from "@mux/mux-player-react";
+import MuxPlayer from "@mux/mux-player-react/lazy";
 import { getImageDimensions } from "@sanity/asset-utils";
 import { createHighlighter } from "@tanstack/highlight";
 import { css } from "@tanstack/highlight/languages/css";
@@ -300,9 +300,14 @@ const CachedBlogPost = async ({
                     const { blurDataURL, aspectRatio, width } =
                       await createBlurUp(asset.playbackId);
 
+                    // The lazy placeholder ships its own CSS (position, size) that
+                    // outranks utility classes, so the player is sized inline to
+                    // fill the wrapper, which reserves the final layout box
                     const style: ComponentProps<typeof MuxPlayer>["style"] = {
-                      width,
-                      aspectRatio,
+                      position: "absolute",
+                      inset: 0,
+                      width: "100%",
+                      height: "100%",
                     };
 
                     if (value.hideControls) {
@@ -310,16 +315,20 @@ const CachedBlogPost = async ({
                     }
 
                     return (
-                      <MuxPlayer
-                        videoTitle={value.title}
-                        playbackId={asset.playbackId}
-                        autoPlay={value.autoplay ? "muted" : false}
-                        loop={value.loop}
-                        accentColor="var(--color-green-500)"
-                        className="mx-auto my-4 block max-w-full overflow-hidden neobrutalism-container first:mt-0 last:mb-0"
-                        style={style}
-                        placeholder={blurDataURL}
-                      />
+                      <div
+                        className="relative mx-auto my-4 max-w-full overflow-hidden neobrutalism-container first:mt-0 last:mb-0"
+                        style={{ width, aspectRatio }}
+                      >
+                        <MuxPlayer
+                          videoTitle={value.title}
+                          playbackId={asset.playbackId}
+                          autoPlay={value.autoplay ? "muted" : false}
+                          loop={value.loop}
+                          accentColor="var(--color-green-500)"
+                          style={style}
+                          placeholder={blurDataURL}
+                        />
+                      </div>
                     );
                   },
                   iframe: ({ value }) => {

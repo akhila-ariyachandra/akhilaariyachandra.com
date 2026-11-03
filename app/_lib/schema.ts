@@ -63,13 +63,22 @@ export const recentTracksSchema = z.object({
   }),
 });
 
-export const trackInfoSchema = z.object({
-  track: z.object({
-    album: z.object({
-      title: z.string(),
-      image: lastFmImageSchema,
+// Last.fm responds with a 200 and an error body when a track can't be found
+export const trackInfoSchema = z.union([
+  z.object({
+    track: z.object({
+      album: z
+        .object({
+          title: z.string(),
+          image: lastFmImageSchema,
+        })
+        .optional(),
     }),
   }),
-});
+  z.object({
+    error: z.number(),
+    message: z.string(),
+  }),
+]);
 
 export type RecentTrack = z.infer<typeof recentTrackSchema>;
