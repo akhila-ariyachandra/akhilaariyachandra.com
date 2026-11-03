@@ -13,7 +13,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
-# Quality Checks
+## Quality Checks
 
 Make sure to run the quality checks after doing any changes.
 
@@ -21,3 +21,11 @@ Make sure to run the quality checks after doing any changes.
 - `pnpm prettier:format`
 - `pnpm typecheck`
 - `pnpm lint`
+
+## Session cleanup
+
+Once all changes are done and verified:
+
+- Delete temp files this session created (paths listed in the session's notes or under `.tmp/`). Do not delete files you didn't create.
+- Stop only the processes this session started (dev servers, watchers, test runners), identified by PID or port. Leave any process that was already running.
+- If something must stay running, say what and why in the final reply.
