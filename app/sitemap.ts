@@ -1,4 +1,4 @@
-import { PRODUCTION_URL } from "@/_lib/constants";
+import { PRODUCTION_URL } from "@/lib/constants";
 import { client } from "@/sanity/lib/client";
 import { HOME_PAGE_UPDATED_AT_QUERY, POSTS_QUERY } from "@/sanity/lib/queries";
 import dayjs from "dayjs";

@@ -1,7 +1,7 @@
 "use client";
 
-import { AudioLinesIcon } from "@/_components/audio-lines";
-import type { RecentTrack } from "@/_lib/schema";
+import { AudioLinesIcon } from "@/components/audio-lines";
+import type { RecentTrack } from "@/lib/schema";
 import Image from "next/image";
 import { useEffect, useRef, type ComponentRef } from "react";
 

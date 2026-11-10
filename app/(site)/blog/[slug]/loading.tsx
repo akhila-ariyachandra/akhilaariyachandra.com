@@ -1,4 +1,4 @@
-import BlogPostLoadingSkeleton from "@/_components/blog/blog-post-loading-skeleton";
+import BlogPostLoadingSkeleton from "@/components/blog/blog-post-loading-skeleton";
 
 const BlogPostLoading = () => {
   return <BlogPostLoadingSkeleton />;

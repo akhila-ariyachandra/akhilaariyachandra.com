@@ -1,4 +1,4 @@
-import { getOgImage } from "@/_lib/og-image";
+import { getOgImage } from "@/lib/og-image";
 import { client } from "@/sanity/lib/client";
 import { getDynamicFetchOptions } from "@/sanity/lib/live";
 import { POST_BY_SLUG_QUERY } from "@/sanity/lib/queries";

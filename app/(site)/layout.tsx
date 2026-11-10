@@ -1,6 +1,6 @@
-import DisableDraftMode from "@/_components/disable-draft-mode";
-import NowPlaying from "@/_components/now-playing";
-import { PRODUCTION_URL } from "@/_lib/constants";
+import DisableDraftMode from "@/components/disable-draft-mode";
+import NowPlaying from "@/components/now-playing";
+import { PRODUCTION_URL } from "@/lib/constants";
 import { SanityLive } from "@/sanity/lib/live";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";

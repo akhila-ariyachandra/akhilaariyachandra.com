@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, buttonVariants } from "@/_components/button";
+import { Button, buttonVariants } from "@/components/button";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { Suspense, use } from "react";

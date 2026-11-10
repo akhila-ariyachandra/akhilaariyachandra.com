@@ -1,5 +1,5 @@
-import BlogPost from "@/_components/blog/blog-post";
-import { PRODUCTION_URL } from "@/_lib/constants";
+import BlogPost from "@/components/blog/blog-post";
+import { PRODUCTION_URL } from "@/lib/constants";
 import {
   getDynamicFetchOptions,
   sanityFetchMetadata,

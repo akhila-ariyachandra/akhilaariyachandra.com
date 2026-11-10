@@ -1,4 +1,4 @@
-import { cva, type VariantProps } from "@/_lib/cva.config";
+import { cva, type VariantProps } from "@/lib/cva.config";
 import { cn } from "cn";
 import { type ComponentProps } from "react";
 

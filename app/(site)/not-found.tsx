@@ -1,4 +1,4 @@
-import Title from "@/_components/title";
+import Title from "@/components/title";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";

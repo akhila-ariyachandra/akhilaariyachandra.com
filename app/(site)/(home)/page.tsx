@@ -1,7 +1,7 @@
-import { buttonVariants } from "@/_components/button";
-import TypographyWrapper from "@/_components/typography-wrapper";
-import { PRODUCTION_URL } from "@/_lib/constants";
-import { getTopTracks, getTrackInfo } from "@/_lib/last-fm";
+import { buttonVariants } from "@/components/button";
+import TypographyWrapper from "@/components/typography-wrapper";
+import { PRODUCTION_URL } from "@/lib/constants";
+import { getTopTracks, getTrackInfo } from "@/lib/last-fm";
 import { type PERSONAL_INFO_QUERY_RESULT } from "@/sanity/generated/types";
 import { urlFor } from "@/sanity/lib/image";
 import {

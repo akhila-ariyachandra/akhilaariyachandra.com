@@ -1,4 +1,4 @@
-import Skeleton from "@/_components/skeleton";
+import Skeleton from "@/components/skeleton";
 import OutdatedContentBanner from "./outdated-content-banner";
 
 const BlogPostLoadingSkeleton = ({

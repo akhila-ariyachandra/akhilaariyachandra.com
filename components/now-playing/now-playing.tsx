@@ -1,5 +1,5 @@
-import { AudioLinesIcon } from "@/_components/audio-lines";
-import { getRecentTracks } from "@/_lib/last-fm";
+import { AudioLinesIcon } from "@/components/audio-lines";
+import { getRecentTracks } from "@/lib/last-fm";
 import { type CSSProperties, Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { ALBUM_ART_DIMENSIONS } from "./constants";

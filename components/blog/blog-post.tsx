@@ -1,5 +1,5 @@
-import TypographyWrapper from "@/_components/typography-wrapper";
-import { PRODUCTION_URL } from "@/_lib/constants";
+import TypographyWrapper from "@/components/typography-wrapper";
+import { PRODUCTION_URL } from "@/lib/constants";
 import type { POST_BY_SLUG_QUERY_RESULT } from "@/sanity/generated/types";
 import { urlFor } from "@/sanity/lib/image";
 import {
