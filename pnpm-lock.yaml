@@ -198,13 +198,13 @@ importers:
         version: 1.2.11
       '@varlock/nextjs-integration':
         specifier: 2.0.0
-        version: 2.0.0(next@16.4.5(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0))(varlock@1.24.0)
+        version: 2.0.0(next@16.5.0-canary.46(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0))(varlock@1.24.0)
       '@vercel/analytics':
         specifier: 2.0.1
-        version: 2.0.1(next@16.4.5(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0))(react@19.3.1)
+        version: 2.0.1(next@16.5.0-canary.46(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0))(react@19.3.1)
       '@vercel/speed-insights':
         specifier: 2.1.0
-        version: 2.1.0(next@16.4.5(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0))(react@19.3.1)
+        version: 2.1.0(next@16.5.0-canary.46(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0))(react@19.3.1)
       cn:
         specifier: 0.5.2
         version: 0.5.2
@@ -218,14 +218,14 @@ importers:
         specifier: 14.10.1
         version: 14.10.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       next:
-        specifier: 16.4.5
-        version: 16.4.5(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0)
+        specifier: 16.5.0-canary.46
+        version: 16.5.0-canary.46(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0)
       next-sanity:
         specifier: 13.4.0
-        version: 13.4.0(582723517eb93997a894c27d6499f280)
+        version: 13.4.0(0a290e62f94d8dc21d6d3a313f7cb630)
       next-seo:
         specifier: 7.3.0
-        version: 7.3.0(next@16.4.5(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0))(react@19.3.1)
+        version: 7.3.0(next@16.5.0-canary.46(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0))(react@19.3.1)
       next-themes:
         specifier: 0.4.6
         version: 0.4.6(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -2124,54 +2124,54 @@ packages:
       '@playwright/test':
         optional: true
 
-  '@next/swc-darwin-arm64@16.4.5':
-    resolution: {integrity: sha512-W5TniBzWKASbNNwHZ/S/f1MxQUXU/LdjklVMWA0Ujbfl7SZnUzFls45hO0i/sF7Bx1jJBWp7WWmoQajXtX/O8A==}
+  '@next/swc-darwin-arm64@16.5.0-canary.46':
+    resolution: {integrity: sha512-DEw6EcEBXZ7LyhT6wq5dmpw/MwlgKVZ/X7CHDNExEjhPjTfJqweXTU7U3AFtBzPUjW4nWEI0u2CbiC2gNoi0bw==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
 
-  '@next/swc-darwin-x64@16.4.5':
-    resolution: {integrity: sha512-uWq4qkHapBDS1oFltWS4YxTb9pLHAtLNcpbuK6SmRsebLYZqpBML/j/C0op+50JYGTpZgVL/DWNt/6oWlamrrw==}
+  '@next/swc-darwin-x64@16.5.0-canary.46':
+    resolution: {integrity: sha512-gXWu5Veiq6boedvEb6uz6C2mkSCYMXN7JpqfPkbCECdm0xN3X8tbld3EvxKnRCBJs/YcZlvkFEmtOXxOh/cqaQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
 
-  '@next/swc-linux-arm64-gnu@16.4.5':
-    resolution: {integrity: sha512-FdRcyOx5u5P51mlAqLB9EXdd8jZO5fsdHtk4BAQSkqOywCsbTNN/rmw+jO7pnmjNdAtu2AG46NzbCL2FPDrrgw==}
+  '@next/swc-linux-arm64-gnu@16.5.0-canary.46':
+    resolution: {integrity: sha512-QhyaTHn4nLYaFHxPsDQQaOMRmtWPIEzxTIahpx84Gr3V7BXmXUSHYGZpUSd8XhOS0LqUZhqnfIG88z263FMkww==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
 
-  '@next/swc-linux-arm64-musl@16.4.5':
-    resolution: {integrity: sha512-cyvmmgtRXR8aGVT86wi9Py53IlfyCx7P2fZxuAXAoTummDnhKtUyjrMeXfapqp4qgD+gT5RqyGD/VfA16jEK7Q==}
+  '@next/swc-linux-arm64-musl@16.5.0-canary.46':
+    resolution: {integrity: sha512-Bfs8xIG7NL8lSrwZQGvb03U7grctQw93Dakh6iEv7NiwXkogEBBS9mHITxT8IyJqsCTR+HHaNgumRBenqt8q5w==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
     libc: [musl]
 
-  '@next/swc-linux-x64-gnu@16.4.5':
-    resolution: {integrity: sha512-hPc+Fl+N22DAvqZHq559NmamXboOX5Lu8I5Wl0DezfrhTk1Zz21NQeYoZDmNI/NjTcrdsVxM72Fzn2lI+Q+vAw==}
+  '@next/swc-linux-x64-gnu@16.5.0-canary.46':
+    resolution: {integrity: sha512-Mdri8nOVWQ3X29evA/wJCfZBOLm0Zw7+AVc21ykNp1q6pY41kiH0pfvvOhUxRPAVHMkbV0gbirInrZiZsPhtpw==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  '@next/swc-linux-x64-musl@16.4.5':
-    resolution: {integrity: sha512-gbACYE8IP/jlprNTpiWXHb8N9CofOzpnEwH2SrIz1dUbiJf1FbDssDupCAPeP1Taxe8mgG20sGZamJI7KFOdZw==}
+  '@next/swc-linux-x64-musl@16.5.0-canary.46':
+    resolution: {integrity: sha512-i+HaSp2e4kfHJBLTyw5x4JPfqzW1n7LuKccOuHMc4VuM7LNLBDOt1zEpc9fO0rSwndO/1+rRzyP+2cOj7wUtEA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
     libc: [musl]
 
-  '@next/swc-win32-arm64-msvc@16.4.5':
-    resolution: {integrity: sha512-+8gj++ZMo8H20Xh2ijjNqyFk5LPLw0AC4Fs4Tq/G94rjjQXhOjN4jgSWsWKPFsyY26hfIeemJIwKtMxOsp5GBA==}
+  '@next/swc-win32-arm64-msvc@16.5.0-canary.46':
+    resolution: {integrity: sha512-L8C5hkTRmpEEPl8zwHsTfh7FSeLJ8Npx1YeA1gsx3abetQPmOPcqFwBb2SNzc1q1ulvGBtEsFhktjbeiIOmnkA==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
 
-  '@next/swc-win32-x64-msvc@16.4.5':
-    resolution: {integrity: sha512-qNZj66pYXnaWLiF9R9GUbfBdrCv7kC6TaZfIwB2KH5WPc/8pEM3nVOj8hpQhWJU8S94rlH5MPDcX15+RrgUhiw==}
+  '@next/swc-win32-x64-msvc@16.5.0-canary.46':
+    resolution: {integrity: sha512-faxCNruGtU1zKP/YWq8cc9Mc/b8Lm6Cs5zyjeYKepg6pk7r2sZ57Zl8H7kubmZkq1E5pc+N0smT8CqSnGXYmCQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -3256,8 +3256,8 @@ packages:
     peerDependencies:
       eslint: ^9.0.0 || ^10.0.0
 
-  '@swc/helpers@0.5.23':
-    resolution: {integrity: sha512-5lSsMOTXURePglDfvuAQUqkGek9Hg2kksOYay2m0+XR++b2NWYL/4sWyuvVBIs8oKnJaxkdi9whaL/sqN13afw==}
+  '@swc/helpers@0.5.24':
+    resolution: {integrity: sha512-6tcXo4kA8HgGO7AVmawB57RYi/piBPYVHVcO6dXjX+SZw8GoHmi262sp4v2Ha2kNP9Cx84qei27yT+fjS1lxgg==}
 
   '@tailwindcss/node@4.3.5':
     resolution: {integrity: sha512-yT53FzV4ke0cr/BguDxhWMpm5MJu1O2muzk+tKw6lKHjODAsYArBbWwFbJiaksfzFv1tpkO9QHGzmfs1hJT66g==}
@@ -5869,8 +5869,8 @@ packages:
       react: ^16.8 || ^17 || ^18 || ^19 || ^19.0.0-rc
       react-dom: ^16.8 || ^17 || ^18 || ^19 || ^19.0.0-rc
 
-  next@16.4.5:
-    resolution: {integrity: sha512-rmdfsWosjTUO+6R0S3KokoIk6Kj0sWDRTe86tZHdqaWH/oXq/udX3/4xb+YQi7aWbyEFoglDU54kaifLCdXbBw==}
+  next@16.5.0-canary.46:
+    resolution: {integrity: sha512-nIh9isMUOmXkDdsyjghl+EMSQcvNEAh/fzOPbfpkhoXIuZFxzwG//22feergbuTtqHZDjCFeEs4cd0rZb+Drow==}
     engines: {node: '>=20.9.0'}
     hasBin: true
     peerDependencies:
@@ -8513,7 +8513,7 @@ snapshots:
       '@codemirror/language': 6.13.1
       '@codemirror/state': 6.7.6
       '@codemirror/view': 6.43.15
-      '@lezer/highlight': 1.2.3
+      '@lezer/highlight': 1.2.5
 
   '@codemirror/view@6.43.15':
     dependencies:
@@ -9503,28 +9503,28 @@ snapshots:
     optionalDependencies:
       '@playwright/test': 1.65.0
 
-  '@next/swc-darwin-arm64@16.4.5':
+  '@next/swc-darwin-arm64@16.5.0-canary.46':
     optional: true
 
-  '@next/swc-darwin-x64@16.4.5':
+  '@next/swc-darwin-x64@16.5.0-canary.46':
     optional: true
 
-  '@next/swc-linux-arm64-gnu@16.4.5':
+  '@next/swc-linux-arm64-gnu@16.5.0-canary.46':
     optional: true
 
-  '@next/swc-linux-arm64-musl@16.4.5':
+  '@next/swc-linux-arm64-musl@16.5.0-canary.46':
     optional: true
 
-  '@next/swc-linux-x64-gnu@16.4.5':
+  '@next/swc-linux-x64-gnu@16.5.0-canary.46':
     optional: true
 
-  '@next/swc-linux-x64-musl@16.4.5':
+  '@next/swc-linux-x64-musl@16.5.0-canary.46':
     optional: true
 
-  '@next/swc-win32-arm64-msvc@16.4.5':
+  '@next/swc-win32-arm64-msvc@16.5.0-canary.46':
     optional: true
 
-  '@next/swc-win32-x64-msvc@16.4.5':
+  '@next/swc-win32-x64-msvc@16.5.0-canary.46':
     optional: true
 
   '@noble/ed25519@3.1.0': {}
@@ -10775,7 +10775,7 @@ snapshots:
     optionalDependencies:
       '@sanity/types': 6.19.0(@types/react@19.3.0)
 
-  '@sanity/visual-editing@6.2.0(@sanity/client@8.15.0)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(styled-components@6.6.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(typescript@6.0.3)':
+  '@sanity/visual-editing@6.2.0(@sanity/client@8.15.0)(@types/react@19.3.0)(next@16.5.0-canary.46(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(styled-components@6.6.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(typescript@6.0.3)':
     dependencies:
       '@sanity/comlink': 4.0.3
       '@sanity/icons': 5.2.3(react@19.3.1)
@@ -10798,7 +10798,7 @@ snapshots:
       xstate: 5.33.2
     optionalDependencies:
       '@sanity/client': 8.15.0
-      next: 16.4.5(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0)
+      next: 16.5.0-canary.46(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0)
     transitivePeerDependencies:
       - '@types/react'
       - remix
@@ -10989,9 +10989,7 @@ snapshots:
       estraverse: 5.3.0
       picomatch: 4.0.3
 
-  '@swc/helpers@0.5.23':
-    dependencies:
-      tslib: 2.8.1
+  '@swc/helpers@0.5.24': {}
 
   '@tailwindcss/node@4.3.5':
     dependencies:
@@ -11405,19 +11403,19 @@ snapshots:
   '@varlock/native-helper-win32-x64@1.24.0':
     optional: true
 
-  '@varlock/nextjs-integration@1.2.2(next@16.4.5(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0))(varlock@1.24.0)':
+  '@varlock/nextjs-integration@1.2.2(next@16.5.0-canary.46(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0))(varlock@1.24.0)':
     dependencies:
-      next: 16.4.5(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0)
+      next: 16.5.0-canary.46(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0)
       varlock: 1.24.0
 
-  '@varlock/nextjs-integration@2.0.0(next@16.4.5(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0))(varlock@1.24.0)':
+  '@varlock/nextjs-integration@2.0.0(next@16.5.0-canary.46(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0))(varlock@1.24.0)':
     dependencies:
-      next: 16.4.5(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0)
+      next: 16.5.0-canary.46(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0)
       varlock: 1.24.0
 
-  '@vercel/analytics@2.0.1(next@16.4.5(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0))(react@19.3.1)':
+  '@vercel/analytics@2.0.1(next@16.5.0-canary.46(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0))(react@19.3.1)':
     optionalDependencies:
-      next: 16.4.5(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0)
+      next: 16.5.0-canary.46(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0)
       react: 19.3.1
 
   '@vercel/error-utils@2.2.0': {}
@@ -11428,9 +11426,9 @@ snapshots:
       js-yaml: 3.13.1
       smol-toml: 1.5.2
 
-  '@vercel/speed-insights@2.1.0(next@16.4.5(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0))(react@19.3.1)':
+  '@vercel/speed-insights@2.1.0(next@16.5.0-canary.46(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0))(react@19.3.1)':
     optionalDependencies:
-      next: 16.4.5(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0)
+      next: 16.5.0-canary.46(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0)
       react: 19.3.1
 
   '@vercel/stega@1.1.0': {}
@@ -13637,17 +13635,17 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  next-sanity@13.4.0(582723517eb93997a894c27d6499f280):
+  next-sanity@13.4.0(0a290e62f94d8dc21d6d3a313f7cb630):
     dependencies:
       '@portabletext/react': 7.0.1(react@19.3.1)
       '@sanity/client': 8.15.0
       '@sanity/generate-help-url': 4.0.0
       '@sanity/preview-url-secret': 4.1.5(@sanity/client@8.15.0)
-      '@sanity/visual-editing': 6.2.0(@sanity/client@8.15.0)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(styled-components@6.6.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(typescript@6.0.3)
+      '@sanity/visual-editing': 6.2.0(@sanity/client@8.15.0)(@types/react@19.3.0)(next@16.5.0-canary.46(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(styled-components@6.6.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(typescript@6.0.3)
       '@sanity/webhook': 4.0.4
       groq: 6.18.0
       history: 5.3.0
-      next: 16.4.5(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0)
+      next: 16.5.0-canary.46(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0)
       react: 19.3.1
       react-dom: 19.3.1(react@19.3.1)
       sanity: 6.22.0(@babel/core@7.29.7(supports-color@8.1.1))(@babel/runtime@7.29.7)(@noble/hashes@2.3.0)(@rolldown/plugin-babel@0.2.4(@babel/core@7.29.7(supports-color@8.1.1))(@babel/runtime@7.29.7)(rolldown@1.2.12)(vite@8.3.3(@types/node@26.6.6)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.10)(yaml@2.9.1)))(@sanity/workflow-blueprint@0.36.0(@sanity/workflow-engine@0.36.0(@types/react@19.3.0)(supports-color@8.1.1)(typescript@6.0.3))(typescript@6.0.3))(@types/node@26.6.6)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(esbuild@0.28.1)(immer@11.1.18)(jiti@2.7.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(rolldown@1.2.12)(styled-components@6.6.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(supports-color@8.1.1)(tsx@4.23.10)(typescript@6.0.3)
@@ -13661,9 +13659,9 @@ snapshots:
       - typescript
       - vitest
 
-  next-seo@7.3.0(next@16.4.5(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0))(react@19.3.1):
+  next-seo@7.3.0(next@16.5.0-canary.46(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0))(react@19.3.1):
     dependencies:
-      next: 16.4.5(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0)
+      next: 16.5.0-canary.46(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0)
       react: 19.3.1
 
   next-themes@0.4.6(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
@@ -13671,10 +13669,10 @@ snapshots:
       react: 19.3.1
       react-dom: 19.3.1(react@19.3.1)
 
-  next@16.4.5(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0):
+  next@16.5.0-canary.46(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0):
     dependencies:
-      '@next/env': '@varlock/nextjs-integration@1.2.2(next@16.4.5(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0))(varlock@1.24.0)'
-      '@swc/helpers': 0.5.23
+      '@next/env': '@varlock/nextjs-integration@1.2.2(next@16.5.0-canary.46(@babel/core@7.29.7(supports-color@8.1.1))(@playwright/test@1.65.0)(@types/node@26.6.6)(babel-plugin-macros@3.1.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(varlock@1.24.0))(varlock@1.24.0)'
+      '@swc/helpers': 0.5.24
       baseline-browser-mapping: 2.11.19
       caniuse-lite: 1.0.30001810
       postcss: 8.5.23
@@ -13682,14 +13680,14 @@ snapshots:
       react-dom: 19.3.1(react@19.3.1)
       styled-jsx: 5.1.6(@babel/core@7.29.7(supports-color@8.1.1))(babel-plugin-macros@3.1.0)(react@19.3.1)
     optionalDependencies:
-      '@next/swc-darwin-arm64': 16.4.5
-      '@next/swc-darwin-x64': 16.4.5
-      '@next/swc-linux-arm64-gnu': 16.4.5
-      '@next/swc-linux-arm64-musl': 16.4.5
-      '@next/swc-linux-x64-gnu': 16.4.5
-      '@next/swc-linux-x64-musl': 16.4.5
-      '@next/swc-win32-arm64-msvc': 16.4.5
-      '@next/swc-win32-x64-msvc': 16.4.5
+      '@next/swc-darwin-arm64': 16.5.0-canary.46
+      '@next/swc-darwin-x64': 16.5.0-canary.46
+      '@next/swc-linux-arm64-gnu': 16.5.0-canary.46
+      '@next/swc-linux-arm64-musl': 16.5.0-canary.46
+      '@next/swc-linux-x64-gnu': 16.5.0-canary.46
+      '@next/swc-linux-x64-musl': 16.5.0-canary.46
+      '@next/swc-win32-arm64-msvc': 16.5.0-canary.46
+      '@next/swc-win32-x64-msvc': 16.5.0-canary.46
       '@playwright/test': 1.65.0
       sharp: 0.35.5(@types/node@26.6.6)
     transitivePeerDependencies:
