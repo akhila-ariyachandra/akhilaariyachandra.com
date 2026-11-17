@@ -9,11 +9,11 @@
   "author": "Akhila Ariyachandra <akhila_ariyachandra@live.com>",
   "license": "MIT",
   "private": true,
-  "packageManager": "pnpm@12.15.0",
+  "packageManager": "pnpm@12.21.0",
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
-      "version": "12.15.0",
+      "version": "12.21.0",
       "onFail": "download"
     },
     "runtime": {
