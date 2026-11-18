@@ -9,6 +9,8 @@ const nextConfig: NextConfig = {
   experimental: {
     turbopackRustReactCompiler: true,
     exposeTestingApiInProductionBuild: process.env.VERCEL_ENV === "preview",
+    // Disable production build cache because it hangs in Vercel
+    turbopackFileSystemCacheForBuild: false,
   },
   reactStrictMode: true,
   reactCompiler: true,
