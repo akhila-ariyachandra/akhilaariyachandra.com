@@ -1,7 +1,6 @@
 import { buttonVariants } from "@/components/button";
 import TypographyWrapper from "@/components/typography-wrapper";
 import { PRODUCTION_URL } from "@/lib/constants";
-import { getTopTracks, getTrackInfo } from "@/lib/last-fm";
 import { type PERSONAL_INFO_QUERY_RESULT } from "@/sanity/generated/types";
 import { urlFor } from "@/sanity/lib/image";
 import {
@@ -16,12 +15,8 @@ import { ProfilePageJsonLd } from "next-seo";
 import { draftMode } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
-import { Suspense, type CSSProperties } from "react";
-import { ErrorBoundary } from "react-error-boundary";
-import { BiAlbum } from "react-icons/bi";
+import { Suspense } from "react";
 import Career from "./career";
-
-const ALBUM_ART_DIMENSIONS = 75;
 
 const HomePage = async () => {
   const { isEnabled: isDraftMode } = await draftMode();
@@ -43,10 +38,6 @@ const HomePage = async () => {
       )}
 
       <Career />
-
-      <ErrorBoundary fallback={null}>
-        <TopTracks />
-      </ErrorBoundary>
     </>
   );
 };
@@ -191,102 +182,5 @@ const CachedAbout = async ({ perspective, stega }: DynamicFetchOptions) => {
         }}
       />
     </section>
-  );
-};
-
-const TopTracks = async () => {
-  const topTracks = await getTopTracks();
-
-  return (
-    <section className="my-10 space-y-4 neobrutalism-container p-3 sm:my-20 sm:space-y-8 sm:p-4">
-      <div className="space-y-0.5 sm:space-y-1">
-        <h2 className="text-2xl font-bold sm:text-3xl">Top Tracks</h2>
-
-        <p className="text-sm sm:text-base">
-          These are the tracks that I&apos;ve been listening to the most
-          recently, updated daily.
-        </p>
-      </div>
-
-      <ul
-        className="space-y-2 sm:space-y-4"
-        style={
-          {
-            "--album-art-dimensions": `${ALBUM_ART_DIMENSIONS.toString()}px`,
-          } as CSSProperties
-        }
-      >
-        {topTracks.map((track) => {
-          return (
-            <li
-              key={track.mbid ? track.mbid : track.url}
-              className="flex flex-row items-center gap-4"
-            >
-              <a
-                href={track.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="shrink-0"
-              >
-                <AlbumArt mbid={track.mbid} />
-
-                <span className="sr-only">{track.name}</span>
-              </a>
-
-              <div className="min-w-0 flex-1">
-                <p className="truncate text-lg sm:text-xl">
-                  <a
-                    href={track.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-semibold text-accent hover:underline dark:text-accent-dark"
-                  >
-                    {track.name}
-                  </a>
-                </p>
-
-                <p className="truncate text-sm sm:text-base">
-                  {track.artist.name}
-                </p>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-    </section>
-  );
-};
-
-const AlbumArtPlaceholder = () => {
-  return (
-    <div className="grid size-12.5 place-items-center rounded-sm border-2 border-black sm:size-(--album-art-dimensions)">
-      <BiAlbum className="size-8 sm:size-10" />
-    </div>
-  );
-};
-
-const AlbumArt = async ({ mbid }: { mbid: string }) => {
-  if (!mbid) {
-    return <AlbumArtPlaceholder />;
-  }
-
-  const album = (await getTrackInfo(mbid))?.album;
-
-  if (!album) {
-    return <AlbumArtPlaceholder />;
-  }
-
-  return (
-    <Image
-      src={
-        album.image.find((image) => image.size === "extralarge")?.["#text"] ??
-        ""
-      }
-      alt={album.title}
-      width={ALBUM_ART_DIMENSIONS}
-      height={ALBUM_ART_DIMENSIONS}
-      className="size-12.5 rounded-sm border-2 border-black sm:size-(--album-art-dimensions)"
-      unoptimized
-    />
   );
 };

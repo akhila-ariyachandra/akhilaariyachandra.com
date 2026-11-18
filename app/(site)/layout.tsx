@@ -1,5 +1,4 @@
 import DisableDraftMode from "@/components/disable-draft-mode";
-import NowPlaying from "@/components/now-playing";
 import { PRODUCTION_URL } from "@/lib/constants";
 import { SanityLive } from "@/sanity/lib/live";
 import { Analytics } from "@vercel/analytics/next";
@@ -109,20 +108,14 @@ const Footer = async () => {
 
   return (
     <footer className="mx-auto w-full max-w-4xl p-3 sm:p-4">
-      <div className="space-y-4 neobrutalism-container pt-3 sm:pt-4">
-        <NowPlaying />
-
-        <div className="flex flex-row items-center justify-between gap-4 border-t-2 border-t-black">
-          <p className="p-3 text-sm sm:p-4 sm:text-base">
-            &copy; {year}{" "}
-            <Link
-              href="/"
-              className="font-semibold text-accent hover:underline dark:text-accent-dark"
-            >
-              Akhila Ariyachandra
-            </Link>
-          </p>
-        </div>
+      <div className="neobrutalism-container p-3 text-sm sm:p-4 sm:text-base">
+        &copy; {year}{" "}
+        <Link
+          href="/"
+          className="font-semibold text-accent hover:underline dark:text-accent-dark"
+        >
+          Akhila Ariyachandra
+        </Link>
       </div>
     </footer>
   );
