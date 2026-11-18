@@ -30,11 +30,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  logging: {
-    fetches: {
-      fullUrl: true,
-    },
-  },
 };
 
 export default withVarlock(nextConfig);
