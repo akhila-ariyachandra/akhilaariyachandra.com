@@ -1,1 +1,8 @@
-pnpm-*
+# pnpm
+/configure-selective-highlighting
+/extend-language-support
+/integrate-framework-code-blocks
+/integrate-markdown-pipelines
+/pnpm-varlock-varlock
+/theme-and-annotate-code
+# pnpm end

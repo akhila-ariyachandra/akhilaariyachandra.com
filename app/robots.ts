@@ -1,4 +1,4 @@
-import { PRODUCTION_URL } from "@/_lib/constants";
+import { PRODUCTION_URL } from "@/lib/constants";
 import type { MetadataRoute } from "next";
 
 const robots = (): MetadataRoute.Robots => {

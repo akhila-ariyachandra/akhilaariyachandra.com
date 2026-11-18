@@ -1,4 +1,4 @@
-import { Button } from "@/_components/button";
+import { Button } from "@/components/button";
 import { useIsPresentationTool } from "next-sanity/hooks";
 import { useTransition } from "react";
 import { disableDraftMode } from "./actions";

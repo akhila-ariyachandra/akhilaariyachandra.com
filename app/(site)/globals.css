@@ -5,10 +5,6 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@theme {
-  --color-last-fm-red: #d51007;
-}
-
 @theme inline {
   --color-accent: var(--color-green-700);
   --color-accent-dark: var(--color-green-500);

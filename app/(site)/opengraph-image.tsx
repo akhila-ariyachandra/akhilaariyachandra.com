@@ -1,4 +1,4 @@
-import { getOgImage } from "@/_lib/og-image";
+import { getOgImage } from "@/lib/og-image";
 import type { Route } from "next";
 
 // Image metadata

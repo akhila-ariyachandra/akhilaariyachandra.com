@@ -16,9 +16,9 @@ export const getOgImage = async ({
   const data = await client.fetch(PERSONAL_INFO_QUERY);
 
   const [dmSansMedium, dmSansSemiBold, dmSansBold] = await Promise.all([
-    readFile(join(process.cwd(), "app/_assets/fonts/DMSans-Medium.ttf")),
-    readFile(join(process.cwd(), "app/_assets/fonts/DMSans-SemiBold.ttf")),
-    readFile(join(process.cwd(), "app/_assets/fonts/DMSans-Bold.ttf")),
+    readFile(join(process.cwd(), "assets/fonts/DMSans-Medium.ttf")),
+    readFile(join(process.cwd(), "assets/fonts/DMSans-SemiBold.ttf")),
+    readFile(join(process.cwd(), "assets/fonts/DMSans-Bold.ttf")),
   ]);
 
   return new ImageResponse(

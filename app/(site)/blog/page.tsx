@@ -1,6 +1,6 @@
-import BlogList from "@/_components/blog/blog-list";
-import Title from "@/_components/title";
-import { PRODUCTION_URL } from "@/_lib/constants";
+import BlogList from "@/components/blog/blog-list";
+import Title from "@/components/title";
+import { PRODUCTION_URL } from "@/lib/constants";
 import type { Metadata } from "next";
 import { BreadcrumbJsonLd } from "next-seo";
 import Link from "next/link";

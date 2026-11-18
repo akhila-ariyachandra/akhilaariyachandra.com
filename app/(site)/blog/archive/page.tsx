@@ -1,5 +1,5 @@
-import BlogList from "@/_components/blog/blog-list";
-import Title from "@/_components/title";
+import BlogList from "@/components/blog/blog-list";
+import Title from "@/components/title";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

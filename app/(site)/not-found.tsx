@@ -1,4 +1,4 @@
-import Title from "@/_components/title";
+import Title from "@/components/title";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -28,7 +28,7 @@ const NotFoundPage = () => {
         src={confusedTravolta}
         alt="John Travolta confused in Pulp Fiction"
         className="mt-9 rounded-sm border-2 border-black shadow-neobrutalism sm:mt-10 sm:rounded-md"
-        priority
+        preload
         unoptimized
       />
     </section>

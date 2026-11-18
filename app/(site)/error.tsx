@@ -1,6 +1,6 @@
 "use client"; // Error components must be Client Components
 
-import Title from "@/_components/title";
+import Title from "@/components/title";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ErrorPage = (props: {

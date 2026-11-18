@@ -8,10 +8,9 @@ const withVarlock = varlockNextConfigPlugin();
 const nextConfig: NextConfig = {
   experimental: {
     turbopackRustReactCompiler: true,
-    // Builds over the cache restored by Vercel compile far slower than cold builds, or hang
-    // https://github.com/vercel/next.js/issues/99579
-    turbopackFileSystemCacheForBuild: false,
     exposeTestingApiInProductionBuild: process.env.VERCEL_ENV === "preview",
+    // Disable production build cache because it hangs in Vercel
+    turbopackFileSystemCacheForBuild: false,
   },
   reactStrictMode: true,
   reactCompiler: true,
@@ -30,11 +29,6 @@ const nextConfig: NextConfig = {
         pathname: `/images/${projectId}/${dataset}/**`,
       },
     ],
-  },
-  logging: {
-    fetches: {
-      fullUrl: true,
-    },
   },
 };
 

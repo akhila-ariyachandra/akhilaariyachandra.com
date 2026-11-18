@@ -1,5 +1,5 @@
-import { buttonVariants } from "@/_components/button";
-import TypographyWrapper from "@/_components/typography-wrapper";
+import { buttonVariants } from "@/components/button";
+import TypographyWrapper from "@/components/typography-wrapper";
 import { urlFor } from "@/sanity/lib/image";
 import {
   type DynamicFetchOptions,
