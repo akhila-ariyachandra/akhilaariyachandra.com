@@ -71,7 +71,7 @@ const CachedAbout = async ({ perspective, stega }: DynamicFetchOptions) => {
         height={240}
         alt="Akhila Ariyachandra"
         className="mb-4 w-44 rounded-sm border-2 border-black shadow-neobrutalism sm:mr-5 sm:mb-5 sm:w-60 sm:rounded-lg"
-        priority
+        preload
       />
 
       <h1 className="mb-4 text-3xl sm:mb-5 sm:text-4xl">

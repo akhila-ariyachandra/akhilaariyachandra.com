@@ -31,7 +31,7 @@
     "prettier:format": "prettier --write \"**/*.{ts,tsx,js,md,css,yaml}\"",
     "prettier:check": "prettier --check \"**/*.{ts,tsx,js,md,css,yaml}\"",
     "sanity:typegen": "sanity schema extract --path=sanity/generated/schema.json --enforce-required-fields --force && sanity typegen generate",
-    "knip": "knip",
+    "knip": "varlock run -- knip",
     "test:e2e": "playwright test"
   },
   "dependencies": {
